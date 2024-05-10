@@ -1,9 +1,17 @@
 <script setup lang="ts">
+	import Ukiyo from 'ukiyojs';
+
 	defineProps(['src']);
+
+	const parallax = ref();
+
+	onMounted(() => {
+		new Ukiyo(parallax.value, { speed: 2 });
+	});
 </script>
 
 <template>
-	<div class="parallax absolute top-0 left-0 -z-10" :style="{ 'background-image': `url(${src})` }">
+	<div ref="parallax" class="parallax absolute top-0 left-0 -z-10" :style="{ 'background-image': `url(${src})` }">
 		<div class="overlay"></div>
 	</div>
 </template>
