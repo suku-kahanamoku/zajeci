@@ -1,0 +1,32 @@
+<script setup lang="ts">
+	const menuItems = [
+		{
+			label: '$.page.about',
+			to: '/#about',
+		},
+		{
+			label: '$.page.product',
+			to: '/#product',
+		},
+		{
+			label: '$.page.taste',
+			to: '/#tasting',
+		},
+		{
+			label: '$.page.contact',
+			to: '/#contact',
+		},
+	];
+</script>
+
+<template>
+	<div class="min-h-screen flex flex-col dark:bg-gray-900">
+		<UiNavbar :menuItems="menuItems" />
+
+		<main class="flex-1 flex">
+			<slot></slot>
+		</main>
+		
+		<UiFooter></UiFooter>
+	</div>
+</template>
