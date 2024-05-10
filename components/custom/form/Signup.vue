@@ -87,7 +87,7 @@
 								&nbsp;
 								<UButton
 									:to="localePath(routes.terms_conditions?.path)"
-									class="text-primary-500"
+									class="text-primary-500 dark:text-white"
 									variant="link"
 									size="sm"
 									:padded="false"
@@ -97,14 +97,14 @@
 						</UCheckbox>
 					</template>
 				</UFormGroup>
-				<UButton type="submit" size="lg" block :loading="loading">
+				<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
 					{{ $t('$.signup.title') }}
 				</UButton>
 				<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 					{{ $t('$.signup.has_account') }}
 					<UButton
 						:to="localePath(routes.login?.path)"
-						class="font-medium text-primary-500"
+						class="font-medium text-primary-500 dark:text-white"
 						variant="link"
 						size="sm"
 						:padded="false"

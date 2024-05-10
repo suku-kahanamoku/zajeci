@@ -42,7 +42,7 @@
 				<UFormGroup :label="$t('$.form.email')" name="email">
 					<UInput v-model="state.email" type="email" placeholder="name@company.com" required size="lg" />
 				</UFormGroup>
-				<UButton type="submit" size="lg" block :loading="loading">
+				<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
 					{{ $t('$.form.submit') }}
 				</UButton>
 			</UForm>

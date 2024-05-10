@@ -53,9 +53,5 @@
 				<CustomFormContact />
 			</div>
 		</div>
-
-		<div class="mt-12">
-			<iframe style="border: none" src="https://en.frame.mapy.cz/s/pemudahace" width="100%" height="300"></iframe>
-		</div>
 	</div>
 </template>

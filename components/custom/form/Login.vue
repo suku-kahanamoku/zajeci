@@ -46,7 +46,7 @@
 					class="flex-1"
 					@click="useAuthStore().loginByGoogle()"
 				>
-					<div class="flex items-center justify-center gap-2 mx-auto">
+					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:google-icon" size="20" />
 						Google
 					</div>
@@ -58,23 +58,23 @@
 					class="flex-1"
 					@click="useAuthStore().loginByLinkedin()"
 				>
-					<div class="flex items-center justify-center gap-2 mx-auto">
+					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:linkedin-icon" size="20" />
 						LinkedIn
 					</div>
 				</UButton>
-				<!-- <UButton
+				<UButton
 					variant="outline"
 					color="gray"
 					size="lg"
 					class="flex-1"
 					@click="useAuthStore().loginByFacebook()"
 				>
-					<div class="flex items-center justify-center gap-2 mx-auto">
+					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:facebook" size="21" />
 						Facebook
 					</div>
-				</UButton> -->
+				</UButton>
 			</div>
 
 			<UDivider :label="$t('$.login.or')" />
@@ -96,21 +96,21 @@
 					<UCheckbox name="remember" :label="$t('$.login.remember')" />
 					<UButton
 						:to="localePath(routes.forgot_password?.path)"
-						class="text-primary-500"
+						class="text-primary-500 dark:text-white"
 						variant="link"
 						size="sm"
 						:padded="false"
 						>{{ $t(routes.forgot_password?.meta?.title) }}</UButton
 					>
 				</div>
-				<UButton type="submit" size="lg" block :loading="loading">
+				<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
 					{{ $t('$.login.signin') }}
 				</UButton>
 				<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 					{{ $t('$.login.no_account') }}
 					<UButton
 						:to="localePath(routes.signup?.path)"
-						class="font-medium text-primary-500"
+						class="font-medium text-primary-500 dark:text-white"
 						variant="link"
 						size="sm"
 						:padded="false"

@@ -17,15 +17,19 @@
 </script>
 
 <template>
-	<div class="max-w-screen-xl mx-auto px-5 w-full">
+	<div class="w-full overflow-hidden">
 		<CustomIntro />
-		<UDivider />
-		<CustomAbout />
-		<UDivider />
-		<CustomProduct />
-		<UDivider />
-		<CustomTasting />
-		<UDivider />
-		<CustomContact />
+		
+		<div class="max-w-screen-xl mx-auto px-5 w-full">
+			<CustomAbout />
+			<UDivider />
+			<CustomProduct />
+			<UDivider />
+			<CustomTasting />
+			<UDivider />
+			<CustomContact />
+		</div>
+
+		<iframe style="border: none" src="https://en.frame.mapy.cz/s/pemudahace" width="100%" height="400"></iframe>
 	</div>
 </template>

@@ -1,19 +1,19 @@
 <script setup lang="ts">
 	const menuItems = [
 		{
-			label: '$.page.about',
+			label: '$.navbar.about',
 			to: '/#about',
 		},
 		{
-			label: '$.page.product',
+			label: '$.navbar.product',
 			to: '/#product',
 		},
 		{
-			label: '$.page.taste',
+			label: '$.navbar.taste',
 			to: '/#tasting',
 		},
 		{
-			label: '$.page.contact',
+			label: '$.navbar.contact',
 			to: '/#contact',
 		},
 	];
@@ -26,7 +26,7 @@
 		<main class="flex-1 flex">
 			<slot></slot>
 		</main>
-		
+
 		<UiFooter></UiFooter>
 	</div>
 </template>

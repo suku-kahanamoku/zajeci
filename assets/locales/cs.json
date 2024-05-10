@@ -5,13 +5,15 @@
 			"title": "NOVÁ HORA | Zaječské vinařství",
 			"description": "Objevte lahodná moravská vína! Zajímavé odrůdy, precizní zpracování a nezapomenutelný chuťový zážitek. Neváhejte nás kontaktovat a dovolte nám přiblížit vám kousek moravské vinárenské vášně"
 		},
-		"page": {
+		"navbar": {
 			"home": "Úvod",
 			"about": "O nás",
 			"product": "Vína",
 			"taste": "Degustace",
 			"gallery": "Fotogalerie",
-			"contact": "Kontakt"
+			"contact": "Kontakt",
+			"login": "Přihlásit",
+			"signup": "Registrovat"
 		},
 		"footer": {
 			"copyright": "Copyright",
