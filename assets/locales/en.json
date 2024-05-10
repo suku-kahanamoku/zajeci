@@ -1,5 +1,152 @@
 {
 	"$": {
-		"en": "en"
+		"cs": "cz",
+		"base": {
+			"title": "NOVÁ HORA | Zaječí Winery",
+			"description": "Discover delicious Moravian wines! Interesting varieties, precise processing, and unforgettable taste experience. Don't hesitate to contact us and let us introduce you to a piece of Moravian winemaking passion."
+		},
+		"navbar": {
+			"home": "Home",
+			"about": "About",
+			"product": "Wines",
+			"taste": "Tasting",
+			"gallery": "Gallery",
+			"contact": "Contact",
+			"login": "Sign In",
+			"signup": "Sign Up"
+		},
+		"footer": {
+			"copyright": "Copyright",
+			"reserved": "All rights reserved",
+			"made_by": "Made by",
+			"cookies": "This website uses cookies to ensure optimal user experience and measure its performance. If you continue to use this website, we assume that you agree to the use of cookies. However, you can change your cookie settings at any time through your browser's relevant features."
+		},
+		"intro": {
+			"title": "Zaječí Winery Nová Hora",
+			"subtitle": "Discover delicious Moravian wines with us. Local varieties, traditional processing, unforgettable aroma, and taste. Don't hesitate to contact us and let us share our passion for wine growing and production with you.",
+			"btn": "I WANT WINE"
+		},
+		"about": {
+			"title": "Why Our Wine?",
+			"subtitle": "Traditional wines born in South Moravia.",
+			"description": "Passion for wine and enthusiasm for the beauty of South Moravian landscape and nature led us to Zaječí. Over time, we exchanged office and clinic work for work in the vineyard and cellar. We pass on this passion, enthusiasm, wonder, and beauty, exhaustion from work, and refreshment after it in our wines."
+		},
+		"product": {
+			"title": "Wine Selection",
+			"to_cart": "Add to Cart"
+		},
+		"info": {
+			"history": "Moravian and Czech wines are gaining increasing popularity not only here but also worldwide. In the Czech Republic, over 50 varieties are grown, thanks to the diversity and ruggedness of the terrain. Each region contributes specific characteristics to individual varieties, so everyone can choose the best wine for themselves. Explore quality wines from Moravia and Bohemia and discover the beauty through a wine glass.",
+			"history2": "The typical character of the wines is similar to Tramín Red variety wines, but the spicy fullness is usually lower, and on the contrary, the acidity is somewhat higher. However, it is necessary to maintain acidity for a pleasant finish. Wines are usually golden-yellow in color, with Tramín aromatic substances in the aroma, namely roses, complemented by vanilla tones; the taste is full, long-lasting, with a gentler harmony than Tramín. In aroma and taste, we can find spices, nutmeg, vanilla, tangerines."
+		},
+		"tasting": {
+			"title": "Tasting",
+			"basic": {
+				"title": "Basic",
+				"drink": "Tasting of 6 samples",
+				"food": "Bread, water",
+				"time": "Duration 1 hour"
+			},
+			"standard": {
+				"title": "Medium",
+				"drink": "Tasting of 10 samples",
+				"food": "Refreshments, bread, water",
+				"time": "Duration 2 to 2 and 1.5 hours"
+			},
+			"premium": {
+				"title": "All you can drink",
+				"drink": "Tasting of all samples (min. 9 white, 4 rosé, 4 red)",
+				"food": "Rich refreshments, water, non-alcoholic drinks, beer, cider, šláftruňk",
+				"time": "Duration according to mood, approx. 5 hours"
+			}
+		},
+		"gallery": {
+			"title": "Photo Gallery"
+		},
+		"contact": {
+			"title": "Contact",
+			"subtitle": "Zaječí Winery Nová Hora",
+			"appointment": "Feel free to call us; we will be happy to advise you on selection or answer any questions regarding our wines.",
+			"success_msg": "Your inquiries have been successfully sent. Thank you for your interest! We will try to respond to your inquiries as quickly as possible.",
+			"error_msg": "We apologize, but the form was not submitted. Please check your connection and try again later."
+		},
+		"terms_conditions": {
+			"title": "Terms of Use"
+		},
+		"login": {
+			"title": "Sign in to Your Account",
+			"remember": "Remember Me",
+			"signin": "Sign In",
+			"no_account": "Don't have an account yet?",
+			"or": "or"
+		},
+		"signup": {
+			"title": "Create Account",
+			"confirm_password": "Confirm Password",
+			"accept_condition": "I agree with the",
+			"has_account": "Already have an account?"
+		},
+		"forgot_password": {
+			"title": "Forgot Your Password?",
+			"description": "Don't worry! Just enter your email, and we'll send you a password reset code!",
+			"reset_password": "Reset Password",
+			"success_msg": "Password reset email has been sent."
+		},
+		"profile": {
+			"title": "Edit Profile",
+			"newsletter": "Sending weekly reports comparing forecast and actual prices",
+			"change_password": "Change Password",
+			"success_msg": "User successfully edited"
+		},
+		"form": {
+			"submit": "Submit",
+			"email": "Email",
+			"password": "Password",
+			"select": "Select",
+			"msg": "Message",
+			"leave_comment": "Leave a message..."
+		},
+		"message": {
+			"required": "Required",
+			"invalid_email": "Invalid email",
+			"bad_request": "Bad request",
+			"miss_fields": "Missing required fields",
+			"unauthorized": "Unauthorized",
+			"incorrect_login": "Incorrect login credentials",
+			"user_exist": "User already exists",
+			"user_not_exists": "User does not exist",
+			"password_min": "Must be at least {count} characters long",
+			"password_not_match": "Passwords do not match"
+		},
+		"aria": {
+			"mode": "Color motif button",
+			"hamburger": "Side navigation",
+			"close": "Close button",
+			"lang": "Language mutation"
+		},
+		"mailing": {
+			"contact_form": {
+				"subject": "Confirmation of Receipt of Your Email",
+				"addressed": "Dear Customer",
+				"thank_you": "Thank you for your interest and message.",
+				"message_received": "Your message has been successfully delivered to our team. Our customer support department will look into it as soon as possible and try to respond within 24 hours (on business days).",
+				"further_questions": "If you have any further questions, feel free to contact us.",
+				"regards": "Best Regards",
+				"team": "Nová Hora Winery"
+			},
+			"signup": {
+				"subject": "Registration Confirmation",
+				"thank_you": "Thank you for registering on our platform.",
+				"success_done": "Your registration has been successfully completed, and your account has been activated.",
+				"further_questions": "If you have any questions regarding the use of our services or need assistance, feel free to contact us. We are here for you."
+			},
+			"forgot_password": {
+				"subject": "Password Reset",
+				"request_password": "We have received a request to reset the password for your account.",
+				"new_password": "A new password has been generated for your account.",
+				"contact_us": "If you did not request a new password, please contact us immediately.",
+				"further_questions": "If you have any further questions or need assistance, feel free to contact us."
+			}
+		}
 	}
 }
