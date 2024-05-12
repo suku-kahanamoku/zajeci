@@ -16,6 +16,10 @@
 			label: '$.navbar.contact',
 			to: '/#contact',
 		},
+		{
+			label: '$.navbar.gallery',
+			to: '/gallery',
+		},
 	];
 </script>
 
