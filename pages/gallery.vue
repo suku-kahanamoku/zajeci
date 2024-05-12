@@ -1,4 +1,7 @@
 <script setup lang="ts">
+	import PhotoSwipeLightbox from 'photoswipe/lightbox';
+	import 'photoswipe/style.css';
+
 	definePageMeta({
 		layout: 'default',
 		syscode: 'gallery',
@@ -15,11 +18,31 @@
 		],
 	});
 
+	const lightbox = ref();
+
 	const { data } = await useAsyncData(async () => {
 		try {
 			return (await $fetch(`/api/gallery`)) as any;
 		} catch (error: any) {
 			console.error(error);
+		}
+	});
+
+	onMounted(() => {
+		lightbox.value = new PhotoSwipeLightbox({
+			gallery: '#gallery',
+			children: 'a',
+			pswpModule: () => import('photoswipe'),
+			spacing: 0.5,
+			loop: false,
+		});
+		lightbox.value.init();
+	});
+
+	onUnmounted(() => {
+		if (lightbox.value) {
+			lightbox.value.destroy();
+			lightbox.value = null;
 		}
 	});
 </script>
@@ -28,12 +51,17 @@
 	<div class="flex w-full">
 		<div class="max-w-screen-xl mx-auto px-5 w-full">
 			<div id="gallery" class="d-flex grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10 items-center">
-				<div
-					v-for="path of data"
+				<a
+					v-for="img of data"
+					:href="img.src"
+					target="_blank"
+					rel="noreferrer"
 					class="from-bottom flex border-2 border-[#D8DEE9] rounded-md overflow-hidden sm:max-h-60 shadow-sm hover:shadow-lg items-center align-middle justify-center justify-items-center"
+					:data-pswp-width="img.width"
+					:data-pswp-height="img.height"
 				>
-					<NuxtImg :src="`/gallery/${path}`" alt="gallery img" loading="eager" format="webp" width="300" />
-				</div>
+					<NuxtImg :src="img.src" alt="Gallery img" loading="lazy" format="webp" width="300" />
+				</a>
 			</div>
 		</div>
 	</div>
