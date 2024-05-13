@@ -35,7 +35,7 @@
 			<div class="max-w-screen-xl mx-auto px-5 w-full h-16 flex flex-row justify-between items-center gap-4">
 				<!-- logo -->
 				<ULink :to="localePath('/')" class="h-full">
-					<img src="/logo.svg" :alt="'logo'" loading="eager" height="64px" class="h-full dark:bg-white" />
+					<UiLogo />
 				</ULink>
 
 				<!-- prostredni menu -->
