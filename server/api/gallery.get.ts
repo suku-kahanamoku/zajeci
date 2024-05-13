@@ -4,6 +4,7 @@ import sizeOf from 'image-size';
 export default defineEventHandler(async (event) => {
 	const images = await fs.readdirSync('./');
 	return images
+	return images
 		?.filter((path) => path.includes('.jpg'))
 		?.map((path) => {
 			const result: any = { src: `/gallery/${path}` };
