@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import { filename } from 'pathe/utils';
 	import PhotoSwipeLightbox from 'photoswipe/lightbox';
 	import 'photoswipe/style.css';
 
@@ -23,10 +22,15 @@
 	const glob = import.meta.glob('@/public/gallery/*', { eager: true });
 	ITERATE(glob, (value, key) => {
 		const src = (value as any).default;
-		data.value.push({ src });
+		if (process.client) {
+			const img = new Image();
+			img.onload = function () {
+				data.value.push({ src, width: this.width, height: this.height });
+			};
+			img.src = src;
+		}
 	});
 
-	console.log(data);
 	const lightbox = ref();
 
 	onMounted(() => {
