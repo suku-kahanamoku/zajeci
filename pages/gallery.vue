@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import { filename } from 'pathe/utils';
+	import sizeOf from 'image-size';
 	import PhotoSwipeLightbox from 'photoswipe/lightbox';
 	import 'photoswipe/style.css';
 
@@ -18,15 +20,20 @@
 		],
 	});
 
-	const lightbox = ref();
+	const glob = import.meta.glob('@/public/gallery/*', { eager: true });
+	const images = Object.fromEntries(
+		Object.entries(glob).map(([key, value]) => {
+			const imgSrc = (value as any).default;
+			const name = filename(key);
+			const rootPath = process.cwd(); // nebo použijte alias: const rootPath = '@/';
+			const dimensions = sizeOf(`${rootPath}/public/gallery/${name}.jpg`);
+			return [name, { src: imgSrc, width: dimensions.width, height: dimensions.height }];
+		})
+	);
 
-	const { data } = await useAsyncData(async () => {
-		try {
-			return (await $fetch(`/api/gallery`)) as any;
-		} catch (error: any) {
-			console.error(error);
-		}
-	});
+	const data = Object.values(images);
+	console.log(data);
+	const lightbox = ref();
 
 	onMounted(() => {
 		lightbox.value = new PhotoSwipeLightbox({
@@ -60,7 +67,7 @@
 					:data-pswp-width="img.width"
 					:data-pswp-height="img.height"
 				>
-					<NuxtImg :src="img.src" alt="Gallery img" loading="lazy" format="webp" width="300" />
+					<img :src="img.src" alt="Gallery img" loading="lazy" format="webp" width="300" />
 				</a>
 			</div>
 		</div>

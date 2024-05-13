@@ -30,6 +30,6 @@
 			<CustomContact />
 		</div>
 
-		<iframe style="border: none" src="https://en.frame.mapy.cz/s/pemudahace" width="100%" height="400"></iframe>
+		<!-- <iframe style="border: none" src="https://en.frame.mapy.cz/s/pemudahace" width="100%" height="400"></iframe> -->
 	</div>
 </template>
