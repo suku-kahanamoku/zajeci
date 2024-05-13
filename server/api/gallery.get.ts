@@ -2,7 +2,8 @@ import fs from 'fs';
 import sizeOf from 'image-size';
 
 export default defineEventHandler(async (event) => {
-	const images = await fs.readdirSync(`${process.cwd()}/_nuxt`);
+	const images = await fs.readdirSync(`${process.cwd()}`);
+	return images
 	return images
 		?.filter((path) => path.includes('.jpg'))
 		?.map((path) => {
