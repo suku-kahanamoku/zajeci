@@ -24,7 +24,7 @@
 </script>
 
 <template>
-	<div class="min-h-screen flex flex-col dark:bg-gray-900">
+	<div class="min-h-screen flex flex-col">
 		<UiNavbar :menuItems="menuItems" />
 
 		<main class="flex-1 flex">
