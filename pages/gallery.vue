@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import { filename } from 'pathe/utils';
-	import sizeOf from 'image-size';
 	import PhotoSwipeLightbox from 'photoswipe/lightbox';
 	import 'photoswipe/style.css';
 
@@ -20,18 +19,13 @@
 		],
 	});
 
+	const data: Ref<any> = ref([]);
 	const glob = import.meta.glob('@/public/gallery/*', { eager: true });
-	const images = Object.fromEntries(
-		Object.entries(glob).map(([key, value]) => {
-			const imgSrc = (value as any).default;
-			const name = filename(key);
-			const rootPath = process.cwd(); // nebo použijte alias: const rootPath = '@/';
-			const dimensions = sizeOf(`${rootPath}/public/gallery/${name}.jpg`);
-			return [name, { src: imgSrc, width: dimensions.width, height: dimensions.height }];
-		})
-	);
+	ITERATE(glob, (value, key) => {
+		const src = (value as any).default;
+		data.value.push({ src });
+	});
 
-	const data = Object.values(images);
 	console.log(data);
 	const lightbox = ref();
 
