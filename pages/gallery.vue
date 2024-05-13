@@ -63,7 +63,7 @@
 					:href="img.src"
 					target="_blank"
 					rel="noreferrer"
-					class="from-bottom flex border-2 border-[#D8DEE9] rounded-md overflow-hidden sm:max-h-60 shadow-sm hover:shadow-lg items-center align-middle justify-center justify-items-center"
+					class="flex border-2 border-[#D8DEE9] rounded-md overflow-hidden sm:max-h-60 shadow-sm hover:shadow-lg items-center align-middle justify-center justify-items-center"
 					:data-pswp-width="img.width"
 					:data-pswp-height="img.height"
 				>
