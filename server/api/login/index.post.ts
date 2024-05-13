@@ -4,15 +4,14 @@ import { UserSchema } from '@/server/models/user.schema';
 import { COMPARE_PASSWORD } from '@/utils/server.functions';
 
 export default defineEventHandler(async (event: H3Event) => {
-	const t = await useTranslation(event);
 	const body = await readBody(event);
 
 	// kontrola, zda jsou zadane vsechny potrebne fieldy
 	if (!body.email || !body.password) {
 		throw createError({
 			statusCode: 400,
-			statusMessage: t('$.message.bad_request'),
-			message: t('$.message.miss_fields'),
+			statusMessage: '$.message.bad_request',
+			message: '$.message.miss_fields',
 		});
 	}
 
@@ -25,8 +24,8 @@ export default defineEventHandler(async (event: H3Event) => {
 		if (!isValid) {
 			throw createError({
 				statusCode: 401,
-				statusMessage: t('$.message.unauthorized'),
-				message: t('$.message.incorrect_login'),
+				statusMessage: '$.message.unauthorized',
+				message: '$.message.incorrect_login',
 			});
 		}
 	}
@@ -34,8 +33,8 @@ export default defineEventHandler(async (event: H3Event) => {
 	else {
 		throw createError({
 			statusCode: 401,
-			statusMessage: t('$.message.unauthorized'),
-			message: t('$.message.incorrect_login'),
+			statusMessage: '$.message.unauthorized',
+			message: '$.message.incorrect_login',
 		});
 	}
 
