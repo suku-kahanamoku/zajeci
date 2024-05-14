@@ -32,8 +32,7 @@ export async function useMailing(event: H3Event) {
 			Messages: [
 				{
 					From: {
-						Email: 'sukusovi@gmail.com',
-						Name: 'Test',
+						Email: process.env.NUXT_MAILING_FROM,
 					},
 					To: config.to,
 					Bcc: config.bcc,

@@ -34,7 +34,7 @@ export default defineEventHandler(async (event: H3Event) => {
 		}),
 		to: [
 			{
-				Email: 'sukusovi@gmail.com',
+				Email: process.env.NUXT_MAILING_FROM as string,
 			},
 		],
 	});
