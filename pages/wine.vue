@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import type { WineModel } from '@/server/models/wine.schema';
+
 	definePageMeta({
 		layout: 'default',
 		syscode: 'wine',
@@ -15,38 +17,18 @@
 		],
 	});
 
-	const wines = [
-		{
-			name: 'Frankovka',
-			price: 170,
-			kind: 'Červené suché',
-			type: 'Moravské zemské víno',
+	const route = useRoute();
+
+	const { data: wines } = await useAsyncData(
+		async () => {
+			try {
+				return (await $fetch(`/api/wines`)) as WineModel[];
+			} catch (error: any) {
+				console.error(error);
+			}
 		},
-		{
-			name: 'Rulandské modré',
-			price: 250,
-			kind: 'Červené suché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Cabernet Moravia rosé',
-			price: 150,
-			kind: 'Růžové suché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Müller-Thurgau',
-			price: 220,
-			kind: 'Bílé supolosuchéché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Rulandské bílé',
-			price: 200,
-			kind: 'Bílé suché',
-			type: 'Moravské zemské víno',
-		},
-	];
+		{ watch: [route] }
+	);
 </script>
 
 <template>

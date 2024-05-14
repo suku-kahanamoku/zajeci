@@ -1,5 +1,9 @@
 <script setup lang="ts">
-	defineProps(['item']);
+	import type { WineModel } from '@/server/models/wine.schema';
+
+	defineProps<{
+		item: WineModel;
+	}>();
 </script>
 
 <template>
