@@ -13,7 +13,8 @@
 			"gallery": "Fotogalerie",
 			"contact": "Kontakt",
 			"login": "Přihlásit",
-			"signup": "Registrovat"
+			"signup": "Registrovat",
+			"logout": "Odhlásit"
 		},
 		"footer": {
 			"copyright": "Copyright",
@@ -92,9 +93,12 @@
 			"reset_password": "Obnovit heslo",
 			"success_msg": "Email pro reset hesla byl odeslán."
 		},
+		"dashboard": {
+			"title": "Dashboard"
+		},
 		"profile": {
 			"title": "Upravit profil",
-			"newsletter": "Odesílání týdenních zpráv s porovnáním předpovědi a skutečných cen",
+			"newsletter": "Odesílání týdenních zpráv s novinkami",
 			"change_password": "Změnit heslo",
 			"success_msg": "Uživatel byl úspěšně upraven"
 		},

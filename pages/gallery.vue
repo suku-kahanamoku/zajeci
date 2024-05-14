@@ -55,6 +55,11 @@
 <template>
 	<div class="flex w-full">
 		<div class="max-w-screen-xl mx-auto px-5 w-full">
+			<h1
+				class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
+			>
+				{{ $t('$.gallery.title') }}
+			</h1>
 			<div id="gallery" class="d-flex grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10 items-center">
 				<a
 					v-for="img of data"

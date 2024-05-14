@@ -13,7 +13,8 @@
 			"gallery": "Gallery",
 			"contact": "Contact",
 			"login": "Sign In",
-			"signup": "Sign Up"
+			"signup": "Sign Up",
+			"logout": "Logout"
 		},
 		"footer": {
 			"copyright": "Copyright",
@@ -92,9 +93,12 @@
 			"reset_password": "Reset Password",
 			"success_msg": "Password reset email has been sent."
 		},
+		"dashboard": {
+			"title": "Dashboard"
+		},
 		"profile": {
 			"title": "Edit Profile",
-			"newsletter": "Sending weekly reports comparing forecast and actual prices",
+			"newsletter": "Sending weekly news updates",
 			"change_password": "Change Password",
 			"success_msg": "User successfully edited"
 		},

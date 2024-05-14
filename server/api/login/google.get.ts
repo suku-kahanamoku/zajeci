@@ -16,10 +16,10 @@ export default oauth.googleEventHandler({
 			loggedInAt: new Date().toISOString(),
 		});
 		const locale = tryCookieLocale(event, { lang: '', name: 'i18n_locale' })?.toString();
-		return await sendRedirect(event, locale === 'en' ? '/admin' : `/${locale}/admin`);
+		return await sendRedirect(event, locale === 'cs' ? '/admin' : `/${locale}/admin`);
 	},
 	async onError(event, error) {
 		const locale = tryCookieLocale(event, { lang: '', name: 'i18n_locale' })?.toString();
-		return await sendRedirect(event, locale === 'en' ? '/login' : `/${locale}/login`);
+		return await sendRedirect(event, locale === 'cs' ? '/login' : `/${locale}/login`);
 	},
 });

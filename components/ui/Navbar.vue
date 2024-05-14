@@ -21,7 +21,7 @@
 			[admin, profile],
 			[
 				{
-					label: '$.dashboard.logout',
+					label: '$.navbar.logout',
 					click: async () => await useAuthStore().logout(),
 				},
 			],
