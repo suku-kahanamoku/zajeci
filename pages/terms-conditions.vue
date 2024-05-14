@@ -20,7 +20,7 @@
 	<div class="max-w-screen-xl mx-auto px-5 w-full">
 		<div id="terms" class="py-10">
 			<h1
-				class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
+				class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400 pb-8"
 			>
 				{{ $t('$.terms_conditions.title') }}
 			</h1>
