@@ -151,6 +151,11 @@
 				"contact_us": "If you did not request a new password, please contact us immediately.",
 				"further_questions": "If you have any further questions or need assistance, feel free to contact us."
 			}
+		},
+		"admin": {
+			"wine": {
+				"title": "Admin wines"
+			}
 		}
 	}
 }

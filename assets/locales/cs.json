@@ -151,6 +151,11 @@
 				"contact_us": "Pokud jste o nové heslo nežádal/a, kontaktujte nás okamžitě.",
 				"further_questions": "Pokud máte nějaké další otázky nebo potřebujete pomoc, neváhejte nás kontaktovat."
 			}
+		},
+		"admin": {
+			"wine": {
+				"title": "Administrace vín"
+			}
 		}
 	}
 }
