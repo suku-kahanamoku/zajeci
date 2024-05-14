@@ -8,7 +8,7 @@
 		"navbar": {
 			"home": "Úvod",
 			"about": "O nás",
-			"product": "Vína",
+			"wine": "Vína",
 			"taste": "Degustace",
 			"gallery": "Fotogalerie",
 			"contact": "Kontakt",
@@ -32,7 +32,7 @@
 			"subtitle": "Tradiční vína zrozená na jihu Moravy.",
 			"description": "Vášeň pro víno a nadšení pro krásu jihomoravské krajiny a přírody nás dovedly do Zaječí. Postupem času měníme práci v kanceláři a v ordinaci za práci ve vinohradě a ve sklepě. Tuto vášeň a nadšení, úžas a krásu, únavu z práce i osvěžení po ní, předáváme dál v našich vínech."
 		},
-		"product": {
+		"wine": {
 			"title": "Nabídka vín",
 			"to_cart": "Do košíku"
 		},

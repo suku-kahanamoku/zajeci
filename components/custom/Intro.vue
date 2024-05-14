@@ -11,9 +11,12 @@
 			<p class="lg:text-lg mt-8 max-w-xl text-white">
 				{{ $t('$.intro.subtitle') }}
 			</p>
-			<UButton :to="localePath('/#product')" color="secondary" class="mt-10 md:text-lg lg:text-xl dark:text-white">{{
-				$t('$.intro.btn')
-			}}</UButton>
+			<UButton
+				:to="localePath(routes.wine?.path)"
+				color="secondary"
+				class="mt-10 md:text-lg lg:text-xl dark:text-white"
+				>{{ $t('$.intro.btn') }}</UButton
+			>
 		</div>
 		<UiParallax src="/img/intro.jpg" />
 	</div>

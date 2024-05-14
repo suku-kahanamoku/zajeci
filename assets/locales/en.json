@@ -8,7 +8,7 @@
 		"navbar": {
 			"home": "Home",
 			"about": "About",
-			"product": "Wines",
+			"wine": "Wines",
 			"taste": "Tasting",
 			"gallery": "Gallery",
 			"contact": "Contact",
@@ -32,7 +32,7 @@
 			"subtitle": "Traditional wines born in South Moravia.",
 			"description": "Passion for wine and enthusiasm for the beauty of South Moravian landscape and nature led us to Zaječí. Over time, we exchanged office and clinic work for work in the vineyard and cellar. We pass on this passion, enthusiasm, wonder, and beauty, exhaustion from work, and refreshment after it in our wines."
 		},
-		"product": {
+		"wine": {
 			"title": "Wine Selection",
 			"to_cart": "Add to Cart"
 		},

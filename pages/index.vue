@@ -23,7 +23,7 @@
 		<div class="max-w-screen-xl mx-auto px-5 w-full">
 			<CustomAbout />
 			<UDivider />
-			<CustomProduct />
+			<CustomWine />
 			<UDivider />
 			<CustomTasting />
 			<UDivider />

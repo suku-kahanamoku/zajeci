@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	definePageMeta({
 		layout: 'default',
-		syscode: 'terms_conditions',
-		title: '$.terms_conditions.title',
+		syscode: 'home',
+		title: '$.home.title',
 	});
 
 	const { t } = useI18n();
@@ -22,7 +22,7 @@
 			<h1
 				class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
 			>
-				{{ $t('$.terms_conditions.title') }}
+				{{ $t('$.wine.title') }}
 			</h1>
 		</div>
 	</div>

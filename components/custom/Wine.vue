@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	const products = [
+	const wines = [
 		{
 			name: 'Frankovka',
 			price: 170,
@@ -34,19 +34,19 @@
 </script>
 
 <template>
-	<div id="product" class="py-10 lg:py-16">
+	<div id="wine" class="py-10 lg:py-16">
 		<div class="text-center pb-8 lg:pb-10">
 			<h2 class="text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400">
-				{{ $t('$.product.title') }}
+				{{ $t('$.wine.title') }}
 			</h2>
 		</div>
 
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
-			<UCard v-for="item of products" :ui="{ shadow: 'shadow-md' }" class="zoom-in">
+			<UCard v-for="item of wines" :ui="{ shadow: 'shadow-md' }" class="zoom-in">
 				<template #header>
 					<NuxtImg
 						src="/img/bottle.jpg"
-						:alt="'product'"
+						:alt="'wine'"
 						loading="eager"
 						format="webp"
 						height="300"
@@ -71,7 +71,7 @@
 							color="secondary"
 							class="lg:text-lg dark:text-white"
 						>
-							{{ $t('$.product.to_cart') }}
+							{{ $t('$.wine.to_cart') }}
 						</UButton>
 					</div>
 				</template>

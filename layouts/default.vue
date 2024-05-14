@@ -5,8 +5,8 @@
 			to: '/#about',
 		},
 		{
-			label: '$.navbar.product',
-			to: '/#product',
+			label: '$.navbar.wine',
+			to: '/wine',
 		},
 		{
 			label: '$.navbar.taste',
