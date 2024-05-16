@@ -10,10 +10,10 @@
 	defineProps<{
 		schema: any;
 		item: WineModel;
-		loading: boolean;
+		loading?: boolean;
 	}>();
 
-	const { kindOptions, colorOptions, fields } = useWines();
+	const { kindOptions, colorOptions, fields, categoryOptions } = await useWines();
 </script>
 
 <template>
@@ -63,6 +63,18 @@
 
 			<UFormGroup :label="fields.price.label" name="price">
 				<UInput v-model="item.price" type="number" size="lg" />
+			</UFormGroup>
+
+			<UFormGroup :label="fields.categories.label" name="categories">
+				<USelectMenu
+					v-model="item.categories"
+					:options="categoryOptions"
+					value-attribute="value"
+					option-attribute="label"
+					:multiple="true"
+					:placeholder="fields.categories.placeholder"
+					size="lg"
+				/>
 			</UFormGroup>
 		</div>
 

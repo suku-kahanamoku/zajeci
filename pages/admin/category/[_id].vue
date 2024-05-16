@@ -2,22 +2,20 @@
 	import { object, string, boolean, type InferType, number } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
 
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { CategoryModel } from '@/server/models/category.schema';
 
 	definePageMeta({
 		layout: 'admin',
-		syscode: 'admin_wine_create',
-		title: '$.admin.wine.create.title',
+		syscode: 'admin_category_update',
+		title: '$.admin.category.update.title',
 	});
 
 	const { t } = useI18n();
+	const route = useRoute();
 	const toast = useToast();
-	const today = new Date();
-	const loading = ref();
-	const { defaultItem } = await useWines();
 
 	useHead({
-		title: t('$.admin.wine.create.title'),
+		title: `${t('$.base.title')} | ${t('$.forgot_password.title')}`,
 		meta: [
 			{ name: 'description', content: t('$.base.description') },
 			{ name: 'keywords', content: t('$.base.description') },
@@ -27,28 +25,31 @@
 	const schema = object({
 		name: string().required(),
 		description: string().required(),
-		kind: string().required(),
-		quality: string().required(),
-		color: string().required(),
-		variety: string().required(),
-		volume: number().required().positive(),
-		year: number().required().positive().integer().min(2000).max(today.getFullYear()),
-		price: number().required().positive().integer(),
-		published: boolean(),
 	});
 
-	const state: Ref<WineModel> = ref(CLONE(defaultItem));
+	const { data: category, pending } = await useAsyncData(async () => {
+		try {
+			return await $fetch(`/api/category/${route.params._id}`);
+		} catch (error: any) {
+			console.error(error);
+		}
+	});
+
+	const state: Ref<CategoryModel> = ref(CLONE(category.value));
 
 	async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
-		loading.value = true;
+		pending.value = true;
 		try {
-			await $fetch('/api/admin/wine', { method: 'POST', body: event.data });
-			state.value = CLONE(defaultItem);
-			toast.add({ title: t('$.form.post_success_msg'), color: 'green', icon: 'i-heroicons-check' });
+			const result = await $fetch(`/api/admin/category/${route.params._id}`, {
+				method: 'PATCH',
+				body: event.data,
+			});
+			state.value = CLONE(result);
+			toast.add({ title: t('$.form.patch_success_msg'), color: 'green', icon: 'i-heroicons-check' });
 		} catch (error: any) {
 			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
 		}
-		loading.value = false;
+		setTimeout(() => (pending.value = false), 400);
 	}
 </script>
 
@@ -62,10 +63,16 @@
 					<h1
 						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
 					>
-						{{ $t('$.admin.wine.create.title') }}
+						{{ $t('$.admin.category.update.title', { name: state?.name }) }}
 					</h1>
 
-					<CustomFormWine :schema="schema" :item="state" :loading="loading" @submit="onSubmit" />
+					<CustomFormCategory
+						v-if="state"
+						:schema="schema"
+						:item="state"
+						:loading="pending"
+						@submit="onSubmit"
+					/>
 				</div>
 			</div>
 		</div>

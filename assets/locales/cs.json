@@ -110,7 +110,10 @@
 			"msg": "Zpráva",
 			"leave_comment": "Napište zprávu...",
 			"price": "Cena",
-			"patch_success_msg": "Záznam byl úspěšně upraven"
+			"description": "Popis",
+			"categories": "Kategorie",
+			"patch_success_msg": "Záznam byl úspěšně upraven",
+			"post_success_msg": "Záznam byl úspěšně vytvořen"
 		},
 		"message": {
 			"required": "Povinné",
@@ -166,7 +169,6 @@
 				},
 				"form": {
 					"name": "Název vína",
-					"description": "Popis",
 					"kind": "Druh",
 					"quality": "Přívlastek",
 					"color": "Barva",
@@ -196,6 +198,21 @@
 					"red": "Červené",
 					"rose": "Růžové",
 					"orange": "Oranžové"
+				}
+			},
+			"category": {
+				"title": "Správa kategorií",
+				"create": {
+					"title": "Vytvořit novou kategorii"
+				},
+				"update": {
+					"title": "Aktualizovat kategorii: \"{name}\""
+				},
+				"form": {
+					"name": "Název kategorie"
+				},
+				"placeholder": {
+					"name": "Oblíbené"
 				}
 			}
 		}

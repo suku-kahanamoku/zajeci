@@ -110,7 +110,10 @@
 			"msg": "Message",
 			"leave_comment": "Leave a message...",
 			"price": "Price",
-			"patch_success_msg": "Record successfully edited"
+			"description": "Description",
+			"categories": "Categories",
+			"patch_success_msg": "Record successfully edited",
+			"post_success_msg": "Record successfully created"
 		},
 		"message": {
 			"required": "Required",
@@ -166,7 +169,6 @@
 				},
 				"form": {
 					"name": "Wine name",
-					"description": "Description",
 					"kind": "Kind",
 					"quality": "Adjective",
 					"color": "Color",
@@ -196,6 +198,21 @@
 					"red": "Red",
 					"rose": "Rose",
 					"orange": "Orange"
+				}
+			},
+			"category": {
+				"title": "Admin categories",
+				"create": {
+					"title": "Create new category"
+				},
+				"update": {
+					"title": "Update category: \"{name}\""
+				},
+				"form": {
+					"name": "Category name"
+				},
+				"placeholder": {
+					"name": "Favourite"
 				}
 			}
 		}

@@ -14,7 +14,7 @@
 	const route = useRoute();
 	const toast = useToast();
 	const today = new Date();
-	const { getChangedParams } = useWines();
+	const { getChangedParams } = await useWines();
 
 	useHead({
 		title: `${t('$.base.title')} | ${t('$.forgot_password.title')}`,

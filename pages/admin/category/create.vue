@@ -2,22 +2,22 @@
 	import { object, string, boolean, type InferType, number } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
 
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { CategoryModel } from '@/server/models/category.schema';
 
 	definePageMeta({
 		layout: 'admin',
-		syscode: 'admin_wine_create',
-		title: '$.admin.wine.create.title',
+		syscode: 'admin_category_create',
+		title: '$.admin.category.create.title',
 	});
 
 	const { t } = useI18n();
 	const toast = useToast();
 	const today = new Date();
 	const loading = ref();
-	const { defaultItem } = await useWines();
+	const { defaultItem } = useCategories();
 
 	useHead({
-		title: t('$.admin.wine.create.title'),
+		title: t('$.admin.category.create.title'),
 		meta: [
 			{ name: 'description', content: t('$.base.description') },
 			{ name: 'keywords', content: t('$.base.description') },
@@ -27,22 +27,15 @@
 	const schema = object({
 		name: string().required(),
 		description: string().required(),
-		kind: string().required(),
-		quality: string().required(),
-		color: string().required(),
-		variety: string().required(),
-		volume: number().required().positive(),
-		year: number().required().positive().integer().min(2000).max(today.getFullYear()),
-		price: number().required().positive().integer(),
-		published: boolean(),
 	});
 
-	const state: Ref<WineModel> = ref(CLONE(defaultItem));
+	const state: Ref<CategoryModel> = ref(CLONE(defaultItem));
 
 	async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
+		console;
 		loading.value = true;
 		try {
-			await $fetch('/api/admin/wine', { method: 'POST', body: event.data });
+			await $fetch('/api/admin/category', { method: 'POST', body: event.data });
 			state.value = CLONE(defaultItem);
 			toast.add({ title: t('$.form.post_success_msg'), color: 'green', icon: 'i-heroicons-check' });
 		} catch (error: any) {
@@ -62,10 +55,10 @@
 					<h1
 						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
 					>
-						{{ $t('$.admin.wine.create.title') }}
+						{{ $t('$.admin.category.create.title') }}
 					</h1>
 
-					<CustomFormWine :schema="schema" :item="state" :loading="loading" @submit="onSubmit" />
+					<CustomFormCategory :schema="schema" :item="state" :loading="loading" @submit="onSubmit" />
 				</div>
 			</div>
 		</div>

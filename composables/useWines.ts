@@ -1,4 +1,4 @@
-export function useWines() {
+export async function useWines() {
 	const { t } = useI18n();
 	const today = new Date();
 
@@ -12,6 +12,7 @@ export function useWines() {
 		volume: 0.75,
 		year: today.getFullYear(),
 		price: 180,
+		categories: [],
 		published: false,
 	};
 
@@ -38,6 +39,16 @@ export function useWines() {
 	};
 
 	const colorOptions = Object.values(colors);
+
+	const { data: categories } = await useAsyncData(async () => {
+		try {
+			return await $fetch(`/api/category`);
+		} catch (error: any) {
+			console.error(error);
+		}
+	});
+
+	const categoryOptions = categories.value?.map((category) => ({ value: category._id, label: category.name }));
 
 	const fields: Record<string, { key: string; label: string; placeholder?: string }> = {
 		name: {
@@ -77,9 +88,13 @@ export function useWines() {
 			key: 'price',
 			label: t('$.form.price'),
 		},
+		categories: {
+			key: 'categories',
+			label: t('$.form.categories'),
+		},
 		description: {
 			key: 'description',
-			label: t('$.admin.wine.form.description'),
+			label: t('$.form.description'),
 		},
 	};
 
@@ -99,5 +114,16 @@ export function useWines() {
 		return zmeny;
 	}
 
-	return { kinds, kindOptions, colors, colorOptions, fields, fieldOptions, defaultItem, getChangedParams };
+	return {
+		kinds,
+		kindOptions,
+		colors,
+		colorOptions,
+		categories,
+		categoryOptions,
+		fields,
+		fieldOptions,
+		defaultItem,
+		getChangedParams,
+	};
 }

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { CategoryModel } from '@/server/models/category.schema';
 
 	definePageMeta({
 		layout: 'admin',
-		syscode: 'admin_wine',
+		syscode: 'admin_category',
 		title: '$.dashboard.title',
 	});
 
 	const { t } = useI18n();
 	const localePath = useLocalePath();
-	const { kinds, colors, fieldOptions } = await useWines();
 	const { routes } = useMenuItems();
+	const { fieldOptions } = useCategories();
 
 	useHead({
 		title: `${t('$.base.title')} | ${t('$.dashboard.title')}`,
@@ -22,9 +22,9 @@
 
 	const columns = fieldOptions.map((field) => ({ ...field, ...{ sortable: true } }));
 
-	const { data: wines } = await useAsyncData(async (): Promise<WineModel[] | undefined> => {
+	const { data: categories } = await useAsyncData(async (): Promise<CategoryModel[] | undefined> => {
 		try {
-			return await $fetch(`/api/wine`);
+			return await $fetch(`/api/category`);
 		} catch (error: any) {
 			console.error(error);
 		}
@@ -39,7 +39,7 @@
 			<h1
 				class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400 pb-8"
 			>
-				{{ $t('$.admin.wine.title') }}
+				{{ $t('$.admin.category.title') }}
 			</h1>
 
 			<div class="flex justify-end">
@@ -52,7 +52,7 @@
 					:disabled="!selected.length"
 				/>
 				<UButton
-					:to="localePath(routes.admin_wine_create?.path)"
+					:to="localePath(routes.admin_category_create?.path)"
 					icon="i-heroicons-plus-circle"
 					class="text-orange-600 dark:text-orange-600"
 					:ui="{ rounded: 'rounded-full' }"
@@ -60,14 +60,12 @@
 					:aria-label="$t('$.aria.delete_selected')"
 				/>
 			</div>
-			<UTable v-model="selected" :columns="columns" :rows="wines">
+			<UTable v-model="selected" :columns="columns" :rows="categories">
 				<template #name-data="{ row }">
-					<ULink :to="routes.admin_wine_update?.path?.replace(':_id()', row._id)">
+					<ULink :to="routes.admin_category_update?.path?.replace(':_id()', row._id)">
 						{{ row.name }}
 					</ULink>
 				</template>
-				<template #kind-data="{ row }"> {{ kinds[row.kind]?.label }} </template>
-				<template #color-data="{ row }"> {{ colors[row.color]?.label }} </template>
 			</UTable>
 		</div>
 	</div>
