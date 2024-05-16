@@ -13,7 +13,7 @@
 		loading?: boolean;
 	}>();
 
-	const { kindOptions, colorOptions, fields, categoryOptions } = await useWines();
+	const { kindOptions, colorOptions, fields, categoryOptions } = useWines();
 </script>
 
 <template>

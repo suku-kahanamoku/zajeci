@@ -199,21 +199,6 @@
 					"rose": "Růžové",
 					"orange": "Oranžové"
 				}
-			},
-			"category": {
-				"title": "Správa kategorií",
-				"create": {
-					"title": "Vytvořit novou kategorii"
-				},
-				"update": {
-					"title": "Aktualizovat kategorii: \"{name}\""
-				},
-				"form": {
-					"name": "Název kategorie"
-				},
-				"placeholder": {
-					"name": "Oblíbené"
-				}
 			}
 		}
 	}

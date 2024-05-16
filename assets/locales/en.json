@@ -199,21 +199,6 @@
 					"rose": "Rose",
 					"orange": "Orange"
 				}
-			},
-			"category": {
-				"title": "Admin categories",
-				"create": {
-					"title": "Create new category"
-				},
-				"update": {
-					"title": "Update category: \"{name}\""
-				},
-				"form": {
-					"name": "Category name"
-				},
-				"placeholder": {
-					"name": "Favourite"
-				}
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-export async function useWines() {
+export function useWines() {
 	const { t } = useI18n();
 	const today = new Date();
 
@@ -40,15 +40,14 @@ export async function useWines() {
 
 	const colorOptions = Object.values(colors);
 
-	const { data: categories } = await useAsyncData(async () => {
-		try {
-			return await $fetch(`/api/category`);
-		} catch (error: any) {
-			console.error(error);
-		}
-	});
+	const categories: Record<string, { value: string; label: string }> = {
+		white: { value: 'white', label: t('$.admin.wine.color.white') },
+		red: { value: 'red', label: t('$.admin.wine.color.red') },
+		rose: { value: 'rose', label: t('$.admin.wine.color.rose') },
+		orange: { value: 'orange', label: t('$.admin.wine.color.orange') },
+	};
 
-	const categoryOptions = categories.value?.map((category) => ({ value: category._id, label: category.name }));
+	const categoryOptions = Object.values(categories);
 
 	const fields: Record<string, { key: string; label: string; placeholder?: string }> = {
 		name: {

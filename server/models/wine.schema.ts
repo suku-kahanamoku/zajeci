@@ -1,7 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-import { CategoryDocument } from './category.schema';
-
 export interface WineDocument {
 	_id?: string;
 	name: string;
@@ -13,7 +11,7 @@ export interface WineDocument {
 	volume?: number;
 	year?: number;
 	price?: number;
-	categories?: CategoryDocument[];
+	categories?: string[];
 	published?: boolean;
 }
 
@@ -58,8 +56,8 @@ export const WineSchema = model<WineDocument>(
 		},
 		categories: [
 			{
-				type: Schema.Types.ObjectId,
-				ref: 'categories',
+				type: String,
+				trim: true,
 			},
 		],
 		published: {

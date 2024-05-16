@@ -14,7 +14,7 @@
 	const toast = useToast();
 	const today = new Date();
 	const loading = ref();
-	const { defaultItem } = await useWines();
+	const { defaultItem } = useWines();
 
 	useHead({
 		title: t('$.admin.wine.create.title'),

@@ -8,10 +8,6 @@
 			label: '$.admin.wine.title',
 			to: '/admin/wine',
 		},
-		{
-			label: '$.admin.category.title',
-			to: '/admin/category',
-		},
 	];
 </script>
 

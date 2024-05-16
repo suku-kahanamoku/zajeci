@@ -9,7 +9,7 @@
 
 	const { t } = useI18n();
 	const localePath = useLocalePath();
-	const { kinds, colors, fieldOptions } = await useWines();
+	const { kinds, colors, fieldOptions } = useWines();
 	const { routes } = useMenuItems();
 
 	useHead({
