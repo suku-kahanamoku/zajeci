@@ -1,11 +1,15 @@
 import { Schema, model } from 'mongoose';
 
 export interface WineDocument {
-	_id: string;
+	_id?: string;
 	name: string;
 	description?: string;
 	kind?: string;
-	type?: string;
+	quality?: string;
+	color?: string;
+	variety?: string;
+	volume?: number;
+	year?: number;
 	price?: number;
 	published?: boolean;
 }
@@ -28,11 +32,25 @@ export const WineSchema = model<WineDocument>(
 			type: String,
 			trim: true,
 		},
-		type: {
+		quality: {
+			type: String,
+			trim: true,
+		},
+		color: {
+			type: String,
+			trim: true,
+		},
+		variety: {
 			type: String,
 			trim: true,
 		},
 		price: {
+			type: Number,
+		},
+		volume: {
+			type: Number,
+		},
+		year: {
 			type: Number,
 		},
 		published: {

@@ -108,7 +108,9 @@
 			"password": "Password",
 			"select": "Select",
 			"msg": "Message",
-			"leave_comment": "Leave a message..."
+			"leave_comment": "Leave a message...",
+			"price": "Price",
+			"patch_success_msg": "Record successfully edited"
 		},
 		"message": {
 			"required": "Required",
@@ -126,7 +128,8 @@
 			"mode": "Color motif button",
 			"hamburger": "Side navigation",
 			"close": "Close button",
-			"lang": "Language mutation"
+			"lang": "Language mutation",
+			"delete_selected": "Delete selected items button"
 		},
 		"mailing": {
 			"contact_form": {
@@ -154,7 +157,46 @@
 		},
 		"admin": {
 			"wine": {
-				"title": "Admin wines"
+				"title": "Admin wines",
+				"create": {
+					"title": "Create new wine"
+				},
+				"update": {
+					"title": "Update wine: \"{name}\""
+				},
+				"form": {
+					"name": "Wine name",
+					"description": "Description",
+					"kind": "Kind",
+					"quality": "Adjective",
+					"color": "Color",
+					"year": "Year",
+					"variety": "Variety",
+					"volume": "Volume"
+				},
+				"placeholder": {
+					"name": "Sauvignon Blanc, selection of grapes",
+					"quality": "Selection of grapes",
+					"variety": "Sauvignon Blanc"
+				},
+				"kind": {
+					"dry": "Dry",
+					"semi_dry": "Semi-dry",
+					"sweet": "Sweet",
+					"semi_sweet": "Semi-sweet",
+					"extra_dry": "Extra dry",
+					"off_dry": "Off-dry",
+					"medium_dry": "Medium-dry",
+					"medium_sweet": "Medium-sweet",
+					"very_sweet": "Very sweet",
+					"dessert": "Dessert wine"
+				},
+				"color": {
+					"white": "White",
+					"red": "Red",
+					"rose": "Rose",
+					"orange": "Orange"
+				}
 			}
 		}
 	}

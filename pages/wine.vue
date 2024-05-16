@@ -20,9 +20,9 @@
 	const route = useRoute();
 
 	const { data: wines } = await useAsyncData(
-		async () => {
+		async (): Promise<WineModel[] | undefined> => {
 			try {
-				return (await $fetch(`/api/wines`)) as WineModel[];
+				return await $fetch(`/api/wines`);
 			} catch (error: any) {
 				console.error(error);
 			}

@@ -4,7 +4,7 @@ import { WineSchema } from '@/server/models/wine.schema';
 
 export default defineEventHandler(async (event: H3Event) => {
 	const body = await readBody(event);
-	const result = await WineSchema.findByIdAndUpdate(event.context.params?._id, body);
+	const result = await WineSchema.findByIdAndUpdate(event.context.params?._id, body, { new: true });
 
 	return result?.toObject();
 });

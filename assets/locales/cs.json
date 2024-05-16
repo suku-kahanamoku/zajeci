@@ -108,7 +108,9 @@
 			"password": "Heslo",
 			"select": "Vybrat",
 			"msg": "Zpráva",
-			"leave_comment": "Napište zprávu..."
+			"leave_comment": "Napište zprávu...",
+			"price": "Cena",
+			"patch_success_msg": "Záznam byl úspěšně upraven"
 		},
 		"message": {
 			"required": "Povinné",
@@ -126,7 +128,8 @@
 			"mode": "Tlačítko barevných motivu",
 			"hamburger": "Boční navigace",
 			"close": "Zavírací tlačítko",
-			"lang": "Jazyková mutace"
+			"lang": "Jazyková mutace",
+			"delete_selected": "Tlačítko pro smazání vybraných záznamů"
 		},
 		"mailing": {
 			"contact_form": {
@@ -154,7 +157,46 @@
 		},
 		"admin": {
 			"wine": {
-				"title": "Administrace vín"
+				"title": "Administrace vín",
+				"create": {
+					"title": "Vytvořit nové víno"
+				},
+				"update": {
+					"title": "Editace vína: \"{name}\""
+				},
+				"form": {
+					"name": "Název vína",
+					"description": "Popis",
+					"kind": "Druh",
+					"quality": "Přívlastek",
+					"color": "Barva",
+					"year": "Ročník",
+					"variety": "Odrůda",
+					"volume": "Objem"
+				},
+				"placeholder": {
+					"name": "Sauvignon Blanc, výběr z hroznů",
+					"quality": "Výběr z hroznů",
+					"variety": "Sauvignon Blanc"
+				},
+				"kind": {
+					"dry": "Suché",
+					"semi_dry": "Polosuché",
+					"sweet": "Sladké",
+					"semi_sweet": "Polosladké",
+					"extra_dry": "Extra suché",
+					"off_dry": "Polosuché",
+					"medium_dry": "Středně suché",
+					"medium_sweet": "Středně sladké",
+					"very_sweet": "Velmi sladké",
+					"dessert": "Dezertní víno"
+				},
+				"color": {
+					"white": "Bílé",
+					"red": "Červené",
+					"rose": "Růžové",
+					"orange": "Oranžové"
+				}
 			}
 		}
 	}

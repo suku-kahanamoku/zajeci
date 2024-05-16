@@ -37,7 +37,7 @@ export default defineEventHandler(async (event: H3Event) => {
 			message: t('$.message.user_not_exists'),
 		});
 	}
-	const result = await UserSchema.findByIdAndUpdate(event.context.params?._id, body);
+	const result = await UserSchema.findByIdAndUpdate(event.context.params?._id, body, { new: true });
 
 	return { ...result?.toObject(), password: undefined };
 });
