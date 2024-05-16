@@ -13,7 +13,7 @@ export interface UserDocument {
 }
 
 export const UserSchema = model<UserDocument>(
-	'users',
+	'user',
 	new Schema({
 		email: {
 			type: String,

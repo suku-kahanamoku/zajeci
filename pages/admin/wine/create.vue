@@ -42,7 +42,7 @@
 	async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
 		loading.value = true;
 		try {
-			await $fetch('/api/admin/wines', { method: 'POST', body: event.data });
+			await $fetch('/api/admin/wine', { method: 'POST', body: event.data });
 			state.value = CLONE(defaultItem);
 			toast.add({ title: t('$.profile.success_msg'), color: 'green', icon: 'i-heroicons-check' });
 		} catch (error: any) {
@@ -65,7 +65,7 @@
 						{{ $t('$.admin.wine.create.title') }}
 					</h1>
 
-					<CustomFormWine :schema="schema" :item="state" @submit="onSubmit" />
+					<CustomFormWine :schema="schema" :item="state" :loading="loading" @submit="onSubmit" />
 				</div>
 			</div>
 		</div>

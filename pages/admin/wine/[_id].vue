@@ -14,7 +14,6 @@
 	const route = useRoute();
 	const toast = useToast();
 	const today = new Date();
-	const loading = ref();
 	const { getChangedParams } = useWines();
 
 	useHead({
@@ -38,9 +37,9 @@
 		published: boolean(),
 	});
 
-	const { data: wine } = await useAsyncData(async (): Promise<WineModel | undefined> => {
+	const { data: wine, pending } = await useAsyncData(async () => {
 		try {
-			return await $fetch(`/api/wines/${route.params._id}`);
+			return await $fetch(`/api/wine/${route.params._id}`);
 		} catch (error: any) {
 			console.error(error);
 		}
@@ -49,10 +48,10 @@
 	const state: Ref<WineModel> = ref(CLONE(wine.value));
 
 	async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
-		loading.value = true;
+		pending.value = true;
 		try {
 			const changedParams = getChangedParams(wine.value as any, event.data);
-			const result = await $fetch(`/api/admin/wines/${route.params._id}`, {
+			const result = await $fetch(`/api/admin/wine/${route.params._id}`, {
 				method: 'PATCH',
 				body: changedParams,
 			});
@@ -61,7 +60,7 @@
 		} catch (error: any) {
 			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
 		}
-		loading.value = false;
+		setTimeout(() => (pending.value = false), 400);
 	}
 </script>
 
@@ -78,7 +77,7 @@
 						{{ $t('$.admin.wine.update.title', { name: state?.name }) }}
 					</h1>
 
-					<CustomFormWine v-if="state" :schema="schema" :item="state" @submit="onSubmit" />
+					<CustomFormWine v-if="state" :schema="schema" :item="state" :loading="pending" @submit="onSubmit" />
 				</div>
 			</div>
 		</div>

@@ -10,6 +10,7 @@
 	defineProps<{
 		schema: any;
 		item: WineModel;
+		loading: boolean;
 	}>();
 
 	const { kindOptions, colorOptions, fields } = useWines();
@@ -70,7 +71,7 @@
 		</UFormGroup>
 
 		<div class="pt-8">
-			<UButton type="submit" size="lg" block class="dark:text-white">
+			<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
 				{{ $t('$.form.submit') }}
 			</UButton>
 		</div>

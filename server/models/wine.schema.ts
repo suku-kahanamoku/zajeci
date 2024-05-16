@@ -15,7 +15,7 @@ export interface WineDocument {
 }
 
 export const WineSchema = model<WineDocument>(
-	'wines',
+	'wine',
 	new Schema({
 		name: {
 			type: String,
