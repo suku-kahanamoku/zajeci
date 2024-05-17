@@ -30,7 +30,7 @@
 </script>
 
 <template>
-	<div>
+	<div class="z-10">
 		<header class="shadow-md bg-gray-50 dark:bg-gray-800 dark:border dark:border-gray-900 dark:border-b-gray-700">
 			<div class="max-w-screen-xl mx-auto px-5 w-full h-16 flex flex-row justify-between items-center gap-4">
 				<!-- logo -->

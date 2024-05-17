@@ -1,36 +1,13 @@
 <script setup lang="ts">
-	const wines = [
-		{
-			name: 'Frankovka',
-			price: 170,
-			kind: 'Červené suché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Rulandské modré',
-			price: 250,
-			kind: 'Červené suché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Cabernet Moravia rosé',
-			price: 150,
-			kind: 'Růžové suché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Müller-Thurgau',
-			price: 220,
-			kind: 'Bílé supolosuchéché',
-			type: 'Moravské zemské víno',
-		},
-		{
-			name: 'Rulandské bílé',
-			price: 200,
-			kind: 'Bílé suché',
-			type: 'Moravské zemské víno',
-		},
-	];
+	import type { WineModel } from '@/server/models/wine.schema';
+
+	const { data: wines } = await useAsyncData(async (): Promise<WineModel[] | undefined> => {
+		try {
+			return await $fetch(`/api/wine?q={"categories":{"$in":["top"]}}`);
+		} catch (error: any) {
+			console.error(error);
+		}
+	});
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 {
 	"$": {
 		"cs": "cz",
+		"czk": "Kč",
 		"base": {
 			"title": "NOVÁ HORA | Zaječské vinařství",
 			"description": "Objevte lahodná moravská vína! Zajímavé odrůdy, precizní zpracování a nezapomenutelný chuťový zážitek. Neváhejte nás kontaktovat a dovolte nám přiblížit vám kousek moravské vinárenské vášně"
@@ -34,7 +35,10 @@
 		},
 		"wine": {
 			"title": "Nabídka vín",
-			"to_cart": "Do košíku"
+			"to_cart": "Do košíku",
+			"detail": {
+				"title": "Detail vína"
+			}
 		},
 		"info": {
 			"history": "Moravská a česká vína získávají stále větší oblibu nejen u nás, ale taky ve světě. V České republice se pěstuje přes 50 odrůd. A to díky rozmanitosti a členitosti území. Každá oblast dodává jednotlivým odrůdám specifické vlastnosti, takže nejlepší víno si pro sebe vybere každý. Prozkoumejte kvalitní vína z Moravy a Čech a objevujte krásy skrze vinnou sklenku",

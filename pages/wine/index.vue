@@ -8,6 +8,7 @@
 	});
 
 	const { t } = useI18n();
+	const route = useRoute();
 
 	useHead({
 		title: t('$.base.title'),
@@ -16,8 +17,6 @@
 			{ name: 'keywords', content: t('$.base.description') },
 		],
 	});
-
-	const route = useRoute();
 
 	const { data: wines } = await useAsyncData(
 		async (): Promise<WineModel[] | undefined> => {

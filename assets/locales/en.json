@@ -1,6 +1,7 @@
 {
 	"$": {
 		"cs": "cz",
+		"czk": "CZK",
 		"base": {
 			"title": "NOVÁ HORA | Zaječí Winery",
 			"description": "Discover delicious Moravian wines! Interesting varieties, precise processing, and unforgettable taste experience. Don't hesitate to contact us and let us introduce you to a piece of Moravian winemaking passion."
@@ -34,7 +35,10 @@
 		},
 		"wine": {
 			"title": "Wine Selection",
-			"to_cart": "Add to Cart"
+			"to_cart": "Add to Cart",
+			"detail": {
+				"title": "Wine detail"
+			}
 		},
 		"info": {
 			"history": "Moravian and Czech wines are gaining increasing popularity not only here but also worldwide. In the Czech Republic, over 50 varieties are grown, thanks to the diversity and ruggedness of the terrain. Each region contributes specific characteristics to individual varieties, so everyone can choose the best wine for themselves. Explore quality wines from Moravia and Bohemia and discover the beauty through a wine glass.",

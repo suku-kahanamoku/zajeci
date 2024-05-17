@@ -34,7 +34,8 @@
 		volume: number().required().positive(),
 		year: number().required().positive().integer().min(2000).max(today.getFullYear()),
 		price: number().required().positive().integer(),
-		categories: array().required().min(1),
+		/* categories: array().required().min(1), */
+		categories: array(),
 		published: boolean(),
 	});
 

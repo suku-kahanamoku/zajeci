@@ -20,11 +20,11 @@
 
 <template>
 	<UForm :schema="schema" :state="item" @submit="emits('submit', $event)">
-		<div class="grid md:grid-cols-2 gap-x-4 gap-y-6">
-			<UFormGroup :label="fields.name.label" name="name">
-				<UInput v-model="item.name" :placeholder="fields.name.placeholder" size="lg" />
-			</UFormGroup>
+		<UFormGroup :label="fields.name.label" name="name"  class="mb-6">
+			<UTextarea v-model="item.name" :placeholder="fields.name.placeholder" size="lg" :rows="2" />
+		</UFormGroup>
 
+		<div class="grid md:grid-cols-2 gap-x-4 gap-y-6">
 			<UFormGroup :label="fields.kind.label" name="kind">
 				<USelectMenu
 					v-model="item.kind"
