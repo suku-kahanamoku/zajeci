@@ -103,7 +103,6 @@
 			"success_msg": "User successfully edited"
 		},
 		"form": {
-			"submit": "Submit",
 			"email": "Email",
 			"password": "Password",
 			"select": "Select",
@@ -125,13 +124,21 @@
 			"user_exist": "User already exists",
 			"user_not_exists": "User does not exist",
 			"password_min": "Must be at least {count} characters long",
-			"password_not_match": "Passwords do not match"
+			"password_not_match": "Passwords do not match",
+			"delete_question": "Do you realy want delete: \"{name}\"?"
+		},
+		"btn": {
+			"submit": "Submit",
+			"delete": "Delete",
+			"cancel": "cancel",
+			"back": "Back"
 		},
 		"aria": {
 			"mode": "Color motif button",
 			"hamburger": "Side navigation",
 			"close": "Close button",
 			"lang": "Language mutation",
+			"delete": "Delete item button",
 			"delete_selected": "Delete selected items button"
 		},
 		"mailing": {
@@ -198,6 +205,11 @@
 					"red": "Red",
 					"rose": "Rose",
 					"orange": "Orange"
+				},
+				"category": {
+					"favourite": "Favourite",
+					"top": "Top",
+					"new": "New"
 				}
 			}
 		}

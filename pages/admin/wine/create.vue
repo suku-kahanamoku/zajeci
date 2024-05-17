@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { object, string, boolean, type InferType, number } from 'yup';
+	import { object, string, boolean, type InferType, number, array } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
 
 	import type { WineModel } from '@/server/models/wine.schema';
@@ -34,6 +34,7 @@
 		volume: number().required().positive(),
 		year: number().required().positive().integer().min(2000).max(today.getFullYear()),
 		price: number().required().positive().integer(),
+		categories: array().required().min(1),
 		published: boolean(),
 	});
 

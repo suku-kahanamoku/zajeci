@@ -41,10 +41,9 @@ export function useWines() {
 	const colorOptions = Object.values(colors);
 
 	const categories: Record<string, { value: string; label: string }> = {
-		white: { value: 'white', label: t('$.admin.wine.color.white') },
-		red: { value: 'red', label: t('$.admin.wine.color.red') },
-		rose: { value: 'rose', label: t('$.admin.wine.color.rose') },
-		orange: { value: 'orange', label: t('$.admin.wine.color.orange') },
+		favourite: { value: 'favourite', label: t('$.admin.wine.category.favourite') },
+		top: { value: 'top', label: t('$.admin.wine.category.top') },
+		new: { value: 'new', label: t('$.admin.wine.category.new') },
 	};
 
 	const categoryOptions = Object.values(categories);
@@ -90,6 +89,7 @@ export function useWines() {
 		categories: {
 			key: 'categories',
 			label: t('$.form.categories'),
+			placeholder: t('$.form.select'),
 		},
 		description: {
 			key: 'description',

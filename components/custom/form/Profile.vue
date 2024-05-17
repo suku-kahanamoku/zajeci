@@ -84,7 +84,7 @@
 					:loading="loading"
 				/>
 				<UButton type="submit" size="lg" block class="dark:text-white">
-					{{ $t('$.form.submit') }}
+					{{ $t('$.btn.submit') }}
 				</UButton>
 			</UForm>
 		</div>

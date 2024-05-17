@@ -57,7 +57,7 @@
 		</UFormGroup>
 		<div class="flex flex-row-reverse">
 			<UButton type="submit" class="dark:text-white" size="lg" :loading="loading">
-				{{ $t('$.form.submit') }}
+				{{ $t('$.btn.submit') }}
 			</UButton>
 		</div>
 	</UForm>

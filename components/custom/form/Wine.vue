@@ -13,7 +13,9 @@
 		loading?: boolean;
 	}>();
 
+	const localePath = useLocalePath();
 	const { kindOptions, colorOptions, fields, categoryOptions } = useWines();
+	const { routes } = useMenuItems();
 </script>
 
 <template>
@@ -82,9 +84,18 @@
 			<UTextarea v-model="item.description" size="lg" />
 		</UFormGroup>
 
-		<div class="pt-8">
-			<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
-				{{ $t('$.form.submit') }}
+		<div class="flex justify-between pt-8">
+			<UButton
+				:to="localePath(routes.admin_wine?.path)"
+				icon="i-heroicons-arrow-left"
+				color="gray"
+				variant="outline"
+				size="lg"
+			>
+				{{ $t('$.btn.back') }}
+			</UButton>
+			<UButton type="submit" size="lg" :loading="loading" class="dark:text-white">
+				{{ $t('$.btn.submit') }}
 			</UButton>
 		</div>
 	</UForm>

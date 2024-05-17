@@ -103,7 +103,6 @@
 			"success_msg": "Uživatel byl úspěšně upraven"
 		},
 		"form": {
-			"submit": "Odeslat",
 			"email": "E-mail",
 			"password": "Heslo",
 			"select": "Vybrat",
@@ -125,13 +124,21 @@
 			"user_exist": "Uživatel již existuje",
 			"user_not_exists": "Uživatel neexistuje",
 			"password_min": "Musí obsahovat alespoň {count} znaků",
-			"password_not_match": "Hesla se neshodují"
+			"password_not_match": "Hesla se neshodují",
+			"delete_question": "Opravdu chcete smazat záznam: \"{name}\"?"
+		},
+		"btn": {
+			"submit": "Odeslat",
+			"delete": "Smazat",
+			"cancel": "Zrušit",
+			"back": "Zpět"
 		},
 		"aria": {
 			"mode": "Tlačítko barevných motivu",
 			"hamburger": "Boční navigace",
 			"close": "Zavírací tlačítko",
 			"lang": "Jazyková mutace",
+			"delete": "Tlačítko pro smazání záznamu",
 			"delete_selected": "Tlačítko pro smazání vybraných záznamů"
 		},
 		"mailing": {
@@ -198,6 +205,11 @@
 					"red": "Červené",
 					"rose": "Růžové",
 					"orange": "Oranžové"
+				},
+				"category": {
+					"favourite": "Oblíbené",
+					"top": "Nejlepší",
+					"new": "Nové"
 				}
 			}
 		}
