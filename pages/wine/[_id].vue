@@ -33,13 +33,13 @@
 <template>
 	<section class="max-w-screen-xl mx-auto text-gray-700 body-font overflow-hidden">
 		<div class="px-5 py-24 mx-auto">
-			<div class="lg:w-4/5 mx-auto flex flex-wrap w-full">
+			<div class="mx-auto flex flex-wrap w-full">
 				<NuxtImg
 					src="/img/bottle.jpg"
 					:alt="'wine'"
 					loading="eager"
 					format="webp"
-					height="600"
+					height="500"
 					class="mx-auto"
 				/>
 				<div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -62,7 +62,7 @@
 							</UButton>
 						</span>
 					</div>
-					<p class="leading-relaxed dark:text-white">
+					<p class="text-lg leading-relaxed dark:text-white">
 						{{ wine?.description }}
 					</p>
 					<div class="leading-relaxed mt-4">
@@ -79,7 +79,7 @@
 					</div>
 					<UDivider class="my-4" />
 					<div class="flex items-center justify-between">
-						<span class="title-font font-medium text-2xl text-gray-900">
+						<span class="font-bold text-2xl text-gray-600 dark:text-white">
 							{{ useToNumber(wine?.price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 								$t('$.czk')
 							}}

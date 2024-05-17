@@ -1,10 +1,13 @@
 <script setup lang="ts">
+	import { useDateFormat, useToNumber } from '@vueuse/core';
+
 	import type { WineModel } from '@/server/models/wine.schema';
 
 	defineProps<{
 		item: WineModel;
 	}>();
 
+	const { locale } = useI18n();
 	const { routes } = useMenuItems();
 	const { fields } = useWines();
 </script>
@@ -24,7 +27,9 @@
 		<template #footer>
 			<div class="flex justify-between items-center">
 				<div class="font-bold lg:text-lg text-gray-600 dark:text-white">
-					{{ fields.price.label }}: {{ item.price }} Kč
+					{{ fields.price.label }}:&nbsp;{{
+						useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(locale)
+					}}&nbsp;{{ $t('$.czk') }}
 				</div>
 				<UButton
 					:to="'#'"
