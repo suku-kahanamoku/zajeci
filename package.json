@@ -21,6 +21,7 @@
 		"nuxt": "^3.11.2",
 		"nuxt-auth-utils": "^0.0.24",
 		"nuxt-mongoose": "^1.0.5",
+		"nuxt-rating": "^0.0.15",
 		"photoswipe": "^5.4.3",
 		"ukiyojs": "^4.2.0",
 		"vue-email": "^0.8.11",

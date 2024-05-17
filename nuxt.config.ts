@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'nuxt-auth-utils',
 		'nuxt-gtag',
+		'nuxt-rating',
 	],
 	router: {
 		options: {

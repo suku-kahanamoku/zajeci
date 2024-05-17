@@ -31,9 +31,9 @@
 </script>
 
 <template>
-	<section class="text-gray-700 body-font overflow-hidden bg-white">
+	<section class="max-w-screen-xl mx-auto text-gray-700 body-font overflow-hidden">
 		<div class="px-5 py-24 mx-auto">
-			<div class="lg:w-4/5 mx-auto flex flex-wrap">
+			<div class="lg:w-4/5 mx-auto flex flex-wrap w-full">
 				<NuxtImg
 					src="/img/bottle.jpg"
 					:alt="'wine'"
@@ -43,75 +43,12 @@
 					class="mx-auto"
 				/>
 				<div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-					<h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ wine?.name }}</h1>
+					<h1 class="text-3xl title-font font-medium mb-1 text-primary-600 dark:text-primary-400">
+						{{ wine?.name }}
+					</h1>
 					<div class="flex mb-4">
 						<span class="flex items-center">
-							<svg
-								fill="currentColor"
-								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								class="w-4 h-4 text-red-500"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-								></path>
-							</svg>
-							<svg
-								fill="currentColor"
-								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								class="w-4 h-4 text-red-500"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-								></path>
-							</svg>
-							<svg
-								fill="currentColor"
-								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								class="w-4 h-4 text-red-500"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-								></path>
-							</svg>
-							<svg
-								fill="currentColor"
-								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								class="w-4 h-4 text-red-500"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-								></path>
-							</svg>
-							<svg
-								fill="none"
-								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								class="w-4 h-4 text-red-500"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-								></path>
-							</svg>
-							<span class="text-gray-600 ml-3">4 Reviews</span>
+							<NuxtRating :read-only="false" :ratingValue="4.5" rating-size="30px" class="w-36" />
 						</span>
 						<span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
 							<UButton variant="ghost" :ui="{ rounded: 'rounded-full' }">
@@ -125,7 +62,7 @@
 							</UButton>
 						</span>
 					</div>
-					<p class="leading-relaxed">
+					<p class="leading-relaxed dark:text-white">
 						{{ wine?.description }}
 					</p>
 					<div class="leading-relaxed mt-4">
