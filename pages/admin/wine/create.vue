@@ -67,7 +67,7 @@
 						{{ $t('$.admin.wine.create.title') }}
 					</h1>
 
-					<CustomFormWine :schema="schema" :item="state" :loading="loading" @submit="onSubmit" />
+					<AdminFormWine :schema="schema" :item="state" :loading="loading" @submit="onSubmit" />
 				</div>
 			</div>
 		</div>

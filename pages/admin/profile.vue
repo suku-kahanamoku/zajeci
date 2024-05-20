@@ -19,7 +19,7 @@
 <template>
 	<div class="w-full mx-auto px-5 py-5 flex flex-col gap-10">
 		<div class="w-full h-full flex justify-center items-center">
-			<CustomFormProfile />
+			<AdminFormProfile />
 		</div>
 	</div>
 </template>

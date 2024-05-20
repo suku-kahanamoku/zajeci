@@ -79,7 +79,7 @@
 						{{ $t('$.admin.wine.update.title', { name: state?.name }) }}
 					</h1>
 
-					<CustomFormWine v-if="state" :schema="schema" :item="state" :loading="pending" @submit="onSubmit" />
+					<AdminFormWine v-if="state" :schema="schema" :item="state" :loading="pending" @submit="onSubmit" />
 				</div>
 			</div>
 		</div>
