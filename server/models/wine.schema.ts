@@ -10,7 +10,7 @@ export interface WineDocument {
 	variety?: string;
 	volume?: number;
 	year?: number;
-	price?: number;
+	price: number;
 	categories?: string[];
 	published?: boolean;
 }

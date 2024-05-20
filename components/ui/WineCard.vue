@@ -31,12 +31,7 @@
 						useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(locale)
 					}}&nbsp;{{ $t('$.czk') }}
 				</div>
-				<UButton
-					:to="'#'"
-					icon="i-heroicons-pencil-square"
-					color="secondary"
-					class="lg:text-lg dark:text-white"
-				>
+				<UButton icon="i-heroicons-pencil-square" color="secondary" class="lg:text-lg dark:text-white">
 					{{ $t('$.wine.to_cart') }}
 				</UButton>
 			</div>
