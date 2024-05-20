@@ -4,7 +4,14 @@
 	definePageMeta({
 		layout: 'admin',
 		syscode: 'admin_wine',
-		title: '$.dashboard.title',
+		title: '$.admin.wine.title',
+		middleware: () => {
+			const authStore = useAuthStore();
+
+			if (!authStore.isAdmin) {
+				return navigateTo('/403');
+			}
+		},
 	});
 
 	const { t } = useI18n();

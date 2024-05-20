@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	definePageMeta({
 		layout: 'admin',
-		syscode: 'profile',
+		syscode: 'admin_profile',
 		title: '$.profile.title',
 	});
 

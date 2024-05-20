@@ -10,6 +10,7 @@ export interface UserDocument {
 	temp_password?: string;
 	terms?: boolean;
 	newsletter?: boolean;
+	role?: 'admin' | 'user' | 'guest';
 }
 
 export const UserSchema = model<UserDocument>(
@@ -49,6 +50,11 @@ export const UserSchema = model<UserDocument>(
 		newsletter: {
 			type: Boolean,
 			default: true,
+		},
+		role: {
+			type: String,
+			default: 'guest',
+			trim: true,
 		},
 	})
 );

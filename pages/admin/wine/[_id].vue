@@ -8,6 +8,13 @@
 		layout: 'admin',
 		syscode: 'admin_wine_update',
 		title: '$.admin.wine.update.title',
+		middleware: () => {
+			const authStore = useAuthStore();
+
+			if (!authStore.isAdmin) {
+				return navigateTo('/403');
+			}
+		},
 	});
 
 	const { t } = useI18n();

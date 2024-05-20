@@ -2,11 +2,13 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router';
 
 export default async function (to: RouteLocationNormalizedLoaded, from: RouteLocationNormalizedLoaded) {
 	const localePath = useLocalePath();
+	const authStore = useAuthStore();
+
 	// je prihlaseny
-	if (useAuthStore().loggedIn) {
+	if (authStore.loggedIn) {
 		// pokud jde z dashboardu, zrusi navigaci
-		if (from.name === 'admin') {
-			switch (to.name) {
+		if (from.meta?.syscode === 'admin') {
+			switch (to.meta?.syscode) {
 				case 'login':
 				case 'signup':
 				case 'forgot-password':
@@ -15,7 +17,7 @@ export default async function (to: RouteLocationNormalizedLoaded, from: RouteLoc
 		}
 		// jinak presmeruje na dashboard
 		else {
-			switch (to.name) {
+			switch (to.meta?.syscode) {
 				case 'login':
 				case 'signup':
 				case 'forgot-password':
@@ -25,7 +27,7 @@ export default async function (to: RouteLocationNormalizedLoaded, from: RouteLoc
 	}
 	// neni prihlaseny, ale chce jit na zabezpecenou stranku
 	else if (to.path.includes('/admin')) {
-		switch (from.name) {
+		switch (from.meta?.syscode) {
 			// pokud jde z login, signup nebo password, zrusi navigaci
 			case 'login':
 			case 'signup':

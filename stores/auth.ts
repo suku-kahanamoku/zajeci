@@ -10,6 +10,8 @@ export const useAuthStore = defineStore('Auth', () => {
 			}`
 	);
 
+	const isAdmin = computed(() => user.value?.role === 'admin');
+
 	/**
 	 * Funkce pro prihlaseni
 	 *
@@ -89,5 +91,6 @@ export const useAuthStore = defineStore('Auth', () => {
 		user,
 		session,
 		initials,
+		isAdmin,
 	};
 });

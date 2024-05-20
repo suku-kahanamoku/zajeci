@@ -15,7 +15,7 @@
 	const userMenuItems = computed(() => {
 		const admin = menuItem('admin');
 		admin.to = localePath(admin.to);
-		const profile = menuItem('profile');
+		const profile = menuItem('admin_profile');
 		profile.to = localePath(profile.to);
 		return [
 			[admin, profile],
