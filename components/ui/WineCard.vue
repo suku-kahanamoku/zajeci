@@ -1,40 +1,88 @@
 <script setup lang="ts">
-	import { useDateFormat, useToNumber } from '@vueuse/core';
+	import { useToNumber } from '@vueuse/core';
 
 	import type { WineModel } from '@/server/models/wine.schema';
+	import type { CartModel } from '@/server/models/order.schema';
 
-	defineProps<{
+	const props = defineProps<{
 		item: WineModel;
 	}>();
 
 	const { locale } = useI18n();
 	const { routes } = useMenuItems();
 	const { fields } = useWines();
+	const cashdesk = useCashdeskStore();
+	const modal: Ref<boolean> = ref(false);
+	const cart: Ref<CartModel | undefined> = ref();
+
+	function addToCashdesk() {
+		cart.value = cashdesk.addItem(props.item, 1);
+		modal.value = true;
+	}
 </script>
 
 <template>
-	<UCard :ui="{ shadow: 'shadow-md' }" class="zoom-in">
-		<template #header>
-			<NuxtImg src="/img/bottle.jpg" :alt="'wine'" loading="eager" format="webp" height="300" class="mx-auto" />
-		</template>
+	<div>
+		<UCard :ui="{ shadow: 'shadow-md' }" class="zoom-in">
+			<template #header>
+				<NuxtImg
+					src="/img/bottle.jpg"
+					:alt="'wine'"
+					loading="eager"
+					format="webp"
+					height="300"
+					class="mx-auto"
+				/>
+			</template>
 
-		<NuxtLink :to="`${routes.wine_detail?.path?.replace(':_id()', item._id)}`">
-			<h3 class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400">
-				{{ item.name }}
-			</h3>
-		</NuxtLink>
+			<NuxtLink :to="`${routes.wine_detail?.path?.replace(':_id()', item._id)}`">
+				<h3 class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400">
+					{{ item.name }}
+				</h3>
+			</NuxtLink>
 
-		<template #footer>
-			<div class="flex justify-between items-center">
-				<div class="font-bold lg:text-lg text-gray-600 dark:text-white">
-					{{ fields.price.label }}:&nbsp;{{
-						useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(locale)
-					}}&nbsp;{{ $t('$.czk') }}
+			<template #footer>
+				<div class="flex justify-between items-center">
+					<div class="font-bold lg:text-lg text-gray-600 dark:text-white">
+						{{ fields.price.label }}:&nbsp;{{
+							useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+					<UButton
+						icon="i-heroicons-pencil-square"
+						color="secondary"
+						class="lg:text-lg dark:text-white"
+						@click="addToCashdesk"
+					>
+						{{ $t('$.wine.to_cart') }}
+					</UButton>
 				</div>
-				<UButton icon="i-heroicons-pencil-square" color="secondary" class="lg:text-lg dark:text-white">
-					{{ $t('$.wine.to_cart') }}
-				</UButton>
+			</template>
+		</UCard>
+
+		<UiModalCart v-model="modal">
+			<div>
+				<h3 class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400">
+					{{ cart?.wine?.name }}
+				</h3>
+				<div class="mt-6">
+					<div>
+						{{ $t('$.form.price') }}:&nbsp;{{
+							useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+					<div>
+						{{ $t('$.form.quantity') }}:&nbsp;{{
+							useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+					<div>
+						{{ $t('$.cashdesk.cart.total') }}:&nbsp;{{
+							useToNumber(cashdesk?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+				</div>
 			</div>
-		</template>
-	</UCard>
+		</UiModalCart>
+	</div>
 </template>

@@ -115,6 +115,7 @@
 			"price": "Price",
 			"description": "Description",
 			"categories": "Categories",
+			"quantity": "Quantity",
 			"patch_success_msg": "Record successfully edited",
 			"post_success_msg": "Record successfully created"
 		},
@@ -135,7 +136,9 @@
 			"submit": "Submit",
 			"delete": "Delete",
 			"cancel": "cancel",
-			"back": "Back"
+			"back": "Back",
+			"continue": "continue shopping",
+			"to_order": "To order"
 		},
 		"aria": {
 			"mode": "Color motif button",
@@ -167,6 +170,13 @@
 				"new_password": "A new password has been generated for your account.",
 				"contact_us": "If you did not request a new password, please contact us immediately.",
 				"further_questions": "If you have any further questions or need assistance, feel free to contact us."
+			}
+		},
+		"cashdesk": {
+			"title": "Cashdesk",
+			"cart": {
+				"title": "Added to cart:",
+				"total": "Total of items in the basket"
 			}
 		},
 		"admin": {

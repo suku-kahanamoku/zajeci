@@ -115,6 +115,7 @@
 			"price": "Cena",
 			"description": "Popis",
 			"categories": "Kategorie",
+			"quantity": "Množství",
 			"patch_success_msg": "Záznam byl úspěšně upraven",
 			"post_success_msg": "Záznam byl úspěšně vytvořen"
 		},
@@ -135,7 +136,9 @@
 			"submit": "Odeslat",
 			"delete": "Smazat",
 			"cancel": "Zrušit",
-			"back": "Zpět"
+			"back": "Zpět",
+			"continue": "Pokračovat v nákupu",
+			"to_order": "Přejit k objednávce"
 		},
 		"aria": {
 			"mode": "Tlačítko barevných motivu",
@@ -167,6 +170,13 @@
 				"new_password": "Bylo vygenerováno nové heslo pro váš účet.",
 				"contact_us": "Pokud jste o nové heslo nežádal/a, kontaktujte nás okamžitě.",
 				"further_questions": "Pokud máte nějaké další otázky nebo potřebujete pomoc, neváhejte nás kontaktovat."
+			}
+		},
+		"cashdesk": {
+			"title": "Pokladna",
+			"cart": {
+				"title": "Přidáno do košíku:",
+				"total": "V košíku je zboží celkem za"
 			}
 		},
 		"admin": {

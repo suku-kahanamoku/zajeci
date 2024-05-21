@@ -14,24 +14,28 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		return carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0);
 	});
 
-	const addItem = (wine: WineModel, quantity: number) => {
-		const existingItem = carts.value.find((item) => item.wine_id === wine._id);
+	const addItem = (wine: WineModel, quantity: number): CartModel => {
+		let result;
+		const existingItem = carts.value.find((item) => item.wine._id === wine._id);
 		if (existingItem) {
 			existingItem.quantity += quantity;
 			existingItem.total_price = existingItem.unit_price * existingItem.quantity;
+			result = existingItem;
 		} else {
 			const newItem: CartModel = {
-				wine_id: wine._id,
+				wine,
 				quantity,
 				unit_price: wine.price,
 				total_price: wine.price * quantity,
 			};
 			carts.value.push(newItem);
+			result = newItem;
 		}
+		return result;
 	};
 
 	const removeItem = (wineId: string) => {
-		const itemIndex = carts.value.findIndex((item) => item.wine_id === wineId);
+		const itemIndex = carts.value.findIndex((item) => item.wine._id === wineId);
 		if (itemIndex !== -1) {
 			const item = carts.value[itemIndex];
 			item.quantity -= 1;
@@ -43,7 +47,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	};
 
 	const deleteItem = (wineId: string) => {
-		carts.value = carts.value.filter((item) => item.wine_id !== wineId);
+		carts.value = carts.value.filter((item) => item.wine._id !== wineId);
 	};
 
 	const clearCart = () => {

@@ -1,9 +1,9 @@
 import { Schema, model, Document } from 'mongoose';
-import { WineDocument } from './wine.schema'; // Adjust the path as necessary
+import { WineDocument, WineSchema } from './wine.schema'; // Adjust the path as necessary
 
 // Interface for OrderItem
 export interface CartDocument {
-	wine_id: WineDocument['_id'];
+	wine: WineDocument;
 	quantity: number;
 	unit_price: number;
 	total_price: number;
@@ -22,9 +22,8 @@ export interface OrderDocument extends Document {
 
 // Schema for OrderItem
 const OrderItemSchema = new Schema<CartDocument>({
-	wine_id: {
-		type: Schema.Types.ObjectId,
-		ref: 'wines',
+	wine: {
+		type: WineSchema,
 		required: true,
 	},
 	quantity: {

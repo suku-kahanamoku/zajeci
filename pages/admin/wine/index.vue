@@ -117,7 +117,7 @@
 			</UTable>
 		</div>
 
-		<UiConfirm
+		<UiModalConfirm
 			v-model="isOpen"
 			:message="$t('$.message.delete_question', { name: deleted?.name })"
 			@confirm="onDelete"
