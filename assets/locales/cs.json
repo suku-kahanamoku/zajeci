@@ -174,8 +174,11 @@
 		},
 		"cashdesk": {
 			"title": "Pokladna",
+			"delivery_payment": "Doprava a platba",
+			"summary": "Shrnutí",
 			"cart": {
-				"title": "Přidáno do košíku:",
+				"title": "Košík",
+				"added": "Přidáno do košíku:",
 				"total": "V košíku je zboží celkem za"
 			}
 		},

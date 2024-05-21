@@ -17,6 +17,42 @@
 			{ name: 'keywords', content: t('$.base.description') },
 		],
 	});
+
+	const items = [
+		{
+			key: 'cart',
+			label: t('$.cashdesk.cart.title'),
+			content: 'This is the content shown for Tab1',
+		},
+		{
+			key: 'delivery_payment',
+			label: t('$.cashdesk.delivery_payment'),
+			content: 'And, this is the content for Tab2',
+		},
+		{
+			key: 'summary',
+			label: t('$.cashdesk.summary'),
+			content: 'Finally, this is the content for Tab3',
+		},
+	];
+
+	const route = useRoute();
+	const router = useRouter();
+
+	const selected = computed({
+		get() {
+			const index = items.findIndex((item) => item.label === route.query.tab);
+			if (index === -1) {
+				return 0;
+			}
+
+			return index;
+		},
+		set(value) {
+			// Hash is specified here to prevent the page from scrolling to the top
+			router.replace({ query: { tab: items[value].label } });
+		},
+	});
 </script>
 
 <template>
@@ -27,6 +63,13 @@
 			>
 				{{ $t('$.cashdesk.title') }}
 			</h1>
+			<div class="py-10">
+				<UTabs v-model="selected" :items="items">
+					<template #item="{ item }">
+						<CustomCashdeskCart />
+					</template>
+				</UTabs>
+			</div>
 		</div>
 	</div>
 </template>

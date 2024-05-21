@@ -174,8 +174,11 @@
 		},
 		"cashdesk": {
 			"title": "Cashdesk",
+			"delivery_payment": "Delivery and payment",
+			"summary": "Summary",
 			"cart": {
-				"title": "Added to cart:",
+				"title": "Cart",
+				"added": "Added to cart:",
 				"total": "Total of items in the basket"
 			}
 		},

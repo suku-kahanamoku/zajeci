@@ -12,7 +12,7 @@
 		};
 	}>();
 
-	const { locale } = useI18n();
+	const localePath = useLocalePath();
 	const { routes } = useMenuItems();
 
 	const model = defineModel();
@@ -24,7 +24,7 @@
 			<template #header>
 				<div class="flex justify-between items-center">
 					<h3 class="text-lg lg:text-xl font-bold text-primary-600 dark:text-primary-400">
-						{{ $t('$.cashdesk.cart.title') }}
+						{{ $t('$.cashdesk.cart.added') }}
 					</h3>
 					<UButton
 						icon="i-heroicons-x-mark"
@@ -50,7 +50,7 @@
 						{{ $t('$.btn.continue') }}
 					</UButton>
 					<UButton
-						:to="routes.cashdesk.path"
+						:to="localePath(routes.cashdesk.path)"
 						icon="i-heroicons-shopping-cart"
 						color="primary"
 						variant="solid"

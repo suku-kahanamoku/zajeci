@@ -1,7 +1,7 @@
 <script setup lang="ts">
-	import { useDateFormat, useToNumber } from '@vueuse/core';
+	import { useToNumber } from '@vueuse/core';
 
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { CartModel } from '@/server/models/order.schema';
 
 	definePageMeta({
 		layout: 'default',
@@ -10,8 +10,6 @@
 	});
 
 	const { t, locale } = useI18n();
-	const route = useRoute();
-	const { fields, kinds, colors } = useWines();
 
 	useHead({
 		title: `${t('$.base.title')} | ${t('$.forgot_password.title')}`,
@@ -21,6 +19,12 @@
 		],
 	});
 
+	const route = useRoute();
+	const { fields, kinds, colors } = useWines();
+	const cashdesk = useCashdeskStore();
+	const modal: Ref<boolean> = ref(false);
+	const cart: Ref<CartModel | undefined> = ref();
+
 	const { data: wine, pending } = await useAsyncData(async () => {
 		try {
 			return await $fetch(`/api/wine/${route.params._id}`);
@@ -28,6 +32,13 @@
 			console.error(error);
 		}
 	});
+
+	function addToCashdesk() {
+		if (wine.value) {
+			cart.value = cashdesk.addItem(wine.value, 1);
+			modal.value = true;
+		}
+	}
 </script>
 
 <template>
@@ -86,10 +97,10 @@
 						</span>
 						<div>
 							<UButton
-								:to="'#'"
 								icon="i-heroicons-pencil-square"
 								color="secondary"
 								class="lg:text-lg dark:text-white"
+								@click="addToCashdesk"
 							>
 								{{ $t('$.wine.to_cart') }}
 							</UButton>
@@ -105,5 +116,30 @@
 				</div>
 			</div>
 		</div>
+
+		<UiModalCart v-model="modal">
+			<div>
+				<h3 class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400">
+					{{ cart?.wine?.name }}
+				</h3>
+				<div class="mt-6">
+					<div>
+						{{ $t('$.form.price') }}:&nbsp;{{
+							useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+					<div>
+						{{ $t('$.form.quantity') }}:&nbsp;{{
+							useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+					<div>
+						{{ $t('$.cashdesk.cart.total') }}:&nbsp;{{
+							useToNumber(cashdesk?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)
+						}}&nbsp;{{ $t('$.czk') }}
+					</div>
+				</div>
+			</div>
+		</UiModalCart>
 	</section>
 </template>
