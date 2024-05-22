@@ -1,8 +1,8 @@
 import { H3Event } from 'h3';
 
-import { WineSchema } from '@/server/models/wine.schema';
+import { WineModel, WineSchema } from '@/server/models/wine.schema';
 
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event: H3Event): Promise<WineModel[] | undefined> => {
 	const query = getQuery(event);
 	const where = JSON.parse((query.q || '{}') as string);
 	const limit = parseInt(query.limit as string, 10) || 100;

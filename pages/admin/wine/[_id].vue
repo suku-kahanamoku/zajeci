@@ -48,7 +48,7 @@
 
 	const { data: wine, pending } = await useAsyncData(async () => {
 		try {
-			return await $fetch(`/api/wine/${route.params._id}`);
+			return (await $fetch(`/api/wine/${route.params._id}`)) as unknown as WineModel;
 		} catch (error: any) {
 			console.error(error);
 		}

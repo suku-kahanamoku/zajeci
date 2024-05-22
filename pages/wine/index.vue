@@ -21,7 +21,7 @@
 	const { data: wines } = await useAsyncData(
 		async (): Promise<WineModel[] | undefined> => {
 			try {
-				return await $fetch(`/api/wine`);
+				return (await $fetch(`/api/wine`)) as unknown as WineModel[];
 			} catch (error: any) {
 				console.error(error);
 			}

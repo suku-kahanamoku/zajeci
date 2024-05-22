@@ -29,7 +29,9 @@
 	const loading = ref();
 
 	onMounted(async () => {
-		const data = (await $fetch(`/api/admin/user/${authStore.user?._id}`, { method: 'GET' })) as UserModel;
+		const data = (await $fetch(`/api/admin/user/${authStore.user?._id}`, {
+			method: 'GET',
+		})) as unknown as UserModel;
 		if (data) {
 			state.value = data;
 		}

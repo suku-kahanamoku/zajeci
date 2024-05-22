@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 export interface WineDocument {
-	_id?: string;
+	_id: string;
 	name: string;
 	description?: string;
 	kind?: string;

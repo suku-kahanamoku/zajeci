@@ -2,6 +2,7 @@
 	import { useToNumber } from '@vueuse/core';
 
 	import type { CartModel } from '@/server/models/order.schema';
+	import type { WineModel } from '@/server/models/wine.schema';
 
 	definePageMeta({
 		layout: 'default',
@@ -25,9 +26,9 @@
 	const modal: Ref<boolean> = ref(false);
 	const cart: Ref<CartModel | undefined> = ref();
 
-	const { data: wine, pending } = await useAsyncData(async () => {
+	const { data: wine, pending } = await useAsyncData(async (): Promise<WineModel | undefined> => {
 		try {
-			return await $fetch(`/api/wine/${route.params._id}`);
+			return (await $fetch(`/api/wine/${route.params._id}`)) as unknown as WineModel;
 		} catch (error: any) {
 			console.error(error);
 		}
