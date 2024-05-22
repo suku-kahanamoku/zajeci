@@ -1,5 +1,19 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { WineDocument, WineSchema } from './wine.schema'; // Adjust the path as necessary
+import { UserDocument, UserSchema } from './user.schema';
+
+export enum OrderStatus {
+	Pending = 'Pending',
+	Confirmed = 'Confirmed',
+	Processing = 'Processing',
+	Shipped = 'Shipped',
+	Delivered = 'Delivered',
+	Cancelled = 'Cancelled',
+	Returned = 'Returned',
+	Refunded = 'Refunded',
+	Failed = 'Failed',
+	OnHold = 'OnHold',
+}
 
 // Interface for OrderItem
 export interface CartDocument {
@@ -9,19 +23,8 @@ export interface CartDocument {
 	total_price: number;
 }
 
-// Interface for Order
-export interface OrderDocument extends Document {
-	user_id: string;
-	items: CartDocument[];
-	total_quantity: number;
-	total_price: number;
-	status: string;
-	created_at: Date;
-	updated_at: Date;
-}
-
 // Schema for OrderItem
-const OrderItemSchema = new Schema<CartDocument>({
+const CartSchema = new Schema<CartDocument>({
 	wine: {
 		type: WineSchema,
 		required: true,
@@ -34,35 +37,47 @@ const OrderItemSchema = new Schema<CartDocument>({
 	unit_price: {
 		type: Number,
 		required: true,
+		default: 0,
 	},
 	total_price: {
 		type: Number,
 		required: true,
+		default: 0,
 	},
 });
+
+// Interface for Order
+export interface OrderDocument {
+	user: UserDocument;
+	items: CartDocument[];
+	total_quantity: number;
+	total_price: number;
+	status: OrderStatus;
+	created_at?: Date;
+	updated_at?: Date;
+}
 
 // Export Order model
 export const OrderSchema = model<OrderDocument>(
 	'orders',
 	new Schema<OrderDocument>(
 		{
-			user_id: {
-				type: String,
-				required: true,
-			},
-			items: [OrderItemSchema],
+			user: UserSchema,
+			items: [CartSchema],
 			total_quantity: {
 				type: Number,
 				required: true,
+				default: 0,
 			},
 			total_price: {
 				type: Number,
 				required: true,
+				default: 0,
 			},
 			status: {
 				type: String,
-				required: true,
-				default: 'Pending',
+				enum: Object.values(OrderStatus),
+				default: OrderStatus.Pending,
 			},
 		},
 		{

@@ -179,7 +179,9 @@
 			"cart": {
 				"title": "Cart",
 				"added": "Added to cart:",
-				"total": "Total of items in the basket"
+				"total": "Total of items in the basket",
+				"empty": "The cart is empty",
+				"remove": "Do you really want to remove: \"{name}\" from the cart?"
 			}
 		},
 		"admin": {

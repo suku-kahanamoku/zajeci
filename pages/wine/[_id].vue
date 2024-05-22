@@ -47,9 +47,9 @@
 		<div class="px-5 py-24 mx-auto">
 			<div class="mx-auto flex flex-wrap w-full">
 				<NuxtImg
-					src="/img/bottle.jpg"
+					:src="wine?.image?.main?.src || '/img/bottle.jpg'"
 					:alt="'wine'"
-					loading="eager"
+					loading="lazy"
 					format="webp"
 					height="500"
 					class="mx-auto"

@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 		'nuxt-gtag',
 		'nuxt-rating',
 	],
+	css: ['@/assets/css/main.css'],
 	router: {
 		options: {
 			scrollBehaviorType: 'smooth',

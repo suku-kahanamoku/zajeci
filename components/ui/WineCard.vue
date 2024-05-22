@@ -26,9 +26,9 @@
 		<UCard :ui="{ shadow: 'shadow-md' }" class="zoom-in">
 			<template #header>
 				<NuxtImg
-					src="/img/bottle.jpg"
+					:src="item.image?.main?.src || '/img/bottle.jpg'"
 					:alt="'wine'"
-					loading="eager"
+					loading="lazy"
 					format="webp"
 					height="300"
 					class="mx-auto"

@@ -45,18 +45,20 @@
 		}
 	});
 
-	async function onDelete() {
-		try {
-			await $fetch(`/api/admin/wine/${deleted.value._id}`, {
-				method: 'DELETE',
-			});
-			toast.add({ title: t('$.form.delete_success_msg'), color: 'green', icon: 'i-heroicons-check' });
-		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+	async function onDelete(value: boolean) {
+		if (value) {
+			try {
+				await $fetch(`/api/admin/wine/${deleted.value._id}`, {
+					method: 'DELETE',
+				});
+				toast.add({ title: t('$.form.delete_success_msg'), color: 'green', icon: 'i-heroicons-check' });
+			} catch (error: any) {
+				toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			}
+			deleted.value = null;
+			isOpen.value = false;
+			await refresh();
 		}
-		deleted.value = null;
-		isOpen.value = false;
-		await refresh();
 	}
 </script>
 
@@ -117,10 +119,8 @@
 			</UTable>
 		</div>
 
-		<UiModalConfirm
-			v-model="isOpen"
-			:message="$t('$.message.delete_question', { name: deleted?.name })"
-			@confirm="onDelete"
-		/>
+		<UiModalConfirm v-model="isOpen" @confirm="onDelete">
+			{{ $t('$.message.delete_question', { name: deleted?.name }) }}
+		</UiModalConfirm>
 	</div>
 </template>

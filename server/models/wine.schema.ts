@@ -1,8 +1,10 @@
 import { Schema, model } from 'mongoose';
+import { ImageDocument, ImageSchema } from './image.schema';
 
 export interface WineDocument {
 	_id: string;
 	name: string;
+	price: number;
 	description?: string;
 	kind?: string;
 	quality?: string;
@@ -10,20 +12,29 @@ export interface WineDocument {
 	variety?: string;
 	volume?: number;
 	year?: number;
-	price: number;
+	image?: {
+		main?: ImageDocument;
+		variants?: ImageDocument[];
+	};
 	categories?: string[];
 	published?: boolean;
+	created_at?: Date;
+	updated_at?: Date;
 }
 
-export const WineSchema = model<WineDocument>(
-	'wines',
-	new Schema({
+const wineSchema = new Schema(
+	{
 		name: {
 			type: String,
 			required: true,
 			unique: true,
 			index: true,
 			trim: true,
+		},
+		price: {
+			type: Number,
+			required: true,
+			default: 0,
 		},
 		description: {
 			type: String,
@@ -45,14 +56,24 @@ export const WineSchema = model<WineDocument>(
 			type: String,
 			trim: true,
 		},
-		price: {
-			type: Number,
-		},
 		volume: {
 			type: Number,
 		},
 		year: {
 			type: Number,
+		},
+		image: {
+			main: {
+				type: Schema.Types.ObjectId,
+				ref: 'images',
+				required: true,
+			},
+			variants: [
+				{
+					type: Schema.Types.ObjectId,
+					ref: 'images',
+				},
+			],
 		},
 		categories: [
 			{
@@ -64,7 +85,58 @@ export const WineSchema = model<WineDocument>(
 			type: Boolean,
 			default: false,
 		},
-	})
+	},
+	{
+		timestamps: true,
+	}
 );
 
+wineSchema.post('find', async function (docs: any[], next: Function) {
+	await fetchWinesWithImages(docs);
+	next();
+});
+
+wineSchema.pre('findOne', function () {
+	this.populate('image.main').populate('image.variants');
+});
+
+export const WineSchema = model<WineDocument>('wines', wineSchema);
+
 export interface WineModel extends WineDocument {}
+
+/**
+ * Pro dana vina nacte jednim dotazem vsechny obrazky a pak je namapuje na dana vina
+ *
+ * @param {WineDocument[]} wines
+ * @return {*}  {Promise<void>}
+ */
+async function fetchWinesWithImages(wines: WineDocument[]): Promise<void> {
+	if (!wines || wines.length === 0) return;
+
+	// Collect all image IDs
+	const imageIds = new Set();
+	wines.forEach((wine) => {
+		if (wine.image?.main) {
+			imageIds.add(wine.image.main);
+		}
+		if (wine.image?.variants) {
+			wine.image.variants.forEach((variantId) => imageIds.add(variantId));
+		}
+	});
+
+	// Fetch all images using $in
+	const images = await ImageSchema.find({ _id: { $in: Array.from(imageIds) } }).lean();
+	const imageMap = new Map(images.map((image) => [image._id.toString(), image]));
+
+	// Map images back to wines
+	wines.forEach((wine) => {
+		if (wine.image?.main) {
+			wine.image.main = imageMap.get(wine.image.main.toString());
+		}
+		if (wine.image?.variants) {
+			wine.image.variants = wine.image?.variants?.map((variantId) =>
+				imageMap.get(variantId.toString())
+			) as ImageDocument[];
+		}
+	});
+}

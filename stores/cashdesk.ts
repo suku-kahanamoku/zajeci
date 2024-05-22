@@ -46,6 +46,14 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		}
 	};
 
+	const setQuantity = (wineId: string, quantity: number) => {
+		const existingItem = carts.value.find((item) => item.wine._id === wineId);
+		if (existingItem) {
+			existingItem.quantity = quantity;
+			existingItem.total_price = existingItem.unit_price * existingItem.quantity;
+		}
+	};
+
 	const deleteItem = (wineId: string) => {
 		carts.value = carts.value.filter((item) => item.wine._id !== wineId);
 	};
@@ -58,6 +66,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		carts,
 		addItem,
 		removeItem,
+		setQuantity,
 		deleteItem,
 		clearCart,
 		totalItems,

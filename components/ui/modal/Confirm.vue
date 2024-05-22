@@ -1,12 +1,12 @@
 <script setup lang="ts">
 	interface Btn {
+		label?: string;
 		icon?: string;
 		color?: string;
 		variant?: string;
 	}
 
 	const props = defineProps<{
-		message?: string;
 		btns?: {
 			cancel?: Btn;
 			ok?: Btn;
@@ -18,6 +18,12 @@
 	}>();
 
 	const model = defineModel();
+
+	watch(model, (value) => {
+		if (value === false) {
+			emits('confirm', false);
+		}
+	});
 </script>
 
 <template>
@@ -36,28 +42,28 @@
 				</div>
 			</template>
 
-			{{ message }}
+			<slot></slot>
 
 			<template #footer>
 				<div class="flex justify-between">
 					<UButton
 						:icon="btns?.cancel?.icon || 'i-heroicons-arrow-left'"
 						:color="btns?.cancel?.color || 'gray'"
-						:variant="btns?.cancel?.icon || 'outline'"
+						:variant="btns?.cancel?.variant || 'outline'"
 						@click="model = false"
 					>
-						{{ $t('$.btn.cancel') }}
+						{{ $t(btns?.cancel?.label || '$.btn.cancel') }}
 					</UButton>
 					<UButton
-						icon="i-heroicons-trash"
-						color="red"
-						variant="solid"
+						:icon="btns?.ok?.icon || 'i-heroicons-trash'"
+						:color="btns?.ok?.color || 'red'"
+						:variant="btns?.ok?.variant || 'solid'"
 						@click="
 							emits('confirm', true);
 							model = false;
 						"
 					>
-						{{ $t('$.btn.delete') }}
+						{{ $t(btns?.ok?.label || '$.btn.delete') }}
 					</UButton>
 				</div>
 			</template>

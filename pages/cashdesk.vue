@@ -66,7 +66,9 @@
 			<div class="py-10">
 				<UTabs v-model="selected" :items="items">
 					<template #item="{ item }">
-						<CustomCashdeskCart />
+						<div class="py-4">
+							<CustomCashdeskCart />
+						</div>
 					</template>
 				</UTabs>
 			</div>
