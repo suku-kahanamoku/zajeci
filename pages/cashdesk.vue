@@ -22,17 +22,14 @@
 		{
 			key: 'cart',
 			label: t('$.cashdesk.cart.title'),
-			content: 'This is the content shown for Tab1',
 		},
 		{
 			key: 'delivery_payment',
 			label: t('$.cashdesk.delivery_payment'),
-			content: 'And, this is the content for Tab2',
 		},
 		{
 			key: 'summary',
 			label: t('$.cashdesk.summary'),
-			content: 'Finally, this is the content for Tab3',
 		},
 	];
 
@@ -67,7 +64,8 @@
 				<UTabs v-model="selected" :items="items">
 					<template #item="{ item }">
 						<div class="py-4">
-							<CustomCashdeskCart />
+							<CustomCashdeskCart v-if="item.key === 'cart'" />
+							<CustomCashdeskDeliveryPayment v-else-if="item.key === 'delivery_payment'" />
 						</div>
 					</template>
 				</UTabs>

@@ -36,7 +36,7 @@
 </script>
 
 <template>
-	<div v-if="store.carts.length" class="space-y-4">
+	<div v-if="store.carts.length">
 		<div
 			v-for="cart in store.carts"
 			:key="cart.wine._id"

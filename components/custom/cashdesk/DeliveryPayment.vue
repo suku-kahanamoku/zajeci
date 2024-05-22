@@ -1,14 +1,30 @@
-<template>
-	<div id="about" class="py-10 lg:py-16">
-		<div class="text-center pb-8 lg:pb-10">
-			<h2 class="text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400">
-				{{ $t('$.about.title') }}
-			</h2>
-			<h3 class="pt-8 text-xl lg:text-3xl font-bold text-gray-600 dark:text-gray-400">
-				{{ $t('$.about.subtitle') }}
-			</h3>
-		</div>
+<script setup lang="ts">
+	const { t } = useI18n();
 
-		<div class="from-bottom text-center lg:text-lg text-gray-600 dark:text-white">{{ $t('$.about.description') }}</div>
+	const items = [
+		{
+			key: 'login',
+			label: t('$.navbar.login'),
+		},
+		{
+			key: 'signup',
+			label: t('$.navbar.signup'),
+		},
+	];
+
+	const selected = ref();
+</script>
+<template>
+	<div>
+		<UTabs v-if="!useAuthStore().loggedIn" v-model="selected" :items="items">
+			<template #item="{ item }">
+				<div class="flex items-center justify-center mx-auto w-full">
+					<CustomFormLogin v-if="item.key === 'login'" />
+					<CustomFormSignup v-else-if="item.key === 'signup'" />
+				</div>
+			</template>
+		</UTabs>
+
+		formular s dodaci adresou
 	</div>
 </template>
