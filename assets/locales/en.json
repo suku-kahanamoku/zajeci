@@ -176,6 +176,7 @@
 			"title": "Cashdesk",
 			"delivery_payment": "Delivery and payment",
 			"summary": "Summary",
+			"anonymous": "Anonymous",
 			"cart": {
 				"title": "Cart",
 				"added": "Added to cart:",

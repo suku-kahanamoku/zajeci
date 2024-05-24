@@ -176,6 +176,7 @@
 			"title": "Pokladna",
 			"delivery_payment": "Doprava a platba",
 			"summary": "Shrnutí",
+			"anonymous": "Anonym",
 			"cart": {
 				"title": "Košík",
 				"added": "Přidáno do košíku:",

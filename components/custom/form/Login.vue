@@ -80,16 +80,17 @@
 			<UDivider :label="$t('$.login.or')" />
 
 			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6" @submit="onSubmit">
-				<UFormGroup :label="$t('$.form.email')" name="email">
+				<UFormGroup :label="$t('$.form.email')" name="email" required>
 					<UInput v-model="state.email" type="email" placeholder="name@company.com" required size="lg" />
 				</UFormGroup>
-				<UFormGroup :label="$t('$.form.password')" name="password">
+				<UFormGroup :label="$t('$.form.password')" name="password" required>
 					<UInput
 						v-model="state.password"
 						type="password"
 						placeholder="name@company.com"
 						required
 						size="lg"
+						autocomplete="current-password"
 					/>
 				</UFormGroup>
 				<div class="flex items-center justify-between">

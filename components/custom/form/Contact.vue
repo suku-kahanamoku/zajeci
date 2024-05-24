@@ -35,7 +35,7 @@
 </script>
 <template>
 	<UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-		<UFormGroup :label="$t('$.form.email')" name="email">
+		<UFormGroup :label="$t('$.form.email')" name="email" required>
 			<UInput
 				v-model="state.email"
 				type="email"
@@ -45,7 +45,7 @@
 				icon="i-heroicons-envelope"
 			/>
 		</UFormGroup>
-		<UFormGroup :label="$t('$.form.msg')" name="message">
+		<UFormGroup :label="$t('$.form.msg')" name="message" required>
 			<UTextarea
 				v-model="state.message"
 				:placeholder="$t('$.form.leave_comment')"

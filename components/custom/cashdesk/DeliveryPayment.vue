@@ -3,6 +3,10 @@
 
 	const items = [
 		{
+			key: 'anonymous',
+			label: t('$.cashdesk.anonymous'),
+		},
+		{
 			key: 'login',
 			label: t('$.navbar.login'),
 		},
@@ -21,10 +25,9 @@
 				<div class="flex items-center justify-center mx-auto w-full">
 					<CustomFormLogin v-if="item.key === 'login'" />
 					<CustomFormSignup v-else-if="item.key === 'signup'" />
+					<CustomCashdeskContact v-else />
 				</div>
 			</template>
 		</UTabs>
-
-		formular s dodaci adresou
 	</div>
 </template>

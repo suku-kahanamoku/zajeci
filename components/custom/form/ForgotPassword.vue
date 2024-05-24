@@ -39,7 +39,7 @@
 			</h1>
 			<p class="font-light text-gray-500 dark:text-gray-400">{{ $t('$.forgot_password.description') }}</p>
 			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6" @submit="onSubmit">
-				<UFormGroup :label="$t('$.form.email')" name="email">
+				<UFormGroup :label="$t('$.form.email')" name="email" required>
 					<UInput v-model="state.email" type="email" placeholder="name@company.com" required size="lg" />
 				</UFormGroup>
 				<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
