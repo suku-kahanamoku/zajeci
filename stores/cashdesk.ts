@@ -1,8 +1,11 @@
 import { type WineModel } from '@/server/models/wine.schema';
 import type { CartModel } from '@/server/models/order.schema';
+import type { UserModel } from '@/server/models/user.schema';
 
 export const useCashdeskStore = defineStore('Cashdesk', () => {
 	const authStore = useAuthStore();
+
+	const user = ref<UserModel | null>(authStore.user);
 
 	const carts = ref<CartModel[]>([]);
 
@@ -63,6 +66,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	};
 
 	return {
+		user,
 		carts,
 		addItem,
 		removeItem,

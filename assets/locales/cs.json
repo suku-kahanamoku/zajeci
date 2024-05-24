@@ -102,22 +102,37 @@
 		},
 		"profile": {
 			"title": "Upravit profil",
+			"given_name": "Křestní jméno",
+			"family_name": "Příjmeni",
 			"newsletter": "Odesílání týdenních zpráv s novinkami",
 			"change_password": "Změnit heslo",
-			"success_msg": "Uživatel byl úspěšně upraven"
+			"success_msg": "Uživatel byl úspěšně upraven",
+			"role": {
+				"title": "Oprávnění",
+				"guest": "Host",
+				"user": "Uživatel",
+				"admin": "Administrátor"
+			},
+			"placeholder": {
+				"name": "Jan Novák",
+				"given_name": "Jan",
+				"family_name": "Novák"
+			}
 		},
 		"form": {
 			"email": "E-mail",
 			"password": "Heslo",
 			"select": "Vybrat",
 			"msg": "Zpráva",
-			"leave_comment": "Napište zprávu...",
 			"price": "Cena",
 			"description": "Popis",
 			"categories": "Kategorie",
 			"quantity": "Množství",
 			"patch_success_msg": "Záznam byl úspěšně upraven",
 			"post_success_msg": "Záznam byl úspěšně vytvořen"
+		},
+		"placeholder": {
+			"leave_comment": "Napište zprávu..."
 		},
 		"message": {
 			"required": "Povinné",

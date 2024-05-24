@@ -4,6 +4,8 @@
 
 	const { t } = useI18n();
 	const toast = useToast();
+	const { fields } = useAuthStore();
+
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
 	});
@@ -31,7 +33,7 @@
 </script>
 <template>
 	<div
-		class="w-full border rounded-lg shadow-md dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+		class="w-full border rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4">
 			<h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -39,8 +41,14 @@
 			</h1>
 			<p class="font-light text-gray-500 dark:text-gray-400">{{ $t('$.forgot_password.description') }}</p>
 			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6" @submit="onSubmit">
-				<UFormGroup :label="$t('$.form.email')" name="email" required>
-					<UInput v-model="state.email" type="email" placeholder="name@company.com" required size="lg" />
+				<UFormGroup :label="$t(fields.email.label)" name="email" required>
+					<UInput
+						v-model="state.email"
+						type="email"
+						:placeholder="fields.email.placeholder"
+						required
+						size="lg"
+					/>
 				</UFormGroup>
 				<UButton type="submit" size="lg" block :loading="loading" class="dark:text-white">
 					{{ $t('$.btn.submit') }}

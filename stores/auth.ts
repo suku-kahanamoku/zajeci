@@ -12,6 +12,56 @@ export const useAuthStore = defineStore('Auth', () => {
 
 	const isAdmin = computed(() => user.value?.role === 'admin');
 
+	const roles: Record<string, { value: string; label: string }> = {
+		guest: { value: 'guest', label: '$.profile.role.guest' },
+		user: { value: 'user', label: '$.profile.role.user' },
+		admin: { value: 'admin', label: '$.profile.role.admin' },
+	};
+
+	const roleOptions = Object.values(roles);
+
+	const fields: Record<string, { key: string; label: string; placeholder?: string }> = {
+		email: {
+			key: 'email',
+			label: '$.form.email',
+			placeholder: 'info@company.com',
+		},
+		name: {
+			key: 'name',
+			label: '$.form.name',
+			placeholder: '$.profile.placeholder.name',
+		},
+		given_name: {
+			key: 'given_name',
+			label: '$.profile.given_name',
+			placeholder: '$.profile.placeholder.given_name',
+		},
+		family_name: {
+			key: 'family_name',
+			label: '$.profile.family_name',
+			placeholder: '$.profile.placeholder.family_name',
+		},
+		password: {
+			key: 'password',
+			label: '$.form.password',
+			placeholder: '********',
+		},
+		terms: {
+			key: 'terms',
+			label: '$.signup.accept_condition',
+		},
+		newsletter: {
+			key: 'newsletter',
+			label: '$.profile.newsletter',
+		},
+		role: {
+			key: 'role',
+			label: '$.profile.role.title',
+		},
+	};
+
+	const fieldOptions = Object.values(fields);
+
 	/**
 	 * Funkce pro prihlaseni
 	 *
@@ -92,5 +142,9 @@ export const useAuthStore = defineStore('Auth', () => {
 		session,
 		initials,
 		isAdmin,
+		roles,
+		roleOptions,
+		fields,
+		fieldOptions,
 	};
 });

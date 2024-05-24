@@ -102,22 +102,37 @@
 		},
 		"profile": {
 			"title": "Edit Profile",
+			"given_name": "Given name",
+			"family_name": "Family name",
 			"newsletter": "Sending weekly news updates",
 			"change_password": "Change Password",
-			"success_msg": "User successfully edited"
+			"success_msg": "User successfully edited",
+			"role": {
+				"title": "Permision",
+				"guest": "Guest",
+				"user": "User",
+				"admin": "Admin"
+			},
+			"placeholder": {
+				"name": "John Doe",
+				"given_name": "John",
+				"family_name": "Doe"
+			}
 		},
 		"form": {
 			"email": "Email",
 			"password": "Password",
 			"select": "Select",
 			"msg": "Message",
-			"leave_comment": "Leave a message...",
 			"price": "Price",
 			"description": "Description",
 			"categories": "Categories",
 			"quantity": "Quantity",
 			"patch_success_msg": "Record successfully edited",
 			"post_success_msg": "Record successfully created"
+		},
+		"placeholder": {
+			"leave_comment": "Leave a message..."
 		},
 		"message": {
 			"required": "Required",

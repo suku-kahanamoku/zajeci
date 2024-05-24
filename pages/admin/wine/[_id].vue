@@ -77,7 +77,7 @@
 	<div class="flex w-full">
 		<div class="flex items-center justify-center mx-auto w-full sm:py-12">
 			<div
-				class="w-full border rounded-lg shadow-md dark:border sm:max-w-lg md:max-w-xl dark:bg-gray-800 dark:border-gray-700"
+				class="w-full border rounded-lg shadow-md sm:max-w-lg md:max-w-xl dark:border dark:bg-gray-800 dark:border-gray-700"
 			>
 				<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 					<h1

@@ -29,5 +29,8 @@
 				</div>
 			</template>
 		</UTabs>
+		<div v-else class="flex items-center justify-center mx-auto w-full">
+			<CustomCashdeskContact />
+		</div>
 	</div>
 </template>

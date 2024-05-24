@@ -5,6 +5,7 @@
 	const { routes } = useMenuItems();
 	const { t } = useI18n();
 	const toast = useToast();
+	const { fields } = useAuthStore();
 	const localePath = useLocalePath();
 
 	const schema = object({
@@ -40,20 +41,26 @@
 	}
 </script>
 <template>
-	<div class="w-full border rounded-lg shadow-md dark:border max-w-md my-4 dark:bg-gray-800 dark:border-gray-700">
+	<div class="w-full border rounded-lg shadow-md max-w-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 				{{ $t('$.signup.title') }}
 			</h1>
 			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6" @submit="onSubmit">
-				<UFormGroup :label="$t('$.form.email')" name="email" required>
-					<UInput v-model="state.email" type="email" placeholder="name@company.com" required size="lg" />
+				<UFormGroup :label="$t(fields.email.label)" name="email" required>
+					<UInput
+						v-model="state.email"
+						type="email"
+						:placeholder="fields.email.placeholder"
+						required
+						size="lg"
+					/>
 				</UFormGroup>
-				<UFormGroup :label="$t('$.form.password')" name="password" required>
+				<UFormGroup :label="$t(fields.password.label)" name="password" required>
 					<UInput
 						v-model="state.password"
 						type="password"
-						placeholder="name@company.com"
+						:placeholder="fields.password.placeholder"
 						required
 						size="lg"
 						autocomplete="new-password"
@@ -63,7 +70,7 @@
 					<UInput
 						v-model="state.confirm_password"
 						type="password"
-						placeholder="name@company.com"
+						:placeholder="fields.password.placeholder"
 						required
 						size="lg"
 					/>
@@ -80,7 +87,7 @@
 						>
 							<template #label>
 								<span>
-									{{ $t('$.signup.accept_condition') }}
+									{{ $t(fields.terms.label) }}
 								</span>
 								&nbsp;
 								<UButton
