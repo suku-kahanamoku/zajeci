@@ -6,8 +6,7 @@
 
 	const { t } = useI18n();
 	const toast = useToast();
-	const { fields } = useAuthStore();
-	const { user } = useCashdeskStore();
+	const { delivery, fields } = useCashdeskStore();
 
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
@@ -26,7 +25,7 @@
 
 	type Schema = InferType<typeof schema>;
 
-	const state = reactive<UserModel | any>(user);
+	const state = reactive<UserModel | any>(delivery);
 
 	async function onSubmit(event: FormSubmitEvent<Schema>) {
 		console.log(event.data);
@@ -77,48 +76,6 @@
 							v-model="state.family_name"
 							:placeholder="$t(fields.family_name.placeholder as string)"
 							:autocomplete="fields.family_name.autocomplete"
-							size="lg"
-							required
-						/>
-					</UFormGroup>
-				</div>
-
-				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.street.label)" name="address.main.street" required>
-						<UInput
-							v-model="state.address.main.street"
-							:placeholder="$t(fields.street.placeholder as string)"
-							:autocomplete="fields.street.autocomplete"
-							size="lg"
-							required
-						/>
-					</UFormGroup>
-					<UFormGroup :label="$t(fields.city.label)" name="address.main.city" required>
-						<UInput
-							v-model="state.address.main.city"
-							:placeholder="$t(fields.city.placeholder as string)"
-							:autocomplete="fields.city.autocomplete"
-							size="lg"
-							required
-						/>
-					</UFormGroup>
-				</div>
-
-				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.postal_code.label)" name="address.main.postal_code" required>
-						<UInput
-							v-model="state.address.main.postal_code"
-							:placeholder="$t(fields.postal_code.placeholder as string)"
-							:autocomplete="fields.postal_code.autocomplete"
-							size="lg"
-							required
-						/>
-					</UFormGroup>
-					<UFormGroup :label="$t(fields.state.label)" name="address.main.state" required>
-						<UInput
-							v-model="state.address.main.state"
-							:placeholder="$t(fields.state.placeholder as string)"
-							:autocomplete="fields.state.autocomplete"
 							size="lg"
 							required
 						/>

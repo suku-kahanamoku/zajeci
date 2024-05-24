@@ -1,41 +1,38 @@
 import { Schema, model } from 'mongoose';
 import { UserSchema } from './user.schema';
+import { AddressDocument } from '../types/address.type';
 
-export interface AddressDocument {
-	_id: string;
-	street: string;
-	city: string;
-	state: string;
-	postal_code: string;
-	country?: string;
-}
-
-const addressSchema = new Schema({
-	street: {
-		type: String,
-		required: true,
-		trim: true,
+const addressSchema = new Schema(
+	{
+		street: {
+			type: String,
+			required: true,
+			trim: true,
+		},
+		city: {
+			type: String,
+			required: true,
+			trim: true,
+		},
+		state: {
+			type: String,
+			required: true,
+			trim: true,
+		},
+		postal_code: {
+			type: String,
+			required: true,
+			trim: true,
+		},
+		country: {
+			type: String,
+			trim: true,
+		},
 	},
-	city: {
-		type: String,
-		required: true,
-		trim: true,
-	},
-	state: {
-		type: String,
-		required: true,
-		trim: true,
-	},
-	postal_code: {
-		type: String,
-		required: true,
-		trim: true,
-	},
-	country: {
-		type: String,
-		trim: true,
-	},
-});
+	{
+		timestamps: true, // Automatically adds created_at and updated_at fields
+	}
+);
 
 const removeFromUser = async function (doc: any, next: Function) {
 	const addressId = doc._id;

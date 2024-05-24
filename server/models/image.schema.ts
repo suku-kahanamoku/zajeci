@@ -1,17 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { WineSchema } from './wine.schema';
-
-export interface ImageDocument {
-	_id: string;
-	src: string;
-	width: number;
-	height: number;
-	type: string;
-	name?: string;
-	description?: string;
-	created_at?: Date;
-	updated_at?: Date;
-}
+import { ImageDocument } from '../types/image.type';
 
 const imageSchema = new Schema(
 	{

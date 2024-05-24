@@ -1,4 +1,4 @@
-import type { AddressDocument } from '@/server/models/address.schema';
+import type { AddressDocument } from '@/server/types/address.type';
 
 export const useAuthStore = defineStore('Auth', () => {
 	const { loggedIn, user, session, clear, fetch } = useUserSession();
@@ -31,13 +31,12 @@ export const useAuthStore = defineStore('Auth', () => {
 
 	const fields: Record<
 		string,
-		| {
-				key: string;
-				label: string;
-				placeholder?: string;
-				autocomplete?: string;
-		  }
-		| any
+		{
+			key: string;
+			label: string;
+			placeholder?: string;
+			autocomplete?: string;
+		}
 	> = {
 		email: {
 			key: 'email',
@@ -87,30 +86,28 @@ export const useAuthStore = defineStore('Auth', () => {
 			key: 'role',
 			label: '$.profile.role.title',
 		},
-		address: {
-			street: {
-				key: 'street',
-				label: '$.profile.street',
-				placeholder: '$.profile.placeholder.street',
-				autocomplete: 'street-address',
-			},
-			city: {
-				key: 'city',
-				label: '$.profile.city',
-				placeholder: '$.profile.placeholder.city',
-			},
-			postal_code: {
-				key: 'postal_code',
-				label: '$.profile.postal_code',
-				placeholder: '$.profile.placeholder.postal_code',
-				autocomplete: 'postal-code',
-			},
-			state: {
-				key: 'state',
-				label: '$.profile.state',
-				placeholder: '$.profile.placeholder.state',
-				autocomplete: 'country',
-			},
+		street: {
+			key: 'street',
+			label: '$.profile.street',
+			placeholder: '$.profile.placeholder.street',
+			autocomplete: 'street-address',
+		},
+		city: {
+			key: 'city',
+			label: '$.profile.city',
+			placeholder: '$.profile.placeholder.city',
+		},
+		postal_code: {
+			key: 'postal_code',
+			label: '$.profile.postal_code',
+			placeholder: '$.profile.placeholder.postal_code',
+			autocomplete: 'postal-code',
+		},
+		state: {
+			key: 'state',
+			label: '$.profile.state',
+			placeholder: '$.profile.placeholder.state',
+			autocomplete: 'country',
 		},
 	};
 

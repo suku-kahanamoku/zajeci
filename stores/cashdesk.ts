@@ -1,13 +1,86 @@
 import { type WineModel } from '@/server/models/wine.schema';
-import type { CartModel } from '@/server/models/order.schema';
+import { type CartModel } from '@/server/models/order.schema';
 import type { UserModel } from '@/server/models/user.schema';
+import {
+	DeliveryServices,
+	type PaymentDocument,
+	type DeliveryDocument,
+	PaymentServices,
+} from '@/server/types/order.type';
 
 export const useCashdeskStore = defineStore('Cashdesk', () => {
-	const authStore = useAuthStore();
+	const { user: authUser } = useAuthStore();
 
-	const user = ref<UserModel | null>(authStore.user);
+	const defUser = {
+		email: '',
+		phone: '',
+		given_name: '',
+		family_name: '',
+		address: {
+			main: {
+				street: '',
+				city: '',
+				postal_code: '',
+				state: '',
+			},
+		},
+	};
+
+	const user = ref<UserModel | null>(authUser ? CLONE(authUser) : defUser);
+	// musi se resetovat vsechny ostatni adresy, pac by se do orders mohly ulozit zbytecne adresy
+	if (user.value?.address) {
+		user.value.address.variants = [];
+	}
 
 	const carts = ref<CartModel[]>([]);
+
+	const delivery = ref<DeliveryDocument>({
+		type: DeliveryServices.free,
+		address: user.value?.address?.main,
+		total_price: 0,
+	});
+
+	const payment = ref<PaymentDocument>({
+		type: PaymentServices.card,
+		credit_card: {
+			card_number: '',
+			expiration_date: '',
+			cvv: '',
+			cardholder_name: '',
+		},
+		total_price: 0,
+	});
+
+	const fields: Record<
+		string,
+		{
+			key: string;
+			label: string;
+			placeholder?: string;
+			autocomplete?: string;
+		}
+	> = {
+		total_quantity: {
+			key: 'total_quantity',
+			label: '$.cashdesk.total_quantity',
+		},
+		total_price: {
+			key: 'total_price',
+			label: '$.cashdesk.total_price',
+		},
+		status: {
+			key: 'status',
+			label: '$.cashdesk.status',
+		},
+		delivery: {
+			key: 'delivery',
+			label: '$.cashdesk.delivery',
+		},
+		payment: {
+			key: 'payment',
+			label: '$.cashdesk.payment',
+		},
+	};
 
 	const totalItems = computed(() => {
 		return carts.value.reduce((total, item) => total + item.quantity, 0);
@@ -75,5 +148,8 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		clearCart,
 		totalItems,
 		total_price,
+		fields,
+		delivery,
+		payment,
 	};
 });

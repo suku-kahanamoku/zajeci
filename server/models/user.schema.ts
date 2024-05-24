@@ -1,77 +1,67 @@
 import { Schema, model } from 'mongoose';
-import { AddressDocument, AddressSchema } from './address.schema';
+import { AddressSchema } from './address.schema';
+import { AddressDocument } from '../types/address.type';
+import { UserDocument } from '../types/user.type';
 
-export interface UserDocument {
-	_id: string;
-	email: string;
-	name?: string;
-	family_name?: string;
-	given_name?: string;
-	password?: string;
-	temp_password?: string;
-	terms?: boolean;
-	newsletter?: boolean;
-	role?: 'admin' | 'user' | 'guest';
-	address?: {
-		main?: AddressDocument;
-		variants?: AddressDocument[];
-	};
-}
-
-const userSchema = new Schema({
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-		index: true,
-		trim: true,
-		lowercase: true,
-	},
-	name: {
-		type: String,
-		trim: true,
-	},
-	family_name: {
-		type: String,
-		trim: true,
-	},
-	given_name: {
-		type: String,
-		trim: true,
-	},
-	password: {
-		type: String,
-		trim: true,
-	},
-	temp_password: {
-		type: String,
-		trim: true,
-	},
-	terms: {
-		type: Boolean,
-	},
-	newsletter: {
-		type: Boolean,
-		default: true,
-	},
-	role: {
-		type: String,
-		default: 'guest',
-		trim: true,
-	},
-	address: {
-		main: {
-			type: Schema.Types.ObjectId,
-			ref: 'addresses',
+const userSchema = new Schema(
+	{
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			index: true,
+			trim: true,
+			lowercase: true,
 		},
-		variants: [
-			{
+		name: {
+			type: String,
+			trim: true,
+		},
+		family_name: {
+			type: String,
+			trim: true,
+		},
+		given_name: {
+			type: String,
+			trim: true,
+		},
+		password: {
+			type: String,
+			trim: true,
+		},
+		temp_password: {
+			type: String,
+			trim: true,
+		},
+		terms: {
+			type: Boolean,
+		},
+		newsletter: {
+			type: Boolean,
+			default: true,
+		},
+		role: {
+			type: String,
+			default: 'guest',
+			trim: true,
+		},
+		address: {
+			main: {
 				type: Schema.Types.ObjectId,
 				ref: 'addresses',
 			},
-		],
+			variants: [
+				{
+					type: Schema.Types.ObjectId,
+					ref: 'addresses',
+				},
+			],
+		},
 	},
-});
+	{
+		timestamps: true, // Automatically adds created_at and updated_at fields
+	}
+);
 
 userSchema.post('find', async function (docs: any[], next: Function) {
 	await fetchUsersWithAddresses(docs);
