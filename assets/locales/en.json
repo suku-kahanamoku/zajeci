@@ -107,6 +107,10 @@
 			"newsletter": "Sending weekly news updates",
 			"change_password": "Change Password",
 			"success_msg": "User successfully edited",
+			"street": "Street",
+			"city": "City",
+			"postal_code": "Postal code",
+			"state": "State",
 			"role": {
 				"title": "Permision",
 				"guest": "Guest",
@@ -116,11 +120,16 @@
 			"placeholder": {
 				"name": "John Doe",
 				"given_name": "John",
-				"family_name": "Doe"
+				"family_name": "Doe",
+				"street": "Blvd Ave. 12",
+				"city": "London",
+				"postal_code": "654 32",
+				"state": "United Kingdom"
 			}
 		},
 		"form": {
 			"email": "Email",
+			"phone": "Phone",
 			"password": "Password",
 			"select": "Select",
 			"msg": "Message",
@@ -137,6 +146,7 @@
 		"message": {
 			"required": "Required",
 			"invalid_email": "Invalid email",
+			"invalid_postal_code": "Invalid postal code",
 			"bad_request": "Bad request",
 			"miss_fields": "Missing required fields",
 			"unauthorized": "Unauthorized",
@@ -198,7 +208,9 @@
 				"total": "Total of items in the basket",
 				"empty": "The cart is empty",
 				"remove": "Do you really want to remove: \"{name}\" from the cart?"
-			}
+			},
+			"billing_address": "Billing address",
+			"delivery_address": "Delivery address"
 		},
 		"admin": {
 			"wine": {

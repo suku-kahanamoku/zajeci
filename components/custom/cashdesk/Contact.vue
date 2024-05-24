@@ -2,60 +2,148 @@
 	import { object, string, type InferType } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
 
+	import type { UserModel } from '@/server/models/user.schema';
+
 	const { t } = useI18n();
 	const toast = useToast();
 	const { user, fields } = useAuthStore();
 
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
+		phone: string(),
 		given_name: string().required(' '),
 		family_name: string().required(' '),
+		address: object({
+			main: object({
+				street: string().required(' '),
+				city: string().required(' '),
+				postal_code: string().required(' ').matches(/^\d+$/, t('$.message.invalid_postal_code')),
+				state: string().required(' '),
+			}).required(' '),
+		}).required(' '),
 	});
 
 	type Schema = InferType<typeof schema>;
 
-	const state = reactive(
+	const state = reactive<UserModel | any>(
 		user || {
 			email: undefined,
+			phone: '',
 			given_name: '',
 			family_name: '',
+			address: {
+				main: {
+					street: '',
+					city: '',
+					postal_code: '',
+					state: '',
+				},
+			},
 		}
 	);
 	console.log(user, state);
 
-	const loading = ref();
+	async function onSubmit(event: FormSubmitEvent<Schema>) {
+		console.log(event.data);
+	}
 </script>
 <template>
-	<div class="w-full border rounded-lg shadow-md max-w-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
-		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6">
-				<UFormGroup :label="$t(fields.email.label)" name="email" required>
-					<UInput
-						v-model="state.email"
-						type="email"
-						:placeholder="fields.email.placeholder"
-						required
-						size="lg"
-					/>
-				</UFormGroup>
+	<UForm :schema="schema" :state="state" @submit="onSubmit">
+		<div class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
+			<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+					{{ $t('$.cashdesk.billing_address') }}
+				</h3>
 
 				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.given_name.label)" name="given_name">
+					<UFormGroup :label="$t(fields.email.label)" name="email" required>
 						<UInput
-							v-model="state.given_name"
-							:placeholder="$t(fields.given_name.placeholder as string)"
+							v-model="state.email"
+							type="email"
+							:placeholder="fields.email.placeholder"
+							:autocomplete="fields.email.autocomplete"
+							required
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(fields.family_name.label)" name="family_name">
+					<UFormGroup :label="$t(fields.phone.label)" name="phone">
 						<UInput
-							v-model="state.family_name"
-							:placeholder="$t(fields.family_name.placeholder as string)"
+							v-model="state.phone"
+							type="phone"
+							:placeholder="fields.phone.placeholder"
+							:autocomplete="fields.phone.autocomplete"
 							size="lg"
 						/>
 					</UFormGroup>
 				</div>
-			</UForm>
+
+				<div class="flex justify-between items-center gap-x-2">
+					<UFormGroup :label="$t(fields.given_name.label)" name="given_name" required>
+						<UInput
+							v-model="state.given_name"
+							:placeholder="$t(fields.given_name.placeholder as string)"
+							:autocomplete="fields.given_name.autocomplete"
+							size="lg"
+							required
+						/>
+					</UFormGroup>
+					<UFormGroup :label="$t(fields.family_name.label)" name="family_name" required>
+						<UInput
+							v-model="state.family_name"
+							:placeholder="$t(fields.family_name.placeholder as string)"
+							:autocomplete="fields.family_name.autocomplete"
+							size="lg"
+							required
+						/>
+					</UFormGroup>
+				</div>
+
+				<div class="flex justify-between items-center gap-x-2">
+					<UFormGroup :label="$t(fields.address.street.label)" name="address.main.street" required>
+						<UInput
+							v-model="state.address.main.street"
+							:placeholder="$t(fields.address.street.placeholder as string)"
+							:autocomplete="fields.address.street.autocomplete"
+							size="lg"
+							required
+						/>
+					</UFormGroup>
+					<UFormGroup :label="$t(fields.address.city.label)" name="address.main.city" required>
+						<UInput
+							v-model="state.address.main.city"
+							:placeholder="$t(fields.address.city.placeholder as string)"
+							:autocomplete="fields.address.city.autocomplete"
+							size="lg"
+							required
+						/>
+					</UFormGroup>
+				</div>
+
+				<div class="flex justify-between items-center gap-x-2">
+					<UFormGroup :label="$t(fields.address.postal_code.label)" name="address.main.postal_code" required>
+						<UInput
+							v-model="state.address.main.postal_code"
+							:placeholder="$t(fields.address.postal_code.placeholder as string)"
+							:autocomplete="fields.address.postal_code.autocomplete"
+							size="lg"
+							required
+						/>
+					</UFormGroup>
+					<UFormGroup :label="$t(fields.address.state.label)" name="address.main.state" required>
+						<UInput
+							v-model="state.address.main.state"
+							:placeholder="$t(fields.address.state.placeholder as string)"
+							:autocomplete="fields.address.state.autocomplete"
+							size="lg"
+							required
+						/>
+					</UFormGroup>
+				</div>
+			</div>
 		</div>
-	</div>
+
+		<!-- <UButton type="submit" size="lg" block class="dark:text-white">
+			{{ $t('$.btn.submit') }}
+		</UButton> -->
+	</UForm>
 </template>

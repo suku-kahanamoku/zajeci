@@ -97,7 +97,7 @@
 						:placeholder="fields.password.placeholder"
 						required
 						size="lg"
-						autocomplete="current-password"
+						:autocomplete="fields.password.autocomplete"
 					/>
 				</UFormGroup>
 				<div class="flex items-center justify-between">

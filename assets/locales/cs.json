@@ -107,6 +107,10 @@
 			"newsletter": "Odesílání týdenních zpráv s novinkami",
 			"change_password": "Změnit heslo",
 			"success_msg": "Uživatel byl úspěšně upraven",
+			"street": "Ulice",
+			"city": "Město",
+			"postal_code": "PSČ",
+			"state": "Stát",
 			"role": {
 				"title": "Oprávnění",
 				"guest": "Host",
@@ -116,11 +120,16 @@
 			"placeholder": {
 				"name": "Jan Novák",
 				"given_name": "Jan",
-				"family_name": "Novák"
+				"family_name": "Novák",
+				"street": "Králová 12",
+				"city": "Brno",
+				"postal_code": "654 32",
+				"state": "Česká Republika"
 			}
 		},
 		"form": {
 			"email": "E-mail",
+			"phone": "Tel",
 			"password": "Heslo",
 			"select": "Vybrat",
 			"msg": "Zpráva",
@@ -137,6 +146,7 @@
 		"message": {
 			"required": "Povinné",
 			"invalid_email": "Neplatný e-mail",
+			"invalid_postal_code": "Neplatné PSČ",
 			"bad_request": "Špatný požadavek",
 			"miss_fields": "Chybějící povinná pole",
 			"unauthorized": "Neoprávněný",
@@ -198,7 +208,9 @@
 				"total": "V košíku je zboží celkem za",
 				"empty": "Košík je prázdný",
 				"remove": "Opravdu chcete odstranit: \"{name}\" z košíku?"
-			}
+			},
+			"billing_address": "Fakturační adresa",
+			"delivery_address": "Dodací adresa"
 		},
 		"admin": {
 			"wine": {

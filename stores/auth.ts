@@ -1,6 +1,15 @@
+import type { AddressDocument } from '@/server/models/address.schema';
+
 export const useAuthStore = defineStore('Auth', () => {
 	const { loggedIn, user, session, clear, fetch } = useUserSession();
 	const localePath = useLocalePath();
+
+	// vytvorime adresy pro user objekt
+	if (user.value) {
+		user.value.address = user.value.address || {};
+		user.value.address.main =
+			user.value.address.main || ({ street: '', city: '', postal_code: '', state: '' } as AddressDocument);
+	}
 
 	const initials = computed(
 		() =>
@@ -20,31 +29,51 @@ export const useAuthStore = defineStore('Auth', () => {
 
 	const roleOptions = Object.values(roles);
 
-	const fields: Record<string, { key: string; label: string; placeholder?: string }> = {
+	const fields: Record<
+		string,
+		| {
+				key: string;
+				label: string;
+				placeholder?: string;
+				autocomplete?: string;
+		  }
+		| any
+	> = {
 		email: {
 			key: 'email',
 			label: '$.form.email',
 			placeholder: 'info@company.com',
+			autocomplete: 'email',
+		},
+		phone: {
+			key: 'phone',
+			label: '$.form.phone',
+			placeholder: '+420 123 456 789',
+			autocomplete: 'tel',
 		},
 		name: {
 			key: 'name',
 			label: '$.form.name',
 			placeholder: '$.profile.placeholder.name',
+			autocomplete: 'name',
 		},
 		given_name: {
 			key: 'given_name',
 			label: '$.profile.given_name',
 			placeholder: '$.profile.placeholder.given_name',
+			autocomplete: 'given-name',
 		},
 		family_name: {
 			key: 'family_name',
 			label: '$.profile.family_name',
 			placeholder: '$.profile.placeholder.family_name',
+			autocomplete: 'family-name',
 		},
 		password: {
 			key: 'password',
 			label: '$.form.password',
 			placeholder: '********',
+			autocomplete: 'current-password',
 		},
 		terms: {
 			key: 'terms',
@@ -57,6 +86,31 @@ export const useAuthStore = defineStore('Auth', () => {
 		role: {
 			key: 'role',
 			label: '$.profile.role.title',
+		},
+		address: {
+			street: {
+				key: 'street',
+				label: '$.profile.street',
+				placeholder: '$.profile.placeholder.street',
+				autocomplete: 'street-address',
+			},
+			city: {
+				key: 'city',
+				label: '$.profile.city',
+				placeholder: '$.profile.placeholder.city',
+			},
+			postal_code: {
+				key: 'postal_code',
+				label: '$.profile.postal_code',
+				placeholder: '$.profile.placeholder.postal_code',
+				autocomplete: 'postal-code',
+			},
+			state: {
+				key: 'state',
+				label: '$.profile.state',
+				placeholder: '$.profile.placeholder.state',
+				autocomplete: 'country',
+			},
 		},
 	};
 
