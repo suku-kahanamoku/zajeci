@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import type { FormSubmitEvent } from '#ui/types';
-
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { WineDocument } from '@/server/types/wine.type';
 
 	const emits = defineEmits<{
 		(event: 'submit', val: FormSubmitEvent<any>): void;
@@ -9,7 +8,7 @@
 
 	defineProps<{
 		schema: any;
-		item: WineModel;
+		item: WineDocument;
 		loading?: boolean;
 	}>();
 

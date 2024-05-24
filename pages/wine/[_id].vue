@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { useToNumber } from '@vueuse/core';
 
-	import type { CartModel } from '@/server/models/order.schema';
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { CartDocument } from '@/server/types/order.type';
+	import type { WineDocument } from '@/server/types/wine.type';
 
 	definePageMeta({
 		layout: 'default',
@@ -24,11 +24,11 @@
 	const { fields, kinds, colors } = useWines();
 	const cashdesk = useCashdeskStore();
 	const modal: Ref<boolean> = ref(false);
-	const cart: Ref<CartModel | undefined> = ref();
+	const cart: Ref<CartDocument | undefined> = ref();
 
-	const { data: wine, pending } = await useAsyncData(async (): Promise<WineModel | undefined> => {
+	const { data: wine, pending } = await useAsyncData(async (): Promise<WineDocument | undefined> => {
 		try {
-			return (await $fetch(`/api/wine/${route.params._id}`)) as unknown as WineModel;
+			return (await $fetch(`/api/wine/${route.params._id}`)) as unknown as WineDocument;
 		} catch (error: any) {
 			console.error(error);
 		}

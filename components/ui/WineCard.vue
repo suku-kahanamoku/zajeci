@@ -1,11 +1,11 @@
 <script setup lang="ts">
 	import { useToNumber } from '@vueuse/core';
 
-	import type { WineModel } from '@/server/models/wine.schema';
-	import type { CartModel } from '@/server/models/order.schema';
+	import type { CartDocument } from '@/server/types/order.type';
+	import type { WineDocument } from '@/server/types/wine.type';
 
 	const props = defineProps<{
-		item: WineModel;
+		item: WineDocument;
 	}>();
 
 	const { locale } = useI18n();
@@ -13,7 +13,7 @@
 	const { fields } = useWines();
 	const cashdesk = useCashdeskStore();
 	const modal: Ref<boolean> = ref(false);
-	const cart: Ref<CartModel | undefined> = ref();
+	const cart: Ref<CartDocument | undefined> = ref();
 
 	function addToCashdesk() {
 		cart.value = cashdesk.addItem(props.item, 1);

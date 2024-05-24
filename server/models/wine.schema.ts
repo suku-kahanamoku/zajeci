@@ -83,8 +83,6 @@ wineSchema.pre('findOne', function () {
 
 export const WineSchema = model<WineDocument>('wines', wineSchema);
 
-export interface WineModel extends WineDocument {}
-
 /**
  * Pro dana vina nacte jednim dotazem vsechny obrazky a pak je namapuje na dana vina
  *

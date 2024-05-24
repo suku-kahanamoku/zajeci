@@ -1,8 +1,7 @@
 <script setup lang="ts">
 	import { object, string, type InferType } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
-
-	import type { UserModel } from '@/server/models/user.schema';
+	import type { UserDocument } from '@/server/types/user.type';
 
 	const { t } = useI18n();
 	const toast = useToast();
@@ -25,7 +24,7 @@
 
 	type Schema = InferType<typeof schema>;
 
-	const state = reactive<UserModel | any>(delivery);
+	const state = reactive<UserDocument | any>(delivery);
 
 	async function onSubmit(event: FormSubmitEvent<Schema>) {
 		console.log(event.data);

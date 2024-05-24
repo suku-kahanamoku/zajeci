@@ -1,8 +1,8 @@
-import type { UserModel } from '@/server/models/user.schema';
+import type { UserDocument } from './server/types/user.type';
 
 // auth.d.ts
 declare module '#auth-utils' {
-	interface User extends UserModel {}
+	interface User extends UserDocument {}
 
 	interface UserSession {
 		loggedInAt?: Date | string;

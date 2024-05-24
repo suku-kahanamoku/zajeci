@@ -105,5 +105,3 @@ imageSchema.post('deleteMany', async function (docs: any[], next: Function) {
 });
 
 export const ImageSchema = model<ImageDocument>('images', imageSchema);
-
-export interface ImageModel extends ImageDocument {}

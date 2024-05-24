@@ -1,12 +1,12 @@
-import { type WineModel } from '@/server/models/wine.schema';
-import { type CartModel } from '@/server/models/order.schema';
-import type { UserModel } from '@/server/models/user.schema';
 import {
 	DeliveryServices,
 	type PaymentDocument,
 	type DeliveryDocument,
 	PaymentServices,
+	type CartDocument,
 } from '@/server/types/order.type';
+import type { UserDocument } from '@/server/types/user.type';
+import type { WineDocument } from '@/server/types/wine.type';
 
 export const useCashdeskStore = defineStore('Cashdesk', () => {
 	const { user: authUser } = useAuthStore();
@@ -26,13 +26,13 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		},
 	};
 
-	const user = ref<UserModel | null>(authUser ? CLONE(authUser) : defUser);
+	const user = ref<UserDocument | null>(authUser ? CLONE(authUser) : defUser);
 	// musi se resetovat vsechny ostatni adresy, pac by se do orders mohly ulozit zbytecne adresy
 	if (user.value?.address) {
 		user.value.address.variants = [];
 	}
 
-	const carts = ref<CartModel[]>([]);
+	const carts = ref<CartDocument[]>([]);
 
 	const delivery = ref<DeliveryDocument>({
 		type: DeliveryServices.free,
@@ -90,7 +90,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		return carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0);
 	});
 
-	const addItem = (wine: WineModel, quantity: number): CartModel => {
+	const addItem = (wine: WineDocument, quantity: number): CartDocument => {
 		let result;
 		const existingItem = carts.value.find((item) => item.wine._id === wine._id);
 		if (existingItem) {
@@ -98,7 +98,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			existingItem.total_price = existingItem.unit_price * existingItem.quantity;
 			result = existingItem;
 		} else {
-			const newItem: CartModel = {
+			const newItem: CartDocument = {
 				wine,
 				quantity,
 				unit_price: wine.price,

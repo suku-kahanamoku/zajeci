@@ -74,12 +74,6 @@ userSchema.pre('findOne', function () {
 
 export const UserSchema = model<UserDocument>('users', userSchema);
 
-export interface UserModel extends UserDocument {
-	picture?: string;
-	sub?: string;
-	new_password?: string;
-}
-
 async function fetchUsersWithAddresses(users: UserDocument[]) {
 	if (!users || users.length === 0) return;
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { useToNumber } from '@vueuse/core';
-	import type { CartModel } from '@/server/models/order.schema';
+	import type { CartDocument } from '@/server/types/order.type';
 
 	const { locale } = useI18n();
 	const localePath = useLocalePath();
@@ -9,11 +9,11 @@
 	const isOpen = ref(false);
 	const deleted = ref();
 
-	const increaseQuantity = (cart: CartModel) => {
+	const increaseQuantity = (cart: CartDocument) => {
 		store.addItem(cart.wine, 1);
 	};
 
-	const decreaseQuantity = (cart: CartModel) => {
+	const decreaseQuantity = (cart: CartDocument) => {
 		if (cart.quantity > 1) {
 			store.removeItem(cart.wine?._id);
 		} else {
@@ -21,12 +21,12 @@
 		}
 	};
 
-	const removeItem = (cart: CartModel) => {
+	const removeItem = (cart: CartDocument) => {
 		deleted.value = cart;
 		isOpen.value = true;
 	};
 
-	const setQuantity = (value: number, cart: CartModel) => {
+	const setQuantity = (value: number, cart: CartDocument) => {
 		if (value > 0) {
 			store.setQuantity(cart.wine?._id, value);
 		} else {

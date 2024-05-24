@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import type { WineModel } from '@/server/models/wine.schema';
+	import type { WineDocument } from '@/server/types/wine.type';
 
 	definePageMeta({
 		layout: 'default',
@@ -19,9 +19,9 @@
 	});
 
 	const { data: wines } = await useAsyncData(
-		async (): Promise<WineModel[] | undefined> => {
+		async (): Promise<WineDocument[] | undefined> => {
 			try {
-				return (await $fetch(`/api/wine`)) as unknown as WineModel[];
+				return (await $fetch(`/api/wine`)) as unknown as WineDocument[];
 			} catch (error: any) {
 				console.error(error);
 			}

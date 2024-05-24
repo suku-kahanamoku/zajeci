@@ -138,6 +138,3 @@ export const OrderSchema = model<OrderDocument>(
 		}
 	)
 );
-
-export interface CartModel extends CartDocument {}
-export interface OrderModel extends OrderDocument {}

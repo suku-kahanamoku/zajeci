@@ -18,6 +18,9 @@ export interface UserDocument {
 	};
 	created_at?: Date;
 	updated_at?: Date;
+	picture?: string;
+	sub?: string;
+	new_password?: string;
 }
 
 /**

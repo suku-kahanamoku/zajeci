@@ -1,8 +1,7 @@
 <script setup lang="ts">
 	import { object, string, boolean, type InferType } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
-
-	import type { UserModel } from '@/server/models/user.schema';
+	import type { UserDocument } from '@/server/types/user.type';
 
 	const { t } = useI18n();
 	const toast = useToast();
@@ -21,7 +20,7 @@
 
 	const { user, roles, roleOptions, fields, isAdmin } = useAuthStore();
 
-	const state: Ref<UserModel> = ref({
+	const state: Ref<UserDocument> = ref({
 		_id: '',
 		email: '',
 		given_name: '',
@@ -37,7 +36,7 @@
 	onMounted(async () => {
 		const data = (await $fetch(`/api/admin/user/${user?._id}`, {
 			method: 'GET',
-		})) as unknown as UserModel;
+		})) as unknown as UserDocument;
 		if (data) {
 			state.value = data;
 		}

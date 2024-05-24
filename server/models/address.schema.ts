@@ -102,5 +102,3 @@ addressSchema.post('deleteMany', async function (docs: any[], next: Function) {
 });
 
 export const AddressSchema = model<AddressDocument>('addresses', addressSchema);
-
-export interface AddressModel extends AddressDocument {}
