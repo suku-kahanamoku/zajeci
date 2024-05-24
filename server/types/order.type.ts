@@ -8,7 +8,6 @@ import { WineDocument } from './wine.type';
  * @enum {number}
  */
 export enum PaymentServices {
-	free = 'free',
 	bank = 'bank',
 	card = 'card',
 	paypal = 'paypal',

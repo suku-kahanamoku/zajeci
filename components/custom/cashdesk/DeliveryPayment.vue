@@ -32,5 +32,9 @@
 		<div v-else class="flex items-center justify-center mx-auto w-full">
 			<CustomCashdeskContact />
 		</div>
+		<div class="flex flex-col md:flex-row items-center justify-between md:gap-8">
+			<CustomCashdeskDelivery />
+			<CustomCashdeskPayment />
+		</div>
 	</div>
 </template>

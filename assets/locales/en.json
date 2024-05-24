@@ -210,7 +210,29 @@
 				"remove": "Do you really want to remove: \"{name}\" from the cart?"
 			},
 			"billing_address": "Billing address",
-			"delivery_address": "Delivery address"
+			"delivery_address": "Delivery address",
+			"delivery": {
+				"title": "Delivery",
+				"free": "Free Shipping",
+				"ppl": "PPL",
+				"gls": "GLS",
+				"dpd": "DPD",
+				"post": "POST",
+				"zas": "ZÁSILKOVNA",
+				"dhl": "DHL",
+				"geis": "GEIS"
+			},
+			"payment": {
+				"title": "Payment",
+				"bank": "Bank Transfer",
+				"card": "Card Payment",
+				"paypal": "PAYPAL",
+				"gopay": "GOPAY",
+				"apple_pay": "APPLE PAY",
+				"google_pay": "GOOGLE PAY",
+				"bitcoin": "BITCOIN",
+				"cash": "Cash"
+			}
 		},
 		"admin": {
 			"wine": {

@@ -40,6 +40,13 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		total_price: 0,
 	});
 
+	const deliveries: Record<string, { value: string; label: string }> = {};
+	Object.keys(DeliveryServices).forEach(
+		(name) => (deliveries[name] = { value: name, label: `$.cashdesk.delivery.${name}` })
+	);
+
+	const deliveryOptions = Object.values(deliveries);
+
 	const payment = ref<PaymentDocument>({
 		type: PaymentServices.card,
 		credit_card: {
@@ -50,6 +57,13 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		},
 		total_price: 0,
 	});
+
+	const payments: Record<string, { value: string; label: string }> = {};
+	Object.keys(PaymentServices).forEach(
+		(name) => (payments[name] = { value: name, label: `$.cashdesk.payment.${name}` })
+	);
+
+	const paymentOptions = Object.values(payments);
 
 	const fields: Record<
 		string,
@@ -74,11 +88,11 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		},
 		delivery: {
 			key: 'delivery',
-			label: '$.cashdesk.delivery',
+			label: '$.cashdesk.delivery.title',
 		},
 		payment: {
 			key: 'payment',
-			label: '$.cashdesk.payment',
+			label: '$.cashdesk.payment.title',
 		},
 	};
 
@@ -150,6 +164,10 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		total_price,
 		fields,
 		delivery,
+		deliveries,
+		deliveryOptions,
 		payment,
+		payments,
+		paymentOptions,
 	};
 });

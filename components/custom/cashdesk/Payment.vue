@@ -1,25 +1,25 @@
 <script setup lang="ts">
 	import { object, string, type InferType } from 'yup';
 	import type { FormSubmitEvent } from '#ui/types';
-	import type { DeliveryDocument } from '@/server/types/order.type';
+	import type { PaymentDocument } from '@/server/types/order.type';
 
 	const { t } = useI18n();
 	const toast = useToast();
-	const { delivery, deliveries, deliveryOptions, fields } = useCashdeskStore();
+	const { payment, payments, paymentOptions, fields } = useCashdeskStore();
 
 	const schema = object({
 		type: string().required(' '),
-		address: object({
-			street: string().required(' '),
-			city: string().required(' '),
-			postal_code: string().required(' ').matches(/^\d+$/, t('$.message.invalid_postal_code')),
-			state: string().required(' '),
+		credit_card: object({
+			card_number: string().required(' '),
+			expiration_date: string().required(' '),
+			cvv: string().required(' '),
+			cardholder_name: string().required(' '),
 		}).required(' '),
 	});
 
 	type Schema = InferType<typeof schema>;
 
-	const state = reactive<DeliveryDocument | any>(delivery);
+	const state = reactive<PaymentDocument | any>(payment);
 
 	async function onSubmit(event: FormSubmitEvent<Schema>) {
 		console.log(event.data);
@@ -33,16 +33,16 @@
 		@submit="onSubmit"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<UFormGroup :label="$t(fields.delivery.label)" name="type">
+			<UFormGroup :label="$t(fields.payment.label)" name="type">
 				<USelectMenu
 					v-model="state.type"
-					:options="deliveryOptions"
+					:options="paymentOptions"
 					value-attribute="value"
 					option-attribute="label"
 					size="lg"
 				>
 					<template #label>
-						{{ $t(deliveries[state.type as any]?.label) }}
+						{{ $t(payments[state.type as any]?.label) }}
 					</template>
 
 					<template #option="{ option }">
