@@ -1,14 +1,43 @@
-<template>
-	<div id="about" class="py-10 lg:py-16">
-		<div class="text-center pb-8 lg:pb-10">
-			<h2 class="text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400">
-				{{ $t('$.about.title') }}
-			</h2>
-			<h3 class="pt-8 text-xl lg:text-3xl font-bold text-gray-600 dark:text-gray-400">
-				{{ $t('$.about.subtitle') }}
-			</h3>
-		</div>
+<script setup lang="ts">
+	import { useToNumber } from '@vueuse/core';
 
-		<div class="from-bottom text-center lg:text-lg text-gray-600 dark:text-white">{{ $t('$.about.description') }}</div>
+	const { locale } = useI18n();
+	const localePath = useLocalePath();
+	const { routes } = useMenuItems();
+	const store = useCashdeskStore();
+</script>
+<template>
+	<div v-if="store.carts.length">
+		<div
+			v-for="cart in store.carts"
+			:key="cart.wine._id"
+			class="flex flex-col md:flex-row items-center justify-between px-4 py-2 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+		>
+			<NuxtLink
+				:to="localePath(`${routes.wine.path}/${cart.wine._id}`)"
+				class="flex flex-col md:flex-row items-center"
+			>
+				<NuxtImg
+					:src="cart.wine.image?.main?.src || '/img/bottle.jpg'"
+					:alt="'wine'"
+					loading="lazy"
+					format="webp"
+					height="100"
+					class="object-cover rounded-lg"
+				/>
+				<h3 class="text-lg font-semibold">{{ cart.wine.name }}</h3>
+			</NuxtLink>
+			<div class="flex items-center justify-between space-x-4 sm:space-x-12">
+				<div class="flex items-center justify-between space-x-2">{{ cart.quantity }}</div>
+				<div class="flex justify-between space-x-4 sm:space-x-12">
+					<p class="text-lg font-semibold min-w-24 text-end">
+						{{ useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+							$t('$.czk')
+						}}
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
+	<div v-else class="text-center text-gray-500">{{ $t('$.cashdesk.cart.empty') }}</div>
 </template>

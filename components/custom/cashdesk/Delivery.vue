@@ -33,22 +33,20 @@
 		@submit="onSubmit"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<UFormGroup :label="$t(fields.delivery.label)" name="type">
-				<USelectMenu
-					v-model="state.type"
-					:options="deliveryOptions"
-					value-attribute="value"
-					option-attribute="label"
-					size="lg"
-				>
-					<template #label>
-						{{ $t(deliveries[state.type as any]?.label) }}
-					</template>
-
-					<template #option="{ option }">
-						{{ $t(option.label) }}
-					</template>
-				</USelectMenu>
+			<UFormGroup name="type">
+				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+					{{ $t(fields.delivery.label) }}
+				</h3>
+				<div class="pt-2">
+					<URadio
+						v-for="option of deliveryOptions"
+						:key="option.value"
+						v-model="state.type"
+						:label="$t(option?.label)"
+						:value="option.value"
+						:ui="{ wrapper: 'py-1', base: 'cursor-pointer', label: 'cursor-pointer' }"
+					/>
+				</div>
 			</UFormGroup>
 		</div>
 	</UForm>

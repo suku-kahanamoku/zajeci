@@ -33,22 +33,24 @@
 		@submit="onSubmit"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<UFormGroup :label="$t(fields.payment.label)" name="type">
-				<USelectMenu
-					v-model="state.type"
-					:options="paymentOptions"
-					value-attribute="value"
-					option-attribute="label"
-					size="lg"
-				>
-					<template #label>
-						{{ $t(payments[state.type as any]?.label) }}
-					</template>
-
-					<template #option="{ option }">
-						{{ $t(option.label) }}
-					</template>
-				</USelectMenu>
+			<UFormGroup name="type">
+				<template #label>
+					<h3
+						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+					>
+						{{ $t(fields.payment.label) }}
+					</h3>
+				</template>
+				<div class="pt-2">
+					<URadio
+						v-for="option of paymentOptions"
+						:key="option.value"
+						v-model="state.type"
+						:label="$t(option?.label)"
+						:value="option.value"
+						:ui="{ wrapper: 'py-1', base: 'cursor-pointer', label: 'cursor-pointer' }"
+					/>
+				</div>
 			</UFormGroup>
 		</div>
 	</UForm>

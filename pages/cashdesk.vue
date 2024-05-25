@@ -66,6 +66,7 @@
 						<div class="py-4">
 							<CustomCashdeskCart v-if="item.key === 'cart'" />
 							<CustomCashdeskDeliveryPayment v-else-if="item.key === 'delivery_payment'" />
+							<CustomCashdeskSummary v-else-if="item.key === 'summary'" />
 						</div>
 					</template>
 				</UTabs>

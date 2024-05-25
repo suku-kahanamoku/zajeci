@@ -47,7 +47,9 @@
 						:variant="btns?.cancel?.icon || 'outline'"
 						@click="model = false"
 					>
-						{{ $t('$.btn.continue') }}
+						<span class="hidden sm:block">
+							{{ $t('$.btn.continue') }}
+						</span>
 					</UButton>
 					<UButton
 						:to="localePath(routes.cashdesk.path)"
