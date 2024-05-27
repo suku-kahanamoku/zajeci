@@ -6,7 +6,7 @@
 
 	const { t, locale } = useI18n();
 	const toast = useToast();
-	const { delivery, deliveries, deliveryOptions, fields } = useCashdeskStore();
+	const store = useCashdeskStore();
 	const formEl = ref();
 
 	const schema = object({
@@ -19,18 +19,18 @@
 		}).required(' '),
 	});
 
-	const state = reactive<DeliveryDocument | any>(delivery);
+	const state = reactive<DeliveryDocument | any>(store.delivery);
 
 	watch(
 		state,
 		useDebounceFn(async (value) => {
-			if (delivery) {
-				delivery.total_price = deliveries[delivery.type]?.price || 0;
+			if (store.delivery) {
+				store.delivery.total_price = store.deliveries[store.delivery.type]?.price || 0;
 				try {
 					await formEl.value.validate();
-					delivery.valid = true;
+					store.delivery.valid = true;
 				} catch (error) {
-					delivery.valid = false;
+					store.delivery.valid = false;
 				}
 			}
 		}, 400)
@@ -45,11 +45,11 @@
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<UFormGroup name="type">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-					{{ $t(fields.delivery.label) }}
+					{{ $t(store.fields.delivery.label) }}
 				</h3>
 				<div class="pt-2">
 					<URadio
-						v-for="option of deliveryOptions"
+						v-for="option of store.deliveryOptions"
 						:key="option.value"
 						v-model="state.type"
 						:value="option.value"

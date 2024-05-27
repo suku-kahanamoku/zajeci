@@ -5,7 +5,7 @@
 
 	const { t } = useI18n();
 	const toast = useToast();
-	const { payment, payments, paymentOptions, fields } = useCashdeskStore();
+	const store = useCashdeskStore();
 
 	const schema = object({
 		type: string().required(' '),
@@ -19,7 +19,7 @@
 
 	type Schema = InferType<typeof schema>;
 
-	const state = reactive<PaymentDocument | any>(payment);
+	const state = reactive<PaymentDocument | any>(store.payment);
 
 	async function onSubmit(event: FormSubmitEvent<Schema>) {
 		console.log(event.data);
@@ -38,12 +38,12 @@
 					<h3
 						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
 					>
-						{{ $t(fields.payment.label) }}
+						{{ $t(store.fields.payment.label) }}
 					</h3>
 				</template>
 				<div class="pt-2">
 					<URadio
-						v-for="option of paymentOptions"
+						v-for="option of store.paymentOptions"
 						:key="option.value"
 						v-model="state.type"
 						:label="$t(option?.label)"

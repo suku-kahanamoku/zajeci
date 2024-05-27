@@ -6,7 +6,7 @@
 	const { t } = useI18n();
 	const toast = useToast();
 	const { fields } = useAuthStore();
-	const { user } = useCashdeskStore();
+	const store = useCashdeskStore();
 	const formEl = ref();
 
 	const schema = object({
@@ -24,17 +24,17 @@
 		}).required(' '),
 	});
 
-	const state = reactive<UserDocument | any>(user);
+	const state = reactive<UserDocument | any>(store.user);
 
 	watch(
 		state,
 		useDebounceFn(async (value) => {
-			if (user) {
+			if (store.user) {
 				try {
 					await formEl.value.validate();
-					user.valid = true;
+					store.user.valid = true;
 				} catch (error) {
-					user.valid = false;
+					store.user.valid = false;
 				}
 			}
 		}, 400)

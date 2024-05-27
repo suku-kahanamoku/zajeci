@@ -15,7 +15,7 @@
 		],
 	});
 
-	const { carts, user, delivery, payment } = useCashdeskStore();
+	const store = useCashdeskStore();
 
 	const tabs = ref([
 		{
@@ -25,12 +25,14 @@
 		{
 			key: 'delivery_payment',
 			label: t('$.cashdesk.delivery_payment'),
-			disabled: !carts.length,
+			disabled: !store.carts.length,
 		},
 		{
 			key: 'summary',
 			label: t('$.cashdesk.summary'),
-			disabled: computed(() => !carts.length || !delivery.type || !payment.type || !user?.valid),
+			disabled: computed(
+				() => !store.carts.length || !store.delivery.type || !store.payment.type || !store.user?.valid
+			),
 		},
 	]);
 
