@@ -35,7 +35,7 @@
 	};
 
 	const columns = [
-		{ key: 'name', label: t('$.form.name') },
+		{ key: 'name', label: t('$.admin.wine.form.name') },
 		{ key: 'quantity', label: t('$.form.quantity') },
 		{ key: 'price', label: t('$.form.price') },
 	];
@@ -43,6 +43,17 @@
 
 <template>
 	<UTable :columns="columns" :rows="store.carts" class="hidden sm:block">
+		<template #quantity-header="{ column }">
+			<div class="text-center">
+				{{ column.label }}
+			</div>
+		</template>
+		<template #price-header="{ column }">
+			<div class="text-center">
+				{{ column.label }}
+			</div>
+		</template>
+
 		<template #name-data="{ row }">
 			<NuxtLink :to="localePath(`${routes.wine.path}/${row.wine._id}`)" class="flex items-center">
 				<NuxtImg
@@ -57,7 +68,7 @@
 			</NuxtLink>
 		</template>
 		<template #quantity-data="{ row }">
-			<div class="flex items-center justify-between space-x-2">
+			<div class="flex items-center justify-between space-x-2 w-36 mx-auto">
 				<UButton
 					icon="i-heroicons-minus"
 					color="orange"
@@ -67,7 +78,7 @@
 				<UInput
 					:model-value="row.quantity"
 					type="number"
-					:ui="{ base: 'appearance-none w-14 text-center' }"
+					:ui="{ base: 'appearance-none text-center' }"
 					:min="1"
 					@change="setQuantity(parseInt($event), row)"
 				/>
@@ -81,7 +92,7 @@
 		</template>
 		<template #price-data="{ row }">
 			<div class="flex justify-between space-x-4">
-				<p class="text-lg font-semibold text-end">
+				<p class="text-lg font-semibold text-end w-full">
 					{{ useToNumber(row?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 						$t('$.czk')
 					}}
@@ -91,11 +102,11 @@
 		</template>
 	</UTable>
 
-	<div v-if="store.carts.length" class="sm:hidden">
+	<div class="sm:hidden">
 		<div
 			v-for="cart in store.carts"
 			:key="cart.wine._id"
-			class="flex flex-col md:flex-row items-center justify-between px-4 py-2 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+			class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
 		>
 			<NuxtLink
 				:to="localePath(`${routes.wine.path}/${cart.wine._id}`)"
@@ -145,7 +156,19 @@
 		</div>
 	</div>
 
+	<div
+		class="flex justify-end py-4 pe-3 sm:pe-16 mt-2 text-lg font-semibold text-end gap-4 text-gray-600 border border-gray-200 dark:border-gray-700"
+	>
+		<p>{{ $t('$.cashdesk.cart.total_price') }}:</p>
+		<p>
+			{{ useToNumber(store?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
+		</p>
+	</div>
+
 	<UiModalConfirm v-model="isOpen" @confirm="$event && store.deleteItem(deleted?.wine?._id)">
+		<template #header>
+			{{ $t('$.cashdesk.cart.remove_from_cart') }}
+		</template>
 		{{ $t('$.cashdesk.cart.remove', { name: deleted?.wine?.name }) }}
 	</UiModalConfirm>
 </template>

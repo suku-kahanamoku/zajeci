@@ -162,8 +162,11 @@
 			"delete": "Delete",
 			"cancel": "cancel",
 			"back": "Back",
-			"continue": "continue shopping",
-			"to_order": "To order"
+			"continue": "Continue",
+			"continue_shopping": "continue shopping",
+			"to_order": "To order",
+			"back_shopping": "Back to shop",
+			"complete_order": "Complete the order"
 		},
 		"aria": {
 			"mode": "Color motif button",
@@ -206,8 +209,10 @@
 				"title": "Cart",
 				"added": "Added to cart:",
 				"total": "Total of items in the basket",
+				"total_price": "Total to pay",
 				"empty": "The cart is empty",
-				"remove": "Do you really want to remove: \"{name}\" from the cart?"
+				"remove": "Do you really want to remove: \"{name}\" from the cart?",
+				"remove_from_cart": "Remove from cart"
 			},
 			"billing_address": "Billing address",
 			"delivery_address": "Delivery address",

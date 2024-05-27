@@ -40,22 +40,26 @@
 			<slot></slot>
 
 			<template #footer>
-				<div class="flex justify-between">
-					<UButton
-						:icon="btns?.cancel?.icon || 'i-heroicons-arrow-left'"
-						:color="btns?.cancel?.color || 'gray'"
-						:variant="btns?.cancel?.icon || 'outline'"
-						@click="model = false"
-					>
-						<span class="hidden sm:block">
-							{{ $t('$.btn.continue') }}
-						</span>
-					</UButton>
+				<div class="flex justify-between items-center">
+					<div>
+						<UButton
+							:icon="btns?.cancel?.icon || 'i-heroicons-arrow-left'"
+							:color="btns?.cancel?.color || 'gray'"
+							:variant="btns?.cancel?.icon || 'outline'"
+							size="lg"
+							@click="model = false"
+						>
+							<span class="hidden sm:block">
+								{{ $t('$.btn.continue') }}
+							</span>
+						</UButton>
+					</div>
 					<UButton
 						:to="localePath(routes.cashdesk.path)"
 						icon="i-heroicons-shopping-cart"
 						color="primary"
 						variant="solid"
+						size="xl"
 						@click="model = false"
 					>
 						{{ $t('$.btn.to_order') }}

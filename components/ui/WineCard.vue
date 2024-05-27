@@ -65,7 +65,7 @@
 				<h3 class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400">
 					{{ cart?.wine?.name }}
 				</h3>
-				<div class="mt-6">
+				<div class="mt-6 flex flex-col gap-2">
 					<div>
 						{{ $t('$.form.price') }}:&nbsp;{{
 							useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)

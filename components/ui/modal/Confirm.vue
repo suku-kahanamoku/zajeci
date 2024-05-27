@@ -30,7 +30,10 @@
 	<UModal v-model="model">
 		<UCard>
 			<template #header>
-				<div class="flex justify-end">
+				<div class="flex justify-between items-center">
+					<h3 class="text-lg lg:text-xl font-bold text-primary-600 dark:text-primary-400">
+						<slot name="header"></slot>
+					</h3>
 					<UButton
 						icon="i-heroicons-x-mark"
 						color="white"

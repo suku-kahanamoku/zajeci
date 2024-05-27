@@ -35,6 +35,7 @@
 
 	const route = useRoute();
 	const router = useRouter();
+	const { routes } = useMenuItems();
 
 	const selected = computed({
 		get() {
@@ -50,6 +51,9 @@
 			router.replace({ query: { tab: items[value].label } });
 		},
 	});
+
+	const backBtn = ['$.btn.back_shopping', '$.cashdesk.cart.title', '$.cashdesk.delivery_payment'];
+	const continueBtn = ['$.cashdesk.delivery_payment', '$.cashdesk.summary', '$.btn.complete_order'];
 </script>
 
 <template>
@@ -70,6 +74,26 @@
 						</div>
 					</template>
 				</UTabs>
+
+				<div class="flex justify-between mt-8">
+					<UButton
+						:to="selected < 1 ? routes.wine.path : undefined"
+						icon="i-heroicons-arrow-left"
+						color="white"
+						size="lg"
+						@click="selected ? (selected -= 1) : undefined"
+					>
+						<span class="hidden sm:block">
+							{{ $t(backBtn[selected] || '$.btn.back') }}
+						</span>
+					</UButton>
+					<UButton size="lg" @click="selected += 1">
+						{{ $t(continueBtn[selected] || '$.btn.continue') }}
+						<template #trailing>
+							<UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />
+						</template>
+					</UButton>
+				</div>
 			</div>
 		</div>
 	</div>

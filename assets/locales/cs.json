@@ -162,8 +162,11 @@
 			"delete": "Smazat",
 			"cancel": "Zrušit",
 			"back": "Zpět",
-			"continue": "Pokračovat v nákupu",
-			"to_order": "Přejit k objednávce"
+			"continue": "Pokračovat",
+			"continue_shopping": "Pokračovat v nákupu",
+			"to_order": "Přejit k objednávce",
+			"back_shopping": "Zpět do obchodu",
+			"complete_order": "Dokončit objednávku"
 		},
 		"aria": {
 			"mode": "Tlačítko barevných motivu",
@@ -206,8 +209,10 @@
 				"title": "Košík",
 				"added": "Přidáno do košíku:",
 				"total": "V košíku je zboží celkem za",
+				"total_price": "Celkem k úhradě",
 				"empty": "Košík je prázdný",
-				"remove": "Opravdu chcete odstranit: \"{name}\" z košíku?"
+				"remove": "Opravdu chcete odstranit: \"{name}\" z košíku?",
+				"remove_from_cart": "Odebrat z košíku"
 			},
 			"billing_address": "Fakturační adresa",
 			"delivery_address": "Dodací adresa",
