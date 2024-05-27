@@ -5,7 +5,7 @@
 
 	const { t } = useI18n();
 	const toast = useToast();
-	const { delivery, deliveries, deliveryOptions, fields } = useCashdeskStore();
+	const { delivery, deliveryOptions, fields } = useCashdeskStore();
 
 	const schema = object({
 		type: string().required(' '),

@@ -4,7 +4,7 @@
 	const { t, locale } = useI18n();
 	const localePath = useLocalePath();
 	const { routes } = useMenuItems();
-	const store = useCashdeskStore();
+	const { carts, total_price, user, delivery, deliveries, payment, payments } = useCashdeskStore();
 
 	const columns = [
 		{ key: 'name', label: t('$.admin.wine.form.name') },
@@ -13,7 +13,7 @@
 	];
 </script>
 <template>
-	<UTable :columns="columns" :rows="store.carts" class="hidden sm:block">
+	<UTable :columns="columns" :rows="carts" class="hidden sm:block">
 		<template #quantity-header="{ column }">
 			<div class="text-center">
 				{{ column.label }}
@@ -50,7 +50,7 @@
 
 	<div class="sm:hidden">
 		<div
-			v-for="cart in store.carts"
+			v-for="cart in carts"
 			:key="cart.wine._id"
 			class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
 		>
@@ -85,56 +85,86 @@
 		</div>
 	</div>
 
-	<div
-		class="flex justify-end py-4 pe-4 mt-2 text-lg font-semibold text-end gap-4 text-gray-600 border border-gray-200 dark:border-gray-700"
-	>
-		<p>{{ $t('$.cashdesk.cart.total_price') }}:</p>
-		<p>
-			{{ useToNumber(store?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
-		</p>
-	</div>
-
-	<div class="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4 my-8">
-		<div class="w-full border rounded-lg shadow max-w-xl dark:border dark:bg-gray-800 dark:border-gray-700">
+	<div class="grid gap-2 sm:gap-4 my-8 md:grid-cols-2 lg:grid-cols-3">
+		<div class="w-full border rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
 			<div class="p-4 md:p-6 space-y-4">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					{{ $t('$.cashdesk.billing_address') }}
 				</h3>
 
-				<div class="flex justify-between items-center gap-x-2">obsah</div>
+				<div class="flex flex-col gap-y-2">
+					<div>{{ user?.given_name }}&nbsp;{{ user?.family_name }}</div>
+					<div>{{ user?.address?.main?.street }}</div>
+					<div>{{ user?.address?.main?.city }}, {{ user?.address?.main?.postal_code }}</div>
+					<div>{{ user?.address?.main?.state }}</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="w-full border rounded-lg shadow max-w-xl dark:border dark:bg-gray-800 dark:border-gray-700">
-			<div class="p-4 md:p-6 space-y-4">
-				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-					{{ $t('$.cashdesk.delivery_address') }}
-				</h3>
-
-				<div class="flex justify-between items-center gap-x-2">obsah</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4 my-8">
-		<div class="w-full border rounded-lg shadow max-w-xl dark:border dark:bg-gray-800 dark:border-gray-700">
+		<div class="w-full border rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
 			<div class="p-4 md:p-6 space-y-4">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					{{ $t('$.cashdesk.delivery.title') }}
 				</h3>
 
-				<div class="flex justify-between items-center gap-x-2">obsah</div>
+				<div class="flex flex-col gap-y-2">
+					<div class="font-semibold">{{ $t(deliveries[delivery?.type]?.label) }}</div>
+					<div>{{ user?.given_name }}&nbsp;{{ user?.family_name }}</div>
+					<div>{{ delivery.address?.street }}</div>
+					<div>{{ delivery.address?.city }}, {{ delivery.address?.postal_code }}</div>
+					<div>{{ delivery.address?.state }}</div>
+					<div>
+						{{ useToNumber(delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+							$t('$.czk')
+						}}
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="w-full border rounded-lg shadow max-w-xl dark:border dark:bg-gray-800 dark:border-gray-700">
+		<div class="w-full border rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
 			<div class="p-4 md:p-6 space-y-4">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					{{ $t('$.cashdesk.payment.title') }}
 				</h3>
 
-				<div class="flex justify-between items-center gap-x-2">obsah</div>
+				<div class="flex flex-col gap-y-2">
+					<div class="font-semibold">{{ $t(payments[payment?.type]?.label) }}</div>
+					<div>{{ payment.credit_card?.card_number }}</div>
+					<div>{{ payment.credit_card?.expiration_date }}</div>
+					<div>{{ payment.credit_card?.cvv }}</div>
+					<div>{{ payment.credit_card?.card_number }}</div>
+				</div>
 			</div>
+		</div>
+	</div>
+
+	<div
+		class="py-4 pe-4 mt-2 text-lg font-semibold text-end text-gray-600 border border-gray-200 dark:border-gray-700"
+	>
+		<div class="flex justify-end gap-4">
+			<p class="w-44 text-left">{{ $t('$.cashdesk.delivery.title') }}:</p>
+			<p class="w-44 text-right">
+				{{ useToNumber(delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+					$t('$.czk')
+				}}
+			</p>
+		</div>
+
+		<div class="flex justify-end gap-4">
+			<p class="w-44 text-left">{{ $t('$.cashdesk.payment.title') }}:</p>
+			<p class="w-44 text-right">
+				{{ useToNumber(payment?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+					$t('$.czk')
+				}}
+			</p>
+		</div>
+
+		<div class="flex justify-end gap-4">
+			<p class="w-44 text-left">{{ $t('$.cashdesk.cart.total_price') }}:</p>
+			<p class="w-44 text-right">
+				{{ useToNumber(total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
+			</p>
 		</div>
 	</div>
 </template>
