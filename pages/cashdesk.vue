@@ -1,7 +1,4 @@
 <script setup lang="ts">
-	import PhotoSwipeLightbox from 'photoswipe/lightbox';
-	import 'photoswipe/style.css';
-
 	definePageMeta({
 		layout: 'default',
 		syscode: 'cashdesk',
@@ -18,7 +15,9 @@
 		],
 	});
 
-	const items = [
+	const { carts, user, delivery, payment } = useCashdeskStore();
+
+	const tabs = ref([
 		{
 			key: 'cart',
 			label: t('$.cashdesk.cart.title'),
@@ -26,12 +25,14 @@
 		{
 			key: 'delivery_payment',
 			label: t('$.cashdesk.delivery_payment'),
+			disabled: !carts.length,
 		},
 		{
 			key: 'summary',
 			label: t('$.cashdesk.summary'),
+			disabled: computed(() => !carts.length || !delivery.type || !payment.type || !user?.valid),
 		},
-	];
+	]);
 
 	const route = useRoute();
 	const router = useRouter();
@@ -39,8 +40,8 @@
 
 	const selected = computed({
 		get() {
-			const index = items.findIndex((item) => item.label === route.query.tab);
-			if (index === -1) {
+			const index = tabs.value.findIndex((item) => item.label === route.query.tab);
+			if (index === -1 || tabs.value[index]?.disabled) {
 				return 0;
 			}
 
@@ -48,7 +49,7 @@
 		},
 		set(value) {
 			// Hash is specified here to prevent the page from scrolling to the top
-			router.replace({ query: { tab: items[value].label } });
+			router.replace({ query: { tab: tabs.value[value].label } });
 		},
 	});
 
@@ -65,7 +66,7 @@
 				{{ $t('$.cashdesk.title') }}
 			</h1>
 			<div class="py-10">
-				<UTabs v-model="selected" :items="items">
+				<UTabs v-model="selected" :items="tabs">
 					<template #item="{ item }">
 						<div class="py-4">
 							<CustomCashdeskCart v-if="item.key === 'cart'" />
@@ -87,7 +88,7 @@
 							{{ $t(backBtn[selected] || '$.btn.back') }}
 						</span>
 					</UButton>
-					<UButton size="lg" @click="selected += 1">
+					<UButton size="lg" :disabled="tabs[selected + 1]?.disabled" @click="selected += 1">
 						{{ $t(continueBtn[selected] || '$.btn.continue') }}
 						<template #trailing>
 							<UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />

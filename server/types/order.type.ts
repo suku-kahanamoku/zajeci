@@ -14,7 +14,6 @@ export enum PaymentServices {
 	gopay = 'gopay',
 	apple_pay = 'apple_pay',
 	google_pay = 'google_pay',
-	bitcoin = 'bitcoin',
 	cash = 'cash',
 }
 
@@ -60,6 +59,22 @@ export enum DeliveryServices {
 	geis = 'geis',
 }
 
+export const deliveryObjects = {
+	free: {
+		label: '$.cashdesk.delivery.brno',
+		price: 0,
+		avatar: 'mdi:home-city-outline',
+		help: 'fdsa',
+	},
+	post: { label: '$.cashdesk.delivery.post', price: 105, avatar: '/img/delivery/post.jpg' },
+	ppl: { label: '$.cashdesk.delivery.ppl', price: 120, avatar: '/img/delivery/ppl.jpg', disabled: true },
+	zas: { label: '$.cashdesk.delivery.zas', price: 59, avatar: '/img/delivery/zasilkovna.jpg', disabled: true },
+	gls: { label: '$.cashdesk.delivery.gls', price: 120, avatar: 'mdi:truck-outline', disabled: true },
+	dpd: { label: '$.cashdesk.delivery.dpd', price: 120, avatar: 'mdi:truck-outline', disabled: true },
+	dhl: { label: '$.cashdesk.delivery.dhl', price: 120, avatar: 'mdi:truck-outline', disabled: true },
+	geis: { label: '$.cashdesk.delivery.geis', price: 120, avatar: 'mdi:truck-outline', disabled: true },
+};
+
 /**
  * Rozhrani pro delivery v cashdesku
  *
@@ -70,6 +85,7 @@ export interface DeliveryDocument {
 	type: DeliveryServices;
 	address?: AddressDocument;
 	total_price: number;
+	valid?: boolean;
 }
 
 /**

@@ -218,14 +218,16 @@
 			"delivery_address": "Delivery address",
 			"delivery": {
 				"title": "Delivery",
+				"brno": "Brno center",
 				"free": "Free Shipping",
 				"ppl": "PPL",
 				"gls": "GLS",
 				"dpd": "DPD",
-				"post": "POST",
-				"zas": "ZÁSILKOVNA",
+				"post": "Czech Post",
+				"zas": "Zásilkovna",
 				"dhl": "DHL",
-				"geis": "GEIS"
+				"geis": "GEIS",
+				"brno_free": "Free delivery within the city of Brno"
 			},
 			"payment": {
 				"title": "Payment",
@@ -235,7 +237,6 @@
 				"gopay": "GOPAY",
 				"apple_pay": "APPLE PAY",
 				"google_pay": "GOOGLE PAY",
-				"bitcoin": "BITCOIN",
 				"cash": "Cash"
 			}
 		},

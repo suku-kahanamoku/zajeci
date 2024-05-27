@@ -1,12 +1,13 @@
 <script setup lang="ts">
 	import { object, string, type InferType } from 'yup';
-	import type { FormSubmitEvent } from '#ui/types';
 	import type { UserDocument } from '@/server/types/user.type';
+	import { useDebounceFn } from '@vueuse/core';
 
 	const { t } = useI18n();
 	const toast = useToast();
 	const { fields } = useAuthStore();
 	const { user } = useCashdeskStore();
+	const formEl = ref();
 
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
@@ -23,16 +24,24 @@
 		}).required(' '),
 	});
 
-	type Schema = InferType<typeof schema>;
-
 	const state = reactive<UserDocument | any>(user);
 
-	async function onSubmit(event: FormSubmitEvent<Schema>) {
-		console.log(event.data);
-	}
+	watch(
+		state,
+		useDebounceFn(async (value) => {
+			if (user) {
+				try {
+					await formEl.value.validate();
+					user.valid = true;
+				} catch (error) {
+					user.valid = false;
+				}
+			}
+		}, 400)
+	);
 </script>
 <template>
-	<UForm :schema="schema" :state="state" @submit="onSubmit">
+	<UForm ref="formEl" :schema="schema" :state="state">
 		<div class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
 			<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -46,7 +55,6 @@
 							type="email"
 							:placeholder="fields.email.placeholder"
 							:autocomplete="fields.email.autocomplete"
-							required
 							size="lg"
 						/>
 					</UFormGroup>
@@ -68,7 +76,6 @@
 							:placeholder="$t(fields.given_name.placeholder as string)"
 							:autocomplete="fields.given_name.autocomplete"
 							size="lg"
-							required
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(fields.family_name.label)" name="family_name" required>
@@ -77,7 +84,6 @@
 							:placeholder="$t(fields.family_name.placeholder as string)"
 							:autocomplete="fields.family_name.autocomplete"
 							size="lg"
-							required
 						/>
 					</UFormGroup>
 				</div>
@@ -89,7 +95,6 @@
 							:placeholder="$t(fields.street.placeholder as string)"
 							:autocomplete="fields.street.autocomplete"
 							size="lg"
-							required
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(fields.city.label)" name="address.main.city" required>
@@ -98,7 +103,6 @@
 							:placeholder="$t(fields.city.placeholder as string)"
 							:autocomplete="fields.city.autocomplete"
 							size="lg"
-							required
 						/>
 					</UFormGroup>
 				</div>
@@ -110,7 +114,6 @@
 							:placeholder="$t(fields.postal_code.placeholder as string)"
 							:autocomplete="fields.postal_code.autocomplete"
 							size="lg"
-							required
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(fields.state.label)" name="address.main.state" required>
@@ -119,15 +122,10 @@
 							:placeholder="$t(fields.state.placeholder as string)"
 							:autocomplete="fields.state.autocomplete"
 							size="lg"
-							required
 						/>
 					</UFormGroup>
 				</div>
 			</div>
 		</div>
-
-		<!-- <UButton type="submit" size="lg" block class="dark:text-white">
-			{{ $t('$.btn.submit') }}
-		</UButton> -->
 	</UForm>
 </template>

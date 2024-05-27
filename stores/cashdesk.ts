@@ -1,5 +1,6 @@
 import {
 	DeliveryServices,
+	deliveryObjects,
 	type PaymentDocument,
 	type DeliveryDocument,
 	PaymentServices,
@@ -24,6 +25,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 				state: '',
 			},
 		},
+		valid: false,
 	};
 
 	const user = ref<UserDocument | null>(authUser ? CLONE(authUser) : defUser);
@@ -40,10 +42,11 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		total_price: 0,
 	});
 
-	const deliveries: Record<string, { value: string; label: string }> = {};
-	Object.keys(DeliveryServices).forEach(
-		(name) => (deliveries[name] = { value: name, label: `$.cashdesk.delivery.${name}` })
-	);
+	const deliveries: Record<
+		string,
+		{ value: string; label: string; price?: number; avatar?: string; disabled?: boolean; help?: string }
+	> = {};
+	ITERATE(deliveryObjects, (item, name) => (deliveries[name] = { ...item, ...{ value: name } }));
 
 	const deliveryOptions = Object.values(deliveries);
 
@@ -100,9 +103,10 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		return carts.value.reduce((total, item) => total + item.quantity, 0);
 	});
 
-	const total_price = computed(() => {
-		return carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0);
-	});
+	const total_price = computed(
+		() =>
+			carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0) + delivery.value.total_price
+	);
 
 	const addItem = (wine: WineDocument, quantity: number): CartDocument => {
 		let result;

@@ -20,7 +20,7 @@
 			</div>
 		</template>
 		<template #price-header="{ column }">
-			<div class="text-center">
+			<div class="text-right">
 				{{ column.label }}
 			</div>
 		</template>
@@ -113,11 +113,6 @@
 					<div>{{ delivery.address?.street }}</div>
 					<div>{{ delivery.address?.city }}, {{ delivery.address?.postal_code }}</div>
 					<div>{{ delivery.address?.state }}</div>
-					<div>
-						{{ useToNumber(delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
-							$t('$.czk')
-						}}
-					</div>
 				</div>
 			</div>
 		</div>
@@ -140,29 +135,29 @@
 	</div>
 
 	<div
-		class="py-4 pe-4 mt-2 text-lg font-semibold text-end text-gray-600 border border-gray-200 dark:border-gray-700"
+		class="py-4 px-4 mt-2 text-lg font-semibold text-end text-gray-600 border border-gray-200 dark:border-gray-700"
 	>
-		<div class="flex justify-end gap-4">
-			<p class="w-44 text-left">{{ $t('$.cashdesk.delivery.title') }}:</p>
-			<p class="w-44 text-right">
+		<div class="flex justify-end items-center gap-4">
+			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.delivery.title') }}:</p>
+			<p class="w-32 sm:w-44 text-right">
 				{{ useToNumber(delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>
 		</div>
 
-		<div class="flex justify-end gap-4">
-			<p class="w-44 text-left">{{ $t('$.cashdesk.payment.title') }}:</p>
-			<p class="w-44 text-right">
+		<div class="flex justify-end items-center gap-4">
+			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.payment.title') }}:</p>
+			<p class="w-32 sm:w-44 text-right">
 				{{ useToNumber(payment?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>
 		</div>
 
-		<div class="flex justify-end gap-4">
-			<p class="w-44 text-left">{{ $t('$.cashdesk.cart.total_price') }}:</p>
-			<p class="w-44 text-right">
+		<div class="flex justify-end items-center gap-4">
+			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.cart.total_price') }}:</p>
+			<p class="w-32 sm:w-44 text-right">
 				{{ useToNumber(total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
 			</p>
 		</div>

@@ -218,14 +218,16 @@
 			"delivery_address": "Dodací adresa",
 			"delivery": {
 				"title": "Doprava",
+				"brno": "Brno město",
 				"free": "Doprava zdarma",
 				"ppl": "PPL",
 				"gls": "GLS",
 				"dpd": "DPD",
-				"post": "POST",
-				"zas": "ZÁSILKOVNA",
+				"post": "Česká pošta",
+				"zas": "Zásilkovna",
 				"dhl": "DHL",
-				"geis": "GEIS"
+				"geis": "GEIS",
+				"brno_free": "Rozvoz zdarma v rámci města Brna"
 			},
 			"payment": {
 				"title": "Platba",
@@ -235,7 +237,6 @@
 				"gopay": "GO PAY",
 				"apple_pay": "APPLE PAY",
 				"google_pay": "GOOGLE PAY",
-				"bitcoin": "BITCOIN",
 				"cash": "Hotovost"
 			}
 		},

@@ -21,6 +21,7 @@ export interface UserDocument {
 	picture?: string;
 	sub?: string;
 	new_password?: string;
+	valid?: boolean;
 }
 
 /**
