@@ -176,7 +176,8 @@
 			"close": "Close button",
 			"lang": "Language mutation",
 			"delete": "Delete item button",
-			"delete_selected": "Delete selected items button"
+			"delete_selected": "Delete selected items button",
+			"cart": "Shopping cart"
 		},
 		"mailing": {
 			"contact_form": {

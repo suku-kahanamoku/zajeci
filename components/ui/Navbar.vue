@@ -10,6 +10,7 @@
 	);
 	const { routes, menuItem } = useMenuItems();
 	const auth = useAuthStore();
+	const cashdesk = useCashdeskStore();
 
 	const isOpen = ref(false);
 
@@ -90,6 +91,23 @@
 							$t(routes.signup?.meta?.title)
 						}}</UButton>
 					</div>
+
+					<!-- shopping cart -->
+					<UChip
+						size="2xl"
+						color="secondary"
+						:text="cashdesk.carts?.length"
+						:show="cashdesk.carts?.length ? true : false"
+					>
+						<UButton
+							:to="routes.cashdesk.path"
+							icon="i-heroicons-shopping-cart"
+							class="text-gray-600 dark:text-gray-400"
+							:ui="{ rounded: 'rounded-full' }"
+							variant="ghost"
+							:aria-label="$t('$.aria.cart')"
+						/>
+					</UChip>
 
 					<!-- toggle light & dark mode -->
 					<UButton

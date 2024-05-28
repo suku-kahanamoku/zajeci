@@ -1,3 +1,5 @@
+import nuxtStorage from 'nuxt-storage';
+
 import {
 	DeliveryServices,
 	deliveryObjects,
@@ -29,19 +31,25 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		valid: false,
 	};
 
-	const user = ref<UserDocument | null>(authUser ? CLONE(authUser) : defUser);
-	// musi se resetovat vsechny ostatni adresy, pac by se do orders mohly ulozit zbytecne adresy
+	const loadFromLocalStorage = (key: string, defaultValue: any) => {
+		const local = nuxtStorage.localStorage.getData('cashdesk');
+		return local ? local[key] || defaultValue : defaultValue;
+	};
+
+	const user = ref<UserDocument | null>(loadFromLocalStorage('user', authUser ? CLONE(authUser) : defUser));
 	if (user.value?.address) {
 		user.value.address.variants = [];
 	}
 
-	const carts = ref<CartDocument[]>([]);
+	const carts = ref<CartDocument[]>(loadFromLocalStorage('carts', []));
 
-	const delivery = ref<DeliveryDocument>({
-		type: DeliveryServices.free,
-		address: user.value?.address?.main,
-		total_price: 0,
-	});
+	const delivery = ref<DeliveryDocument>(
+		loadFromLocalStorage('delivery', {
+			type: DeliveryServices.free,
+			address: user.value?.address?.main,
+			total_price: 0,
+		})
+	);
 
 	const deliveries: Record<
 		string,
@@ -51,10 +59,12 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 
 	const deliveryOptions = Object.values(deliveries);
 
-	const payment = ref<PaymentDocument>({
-		type: PaymentServices.bank,
-		total_price: 0,
-	});
+	const payment = ref<PaymentDocument>(
+		loadFromLocalStorage('payment', {
+			type: PaymentServices.bank,
+			total_price: 0,
+		})
+	);
 
 	const payments: Record<
 		string,
@@ -123,6 +133,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			carts.value.push(newItem);
 			result = newItem;
 		}
+		updateLocalStorage();
 		return result;
 	};
 
@@ -135,6 +146,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			if (item.quantity <= 0) {
 				carts.value.splice(itemIndex, 1);
 			}
+			updateLocalStorage();
 		}
 	};
 
@@ -143,16 +155,34 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		if (existingItem) {
 			existingItem.quantity = quantity;
 			existingItem.total_price = existingItem.unit_price * existingItem.quantity;
+			updateLocalStorage();
 		}
 	};
 
 	const deleteItem = (wineId: string) => {
 		carts.value = carts.value.filter((item) => item.wine._id !== wineId);
+		updateLocalStorage();
 	};
 
 	const clearCart = () => {
 		carts.value = [];
+		updateLocalStorage();
 	};
+
+	const updateLocalStorage = () => {
+		const cashdesk = {
+			user: user.value,
+			carts: carts.value,
+			delivery: delivery.value,
+			payment: payment.value,
+		};
+		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(cashdesk));
+	};
+
+	watch(user, updateLocalStorage, { deep: true });
+	watch(carts, updateLocalStorage, { deep: true });
+	watch(delivery, updateLocalStorage, { deep: true });
+	watch(payment, updateLocalStorage, { deep: true });
 
 	return {
 		user,

@@ -176,7 +176,8 @@
 			"close": "Zavírací tlačítko",
 			"lang": "Jazyková mutace",
 			"delete": "Tlačítko pro smazání záznamu",
-			"delete_selected": "Tlačítko pro smazání vybraných záznamů"
+			"delete_selected": "Tlačítko pro smazání vybraných záznamů",
+			"cart": "Košík"
 		},
 		"mailing": {
 			"contact_form": {
