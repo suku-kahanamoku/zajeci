@@ -20,7 +20,7 @@
 
 	const { user, roles, roleOptions, fields, isAdmin } = useAuthStore();
 
-	const state: Ref<UserDocument> = ref({
+	const state: Ref<UserDocument | any> = ref({
 		_id: '',
 		email: '',
 		given_name: '',

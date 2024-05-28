@@ -106,12 +106,25 @@ export const useAuthStore = defineStore('Auth', () => {
 		state: {
 			key: 'state',
 			label: '$.profile.state',
-			placeholder: '$.profile.placeholder.state',
+			placeholder: '$.form.select',
 			autocomplete: 'country',
 		},
 	};
 
 	const fieldOptions = Object.values(fields);
+
+	const states: Record<
+		string,
+		{
+			value: string;
+			label: string;
+			icon: string;
+		}
+	> = {
+		cz: { value: 'cz', label: '$.state.cz', icon: 'emojione:flag-for-czechia' },
+		sk: { value: 'sk', label: '$.state.sk', icon: 'emojione:flag-for-slovakia' },
+	};
+	const stateOptions = Object.values(states);
 
 	/**
 	 * Funkce pro prihlaseni
@@ -197,5 +210,7 @@ export const useAuthStore = defineStore('Auth', () => {
 		roleOptions,
 		fields,
 		fieldOptions,
+		states,
+		stateOptions,
 	};
 });

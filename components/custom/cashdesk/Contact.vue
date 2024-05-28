@@ -1,12 +1,12 @@
 <script setup lang="ts">
-	import { object, string, type InferType } from 'yup';
+	import { object, string } from 'yup';
 	import type { UserDocument } from '@/server/types/user.type';
 	import { useDebounceFn } from '@vueuse/core';
 
 	const { t } = useI18n();
-	const toast = useToast();
 	const { fields } = useAuthStore();
 	const store = useCashdeskStore();
+	const auth = useAuthStore();
 	const formEl = ref();
 
 	const schema = object({
@@ -41,15 +41,15 @@
 	);
 </script>
 <template>
-	<UForm ref="formEl" :schema="schema" :state="state">
-		<div class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
+	<div class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
+		<UForm ref="formEl" :schema="schema" :state="state">
 			<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					{{ $t('$.cashdesk.billing_address') }}
 				</h3>
 
-				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.email.label)" name="email" required>
+				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
+					<UFormGroup :label="$t(fields.email.label)" name="email" required class="w-full">
 						<UInput
 							v-model="state.email"
 							type="email"
@@ -58,7 +58,7 @@
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(fields.phone.label)" name="phone">
+					<UFormGroup :label="$t(fields.phone.label)" name="phone" class="w-full">
 						<UInput
 							v-model="state.phone"
 							type="phone"
@@ -69,8 +69,8 @@
 					</UFormGroup>
 				</div>
 
-				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.given_name.label)" name="given_name" required>
+				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
+					<UFormGroup :label="$t(fields.given_name.label)" name="given_name" required class="w-full">
 						<UInput
 							v-model="state.given_name"
 							:placeholder="$t(fields.given_name.placeholder as string)"
@@ -78,7 +78,7 @@
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(fields.family_name.label)" name="family_name" required>
+					<UFormGroup :label="$t(fields.family_name.label)" name="family_name" required class="w-full">
 						<UInput
 							v-model="state.family_name"
 							:placeholder="$t(fields.family_name.placeholder as string)"
@@ -88,8 +88,8 @@
 					</UFormGroup>
 				</div>
 
-				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.street.label)" name="address.main.street" required>
+				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
+					<UFormGroup :label="$t(fields.street.label)" name="address.main.street" required class="w-full">
 						<UInput
 							v-model="state.address.main.street"
 							:placeholder="$t(fields.street.placeholder as string)"
@@ -97,7 +97,7 @@
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(fields.city.label)" name="address.main.city" required>
+					<UFormGroup :label="$t(fields.city.label)" name="address.main.city" required class="w-full">
 						<UInput
 							v-model="state.address.main.city"
 							:placeholder="$t(fields.city.placeholder as string)"
@@ -107,8 +107,13 @@
 					</UFormGroup>
 				</div>
 
-				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.postal_code.label)" name="address.main.postal_code" required>
+				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
+					<UFormGroup
+						:label="$t(fields.postal_code.label)"
+						name="address.main.postal_code"
+						required
+						class="w-full"
+					>
 						<UInput
 							v-model="state.address.main.postal_code"
 							:placeholder="$t(fields.postal_code.placeholder as string)"
@@ -116,9 +121,12 @@
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(fields.state.label)" name="address.main.state" required>
-						<UInput
+					<UFormGroup :label="$t(fields.state.label)" name="address.main.state" required class="w-full">
+						<USelectMenu
 							v-model="state.address.main.state"
+							:options="auth.stateOptions?.map((item) => ({ ...item, ...{ label: $t(item.label) } }))"
+							value-attribute="value"
+							option-attribute="label"
 							:placeholder="$t(fields.state.placeholder as string)"
 							:autocomplete="fields.state.autocomplete"
 							size="lg"
@@ -126,6 +134,6 @@
 					</UFormGroup>
 				</div>
 			</div>
-		</div>
-	</UForm>
+		</UForm>
+	</div>
 </template>

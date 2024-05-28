@@ -137,6 +137,7 @@
 			"description": "Description",
 			"categories": "Categories",
 			"quantity": "Quantity",
+			"name": "Name",
 			"patch_success_msg": "Record successfully edited",
 			"post_success_msg": "Record successfully created"
 		},
@@ -166,7 +167,8 @@
 			"continue_shopping": "continue shopping",
 			"to_order": "To order",
 			"back_shopping": "Back to shop",
-			"complete_order": "Complete the order"
+			"complete_order": "Complete the order",
+			"free": "Gratis"
 		},
 		"aria": {
 			"mode": "Color motif button",
@@ -237,7 +239,10 @@
 				"gopay": "GOPAY",
 				"apple_pay": "APPLE PAY",
 				"google_pay": "GOOGLE PAY",
-				"cash": "Cash"
+				"cash": "Cash",
+				"account_num": "Account number",
+				"variable_sym": "Variable symbol",
+				"recipient_msg": "Message for recipient"
 			}
 		},
 		"admin": {
@@ -287,6 +292,10 @@
 					"new": "New"
 				}
 			}
+		},
+		"state": {
+			"cz": "Czechia",
+			"sk": "Slovakia"
 		}
 	}
 }

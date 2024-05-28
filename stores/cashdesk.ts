@@ -1,6 +1,7 @@
 import {
 	DeliveryServices,
 	deliveryObjects,
+	paymentObjects,
 	type PaymentDocument,
 	type DeliveryDocument,
 	PaymentServices,
@@ -51,20 +52,15 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	const deliveryOptions = Object.values(deliveries);
 
 	const payment = ref<PaymentDocument>({
-		type: PaymentServices.card,
-		credit_card: {
-			card_number: '',
-			expiration_date: '',
-			cvv: '',
-			cardholder_name: '',
-		},
+		type: PaymentServices.bank,
 		total_price: 0,
 	});
 
-	const payments: Record<string, { value: string; label: string }> = {};
-	Object.keys(PaymentServices).forEach(
-		(name) => (payments[name] = { value: name, label: `$.cashdesk.payment.${name}` })
-	);
+	const payments: Record<
+		string,
+		{ value: string; label: string; price?: number; avatar?: string; disabled?: boolean }
+	> = {};
+	ITERATE(paymentObjects, (item, name) => (payments[name] = { ...item, ...{ value: name } }));
 
 	const paymentOptions = Object.values(payments);
 
@@ -105,7 +101,9 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 
 	const total_price = computed(
 		() =>
-			carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0) + delivery.value.total_price
+			carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0) +
+			delivery.value.total_price +
+			payment.value.total_price
 	);
 
 	const addItem = (wine: WineDocument, quantity: number): CartDocument => {

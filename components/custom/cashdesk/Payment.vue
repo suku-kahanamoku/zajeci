@@ -1,36 +1,40 @@
 <script setup lang="ts">
-	import { object, string, type InferType } from 'yup';
-	import type { FormSubmitEvent } from '#ui/types';
+	import { object, string } from 'yup';
 	import type { PaymentDocument } from '@/server/types/order.type';
+	import { useToNumber } from '@vueuse/core';
+	import { useDebounceFn } from '@vueuse/core';
 
-	const { t } = useI18n();
-	const toast = useToast();
+	const { t, locale } = useI18n();
 	const store = useCashdeskStore();
+	const formEl = ref();
 
 	const schema = object({
 		type: string().required(' '),
-		credit_card: object({
-			card_number: string().required(' '),
-			expiration_date: string().required(' '),
-			cvv: string().required(' '),
-			cardholder_name: string().required(' '),
-		}).required(' '),
 	});
-
-	type Schema = InferType<typeof schema>;
 
 	const state = reactive<PaymentDocument | any>(store.payment);
 
-	async function onSubmit(event: FormSubmitEvent<Schema>) {
-		console.log(event.data);
-	}
+	watch(
+		state,
+		useDebounceFn(async (value) => {
+			if (store.payment) {
+				store.payment.total_price = store.payments[store.payment.type]?.price || 0;
+				try {
+					await formEl.value.validate();
+					store.payment.valid = true;
+				} catch (error) {
+					store.payment.valid = false;
+				}
+			}
+		}, 400)
+	);
 </script>
 <template>
 	<UForm
+		ref="formEl"
 		:schema="schema"
 		:state="state"
-		class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
-		@submit="onSubmit"
+		class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<UFormGroup name="type">
@@ -46,10 +50,34 @@
 						v-for="option of store.paymentOptions"
 						:key="option.value"
 						v-model="state.type"
-						:label="$t(option?.label)"
 						:value="option.value"
-						:ui="{ wrapper: 'py-1', base: 'cursor-pointer', label: 'cursor-pointer' }"
-					/>
+						:disabled="option?.disabled"
+						:ui="{
+							wrapper: 'items-center py-1',
+							base: option.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+							inner: 'w-full',
+							label: option.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+						}"
+					>
+						<template #label>
+							<div class="flex items-center justify-between w-full">
+								<div class="flex items-center gap-2">
+									<Icon :name="option.avatar as string" size="30" class="w-20" />
+									<span>
+										{{ $t(option?.label) }}
+									</span>
+								</div>
+								<span v-if="option.price! > 0">
+									{{
+										useToNumber(option?.price?.toFixed(2) || 0).value.toLocaleString(locale)
+									}}&nbsp;{{ $t('$.czk') }}
+								</span>
+								<span v-else>
+									{{ $t('$.btn.free') }}
+								</span>
+							</div>
+						</template>
+					</URadio>
 				</div>
 			</UFormGroup>
 		</div>

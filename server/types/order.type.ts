@@ -17,18 +17,19 @@ export enum PaymentServices {
 	cash = 'cash',
 }
 
-/**
- * Rozhrani pro platebni kartu
- *
- * @export
- * @interface CreditCardDocument
- */
-export interface CreditCardDocument {
-	card_number: string;
-	expiration_date: string;
-	cvv: string;
-	cardholder_name: string;
-}
+export const paymentObjects = {
+	cash: { label: '$.cashdesk.payment.cash', price: 50, avatar: 'mdi:cash-100' },
+	bank: {
+		label: '$.cashdesk.payment.bank',
+		price: 0,
+		avatar: 'mdi:bank-outline',
+	},
+	card: { label: '$.cashdesk.payment.card', price: 0, avatar: 'mdi:credit-card-outline', disabled: true },
+	paypal: { label: '$.cashdesk.payment.paypal', price: 0, avatar: 'logos:paypal', disabled: true },
+	gopay: { label: '$.cashdesk.payment.gopay', price: 0, avatar: 'arcticons:gopay', disabled: true },
+	apple_pay: { label: '$.cashdesk.payment.apple_pay', price: 0, avatar: 'simple-icons:applepay', disabled: true },
+	google_pay: { label: '$.cashdesk.payment.google_pay', price: 0, avatar: 'simple-icons:googlepay', disabled: true },
+};
 
 /**
  * Rozhrani pro payment v cashdesku
@@ -38,8 +39,8 @@ export interface CreditCardDocument {
  */
 export interface PaymentDocument {
 	type: PaymentServices;
-	credit_card?: CreditCardDocument;
 	total_price: number;
+	valid?: boolean;
 }
 
 /**
@@ -71,7 +72,6 @@ export const deliveryObjects = {
 	zas: { label: '$.cashdesk.delivery.zas', price: 59, avatar: '/img/delivery/zasilkovna.jpg', disabled: true },
 	gls: { label: '$.cashdesk.delivery.gls', price: 120, avatar: 'mdi:truck-outline', disabled: true },
 	dpd: { label: '$.cashdesk.delivery.dpd', price: 120, avatar: 'mdi:truck-outline', disabled: true },
-	dhl: { label: '$.cashdesk.delivery.dhl', price: 120, avatar: 'mdi:truck-outline', disabled: true },
 	geis: { label: '$.cashdesk.delivery.geis', price: 120, avatar: 'mdi:truck-outline', disabled: true },
 };
 

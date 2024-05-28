@@ -9,6 +9,7 @@
 		locales.value.map((i) => ({ ...i, ...{ label: i.icon, to: useSwitchLocalePath()(i.code) } }))
 	);
 	const { routes, menuItem } = useMenuItems();
+	const auth = useAuthStore();
 
 	const isOpen = ref(false);
 
@@ -22,7 +23,7 @@
 			[
 				{
 					label: '$.navbar.logout',
-					click: async () => await useAuthStore().logout(),
+					click: async () => await auth.logout(),
 				},
 			],
 		];
@@ -57,21 +58,16 @@
 				<div class="flex items-center gap-4">
 					<!-- pokud je to prihlasene, zobrazi uzivatelske menu -->
 					<UDropdown
-						v-if="useAuthStore().loggedIn"
+						v-if="auth.loggedIn"
 						:items="userMenuItems"
 						:ui="{ item: { disabled: 'cursor-text select-text' } }"
 						:popper="{ placement: 'bottom-start' }"
 					>
-						<UAvatar
-							v-if="useAuthStore().user?.picture"
-							:src="useAuthStore().user?.picture"
-							aria-label="avatar"
-							alt="avatar"
-						/>
+						<UAvatar v-if="auth.user?.picture" :src="auth.user?.picture" aria-label="avatar" alt="avatar" />
 						<UAvatar
 							v-else
 							icon="i-heroicons-user"
-							:chip-text="useAuthStore().initials"
+							:chip-text="auth.initials"
 							chip-position="top-right"
 							chip-color="secondary"
 						/>
@@ -192,7 +188,7 @@
 					</div>
 				</aside>
 
-				<template v-if="!useAuthStore().loggedIn" #footer>
+				<template v-if="!auth.loggedIn" #footer>
 					<div class="flex items-center gap-4 w-full">
 						<UButton
 							:to="localePath(routes.login?.path)"

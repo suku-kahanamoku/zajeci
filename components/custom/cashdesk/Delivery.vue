@@ -1,11 +1,10 @@
 <script setup lang="ts">
-	import { object, string, type InferType } from 'yup';
+	import { object, string } from 'yup';
 	import type { DeliveryDocument } from '@/server/types/order.type';
 	import { useToNumber } from '@vueuse/core';
 	import { useDebounceFn } from '@vueuse/core';
 
 	const { t, locale } = useI18n();
-	const toast = useToast();
 	const store = useCashdeskStore();
 	const formEl = ref();
 
@@ -38,9 +37,10 @@
 </script>
 <template>
 	<UForm
+		ref="formEl"
 		:schema="schema"
 		:state="state"
-		class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
+		class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<UFormGroup name="type">

@@ -4,13 +4,12 @@ import { UserSchema } from './user.schema';
 import { AddressSchema } from './address.schema';
 import {
 	CartDocument,
-	CreditCardDocument,
 	DeliveryDocument,
 	DeliveryServices,
 	PaymentDocument,
 	PaymentServices,
 } from '../types/order.type';
-import { OrderDocument, OrderStatus, UserDocument } from '../types/user.type';
+import { OrderDocument, OrderStatus } from '../types/user.type';
 
 /**
  * Mongo schema pro dopravu v cashdesku
@@ -34,28 +33,6 @@ const DeliverySchema = new Schema<DeliveryDocument>({
 });
 
 /**
- * Mongo schema pro platebni kartu v paymentu v cashdesku
- */
-const CreditCardSchema = new Schema<CreditCardDocument>({
-	card_number: {
-		type: String,
-		required: true,
-	},
-	expiration_date: {
-		type: String,
-		required: true,
-	},
-	cvv: {
-		type: String,
-		required: true,
-	},
-	cardholder_name: {
-		type: String,
-		required: true,
-	},
-});
-
-/**
  * Mongo schema pro payment v cashdesku
  */
 const PaymentSchema = new Schema<PaymentDocument>({
@@ -64,9 +41,6 @@ const PaymentSchema = new Schema<PaymentDocument>({
 		enum: Object.values(PaymentServices),
 		default: PaymentServices.card,
 		required: true,
-	},
-	credit_card: {
-		type: CreditCardSchema,
 	},
 	total_price: {
 		type: Number,

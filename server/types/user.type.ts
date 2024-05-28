@@ -16,11 +16,9 @@ export interface UserDocument {
 		main?: AddressDocument;
 		variants?: AddressDocument[];
 	};
+	phone?: string;
 	created_at?: Date;
 	updated_at?: Date;
-	picture?: string;
-	sub?: string;
-	new_password?: string;
 	valid?: boolean;
 }
 
