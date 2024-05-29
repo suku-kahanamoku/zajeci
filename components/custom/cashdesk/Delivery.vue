@@ -6,12 +6,13 @@
 
 	const { t, locale } = useI18n();
 	const auth = useAuthStore();
-	const store = useCashdeskStore();
+	const cashdesk = useCashdeskStore();
 	const formEl = ref();
 
 	const schema = object({
 		type: string().required(' '),
 		address: object({
+			name: string().required(' '),
 			street: string().required(' '),
 			city: string().required(' '),
 			postal_code: string().required(' ').matches(/^\d+$/, t('$.message.invalid_postal_code')),
@@ -20,17 +21,16 @@
 	});
 
 	watch(
-		store.delivery,
+		cashdesk.delivery,
 		useDebounceFn(async (value) => {
-			if (store.delivery) {
-				store.delivery.total_price = store.deliveries[store.delivery.type]?.price || 0;
+			if (cashdesk.delivery) {
+				cashdesk.delivery.total_price = cashdesk.deliveries[cashdesk.delivery.type]?.price || 0;
 				try {
 					await formEl.value.validate();
-					store.delivery.valid = true;
+					cashdesk.delivery.valid = true;
 				} catch (error) {
-					store.delivery.valid = false;
+					cashdesk.delivery.valid = false;
 				}
-				console.log(store.delivery);
 			}
 		}, 400)
 	);
@@ -39,18 +39,18 @@
 	<UForm
 		ref="formEl"
 		:schema="schema"
-		:state="store.delivery"
+		:state="cashdesk.delivery"
 		class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-				{{ $t(store.fields.delivery.label) }}
+				{{ $t(cashdesk.fields.delivery.label) }}
 			</h3>
 			<div class="pt-2">
 				<URadio
-					v-for="option of store.deliveryOptions"
+					v-for="option of cashdesk.deliveryOptions"
 					:key="option.value"
-					v-model="store.delivery.type"
+					v-model="cashdesk.delivery.type"
 					:value="option.value"
 					:disabled="option?.disabled"
 					:ui="{
@@ -98,10 +98,26 @@
 						<!-- pokud je vybrana hodnota free (rozvoz po brne), tak zobrazi formular s dodaci adresou -->
 						<div
 							v-if="
-								option.value === DeliveryServices.free && store.delivery.type === DeliveryServices.free
+								(option.value === DeliveryServices.free &&
+									cashdesk.delivery.type === DeliveryServices.free) ||
+								(option.value === DeliveryServices.post &&
+									cashdesk.delivery.type === DeliveryServices.post)
 							"
 							class="space-y-4 my-4"
 						>
+							<UFormGroup
+								:label="$t(auth.fields.name.label)"
+								name="address.main.name"
+								required
+								class="w-full"
+							>
+								<UInput
+									v-model="cashdesk.delivery.address!.name"
+									:placeholder="$t(auth.fields.name.placeholder as string)"
+									:autocomplete="auth.fields.name.autocomplete"
+									size="lg"
+								/>
+							</UFormGroup>
 							<div
 								class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
 							>
@@ -112,7 +128,7 @@
 									class="w-full"
 								>
 									<UInput
-										v-model="store.delivery.address!.street"
+										v-model="cashdesk.delivery.address!.street"
 										:placeholder="$t(auth.fields.street.placeholder as string)"
 										:autocomplete="auth.fields.street.autocomplete"
 										size="lg"
@@ -125,7 +141,7 @@
 									class="w-full"
 								>
 									<UInput
-										v-model="store.delivery.address!.city"
+										v-model="cashdesk.delivery.address!.city"
 										:placeholder="$t(auth.fields.city.placeholder as string)"
 										:autocomplete="auth.fields.city.autocomplete"
 										size="lg"
@@ -143,7 +159,7 @@
 									class="w-full"
 								>
 									<UInput
-										v-model="store.delivery.address!.postal_code"
+										v-model="cashdesk.delivery.address!.postal_code"
 										:placeholder="$t(auth.fields.postal_code.placeholder as string)"
 										:autocomplete="auth.fields.postal_code.autocomplete"
 										size="lg"
@@ -156,7 +172,7 @@
 									class="w-full"
 								>
 									<USelectMenu
-										v-model="store.delivery.address!.state"
+										v-model="cashdesk.delivery.address!.state"
 										:options="
 											auth.stateOptions?.map((item) => ({
 												...item,

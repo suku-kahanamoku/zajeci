@@ -4,7 +4,7 @@
 
 	const { t } = useI18n();
 	const auth = useAuthStore();
-	const store = useCashdeskStore();
+	const cashdesk = useCashdeskStore();
 	const formEl = ref();
 
 	const schema = object({
@@ -14,6 +14,7 @@
 		family_name: string().required(' '),
 		address: object({
 			main: object({
+				name: string(),
 				street: string().required(' '),
 				city: string().required(' '),
 				postal_code: string().required(' ').matches(/^\d+$/, t('$.message.invalid_postal_code')),
@@ -23,14 +24,14 @@
 	});
 
 	watch(
-		store.user,
+		cashdesk.user,
 		useDebounceFn(async (value) => {
-			if (store.user) {
+			if (cashdesk.user) {
 				try {
 					await formEl.value.validate();
-					store.user.valid = true;
+					cashdesk.user.valid = true;
 				} catch (error) {
-					store.user.valid = false;
+					cashdesk.user.valid = false;
 				}
 			}
 		}, 400)
@@ -38,7 +39,7 @@
 </script>
 <template>
 	<div class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700">
-		<UForm ref="formEl" :schema="schema" :state="store.user">
+		<UForm ref="formEl" :schema="schema" :state="cashdesk.user">
 			<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 				<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					{{ $t('$.cashdesk.billing_address') }}
@@ -47,7 +48,7 @@
 				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
 					<UFormGroup :label="$t(auth.fields.email.label)" name="email" required class="w-full">
 						<UInput
-							v-model="store.user.email"
+							v-model="cashdesk.user.email"
 							type="email"
 							:placeholder="auth.fields.email.placeholder"
 							:autocomplete="auth.fields.email.autocomplete"
@@ -56,7 +57,7 @@
 					</UFormGroup>
 					<UFormGroup :label="$t(auth.fields.phone.label)" name="phone" class="w-full">
 						<UInput
-							v-model="store.user.phone"
+							v-model="cashdesk.user.phone"
 							type="phone"
 							:placeholder="auth.fields.phone.placeholder"
 							:autocomplete="auth.fields.phone.autocomplete"
@@ -68,18 +69,28 @@
 				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
 					<UFormGroup :label="$t(auth.fields.given_name.label)" name="given_name" required class="w-full">
 						<UInput
-							v-model="store.user.given_name"
+							v-model="cashdesk.user.given_name"
 							:placeholder="$t(auth.fields.given_name.placeholder as string)"
 							:autocomplete="auth.fields.given_name.autocomplete"
 							size="lg"
+							@change="
+								!cashdesk.delivery.valid
+									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.family_name}`)
+									: undefined
+							"
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(auth.fields.family_name.label)" name="family_name" required class="w-full">
 						<UInput
-							v-model="store.user.family_name"
+							v-model="cashdesk.user.family_name"
 							:placeholder="$t(auth.fields.family_name.placeholder as string)"
 							:autocomplete="auth.fields.family_name.autocomplete"
 							size="lg"
+							@change="
+								!cashdesk.delivery.valid
+									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.family_name}`)
+									: undefined
+							"
 						/>
 					</UFormGroup>
 				</div>
@@ -92,18 +103,22 @@
 						class="w-full"
 					>
 						<UInput
-							v-model="store.user.address!.main!.street"
+							v-model="cashdesk.user.address!.main!.street"
 							:placeholder="$t(auth.fields.street.placeholder as string)"
 							:autocomplete="auth.fields.street.autocomplete"
 							size="lg"
+							@change="
+								!cashdesk.delivery.valid ? (cashdesk.delivery.address!.street = $event) : undefined
+							"
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(auth.fields.city.label)" name="address.main.city" required class="w-full">
 						<UInput
-							v-model="store.user.address!.main!.city"
+							v-model="cashdesk.user.address!.main!.city"
 							:placeholder="$t(auth.fields.city.placeholder as string)"
 							:autocomplete="auth.fields.city.autocomplete"
 							size="lg"
+							@change="!cashdesk.delivery.valid ? (cashdesk.delivery.address!.city = $event) : undefined"
 						/>
 					</UFormGroup>
 				</div>
@@ -116,21 +131,25 @@
 						class="w-full"
 					>
 						<UInput
-							v-model="store.user.address!.main!.postal_code"
+							v-model="cashdesk.user.address!.main!.postal_code"
 							:placeholder="$t(auth.fields.postal_code.placeholder as string)"
 							:autocomplete="auth.fields.postal_code.autocomplete"
 							size="lg"
+							@change="
+								!cashdesk.delivery.valid ? (cashdesk.delivery.address!.postal_code = $event) : undefined
+							"
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(auth.fields.state.label)" name="address.main.state" required class="w-full">
 						<USelectMenu
-							v-model="store.user.address!.main!.state"
+							v-model="cashdesk.user.address!.main!.state"
 							:options="auth.stateOptions?.map((item) => ({ ...item, ...{ label: $t(item.label) } }))"
 							value-attribute="value"
 							option-attribute="label"
 							:placeholder="$t(auth.fields.state.placeholder as string)"
 							:autocomplete="auth.fields.state.autocomplete"
 							size="lg"
+							@change="!cashdesk.delivery.valid ? (cashdesk.delivery.address!.state = $event) : undefined"
 						/>
 					</UFormGroup>
 				</div>

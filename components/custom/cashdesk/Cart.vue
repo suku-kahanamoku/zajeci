@@ -5,17 +5,17 @@
 	const { t, locale } = useI18n();
 	const localePath = useLocalePath();
 	const { routes } = useMenuItems();
-	const store = useCashdeskStore();
+	const cashdesk = useCashdeskStore();
 	const isOpen = ref(false);
 	const deleted = ref();
 
 	const increaseQuantity = (cart: CartDocument) => {
-		store.addItem(cart.wine, 1);
+		cashdesk.addItem(cart.wine, 1);
 	};
 
 	const decreaseQuantity = (cart: CartDocument) => {
 		if (cart.quantity > 1) {
-			store.removeItem(cart.wine?._id);
+			cashdesk.removeItem(cart.wine?._id);
 		} else {
 			removeItem(cart);
 		}
@@ -28,7 +28,7 @@
 
 	const setQuantity = (value: number, cart: CartDocument) => {
 		if (value > 0) {
-			store.setQuantity(cart.wine?._id, value);
+			cashdesk.setQuantity(cart.wine?._id, value);
 		} else {
 			removeItem(cart);
 		}
@@ -42,7 +42,7 @@
 </script>
 
 <template>
-	<UTable :columns="columns" :rows="store.carts" class="hidden sm:block">
+	<UTable :columns="columns" :rows="cashdesk.carts" class="hidden sm:block">
 		<template #quantity-header="{ column }">
 			<div class="text-center">
 				{{ column.label }}
@@ -104,7 +104,7 @@
 
 	<div class="sm:hidden">
 		<div
-			v-for="cart in store.carts"
+			v-for="cart in cashdesk.carts"
 			:key="cart.wine._id"
 			class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
 		>
@@ -157,15 +157,37 @@
 	</div>
 
 	<div
-		class="flex justify-end py-4 pe-3 sm:pe-16 mt-2 text-lg font-semibold text-end gap-4 text-gray-600 border border-gray-200 dark:border-gray-700"
+		class="py-4 px-4 mt-2 text-lg font-semibold text-end text-gray-600 dark:text-white border border-gray-200 dark:border-gray-700"
 	>
-		<p>{{ $t('$.cashdesk.cart.total_price') }}:</p>
-		<p>
-			{{ useToNumber(store?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
-		</p>
+		<div class="flex justify-end items-center gap-4">
+			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.delivery.title') }}:</p>
+			<p class="w-32 sm:w-44 text-right">
+				{{ useToNumber(cashdesk.delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+					$t('$.czk')
+				}}
+			</p>
+		</div>
+
+		<div class="flex justify-end items-center gap-4">
+			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.payment.title') }}:</p>
+			<p class="w-32 sm:w-44 text-right">
+				{{ useToNumber(cashdesk.payment?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+					$t('$.czk')
+				}}
+			</p>
+		</div>
+
+		<div class="flex justify-end items-center gap-4">
+			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.cart.total_price') }}:</p>
+			<p class="w-32 sm:w-44 text-right">
+				{{ useToNumber(cashdesk.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+					$t('$.czk')
+				}}
+			</p>
+		</div>
 	</div>
 
-	<UiModalConfirm v-model="isOpen" @confirm="$event && store.deleteItem(deleted?.wine?._id)">
+	<UiModalConfirm v-model="isOpen" @confirm="$event && cashdesk.deleteItem(deleted?.wine?._id)">
 		<template #header>
 			{{ $t('$.cashdesk.cart.remove_from_cart') }}
 		</template>

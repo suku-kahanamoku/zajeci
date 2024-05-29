@@ -4,6 +4,10 @@ import { AddressDocument } from '../types/address.type';
 
 const addressSchema = new Schema(
 	{
+		name: {
+			type: String,
+			trim: true,
+		},
 		street: {
 			type: String,
 			required: true,

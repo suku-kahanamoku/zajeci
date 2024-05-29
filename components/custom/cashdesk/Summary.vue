@@ -153,7 +153,7 @@
 					<div>
 						<h3 class="font-semibold text-gray-700 dark:text-white">{{ $t(auth.fields.name.label) }}:</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ cashdesk.user?.given_name }}&nbsp;{{ cashdesk.user?.family_name }}
+							{{ cashdesk.delivery.address?.name }}
 						</p>
 					</div>
 					<div>

@@ -13,6 +13,7 @@ export const useAuthStore = defineStore('Auth', () => {
 		address: {
 			main: {
 				_id: '',
+				name: '',
 				street: '',
 				city: '',
 				postal_code: '',
@@ -28,6 +29,10 @@ export const useAuthStore = defineStore('Auth', () => {
 			authUser.value.address = authUser.value.address || {};
 			// nastavi fakturacni adresu
 			authUser.value.address.main = authUser.value.address.main || CLONE(emptyUser.address.main);
+			authUser.value.address.main!.name =
+				authUser.value.address.main!.name ||
+				authUser.value.name ||
+				`${authUser.value.given_name} ${authUser.value.family_name}`;
 			// pripravy dodaci adresy
 			authUser.value.address.variants = authUser.value.address.variants || [];
 		}

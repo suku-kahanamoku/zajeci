@@ -15,7 +15,7 @@
 		],
 	});
 
-	const store = useCashdeskStore();
+	const cashdesk = useCashdeskStore();
 
 	const tabs = ref([
 		{
@@ -25,13 +25,17 @@
 		{
 			key: 'delivery_payment',
 			label: t('$.cashdesk.delivery_payment'),
-			disabled: computed(() => !store.carts?.length),
+			disabled: computed(() => !cashdesk.carts?.length),
 		},
 		{
 			key: 'summary',
 			label: t('$.cashdesk.summary'),
 			disabled: computed(
-				() => !store.carts?.length || !store.user?.valid || !store.delivery.valid || !store.payment.type
+				() =>
+					!cashdesk.carts?.length ||
+					!cashdesk.user?.valid ||
+					!cashdesk.delivery.valid ||
+					!cashdesk.payment.type
 			),
 		},
 	]);

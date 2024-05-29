@@ -1,4 +1,5 @@
 import nuxtStorage from 'nuxt-storage';
+import type { User } from '#auth-utils';
 
 import {
 	DeliveryServices,
@@ -133,8 +134,16 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		updateLocalStorage();
 	};
 
+	const setUser = (newUser: User) => {
+		user.value = CLONE({ ...auth.emptyUser, ...newUser });
+		user.value.address = user.value.address || {};
+		// nastavi fakturacni adresu
+		user.value.address.main = user.value.address?.main || CLONE(auth.emptyUser.address.main);
+		delete user.value.address?.variants;
+	};
+
 	const reset = () => {
-		user.value = CLONE(auth.user || auth.emptyUser);
+		setUser(auth.user || auth.emptyUser);
 		carts.value = [];
 		delivery.value = {
 			type: DeliveryServices.free,
@@ -151,12 +160,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		const local = JSON.parse(nuxtStorage.localStorage.getData('cashdesk') || '{}');
 		if (local) {
 			if (local.user) {
-				user.value = CLONE({ ...auth.emptyUser, ...local.user });
-				user.value.address = user.value.address || {};
-				// nastavi fakturacni adresu
-				user.value.address.main = user.value.address?.main || CLONE(auth.emptyUser.address.main);
-				// pripravy dodaci adresy
-				user.value.address.variants = user.value.address.variants || [];
+				setUser(local.user);
 			}
 			if (local.carts) {
 				carts.value = local.carts;
@@ -197,6 +201,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		setQuantity,
 		deleteItem,
 		reset,
+		setUser,
 		totalItems,
 		total_price,
 		fields,

@@ -52,12 +52,12 @@
 						LinkedIn
 					</div>
 				</UButton>
-				<UButton variant="outline" color="gray" size="lg" class="flex-1" @click="auth.loginByFacebook()">
+				<!-- <UButton variant="outline" color="gray" size="lg" class="flex-1" @click="auth.loginByFacebook()">
 					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:facebook" size="21" />
 						Facebook
 					</div>
-				</UButton>
+				</UButton> -->
 			</div>
 
 			<UDivider :label="$t('$.login.or')" />

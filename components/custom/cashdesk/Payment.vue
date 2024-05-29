@@ -4,7 +4,7 @@
 	import { useDebounceFn } from '@vueuse/core';
 
 	const { t, locale } = useI18n();
-	const store = useCashdeskStore();
+	const cashdesk = useCashdeskStore();
 	const formEl = ref();
 
 	const schema = object({
@@ -12,15 +12,15 @@
 	});
 
 	watch(
-		store.payment,
+		cashdesk.payment,
 		useDebounceFn(async (value) => {
-			if (store.payment) {
-				store.payment.total_price = store.payments[store.payment.type]?.price || 0;
+			if (cashdesk.payment) {
+				cashdesk.payment.total_price = cashdesk.payments[cashdesk.payment.type]?.price || 0;
 				try {
 					await formEl.value.validate();
-					store.payment.valid = true;
+					cashdesk.payment.valid = true;
 				} catch (error) {
-					store.payment.valid = false;
+					cashdesk.payment.valid = false;
 				}
 			}
 		}, 400)
@@ -30,7 +30,7 @@
 	<UForm
 		ref="formEl"
 		:schema="schema"
-		:state="store.payment"
+		:state="cashdesk.payment"
 		class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -39,14 +39,14 @@
 					<h3
 						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
 					>
-						{{ $t(store.fields.payment.label) }}
+						{{ $t(cashdesk.fields.payment.label) }}
 					</h3>
 				</template>
 				<div class="pt-2">
 					<URadio
-						v-for="option of store.paymentOptions"
+						v-for="option of cashdesk.paymentOptions"
 						:key="option.value"
-						v-model="store.payment.type"
+						v-model="cashdesk.payment.type"
 						:value="option.value"
 						:disabled="option?.disabled"
 						:ui="{
