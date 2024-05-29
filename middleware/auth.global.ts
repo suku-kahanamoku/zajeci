@@ -2,10 +2,10 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router';
 
 export default async function (to: RouteLocationNormalizedLoaded, from: RouteLocationNormalizedLoaded) {
 	const localePath = useLocalePath();
-	const authStore = useAuthStore();
+	const auth = useAuthStore();
 
 	// je prihlaseny
-	if (authStore.loggedIn) {
+	if (auth.loggedIn) {
 		// pokud jde z dashboardu, zrusi navigaci
 		if (from.meta?.syscode === 'admin') {
 			switch (to.meta?.syscode) {

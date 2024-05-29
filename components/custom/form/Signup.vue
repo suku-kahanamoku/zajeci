@@ -5,7 +5,7 @@
 	const { routes } = useMenuItems();
 	const { t } = useI18n();
 	const toast = useToast();
-	const { fields } = useAuthStore();
+	const auth = useAuthStore();
 	const localePath = useLocalePath();
 
 	const schema = object({
@@ -33,7 +33,7 @@
 	async function onSubmit(event: FormSubmitEvent<Schema>) {
 		loading.value = true;
 		try {
-			await useAuthStore().signup(event.data);
+			await auth.signup(event.data);
 		} catch (error: any) {
 			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
 		}
@@ -47,20 +47,20 @@
 				{{ $t('$.signup.title') }}
 			</h1>
 			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6" @submit="onSubmit">
-				<UFormGroup :label="$t(fields.email.label)" name="email" required>
+				<UFormGroup :label="$t(auth.fields.email.label)" name="email" required>
 					<UInput
 						v-model="state.email"
 						type="email"
-						:placeholder="fields.email.placeholder"
+						:placeholder="auth.fields.email.placeholder"
 						required
 						size="lg"
 					/>
 				</UFormGroup>
-				<UFormGroup :label="$t(fields.password.label)" name="password" required>
+				<UFormGroup :label="$t(auth.fields.password.label)" name="password" required>
 					<UInput
 						v-model="state.password"
 						type="password"
-						:placeholder="fields.password.placeholder"
+						:placeholder="auth.fields.password.placeholder"
 						required
 						size="lg"
 						autocomplete="new-password"
@@ -70,7 +70,7 @@
 					<UInput
 						v-model="state.confirm_password"
 						type="password"
-						:placeholder="fields.password.placeholder"
+						:placeholder="auth.fields.password.placeholder"
 						required
 						size="lg"
 					/>
@@ -87,7 +87,7 @@
 						>
 							<template #label>
 								<span>
-									{{ $t(fields.terms.label) }}
+									{{ $t(auth.fields.terms.label) }}
 								</span>
 								&nbsp;
 								<UButton

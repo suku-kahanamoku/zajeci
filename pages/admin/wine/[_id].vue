@@ -8,9 +8,9 @@
 		syscode: 'admin_wine_update',
 		title: '$.admin.wine.update.title',
 		middleware: () => {
-			const authStore = useAuthStore();
+			const auth = useAuthStore();
 
-			if (!authStore.isAdmin) {
+			if (!auth.isAdmin) {
 				return navigateTo('/403');
 			}
 		},

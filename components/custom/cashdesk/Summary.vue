@@ -107,13 +107,13 @@
 					<div>
 						<h3 class="font-semibold text-gray-700 dark:text-white">{{ $t(auth.fields.street.label) }}:</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ cashdesk.delivery.address?.street }}
+							{{ cashdesk.user.address?.main?.street }}
 						</p>
 					</div>
 					<div>
 						<h3 class="font-semibold text-gray-700 dark:text-white">{{ $t(auth.fields.city.label) }}:</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ cashdesk.delivery.address?.city }}
+							{{ cashdesk.user.address?.main?.city }}
 						</p>
 					</div>
 					<div>
@@ -121,13 +121,13 @@
 							{{ $t(auth.fields.postal_code.label) }}:
 						</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ cashdesk.delivery.address?.postal_code }}
+							{{ cashdesk.user.address?.main?.postal_code }}
 						</p>
 					</div>
 					<div>
 						<h3 class="font-semibold text-gray-700 dark:text-white">{{ $t(auth.fields.state.label) }}:</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ $t(auth.states[cashdesk.delivery.address?.state || 'cz']?.label) }}
+							{{ $t(auth.states[cashdesk.user.address?.main?.state || 'cz']?.label) }}
 						</p>
 					</div>
 				</div>

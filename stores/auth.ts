@@ -1,15 +1,38 @@
-import type { AddressDocument } from '@/server/types/address.type';
+import type { User } from '#auth-utils';
 
 export const useAuthStore = defineStore('Auth', () => {
-	const { loggedIn, user, session, clear, fetch } = useUserSession();
+	const { loggedIn, user: authUser, session, clear, fetch } = useUserSession();
 	const localePath = useLocalePath();
 
-	// vytvorime adresy pro user objekt
-	if (user.value) {
-		user.value.address = user.value.address || {};
-		user.value.address.main =
-			user.value.address.main || ({ street: '', city: '', postal_code: '', state: '' } as AddressDocument);
-	}
+	const emptyUser = {
+		_id: '',
+		email: '',
+		phone: '',
+		given_name: '',
+		family_name: '',
+		address: {
+			main: {
+				_id: '',
+				street: '',
+				city: '',
+				postal_code: '',
+				state: '',
+			},
+			variants: [],
+		},
+		valid: false,
+	};
+
+	const user = computed<User | null>(() => {
+		if (authUser.value) {
+			authUser.value.address = authUser.value.address || {};
+			// nastavi fakturacni adresu
+			authUser.value.address.main = authUser.value.address.main || CLONE(emptyUser.address.main);
+			// pripravy dodaci adresy
+			authUser.value.address.variants = authUser.value.address.variants || [];
+		}
+		return authUser.value;
+	});
 
 	const initials = computed(
 		() =>
@@ -202,6 +225,7 @@ export const useAuthStore = defineStore('Auth', () => {
 		logout,
 		resetPassword,
 		loggedIn,
+		emptyUser,
 		user,
 		session,
 		initials,

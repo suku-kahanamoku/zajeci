@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import { object, string } from 'yup';
-	import type { PaymentDocument } from '@/server/types/order.type';
 	import { useToNumber } from '@vueuse/core';
 	import { useDebounceFn } from '@vueuse/core';
 
@@ -12,10 +11,8 @@
 		type: string().required(' '),
 	});
 
-	const state = reactive<PaymentDocument | any>(store.payment);
-
 	watch(
-		state,
+		store.payment,
 		useDebounceFn(async (value) => {
 			if (store.payment) {
 				store.payment.total_price = store.payments[store.payment.type]?.price || 0;
@@ -33,7 +30,7 @@
 	<UForm
 		ref="formEl"
 		:schema="schema"
-		:state="state"
+		:state="store.payment"
 		class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -49,7 +46,7 @@
 					<URadio
 						v-for="option of store.paymentOptions"
 						:key="option.value"
-						v-model="state.type"
+						v-model="store.payment.type"
 						:value="option.value"
 						:disabled="option?.disabled"
 						:ui="{

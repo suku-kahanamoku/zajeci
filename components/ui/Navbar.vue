@@ -56,113 +56,124 @@
 				</nav>
 
 				<!-- menu napravo -->
-				<div class="flex items-center gap-4">
-					<!-- pokud je to prihlasene, zobrazi uzivatelske menu -->
-					<UDropdown
-						v-if="auth.loggedIn"
-						:items="userMenuItems"
-						:ui="{ item: { disabled: 'cursor-text select-text' } }"
-						:popper="{ placement: 'bottom-start' }"
-					>
-						<UAvatar v-if="auth.user?.picture" :src="auth.user?.picture" aria-label="avatar" alt="avatar" />
-						<UAvatar
-							v-else
-							icon="i-heroicons-user"
-							:chip-text="auth.initials"
-							chip-position="top-right"
-							chip-color="secondary"
-						/>
-
-						<template #item="{ item }">
-							<span class="truncate">{{ $t(item.label) }}</span>
-						</template>
-					</UDropdown>
-
-					<!-- jinak zobrazi login a signup menu -->
-					<div v-else class="hidden lg:flex items-center gap-4">
-						<UButton
-							:to="localePath(routes.login?.path)"
-							class="text-secondary-500 dark:text-secondary-400"
-							variant="outline"
-							active-class="hidden"
-							>{{ $t(routes.login?.meta?.title) }}</UButton
+				<client-only>
+					<div class="flex items-center gap-4">
+						<!-- pokud je to prihlasene, zobrazi uzivatelske menu -->
+						<UDropdown
+							v-if="auth.loggedIn"
+							:items="userMenuItems"
+							:ui="{ item: { disabled: 'cursor-text select-text' } }"
+							:popper="{ placement: 'bottom-start' }"
 						>
-						<UButton :to="localePath(routes.signup?.path)" class="dark:text-white" active-class="hidden">{{
-							$t(routes.signup?.meta?.title)
-						}}</UButton>
-					</div>
+							<UChip
+								size="2xl"
+								color="secondary"
+								:text="auth.initials"
+								:show="auth.initials?.length ? true : false"
+							>
+								<UAvatar
+									v-if="(auth.user as any)?.picture"
+									:src="(auth.user as any)?.picture"
+									aria-label="avatar"
+									alt="avatar"
+								/>
+								<UAvatar v-else icon="i-heroicons-user" />
+							</UChip>
 
-					<!-- shopping cart -->
-					<UChip
-						size="2xl"
-						color="secondary"
-						:text="cashdesk.carts?.length"
-						:show="cashdesk.carts?.length ? true : false"
-					>
+							<template #item="{ item }">
+								<span class="truncate">{{ $t(item.label) }}</span>
+							</template>
+						</UDropdown>
+
+						<!-- jinak zobrazi login a signup menu -->
+						<div v-else class="hidden lg:flex items-center gap-4">
+							<UButton
+								:to="localePath(routes.login?.path)"
+								class="text-secondary-500 dark:text-secondary-400"
+								variant="outline"
+								active-class="hidden"
+								>{{ $t(routes.login?.meta?.title) }}</UButton
+							>
+							<UButton
+								:to="localePath(routes.signup?.path)"
+								class="dark:text-white"
+								active-class="hidden"
+								>{{ $t(routes.signup?.meta?.title) }}</UButton
+							>
+						</div>
+
+						<!-- shopping cart -->
+						<UChip
+							size="2xl"
+							color="secondary"
+							:text="cashdesk.carts?.length"
+							:show="cashdesk.carts?.length ? true : false"
+						>
+							<UButton
+								:to="routes.cashdesk.path"
+								icon="i-heroicons-shopping-cart"
+								class="text-gray-600 dark:text-gray-400"
+								:ui="{ rounded: 'rounded-full' }"
+								variant="ghost"
+								:aria-label="$t('$.aria.cart')"
+							/>
+						</UChip>
+
+						<!-- toggle light & dark mode -->
 						<UButton
-							:to="routes.cashdesk.path"
-							icon="i-heroicons-shopping-cart"
+							:icon="$colorMode.value === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
 							class="text-gray-600 dark:text-gray-400"
 							:ui="{ rounded: 'rounded-full' }"
 							variant="ghost"
-							:aria-label="$t('$.aria.cart')"
-						/>
-					</UChip>
-
-					<!-- toggle light & dark mode -->
-					<UButton
-						:icon="$colorMode.value === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
-						class="text-gray-600 dark:text-gray-400"
-						:ui="{ rounded: 'rounded-full' }"
-						variant="ghost"
-						:aria-label="$t('$.aria.mode')"
-						@click="$colorMode.preference = $colorMode.value === 'dark' ? 'light' : 'dark'"
-					/>
-
-					<!-- jazyk. mutace -->
-					<UDropdown
-						:items="[langs.filter((i) => i.code !== locale)]"
-						:ui="{
-							wrapper: 'p-1',
-							container: 'custom-popper',
-							item: { disabled: 'cursor-text select-text', base: 'w-auto' },
-							width: 'w-auto',
-							popper: {
-								strategy: 'absolute',
-							},
-						}"
-					>
-						<Icon
-							:name="langs.find((i) => i.code === locale)!.label"
-							size="20"
-							class="w-auto"
-							:aria-hidden="false"
-							:aria-label="$t('$.aria.lang')"
+							:aria-label="$t('$.aria.mode')"
+							@click="$colorMode.preference = $colorMode.value === 'dark' ? 'light' : 'dark'"
 						/>
 
-						<template #item="{ item }">
+						<!-- jazyk. mutace -->
+						<UDropdown
+							:items="[langs.filter((i) => i.code !== locale)]"
+							:ui="{
+								wrapper: 'p-1',
+								container: 'custom-popper',
+								item: { disabled: 'cursor-text select-text', base: 'w-auto' },
+								width: 'w-auto',
+								popper: {
+									strategy: 'absolute',
+								},
+							}"
+						>
 							<Icon
-								:name="item.label"
+								:name="langs.find((i) => i.code === locale)!.label"
 								size="20"
 								class="w-auto"
 								:aria-hidden="false"
-								:aria-label="item.label"
+								:aria-label="$t('$.aria.lang')"
 							/>
-						</template>
-					</UDropdown>
 
-					<!-- hamburger icon -->
-					<div v-if="menuItems?.length" class="flex lg:hidden">
-						<UButton
-							icon="i-heroicons-bars-3"
-							color="white"
-							square
-							variant="solid"
-							:aria-label="$t('$.aria.hamburger')"
-							@click="isOpen = true"
-						/>
+							<template #item="{ item }">
+								<Icon
+									:name="item.label"
+									size="20"
+									class="w-auto"
+									:aria-hidden="false"
+									:aria-label="item.label"
+								/>
+							</template>
+						</UDropdown>
+
+						<!-- hamburger icon -->
+						<div v-if="menuItems?.length" class="flex lg:hidden">
+							<UButton
+								icon="i-heroicons-bars-3"
+								color="white"
+								square
+								variant="solid"
+								:aria-label="$t('$.aria.hamburger')"
+								@click="isOpen = true"
+							/>
+						</div>
 					</div>
-				</div>
+				</client-only>
 			</div>
 		</header>
 

@@ -25,13 +25,13 @@
 		{
 			key: 'delivery_payment',
 			label: t('$.cashdesk.delivery_payment'),
-			disabled: !store.carts.length,
+			disabled: computed(() => !store.carts?.length),
 		},
 		{
 			key: 'summary',
 			label: t('$.cashdesk.summary'),
 			disabled: computed(
-				() => !store.carts.length || !store.delivery.type || !store.payment.type || !store.user?.valid
+				() => !store.carts?.length || !store.user?.valid || !store.delivery.valid || !store.payment.type
 			),
 		},
 	]);
@@ -68,35 +68,37 @@
 				{{ $t('$.cashdesk.title') }}
 			</h1>
 			<div class="py-10">
-				<UTabs v-model="selected" :items="tabs">
-					<template #item="{ item }">
-						<div class="py-4">
-							<CustomCashdeskCart v-if="item.key === 'cart'" />
-							<CustomCashdeskDeliveryPayment v-else-if="item.key === 'delivery_payment'" />
-							<CustomCashdeskSummary v-else-if="item.key === 'summary'" />
-						</div>
-					</template>
-				</UTabs>
-
-				<div class="flex justify-between mt-8">
-					<UButton
-						:to="selected < 1 ? routes.wine.path : undefined"
-						icon="i-heroicons-arrow-left"
-						color="white"
-						size="lg"
-						@click="selected ? (selected -= 1) : undefined"
-					>
-						<span class="hidden sm:block">
-							{{ $t(backBtn[selected] || '$.btn.back') }}
-						</span>
-					</UButton>
-					<UButton size="lg" :disabled="tabs[selected + 1]?.disabled" @click="selected += 1">
-						{{ $t(continueBtn[selected] || '$.btn.continue') }}
-						<template #trailing>
-							<UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />
+				<client-only>
+					<UTabs v-model="selected" :items="tabs">
+						<template #item="{ item }">
+							<div class="py-4">
+								<CustomCashdeskCart v-if="item.key === 'cart'" />
+								<CustomCashdeskDeliveryPayment v-else-if="item.key === 'delivery_payment'" />
+								<CustomCashdeskSummary v-else-if="item.key === 'summary'" />
+							</div>
 						</template>
-					</UButton>
-				</div>
+					</UTabs>
+
+					<div class="flex justify-between mt-8">
+						<UButton
+							:to="selected < 1 ? routes.wine.path : undefined"
+							icon="i-heroicons-arrow-left"
+							color="white"
+							size="lg"
+							@click="selected ? (selected -= 1) : undefined"
+						>
+							<span class="hidden sm:block">
+								{{ $t(backBtn[selected] || '$.btn.back') }}
+							</span>
+						</UButton>
+						<UButton size="lg" :disabled="tabs[selected + 1]?.disabled" @click="selected += 1">
+							{{ $t(continueBtn[selected] || '$.btn.continue') }}
+							<template #trailing>
+								<UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />
+							</template>
+						</UButton>
+					</div>
+				</client-only>
 			</div>
 		</div>
 	</div>

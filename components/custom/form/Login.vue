@@ -5,7 +5,7 @@
 	const { routes } = useMenuItems();
 	const { t } = useI18n();
 	const toast = useToast();
-	const { fields } = useAuthStore();
+	const auth = useAuthStore();
 	const localePath = useLocalePath();
 
 	const schema = object({
@@ -25,7 +25,7 @@
 	async function onSubmit(event: FormSubmitEvent<Schema>) {
 		loading.value = true;
 		try {
-			await useAuthStore().login(event.data);
+			await auth.login(event.data);
 		} catch (error: any) {
 			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
 		}
@@ -40,37 +40,19 @@
 			</h1>
 
 			<div class="flex justify-between items-center w-full gap-4">
-				<UButton
-					variant="outline"
-					color="gray"
-					size="lg"
-					class="flex-1"
-					@click="useAuthStore().loginByGoogle()"
-				>
+				<UButton variant="outline" color="gray" size="lg" class="flex-1" @click="auth.loginByGoogle()">
 					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:google-icon" size="20" />
 						Google
 					</div>
 				</UButton>
-				<UButton
-					variant="outline"
-					color="gray"
-					size="lg"
-					class="flex-1"
-					@click="useAuthStore().loginByLinkedin()"
-				>
+				<UButton variant="outline" color="gray" size="lg" class="flex-1" @click="auth.loginByLinkedin()">
 					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:linkedin-icon" size="20" />
 						LinkedIn
 					</div>
 				</UButton>
-				<UButton
-					variant="outline"
-					color="gray"
-					size="lg"
-					class="flex-1"
-					@click="useAuthStore().loginByFacebook()"
-				>
+				<UButton variant="outline" color="gray" size="lg" class="flex-1" @click="auth.loginByFacebook()">
 					<div class="flex items-center justify-center gap-2 mx-auto dark:text-white">
 						<Icon name="logos:facebook" size="21" />
 						Facebook
@@ -81,23 +63,23 @@
 			<UDivider :label="$t('$.login.or')" />
 
 			<UForm :schema="schema" :state="state" class="space-y-4 md:space-y-6" @submit="onSubmit">
-				<UFormGroup :label="$t(fields.email.label)" name="email" required>
+				<UFormGroup :label="$t(auth.fields.email.label)" name="email" required>
 					<UInput
 						v-model="state.email"
 						type="email"
-						:placeholder="fields.email.placeholder"
+						:placeholder="auth.fields.email.placeholder"
 						required
 						size="lg"
 					/>
 				</UFormGroup>
-				<UFormGroup :label="$t(fields.password.label)" name="password" required>
+				<UFormGroup :label="$t(auth.fields.password.label)" name="password" required>
 					<UInput
 						v-model="state.password"
 						type="password"
-						:placeholder="fields.password.placeholder"
+						:placeholder="auth.fields.password.placeholder"
 						required
 						size="lg"
-						:autocomplete="fields.password.autocomplete"
+						:autocomplete="auth.fields.password.autocomplete"
 					/>
 				</UFormGroup>
 				<div class="flex items-center justify-between">

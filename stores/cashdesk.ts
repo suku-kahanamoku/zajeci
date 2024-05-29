@@ -13,43 +13,19 @@ import type { UserDocument } from '@/server/types/user.type';
 import type { WineDocument } from '@/server/types/wine.type';
 
 export const useCashdeskStore = defineStore('Cashdesk', () => {
-	const { user: authUser } = useAuthStore();
+	const auth = useAuthStore();
 
-	const defUser = {
-		email: '',
-		phone: '',
-		given_name: '',
-		family_name: '',
-		address: {
-			main: {
-				street: '',
-				city: '',
-				postal_code: '',
-				state: '',
-			},
-		},
-		valid: false,
-	};
-
-	const loadFromLocalStorage = (key: string, defaultValue: any) => {
-		const local = nuxtStorage.localStorage.getData('cashdesk');
-		return local ? local[key] || defaultValue : defaultValue;
-	};
-
-	const user = ref<UserDocument | null>(loadFromLocalStorage('user', authUser ? CLONE(authUser) : defUser));
-	if (user.value?.address) {
-		user.value.address.variants = [];
-	}
-
-	const carts = ref<CartDocument[]>(loadFromLocalStorage('carts', []));
-
-	const delivery = ref<DeliveryDocument>(
-		loadFromLocalStorage('delivery', {
-			type: DeliveryServices.free,
-			address: user.value?.address?.main,
-			total_price: 0,
-		})
-	);
+	const user = ref<UserDocument>(CLONE(auth.user || auth.emptyUser));
+	const carts = ref<CartDocument[]>([]);
+	const delivery = ref<DeliveryDocument>({
+		type: DeliveryServices.free,
+		address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
+		total_price: 0,
+	});
+	const payment = ref<PaymentDocument>({
+		type: PaymentServices.bank,
+		total_price: 0,
+	});
 
 	const deliveries: Record<
 		string,
@@ -58,13 +34,6 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	ITERATE(deliveryObjects, (item, name) => (deliveries[name] = { ...item, ...{ value: name } }));
 
 	const deliveryOptions = Object.values(deliveries);
-
-	const payment = ref<PaymentDocument>(
-		loadFromLocalStorage('payment', {
-			type: PaymentServices.bank,
-			total_price: 0,
-		})
-	);
 
 	const payments: Record<
 		string,
@@ -164,9 +133,42 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		updateLocalStorage();
 	};
 
-	const clearCart = () => {
+	const reset = () => {
+		user.value = CLONE(auth.user || auth.emptyUser);
 		carts.value = [];
-		updateLocalStorage();
+		delivery.value = {
+			type: DeliveryServices.free,
+			address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
+			total_price: 0,
+		};
+		payment.value = {
+			type: PaymentServices.bank,
+			total_price: 0,
+		};
+	};
+
+	const loadFromLocalStorage = () => {
+		const local = JSON.parse(nuxtStorage.localStorage.getData('cashdesk') || '{}');
+		if (local) {
+			if (local.user) {
+				user.value = CLONE({ ...auth.emptyUser, ...local.user });
+				user.value.address = user.value.address || {};
+				// nastavi fakturacni adresu
+				user.value.address.main = user.value.address?.main || CLONE(auth.emptyUser.address.main);
+				// pripravy dodaci adresy
+				user.value.address.variants = user.value.address.variants || [];
+			}
+			if (local.carts) {
+				carts.value = local.carts;
+			}
+			if (local.delivery) {
+				delivery.value = local.delivery;
+				delivery.value.address = delivery.value.address || CLONE(auth.emptyUser.address.main);
+			}
+			if (local.payment) {
+				payment.value = local.payment;
+			}
+		}
 	};
 
 	const updateLocalStorage = () => {
@@ -176,13 +178,16 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			delivery: delivery.value,
 			payment: payment.value,
 		};
-		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(cashdesk));
+		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(cashdesk), 1, 'd');
 	};
 
-	watch(user, updateLocalStorage, { deep: true });
-	watch(carts, updateLocalStorage, { deep: true });
-	watch(delivery, updateLocalStorage, { deep: true });
-	watch(payment, updateLocalStorage, { deep: true });
+	onBeforeMount(() => {
+		loadFromLocalStorage();
+		watch(user, updateLocalStorage, { deep: true });
+		watch(carts, updateLocalStorage, { deep: true });
+		watch(delivery, updateLocalStorage, { deep: true });
+		watch(payment, updateLocalStorage, { deep: true });
+	});
 
 	return {
 		user,
@@ -191,7 +196,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		removeItem,
 		setQuantity,
 		deleteItem,
-		clearCart,
+		reset,
 		totalItems,
 		total_price,
 		fields,
