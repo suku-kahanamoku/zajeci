@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
-import { ImageSchema } from './image.schema';
+import { ImageModel } from './image.schema';
 import { WineDocument } from '../types/wine.type';
 import { ImageDocument } from '../types/image.type';
 
-const wineSchema = new Schema(
+export const WineSchema = new Schema<WineDocument>(
 	{
 		name: {
 			type: String,
@@ -47,7 +47,6 @@ const wineSchema = new Schema(
 			main: {
 				type: Schema.Types.ObjectId,
 				ref: 'images',
-				required: true,
 			},
 			variants: [
 				{
@@ -72,16 +71,16 @@ const wineSchema = new Schema(
 	}
 );
 
-wineSchema.post('find', async function (docs: any[], next: Function) {
+WineSchema.post('find', async function (docs: any[], next: Function) {
 	await fetchWinesWithImages(docs);
 	next();
 });
 
-wineSchema.pre('findOne', function () {
+WineSchema.pre('findOne', function () {
 	this.populate('image.main').populate('image.variants');
 });
 
-export const WineSchema = model<WineDocument>('wines', wineSchema);
+export const WineModel = model<WineDocument>('wines', WineSchema);
 
 /**
  * Pro dana vina nacte jednim dotazem vsechny obrazky a pak je namapuje na dana vina
@@ -104,7 +103,7 @@ async function fetchWinesWithImages(wines: WineDocument[]): Promise<void> {
 	});
 
 	// Fetch all images using $in
-	const images = await ImageSchema.find({ _id: { $in: Array.from(imageIds) } }).lean();
+	const images = await ImageModel.find({ _id: { $in: Array.from(imageIds) } }).lean();
 	const imageMap = new Map(images.map((image) => [image._id.toString(), image]));
 
 	// Map images back to wines

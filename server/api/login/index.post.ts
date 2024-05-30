@@ -1,6 +1,6 @@
 import { H3Event } from 'h3';
 
-import { UserSchema } from '@/server/models/user.schema';
+import { UserModel } from '@/server/models/user.schema';
 import { COMPARE_PASSWORD } from '@/utils/server.functions';
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	}
 
 	// kontrola uzivatele a hesla
-	const user = await UserSchema.findOne({ email: body.email });
+	const user = await UserModel.findOne({ email: body.email });
 	if (user?._id) {
 		const isValid =
 			(await COMPARE_PASSWORD(body.password, user.password || '')) ||

@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
-import { UserSchema } from './user.schema';
+import { UserModel } from './user.schema';
 import { AddressDocument } from '../types/address.type';
 
-export const AddressSchema = new Schema(
+export const AddressSchema = new Schema<AddressDocument>(
 	{
 		name: {
 			type: String,
@@ -34,7 +34,7 @@ export const AddressSchema = new Schema(
 		},
 	},
 	{
-		timestamps: true, // Automatically adds created_at and updated_at fields
+		timestamps: true,
 	}
 );
 
@@ -42,7 +42,7 @@ const removeFromUser = async function (doc: any, next: Function) {
 	const addressId = doc._id;
 
 	// Aktualizovat uzivatele, kteri maji tuto adresu jako hlavni nebo variantu
-	await UserSchema.updateMany(
+	await UserModel.updateMany(
 		{
 			$or: [{ 'address.main': addressId }, { 'address.variants': addressId }],
 		},
@@ -78,7 +78,7 @@ AddressSchema.post('deleteMany', async function (docs: any[], next: Function) {
 	const deletedAddressIds = docs.map((doc) => doc._id);
 
 	// Aktualizovat uzivatele, kteri maji smazane adresy
-	await UserSchema.updateMany(
+	await UserModel.updateMany(
 		{
 			$or: [{ 'address.main': { $in: deletedAddressIds } }, { 'address.variants': { $in: deletedAddressIds } }],
 		},

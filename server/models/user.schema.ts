@@ -3,7 +3,7 @@ import { AddressModel } from './address.schema';
 import { AddressDocument } from '../types/address.type';
 import { UserDocument } from '../types/user.type';
 
-const userSchema = new Schema(
+export const UserSchema = new Schema<UserDocument>(
 	{
 		email: {
 			type: String,
@@ -57,22 +57,26 @@ const userSchema = new Schema(
 				},
 			],
 		},
+		phone: {
+			type: String,
+			trim: true,
+		},
 	},
 	{
-		timestamps: true, // Automatically adds created_at and updated_at fields
+		timestamps: true,
 	}
 );
 
-userSchema.post('find', async function (docs: any[], next: Function) {
+UserSchema.post('find', async function (docs: any[], next: Function) {
 	await fetchUsersWithAddresses(docs);
 	next();
 });
 
-userSchema.pre('findOne', function () {
+UserSchema.pre('findOne', function () {
 	this.populate('address.main').populate('address.variants');
 });
 
-export const UserSchema = model<UserDocument>('users', userSchema);
+export const UserModel = model<UserDocument>('users', UserSchema);
 
 async function fetchUsersWithAddresses(users: UserDocument[]) {
 	if (!users || users.length === 0) return;

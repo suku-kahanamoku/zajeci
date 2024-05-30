@@ -1,6 +1,6 @@
 import { H3Event } from 'h3';
 
-import { UserSchema } from '@/server/models/user.schema';
+import { UserModel } from '@/server/models/user.schema';
 import { COMPARE_PASSWORD, GENERATE_HASHED_PASSWORD } from '@/utils/server.functions';
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -8,7 +8,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	const body = await readBody(event);
 	delete body._id, body.email;
 	// kontrola uzivatele
-	const user = await UserSchema.findById(event.context.params?._id);
+	const user = await UserModel.findById(event.context.params?._id);
 	if (user?._id) {
 		if (body.password) {
 			// kontrola hesla
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event: H3Event) => {
 			message: t('$.message.user_not_exists'),
 		});
 	}
-	const result = await UserSchema.findByIdAndUpdate(event.context.params?._id, body, { new: true });
+	const result = await UserModel.findByIdAndUpdate(event.context.params?._id, body, { new: true });
 
 	return { ...result?.toObject(), password: undefined };
 });

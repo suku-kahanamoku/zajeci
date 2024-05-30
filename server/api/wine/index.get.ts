@@ -1,6 +1,6 @@
 import { H3Event } from 'h3';
 
-import { WineSchema } from '@/server/models/wine.schema';
+import { WineModel } from '@/server/models/wine.schema';
 import { WineDocument } from '@/server/types/wine.type';
 
 export default defineEventHandler(async (event: H3Event): Promise<WineDocument[] | undefined> => {
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event: H3Event): Promise<WineDocument[]
 	const page = parseInt(query.page as string, 10) || 1;
 	const skip = (page - 1) * limit;
 
-	const result = await WineSchema.find(where).limit(limit).skip(skip);
+	const result = await WineModel.find(where).limit(limit).skip(skip);
 
 	return result.map((i) => i.toObject());
 });

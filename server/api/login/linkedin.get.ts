@@ -1,12 +1,12 @@
-import { UserSchema } from '@/server/models/user.schema';
+import { UserModel } from '@/server/models/user.schema';
 
 export default oauth.linkedinEventHandler({
 	async onSuccess(event, { user, tokens }) {
 		// pokud uzivatel v db neexistuje, vytvori ho
 		if (user?.email) {
-			let dbUser = await UserSchema.findOne({ email: user.email });
+			let dbUser = await UserModel.findOne({ email: user.email });
 			if (!dbUser?._id) {
-				dbUser = await new UserSchema(user).save();
+				dbUser = await new UserModel(user).save();
 			}
 			user = { ...user, ...dbUser.toObject(), password: undefined };
 		}

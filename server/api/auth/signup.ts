@@ -1,7 +1,7 @@
 import { H3Event } from 'h3';
 import { useMailing } from '@/server/composables/useMailing';
 
-import { UserSchema } from '@/server/models/user.schema';
+import { UserModel } from '@/server/models/user.schema';
 import { GENERATE_HASHED_PASSWORD } from '@/utils/server.functions';
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	}
 
 	// kontrola zda uzivatel jiz existuje
-	let user = await UserSchema.findOne({ email: body.email });
+	let user = await UserModel.findOne({ email: body.email });
 	if (user?._id) {
 		throw createError({
 			statusCode: 400,
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	}
 	// pokud neexistuje vytvori noveho uzivatele v DB
 	else {
-		user = await new UserSchema({ ...body, password: await GENERATE_HASHED_PASSWORD(body.password) }).save();
+		user = await new UserModel({ ...body, password: await GENERATE_HASHED_PASSWORD(body.password) }).save();
 
 		// odesle registracni mail
 		if (user._id) {

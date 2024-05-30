@@ -17,8 +17,8 @@ export interface UserDocument {
 		variants?: AddressDocument[];
 	};
 	phone?: string;
-	created_at?: Date;
-	updated_at?: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
 	valid?: boolean;
 }
 
@@ -55,6 +55,6 @@ export interface OrderDocument {
 	status: OrderStatus;
 	delivery: DeliveryDocument;
 	payment: PaymentDocument;
-	created_at?: Date;
-	updated_at?: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
 }

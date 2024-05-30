@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
-import { WineSchema } from './wine.schema';
+import { WineModel } from './wine.schema';
 import { ImageDocument } from '../types/image.type';
 
-const imageSchema = new Schema(
+const ImageSchema = new Schema(
 	{
 		src: {
 			type: String,
@@ -43,7 +43,7 @@ const imageSchema = new Schema(
 const removeFromWine = async function (doc: any, next: Function) {
 	const imageId = doc._id;
 
-	await WineSchema.updateMany(
+	await WineModel.updateMany(
 		{
 			$or: [{ 'image.main': imageId }, { 'image.variants': imageId }],
 		},
@@ -70,14 +70,14 @@ const removeFromWine = async function (doc: any, next: Function) {
 	next();
 };
 
-imageSchema.post('deleteOne', removeFromWine);
+ImageSchema.post('deleteOne', removeFromWine);
 
-imageSchema.post('findOneAndDelete', removeFromWine);
+ImageSchema.post('findOneAndDelete', removeFromWine);
 
-imageSchema.post('deleteMany', async function (docs: any[], next: Function) {
+ImageSchema.post('deleteMany', async function (docs: any[], next: Function) {
 	const deletedImageIds = docs.map((doc) => doc._id);
 
-	await WineSchema.updateMany(
+	await WineModel.updateMany(
 		{
 			$or: [{ 'image.main': { $in: deletedImageIds } }, { 'image.variants': { $in: deletedImageIds } }],
 		},
@@ -104,4 +104,4 @@ imageSchema.post('deleteMany', async function (docs: any[], next: Function) {
 	next();
 });
 
-export const ImageSchema = model<ImageDocument>('images', imageSchema);
+export const ImageModel = model<ImageDocument>('images', ImageSchema);

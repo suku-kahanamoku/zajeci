@@ -17,6 +17,6 @@ export interface WineDocument {
 	};
 	categories?: string[];
 	published?: boolean;
-	created_at?: Date;
-	updated_at?: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
 }
