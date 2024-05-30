@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { UserSchema } from './user.schema';
 import { AddressDocument } from '../types/address.type';
 
-const addressSchema = new Schema(
+export const AddressSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -69,11 +69,11 @@ const removeFromUser = async function (doc: any, next: Function) {
 	next();
 };
 
-addressSchema.post('deleteOne', removeFromUser);
+AddressSchema.post('deleteOne', removeFromUser);
 
-addressSchema.post('findOneAndDelete', removeFromUser);
+AddressSchema.post('findOneAndDelete', removeFromUser);
 
-addressSchema.post('deleteMany', async function (docs: any[], next: Function) {
+AddressSchema.post('deleteMany', async function (docs: any[], next: Function) {
 	// Seznam ID adres ke smazani
 	const deletedAddressIds = docs.map((doc) => doc._id);
 
@@ -105,4 +105,4 @@ addressSchema.post('deleteMany', async function (docs: any[], next: Function) {
 	next();
 });
 
-export const AddressSchema = model<AddressDocument>('addresses', addressSchema);
+export const AddressModel = model<AddressDocument>('addresses', AddressSchema);

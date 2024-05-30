@@ -17,6 +17,10 @@
 
 	const cashdesk = useCashdeskStore();
 
+	const route = useRoute();
+	const router = useRouter();
+	const { routes } = useMenuItems();
+
 	const tabs = ref([
 		{
 			key: 'cart',
@@ -35,14 +39,10 @@
 					!cashdesk.carts?.length ||
 					!cashdesk.user?.valid ||
 					!cashdesk.delivery.valid ||
-					!cashdesk.payment.type
+					!cashdesk.payment.valid
 			),
 		},
 	]);
-
-	const route = useRoute();
-	const router = useRouter();
-	const { routes } = useMenuItems();
 
 	const selected = computed({
 		get() {
@@ -61,6 +61,14 @@
 
 	const backBtn = ['$.btn.back_shopping', '$.cashdesk.cart.title', '$.cashdesk.delivery_payment'];
 	const continueBtn = ['$.cashdesk.delivery_payment', '$.cashdesk.summary', '$.btn.complete_order'];
+
+	async function onNext() {
+		if (selected.value + 1 >= tabs.value.length) {
+			await cashdesk.onSubmit();
+		} else {
+			selected.value += 1;
+		}
+	}
 </script>
 
 <template>
@@ -95,7 +103,7 @@
 								{{ $t(backBtn[selected] || '$.btn.back') }}
 							</span>
 						</UButton>
-						<UButton size="lg" :disabled="tabs[selected + 1]?.disabled" @click="selected += 1">
+						<UButton size="lg" :disabled="tabs[selected + 1]?.disabled" @click="onNext">
 							{{ $t(continueBtn[selected] || '$.btn.continue') }}
 							<template #trailing>
 								<UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />

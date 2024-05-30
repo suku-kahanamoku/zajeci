@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { AddressSchema } from './address.schema';
+import { AddressModel } from './address.schema';
 import { AddressDocument } from '../types/address.type';
 import { UserDocument } from '../types/user.type';
 
@@ -89,7 +89,7 @@ async function fetchUsersWithAddresses(users: UserDocument[]) {
 	});
 
 	// Fetch all addresss using $in
-	const addresses = await AddressSchema.find({ _id: { $in: Array.from(addressIds) } }).lean();
+	const addresses = await AddressModel.find({ _id: { $in: Array.from(addressIds) } }).lean();
 	const addressMap = new Map(addresses.map((address) => [address._id.toString(), address]));
 
 	// Map addresses back to users

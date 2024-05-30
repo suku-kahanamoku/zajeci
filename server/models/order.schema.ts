@@ -1,6 +1,4 @@
 import { Schema, model } from 'mongoose';
-import { WineSchema } from './wine.schema';
-import { UserSchema } from './user.schema';
 import { AddressSchema } from './address.schema';
 import {
 	CartDocument,
@@ -53,10 +51,6 @@ const PaymentSchema = new Schema<PaymentDocument>({
  * Mongo schema pro jednotlive kosiky v cashdesku
  */
 const CartSchema = new Schema<CartDocument>({
-	wine: {
-		type: WineSchema,
-		required: true,
-	},
 	quantity: {
 		type: Number,
 		required: true,
@@ -81,8 +75,7 @@ export const OrderSchema = model<OrderDocument>(
 	'orders',
 	new Schema<OrderDocument>(
 		{
-			user: UserSchema,
-			items: [CartSchema],
+			carts: [CartSchema],
 			total_quantity: {
 				type: Number,
 				required: true,

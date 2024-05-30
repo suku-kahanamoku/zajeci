@@ -49,7 +49,7 @@ export enum OrderStatus {
  */
 export interface OrderDocument {
 	user: UserDocument;
-	items: CartDocument[];
+	carts: CartDocument[];
 	total_quantity: number;
 	total_price: number;
 	status: OrderStatus;

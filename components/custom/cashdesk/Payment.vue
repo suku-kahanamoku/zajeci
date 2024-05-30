@@ -11,20 +11,21 @@
 		type: string().required(' '),
 	});
 
-	watch(
-		cashdesk.payment,
-		useDebounceFn(async (value) => {
-			if (cashdesk.payment) {
-				cashdesk.payment.total_price = cashdesk.payments[cashdesk.payment.type]?.price || 0;
-				try {
-					await formEl.value.validate();
-					cashdesk.payment.valid = true;
-				} catch (error) {
-					cashdesk.payment.valid = false;
-				}
+	onMounted(setPaymentValidation);
+
+	watch(cashdesk.payment, useDebounceFn(setPaymentValidation, 400));
+
+	async function setPaymentValidation() {
+		if (cashdesk.payment) {
+			cashdesk.payment.total_price = cashdesk.payments[cashdesk.payment.type]?.price || 0;
+			try {
+				await formEl.value.validate();
+				cashdesk.payment.valid = true;
+			} catch (error) {
+				cashdesk.payment.valid = false;
 			}
-		}, 400)
-	);
+		}
+	}
 </script>
 <template>
 	<UForm

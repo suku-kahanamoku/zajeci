@@ -8,7 +8,7 @@ export default oauth.googleEventHandler({
 			if (!dbUser?._id) {
 				dbUser = await new UserSchema(user).save();
 			}
-			user = { ...user, ...dbUser.toObject() };
+			user = { ...user, ...dbUser.toObject(), password: undefined };
 		}
 		// nastavi user session
 		await setUserSession(event, {

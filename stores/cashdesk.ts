@@ -15,6 +15,8 @@ import type { WineDocument } from '@/server/types/wine.type';
 
 export const useCashdeskStore = defineStore('Cashdesk', () => {
 	const auth = useAuthStore();
+	const toast = useToast();
+	const loading = ref(false);
 
 	const user = ref<UserDocument>(CLONE(auth.user || auth.emptyUser));
 	const carts = ref<CartDocument[]>([]);
@@ -176,14 +178,32 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	};
 
 	const updateLocalStorage = () => {
-		const cashdesk = {
+		const order = {
 			user: user.value,
 			carts: carts.value,
 			delivery: delivery.value,
 			payment: payment.value,
 		};
-		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(cashdesk), 1, 'd');
+		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(order), 1, 'd');
 	};
+
+	async function onSubmit() {
+		loading.value = true;
+		try {
+			const order = {
+				user: user.value,
+				carts: carts.value,
+				delivery: delivery.value,
+				payment: payment.value,
+			};
+			const result = await $fetch('/api/order', { method: 'POST', body: order });
+			console.log(result);
+			/* reset(); */
+		} catch (error: any) {
+			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+		}
+		loading.value = false;
+	}
 
 	onBeforeMount(() => {
 		loadFromLocalStorage();
@@ -211,5 +231,6 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		payment,
 		payments,
 		paymentOptions,
+		onSubmit,
 	};
 });
