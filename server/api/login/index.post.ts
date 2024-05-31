@@ -40,6 +40,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	}
 
 	const result = { ...user.toObject(), password: undefined };
+
 	// nastavi session
 	await setUserSession(event, {
 		user: result,

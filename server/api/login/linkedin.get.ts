@@ -10,6 +10,7 @@ export default oauth.linkedinEventHandler({
 			}
 			user = { ...user, ...dbUser.toObject(), password: undefined };
 		}
+
 		// nastavi user session
 		await setUserSession(event, {
 			user,
@@ -18,6 +19,7 @@ export default oauth.linkedinEventHandler({
 		const locale = tryCookieLocale(event, { lang: '', name: 'i18n_locale' })?.toString();
 		return await sendRedirect(event, locale === 'cs' ? '/admin' : `/${locale}/admin`);
 	},
+
 	async onError(event, error) {
 		const locale = tryCookieLocale(event, { lang: '', name: 'i18n_locale' })?.toString();
 		return await sendRedirect(event, locale === 'cs' ? '/login' : `/${locale}/login`);

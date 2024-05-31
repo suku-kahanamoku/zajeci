@@ -61,6 +61,7 @@
 
 	const backBtn = ['$.btn.back_shopping', '$.cashdesk.cart.title', '$.cashdesk.delivery_payment'];
 	const continueBtn = ['$.cashdesk.delivery_payment', '$.cashdesk.summary', '$.btn.complete_order'];
+	const continueBtnColor = ['primary', 'primary', 'secondary'];
 
 	async function onNext() {
 		if (selected.value + 1 >= tabs.value.length) {
@@ -107,6 +108,7 @@
 							size="lg"
 							:disabled="cashdesk.loading || tabs[selected + 1]?.disabled"
 							:loading="cashdesk.loading"
+							:color="continueBtnColor[selected]"
 							@click="onNext"
 						>
 							{{ $t(continueBtn[selected] || '$.btn.continue') }}

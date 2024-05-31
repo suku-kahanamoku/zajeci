@@ -1,16 +1,16 @@
 import { H3Event } from 'h3';
 import { useMailing } from '@/server/composables/useMailing';
 
-import { OrderSchema } from '../models/order.schema';
+import { OrderModel } from '../models/order.schema';
 
 export default defineEventHandler(async (event: H3Event) => {
 	const body = await readBody(event);
-	const { template, send } = await useMailing(event);
-	const t = await useTranslation(event);
-	//
-	const result = await OrderSchema.create(body);
+	const result = await OrderModel.create(body);
 
+	// pokud se podari ulozit objednavku do DB, odesle se mail klientovi i adminovi
 	if (result?._id) {
+		const { template, send } = await useMailing(event);
+		const t = await useTranslation(event);
 		const orderId = result._id.toString();
 		await send({
 			subject: t('$.mailing.order.confirmed.subject', { orderId }),

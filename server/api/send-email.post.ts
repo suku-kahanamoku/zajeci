@@ -5,6 +5,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	const body = await readBody(event);
 	const { template, send } = await useMailing(event);
 
+	// odesle mail klientovi
 	await send({
 		subject: '$.mailing.contact_form.subject',
 		template: await template({
@@ -22,6 +23,7 @@ export default defineEventHandler(async (event: H3Event) => {
 		],
 	});
 
+	// odesle mail adminovi
 	await send({
 		subject: '$.mailing.contact_form.subject',
 		template: await template({

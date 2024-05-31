@@ -54,6 +54,46 @@ AddressOrderSchema.pre('save', function (next) {
 	next();
 });
 
+const UserOrderSchema = new Schema<UserDocument>(
+	{
+		email: {
+			type: String,
+			required: true,
+			trim: true,
+			lowercase: true,
+		},
+		name: {
+			type: String,
+			trim: true,
+		},
+		surname: {
+			type: String,
+			trim: true,
+		},
+		givenName: {
+			type: String,
+			trim: true,
+		},
+		address: {
+			main: AddressOrderSchema,
+		},
+		phone: {
+			type: String,
+			trim: true,
+		},
+	},
+	{
+		_id: false,
+	}
+);
+
+UserOrderSchema.pre('save', function (next) {
+	if (this._id) {
+		delete this._id;
+	}
+	next();
+});
+
 /**
  * Mongo schema pro dopravu v cashdesku
  */
@@ -138,50 +178,10 @@ CartSchema.pre('save', function (next) {
 	next();
 });
 
-const UserOrderSchema = new Schema<UserDocument>(
-	{
-		email: {
-			type: String,
-			required: true,
-			trim: true,
-			lowercase: true,
-		},
-		name: {
-			type: String,
-			trim: true,
-		},
-		surname: {
-			type: String,
-			trim: true,
-		},
-		givenName: {
-			type: String,
-			trim: true,
-		},
-		address: {
-			main: AddressOrderSchema,
-		},
-		phone: {
-			type: String,
-			trim: true,
-		},
-	},
-	{
-		_id: false,
-	}
-);
-
-UserOrderSchema.pre('save', function (next) {
-	if (this._id) {
-		delete this._id;
-	}
-	next();
-});
-
 /**
  * Mongo schema pro cashdesk
  */
-export const OrderSchema = model<OrderDocument>(
+export const OrderModel = model<OrderDocument>(
 	'orders',
 	new Schema<OrderDocument>(
 		{

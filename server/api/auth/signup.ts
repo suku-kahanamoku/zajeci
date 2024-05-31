@@ -6,7 +6,6 @@ import { GENERATE_HASHED_PASSWORD } from '@/utils/server.functions';
 
 export default defineEventHandler(async (event: H3Event) => {
 	const t = await useTranslation(event);
-	const { template, send } = await useMailing(event);
 	const body = await readBody(event);
 
 	// kontrola, zda jsou zadane vsechny potrebne fieldy
@@ -32,6 +31,7 @@ export default defineEventHandler(async (event: H3Event) => {
 		user = await new UserModel({ ...body, password: await GENERATE_HASHED_PASSWORD(body.password) }).save();
 
 		// odesle registracni mail
+		const { template, send } = await useMailing(event);
 		if (user._id) {
 			await send({
 				subject: '$.mailing.signup.subject',
