@@ -114,7 +114,7 @@ const CartSchema = new Schema<CartDocument>(
 			required: true,
 			min: 1,
 		},
-		unit_price: {
+		unitPrice: {
 			type: Number,
 			required: true,
 			default: 0,
@@ -185,7 +185,7 @@ export const OrderSchema = model<OrderDocument>(
 		{
 			user: UserOrderSchema,
 			carts: [CartSchema],
-			total_quantity: {
+			totalQuantity: {
 				type: Number,
 				required: true,
 				default: 0,

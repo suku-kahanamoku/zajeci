@@ -24,8 +24,8 @@ export default defineEventHandler(async (event: H3Event) => {
 				});
 			}
 			// zmena hesla
-			if (body.new_password) {
-				body.password = await GENERATE_HASHED_PASSWORD(body.new_password);
+			if (body.newPassword) {
+				body.password = await GENERATE_HASHED_PASSWORD(body.newPassword);
 			}
 		}
 	}

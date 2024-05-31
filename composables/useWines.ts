@@ -18,14 +18,14 @@ export function useWines() {
 
 	const kinds: Record<string, { value: string; label: string }> = {
 		dry: { value: 'dry', label: t('$.admin.wine.kind.dry') },
-		semi_dry: { value: 'semi_dry', label: t('$.admin.wine.kind.semi_dry') },
+		semiDry: { value: 'semiDry', label: t('$.admin.wine.kind.semi_dry') },
 		sweet: { value: 'sweet', label: t('$.admin.wine.kind.sweet') },
-		semi_sweet: { value: 'semi_sweet', label: t('$.admin.wine.kind.semi_sweet') },
-		extra_dry: { value: 'extra_dry', label: t('$.admin.wine.kind.extra_dry') },
-		off_dry: { value: 'off_dry', label: t('$.admin.wine.kind.off_dry') },
-		medium_dry: { value: 'medium_dry', label: t('$.admin.wine.kind.medium_dry') },
-		medium_sweet: { value: 'medium_sweet', label: t('$.admin.wine.kind.medium_sweet') },
-		very_sweet: { value: 'very_sweet', label: t('$.admin.wine.kind.very_sweet') },
+		semiSweet: { value: 'semiSweet', label: t('$.admin.wine.kind.semi_sweet') },
+		extraDry: { value: 'extraDry', label: t('$.admin.wine.kind.extra_dry') },
+		offDry: { value: 'offDry', label: t('$.admin.wine.kind.off_dry') },
+		mediumDry: { value: 'mediumDry', label: t('$.admin.wine.kind.medium_dry') },
+		mediumSweet: { value: 'mediumSweet', label: t('$.admin.wine.kind.medium_sweet') },
+		verySweet: { value: 'verySweet', label: t('$.admin.wine.kind.very_sweet') },
 		dessert: { value: 'dessert', label: t('$.admin.wine.kind.dessert') },
 	};
 

@@ -12,8 +12,8 @@ export enum PaymentServices {
 	card = 'card',
 	paypal = 'paypal',
 	gopay = 'gopay',
-	apple_pay = 'apple_pay',
-	google_pay = 'google_pay',
+	applePay = 'applePay',
+	googlePay = 'googlePay',
 	cash = 'cash',
 }
 
@@ -27,8 +27,8 @@ export const paymentObjects = {
 	card: { label: '$.cashdesk.payment.card', price: 0, avatar: 'mdi:credit-card-outline', disabled: true },
 	paypal: { label: '$.cashdesk.payment.paypal', price: 0, avatar: 'logos:paypal', disabled: true },
 	gopay: { label: '$.cashdesk.payment.gopay', price: 0, avatar: 'arcticons:gopay', disabled: true },
-	apple_pay: { label: '$.cashdesk.payment.apple_pay', price: 0, avatar: 'simple-icons:applepay', disabled: true },
-	google_pay: { label: '$.cashdesk.payment.google_pay', price: 0, avatar: 'simple-icons:googlepay', disabled: true },
+	applePay: { label: '$.cashdesk.payment.apple_pay', price: 0, avatar: 'simple-icons:applepay', disabled: true },
+	googlePay: { label: '$.cashdesk.payment.google_pay', price: 0, avatar: 'simple-icons:googlepay', disabled: true },
 };
 
 /**
@@ -97,6 +97,6 @@ export interface DeliveryDocument {
 export interface CartDocument {
 	wine: WineDocument;
 	quantity: number;
-	unit_price: number;
+	unitPrice: number;
 	totalPrice: number;
 }

@@ -38,7 +38,7 @@ export enum OrderStatus {
 	returned = 'returned',
 	refunded = 'refunded',
 	failed = 'failed',
-	on_hold = 'on_hold',
+	onHold = 'onHold',
 }
 
 /**
@@ -50,7 +50,7 @@ export enum OrderStatus {
 export interface OrderDocument {
 	user: UserDocument;
 	carts: CartDocument[];
-	total_quantity: number;
+	totalQuantity: number;
 	totalPrice: number;
 	status: OrderStatus;
 	delivery: DeliveryDocument;

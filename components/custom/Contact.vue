@@ -15,30 +15,15 @@
 				<div class="mt-5">
 					<div class="flex items-center mt-3 space-x-3 text-gray-600">
 						<Icon class="text-secondary-400" name="uil:envelope" size="26" />
-						<a
-							class="contact__item contact__item--lg contact__item--email dark:text-white"
-							href="mailto:vyborne@vinozezajeci.cz"
-						>
-							vyborne@vinozezajeci.cz
-						</a>
+						<a class="dark:text-white" href="mailto:vyborne@vinozezajeci.cz"> vyborne@vinozezajeci.cz </a>
 					</div>
 					<div class="flex items-center mt-3 space-x-3 text-gray-600">
 						<Icon class="text-secondary-400" name="uil:phone" size="26" />
-						<a
-							class="contact__item contact__item--lg contact__item--tel dark:text-white"
-							href="tel:+420770199999"
-						>
-							+420 770 199 999
-						</a>
+						<a class="dark:text-white" href="tel:+420770199999"> +420 770 199 999 </a>
 					</div>
 					<div class="flex items-center mt-3 space-x-3 text-gray-600">
 						<Icon class="text-secondary-400" name="mdi:phone-classic" size="26" />
-						<a
-							class="contact__item contact__item--lg contact__item--tel dark:text-white"
-							href="tel:+420 778 711 111"
-						>
-							+420 778 711 111
-						</a>
+						<a class="dark:text-white" href="tel:+420 778 711 111"> +420 778 711 111 </a>
 					</div>
 					<div class="flex items-start mt-3 space-x-3 text-gray-600">
 						<Icon class="text-secondary-400" name="uil:map-marker" size="26" />

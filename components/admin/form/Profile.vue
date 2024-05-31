@@ -12,7 +12,7 @@
 		surname: string(),
 		role: string(),
 		password: string().min(8, t('$.message.password_min', { count: 8 })),
-		new_password: string().min(8, t('$.message.password_min', { count: 8 })),
+		newPassword: string().min(8, t('$.message.password_min', { count: 8 })),
 		newsletter: boolean(),
 	});
 
@@ -27,7 +27,7 @@
 		surname: '',
 		role: 'guest',
 		password: '',
-		new_password: '',
+		newPassword: '',
 		newsletter: true,
 	});
 
@@ -118,9 +118,9 @@
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t('$.profile.change_password')" name="new_password">
+					<UFormGroup :label="$t('$.profile.change_password')" name="newPassword">
 						<UInput
-							v-model="state.new_password"
+							v-model="state.newPassword"
 							type="password"
 							:placeholder="fields.password.placeholder"
 							size="lg"

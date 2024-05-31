@@ -13,7 +13,7 @@
 		password: string()
 			.required(' ')
 			.min(8, t('$.message.password_min', { count: 8 })),
-		confirm_password: string()
+		confirmPassword: string()
 			.required(' ')
 			.oneOf([yupRef('password')], t('$.message.password_not_match')),
 		terms: boolean().required(' '),
@@ -24,7 +24,7 @@
 	const state = reactive({
 		email: undefined,
 		password: undefined,
-		confirm_password: undefined,
+		confirmPassword: undefined,
 		terms: undefined,
 	});
 
@@ -66,9 +66,9 @@
 						autocomplete="new-password"
 					/>
 				</UFormGroup>
-				<UFormGroup :label="$t('$.signup.confirm_password')" name="confirm_password" required>
+				<UFormGroup :label="$t('$.signup.confirm_password')" name="confirmPassword" required>
 					<UInput
-						v-model="state.confirm_password"
+						v-model="state.confirmPassword"
 						type="password"
 						:placeholder="auth.fields.password.placeholder"
 						required

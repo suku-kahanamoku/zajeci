@@ -55,8 +55,8 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			autocomplete?: string;
 		}
 	> = {
-		total_quantity: {
-			key: 'total_quantity',
+		totalQuantity: {
+			key: 'totalQuantity',
 			label: '$.cashdesk.total_quantity',
 		},
 		totalPrice: {
@@ -83,7 +83,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 
 	const totalPrice = computed(
 		() =>
-			carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0) +
+			carts.value.reduce((total, item) => total + item.unitPrice * item.quantity, 0) +
 			delivery.value.totalPrice +
 			payment.value.totalPrice
 	);
@@ -93,13 +93,13 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		const existingItem = carts.value.find((item) => item.wine._id === wine._id);
 		if (existingItem) {
 			existingItem.quantity += quantity;
-			existingItem.totalPrice = existingItem.unit_price * existingItem.quantity;
+			existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
 			result = existingItem;
 		} else {
 			const newItem: CartDocument = {
 				wine,
 				quantity,
-				unit_price: wine.price,
+				unitPrice: wine.price,
 				totalPrice: wine.price * quantity,
 			};
 			carts.value.push(newItem);
@@ -114,7 +114,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		if (itemIndex !== -1) {
 			const item = carts.value[itemIndex];
 			item.quantity -= 1;
-			item.totalPrice = item.unit_price * item.quantity;
+			item.totalPrice = item.unitPrice * item.quantity;
 			if (item.quantity <= 0) {
 				carts.value.splice(itemIndex, 1);
 			}
@@ -126,7 +126,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		const existingItem = carts.value.find((item) => item.wine._id === wineId);
 		if (existingItem) {
 			existingItem.quantity = quantity;
-			existingItem.totalPrice = existingItem.unit_price * existingItem.quantity;
+			existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
 			updateLocalStorage();
 		}
 	};
