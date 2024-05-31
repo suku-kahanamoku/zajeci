@@ -8,7 +8,7 @@
 
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
-		given_name: string(),
+		givenName: string(),
 		surname: string(),
 		role: string(),
 		password: string().min(8, t('$.message.password_min', { count: 8 })),
@@ -23,7 +23,7 @@
 	const state: Ref<UserDocument | any> = ref({
 		_id: '',
 		email: '',
-		given_name: '',
+		givenName: '',
 		surname: '',
 		role: 'guest',
 		password: '',
@@ -74,10 +74,10 @@
 				</UFormGroup>
 
 				<div class="flex justify-between items-center gap-x-2">
-					<UFormGroup :label="$t(fields.given_name.label)" name="given_name">
+					<UFormGroup :label="$t(fields.givenName.label)" name="givenName">
 						<UInput
-							v-model="state.given_name"
-							:placeholder="$t(fields.given_name.placeholder as string)"
+							v-model="state.givenName"
+							:placeholder="$t(fields.givenName.placeholder as string)"
 							size="lg"
 						/>
 					</UFormGroup>

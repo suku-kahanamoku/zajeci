@@ -152,7 +152,7 @@ const UserOrderSchema = new Schema<UserDocument>(
 			type: String,
 			trim: true,
 		},
-		given_name: {
+		givenName: {
 			type: String,
 			trim: true,
 		},

@@ -10,7 +10,7 @@
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
 		phone: string(),
-		given_name: string().required(' '),
+		givenName: string().required(' '),
 		surname: string().required(' '),
 		address: object({
 			main: object({
@@ -67,15 +67,15 @@
 				</div>
 
 				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
-					<UFormGroup :label="$t(auth.fields.given_name.label)" name="given_name" required class="w-full">
+					<UFormGroup :label="$t(auth.fields.givenName.label)" name="givenName" required class="w-full">
 						<UInput
-							v-model="cashdesk.user.given_name"
-							:placeholder="$t(auth.fields.given_name.placeholder as string)"
-							:autocomplete="auth.fields.given_name.autocomplete"
+							v-model="cashdesk.user.givenName"
+							:placeholder="$t(auth.fields.givenName.placeholder as string)"
+							:autocomplete="auth.fields.givenName.autocomplete"
 							size="lg"
 							@change="
 								!cashdesk.delivery.valid
-									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.surname}`)
+									? (cashdesk.delivery.address!.name = `${cashdesk.user.givenName} ${cashdesk.user.surname}`)
 									: undefined
 							"
 						/>
@@ -88,7 +88,7 @@
 							size="lg"
 							@change="
 								!cashdesk.delivery.valid
-									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.surname}`)
+									? (cashdesk.delivery.address!.name = `${cashdesk.user.givenName} ${cashdesk.user.surname}`)
 									: undefined
 							"
 						/>
@@ -124,20 +124,13 @@
 				</div>
 
 				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
-					<UFormGroup
-						:label="$t(auth.fields.zip.label)"
-						name="address.main.zip"
-						required
-						class="w-full"
-					>
+					<UFormGroup :label="$t(auth.fields.zip.label)" name="address.main.zip" required class="w-full">
 						<UInput
 							v-model="cashdesk.user.address!.main!.zip"
 							:placeholder="$t(auth.fields.zip.placeholder as string)"
 							:autocomplete="auth.fields.zip.autocomplete"
 							size="lg"
-							@change="
-								!cashdesk.delivery.valid ? (cashdesk.delivery.address!.zip = $event) : undefined
-							"
+							@change="!cashdesk.delivery.valid ? (cashdesk.delivery.address!.zip = $event) : undefined"
 						/>
 					</UFormGroup>
 					<UFormGroup :label="$t(auth.fields.state.label)" name="address.main.state" required class="w-full">

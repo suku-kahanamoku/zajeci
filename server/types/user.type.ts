@@ -6,7 +6,7 @@ export interface UserDocument {
 	email: string;
 	name?: string;
 	surname?: string;
-	given_name?: string;
+	givenName?: string;
 	password?: string;
 	temp_password?: string;
 	terms?: boolean;
