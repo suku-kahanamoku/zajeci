@@ -73,7 +73,7 @@
 
 <template>
 	<div class="max-w-screen-xl mx-auto px-5 w-full">
-		<div id="gallery" class="py-10">
+		<div id="cashdesk" class="py-10">
 			<h1
 				class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
 			>

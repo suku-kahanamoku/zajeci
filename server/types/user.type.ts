@@ -21,39 +21,3 @@ export interface UserDocument {
 	updatedAt?: Date;
 	valid?: boolean;
 }
-
-/**
- * Enum pro stav objednavky
- *
- * @export
- * @enum {number}
- */
-export enum OrderStatus {
-	pending = 'pending',
-	confirmed = 'confirmed',
-	processing = 'processing',
-	shipped = 'shipped',
-	delivered = 'delivered',
-	cancelled = 'cancelled',
-	returned = 'returned',
-	refunded = 'refunded',
-	failed = 'failed',
-	onHold = 'onHold',
-}
-
-/**
- * Rozhrani pro cashdesk
- *
- * @export
- * @interface OrderDocument
- */
-export interface OrderDocument {
-	user: UserDocument;
-	carts: CartDocument[];
-	totalPrice: number;
-	status: OrderStatus;
-	delivery: DeliveryDocument;
-	payment: PaymentDocument;
-	createdAt?: Date;
-	updatedAt?: Date;
-}

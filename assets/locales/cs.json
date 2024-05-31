@@ -201,6 +201,14 @@
 				"new_password": "Bylo vygenerováno nové heslo pro váš účet.",
 				"contact_us": "Pokud jste o nové heslo nežádal/a, kontaktujte nás okamžitě.",
 				"further_questions": "Pokud máte nějaké další otázky nebo potřebujete pomoc, neváhejte nás kontaktovat."
+			},
+			"order": {
+				"confirmed": {
+					"subject": "Objednávka {orderId}",
+					"thank_you": "Děkujeme Vám za projevený zájem. Vaše objednávka byla přijata.",
+					"invoice": "Posíláme Vám fakturu v příloze. Věnujte prosím chvilku překontrolování všech údajů. Pokud by cokoliv nesouhlasilo, stačí nás kontaktovat na emailové adrese",
+					"taste": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
+				}
 			}
 		},
 		"cashdesk": {
@@ -245,6 +253,12 @@
 				"variable_sym": "Variabilní symbol",
 				"recipient_msg": "Zpráva pro příjemce"
 			}
+		},
+		"cashdesk_completed": {
+			"title": "Děkujeme za objednávku!",
+			"order": "Vaše objednávka č. {orderId} byla přijata.",
+			"send_to_email": "Potvrzení a další informace byly odeslány na e-mail {email}.",
+			"thank_you": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
 		},
 		"admin": {
 			"wine": {

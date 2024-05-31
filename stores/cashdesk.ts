@@ -14,9 +14,11 @@ import type { UserDocument } from '@/server/types/user.type';
 import type { WineDocument } from '@/server/types/wine.type';
 
 export const useCashdeskStore = defineStore('Cashdesk', () => {
+	const localePath = useLocalePath();
 	const auth = useAuthStore();
 	const toast = useToast();
 	const loading = ref(false);
+	const { routes } = useMenuItems();
 
 	const user = ref<UserDocument>(CLONE(auth.user || auth.emptyUser));
 	const carts = ref<CartDocument[]>([]);
@@ -195,7 +197,16 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 				totalPrice: totalPrice.value,
 			};
 			const result = await $fetch('/api/order', { method: 'POST', body: order });
-			/* reset(); */
+			if (result?._id) {
+				reset();
+				navigateTo({
+					path: localePath(routes.cashdesk_completed.path),
+					query: {
+						orderId: result._id,
+						email: result.user.email,
+					},
+				});
+			}
 		} catch (error: any) {
 			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
 		}

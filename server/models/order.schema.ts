@@ -3,10 +3,12 @@ import {
 	CartDocument,
 	DeliveryDocument,
 	DeliveryServices,
+	OrderDocument,
+	OrderStatus,
 	PaymentDocument,
 	PaymentServices,
 } from '../types/order.type';
-import { OrderDocument, OrderStatus, UserDocument } from '../types/user.type';
+import { UserDocument } from '../types/user.type';
 import { AddressDocument } from '../types/address.type';
 
 export const AddressOrderSchema = new Schema<AddressDocument>(

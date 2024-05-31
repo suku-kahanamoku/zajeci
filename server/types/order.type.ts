@@ -1,4 +1,5 @@
 import { AddressDocument } from './address.type';
+import { UserDocument } from './user.type';
 import { WineDocument } from './wine.type';
 
 /**
@@ -99,4 +100,39 @@ export interface CartDocument {
 	quantity: number;
 	unitPrice: number;
 	totalPrice: number;
+}
+
+/**
+ * Enum pro stav objednavky
+ *
+ * @export
+ * @enum {number}
+ */
+export enum OrderStatus {
+	pending = 'pending',
+	confirmed = 'confirmed',
+	delivered = 'delivered',
+	cancelled = 'cancelled',
+	returned = 'returned',
+	refunded = 'refunded',
+	failed = 'failed',
+	onHold = 'onHold',
+	completed = 'completed',
+}
+
+/**
+ * Rozhrani pro cashdesk
+ *
+ * @export
+ * @interface OrderDocument
+ */
+export interface OrderDocument {
+	user: UserDocument;
+	carts: CartDocument[];
+	totalPrice: number;
+	status: OrderStatus;
+	delivery: DeliveryDocument;
+	payment: PaymentDocument;
+	createdAt?: Date;
+	updatedAt?: Date;
 }

@@ -36,7 +36,7 @@ export async function useMailing(event: H3Event) {
 					},
 					To: config.to,
 					Bcc: config.bcc,
-					Subject: t(config.subject),
+					Subject: config.subject?.startsWith('$.') ? t(config.subject) : config.subject,
 					HTMLPart: config.template.html,
 				},
 			],
