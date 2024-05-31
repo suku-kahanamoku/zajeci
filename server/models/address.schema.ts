@@ -23,7 +23,7 @@ export const AddressSchema = new Schema<AddressDocument>(
 			required: true,
 			trim: true,
 		},
-		postal_code: {
+		zip: {
 			type: String,
 			required: true,
 			trim: true,

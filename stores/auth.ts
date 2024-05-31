@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('Auth', () => {
 				name: '',
 				street: '',
 				city: '',
-				postal_code: '',
+				zip: '',
 				state: '',
 			},
 			variants: [],
@@ -125,10 +125,10 @@ export const useAuthStore = defineStore('Auth', () => {
 			label: '$.profile.city',
 			placeholder: '$.profile.placeholder.city',
 		},
-		postal_code: {
-			key: 'postal_code',
-			label: '$.profile.postal_code',
-			placeholder: '$.profile.placeholder.postal_code',
+		zip: {
+			key: 'zip',
+			label: '$.profile.zip',
+			placeholder: '$.profile.placeholder.zip',
 			autocomplete: 'postal-code',
 		},
 		state: {

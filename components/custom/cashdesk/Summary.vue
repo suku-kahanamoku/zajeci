@@ -118,10 +118,10 @@
 					</div>
 					<div>
 						<h3 class="font-semibold text-gray-700 dark:text-white">
-							{{ $t(auth.fields.postal_code.label) }}:
+							{{ $t(auth.fields.zip.label) }}:
 						</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ cashdesk.user.address?.main?.postal_code }}
+							{{ cashdesk.user.address?.main?.zip }}
 						</p>
 					</div>
 					<div>
@@ -170,10 +170,10 @@
 					</div>
 					<div>
 						<h3 class="font-semibold text-gray-700 dark:text-white">
-							{{ $t(auth.fields.postal_code.label) }}:
+							{{ $t(auth.fields.zip.label) }}:
 						</h3>
 						<p class="text-gray-600 dark:text-white">
-							{{ cashdesk.delivery.address?.postal_code }}
+							{{ cashdesk.delivery.address?.zip }}
 						</p>
 					</div>
 					<div>

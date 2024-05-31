@@ -5,7 +5,7 @@
  * @param {(string | number)} value
  * @returns {*}  {boolean}
  */
-export function IS_POSTAL_CODE(value: string | number): boolean {
+export function IS_ZIP(value: string | number): boolean {
 	return /^[0-9]{3}[ ]?[0-9]{2}$/.test(value?.toString());
 }
 

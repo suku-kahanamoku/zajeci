@@ -17,7 +17,7 @@
 				name: string(),
 				street: string().required(' '),
 				city: string().required(' '),
-				postal_code: string().required(' ').matches(/^\d+$/, t('$.message.invalid_postal_code')),
+				zip: string().required(' ').matches(/^\d+$/, t('$.message.invalid_zip')),
 				state: string().required(' '),
 			}).required(' '),
 		}).required(' '),
@@ -125,18 +125,18 @@
 
 				<div class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0">
 					<UFormGroup
-						:label="$t(auth.fields.postal_code.label)"
-						name="address.main.postal_code"
+						:label="$t(auth.fields.zip.label)"
+						name="address.main.zip"
 						required
 						class="w-full"
 					>
 						<UInput
-							v-model="cashdesk.user.address!.main!.postal_code"
-							:placeholder="$t(auth.fields.postal_code.placeholder as string)"
-							:autocomplete="auth.fields.postal_code.autocomplete"
+							v-model="cashdesk.user.address!.main!.zip"
+							:placeholder="$t(auth.fields.zip.placeholder as string)"
+							:autocomplete="auth.fields.zip.autocomplete"
 							size="lg"
 							@change="
-								!cashdesk.delivery.valid ? (cashdesk.delivery.address!.postal_code = $event) : undefined
+								!cashdesk.delivery.valid ? (cashdesk.delivery.address!.zip = $event) : undefined
 							"
 						/>
 					</UFormGroup>
