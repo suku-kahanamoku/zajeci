@@ -93,7 +93,7 @@
 		<template #price-data="{ row }">
 			<div class="flex justify-between space-x-4">
 				<p class="text-lg font-semibold text-end w-full">
-					{{ useToNumber(row?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+					{{ useToNumber(row?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 						$t('$.czk')
 					}}
 				</p>
@@ -146,7 +146,7 @@
 				</div>
 				<div class="flex justify-between space-x-4 sm:space-x-12">
 					<p class="text-lg font-semibold min-w-20 text-end">
-						{{ useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+						{{ useToNumber(cart?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 							$t('$.czk')
 						}}
 					</p>
@@ -162,7 +162,7 @@
 		<div class="flex justify-end items-center gap-4">
 			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.delivery.title') }}:</p>
 			<p class="w-32 sm:w-44 text-right">
-				{{ useToNumber(cashdesk.delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+				{{ useToNumber(cashdesk.delivery?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>
@@ -171,7 +171,7 @@
 		<div class="flex justify-end items-center gap-4">
 			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.payment.title') }}:</p>
 			<p class="w-32 sm:w-44 text-right">
-				{{ useToNumber(cashdesk.payment?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+				{{ useToNumber(cashdesk.payment?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>
@@ -180,7 +180,7 @@
 		<div class="flex justify-end items-center gap-4">
 			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.cart.total_price') }}:</p>
 			<p class="w-32 sm:w-44 text-right">
-				{{ useToNumber(cashdesk.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+				{{ useToNumber(cashdesk.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>

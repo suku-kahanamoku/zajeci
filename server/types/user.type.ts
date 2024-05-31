@@ -8,7 +8,7 @@ export interface UserDocument {
 	surname?: string;
 	givenName?: string;
 	password?: string;
-	temp_password?: string;
+	tempPassword?: string;
 	terms?: boolean;
 	newsletter?: boolean;
 	role?: 'admin' | 'user' | 'guest';
@@ -51,7 +51,7 @@ export interface OrderDocument {
 	user: UserDocument;
 	carts: CartDocument[];
 	total_quantity: number;
-	total_price: number;
+	totalPrice: number;
 	status: OrderStatus;
 	delivery: DeliveryDocument;
 	payment: PaymentDocument;

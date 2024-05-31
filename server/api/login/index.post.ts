@@ -21,7 +21,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	if (user?._id) {
 		const isValid =
 			(await COMPARE_PASSWORD(body.password, user.password || '')) ||
-			(await COMPARE_PASSWORD(body.password, user.temp_password || ''));
+			(await COMPARE_PASSWORD(body.password, user.tempPassword || ''));
 		if (!isValid) {
 			throw createError({
 				statusCode: 401,

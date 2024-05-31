@@ -45,7 +45,7 @@
 		</template>
 		<template #price-data="{ row }">
 			<p class="text-lg font-semibold min-w-24 text-end">
-				{{ useToNumber(row?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
+				{{ useToNumber(row?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{ $t('$.czk') }}
 			</p>
 		</template>
 	</UTable>
@@ -78,7 +78,7 @@
 				<div class="w-full text-center text-lg font-semibold flex gap-2">
 					<p>{{ $t('$.form.price') }}:</p>
 					<p>
-						{{ useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+						{{ useToNumber(cart?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 							$t('$.czk')
 						}}
 					</p>
@@ -117,9 +117,7 @@
 						</p>
 					</div>
 					<div>
-						<h3 class="font-semibold text-gray-700 dark:text-white">
-							{{ $t(auth.fields.zip.label) }}:
-						</h3>
+						<h3 class="font-semibold text-gray-700 dark:text-white">{{ $t(auth.fields.zip.label) }}:</h3>
 						<p class="text-gray-600 dark:text-white">
 							{{ cashdesk.user.address?.main?.zip }}
 						</p>
@@ -169,9 +167,7 @@
 						</p>
 					</div>
 					<div>
-						<h3 class="font-semibold text-gray-700 dark:text-white">
-							{{ $t(auth.fields.zip.label) }}:
-						</h3>
+						<h3 class="font-semibold text-gray-700 dark:text-white">{{ $t(auth.fields.zip.label) }}:</h3>
 						<p class="text-gray-600 dark:text-white">
 							{{ cashdesk.delivery.address?.zip }}
 						</p>
@@ -233,7 +229,7 @@
 		<div class="flex justify-end items-center gap-4">
 			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.delivery.title') }}:</p>
 			<p class="w-32 sm:w-44 text-right">
-				{{ useToNumber(cashdesk.delivery?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+				{{ useToNumber(cashdesk.delivery?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>
@@ -242,7 +238,7 @@
 		<div class="flex justify-end items-center gap-4">
 			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.payment.title') }}:</p>
 			<p class="w-32 sm:w-44 text-right">
-				{{ useToNumber(cashdesk.payment?.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+				{{ useToNumber(cashdesk.payment?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>
@@ -251,7 +247,7 @@
 		<div class="flex justify-end items-center gap-4">
 			<p class="w-40 sm:w-44 text-left">{{ $t('$.cashdesk.cart.total_price') }}:</p>
 			<p class="w-32 sm:w-44 text-right">
-				{{ useToNumber(cashdesk.total_price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
+				{{ useToNumber(cashdesk.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
 					$t('$.czk')
 				}}
 			</p>

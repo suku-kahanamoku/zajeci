@@ -23,11 +23,11 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	const delivery = ref<DeliveryDocument>({
 		type: DeliveryServices.free,
 		address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
-		total_price: 0,
+		totalPrice: 0,
 	});
 	const payment = ref<PaymentDocument>({
 		type: PaymentServices.bank,
-		total_price: 0,
+		totalPrice: 0,
 	});
 
 	const deliveries: Record<
@@ -59,8 +59,8 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			key: 'total_quantity',
 			label: '$.cashdesk.total_quantity',
 		},
-		total_price: {
-			key: 'total_price',
+		totalPrice: {
+			key: 'totalPrice',
 			label: '$.cashdesk.total_price',
 		},
 		status: {
@@ -81,11 +81,11 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		return carts.value.reduce((total, item) => total + item.quantity, 0);
 	});
 
-	const total_price = computed(
+	const totalPrice = computed(
 		() =>
 			carts.value.reduce((total, item) => total + item.unit_price * item.quantity, 0) +
-			delivery.value.total_price +
-			payment.value.total_price
+			delivery.value.totalPrice +
+			payment.value.totalPrice
 	);
 
 	const addItem = (wine: WineDocument, quantity: number): CartDocument => {
@@ -93,14 +93,14 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		const existingItem = carts.value.find((item) => item.wine._id === wine._id);
 		if (existingItem) {
 			existingItem.quantity += quantity;
-			existingItem.total_price = existingItem.unit_price * existingItem.quantity;
+			existingItem.totalPrice = existingItem.unit_price * existingItem.quantity;
 			result = existingItem;
 		} else {
 			const newItem: CartDocument = {
 				wine,
 				quantity,
 				unit_price: wine.price,
-				total_price: wine.price * quantity,
+				totalPrice: wine.price * quantity,
 			};
 			carts.value.push(newItem);
 			result = newItem;
@@ -114,7 +114,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		if (itemIndex !== -1) {
 			const item = carts.value[itemIndex];
 			item.quantity -= 1;
-			item.total_price = item.unit_price * item.quantity;
+			item.totalPrice = item.unit_price * item.quantity;
 			if (item.quantity <= 0) {
 				carts.value.splice(itemIndex, 1);
 			}
@@ -126,7 +126,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		const existingItem = carts.value.find((item) => item.wine._id === wineId);
 		if (existingItem) {
 			existingItem.quantity = quantity;
-			existingItem.total_price = existingItem.unit_price * existingItem.quantity;
+			existingItem.totalPrice = existingItem.unit_price * existingItem.quantity;
 			updateLocalStorage();
 		}
 	};
@@ -150,11 +150,11 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		delivery.value = {
 			type: DeliveryServices.free,
 			address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
-			total_price: 0,
+			totalPrice: 0,
 		};
 		payment.value = {
 			type: PaymentServices.bank,
-			total_price: 0,
+			totalPrice: 0,
 		};
 	};
 
@@ -223,7 +223,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		reset,
 		setUser,
 		totalItems,
-		total_price,
+		totalPrice,
 		fields,
 		delivery,
 		deliveries,

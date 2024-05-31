@@ -39,7 +39,7 @@ export const paymentObjects = {
  */
 export interface PaymentDocument {
 	type: PaymentServices;
-	total_price: number;
+	totalPrice: number;
 	valid?: boolean;
 }
 
@@ -84,7 +84,7 @@ export const deliveryObjects = {
 export interface DeliveryDocument {
 	type: DeliveryServices;
 	address?: AddressDocument;
-	total_price: number;
+	totalPrice: number;
 	valid?: boolean;
 }
 
@@ -98,5 +98,5 @@ export interface CartDocument {
 	wine: WineDocument;
 	quantity: number;
 	unit_price: number;
-	total_price: number;
+	totalPrice: number;
 }

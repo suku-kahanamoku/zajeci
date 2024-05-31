@@ -67,7 +67,7 @@ const DeliverySchema = new Schema<DeliveryDocument>(
 			type: AddressOrderSchema,
 			required: true,
 		},
-		total_price: {
+		totalPrice: {
 			type: Number,
 			required: true,
 			default: 0,
@@ -89,7 +89,7 @@ const PaymentSchema = new Schema<PaymentDocument>(
 			default: PaymentServices.card,
 			required: true,
 		},
-		total_price: {
+		totalPrice: {
 			type: Number,
 			required: true,
 			default: 0,
@@ -119,7 +119,7 @@ const CartSchema = new Schema<CartDocument>(
 			required: true,
 			default: 0,
 		},
-		total_price: {
+		totalPrice: {
 			type: Number,
 			required: true,
 			default: 0,
@@ -190,7 +190,7 @@ export const OrderSchema = model<OrderDocument>(
 				required: true,
 				default: 0,
 			},
-			total_price: {
+			totalPrice: {
 				type: Number,
 				required: true,
 				default: 0,

@@ -17,7 +17,7 @@
 
 	async function setPaymentValidation() {
 		if (cashdesk.payment) {
-			cashdesk.payment.total_price = cashdesk.payments[cashdesk.payment.type]?.price || 0;
+			cashdesk.payment.totalPrice = cashdesk.payments[cashdesk.payment.type]?.price || 0;
 			try {
 				await formEl.value.validate();
 				cashdesk.payment.valid = true;

@@ -15,7 +15,7 @@ export default defineEventHandler(async (event: H3Event) => {
 	// odesle mail se zapomenutym heslem
 	if (user?._id) {
 		const newPassword = GENERATE_PASSWORD();
-		await UserModel.updateOne({ _id: user._id }, { temp_password: await GENERATE_HASHED_PASSWORD(newPassword) });
+		await UserModel.updateOne({ _id: user._id }, { tempPassword: await GENERATE_HASHED_PASSWORD(newPassword) });
 
 		await send({
 			subject: '$.mailing.forgot_password.subject',

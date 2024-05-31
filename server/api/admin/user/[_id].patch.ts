@@ -14,7 +14,7 @@ export default defineEventHandler(async (event: H3Event) => {
 			// kontrola hesla
 			const isValid =
 				(await COMPARE_PASSWORD(body.password, user.password || '')) ||
-				(await COMPARE_PASSWORD(body.password, user.temp_password || ''));
+				(await COMPARE_PASSWORD(body.password, user.tempPassword || ''));
 			delete body.password;
 			if (!isValid) {
 				throw createError({

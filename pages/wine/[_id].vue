@@ -126,7 +126,7 @@
 				<div class="mt-6 flex flex-col gap-2">
 					<div>
 						{{ $t('$.form.price') }}:&nbsp;{{
-							useToNumber(cart?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)
+							useToNumber(cart?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale)
 						}}&nbsp;{{ $t('$.czk') }}
 					</div>
 					<div>
@@ -136,7 +136,7 @@
 					</div>
 					<div>
 						{{ $t('$.cashdesk.cart.total') }}:&nbsp;{{
-							useToNumber(cashdesk?.total_price?.toFixed(2) || 0).value.toLocaleString(locale)
+							useToNumber(cashdesk?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale)
 						}}&nbsp;{{ $t('$.czk') }}
 					</div>
 				</div>

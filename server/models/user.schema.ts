@@ -29,7 +29,7 @@ export const UserSchema = new Schema<UserDocument>(
 			type: String,
 			trim: true,
 		},
-		temp_password: {
+		tempPassword: {
 			type: String,
 			trim: true,
 		},
