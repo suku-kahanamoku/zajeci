@@ -222,6 +222,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	});
 
 	return {
+		loading,
 		user,
 		carts,
 		addItem,

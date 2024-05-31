@@ -103,7 +103,12 @@
 								{{ $t(backBtn[selected] || '$.btn.back') }}
 							</span>
 						</UButton>
-						<UButton size="lg" :disabled="tabs[selected + 1]?.disabled" @click="onNext">
+						<UButton
+							size="lg"
+							:disabled="cashdesk.loading || tabs[selected + 1]?.disabled"
+							:loading="cashdesk.loading"
+							@click="onNext"
+						>
 							{{ $t(continueBtn[selected] || '$.btn.continue') }}
 							<template #trailing>
 								<UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />
