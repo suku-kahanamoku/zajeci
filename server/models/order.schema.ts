@@ -185,11 +185,6 @@ export const OrderSchema = model<OrderDocument>(
 		{
 			user: UserOrderSchema,
 			carts: [CartSchema],
-			totalQuantity: {
-				type: Number,
-				required: true,
-				default: 0,
-			},
 			totalPrice: {
 				type: Number,
 				required: true,

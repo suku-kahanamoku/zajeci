@@ -55,10 +55,6 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			autocomplete?: string;
 		}
 	> = {
-		totalQuantity: {
-			key: 'totalQuantity',
-			label: '$.cashdesk.total_quantity',
-		},
 		totalPrice: {
 			key: 'totalPrice',
 			label: '$.cashdesk.total_price',
@@ -183,6 +179,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			carts: carts.value,
 			delivery: delivery.value,
 			payment: payment.value,
+			totalPrice: totalPrice,
 		};
 		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(order), 1, 'd');
 	};
@@ -195,9 +192,9 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 				carts: carts.value,
 				delivery: delivery.value,
 				payment: payment.value,
+				totalPrice: totalPrice,
 			};
 			const result = await $fetch('/api/order', { method: 'POST', body: order });
-			console.log(result);
 			/* reset(); */
 		} catch (error: any) {
 			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
