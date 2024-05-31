@@ -179,7 +179,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			carts: carts.value,
 			delivery: delivery.value,
 			payment: payment.value,
-			totalPrice: totalPrice,
+			totalPrice: totalPrice.value,
 		};
 		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(order), 1, 'd');
 	};
@@ -192,7 +192,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 				carts: carts.value,
 				delivery: delivery.value,
 				payment: payment.value,
-				totalPrice: totalPrice,
+				totalPrice: totalPrice.value,
 			};
 			const result = await $fetch('/api/order', { method: 'POST', body: order });
 			/* reset(); */
