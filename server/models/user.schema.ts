@@ -17,7 +17,7 @@ export const UserSchema = new Schema<UserDocument>(
 			type: String,
 			trim: true,
 		},
-		family_name: {
+		surname: {
 			type: String,
 			trim: true,
 		},

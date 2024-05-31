@@ -11,7 +11,7 @@
 		email: string().email(t('$.message.invalid_email')).required(' '),
 		phone: string(),
 		given_name: string().required(' '),
-		family_name: string().required(' '),
+		surname: string().required(' '),
 		address: object({
 			main: object({
 				name: string(),
@@ -75,20 +75,20 @@
 							size="lg"
 							@change="
 								!cashdesk.delivery.valid
-									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.family_name}`)
+									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.surname}`)
 									: undefined
 							"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(auth.fields.family_name.label)" name="family_name" required class="w-full">
+					<UFormGroup :label="$t(auth.fields.surname.label)" name="surname" required class="w-full">
 						<UInput
-							v-model="cashdesk.user.family_name"
-							:placeholder="$t(auth.fields.family_name.placeholder as string)"
-							:autocomplete="auth.fields.family_name.autocomplete"
+							v-model="cashdesk.user.surname"
+							:placeholder="$t(auth.fields.surname.placeholder as string)"
+							:autocomplete="auth.fields.surname.autocomplete"
 							size="lg"
 							@change="
 								!cashdesk.delivery.valid
-									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.family_name}`)
+									? (cashdesk.delivery.address!.name = `${cashdesk.user.given_name} ${cashdesk.user.surname}`)
 									: undefined
 							"
 						/>

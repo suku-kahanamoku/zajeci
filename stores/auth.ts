@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('Auth', () => {
 		email: '',
 		phone: '',
 		given_name: '',
-		family_name: '',
+		surname: '',
 		address: {
 			main: {
 				_id: '',
@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('Auth', () => {
 			authUser.value.address.main!.name =
 				authUser.value.address.main!.name ||
 				authUser.value.name ||
-				`${authUser.value.given_name} ${authUser.value.family_name}`;
+				`${authUser.value.given_name} ${authUser.value.surname}`;
 			// pripravy dodaci adresy
 			authUser.value.address.variants = authUser.value.address.variants || [];
 		}
@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('Auth', () => {
 		() =>
 			`${
 				((user.value?.given_name && user.value?.given_name[0]) || '')?.toUpperCase() +
-				((user.value?.family_name && user.value?.family_name[0]) || '')?.toUpperCase()
+				((user.value?.surname && user.value?.surname[0]) || '')?.toUpperCase()
 			}`
 	);
 
@@ -90,10 +90,10 @@ export const useAuthStore = defineStore('Auth', () => {
 			placeholder: '$.profile.placeholder.given_name',
 			autocomplete: 'given-name',
 		},
-		family_name: {
-			key: 'family_name',
-			label: '$.profile.family_name',
-			placeholder: '$.profile.placeholder.family_name',
+		surname: {
+			key: 'surname',
+			label: '$.profile.surname',
+			placeholder: '$.profile.placeholder.surname',
 			autocomplete: 'family-name',
 		},
 		password: {

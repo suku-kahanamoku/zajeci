@@ -5,7 +5,7 @@ export interface UserDocument {
 	_id: string;
 	email: string;
 	name?: string;
-	family_name?: string;
+	surname?: string;
 	given_name?: string;
 	password?: string;
 	temp_password?: string;

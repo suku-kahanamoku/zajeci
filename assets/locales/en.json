@@ -103,7 +103,7 @@
 		"profile": {
 			"title": "Edit Profile",
 			"given_name": "Given name",
-			"family_name": "Family name",
+			"surname": "Family name",
 			"newsletter": "Sending weekly news updates",
 			"change_password": "Change Password",
 			"success_msg": "User successfully edited",
@@ -120,7 +120,7 @@
 			"placeholder": {
 				"name": "John Doe",
 				"given_name": "John",
-				"family_name": "Doe",
+				"surname": "Doe",
 				"street": "Blvd Ave. 12",
 				"city": "London",
 				"zip": "654 32",

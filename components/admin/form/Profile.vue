@@ -9,7 +9,7 @@
 	const schema = object({
 		email: string().email(t('$.message.invalid_email')).required(' '),
 		given_name: string(),
-		family_name: string(),
+		surname: string(),
 		role: string(),
 		password: string().min(8, t('$.message.password_min', { count: 8 })),
 		new_password: string().min(8, t('$.message.password_min', { count: 8 })),
@@ -24,7 +24,7 @@
 		_id: '',
 		email: '',
 		given_name: '',
-		family_name: '',
+		surname: '',
 		role: 'guest',
 		password: '',
 		new_password: '',
@@ -81,10 +81,10 @@
 							size="lg"
 						/>
 					</UFormGroup>
-					<UFormGroup :label="$t(fields.family_name.label)" name="family_name">
+					<UFormGroup :label="$t(fields.surname.label)" name="surname">
 						<UInput
-							v-model="state.family_name"
-							:placeholder="$t(fields.family_name.placeholder as string)"
+							v-model="state.surname"
+							:placeholder="$t(fields.surname.placeholder as string)"
 							size="lg"
 						/>
 					</UFormGroup>

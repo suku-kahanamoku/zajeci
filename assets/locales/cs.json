@@ -103,7 +103,7 @@
 		"profile": {
 			"title": "Upravit profil",
 			"given_name": "Křestní jméno",
-			"family_name": "Příjmeni",
+			"surname": "Příjmeni",
 			"newsletter": "Odesílání týdenních zpráv s novinkami",
 			"change_password": "Změnit heslo",
 			"success_msg": "Uživatel byl úspěšně upraven",
@@ -120,7 +120,7 @@
 			"placeholder": {
 				"name": "Jan Novák",
 				"given_name": "Jan",
-				"family_name": "Novák",
+				"surname": "Novák",
 				"street": "Králová 12",
 				"city": "Brno",
 				"zip": "654 32",
