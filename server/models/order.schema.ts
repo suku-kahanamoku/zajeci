@@ -10,6 +10,7 @@ import {
 } from '../types/order.type';
 import { UserDocument } from '../types/user.type';
 import { AddressDocument } from '../types/address.type';
+import { UserModel, upsertAddress } from './user.schema';
 
 export const AddressOrderSchema = new Schema<AddressDocument>(
 	{
@@ -48,9 +49,8 @@ export const AddressOrderSchema = new Schema<AddressDocument>(
 );
 
 AddressOrderSchema.pre('save', function (next) {
-	if (this._id) {
-		delete this._id;
-	}
+	const address = this as AddressDocument as any;
+	delete address?._id;
 	next();
 });
 
@@ -87,11 +87,31 @@ const UserOrderSchema = new Schema<UserDocument>(
 	}
 );
 
-UserOrderSchema.pre('save', function (next) {
-	if (this._id) {
-		delete this._id;
+// Post hook pro aktualizaci nebo vytvoreni uzivatele
+UserOrderSchema.pre(['save', 'findOneAndUpdate', 'updateOne'], async function (next) {
+	try {
+		const user = this as UserDocument as any;
+		delete user._id;
+
+		// Najít nebo aktualizovat uživatele
+		await UserModel.findOneAndUpdate(
+			{ email: user.email },
+			{
+				name: user.name,
+				surname: user.surname,
+				givenName: user.givenName,
+				phone: user.phone,
+				address: {
+					main: await upsertAddress(user),
+				},
+			},
+			{ new: true, upsert: true }
+		);
+
+		next();
+	} catch (error: any) {
+		next(error);
 	}
-	next();
 });
 
 /**
@@ -173,41 +193,41 @@ const CartSchema = new Schema<CartDocument>(
 );
 
 CartSchema.pre('save', function (next) {
-	delete this.wine?._id;
-	delete this.wine?.image?.variants;
+	const cart = this as any;
+	delete cart.wine?._id;
+	delete cart.wine?.image?.variants;
 	next();
 });
+
+const OrderSchema = new Schema<OrderDocument>(
+	{
+		user: UserOrderSchema,
+		carts: [CartSchema],
+		totalPrice: {
+			type: Number,
+			required: true,
+			default: 0,
+		},
+		status: {
+			type: String,
+			enum: Object.values(OrderStatus),
+			default: OrderStatus.pending,
+		},
+		delivery: {
+			type: DeliverySchema,
+			required: true,
+		},
+		payment: {
+			type: PaymentSchema,
+			required: true,
+		},
+	},
+	{
+		timestamps: true,
+	}
+);
 
 /**
  * Mongo schema pro cashdesk
  */
-export const OrderModel = model<OrderDocument>(
-	'orders',
-	new Schema<OrderDocument>(
-		{
-			user: UserOrderSchema,
-			carts: [CartSchema],
-			totalPrice: {
-				type: Number,
-				required: true,
-				default: 0,
-			},
-			status: {
-				type: String,
-				enum: Object.values(OrderStatus),
-				default: OrderStatus.pending,
-			},
-			delivery: {
-				type: DeliverySchema,
-				required: true,
-			},
-			payment: {
-				type: PaymentSchema,
-				required: true,
-			},
-		},
-		{
-			timestamps: true,
-		}
-	)
-);
+export const OrderModel = model<OrderDocument>('orders', OrderSchema);

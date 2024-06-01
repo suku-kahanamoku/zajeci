@@ -67,7 +67,20 @@ export const UserSchema = new Schema<UserDocument>(
 	}
 );
 
-UserSchema.post('find', async function (docs: any[], next: Function) {
+// Pre hook na save pro aktualizaci nebo vytvoření address.main
+UserSchema.pre(['save', 'findOneAndUpdate', 'updateOne'], async function (next) {
+	try {
+		const user = this as UserDocument;
+		user.address = user.address || {};
+		user.address.main = await upsertAddress(user);
+
+		next();
+	} catch (error: any) {
+		next(error);
+	}
+});
+
+UserSchema.post('find', async function (docs, next) {
 	await fetchUsersWithAddresses(docs);
 	next();
 });
@@ -92,7 +105,7 @@ async function fetchUsersWithAddresses(users: UserDocument[]) {
 		}
 	});
 
-	// Fetch all addresss using $in
+	// Fetch all addresses using $in
 	const addresses = await AddressModel.find({ _id: { $in: Array.from(addressIds) } }).lean();
 	const addressMap = new Map(addresses.map((address) => [address._id.toString(), address]));
 
@@ -107,4 +120,26 @@ async function fetchUsersWithAddresses(users: UserDocument[]) {
 			) as AddressDocument[];
 		}
 	});
+}
+
+/**
+ * Vytvori nebo upravy adresar
+ *
+ * @export
+ * @param {UserDocument} user
+ * @return {*}  {(Promise<AddressDocument | undefined>)}
+ */
+export async function upsertAddress(user: UserDocument): Promise<AddressDocument | undefined> {
+	if (typeof user.address?.main === 'object' && user.address.main !== null) {
+		// Pokud ma adresa _id, pokusi se aktualizovat existujici zaznam
+		if (user.address.main._id) {
+			return (await AddressModel.findByIdAndUpdate(user.address.main._id, user.address.main, {
+				new: true,
+			})) as AddressDocument;
+		}
+		// Pokud _id chybi, vytvori novou adresu
+		else {
+			return await AddressModel.create(user.address.main);
+		}
+	}
 }

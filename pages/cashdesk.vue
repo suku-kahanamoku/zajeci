@@ -8,7 +8,7 @@
 	const { t } = useI18n();
 
 	useHead({
-		title: `${t('$.base.title')} | ${t('$.login.title')}`,
+		title: `${t('$.base.title')} | ${t('$.cashdesk.title')}`,
 		meta: [
 			{ name: 'description', content: t('$.base.description') },
 			{ name: 'keywords', content: t('$.base.description') },
