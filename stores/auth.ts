@@ -222,6 +222,7 @@ export const useAuthStore = defineStore('Auth', () => {
 	};
 
 	return {
+		fetch,
 		login,
 		loginByGoogle,
 		loginByLinkedin,

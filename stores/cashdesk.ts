@@ -198,6 +198,8 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			};
 			const result = await $fetch('/api/order', { method: 'POST', body: order });
 			if (result?._id) {
+				// aktualizace prihlaseneho uzivatele
+				await auth.fetch();
 				reset();
 				navigateTo({
 					path: localePath(routes.cashdesk_completed.path),

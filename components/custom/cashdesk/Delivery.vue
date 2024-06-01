@@ -20,20 +20,21 @@
 		}).required(' '),
 	});
 
-	watch(
-		cashdesk.delivery,
-		useDebounceFn(async (value) => {
-			if (cashdesk.delivery) {
-				cashdesk.delivery.totalPrice = cashdesk.deliveries[cashdesk.delivery.type]?.price || 0;
-				try {
-					await formEl.value.validate();
-					cashdesk.delivery.valid = true;
-				} catch (error) {
-					cashdesk.delivery.valid = false;
-				}
+	onMounted(checkValidation);
+
+	watch(cashdesk.delivery, useDebounceFn(checkValidation, 400));
+
+	async function checkValidation() {
+		if (cashdesk.delivery) {
+			cashdesk.delivery.totalPrice = cashdesk.deliveries[cashdesk.delivery.type]?.price || 0;
+			try {
+				await formEl.value.validate();
+				cashdesk.delivery.valid = true;
+			} catch (error) {
+				cashdesk.delivery.valid = false;
 			}
-		}, 400)
-	);
+		}
+	}
 </script>
 <template>
 	<UForm

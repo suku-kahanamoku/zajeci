@@ -91,7 +91,6 @@ const UserOrderSchema = new Schema<UserDocument>(
 UserOrderSchema.pre(['save', 'findOneAndUpdate', 'updateOne'], async function (next) {
 	try {
 		const user = this as UserDocument as any;
-		delete user._id;
 
 		// Najít nebo aktualizovat uživatele
 		await UserModel.findOneAndUpdate(
@@ -107,6 +106,8 @@ UserOrderSchema.pre(['save', 'findOneAndUpdate', 'updateOne'], async function (n
 			},
 			{ new: true, upsert: true }
 		);
+
+		delete user._id;
 
 		next();
 	} catch (error: any) {

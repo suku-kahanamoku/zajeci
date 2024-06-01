@@ -23,19 +23,20 @@
 		}).required(' '),
 	});
 
-	watch(
-		cashdesk.user,
-		useDebounceFn(async (value) => {
-			if (cashdesk.user) {
-				try {
-					await formEl.value.validate();
-					cashdesk.user.valid = true;
-				} catch (error) {
-					cashdesk.user.valid = false;
-				}
+	onMounted(checkValidation);
+
+	watch(cashdesk.user, useDebounceFn(checkValidation, 400));
+
+	async function checkValidation() {
+		if (cashdesk.user) {
+			try {
+				await formEl.value.validate();
+				cashdesk.user.valid = true;
+			} catch (error) {
+				cashdesk.user.valid = false;
 			}
-		}, 400)
-	);
+		}
+	}
 </script>
 <template>
 	<div class="w-full border rounded-lg shadow-md max-w-xl my-4 dark:border dark:bg-gray-800 dark:border-gray-700">

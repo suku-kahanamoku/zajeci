@@ -11,11 +11,11 @@
 		type: string().required(' '),
 	});
 
-	onMounted(setPaymentValidation);
+	onMounted(checkValidation);
 
-	watch(cashdesk.payment, useDebounceFn(setPaymentValidation, 400));
+	watch(cashdesk.payment, useDebounceFn(checkValidation, 400));
 
-	async function setPaymentValidation() {
+	async function checkValidation() {
 		if (cashdesk.payment) {
 			cashdesk.payment.totalPrice = cashdesk.payments[cashdesk.payment.type]?.price || 0;
 			try {

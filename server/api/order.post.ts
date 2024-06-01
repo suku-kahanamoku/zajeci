@@ -5,7 +5,7 @@ import { OrderModel } from '../models/order.schema';
 
 export default defineEventHandler(async (event: H3Event) => {
 	const body = await readBody(event);
-	const result = await OrderModel.create(body);
+	const result = (await OrderModel.create(body)).toObject();
 
 	// pokud se podari ulozit objednavku do DB, odesle se mail klientovi i adminovi
 	if (result?._id) {
@@ -35,5 +35,14 @@ export default defineEventHandler(async (event: H3Event) => {
 		});
 	}
 
-	return result.toObject();
+	// aktualizuje user session
+	const session = await getUserSession(event);
+	if (session?.user && result.user && body.user) {
+		await setUserSession(event, {
+			user: result.user,
+			loggedInAt: session.loggedInAt,
+		});
+	}
+
+	return result;
 });
