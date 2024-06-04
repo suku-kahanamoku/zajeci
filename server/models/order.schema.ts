@@ -10,7 +10,6 @@ import {
 } from '../types/order.type';
 import { UserDocument } from '../types/user.type';
 import { AddressDocument } from '../types/address.type';
-import { UserModel, upsertAddress } from './user.schema';
 
 export const AddressOrderSchema = new Schema<AddressDocument>(
 	{
@@ -48,12 +47,6 @@ export const AddressOrderSchema = new Schema<AddressDocument>(
 	}
 );
 
-AddressOrderSchema.pre('save', function (next) {
-	const address = this as AddressDocument as any;
-	delete address?._id;
-	next();
-});
-
 const UserOrderSchema = new Schema<UserDocument>(
 	{
 		email: {
@@ -86,34 +79,6 @@ const UserOrderSchema = new Schema<UserDocument>(
 		_id: false,
 	}
 );
-
-// Post hook pro aktualizaci nebo vytvoreni uzivatele
-UserOrderSchema.pre(['save', 'findOneAndUpdate', 'updateOne'], async function (next) {
-	try {
-		const user = this as UserDocument as any;
-
-		// Najít nebo aktualizovat uživatele
-		await UserModel.findOneAndUpdate(
-			{ email: user.email },
-			{
-				name: user.name,
-				surname: user.surname,
-				givenName: user.givenName,
-				phone: user.phone,
-				address: {
-					main: await upsertAddress(user),
-				},
-			},
-			{ new: true, upsert: true }
-		);
-
-		delete user._id;
-
-		next();
-	} catch (error: any) {
-		next(error);
-	}
-});
 
 /**
  * Mongo schema pro dopravu v cashdesku
@@ -194,9 +159,7 @@ const CartSchema = new Schema<CartDocument>(
 );
 
 CartSchema.pre('save', function (next) {
-	const cart = this as any;
-	delete cart.wine?._id;
-	delete cart.wine?.image?.variants;
+	delete this.wine?.image?.variants;
 	next();
 });
 

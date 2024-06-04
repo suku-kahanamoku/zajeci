@@ -67,19 +67,6 @@ export const UserSchema = new Schema<UserDocument>(
 	}
 );
 
-// Pre hook na save pro aktualizaci nebo vytvoření address.main
-UserSchema.pre(['save', 'findOneAndUpdate', 'updateOne'], async function (next) {
-	try {
-		const user = this as UserDocument;
-		user.address = user.address || {};
-		user.address.main = await upsertAddress(user);
-
-		next();
-	} catch (error: any) {
-		next(error);
-	}
-});
-
 UserSchema.post('find', async function (docs, next) {
 	await fetchUsersWithAddresses(docs);
 	next();
@@ -120,26 +107,4 @@ async function fetchUsersWithAddresses(users: UserDocument[]) {
 			) as AddressDocument[];
 		}
 	});
-}
-
-/**
- * Vytvori nebo upravy adresar
- *
- * @export
- * @param {UserDocument} user
- * @return {*}  {(Promise<AddressDocument | undefined>)}
- */
-export async function upsertAddress(user: UserDocument): Promise<AddressDocument | undefined> {
-	if (typeof user.address?.main === 'object' && user.address.main !== null) {
-		// Pokud ma adresa _id, pokusi se aktualizovat existujici zaznam
-		if (user.address.main._id) {
-			return (await AddressModel.findByIdAndUpdate(user.address.main._id, user.address.main, {
-				new: true,
-			})) as AddressDocument;
-		}
-		// Pokud _id chybi, vytvori novou adresu
-		else {
-			return await AddressModel.create(user.address.main);
-		}
-	}
 }

@@ -160,6 +160,10 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 		const local = JSON.parse(nuxtStorage.localStorage.getData('cashdesk') || '{}');
 		if (local) {
 			if (local.user) {
+				// prida id prihlaseneho uzivatele
+				local.user._id = user.value._id;
+				// prida id fakturacni adresy
+				local.user.address.main._id = user.value.address?.main?._id;
 				setUser(local.user);
 			}
 			if (local.carts) {
