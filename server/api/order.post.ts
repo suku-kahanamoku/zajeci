@@ -6,7 +6,6 @@ import { OrderModel } from '../models/order.schema';
 import { AddressModel } from '../models/address.schema';
 import { UserModel } from '../models/user.schema';
 import { AddressDocument } from '../types/address.type';
-import { UserDocument } from '../types/user.type';
 
 export default defineEventHandler(async (event: H3Event) => {
 	const session = await getUserSession(event);
@@ -30,6 +29,12 @@ export default defineEventHandler(async (event: H3Event) => {
 		user.address.main = await upsertAddress(user.address.main as AddressDocument);
 		// najde a aktualizuje uzivatele
 		await UserModel.findByIdAndUpdate(user._id, user, { new: true, upsert: true });
+
+		// aktualizuje session
+		await setUserSession(event, {
+			user: result.user,
+			loggedInAt: session.loggedInAt,
+		});
 	}
 	// pokud uzivatel neexistuje vytvori ho
 	else if (!(await UserModel.exists({ email: user.email }))?._id) {
@@ -64,14 +69,6 @@ export default defineEventHandler(async (event: H3Event) => {
 					Email: process.env.NUXT_MAILING_FROM as string,
 				},
 			],
-		});
-	}
-
-	// aktualizuje user session
-	if (session?.user && result.user && body.user?.email === session.user.email) {
-		await setUserSession(event, {
-			user: result.user,
-			loggedInAt: session.loggedInAt,
 		});
 	}
 

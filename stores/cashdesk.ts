@@ -18,7 +18,6 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	const auth = useAuthStore();
 	const toast = useToast();
 	const loading = ref(false);
-	const { routes } = useMenuItems();
 
 	const user = ref<UserDocument>(CLONE(auth.user || auth.emptyUser));
 	const carts = ref<CartDocument[]>([]);
@@ -187,7 +186,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 			payment: payment.value,
 			totalPrice: totalPrice.value,
 		};
-		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(order), 1, 'd');
+		nuxtStorage.localStorage.setData('cashdesk', JSON.stringify(order), 7, 'd');
 	};
 
 	async function onSubmit() {
@@ -206,7 +205,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 				await auth.fetch();
 				reset();
 				navigateTo({
-					path: localePath(routes.cashdesk_completed.path),
+					path: localePath('cashdesk-completed'),
 					query: {
 						orderId: result._id,
 						email: result.user.email,

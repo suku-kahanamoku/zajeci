@@ -6,7 +6,7 @@ export default async function (to: RouteLocationNormalizedLoaded, from: RouteLoc
 
 	// je prihlaseny
 	if (auth.loggedIn) {
-		// pokud jde z dashboardu, zrusi navigaci
+		// pokud jde z dashboardu do login, signup, password, zrusi navigaci
 		if (from.meta?.syscode === 'admin') {
 			switch (to.meta?.syscode) {
 				case 'login':
