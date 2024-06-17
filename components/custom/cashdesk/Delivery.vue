@@ -106,7 +106,7 @@
 							</div>
 
 							<!-- pokud je vybrana hodnota free (rozvoz po brne), tak zobrazi formular s dodaci adresou -->
-							<div
+							<!-- <div
 								v-if="
 									(option.value === DeliveryServices.free &&
 										cashdesk.delivery.type === DeliveryServices.free) ||
@@ -114,7 +114,8 @@
 										cashdesk.delivery.type === DeliveryServices.post)
 								"
 								class="space-y-4 my-4"
-							>
+							> -->
+							<div v-if="option.value === cashdesk.delivery.type" class="space-y-4 my-4">
 								<UFormGroup
 									:label="$t(auth.fields.name.label)"
 									name="address.main.name"
