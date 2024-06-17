@@ -40,6 +40,7 @@
 		volume: number().required().positive(),
 		year: number().required().positive().integer().min(2000).max(today.getFullYear()),
 		price: number().required().positive().integer(),
+		quantity: number().required().positive().integer(),
 		/* categories: array().required().min(1), */
 		categories: array(),
 		published: boolean(),
@@ -64,9 +65,9 @@
 				body: changedParams,
 			});
 			state.value = CLONE(result);
-			toast.add({ title: t('$.form.patch_success_msg'), color: 'green', icon: 'i-heroicons-check' });
+			toast.add({ title: t('$.form.patch_success_msg'), color: 'success', icon: 'i-heroicons-check' });
 		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		setTimeout(() => (pending.value = false), 400);
 	}

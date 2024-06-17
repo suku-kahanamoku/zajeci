@@ -46,9 +46,9 @@
 		loading.value = true;
 		try {
 			await $fetch(`/api/admin/user/${user?._id}`, { method: 'PATCH', body: event.data });
-			toast.add({ title: t('$.profile.success_msg'), color: 'green', icon: 'i-heroicons-check' });
+			toast.add({ title: t('$.profile.success_msg'), color: 'success', icon: 'i-heroicons-check' });
 		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		loading.value = false;
 	}

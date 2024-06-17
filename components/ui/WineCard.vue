@@ -74,7 +74,7 @@
 					<div>
 						{{ $t('$.form.quantity') }}:&nbsp;{{
 							useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
-						}}&nbsp;{{ $t('$.czk') }}
+						}}&nbsp;{{ $t('$.pcs') }}
 					</div>
 					<div>
 						{{ $t('$.cashdesk.cart.total') }}:&nbsp;{{
@@ -82,6 +82,12 @@
 						}}&nbsp;{{ $t('$.czk') }}
 					</div>
 				</div>
+				<UAlert
+					icon="i-heroicons-truck"
+					:title="$t('$.cashdesk.delivery.limit_free')"
+					color="info"
+					class="mt-5"
+				/>
 			</div>
 		</UiModalCart>
 	</div>

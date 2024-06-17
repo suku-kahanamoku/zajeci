@@ -86,6 +86,10 @@ export function useWines() {
 			key: 'price',
 			label: t('$.form.price'),
 		},
+		quantity: {
+			key: 'quantity',
+			label: t('$.form.quantity_stock'),
+		},
 		categories: {
 			key: 'categories',
 			label: t('$.form.categories'),

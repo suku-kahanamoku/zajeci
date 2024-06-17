@@ -2,6 +2,7 @@
 	"$": {
 		"cs": "cz",
 		"czk": "CZK",
+		"pcs": "Pcs",
 		"base": {
 			"title": "NOVÁ HORA | Zaječí Winery",
 			"description": "Discover delicious Moravian wines! Interesting varieties, precise processing, and unforgettable taste experience. Don't hesitate to contact us and let us introduce you to a piece of Moravian winemaking passion."
@@ -134,9 +135,11 @@
 			"select": "Select",
 			"msg": "Message",
 			"price": "Price",
+			"quantity": "Quantity",
+			"quantity_stock": "Quantity in stock",
 			"description": "Description",
 			"categories": "Categories",
-			"quantity": "Quantity",
+			"quality": "Quality",
 			"name": "Name",
 			"patch_success_msg": "Record successfully edited",
 			"post_success_msg": "Record successfully created"
@@ -238,7 +241,11 @@
 				"zas": "Zásilkovna",
 				"dhl": "DHL",
 				"geis": "GEIS",
-				"brno_free": "Free delivery within the city of Brno"
+				"messenger": "Messenger",
+				"brno_free": "Delivery within the Brno-City district and Modřice is free every Thursday.",
+				"limit_free": "For orders over 2500 CZK, shipping is free.",
+				"third_day": "Delivery on the third day after dispatch at the latest.",
+				"not_quaranteed": "Delivery is not guaranteed."
 			},
 			"payment": {
 				"title": "Payment",

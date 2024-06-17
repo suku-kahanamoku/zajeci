@@ -68,6 +68,10 @@
 				<UInput v-model="item.price" type="number" size="lg" required />
 			</UFormGroup>
 
+			<UFormGroup :label="fields.quantity.label" name="quantity" required>
+				<UInput v-model="item.quantity" type="number" size="lg" required />
+			</UFormGroup>
+
 			<UFormGroup :label="fields.categories.label" name="categories">
 				<USelectMenu
 					v-model="item.categories"

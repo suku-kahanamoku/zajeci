@@ -84,7 +84,7 @@
 				/>
 				<UButton
 					icon="i-heroicons-plus"
-					color="green"
+					color="success"
 					:ui="{ rounded: 'rounded-full' }"
 					@click="increaseQuantity(row)"
 				/>
@@ -97,7 +97,7 @@
 						$t('$.czk')
 					}}
 				</p>
-				<UButton icon="i-heroicons-trash" color="red" @click="removeItem(row)" />
+				<UButton icon="i-heroicons-trash" color="error" @click="removeItem(row)" />
 			</div>
 		</template>
 	</UTable>
@@ -139,7 +139,7 @@
 					/>
 					<UButton
 						icon="i-heroicons-plus"
-						color="green"
+						color="success"
 						:ui="{ rounded: 'rounded-full' }"
 						@click="increaseQuantity(cart)"
 					/>
@@ -150,11 +150,13 @@
 							$t('$.czk')
 						}}
 					</p>
-					<UButton icon="i-heroicons-trash" color="red" @click="removeItem(cart)" />
+					<UButton icon="i-heroicons-trash" color="error" @click="removeItem(cart)" />
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<UAlert icon="i-heroicons-truck" :title="$t('$.cashdesk.delivery.limit_free')" color="info" class="my-4" />
 
 	<div
 		class="py-4 px-4 mt-2 text-lg font-semibold text-end text-gray-600 dark:text-white border border-gray-200 dark:border-gray-700"

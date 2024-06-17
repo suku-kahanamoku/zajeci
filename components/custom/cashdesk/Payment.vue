@@ -43,7 +43,7 @@
 						{{ $t(cashdesk.fields.payment.label) }}
 					</h3>
 				</template>
-				<div class="pt-2">
+				<div class="pt-4">
 					<URadio
 						v-for="option of cashdesk.paymentOptions"
 						:key="option.value"

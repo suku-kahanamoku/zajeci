@@ -37,7 +37,9 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 	> = {};
 	ITERATE(deliveryObjects, (item, name) => (deliveries[name] = { ...item, ...{ value: name } }));
 
-	const deliveryOptions = Object.values(deliveries);
+	const deliveryOptions = computed(() =>
+		Object.values(deliveries).map((item) => ({ ...item, price: totalPrice.value > 2500 ? 0 : item.price }))
+	);
 
 	const payments: Record<
 		string,
@@ -213,7 +215,7 @@ export const useCashdeskStore = defineStore('Cashdesk', () => {
 				});
 			}
 		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		loading.value = false;
 	}

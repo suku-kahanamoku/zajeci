@@ -51,9 +51,9 @@
 				await $fetch(`/api/admin/wine/${deleted.value._id}`, {
 					method: 'DELETE',
 				});
-				toast.add({ title: t('$.form.delete_success_msg'), color: 'green', icon: 'i-heroicons-check' });
+				toast.add({ title: t('$.form.delete_success_msg'), color: 'success', icon: 'i-heroicons-check' });
 			} catch (error: any) {
-				toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+				toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 			}
 			deleted.value = null;
 			isOpen.value = false;
@@ -74,7 +74,7 @@
 			<div class="flex justify-end">
 				<UButton
 					icon="i-heroicons-trash"
-					class="text-red-600 dark:text-red-600"
+					class="text-error-600 dark:text-error-600"
 					:ui="{ rounded: 'rounded-full' }"
 					variant="ghost"
 					:aria-label="$t('$.aria.delete_selected')"
@@ -96,7 +96,7 @@
 					<div class="flex items-center gap-1">
 						<UButton
 							icon="i-heroicons-trash"
-							color="red"
+							color="error"
 							:ui="{ rounded: 'rounded-full' }"
 							variant="ghost"
 							:aria-label="$t('$.aria.delete')"

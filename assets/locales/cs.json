@@ -2,6 +2,7 @@
 	"$": {
 		"cs": "cz",
 		"czk": "Kč",
+		"pcs": "Ks",
 		"base": {
 			"title": "NOVÁ HORA | Zaječské vinařství",
 			"description": "Objevte lahodná moravská vína! Zajímavé odrůdy, precizní zpracování a nezapomenutelný chuťový zážitek. Neváhejte nás kontaktovat a dovolte nám přiblížit vám kousek moravské vinárenské vášně"
@@ -56,13 +57,13 @@
 				"title": "Medium",
 				"drink": "Ochutnávka 10 vzorků",
 				"food": "Občerstvení, pečivo, voda",
-				"time": "Doba trvání 2 až 2 a 1,5 hodiny"
+				"time": "Doba trvání 2 až 2,5 hodiny"
 			},
 			"premium": {
 				"title": "All you can drink",
 				"drink": "Ochutnávka všech vzorků (min. 9 bílých, 4 růžové, 4 červené)",
 				"food": "Bohaté občerstvení, voda, nealko, pivo, cider, šláftruňk",
-				"time": "Doba trvání podle nálady, cca 5 hodin"
+				"time": "Doba trvání podle nálady, max 5 hodin"
 			}
 		},
 		"gallery": {
@@ -134,9 +135,11 @@
 			"select": "Vybrat",
 			"msg": "Zpráva",
 			"price": "Cena",
+			"quantity": "Množství",
+			"quantity_stock": "Množství na skladě",
 			"description": "Popis",
 			"categories": "Kategorie",
-			"quantity": "Množství",
+			"quality": "Kvalita",
 			"name": "Název",
 			"patch_success_msg": "Záznam byl úspěšně upraven",
 			"post_success_msg": "Záznam byl úspěšně vytvořen"
@@ -238,7 +241,11 @@
 				"zas": "Zásilkovna",
 				"dhl": "DHL",
 				"geis": "GEIS",
-				"brno_free": "Rozvoz zdarma v rámci města Brna"
+				"messenger": "Messenger",
+				"brno_free": "Dovoz v rámci okresu Brno-město a Modřice je zdarma každý čtvrtek.",
+				"limit_free": "Při objednávce nad 2500 Kč je doprava zdarma.",
+				"third_day": "Doruceni třetí den po odeslání nejpozději.",
+				"not_quaranteed": "Doruceni nezaručuje."
 			},
 			"payment": {
 				"title": "Platba",

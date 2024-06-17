@@ -24,9 +24,9 @@
 			await useAuthStore().resetPassword(event.data);
 			// reset formulare
 			state.email = undefined;
-			toast.add({ title: t('$.forgot_password.success_msg'), color: 'green', icon: 'i-heroicons-check' });
+			toast.add({ title: t('$.forgot_password.success_msg'), color: 'success', icon: 'i-heroicons-check' });
 		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		loading.value = false;
 	}

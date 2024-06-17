@@ -1,5 +1,4 @@
 import { AddressDocument } from './address.type';
-import { CartDocument, DeliveryDocument, PaymentDocument } from './order.type';
 
 export interface UserDocument {
 	_id: string;

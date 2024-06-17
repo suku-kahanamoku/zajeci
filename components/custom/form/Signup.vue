@@ -35,7 +35,7 @@
 		try {
 			await auth.signup(event.data);
 		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		loading.value = false;
 	}
@@ -82,7 +82,7 @@
 							:ui="{
 								ring:
 									error &&
-									'ring ring-inset ring-red-500 dark:ring-red-400 focus:ring-2 focus:ring-red-500 dark:focus:ring-red-400',
+									'ring ring-inset ring-error-500 dark:ring-error-400 focus:ring-2 focus:ring-error-500 dark:focus:ring-error-400',
 							}"
 						>
 							<template #label>

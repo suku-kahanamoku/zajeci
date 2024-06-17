@@ -59,7 +59,7 @@
 					</UButton>
 					<UButton
 						:icon="btns?.ok?.icon || 'i-heroicons-trash'"
-						:color="btns?.ok?.color || 'red'"
+						:color="btns?.ok?.color || 'error'"
 						:variant="btns?.ok?.variant || 'solid'"
 						@click="
 							emits('confirm', true);

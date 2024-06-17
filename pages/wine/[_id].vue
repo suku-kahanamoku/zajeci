@@ -88,6 +88,7 @@
 						<p class="text-gray-600 dark:text-white">{{ fields.variety.label }}: {{ wine?.variety }}</p>
 						<p class="text-gray-600 dark:text-white">{{ fields.volume.label }}: {{ wine?.volume }}</p>
 						<p class="text-gray-600 dark:text-white">{{ fields.year.label }}: {{ wine?.year }}</p>
+						<p class="text-gray-600 dark:text-white">{{ fields.quantity.label }}: {{ wine?.quantity }}</p>
 					</div>
 					<UDivider class="my-4" />
 					<div class="flex items-center justify-between">
@@ -132,7 +133,7 @@
 					<div>
 						{{ $t('$.form.quantity') }}:&nbsp;{{
 							useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
-						}}&nbsp;{{ $t('$.czk') }}
+						}}&nbsp;{{ $t('$.pcs') }}
 					</div>
 					<div>
 						{{ $t('$.cashdesk.cart.total') }}:&nbsp;{{
@@ -140,6 +141,12 @@
 						}}&nbsp;{{ $t('$.czk') }}
 					</div>
 				</div>
+				<UAlert
+					icon="i-heroicons-truck"
+					:title="$t('$.cashdesk.delivery.limit_free')"
+					color="info"
+					class="mt-5"
+				/>
 			</div>
 		</UiModalCart>
 	</section>

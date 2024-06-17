@@ -44,154 +44,164 @@
 		class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
 	>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<h3 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-				{{ $t(cashdesk.fields.delivery.label) }}
-			</h3>
-			<div class="pt-2">
-				<URadio
-					v-for="option of cashdesk.deliveryOptions"
-					:key="option.value"
-					v-model="cashdesk.delivery.type"
-					:value="option.value"
-					:disabled="option?.disabled"
-					:ui="{
-						wrapper: 'py-1',
-						base: `${option.disabled ? 'cursor-not-allowed' : 'cursor-pointer'} mt-4`,
-						inner: 'w-full',
-						label: option.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-					}"
-				>
-					<template #label>
-						<div class="flex items-center justify-between w-full">
-							<div class="flex items-center gap-2">
-								<Icon
-									v-if="option?.avatar?.startsWith('mdi:')"
-									:name="option.avatar"
-									size="30"
-									class="w-20"
-								/>
-								<NuxtImg
-									v-else
-									:src="option?.avatar"
-									:alt="$t(option?.label)"
-									loading="lazy"
-									format="webp"
-									width="80"
-									class="w-20"
-								/>
-								<span>
-									{{ $t(option?.label) }}
+			<UFormGroup name="type">
+				<template #label>
+					<h3
+						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+					>
+						{{ $t(cashdesk.fields.delivery.label) }}
+					</h3>
+				</template>
+				<div class="pt-4">
+					<URadio
+						v-for="option of cashdesk.deliveryOptions"
+						:key="option.value"
+						v-model="cashdesk.delivery.type"
+						:value="option.value"
+						:disabled="option?.disabled"
+						:ui="{
+							wrapper: 'py-1',
+							base: `${option.disabled ? 'cursor-not-allowed' : 'cursor-pointer'} mt-4`,
+							inner: 'w-full',
+							label: option.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+						}"
+					>
+						<template #label>
+							<div class="flex items-center justify-between w-full">
+								<div class="flex items-center gap-2">
+									<Icon
+										v-if="option?.avatar?.startsWith('mdi:')"
+										:name="option.avatar"
+										size="30"
+										class="w-20"
+									/>
+									<NuxtImg
+										v-else
+										:src="option?.avatar"
+										:alt="$t(option?.label)"
+										loading="lazy"
+										format="webp"
+										width="80"
+										class="w-20"
+									/>
+									<span>
+										{{ $t(option?.label) }}
+									</span>
+									<UTooltip
+										v-if="option?.help"
+										:text="$t(option.help)"
+										:ui="{ base: 'text-ellipsis h-100' }"
+									>
+										<Icon name="mdi:question-mark-circle" size="20" />
+									</UTooltip>
+								</div>
+								<span v-if="option.price! > 0">
+									{{
+										useToNumber(option?.price?.toFixed(2) || 0).value.toLocaleString(locale)
+									}}&nbsp;{{ $t('$.czk') }}
 								</span>
-								<UTooltip v-if="option?.help" :text="$t('$.cashdesk.delivery.brno_free')">
-									<Icon name="mdi:question-mark-circle" size="20" />
-								</UTooltip>
-							</div>
-							<span v-if="option.price! > 0">
-								{{ useToNumber(option?.price?.toFixed(2) || 0).value.toLocaleString(locale) }}&nbsp;{{
-									$t('$.czk')
-								}}
-							</span>
-							<span v-else>
-								{{ $t('$.cashdesk.delivery.free') }}
-							</span>
-						</div>
-
-						<!-- pokud je vybrana hodnota free (rozvoz po brne), tak zobrazi formular s dodaci adresou -->
-						<div
-							v-if="
-								(option.value === DeliveryServices.free &&
-									cashdesk.delivery.type === DeliveryServices.free) ||
-								(option.value === DeliveryServices.post &&
-									cashdesk.delivery.type === DeliveryServices.post)
-							"
-							class="space-y-4 my-4"
-						>
-							<UFormGroup
-								:label="$t(auth.fields.name.label)"
-								name="address.main.name"
-								required
-								class="w-full"
-							>
-								<UInput
-									v-model="cashdesk.delivery.address!.name"
-									:placeholder="$t(auth.fields.name.placeholder as string)"
-									:autocomplete="auth.fields.name.autocomplete"
-									size="lg"
-								/>
-							</UFormGroup>
-							<div
-								class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
-							>
-								<UFormGroup
-									:label="$t(auth.fields.street.label)"
-									name="address.main.street"
-									required
-									class="w-full"
-								>
-									<UInput
-										v-model="cashdesk.delivery.address!.street"
-										:placeholder="$t(auth.fields.street.placeholder as string)"
-										:autocomplete="auth.fields.street.autocomplete"
-										size="lg"
-									/>
-								</UFormGroup>
-								<UFormGroup
-									:label="$t(auth.fields.city.label)"
-									name="address.main.city"
-									required
-									class="w-full"
-								>
-									<UInput
-										v-model="cashdesk.delivery.address!.city"
-										:placeholder="$t(auth.fields.city.placeholder as string)"
-										:autocomplete="auth.fields.city.autocomplete"
-										size="lg"
-									/>
-								</UFormGroup>
+								<span v-else>
+									{{ $t('$.cashdesk.delivery.free') }}
+								</span>
 							</div>
 
+							<!-- pokud je vybrana hodnota free (rozvoz po brne), tak zobrazi formular s dodaci adresou -->
 							<div
-								class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
+								v-if="
+									(option.value === DeliveryServices.free &&
+										cashdesk.delivery.type === DeliveryServices.free) ||
+									(option.value === DeliveryServices.post &&
+										cashdesk.delivery.type === DeliveryServices.post)
+								"
+								class="space-y-4 my-4"
 							>
 								<UFormGroup
-									:label="$t(auth.fields.zip.label)"
-									name="address.main.zip"
+									:label="$t(auth.fields.name.label)"
+									name="address.main.name"
 									required
 									class="w-full"
 								>
 									<UInput
-										v-model="cashdesk.delivery.address!.zip"
-										:placeholder="$t(auth.fields.zip.placeholder as string)"
-										:autocomplete="auth.fields.zip.autocomplete"
+										v-model="cashdesk.delivery.address!.name"
+										:placeholder="$t(auth.fields.name.placeholder as string)"
+										:autocomplete="auth.fields.name.autocomplete"
 										size="lg"
 									/>
 								</UFormGroup>
-								<UFormGroup
-									:label="$t(auth.fields.state.label)"
-									name="address.main.state"
-									required
-									class="w-full"
+								<div
+									class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
 								>
-									<USelectMenu
-										v-model="cashdesk.delivery.address!.state"
-										:options="
-											auth.stateOptions?.map((item) => ({
-												...item,
-												...{ label: $t(item.label) },
-											}))
-										"
-										value-attribute="value"
-										option-attribute="label"
-										:placeholder="$t(auth.fields.state.placeholder as string)"
-										:autocomplete="auth.fields.state.autocomplete"
-										size="lg"
-									/>
-								</UFormGroup>
+									<UFormGroup
+										:label="$t(auth.fields.street.label)"
+										name="address.main.street"
+										required
+										class="w-full"
+									>
+										<UInput
+											v-model="cashdesk.delivery.address!.street"
+											:placeholder="$t(auth.fields.street.placeholder as string)"
+											:autocomplete="auth.fields.street.autocomplete"
+											size="lg"
+										/>
+									</UFormGroup>
+									<UFormGroup
+										:label="$t(auth.fields.city.label)"
+										name="address.main.city"
+										required
+										class="w-full"
+									>
+										<UInput
+											v-model="cashdesk.delivery.address!.city"
+											:placeholder="$t(auth.fields.city.placeholder as string)"
+											:autocomplete="auth.fields.city.autocomplete"
+											size="lg"
+										/>
+									</UFormGroup>
+								</div>
+
+								<div
+									class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
+								>
+									<UFormGroup
+										:label="$t(auth.fields.zip.label)"
+										name="address.main.zip"
+										required
+										class="w-full"
+									>
+										<UInput
+											v-model="cashdesk.delivery.address!.zip"
+											:placeholder="$t(auth.fields.zip.placeholder as string)"
+											:autocomplete="auth.fields.zip.autocomplete"
+											size="lg"
+										/>
+									</UFormGroup>
+									<UFormGroup
+										:label="$t(auth.fields.state.label)"
+										name="address.main.state"
+										required
+										class="w-full"
+									>
+										<USelectMenu
+											v-model="cashdesk.delivery.address!.state"
+											:options="
+												auth.stateOptions?.map((item) => ({
+													...item,
+													...{ label: $t(item.label) },
+												}))
+											"
+											value-attribute="value"
+											option-attribute="label"
+											:placeholder="$t(auth.fields.state.placeholder as string)"
+											:autocomplete="auth.fields.state.autocomplete"
+											size="lg"
+										/>
+									</UFormGroup>
+								</div>
 							</div>
-						</div>
-					</template>
-				</URadio>
-			</div>
+						</template>
+					</URadio>
+				</div>
+			</UFormGroup>
 		</div>
 	</UForm>
 </template>

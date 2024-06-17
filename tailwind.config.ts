@@ -20,6 +20,10 @@ export default {
 			colors: {
 				custom: theme.colors.primary,
 				secondary: theme.colors.secondary,
+				success: theme.colors.success,
+				info: theme.colors.info,
+				warning: theme.colors.warning,
+				error: theme.colors.error,
 			},
 		},
 	},

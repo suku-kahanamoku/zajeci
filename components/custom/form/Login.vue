@@ -27,7 +27,7 @@
 		try {
 			await auth.login(event.data);
 		} catch (error: any) {
-			toast.add({ title: error.data.message, color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: error.data.message, color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		loading.value = false;
 	}

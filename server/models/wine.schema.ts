@@ -17,6 +17,11 @@ export const WineSchema = new Schema<WineDocument>(
 			required: true,
 			default: 0,
 		},
+		quantity: {
+			type: Number,
+			required: true,
+			default: 0,
+		},
 		description: {
 			type: String,
 			trim: true,

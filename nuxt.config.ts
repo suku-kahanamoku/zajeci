@@ -18,15 +18,19 @@ export default defineNuxtConfig({
 		'nuxt-rating',
 	],
 	css: ['@/assets/css/main.css'],
-	router: {
-		options: {
-			scrollBehaviorType: 'smooth',
-		},
+	nitro: {
+		compressPublicAssets: true,
+		minify: true,
 	},
 	runtimeConfig: {
 		session: {
 			maxAge: 60 * 60 * 24,
 			enableRefreshOnWindowFocus: true,
+		},
+	},
+	router: {
+		options: {
+			scrollBehaviorType: 'smooth',
 		},
 	},
 	pinia: {

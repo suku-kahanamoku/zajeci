@@ -19,7 +19,7 @@ export enum PaymentServices {
 }
 
 export const paymentObjects = {
-	cash: { label: '$.cashdesk.payment.cash', price: 50, avatar: 'mdi:cash-100' },
+	cash: { label: '$.cashdesk.payment.cash', price: 0, avatar: 'mdi:cash-100' },
 	bank: {
 		label: '$.cashdesk.payment.bank',
 		price: 0,
@@ -66,14 +66,26 @@ export const deliveryObjects = {
 		label: '$.cashdesk.delivery.brno',
 		price: 0,
 		avatar: 'mdi:home-city-outline',
-		help: 'fdsa',
+		help: '$.cashdesk.delivery.brno_free',
 	},
-	post: { label: '$.cashdesk.delivery.post', price: 105, avatar: '/img/delivery/post.jpg' },
-	ppl: { label: '$.cashdesk.delivery.ppl', price: 120, avatar: '/img/delivery/ppl.jpg', disabled: true },
-	zas: { label: '$.cashdesk.delivery.zas', price: 59, avatar: '/img/delivery/zasilkovna.jpg', disabled: true },
-	gls: { label: '$.cashdesk.delivery.gls', price: 120, avatar: 'mdi:truck-outline', disabled: true },
-	dpd: { label: '$.cashdesk.delivery.dpd', price: 120, avatar: 'mdi:truck-outline', disabled: true },
-	geis: { label: '$.cashdesk.delivery.geis', price: 120, avatar: 'mdi:truck-outline', disabled: true },
+	post: {
+		label: '$.cashdesk.delivery.post',
+		price: 209,
+		avatar: '/img/delivery/post.jpg',
+		help: '$.cashdesk.delivery.not_quaranteed',
+	},
+	dpd: {
+		label: '$.cashdesk.delivery.dpd',
+		price: 150,
+		avatar: 'mdi:truck-outline',
+		help: '$.cashdesk.delivery.not_quaranteed',
+	},
+	messenger: {
+		label: '$.cashdesk.delivery.messenger',
+		price: 175,
+		avatar: 'mdi:truck-outline',
+		help: '$.cashdesk.delivery.third_day',
+	},
 };
 
 /**

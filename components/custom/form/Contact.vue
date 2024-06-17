@@ -27,9 +27,9 @@
 			// reset formulare
 			state.email = undefined;
 			state.message = undefined;
-			toast.add({ title: t('$.contact.success_msg'), color: 'green', icon: 'i-heroicons-check' });
+			toast.add({ title: t('$.contact.success_msg'), color: 'success', icon: 'i-heroicons-check' });
 		} catch (error) {
-			toast.add({ title: t('$.contact.error_msg'), color: 'red', icon: 'i-heroicons-exclamation-circle' });
+			toast.add({ title: t('$.contact.error_msg'), color: 'error', icon: 'i-heroicons-exclamation-circle' });
 		}
 		loading.value = false;
 	}
