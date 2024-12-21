@@ -7,7 +7,10 @@ export default defineI18nLocaleDetector((event, config) => {
 	}
 
 	// try to get locale from cookie
-	const cookie = tryCookieLocale(event, { lang: '', name: 'i18n_locale' }); // disable locale default value with `lang` option
+	const cookie = tryCookieLocale(event, {
+		lang: '',
+		name: useRuntimeConfig(event).public?.i18n?.detectBrowserLanguage?.cookieKey,
+	}); // disable locale default value with `lang` option
 	if (cookie) {
 		return cookie.toString();
 	}
