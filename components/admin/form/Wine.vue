@@ -97,10 +97,10 @@
 				variant="outline"
 				size="lg"
 			>
-				{{ $t('$.btn.back') }}
+				{{ $tt('$.btn.back') }}
 			</UButton>
 			<UButton type="submit" size="lg" :loading="loading" class="dark:text-white">
-				{{ $t('$.btn.submit') }}
+				{{ $tt('$.btn.submit') }}
 			</UButton>
 		</div>
 	</UForm>

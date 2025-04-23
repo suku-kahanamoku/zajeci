@@ -24,14 +24,14 @@
 			<template #header>
 				<div class="flex justify-between items-center">
 					<h3 class="text-lg lg:text-xl font-bold text-primary-600 dark:text-primary-400">
-						{{ $t('$.cashdesk.cart.added') }}
+						{{ $tt('$.cashdesk.cart.added') }}
 					</h3>
 					<UButton
 						icon="i-heroicons-x-mark"
 						color="white"
 						square
 						variant="solid"
-						:aria-label="$t('$.aria.close')"
+						:aria-label="$tt('$.aria.close')"
 						@click="model = false"
 					/>
 				</div>
@@ -50,7 +50,7 @@
 							@click="model = false"
 						>
 							<span class="hidden sm:block">
-								{{ $t('$.btn.continue') }}
+								{{ $tt('$.btn.continue') }}
 							</span>
 						</UButton>
 					</div>
@@ -62,7 +62,7 @@
 						size="xl"
 						@click="model = false"
 					>
-						{{ $t('$.btn.to_order') }}
+						{{ $tt('$.btn.to_order') }}
 					</UButton>
 				</div>
 			</template>

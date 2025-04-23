@@ -26,32 +26,32 @@
 			<EBody :style="main">
 				<EContainer class="mx-auto pt-4 pb-10">
 					<ELink :href="url" class="font-bold block text-center text-xl py-4">Logo</ELink>
-					<EText class="text-md"> {{ $t('$.mailing.contact_form.addressed') }}, </EText>
+					<EText class="text-md"> {{ $tt('$.mailing.contact_form.addressed') }}, </EText>
 					<EText class="text-md" py="12">
-						{{ $t('$.mailing.forgot_password.request_password') }}
+						{{ $tt('$.mailing.forgot_password.request_password') }}
 					</EText>
 					<EText class="text-md">
-						{{ $t('$.mailing.forgot_password.new_password') }}
+						{{ $tt('$.mailing.forgot_password.new_password') }}
 					</EText>
 
-					<EText class="text-sm text-gray-600"> {{ $t('$.form.email') }}: {{ email }} </EText>
-					<EText class="text-sm text-gray-600"> {{ $t('$.form.password') }}: {{ password }} </EText>
+					<EText class="text-sm text-gray-600"> {{ $tt('$.form.email') }}: {{ email }} </EText>
+					<EText class="text-sm text-gray-600"> {{ $tt('$.form.password') }}: {{ password }} </EText>
 
 					<EText class="text-md">
-						{{ $t('$.mailing.forgot_password.contact_us') }}
+						{{ $tt('$.mailing.forgot_password.contact_us') }}
 					</EText>
 					<EText class="text-md" py="12">
-						{{ $t('$.mailing.forgot_password.further_questions') }}
+						{{ $tt('$.mailing.forgot_password.further_questions') }}
 					</EText>
 					<EText class="text-md">
-						{{ $t('$.mailing.contact_form.regards') }},
+						{{ $tt('$.mailing.contact_form.regards') }},
 						<br />
-						{{ $t('$.mailing.contact_form.team') }}
+						{{ $tt('$.mailing.contact_form.team') }}
 					</EText>
 					<EHr class="text-gray-600" my="20" />
 					<EText class="text-xs text-gray-600">
 						© {{ new Date().getFullYear() }} <ELink :href="url" class="font-bold">Logo</ELink>.
-						{{ $t('$.footer.reserved') }}.
+						{{ $tt('$.footer.reserved') }}.
 					</EText>
 				</EContainer>
 			</EBody>

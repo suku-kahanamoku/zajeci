@@ -14,7 +14,7 @@
 	<div id="wine" class="py-10 lg:py-16">
 		<div class="text-center pb-8 lg:pb-10">
 			<h2 class="text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400">
-				{{ $t('$.wine.title') }}
+				{{ $tt('$.wine.title') }}
 			</h2>
 		</div>
 

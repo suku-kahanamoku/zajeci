@@ -39,7 +39,7 @@
 						color="white"
 						square
 						variant="solid"
-						:aria-label="$t('$.aria.close')"
+						:aria-label="$tt('$.aria.close')"
 						@click="model = false"
 					/>
 				</div>
@@ -55,7 +55,7 @@
 						:variant="btns?.cancel?.variant || 'outline'"
 						@click="model = false"
 					>
-						{{ $t(btns?.cancel?.label || '$.btn.cancel') }}
+						{{ $tt(btns?.cancel?.label || '$.btn.cancel') }}
 					</UButton>
 					<UButton
 						:icon="btns?.ok?.icon || 'i-heroicons-trash'"
@@ -66,7 +66,7 @@
 							model = false;
 						"
 					>
-						{{ $t(btns?.ok?.label || '$.btn.delete') }}
+						{{ $tt(btns?.ok?.label || '$.btn.delete') }}
 					</UButton>
 				</div>
 			</template>

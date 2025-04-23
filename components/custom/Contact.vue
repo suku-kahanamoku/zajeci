@@ -2,16 +2,16 @@
 	<div id="contact" class="py-10 lg:py-16">
 		<div class="text-center pb-8 lg:pb-10">
 			<h2 class="text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400">
-				{{ $t('$.contact.title') }}
+				{{ $tt('$.contact.title') }}
 			</h2>
 		</div>
 
 		<div class="grid md:grid-cols-2 gap-10 mx-auto max-w-screen-lg py-4">
 			<div class="from-left">
 				<h3 class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400">
-					{{ $t('$.contact.subtitle') }}
+					{{ $tt('$.contact.subtitle') }}
 				</h3>
-				<p class="lg:text-lg text-gray-600 dark:text-gray-400 mt-3">{{ $t('$.contact.appointment') }}</p>
+				<p class="lg:text-lg text-gray-600 dark:text-gray-400 mt-3">{{ $tt('$.contact.appointment') }}</p>
 				<div class="mt-5">
 					<div class="flex items-center mt-3 space-x-3 text-gray-600">
 						<Icon class="text-secondary-400" name="uil:envelope" size="26" />

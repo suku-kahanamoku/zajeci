@@ -13,7 +13,7 @@
 				<Icon name="mdi:cookie" size="36" class="inline text-secondary-400" />
 			</div>
 			<p class="text-sm pe-4">
-				{{ $t('$.footer.cookies') }}
+				{{ $tt('$.footer.cookies') }}
 			</p>
 			<UButton
 				color="secondary"

@@ -20,25 +20,25 @@
 			<EBody :style="main">
 				<EContainer class="mx-auto pt-4 pb-10">
 					<ELink :href="url" class="font-bold block text-center text-xl py-4">Logo</ELink>
-					<EText class="text-md"> {{ $t('$.mailing.contact_form.addressed') }}, </EText>
+					<EText class="text-md"> {{ $tt('$.mailing.contact_form.addressed') }}, </EText>
 					<EText class="text-md" py="12">
-						{{ $t('$.mailing.signup.thank_you') }}
+						{{ $tt('$.mailing.signup.thank_you') }}
 					</EText>
 					<EText class="text-md">
-						{{ $t('$.mailing.signup.success_done') }}
+						{{ $tt('$.mailing.signup.success_done') }}
 					</EText>
 					<EText class="text-md" py="12">
-						{{ $t('$.mailing.signup.further_questions') }}
+						{{ $tt('$.mailing.signup.further_questions') }}
 					</EText>
 					<EText class="text-md">
-						{{ $t('$.mailing.contact_form.regards') }},
+						{{ $tt('$.mailing.contact_form.regards') }},
 						<br />
-						{{ $t('$.mailing.contact_form.team') }}
+						{{ $tt('$.mailing.contact_form.team') }}
 					</EText>
 					<EHr class="text-gray-600" my="20" />
 					<EText class="text-xs text-gray-600">
 						© {{ new Date().getFullYear() }} <ELink :href="url" class="font-bold">Logo</ELink>.
-						{{ $t('$.footer.reserved') }}.
+						{{ $tt('$.footer.reserved') }}.
 					</EText>
 				</EContainer>
 			</EBody>

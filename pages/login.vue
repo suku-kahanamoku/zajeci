@@ -1,25 +1,25 @@
 <script setup lang="ts">
-	definePageMeta({
-		layout: 'default',
-		syscode: 'login',
-		title: '$.navbar.login',
-	});
+definePageMeta({
+  layout: "default",
+  syscode: "login",
+  title: "$.navbar.login",
+});
 
-	const { t } = useI18n();
+const { $tt } = useNuxtApp();
 
-	useHead({
-		title: `${t('$.base.title')} | ${t('$.login.title')}`,
-		meta: [
-			{ name: 'description', content: t('$.base.description') },
-			{ name: 'keywords', content: t('$.base.description') },
-		],
-	});
+useHead({
+  title: `${$tt("$.base.title")} | ${$tt("$.login.title")}`,
+  meta: [
+    { name: "description", content: $tt("$.base.description") },
+    { name: "keywords", content: $tt("$.base.description") },
+  ],
+});
 </script>
 
 <template>
-	<div class="flex w-full">
-		<div class="flex items-center justify-center mx-auto w-full">
-			<CustomFormLogin />
-		</div>
-	</div>
+  <div class="flex w-full">
+    <div class="flex items-center justify-center mx-auto w-full">
+      <CustomFormLogin />
+    </div>
+  </div>
 </template>

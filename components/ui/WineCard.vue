@@ -46,7 +46,7 @@
 					<div class="font-bold lg:text-lg text-gray-600 dark:text-white">
 						{{ fields.price.label }}:&nbsp;{{
 							useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(locale)
-						}}&nbsp;{{ $t('$.czk') }}
+						}}&nbsp;{{ $tt('$.czk') }}
 					</div>
 					<UButton
 						icon="i-heroicons-pencil-square"
@@ -54,7 +54,7 @@
 						class="lg:text-lg dark:text-white"
 						@click="addToCashdesk"
 					>
-						{{ $t('$.wine.to_cart') }}
+						{{ $tt('$.wine.to_cart') }}
 					</UButton>
 				</div>
 			</template>
@@ -67,24 +67,24 @@
 				</h3>
 				<div class="mt-6 flex flex-col gap-2">
 					<div>
-						{{ $t('$.form.price') }}:&nbsp;{{
+						{{ $tt('$.form.price') }}:&nbsp;{{
 							useToNumber(cart?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale)
-						}}&nbsp;{{ $t('$.czk') }}
+						}}&nbsp;{{ $tt('$.czk') }}
 					</div>
 					<div>
-						{{ $t('$.form.quantity') }}:&nbsp;{{
+						{{ $tt('$.form.quantity') }}:&nbsp;{{
 							useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
-						}}&nbsp;{{ $t('$.pcs') }}
+						}}&nbsp;{{ $tt('$.pcs') }}
 					</div>
 					<div>
-						{{ $t('$.cashdesk.cart.total') }}:&nbsp;{{
+						{{ $tt('$.cashdesk.cart.total') }}:&nbsp;{{
 							useToNumber(cashdesk?.totalPrice?.toFixed(2) || 0).value.toLocaleString(locale)
-						}}&nbsp;{{ $t('$.czk') }}
+						}}&nbsp;{{ $tt('$.czk') }}
 					</div>
 				</div>
 				<UAlert
 					icon="i-heroicons-truck"
-					:title="$t('$.cashdesk.delivery.limit_free')"
+					:title="$tt('$.cashdesk.delivery.limit_free')"
 					color="info"
 					class="mt-5"
 				/>

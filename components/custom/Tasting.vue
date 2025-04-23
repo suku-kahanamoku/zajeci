@@ -43,7 +43,7 @@
 	<div id="tasting" class="py-10 lg:py-16">
 		<div class="text-center pb-8 lg:pb-10">
 			<h2 class="text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400">
-				{{ $t('$.tasting.title') }}
+				{{ $tt('$.tasting.title') }}
 			</h2>
 		</div>
 
@@ -56,7 +56,7 @@
 				<div class="h-full border-2 border-gray-300 border-opacity-50 py-5 px-6 rounded-md bg-white dark:bg-gray-900 transition-transform transform lg:hover:scale-110">
 					<div class="text-center">
 						<h3 class="mt-3 text-2xl lg:text-3xl font-bold text-gray-900 dark:text-primary-300">
-							{{ $t(item.name) }}
+							{{ $tt(item.name) }}
 						</h3>
 						<p class="mt-2 text-gray-600 dark:text-gray-300">
 							{{ item.price && typeof item.price === 'object' ? item.price.value : item.price }}
@@ -70,7 +70,7 @@
 							<div>
 								<Icon class="text-secondary-400" :name="feature.icon" size="32" />
 							</div>
-							<div class="font-semibold lg:text-lg">{{ $t(feature.label) }}</div>
+							<div class="font-semibold lg:text-lg">{{ $tt(feature.label) }}</div>
 						</li>
 					</ul>
 				</div>
