@@ -6,7 +6,7 @@
  * @returns {*}  {boolean}
  */
 export function IS_ZIP(value: string | number): boolean {
-	return /^[0-9]{3}[ ]?[0-9]{2}$/.test(value?.toString());
+  return /^[0-9]{3}[ ]?[0-9]{2}$/.test(value?.toString());
 }
 
 /**
@@ -17,8 +17,8 @@ export function IS_ZIP(value: string | number): boolean {
  * @returns {*}  {boolean}
  */
 export function IS_STREET_NAME(value: string): boolean {
-	// return /^(.*[^0-9]+) (([1-9][0-9]*)\/)?([1-9][0-9]*[a-zA-Z]?)$/.test(value)
-	return /^.* .*[0-9]+.*$/.test(value);
+  // return /^(.*[^0-9]+) (([1-9][0-9]*)\/)?([1-9][0-9]*[a-zA-Z]?)$/.test(value)
+  return /^.* .*[0-9]+.*$/.test(value);
 }
 
 /**
@@ -29,5 +29,5 @@ export function IS_STREET_NAME(value: string): boolean {
  * @returns {boolean}
  */
 export function IS_CITY(value: string): boolean {
-	return /^[^!@#$%^&*_\+=|`~"']+$/.test(value) && (value || '').length >= 2;
+  return /^[^!@#$%^&*_\+=|`~"']+$/.test(value) && (value || "").length >= 2;
 }

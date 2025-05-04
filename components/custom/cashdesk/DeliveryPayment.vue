@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { $tt } = useNuxtApp();
+const auth = useAuthStore();
 
 const items = [
   {
@@ -20,7 +21,7 @@ const selected = ref();
 </script>
 <template>
   <div>
-    <UTabs v-if="!useAuthStore().loggedIn" v-model="selected" :items="items">
+    <UTabs v-if="!auth.loggedIn" v-model="selected" :items="items">
       <template #item="{ item }">
         <div class="flex items-center justify-center mx-auto w-full">
           <CustomFormLogin v-if="item.key === 'login'" />

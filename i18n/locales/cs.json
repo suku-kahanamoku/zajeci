@@ -1,323 +1,323 @@
 {
-	"$": {
-		"cs": "cz",
-		"czk": "Kč",
-		"pcs": "Ks",
-		"base": {
-			"title": "NOVÁ HORA | Zaječské vinařství",
-			"description": "Objevte lahodná moravská vína! Zajímavé odrůdy, precizní zpracování a nezapomenutelný chuťový zážitek. Neváhejte nás kontaktovat a dovolte nám přiblížit vám kousek moravské vinárenské vášně"
-		},
-		"navbar": {
-			"home": "Úvod",
-			"about": "O nás",
-			"wine": "Vína",
-			"taste": "Degustace",
-			"gallery": "Fotogalerie",
-			"contact": "Kontakt",
-			"login": "Přihlásit",
-			"signup": "Registrovat",
-			"logout": "Odhlásit"
-		},
-		"footer": {
-			"copyright": "Copyright",
-			"reserved": "Všechna práva vyhrazena",
-			"made_by": "Vytvořeno",
-			"cookies": "Tento web používá soubory cookies k zajištění optimálního uživatelského zážitku a měření jeho výkonu. Pokud budete nadále používat tento web, předpokládáme, že souhlasíte s používáním souborů cookies. Můžete však kdykoli změnit svá nastavení souborů cookies prostřednictvím příslušných funkcí vašeho prohlížeče."
-		},
-		"intro": {
-			"title": "Zaječské vinařství Nová hora",
-			"subtitle": "Objevte s námi lahodná moravská vína. Místní odrůdy, tradiční zpracování, nezapomenutelná vůně i chuť. Neváhejte nás kontaktovat a dovolte nám s vámi sdílet naši vášeň pro pěstování a výrobu vína.  ",
-			"btn": "CHCI VÍNO"
-		},
-		"about": {
-			"title": "Proč naše víno?",
-			"subtitle": "Tradiční vína zrozená na jihu Moravy.",
-			"description": "Vášeň pro víno a nadšení pro krásu jihomoravské krajiny a přírody nás dovedly do Zaječí. Postupem času měníme práci v kanceláři a v ordinaci za práci ve vinohradě a ve sklepě. Tuto vášeň a nadšení, úžas a krásu, únavu z práce i osvěžení po ní, předáváme dál v našich vínech."
-		},
-		"wine": {
-			"title": "Nabídka vín",
-			"to_cart": "Do košíku",
-			"detail": {
-				"title": "Detail vína"
-			}
-		},
-		"info": {
-			"history": "Moravská a česká vína získávají stále větší oblibu nejen u nás, ale taky ve světě. V České republice se pěstuje přes 50 odrůd. A to díky rozmanitosti a členitosti území. Každá oblast dodává jednotlivým odrůdám specifické vlastnosti, takže nejlepší víno si pro sebe vybere každý. Prozkoumejte kvalitní vína z Moravy a Čech a objevujte krásy skrze vinnou sklenku",
-			"history2": "Typový charakter vín je podobný vínům odrůdy Tramín červený, ale kořenitá plnost bývá nižší a naproti tomu acidita poněkud vyšší. Aciditu je každopádně nutné zachovat pro příjemné vyznění. Vína bývají obvykle zlatožluté barvy, ve vůni jsou aromatické látky Tramínu, tedy růží, doplněné o vanilkové tóny, chuť je plná, dlouhotrvající, jemnější harmonie než u Tramínu. Ve vůni a chuti můžeme hledat koření, muškát, vanilku, mandarinky."
-		},
-		"tasting": {
-			"title": "Degustace",
-			"basic": {
-				"title": "Basic",
-				"drink": "Ochutnávka 6 vzorků",
-				"food": "Pečivo, voda",
-				"time": "Doba trvání 1 hodina"
-			},
-			"standard": {
-				"title": "Medium",
-				"drink": "Ochutnávka 10 vzorků",
-				"food": "Občerstvení, pečivo, voda",
-				"time": "Doba trvání 2 až 2,5 hodiny"
-			},
-			"premium": {
-				"title": "All you can drink",
-				"drink": "Ochutnávka všech vzorků (min. 9 bílých, 4 růžové, 4 červené)",
-				"food": "Bohaté občerstvení, voda, nealko, pivo, cider, šláftruňk",
-				"time": "Doba trvání podle nálady, max 5 hodin"
-			}
-		},
-		"gallery": {
-			"title": "Fotogalerie"
-		},
-		"contact": {
-			"title": "Kontakt",
-			"subtitle": "Zaječské vinařství Nová hora",
-			"appointment": "Neváhejte nám zavolat, rádi vám poradíme s výběrem nebo odpovíme na jakékoliv otázky ohledně našich vín.",
-			"success_msg": "Vaše dotazy byly úspěšně odeslány. Děkujeme vám za váš zájem! Na vaše dotazy se pokusíme reagovat co nejrychleji.",
-			"error_msg": "Omlouváme se, ale nedošlo k odeslání formuláře. Prosím, zkontrolujte své spojení a zkuste to znovu později."
-		},
-		"terms_conditions": {
-			"title": "Podmínky použití"
-		},
-		"login": {
-			"title": "Přihlaste se do svého účtu",
-			"remember": "Pamatuj si mě",
-			"signin": "Přihlásit se",
-			"no_account": "Ještě nemáte účet?",
-			"or": "nebo"
-		},
-		"signup": {
-			"title": "Vytvořit účet",
-			"confirm_password": "Potvrdit heslo",
-			"accept_condition": "Souhlasím s",
-			"has_account": "Již máte účet?"
-		},
-		"forgot_password": {
-			"title": "Zapomněli jste heslo?",
-			"description": "Nemějte obavy! Stačí zadat svůj e-mail a my vám pošleme kód k resetování hesla!",
-			"reset_password": "Obnovit heslo",
-			"success_msg": "Email pro reset hesla byl odeslán."
-		},
-		"dashboard": {
-			"title": "Dashboard"
-		},
-		"profile": {
-			"title": "Upravit profil",
-			"given_name": "Křestní jméno",
-			"surname": "Příjmeni",
-			"newsletter": "Odesílání týdenních zpráv s novinkami",
-			"change_password": "Změnit heslo",
-			"success_msg": "Uživatel byl úspěšně upraven",
-			"street": "Ulice",
-			"city": "Město",
-			"zip": "PSČ",
-			"state": "Stát",
-			"role": {
-				"title": "Oprávnění",
-				"guest": "Host",
-				"user": "Uživatel",
-				"admin": "Administrátor"
-			},
-			"placeholder": {
-				"name": "Jan Novák",
-				"given_name": "Jan",
-				"surname": "Novák",
-				"street": "Králová 12",
-				"city": "Brno",
-				"zip": "654 32",
-				"state": "Česká Republika"
-			}
-		},
-		"form": {
-			"email": "E-mail",
-			"phone": "Tel",
-			"password": "Heslo",
-			"select": "Vybrat",
-			"msg": "Zpráva",
-			"price": "Cena",
-			"quantity": "Množství",
-			"quantity_stock": "Množství na skladě",
-			"description": "Popis",
-			"categories": "Kategorie",
-			"quality": "Kvalita",
-			"name": "Název",
-			"patch_success_msg": "Záznam byl úspěšně upraven",
-			"post_success_msg": "Záznam byl úspěšně vytvořen"
-		},
-		"placeholder": {
-			"leave_comment": "Napište zprávu..."
-		},
-		"message": {
-			"required": "Povinné",
-			"invalid_email": "Neplatný e-mail",
-			"invalid_zip": "Neplatné PSČ",
-			"bad_request": "Špatný požadavek",
-			"miss_fields": "Chybějící povinná pole",
-			"unauthorized": "Neoprávněný",
-			"incorrect_login": "Nesprávné přihlašovací údaje",
-			"user_exist": "Uživatel již existuje",
-			"user_not_exists": "Uživatel neexistuje",
-			"password_min": "Musí obsahovat alespoň {count} znaků",
-			"password_not_match": "Hesla se neshodují",
-			"delete_question": "Opravdu chcete smazat záznam: \"{name}\"?"
-		},
-		"btn": {
-			"submit": "Odeslat",
-			"delete": "Smazat",
-			"cancel": "Zrušit",
-			"back": "Zpět",
-			"continue": "Pokračovat",
-			"continue_shopping": "Pokračovat v nákupu",
-			"to_order": "Přejit k objednávce",
-			"back_shopping": "Zpět do obchodu",
-			"complete_order": "Dokončit objednávku",
-			"free": "Zdarma"
-		},
-		"aria": {
-			"mode": "Tlačítko barevných motivu",
-			"hamburger": "Boční navigace",
-			"close": "Zavírací tlačítko",
-			"lang": "Jazyková mutace",
-			"delete": "Tlačítko pro smazání záznamu",
-			"delete_selected": "Tlačítko pro smazání vybraných záznamů",
-			"cart": "Košík"
-		},
-		"mailing": {
-			"contact_form": {
-				"subject": "Potvrzení přijetí vašeho e-mailu",
-				"addressed": "Vážený zákazníku",
-				"thank_you": "Děkujeme Vám za projevený zájem a odeslání zprávy.",
-				"message_received": "Vaše zpráva byla úspěšně doručena našemu týmu. Naše oddělení zákaznické podpory se na ni podívá co nejdříve a pokusíme se odpovědět do 24 hodin (během pracovních dnů).",
-				"further_questions": "Pokud máte nějaké další dotazy, neváhejte nás kontaktovat.",
-				"regards": "S pozdravem",
-				"team": "Vinařství Nová hora"
-			},
-			"signup": {
-				"subject": "Potvrzení registrace",
-				"thank_you": "Děkujeme Vám za registraci na naší platformě.",
-				"success_done": "Vaše registrace byla úspěšně dokončena a Váš účet byl aktivován.",
-				"further_questions": "Pokud máte jakékoli dotazy ohledně používání našich služeb nebo potřebujete pomoc, neváhejte nás kontaktovat. Jsme tu pro Vás."
-			},
-			"forgot_password": {
-				"subject": "Reset hesla",
-				"request_password": "Obdrželi jsme žádost o resetování hesla k vašemu účtu.",
-				"new_password": "Bylo vygenerováno nové heslo pro váš účet.",
-				"contact_us": "Pokud jste o nové heslo nežádal/a, kontaktujte nás okamžitě.",
-				"further_questions": "Pokud máte nějaké další otázky nebo potřebujete pomoc, neváhejte nás kontaktovat."
-			},
-			"order": {
-				"confirmed": {
-					"subject": "Objednávka {orderId}",
-					"thank_you": "Děkujeme Vám za projevený zájem. Vaše objednávka byla přijata.",
-					"invoice": "Posíláme Vám fakturu v příloze. Věnujte prosím chvilku překontrolování všech údajů. Pokud by cokoliv nesouhlasilo, stačí nás kontaktovat na emailové adrese",
-					"taste": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
-				}
-			}
-		},
-		"cashdesk": {
-			"title": "Pokladna",
-			"delivery_payment": "Doprava a platba",
-			"summary": "Shrnutí",
-			"anonymous": "Anonym",
-			"cart": {
-				"title": "Košík",
-				"added": "Přidáno do košíku:",
-				"total": "V košíku je zboží celkem za",
-				"total_price": "Celkem k úhradě",
-				"empty": "Košík je prázdný",
-				"remove": "Opravdu chcete odstranit: \"{name}\" z košíku?",
-				"remove_from_cart": "Odebrat z košíku"
-			},
-			"billing_address": "Fakturační adresa",
-			"delivery_address": "Dodací adresa",
-			"delivery": {
-				"title": "Doprava",
-				"brno": "Brno město",
-				"free": "Doprava zdarma",
-				"ppl": "PPL",
-				"gls": "GLS",
-				"dpd": "DPD",
-				"post": "Česká pošta",
-				"zas": "Zásilkovna",
-				"dhl": "DHL",
-				"geis": "GEIS",
-				"messenger": "Messenger",
-				"brno_free": "Dovoz v rámci okresu Brno-město a Modřice je zdarma každý čtvrtek.",
-				"limit_free": "Při objednávce nad 2500 Kč je doprava zdarma.",
-				"third_day": "Doruceni třetí den po odeslání nejpozději.",
-				"not_quaranteed": "Doruceni nezaručuje."
-			},
-			"payment": {
-				"title": "Platba",
-				"bank": "Bankovním převodem",
-				"card": "Platební kartou",
-				"paypal": "PAY PAL",
-				"gopay": "GO PAY",
-				"apple_pay": "APPLE PAY",
-				"google_pay": "GOOGLE PAY",
-				"cash": "Hotovost",
-				"account_num": "Číslo účtu",
-				"variable_sym": "Variabilní symbol",
-				"recipient_msg": "Zpráva pro příjemce"
-			}
-		},
-		"cashdesk_completed": {
-			"title": "Děkujeme za objednávku!",
-			"order": "Vaše objednávka č. {orderId} byla přijata.",
-			"send_to_email": "Potvrzení a další informace byly odeslány na e-mail {email}.",
-			"thank_you": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
-		},
-		"admin": {
-			"wine": {
-				"title": "Administrace vín",
-				"create": {
-					"title": "Vytvořit nové víno"
-				},
-				"update": {
-					"title": "Editace vína: \"{name}\""
-				},
-				"form": {
-					"name": "Název vína",
-					"kind": "Druh",
-					"quality": "Přívlastek",
-					"color": "Barva",
-					"year": "Ročník",
-					"variety": "Odrůda",
-					"volume": "Objem"
-				},
-				"placeholder": {
-					"name": "Sauvignon Blanc, výběr z hroznů",
-					"quality": "Výběr z hroznů",
-					"variety": "Sauvignon Blanc"
-				},
-				"kind": {
-					"dry": "Suché",
-					"semi_dry": "Polosuché",
-					"sweet": "Sladké",
-					"semi_sweet": "Polosladké",
-					"extra_dry": "Extra suché",
-					"off_dry": "Polosuché",
-					"medium_dry": "Středně suché",
-					"medium_sweet": "Středně sladké",
-					"very_sweet": "Velmi sladké",
-					"dessert": "Dezertní víno"
-				},
-				"color": {
-					"white": "Bílé",
-					"red": "Červené",
-					"rose": "Růžové",
-					"orange": "Oranžové"
-				},
-				"category": {
-					"favourite": "Oblíbené",
-					"top": "Nejlepší",
-					"new": "Nové"
-				}
-			}
-		},
-		"state": {
-			"cz": "Česká Republika",
-			"sk": "Slovensko"
-		}
-	}
+  "$": {
+    "cs": "cz",
+    "czk": "Kč",
+    "pcs": "Ks",
+    "base": {
+      "title": "NOVÁ HORA | Zaječské vinařství",
+      "description": "Objevte lahodná moravská vína! Zajímavé odrůdy, precizní zpracování a nezapomenutelný chuťový zážitek. Neváhejte nás kontaktovat a dovolte nám přiblížit vám kousek moravské vinárenské vášně"
+    },
+    "navbar": {
+      "home": "Úvod",
+      "about": "O nás",
+      "wine": "Vína",
+      "taste": "Degustace",
+      "gallery": "Fotogalerie",
+      "contact": "Kontakt",
+      "login": "Přihlásit",
+      "signup": "Registrovat",
+      "logout": "Odhlásit"
+    },
+    "footer": {
+      "copyright": "Copyright",
+      "reserved": "Všechna práva vyhrazena",
+      "made_by": "Vytvořeno",
+      "cookies": "Tento web používá soubory cookies k zajištění optimálního uživatelského zážitku a měření jeho výkonu. Pokud budete nadále používat tento web, předpokládáme, že souhlasíte s používáním souborů cookies. Můžete však kdykoli změnit svá nastavení souborů cookies prostřednictvím příslušných funkcí vašeho prohlížeče."
+    },
+    "intro": {
+      "title": "Zaječské vinařství Nová hora",
+      "subtitle": "Objevte s námi lahodná moravská vína. Místní odrůdy, tradiční zpracování, nezapomenutelná vůně i chuť. Neváhejte nás kontaktovat a dovolte nám s vámi sdílet naši vášeň pro pěstování a výrobu vína.  ",
+      "btn": "CHCI VÍNO"
+    },
+    "about": {
+      "title": "Proč naše víno?",
+      "subtitle": "Tradiční vína zrozená na jihu Moravy.",
+      "description": "Vášeň pro víno a nadšení pro krásu jihomoravské krajiny a přírody nás dovedly do Zaječí. Postupem času měníme práci v kanceláři a v ordinaci za práci ve vinohradě a ve sklepě. Tuto vášeň a nadšení, úžas a krásu, únavu z práce i osvěžení po ní, předáváme dál v našich vínech."
+    },
+    "wine": {
+      "title": "Nabídka vín",
+      "to_cart": "Do košíku",
+      "detail": {
+        "title": "Detail vína"
+      }
+    },
+    "info": {
+      "history": "Moravská a česká vína získávají stále větší oblibu nejen u nás, ale taky ve světě. V České republice se pěstuje přes 50 odrůd. A to díky rozmanitosti a členitosti území. Každá oblast dodává jednotlivým odrůdám specifické vlastnosti, takže nejlepší víno si pro sebe vybere každý. Prozkoumejte kvalitní vína z Moravy a Čech a objevujte krásy skrze vinnou sklenku",
+      "history2": "Typový charakter vín je podobný vínům odrůdy Tramín červený, ale kořenitá plnost bývá nižší a naproti tomu acidita poněkud vyšší. Aciditu je každopádně nutné zachovat pro příjemné vyznění. Vína bývají obvykle zlatožluté barvy, ve vůni jsou aromatické látky Tramínu, tedy růží, doplněné o vanilkové tóny, chuť je plná, dlouhotrvající, jemnější harmonie než u Tramínu. Ve vůni a chuti můžeme hledat koření, muškát, vanilku, mandarinky."
+    },
+    "tasting": {
+      "title": "Degustace",
+      "basic": {
+        "title": "Basic",
+        "drink": "Ochutnávka 6 vzorků",
+        "food": "Pečivo, voda",
+        "time": "Doba trvání 1 hodina"
+      },
+      "standard": {
+        "title": "Medium",
+        "drink": "Ochutnávka 10 vzorků",
+        "food": "Občerstvení, pečivo, voda",
+        "time": "Doba trvání 2 až 2,5 hodiny"
+      },
+      "premium": {
+        "title": "All you can drink",
+        "drink": "Ochutnávka všech vzorků (min. 9 bílých, 4 růžové, 4 červené)",
+        "food": "Bohaté občerstvení, voda, nealko, pivo, cider, šláftruňk",
+        "time": "Doba trvání podle nálady, max 5 hodin"
+      }
+    },
+    "gallery": {
+      "title": "Fotogalerie"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "subtitle": "Zaječské vinařství Nová hora",
+      "appointment": "Neváhejte nám zavolat, rádi vám poradíme s výběrem nebo odpovíme na jakékoliv otázky ohledně našich vín.",
+      "success_msg": "Vaše dotazy byly úspěšně odeslány. Děkujeme vám za váš zájem! Na vaše dotazy se pokusíme reagovat co nejrychleji.",
+      "error_msg": "Omlouváme se, ale nedošlo k odeslání formuláře. Prosím, zkontrolujte své spojení a zkuste to znovu později."
+    },
+    "terms_conditions": {
+      "title": "Podmínky použití"
+    },
+    "login": {
+      "title": "Přihlaste se do svého účtu",
+      "remember": "Pamatuj si mě",
+      "signin": "Přihlásit se",
+      "no_account": "Ještě nemáte účet?",
+      "or": "nebo"
+    },
+    "signup": {
+      "title": "Vytvořit účet",
+      "confirm_password": "Potvrdit heslo",
+      "accept_condition": "Souhlasím s",
+      "has_account": "Již máte účet?"
+    },
+    "forgot_password": {
+      "title": "Zapomněli jste heslo?",
+      "description": "Nemějte obavy! Stačí zadat svůj e-mail a my vám pošleme kód k resetování hesla!",
+      "reset_password": "Obnovit heslo",
+      "success_msg": "Email pro reset hesla byl odeslán."
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "profile": {
+      "title": "Upravit profil",
+      "given_name": "Křestní jméno",
+      "surname": "Příjmeni",
+      "newsletter": "Odesílání týdenních zpráv s novinkami",
+      "change_password": "Změnit heslo",
+      "success_msg": "Uživatel byl úspěšně upraven",
+      "street": "Ulice",
+      "city": "Město",
+      "zip": "PSČ",
+      "state": "Stát",
+      "role": {
+        "title": "Oprávnění",
+        "guest": "Host",
+        "user": "Uživatel",
+        "admin": "Administrátor"
+      },
+      "placeholder": {
+        "name": "Jan Novák",
+        "given_name": "Jan",
+        "surname": "Novák",
+        "street": "Králová 12",
+        "city": "Brno",
+        "zip": "654 32",
+        "state": "Česká Republika"
+      }
+    },
+    "form": {
+      "email": "E-mail",
+      "phone": "Tel",
+      "password": "Heslo",
+      "select": "Vybrat",
+      "msg": "Zpráva",
+      "price": "Cena",
+      "quantity": "Množství",
+      "quantity_stock": "Množství na skladě",
+      "description": "Popis",
+      "categories": "Kategorie",
+      "quality": "Kvalita",
+      "name": "Název",
+      "patch_success_msg": "Záznam byl úspěšně upraven",
+      "post_success_msg": "Záznam byl úspěšně vytvořen"
+    },
+    "placeholder": {
+      "leave_comment": "Napište zprávu..."
+    },
+    "message": {
+      "required": "Povinné",
+      "invalid_email": "Neplatný e-mail",
+      "invalid_zip": "Neplatné PSČ",
+      "bad_request": "Špatný požadavek",
+      "miss_fields": "Chybějící povinná pole",
+      "unauthorized": "Neoprávněný",
+      "incorrect_login": "Nesprávné přihlašovací údaje",
+      "user_exist": "Uživatel již existuje",
+      "user_not_exists": "Uživatel neexistuje",
+      "password_min": "Musí obsahovat alespoň {count} znaků",
+      "password_not_match": "Hesla se neshodují",
+      "delete_question": "Opravdu chcete smazat záznam: \"{name}\"?"
+    },
+    "btn": {
+      "submit": "Odeslat",
+      "delete": "Smazat",
+      "cancel": "Zrušit",
+      "back": "Zpět",
+      "continue": "Pokračovat",
+      "continue_shopping": "Pokračovat v nákupu",
+      "to_order": "Přejit k objednávce",
+      "back_shopping": "Zpět do obchodu",
+      "complete_order": "Dokončit objednávku",
+      "free": "Zdarma"
+    },
+    "aria": {
+      "mode": "Tlačítko barevných motivu",
+      "hamburger": "Boční navigace",
+      "close": "Zavírací tlačítko",
+      "lang": "Jazyková mutace",
+      "delete": "Tlačítko pro smazání záznamu",
+      "delete_selected": "Tlačítko pro smazání vybraných záznamů",
+      "cart": "Košík"
+    },
+    "mailing": {
+      "contact_form": {
+        "subject": "Potvrzení přijetí vašeho e-mailu",
+        "addressed": "Vážený zákazníku",
+        "thank_you": "Děkujeme Vám za projevený zájem a odeslání zprávy.",
+        "message_received": "Vaše zpráva byla úspěšně doručena našemu týmu. Naše oddělení zákaznické podpory se na ni podívá co nejdříve a pokusíme se odpovědět do 24 hodin (během pracovních dnů).",
+        "further_questions": "Pokud máte nějaké další dotazy, neváhejte nás kontaktovat.",
+        "regards": "S pozdravem",
+        "team": "Vinařství Nová hora"
+      },
+      "signup": {
+        "subject": "Potvrzení registrace",
+        "thank_you": "Děkujeme Vám za registraci na naší platformě.",
+        "success_done": "Vaše registrace byla úspěšně dokončena a Váš účet byl aktivován.",
+        "further_questions": "Pokud máte jakékoli dotazy ohledně používání našich služeb nebo potřebujete pomoc, neváhejte nás kontaktovat. Jsme tu pro Vás."
+      },
+      "forgot_password": {
+        "subject": "Reset hesla",
+        "request_password": "Obdrželi jsme žádost o resetování hesla k vašemu účtu.",
+        "new_password": "Bylo vygenerováno nové heslo pro váš účet.",
+        "contact_us": "Pokud jste o nové heslo nežádal/a, kontaktujte nás okamžitě.",
+        "further_questions": "Pokud máte nějaké další otázky nebo potřebujete pomoc, neváhejte nás kontaktovat."
+      },
+      "order": {
+        "confirmed": {
+          "subject": "Objednávka {orderId}",
+          "thank_you": "Děkujeme Vám za projevený zájem. Vaše objednávka byla přijata.",
+          "invoice": "Posíláme Vám fakturu v příloze. Věnujte prosím chvilku překontrolování všech údajů. Pokud by cokoliv nesouhlasilo, stačí nás kontaktovat na emailové adrese",
+          "taste": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
+        }
+      }
+    },
+    "cashdesk": {
+      "title": "Pokladna",
+      "delivery_payment": "Doprava a platba",
+      "summary": "Shrnutí",
+      "anonymous": "Anonym",
+      "cart": {
+        "title": "Košík",
+        "added": "Přidáno do košíku:",
+        "total": "V košíku je zboží celkem za",
+        "total_price": "Celkem k úhradě",
+        "empty": "Košík je prázdný",
+        "remove": "Opravdu chcete odstranit: \"{name}\" z košíku?",
+        "remove_from_cart": "Odebrat z košíku"
+      },
+      "billing_address": "Fakturační adresa",
+      "delivery_address": "Dodací adresa",
+      "delivery": {
+        "title": "Doprava",
+        "brno": "Brno město",
+        "free": "Doprava zdarma",
+        "ppl": "PPL",
+        "gls": "GLS",
+        "dpd": "DPD",
+        "post": "Česká pošta",
+        "zas": "Zásilkovna",
+        "dhl": "DHL",
+        "geis": "GEIS",
+        "messenger": "Messenger",
+        "brno_free": "Dovoz v rámci okresu Brno-město a Modřice je zdarma každý čtvrtek.",
+        "limit_free": "Při objednávce nad 2500 Kč je doprava zdarma.",
+        "third_day": "Doruceni třetí den po odeslání nejpozději.",
+        "not_quaranteed": "Doruceni nezaručuje."
+      },
+      "payment": {
+        "title": "Platba",
+        "bank": "Bankovním převodem",
+        "card": "Platební kartou",
+        "paypal": "PAY PAL",
+        "gopay": "GO PAY",
+        "apple_pay": "APPLE PAY",
+        "google_pay": "GOOGLE PAY",
+        "cash": "Hotovost",
+        "account_num": "Číslo účtu",
+        "variable_sym": "Variabilní symbol",
+        "recipient_msg": "Zpráva pro příjemce"
+      }
+    },
+    "cashdesk_completed": {
+      "title": "Děkujeme za objednávku!",
+      "order": "Vaše objednávka č. {orderId} byla přijata.",
+      "send_to_email": "Potvrzení a další informace byly odeslány na e-mail {email}.",
+      "thank_you": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
+    },
+    "admin": {
+      "wine": {
+        "title": "Administrace vín",
+        "create": {
+          "title": "Vytvořit nové víno"
+        },
+        "update": {
+          "title": "Editace vína: \"{name}\""
+        },
+        "form": {
+          "name": "Název vína",
+          "kind": "Druh",
+          "quality": "Přívlastek",
+          "color": "Barva",
+          "year": "Ročník",
+          "variety": "Odrůda",
+          "volume": "Objem"
+        },
+        "placeholder": {
+          "name": "Sauvignon Blanc, výběr z hroznů",
+          "quality": "Výběr z hroznů",
+          "variety": "Sauvignon Blanc"
+        },
+        "kind": {
+          "dry": "Suché",
+          "semi_dry": "Polosuché",
+          "sweet": "Sladké",
+          "semi_sweet": "Polosladké",
+          "extra_dry": "Extra suché",
+          "off_dry": "Polosuché",
+          "medium_dry": "Středně suché",
+          "medium_sweet": "Středně sladké",
+          "very_sweet": "Velmi sladké",
+          "dessert": "Dezertní víno"
+        },
+        "color": {
+          "white": "Bílé",
+          "red": "Červené",
+          "rose": "Růžové",
+          "orange": "Oranžové"
+        },
+        "category": {
+          "favourite": "Oblíbené",
+          "top": "Nejlepší",
+          "new": "Nové"
+        }
+      }
+    },
+    "state": {
+      "cz": "Česká Republika",
+      "sk": "Slovensko"
+    }
+  }
 }

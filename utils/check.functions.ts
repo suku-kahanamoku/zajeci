@@ -7,7 +7,12 @@
  * @returns {boolean}
  */
 export function IS_NUMERIC(value: any): boolean {
-	return IS_DEFINED(value) && typeof value !== 'boolean' && value.toString().length && !isNaN(value);
+  return (
+    IS_DEFINED(value) &&
+    typeof value !== "boolean" &&
+    value.toString().length &&
+    !isNaN(value)
+  );
 }
 
 /**
@@ -20,7 +25,7 @@ export function IS_NUMERIC(value: any): boolean {
  * @returns {boolean}
  */
 export function IS_ALPHABET(value: string): boolean {
-	return /^([A-Za-z\u00C0-\u024F\u1E00-\u1EFF\s]*)$/.test(value);
+  return /^([A-Za-z\u00C0-\u024F\u1E00-\u1EFF\s]*)$/.test(value);
 }
 
 /**
@@ -31,7 +36,7 @@ export function IS_ALPHABET(value: string): boolean {
  * @returns {boolean}
  */
 export function IS_DEFINED(value: any): boolean {
-	return typeof value !== 'undefined' && value !== null;
+  return typeof value !== "undefined" && value !== null;
 }
 
 /**
@@ -42,7 +47,9 @@ export function IS_DEFINED(value: any): boolean {
  * @returns {boolean}
  */
 export function IS_OBJECT(value: any): boolean {
-	return IS_DEFINED(value) && typeof value === 'object' && !Array.isArray(value);
+  return (
+    IS_DEFINED(value) && typeof value === "object" && !Array.isArray(value)
+  );
 }
 
 /**
@@ -55,7 +62,7 @@ export function IS_OBJECT(value: any): boolean {
  * @returns {boolean}
  */
 export function IS_IN_RANGE(value: number, min: number, max: number): boolean {
-	return value >= min && value <= max;
+  return value >= min && value <= max;
 }
 
 /**
@@ -66,11 +73,13 @@ export function IS_IN_RANGE(value: number, min: number, max: number): boolean {
  * @returns {*}
  */
 export function IS_OBJECT_ID(objectid: string) {
-	return !objectid ||
-		(typeof objectid !== 'string' &&
-			(typeof objectid !== 'object' || Array.isArray(objectid) || typeof objectid !== 'function'))
-		? false
-		: /^[0-9A-Z]{24}$/i.test(objectid.toString());
+  return !objectid ||
+    (typeof objectid !== "string" &&
+      (typeof objectid !== "object" ||
+        Array.isArray(objectid) ||
+        typeof objectid !== "function"))
+    ? false
+    : /^[0-9A-Z]{24}$/i.test(objectid.toString());
 }
 
 /**
@@ -81,8 +90,8 @@ export function IS_OBJECT_ID(objectid: string) {
  * @returns {*}  {boolean}
  */
 export function IS_HTML_TAG(value: string): boolean {
-	/* return value && !/^(?!.*<\w+[^>]*>.*<\/\w+>).+$/.test(value) ? true : false; */
-	return value && /<(\w+)[^>]*>.*<\/\1>/.test(value) ? true : false;
+  /* return value && !/^(?!.*<\w+[^>]*>.*<\/\w+>).+$/.test(value) ? true : false; */
+  return value && /<(\w+)[^>]*>.*<\/\1>/.test(value) ? true : false;
 }
 
 /**
@@ -93,5 +102,7 @@ export function IS_HTML_TAG(value: string): boolean {
  * @returns {*}  {boolean}
  */
 export function IS_FNCE(value: string): boolean {
-	return value && /^(\w+(\.\w+)*)\((\w+(?:,\s*\w+)*)?\)$/.test(value) ? true : false;
+  return value && /^(\w+(\.\w+)*)\((\w+(?:,\s*\w+)*)?\)$/.test(value)
+    ? true
+    : false;
 }

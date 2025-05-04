@@ -42,7 +42,7 @@ const {
   pending,
 } = await useAsyncData(async (): Promise<WineDocument[] | undefined> => {
   try {
-    return (await $fetch(`/api/wine`)) as unknown as WineDocument[];
+    return await $fetch(`/api/wine`);
   } catch (error: any) {
     console.error(error);
   }
@@ -102,7 +102,7 @@ async function onDelete(value: boolean) {
           :loading="pending"
         />
       </div>
-      <UTable v-model="selected" :columns="columns" :rows="wines">
+      <UTable v-model="selected" :columns="columns" :rows="wines || []">
         <template #name-data="{ row }">
           <div class="flex items-center gap-1">
             <UButton

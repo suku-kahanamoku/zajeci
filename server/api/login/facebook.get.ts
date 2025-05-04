@@ -1,8 +1,5 @@
-import {
-  oauth,
-  setUserSession,
-  sendRedirect,
-} from "#imports";
+import { oauth, setUserSession, sendRedirect } from "#imports";
+
 import { UserModel } from "@/server/models/user.schema";
 
 export default oauth.facebookEventHandler({

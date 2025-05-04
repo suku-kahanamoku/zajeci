@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
+
 import type { WineDocument } from "@/server/types/wine.type";
 
 definePageMeta({
@@ -51,7 +52,7 @@ const schema = object({
   published: boolean(),
 });
 
-const state: Ref<WineDocument> = ref(CLONE(defaultItem));
+const state = ref<WineDocument>(CLONE(defaultItem));
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
   loading.value = true;

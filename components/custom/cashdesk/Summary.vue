@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
-import { PaymentServices } from "~/server/types/order.type";
+
+import { PaymentServices } from "@/server/types/order.type";
 
 const { $tt } = useNuxtApp();
 const { locale } = useI18n();

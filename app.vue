@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { DeliveryServices } from "./server/types/order.type";
 
-const { locale } = useI18n();
 const auth = useAuthStore();
 const cashdesk = useCashdeskStore();
 

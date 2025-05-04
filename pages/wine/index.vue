@@ -21,7 +21,7 @@ useHead({
 const { data: wines } = await useAsyncData(
   async (): Promise<WineDocument[] | undefined> => {
     try {
-      return (await $fetch(`/api/wine`)) as unknown as WineDocument[];
+      return await $fetch(`/api/wine`);
     } catch (error: any) {
       console.error(error);
     }

@@ -24,15 +24,13 @@ useHead({
 const route = useRoute();
 const { fields, kinds, colors } = useWines();
 const cashdesk = useCashdeskStore();
-const modal: Ref<boolean> = ref(false);
-const cart: Ref<CartDocument | undefined> = ref();
+const modal = ref(false);
+const cart = ref<CartDocument>();
 
 const { data: wine, pending } = await useAsyncData(
   async (): Promise<WineDocument | undefined> => {
     try {
-      return (await $fetch(
-        `/api/wine/${route.params._id}`
-      )) as unknown as WineDocument;
+      return await $fetch(`/api/wine/${route.params._id}`);
     } catch (error: any) {
       console.error(error);
     }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
+
 import type { WineDocument } from "@/server/types/wine.type";
 
 definePageMeta({
@@ -53,15 +54,13 @@ const schema = object({
 
 const { data: wine, pending } = await useAsyncData(async () => {
   try {
-    return (await $fetch(
-      `/api/wine/${route.params._id}`
-    )) as unknown as WineDocument;
+    return await $fetch(`/api/wine/${route.params._id}`);
   } catch (error: any) {
     console.error(error);
   }
 });
 
-const state: Ref<WineDocument> = ref(CLONE(wine.value));
+const state = ref<WineDocument>(CLONE(wine.value));
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
   pending.value = true;

@@ -10,7 +10,9 @@
  * @returns {*}  {boolean}
  */
 export function IS_CZECH_PHONE_NUMBER(value: string | number): boolean {
-	return /^(\+420|00420)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/.test(value?.toString());
+  return /^(\+420|00420)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/.test(
+    value?.toString()
+  );
 }
 
 /**
@@ -23,5 +25,5 @@ export function IS_CZECH_PHONE_NUMBER(value: string | number): boolean {
  * @returns {*}  {boolean}
  */
 export function IS_PHONE_NUMBER(value: string | number): boolean {
-	return /^[+]?[()/0-9. -]{9,}$/.test(value?.toString());
+  return /^[+]?[()/0-9. -]{9,}$/.test(value?.toString());
 }

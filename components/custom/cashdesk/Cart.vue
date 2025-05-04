@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
+
 import type { CartDocument } from "@/server/types/order.type";
 
 const { $tt } = useNuxtApp();
