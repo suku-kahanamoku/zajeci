@@ -23,9 +23,9 @@
 			<EBody :style="main">
 				<EContainer class="mx-auto pt-4 pb-10">
 					<ELink :href="url" class="font-bold block text-center text-xl py-4">Logo</ELink>
-					<EText class="text-md"> {{ $tt('$.mailing.contact_form.addressed') }}, </EText>
+					<EText class="text-md"> {{ $t('$.mailing.contact_form.addressed') }}, </EText>
 					<EText class="text-md" py="12">
-						{{ $tt('$.mailing.contact_form.thank_you') }}
+						{{ $t('$.mailing.contact_form.thank_you') }}
 					</EText>
 
 					<EText class="text-sm text-gray-600" py="12">
@@ -33,20 +33,20 @@
 					</EText>
 
 					<EText class="text-md">
-						{{ $tt('$.mailing.contact_form.message_received') }}
+						{{ $t('$.mailing.contact_form.message_received') }}
 					</EText>
 					<EText class="text-md" py="12">
-						{{ $tt('$.mailing.contact_form.further_questions') }}
+						{{ $t('$.mailing.contact_form.further_questions') }}
 					</EText>
 					<EText class="text-md">
-						{{ $tt('$.mailing.contact_form.regards') }},
+						{{ $t('$.mailing.contact_form.regards') }},
 						<br />
-						{{ $tt('$.mailing.contact_form.team') }}
+						{{ $t('$.mailing.contact_form.team') }}
 					</EText>
 					<EHr class="text-gray-600" my="20" />
 					<EText class="text-xs text-gray-600">
 						© {{ new Date().getFullYear() }} <ELink :href="url" class="font-bold">Logo</ELink>.
-						{{ $tt('$.footer.reserved') }}.
+						{{ $t('$.footer.reserved') }}.
 					</EText>
 				</EContainer>
 			</EBody>

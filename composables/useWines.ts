@@ -125,20 +125,20 @@ export function useWines() {
     firstItem: Record<string, any>,
     secondItem: Record<string, any>
   ): Record<string, any> {
-    const zmeny: Record<string, any> = {};
+    const result: Record<string, any> = {};
 
-    for (const klic in firstItem) {
-      if (firstItem.hasOwnProperty(klic) && secondItem.hasOwnProperty(klic)) {
+    for (const key in firstItem) {
+      if (firstItem.hasOwnProperty(key) && secondItem.hasOwnProperty(key)) {
         if (
-          typeof secondItem[klic] !== "undefined" &&
-          firstItem[klic] !== secondItem[klic]
+          typeof secondItem[key] !== "undefined" &&
+          firstItem[key] !== secondItem[key]
         ) {
-          zmeny[klic] = secondItem[klic];
+          result[key] = secondItem[key];
         }
       }
     }
 
-    return zmeny;
+    return result;
   }
 
   return {
