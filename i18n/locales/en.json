@@ -159,7 +159,8 @@
       "user_not_exists": "User does not exist",
       "password_min": "Must be at least {count} characters long",
       "password_not_match": "Passwords do not match",
-      "delete_question": "Do you realy want delete: \"{name}\"?"
+      "delete_question": "Do you realy want delete: \"{name}\"?",
+      "delete_question_multi": "Do you realy want delete {length} records?"
     },
     "btn": {
       "submit": "Submit",

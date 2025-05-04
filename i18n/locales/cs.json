@@ -159,7 +159,8 @@
       "user_not_exists": "Uživatel neexistuje",
       "password_min": "Musí obsahovat alespoň {count} znaků",
       "password_not_match": "Hesla se neshodují",
-      "delete_question": "Opravdu chcete smazat záznam: \"{name}\"?"
+      "delete_question": "Opravdu chcete smazat záznam: \"{name}\"?",
+      "delete_question_multi": "Opravdu chcete smazat {length} záznamů?"
     },
     "btn": {
       "submit": "Odeslat",

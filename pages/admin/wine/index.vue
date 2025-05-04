@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { WineDocument } from "@/server/types/wine.type";
-import WineList from "@/admin/list/Wine.vue";
 
 definePageMeta({
   layout: "admin",
@@ -17,12 +16,10 @@ definePageMeta({
 
 const { $tt } = useNuxtApp();
 const localePath = useLocalePath();
-const { kinds, colors, categories, fieldOptions } = useWines();
 const { routes } = useMenuItems();
 const toast = useToast();
-const selected = ref([]);
+const selected = ref<WineDocument[]>([]);
 const isOpen = ref(false);
-const deleted = ref();
 
 useHead({
   title: `${$tt("$.base.title")} | ${$tt("$.dashboard.title")}`,
@@ -31,11 +28,6 @@ useHead({
     { name: "keywords", content: $tt("$.base.description") },
   ],
 });
-
-const columns = fieldOptions.map((field) => ({
-  ...field,
-  ...{ sortable: true },
-}));
 
 const {
   data: wines,
@@ -50,11 +42,21 @@ const {
 });
 
 async function onDelete(value: boolean) {
-  if (value) {
+  if (value && selected.value?.length) {
+    const method = "DELETE";
     try {
-      await $fetch(`/api/admin/wine/${deleted.value._id}`, {
-        method: "DELETE",
-      });
+      if (selected.value.length === 1) {
+        // Single delete
+        await $fetch(`/api/admin/wine/${selected.value[0]._id}`, {
+          method,
+        });
+      } else {
+        // Multiple delete
+        const ids = selected.value.map((wine) => wine._id).join('","');
+        await $fetch(`/api/admin/wine?q={"_id":{"$in":["${ids}"]}}`, {
+          method,
+        });
+      }
       toast.add({
         title: $tt("$.form.delete_success_msg"),
         color: "success",
@@ -67,7 +69,7 @@ async function onDelete(value: boolean) {
         icon: "i-heroicons-exclamation-circle",
       });
     }
-    deleted.value = null;
+    selected.value = [];
     isOpen.value = false;
     await refresh();
   }
@@ -92,6 +94,7 @@ async function onDelete(value: boolean) {
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
           :loading="pending"
+          @click="isOpen = true"
         />
         <UButton
           :to="localePath(routes.admin_wine_create?.path)"
@@ -104,21 +107,38 @@ async function onDelete(value: boolean) {
         />
       </div>
 
-      <WineList
+      <AdminListWine
         v-model="selected"
-        :columns="columns"
-        :rows="wines || []"
-        :kinds="kinds"
-        :colors="colors"
-        :categories="categories"
-        :routes="routes"
+        :wines="wines || []"
         :pending="pending"
-        @delete="onDelete"
+        @delete="
+          selected = [$event];
+          isOpen = true;
+        "
       />
     </div>
 
-    <UiModalConfirm v-model="isOpen" @confirm="onDelete">
-      {{ $tt("$.message.delete_question", { name: deleted?.name }) }}
+    <UiModalConfirm
+      v-model="isOpen"
+      color="error"
+      :btns="{
+        ok: {
+          icon: 'i-heroicons-trash',
+        },
+      }"
+      @confirm="onDelete"
+    >
+      <template #header>
+        {{ $tt("$.btn.delete") }}
+      </template>
+
+      {{
+        selected?.length > 1
+          ? $tt("$.message.delete_question_multi", {
+              length: selected?.length,
+            })
+          : $tt("$.message.delete_question", { name: selected?.[0]?.name })
+      }}
     </UiModalConfirm>
   </div>
 </template>

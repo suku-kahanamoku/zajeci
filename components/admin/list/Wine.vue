@@ -2,12 +2,7 @@
 import type { WineDocument } from "@/server/types/wine.type";
 
 defineProps<{
-  columns: any[];
-  rows: WineDocument[];
-  kinds: Record<string, { label: string }>;
-  colors: Record<string, { label: string }>;
-  categories: Record<string, { label: string }>;
-  routes: Record<string, any>;
+  wines: WineDocument[];
   pending: boolean;
 }>();
 
@@ -16,10 +11,18 @@ const emits = defineEmits<{
 }>();
 
 const selected = defineModel<WineDocument[]>();
+
+const { routes } = useMenuItems();
+const { kinds, colors, categories, fieldOptions } = useWines();
+
+const columns = fieldOptions.map((field) => ({
+  ...field,
+  ...{ sortable: true },
+}));
 </script>
 
 <template>
-  <UTable v-model="selected" :columns="columns" :rows="rows">
+  <UTable v-model="selected" :columns="columns" :rows="wines">
     <template #name-data="{ row }">
       <div class="flex items-center gap-1">
         <UButton

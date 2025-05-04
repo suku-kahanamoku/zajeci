@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Button } from "#ui/types";
+import type { Button, ButtonColor } from "#ui/types";
 
 const props = defineProps<{
+  color?: ButtonColor;
   btns?: {
     cancel?: Button;
     ok?: Button;
@@ -27,7 +28,10 @@ watch(model, (value) => {
       <template #header>
         <div class="flex justify-between items-center">
           <h3
-            class="text-lg lg:text-xl font-bold text-primary-600 dark:text-primary-400"
+            class="text-lg lg:text-xl font-bold"
+            :class="`text-${color || 'primary'}-600 dark:text-${
+              color || 'primary'
+            }-400`"
           >
             <slot name="header"></slot>
           </h3>
@@ -47,17 +51,17 @@ watch(model, (value) => {
       <template #footer>
         <div class="flex justify-between">
           <UButton
-            :icon="btns?.cancel?.icon || 'i-heroicons-arrow-left'"
+            :icon="btns?.cancel?.icon"
             :color="btns?.cancel?.color || 'gray'"
-            :variant="btns?.cancel?.variant || 'outline'"
+            :variant="btns?.cancel?.variant || 'soft'"
             @click="model = false"
           >
             {{ $tt(btns?.cancel?.label || "$.btn.cancel") }}
           </UButton>
           <UButton
-            :icon="btns?.ok?.icon || 'i-heroicons-trash'"
-            :color="btns?.ok?.color || 'error'"
-            :variant="btns?.ok?.variant || 'solid'"
+            :icon="btns?.ok?.icon"
+            :color="btns?.ok?.color || color"
+            :variant="btns?.ok?.variant"
             @click="
               emits('confirm', true);
               model = false;
