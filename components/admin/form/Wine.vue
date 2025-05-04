@@ -114,7 +114,7 @@ const { routes } = useMenuItems();
       name="description"
       required
     >
-      <UTextarea v-model="item.description" size="lg" required />
+      <UTextarea v-model="item.description" size="lg" required :rows="10" />
     </UFormGroup>
 
     <div class="flex justify-between pt-8">
