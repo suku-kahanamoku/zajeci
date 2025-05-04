@@ -164,6 +164,7 @@ export enum OrderStatus {
  * @interface OrderDocument
  */
 export interface OrderDocument {
+  _id: string;
   user: UserDocument;
   carts: CartDocument[];
   totalPrice: number;
