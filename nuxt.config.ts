@@ -32,6 +32,9 @@ export default defineNuxtConfig({
       maxAge: 60 * 60 * 24,
       enableRefreshOnWindowFocus: true,
     },
+    fakturoidAccountSlug: process.env.FAKTUROID_ACCOUNT_SLUG,
+    fakturoidClientId: process.env.FAKTUROID_CLIENT_ID,
+    fakturoidClientSecret: process.env.FAKTUROID_CLIENT_SECRET,
   },
 
   router: {
