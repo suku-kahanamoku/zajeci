@@ -2,10 +2,12 @@ import { H3Event } from "h3";
 
 import { UserModel } from "@/server/models/user.schema";
 import { COMPARE_PASSWORD } from "@/utils/server.functions";
+import { useAuth } from "@/server/composables/useAuth";
 
 export default defineEventHandler(async (event: H3Event) => {
   const t = await useTranslation(event);
   const body = await readBody(event);
+  const { setSession } = useAuth();
 
   // kontrola, zda jsou zadane vsechny potrebne fieldy
   if (!body.email || !body.password) {
@@ -42,10 +44,7 @@ export default defineEventHandler(async (event: H3Event) => {
   const result = { ...user.toObject(), password: undefined };
 
   // nastavi session
-  await setUserSession(event, {
-    user: result,
-    loggedInAt: new Date().toISOString(),
-  });
+  await setSession(event, result);
 
   return result;
 });

@@ -1,4 +1,5 @@
 import { H3Event } from "h3";
+import { Buffer } from "node:buffer";
 
 import { useMailing } from "@/server/composables/useMailing";
 

@@ -22,6 +22,7 @@ declare module "#auth-utils" {
 
   interface UserSession {
     loggedInAt?: Date | string;
+    fakturoidToken?: string;
   }
 }
 
