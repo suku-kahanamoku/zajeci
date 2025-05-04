@@ -35,7 +35,7 @@ const {
   pending,
 } = await useAsyncData(async (): Promise<OrderDocument[] | undefined> => {
   try {
-    return await $fetch<OrderDocument[]>(`/api/order`);
+    return await $fetch<OrderDocument[]>(`/api/admin/order`);
   } catch (error: any) {
     console.error(error);
   }

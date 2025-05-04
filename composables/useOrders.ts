@@ -67,55 +67,29 @@ export function useOrders() {
     string,
     { key: string; label: string; placeholder?: string }
   > = {
-    name: {
-      key: "name",
-      label: $tt("$.admin.wine.form.name"),
-      placeholder: $tt("$.admin.wine.placeholder.name"),
+    userEmail: {
+      key: "user.email",
+      label: $tt("$.admin.order.form.user_email"),
     },
-    kind: {
-      key: "kind",
-      label: $tt("$.admin.wine.form.kind"),
-      placeholder: $tt("$.form.select"),
+    userName: {
+      key: "user.name",
+      label: $tt("$.admin.order.form.user_name"),
     },
-    quality: {
-      key: "quality",
-      label: $tt("$.admin.wine.form.quality"),
-      placeholder: $tt("$.admin.wine.placeholder.quality"),
+    userSurname: {
+      key: "user.surname",
+      label: $tt("$.admin.order.form.user_surname"),
     },
-    color: {
-      key: "color",
-      label: $tt("$.admin.wine.form.color"),
-      placeholder: $tt("$.form.select"),
+    userPhone: {
+      key: "user.phone",
+      label: $tt("$.admin.order.form.user_phone"),
     },
-    variety: {
-      key: "variety",
-      label: $tt("$.admin.wine.form.variety"),
-      placeholder: $tt("$.admin.wine.placeholder.variety"),
+    deliveryType: {
+      key: "delivery.type",
+      label: $tt("$.admin.order.form.delivery_type"),
     },
-    volume: {
-      key: "volume",
-      label: $tt("$.admin.wine.form.volume"),
-    },
-    year: {
-      key: "year",
-      label: $tt("$.admin.wine.form.year"),
-    },
-    price: {
-      key: "price",
-      label: $tt("$.form.price"),
-    },
-    quantity: {
-      key: "quantity",
-      label: $tt("$.form.quantity_stock"),
-    },
-    categories: {
-      key: "categories",
-      label: $tt("$.form.categories"),
-      placeholder: $tt("$.form.select"),
-    },
-    description: {
-      key: "description",
-      label: $tt("$.form.description"),
+    paymentType: {
+      key: "payment.type",
+      label: $tt("$.admin.order.form.payment_type"),
     },
   };
 

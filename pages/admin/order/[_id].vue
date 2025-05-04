@@ -32,29 +32,44 @@ useHead({
 });
 
 const schema = object({
-  name: string().required(),
-  description: string().required(),
-  kind: string().required(),
-  quality: string().required(),
-  color: string().required(),
-  variety: string().required(),
-  volume: number().required().positive(),
-  year: number()
-    .required()
-    .positive()
-    .integer()
-    .min(2000)
-    .max(today.getFullYear()),
-  price: number().required().positive().integer(),
-  quantity: number().required().positive().integer(),
-  /* categories: array().required().min(1), */
-  categories: array(),
-  published: boolean(),
+  user: object({
+    email: string().required(),
+    name: string().required(),
+    surname: string().required(),
+    phone: string().required(),
+  }),
+  carts: array()
+    .of(
+      object({
+        wine: string().required(),
+        quantity: number().required().positive().integer(),
+        unitPrice: number().required().positive(),
+        totalPrice: number().required().positive(),
+      })
+    )
+    .required(),
+  totalPrice: number().required().positive(),
+  status: string().required(),
+  delivery: object({
+    type: string().required(),
+    address: object({
+      street: string().required(),
+      city: string().required(),
+      state: string().required(),
+      zip: string().required(),
+      country: string(),
+    }).required(),
+    totalPrice: number().required().positive(),
+  }),
+  payment: object({
+    type: string().required(),
+    totalPrice: number().required().positive(),
+  }),
 });
 
 const { data: order, pending } = await useAsyncData(async () => {
   try {
-    return await $fetch(`/api/order/${route.params._id}`);
+    return await $fetch(`/api/admin/order/${route.params._id}`);
   } catch (error: any) {
     console.error(error);
   }

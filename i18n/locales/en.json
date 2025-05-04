@@ -308,6 +308,24 @@
           "top": "Top",
           "new": "New"
         }
+      },
+      "order": {
+        "user_email": "User Email",
+        "user_name": "User Name",
+        "user_surname": "User Surname",
+        "user_phone": "User Phone",
+        "total_price": "Total Price",
+        "status": "Status",
+        "delivery_type": "Delivery Type",
+        "payment_type": "Payment Type",
+        "form": {
+          "user_email": "User Email",
+          "user_name": "User Name",
+          "user_surname": "User Surname",
+          "user_phone": "User Phone",
+          "delivery_type": "Delivery Type",
+          "payment_type": "Payment Type"
+        }
       }
     },
     "state": {
