@@ -115,7 +115,7 @@ function addToCashdesk() {
               {{ fields.quantity.label }}: {{ wine?.quantity }}
             </p>
           </div>
-          <UDivider class="my-4" />
+          <USeparator  class="my-4" />
           <div class="flex items-center justify-between">
             <span class="font-bold text-2xl text-gray-600 dark:text-white">
               {{

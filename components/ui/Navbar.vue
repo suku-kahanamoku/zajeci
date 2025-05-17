@@ -47,13 +47,9 @@ const userMenuItems = computed(() => {
 
         <!-- prostredni menu -->
         <nav v-if="menuItems?.length" class="hidden w-auto lg:flex">
-          <ul class="flex flex-row">
+          <ul class="flex flex-row gap-6">
             <li v-for="item of menuItems" :key="item.to">
-              <ULink
-                :to="localePath(item.to)"
-                class="flex lg:px-3 py-2 hover:text-gray-900 dark:text-white dark:hover:text-gray-300"
-                @click="isOpen = false"
-              >
+              <ULink :to="localePath(item.to)" @click="isOpen = false">
                 {{ $tt(item.label) }}
               </ULink>
             </li>
@@ -64,10 +60,9 @@ const userMenuItems = computed(() => {
         <client-only>
           <div class="flex items-center gap-4">
             <!-- pokud je to prihlasene, zobrazi uzivatelske menu -->
-            <UDropdown
+            <UDropdownMenu
               v-if="auth.loggedIn"
               :items="userMenuItems"
-              :ui="{ item: { disabled: 'cursor-text select-text' } }"
               :popper="{ placement: 'bottom-start' }"
             >
               <UChip
@@ -88,7 +83,7 @@ const userMenuItems = computed(() => {
               <template #item="{ item }">
                 <span class="truncate">{{ $tt(item.label) }}</span>
               </template>
-            </UDropdown>
+            </UDropdownMenu>
 
             <!-- jinak zobrazi login a signup menu -->
             <div v-else class="hidden lg:flex items-center gap-4">
@@ -117,8 +112,7 @@ const userMenuItems = computed(() => {
               <UButton
                 :to="routes.cashdesk?.path"
                 icon="i-heroicons-shopping-cart"
-                class="text-gray-600 dark:text-gray-400"
-                :ui="{ rounded: 'rounded-full' }"
+                class="text-gray-600 dark:text-gray-400 rounded-full"
                 variant="ghost"
                 :aria-label="$tt('$.aria.cart')"
               />
@@ -131,8 +125,7 @@ const userMenuItems = computed(() => {
                   ? 'i-heroicons-moon'
                   : 'i-heroicons-sun'
               "
-              class="text-gray-600 dark:text-gray-400"
-              :ui="{ rounded: 'rounded-full' }"
+              class="text-gray-600 dark:text-gray-400 rounded-full"
               variant="ghost"
               :aria-label="$tt('$.aria.mode')"
               @click="
@@ -145,9 +138,8 @@ const userMenuItems = computed(() => {
             <div v-if="menuItems?.length" class="flex lg:hidden">
               <UButton
                 icon="i-heroicons-bars-3"
-                color="white"
                 square
-                variant="solid"
+                variant="ghost"
                 :aria-label="$tt('$.aria.hamburger')"
                 @click="isOpen = true"
               />
@@ -157,73 +149,44 @@ const userMenuItems = computed(() => {
       </div>
     </header>
 
-    <USlideover
-      v-if="menuItems?.length"
-      v-model="isOpen"
-      side="left"
-      :ui="{ width: 'max-w-sm' }"
-    >
-      <UCard
-        class="flex flex-col flex-1"
-        :ui="{
-          header: {
-            base: 'flex justify-end',
-            padding: 'py-4',
-          },
-          body: { base: 'flex-1' },
-          ring: '',
-          divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-        }"
-      >
-        <template #header>
+    <USlideover v-model:open="isOpen" side="left">
+      <template #body>
+        <div class="h-full overflow-y-auto">
+          <ul class="space-y-2 font-medium">
+            <li v-for="item of menuItems" :key="item.to">
+              <ULink
+                :to="localePath(item.to)"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                @click="isOpen = false"
+              >
+                <span class="ms-3">{{ $tt(item.label) }}</span>
+              </ULink>
+            </li>
+          </ul>
+        </div>
+      </template>
+
+      <template v-if="!auth.loggedIn" #footer>
+        <div class="flex items-center gap-4 w-full">
           <UButton
-            icon="i-heroicons-x-mark"
-            color="white"
-            square
-            variant="solid"
-            :aria-label="$tt('$.aria.close')"
+            :to="localePath(routes.login?.path)"
+            variant="outline"
+            size="lg"
+            active-class="hidden"
+            class="flex-grow flex-shrink text-center block text-secondary-500"
             @click="isOpen = false"
-          />
-        </template>
-
-        <aside aria-label="Sidebar">
-          <div class="h-full overflow-y-auto">
-            <ul class="space-y-2 font-medium">
-              <li v-for="item of menuItems" :key="item.to">
-                <ULink
-                  :to="localePath(item.to)"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  @click="isOpen = false"
-                >
-                  <span class="ms-3">{{ $tt(item.label) }}</span>
-                </ULink>
-              </li>
-            </ul>
-          </div>
-        </aside>
-
-        <template v-if="!auth.loggedIn" #footer>
-          <div class="flex items-center gap-4 w-full">
-            <UButton
-              :to="localePath(routes.login?.path)"
-              variant="outline"
-              size="lg"
-              active-class="hidden"
-              class="flex-grow flex-shrink text-center block text-secondary-500"
-              @click="isOpen = false"
-              >{{ $tt(routes.login?.meta?.title as string) }}</UButton
-            >
-            <UButton
-              :to="localePath(routes.login?.path)"
-              size="lg"
-              active-class="hidden"
-              class="flex-grow flex-shrink text-center block"
-              @click="isOpen = false"
-              >{{ $tt(routes.login?.meta?.title as string) }}</UButton
-            >
-          </div>
-        </template>
-      </UCard>
+            >{{ $tt(routes.login?.meta?.title as string) }}</UButton
+          >
+          <UButton
+            :to="localePath(routes.login?.path)"
+            size="lg"
+            active-class="hidden"
+            class="flex-grow flex-shrink text-center block"
+            @click="isOpen = false"
+            >{{ $tt(routes.login?.meta?.title as string) }}</UButton
+          >
+        </div>
+      </template>
     </USlideover>
   </div>
 </template>

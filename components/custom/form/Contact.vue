@@ -50,7 +50,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     class="space-y-4"
     @submit="onSubmit"
   >
-    <UFormGroup :label="$tt(fields.email.label)" name="email" required>
+    <UFormField :label="$tt(fields.email.label)" name="email" required>
       <UInput
         v-model="state.email"
         type="email"
@@ -59,8 +59,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         required
         icon="i-heroicons-envelope"
       />
-    </UFormGroup>
-    <UFormGroup :label="$tt('$.form.msg')" name="message" required>
+    </UFormField>
+    <UFormField :label="$tt('$.form.msg')" name="message" required>
       <UTextarea
         v-model="state.message"
         :placeholder="$tt('$.placeholder.leave_comment')"
@@ -69,7 +69,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         icon="i-heroicons-chat-bubble-left-ellipsis"
         :rows="6"
       />
-    </UFormGroup>
+    </UFormField>
     <div class="flex flex-row-reverse">
       <UButton
         type="submit"

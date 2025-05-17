@@ -55,7 +55,7 @@ async function checkValidation() {
         <div
           class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
         >
-          <UFormGroup
+          <UFormField
             :label="$tt(auth.fields.email.label)"
             name="email"
             required
@@ -68,8 +68,8 @@ async function checkValidation() {
               :autocomplete="auth.fields.email.autocomplete"
               size="lg"
             />
-          </UFormGroup>
-          <UFormGroup
+          </UFormField>
+          <UFormField
             :label="$tt(auth.fields.phone.label)"
             name="phone"
             class="w-full"
@@ -81,13 +81,13 @@ async function checkValidation() {
               :autocomplete="auth.fields.phone.autocomplete"
               size="lg"
             />
-          </UFormGroup>
+          </UFormField>
         </div>
 
         <div
           class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
         >
-          <UFormGroup
+          <UFormField
             :label="$tt(auth.fields.givenName.label)"
             name="givenName"
             required
@@ -104,8 +104,8 @@ async function checkValidation() {
                   : undefined
               "
             />
-          </UFormGroup>
-          <UFormGroup
+          </UFormField>
+          <UFormField
             :label="$tt(auth.fields.surname.label)"
             name="surname"
             required
@@ -122,13 +122,13 @@ async function checkValidation() {
                   : undefined
               "
             />
-          </UFormGroup>
+          </UFormField>
         </div>
 
         <div
           class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
         >
-          <UFormGroup
+          <UFormField
             :label="$tt(auth.fields.street.label)"
             name="address.main.street"
             required
@@ -145,8 +145,8 @@ async function checkValidation() {
                   : undefined
               "
             />
-          </UFormGroup>
-          <UFormGroup
+          </UFormField>
+          <UFormField
             :label="$tt(auth.fields.city.label)"
             name="address.main.city"
             required
@@ -163,13 +163,13 @@ async function checkValidation() {
                   : undefined
               "
             />
-          </UFormGroup>
+          </UFormField>
         </div>
 
         <div
           class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
         >
-          <UFormGroup
+          <UFormField
             :label="$tt(auth.fields.zip.label)"
             name="address.main.zip"
             required
@@ -186,8 +186,8 @@ async function checkValidation() {
                   : undefined
               "
             />
-          </UFormGroup>
-          <UFormGroup
+          </UFormField>
+          <UFormField
             :label="$tt(auth.fields.state.label)"
             name="address.main.state"
             required
@@ -212,7 +212,7 @@ async function checkValidation() {
                   : undefined
               "
             />
-          </UFormGroup>
+          </UFormField>
         </div>
       </div>
     </UForm>

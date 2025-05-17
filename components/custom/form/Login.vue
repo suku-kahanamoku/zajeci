@@ -84,7 +84,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 				</UButton> -->
       </div>
 
-      <UDivider :label="$tt('$.login.or')" />
+      <USeparator  :label="$tt('$.login.or')" />
 
       <UForm
         :schema="schema"
@@ -92,7 +92,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         class="space-y-4 md:space-y-6"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$tt(auth.fields.email.label)" name="email" required>
+        <UFormField :label="$tt(auth.fields.email.label)" name="email" required>
           <UInput
             v-model="state.email"
             type="email"
@@ -100,8 +100,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             required
             size="lg"
           />
-        </UFormGroup>
-        <UFormGroup
+        </UFormField>
+        <UFormField
           :label="$tt(auth.fields.password.label)"
           name="password"
           required
@@ -114,7 +114,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             size="lg"
             :autocomplete="auth.fields.password.autocomplete"
           />
-        </UFormGroup>
+        </UFormField>
         <div class="flex items-center justify-between">
           <UCheckbox name="remember" :label="$tt('$.login.remember')" />
           <UButton

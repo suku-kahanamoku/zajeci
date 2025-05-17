@@ -20,25 +20,25 @@ const { routes } = useMenuItems();
 
 <template>
   <UForm :schema="schema" :state="item" @submit="emits('submit', $event)">
-    <UFormGroup :label="fields.userEmail.label" name="user.email" class="mb-6">
+    <UFormField :label="fields.userEmail.label" name="user.email" class="mb-6">
       <UInput
         v-model="item.user.email"
         :placeholder="fields.userEmail.placeholder"
         size="lg"
         required
       />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup :label="fields.userName.label" name="user.name" class="mb-6">
+    <UFormField :label="fields.userName.label" name="user.name" class="mb-6">
       <UInput
         v-model="item.user.name"
         :placeholder="fields.userName.placeholder"
         size="lg"
         required
       />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup
+    <UFormField
       :label="fields.userSurname.label"
       name="user.surname"
       class="mb-6"
@@ -49,38 +49,38 @@ const { routes } = useMenuItems();
         size="lg"
         required
       />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup :label="fields.userPhone.label" name="user.phone" class="mb-6">
+    <UFormField :label="fields.userPhone.label" name="user.phone" class="mb-6">
       <UInput
         v-model="item.user.phone"
         :placeholder="fields.userPhone.placeholder"
         size="lg"
         required
       />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup :label="fields.deliveryType.label" name="delivery.type">
+    <UFormField :label="fields.deliveryType.label" name="delivery.type">
       <UInput
         v-model="item.delivery.type"
         :placeholder="fields.deliveryType.placeholder"
         size="lg"
         required
       />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup :label="fields.paymentType.label" name="payment.type">
+    <UFormField :label="fields.paymentType.label" name="payment.type">
       <UInput
         v-model="item.payment.type"
         :placeholder="fields.paymentType.placeholder"
         size="lg"
         required
       />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup :label="fields.totalPrice.label" name="totalPrice">
+    <UFormField :label="fields.totalPrice.label" name="totalPrice">
       <UInput v-model="item.totalPrice" type="number" size="lg" required />
-    </UFormGroup>
+    </UFormField>
 
     <div class="flex justify-between pt-8">
       <UButton

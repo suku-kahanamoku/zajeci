@@ -81,7 +81,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         class="space-y-4 md:space-y-6"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$tt(fields.email.label)" name="email" required>
+        <UFormField :label="$tt(fields.email.label)" name="email" required>
           <UInput
             v-model="state.email"
             type="email"
@@ -90,26 +90,26 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             size="lg"
             readonly
           />
-        </UFormGroup>
+        </UFormField>
 
         <div class="flex justify-between items-center gap-x-2">
-          <UFormGroup :label="$tt(fields.givenName.label)" name="givenName">
+          <UFormField :label="$tt(fields.givenName.label)" name="givenName">
             <UInput
               v-model="state.givenName"
               :placeholder="$tt(fields.givenName.placeholder as string)"
               size="lg"
             />
-          </UFormGroup>
-          <UFormGroup :label="$tt(fields.surname.label)" name="surname">
+          </UFormField>
+          <UFormField :label="$tt(fields.surname.label)" name="surname">
             <UInput
               v-model="state.surname"
               :placeholder="$tt(fields.surname.placeholder as string)"
               size="lg"
             />
-          </UFormGroup>
+          </UFormField>
         </div>
 
-        <UFormGroup v-if="isAdmin" :label="$tt(fields.role.label)" name="role">
+        <UFormField v-if="isAdmin" :label="$tt(fields.role.label)" name="role">
           <USelectMenu
             v-model="state.role"
             :options="roleOptions"
@@ -126,18 +126,18 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               {{ $tt(option.label) }}
             </template>
           </USelectMenu>
-        </UFormGroup>
+        </UFormField>
 
         <div class="flex justify-between items-center gap-x-2">
-          <UFormGroup :label="$tt(fields.password.label)" name="password">
+          <UFormField :label="$tt(fields.password.label)" name="password">
             <UInput
               v-model="state.password"
               type="password"
               :placeholder="fields.password.placeholder"
               size="lg"
             />
-          </UFormGroup>
-          <UFormGroup
+          </UFormField>
+          <UFormField
             :label="$tt('$.profile.change_password')"
             name="newPassword"
           >
@@ -148,7 +148,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               size="lg"
               autocomplete="new-password"
             />
-          </UFormGroup>
+          </UFormField>
         </div>
 
         <UCheckbox

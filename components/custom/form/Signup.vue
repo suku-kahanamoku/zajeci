@@ -60,7 +60,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         class="space-y-4 md:space-y-6"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$tt(auth.fields.email.label)" name="email" required>
+        <UFormField :label="$tt(auth.fields.email.label)" name="email" required>
           <UInput
             v-model="state.email"
             type="email"
@@ -68,8 +68,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             required
             size="lg"
           />
-        </UFormGroup>
-        <UFormGroup
+        </UFormField>
+        <UFormField
           :label="$tt(auth.fields.password.label)"
           name="password"
           required
@@ -82,8 +82,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             size="lg"
             autocomplete="new-password"
           />
-        </UFormGroup>
-        <UFormGroup
+        </UFormField>
+        <UFormField
           :label="$tt('$.signup.confirm_password')"
           name="confirmPassword"
           required
@@ -95,8 +95,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             required
             size="lg"
           />
-        </UFormGroup>
-        <UFormGroup
+        </UFormField>
+        <UFormField
           name="terms"
           :error="state.terms === false ? true : undefined"
           class="flex items-center"
@@ -126,7 +126,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               </template>
             </UCheckbox>
           </template>
-        </UFormGroup>
+        </UFormField>
         <UButton
           type="submit"
           size="lg"

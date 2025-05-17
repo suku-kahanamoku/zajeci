@@ -2,6 +2,9 @@
 import { CLONE } from "./modules/common-module/runtime/utils/modify-object.functions";
 import { DeliveryServices } from "./server/types/order.type";
 
+const {
+  i18n: { locale },
+} = useLang();
 const auth = useAuthStore();
 const cashdesk = useCashdeskStore();
 
@@ -42,9 +45,10 @@ function setCashdesk() {
 }
 </script>
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
-  <UNotifications />
-  <CmpCookieBanner />
+  <UApp :locale="locale">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <CmpCookieBanner />
+  </UApp>
 </template>

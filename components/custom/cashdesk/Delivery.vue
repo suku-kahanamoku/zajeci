@@ -49,7 +49,7 @@ async function checkValidation() {
     class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
   >
     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-      <UFormGroup name="type">
+      <UFormField name="type">
         <template #label>
           <h3
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
@@ -130,7 +130,7 @@ async function checkValidation() {
                 v-if="option.value === cashdesk.delivery.type"
                 class="space-y-4 my-4"
               >
-                <UFormGroup
+                <UFormField
                   :label="$tt(auth.fields.name.label)"
                   name="address.main.name"
                   required
@@ -142,11 +142,11 @@ async function checkValidation() {
                     :autocomplete="auth.fields.name.autocomplete"
                     size="lg"
                   />
-                </UFormGroup>
+                </UFormField>
                 <div
                   class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
                 >
-                  <UFormGroup
+                  <UFormField
                     :label="$tt(auth.fields.street.label)"
                     name="address.main.street"
                     required
@@ -158,8 +158,8 @@ async function checkValidation() {
                       :autocomplete="auth.fields.street.autocomplete"
                       size="lg"
                     />
-                  </UFormGroup>
-                  <UFormGroup
+                  </UFormField>
+                  <UFormField
                     :label="$tt(auth.fields.city.label)"
                     name="address.main.city"
                     required
@@ -171,13 +171,13 @@ async function checkValidation() {
                       :autocomplete="auth.fields.city.autocomplete"
                       size="lg"
                     />
-                  </UFormGroup>
+                  </UFormField>
                 </div>
 
                 <div
                   class="flex flex-col sm:flex-row justify-between items-center gap-x-2 space-y-4 sm:space-y-0"
                 >
-                  <UFormGroup
+                  <UFormField
                     :label="$tt(auth.fields.zip.label)"
                     name="address.main.zip"
                     required
@@ -189,8 +189,8 @@ async function checkValidation() {
                       :autocomplete="auth.fields.zip.autocomplete"
                       size="lg"
                     />
-                  </UFormGroup>
-                  <UFormGroup
+                  </UFormField>
+                  <UFormField
                     :label="$tt(auth.fields.state.label)"
                     name="address.main.state"
                     required
@@ -210,13 +210,13 @@ async function checkValidation() {
                       :autocomplete="auth.fields.state.autocomplete"
                       size="lg"
                     />
-                  </UFormGroup>
+                  </UFormField>
                 </div>
               </div>
             </template>
           </URadio>
         </div>
-      </UFormGroup>
+      </UFormField>
     </div>
   </UForm>
 </template>

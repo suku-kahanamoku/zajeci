@@ -38,7 +38,7 @@ async function checkValidation() {
     class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
   >
     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-      <UFormGroup name="type">
+      <UFormField name="type">
         <template #label>
           <h3
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
@@ -88,7 +88,7 @@ async function checkValidation() {
             </template>
           </URadio>
         </div>
-      </UFormGroup>
+      </UFormField>
     </div>
   </UForm>
 </template>

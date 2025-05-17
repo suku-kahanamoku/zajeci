@@ -18,7 +18,7 @@ export default {
         sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        custom: theme.colors.primary,
+        primary: theme.colors.primary,
         secondary: theme.colors.secondary,
         success: theme.colors.success,
         info: theme.colors.info,

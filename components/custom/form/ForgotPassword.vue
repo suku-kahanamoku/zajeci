@@ -58,7 +58,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         class="space-y-4 md:space-y-6"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$tt(fields.email.label)" name="email" required>
+        <UFormField :label="$tt(fields.email.label)" name="email" required>
           <UInput
             v-model="state.email"
             type="email"
@@ -66,7 +66,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             required
             size="lg"
           />
-        </UFormGroup>
+        </UFormField>
         <UButton
           type="submit"
           size="lg"
