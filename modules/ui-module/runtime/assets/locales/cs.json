@@ -1,0 +1,16 @@
+{
+  "$": {
+    "btn": {
+      "close": "Zavřit"
+    },
+    "info": {
+      "rows_per_page": "Počet záznamů"
+    },
+    "footer": {
+      "copyright": "Copyright",
+      "reserved": "Všechna práva vyhrazena",
+      "made_by": "Vytvořeno",
+      "cookies": "Tento web používá soubory cookies k zajištění optimálního uživatelského zážitku a měření jeho výkonu. Pokud budete nadále používat tento web, předpokládáme, že souhlasíte s používáním souborů cookies. Můžete však kdykoli změnit svá nastavení souborů cookies prostřednictvím příslušných funkcí vašeho prohlížeče."
+    }
+  }
+}

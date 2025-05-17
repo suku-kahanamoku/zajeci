@@ -3,7 +3,7 @@ import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
 import type { WineDocument } from "@/server/types/wine.type";
-import { CLONE } from "~/modules/common-module/runtime/utils/modify-object.functions";
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 definePageMeta({
   layout: "admin",

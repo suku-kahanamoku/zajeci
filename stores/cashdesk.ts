@@ -15,7 +15,7 @@ import type { WineDocument } from "@/server/types/wine.type";
 import {
   CLONE,
   ITERATE,
-} from "~/modules/common-module/runtime/utils/modify-object.functions";
+} from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
