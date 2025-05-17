@@ -4,7 +4,9 @@ import { useToNumber } from "@vueuse/core";
 import { PaymentServices } from "@/server/types/order.type";
 
 const { $tt } = useNuxtApp();
-const { locale } = useI18n();
+const {
+  i18n: { locale },
+} = useLang();
 const localePath = useLocalePath();
 const { routes } = useMenuItems();
 const cashdesk = useCashdeskStore();

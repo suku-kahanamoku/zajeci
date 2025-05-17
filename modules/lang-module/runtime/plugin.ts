@@ -1,4 +1,5 @@
 import type { Composer } from "vue-i18n";
+import { defineNuxtPlugin, useHead } from "#app";
 
 /**
  * @file plugin.ts
@@ -23,7 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       tt: (value: string | unknown, params?: Parameters<typeof t>[1]) =>
-        typeof value === "string" && value?.startsWith("$.")
+        typeof value === "string" && value.startsWith("$.")
           ? t(value, params ?? {})
           : value,
     },

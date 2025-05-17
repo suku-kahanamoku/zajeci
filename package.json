@@ -1,40 +1,45 @@
 {
-	"name": "vinozezajeci",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"build": "nuxt build",
-		"dev": "nuxt dev",
-		"generate": "nuxt generate",
-		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
-	},
-	"dependencies": {
-		"@nuxt/image": "^1.10.0",
-		"@nuxt/ui": "^2.22.0",
-		"@nuxtjs/i18n": "^9.3.1",
-		"@pinia/nuxt": "^0.11.0",
-		"@types/bcrypt": "^5.0.2",
-		"animate.css": "^4.1.1",
-		"bcrypt": "^5.1.1",
-		"node-mailjet": "^6.0.8",
-		"nuxt": "^3.16.2",
-		"nuxt-auth-utils": "^0.2.1",
-		"nuxt-mongoose": "^1.0.6",
-		"nuxt-rating": "^0.1.5",
-		"nuxt-storage": "^1.2.2",
-		"photoswipe": "^5.4.4",
-		"ukiyojs": "^4.2.0",
-		"vue-email": "^0.8.11",
-		"yup": "^1.6.1"
-	},
-	"devDependencies": {
-		"@nuxtjs/seo": "^3.0.3",
-		"@vue-email/nuxt": "^0.8.19",
-		"nuxt-gtag": "^3.0.2",
-		"typescript": "latest"
-	},
-	"overrides": {
-		"vue": "latest"
-	}
+  "name": "vinozezajeci",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.16.0",
+    "@vueuse/core": "^13.0.0",
+    "@nuxt/image": "^1.10.0",
+    "@nuxt/ui": "^2.22.0",
+    "@nuxtjs/i18n": "^9.3.1",
+    "@pinia/nuxt": "^0.11.0",
+    "animate.css": "^4.1.1",
+    "bcrypt": "^5.1.1",
+    "defu": "^6.1.4",
+    "node-mailjet": "^6.0.8",
+    "nuxt": "^3.16.2",
+    "nuxt-auth-utils": "^0.2.1",
+    "nuxt-mongoose": "^1.0.6",
+    "nuxt-rating": "^0.1.5",
+    "nuxt-storage": "^1.2.2",
+    "photoswipe": "^5.4.4",
+    "ukiyojs": "^4.2.0",
+    "vue-email": "^0.8.11",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/seo": "^3.0.3",
+    "@nuxtjs/critters": "^0.8.0",
+    "@vite-pwa/nuxt": "^0.10.6",
+    "@vue-email/nuxt": "^0.8.19",
+    "@types/bcrypt": "^5.0.2",
+    "nuxt-gtag": "^3.0.2",
+    "typescript": "latest"
+  },
+  "overrides": {
+    "vue": "latest"
+  }
 }

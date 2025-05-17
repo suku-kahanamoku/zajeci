@@ -121,7 +121,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                   variant="link"
                   size="sm"
                   :padded="false"
-                  >{{ $tt(routes.terms_conditions?.meta?.title) }}</UButton
+                  >{{ $tt(routes.terms_conditions?.meta?.title as string) }}</UButton
                 >
               </template>
             </UCheckbox>
@@ -144,7 +144,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             variant="link"
             size="sm"
             :padded="false"
-            >{{ $tt(routes.login?.meta?.title) }}</UButton
+            >{{ $tt(routes.login?.meta?.title as string) }}</UButton
           >
         </p>
       </UForm>

@@ -8,7 +8,9 @@ const props = defineProps<{
   item: WineDocument;
 }>();
 
-const { locale } = useI18n();
+const {
+  i18n: { locale },
+} = useLang();
 const { routes } = useMenuItems();
 const { fields } = useWines();
 const cashdesk = useCashdeskStore();

@@ -123,7 +123,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             variant="link"
             size="sm"
             :padded="false"
-            >{{ $tt(routes.forgot_password?.meta?.title) }}</UButton
+            >{{ $tt(routes.forgot_password?.meta?.title as string) }}</UButton
           >
         </div>
         <UButton
@@ -143,7 +143,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             variant="link"
             size="sm"
             :padded="false"
-            >{{ $tt(routes.signup?.meta?.title) }}</UButton
+            >{{ $tt(routes.signup?.meta?.title as string) }}</UButton
           >
         </p>
       </UForm>

@@ -10,9 +10,7 @@ export default defineNuxtConfig({
 
   modules: [
     "@vue-email/nuxt",
-    "@nuxtjs/i18n",
     "@nuxt/ui",
-    "@nuxtjs/seo",
     "@nuxt/image",
     "@pinia/nuxt",
     "nuxt-auth-utils",
@@ -48,13 +46,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    lazy: true,
-    strategy: "prefix_except_default",
     defaultLocale: "cs",
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_locale",
-    },
     langDir: "locales/",
     locales: [
       {

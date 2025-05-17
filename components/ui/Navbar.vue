@@ -4,16 +4,11 @@ defineProps<{
 }>();
 
 const { $tt } = useNuxtApp();
-const { locale, locales } = useI18n();
+const {
+  i18n: { locale, locales },
+} = useLang();
 const localePath = useLocalePath();
 const switchLocale = useSwitchLocalePath();
-const langs = computed(() =>
-  locales.value.map((locale) => ({
-    ...locale,
-    label: $tt(`$.${locale.code}`),
-    to: switchLocale(locale.code),
-  }))
-);
 const { routes, menuItem } = useMenuItems();
 const auth = useAuthStore();
 const cashdesk = useCashdeskStore();
@@ -102,13 +97,13 @@ const userMenuItems = computed(() => {
                 class="text-secondary-500 dark:text-secondary-400"
                 variant="outline"
                 active-class="hidden"
-                >{{ $tt(routes.login?.meta?.title) }}</UButton
+                >{{ $tt(routes.login?.meta?.title as string) }}</UButton
               >
               <UButton
                 :to="localePath(routes.signup?.path)"
                 class="dark:text-white"
                 active-class="hidden"
-                >{{ $tt(routes.signup?.meta?.title) }}</UButton
+                >{{ $tt(routes.signup?.meta?.title as string) }}</UButton
               >
             </div>
 
@@ -145,36 +140,6 @@ const userMenuItems = computed(() => {
                   $colorMode.value === 'dark' ? 'light' : 'dark'
               "
             />
-
-            <!-- jazyk. mutace -->
-            <UDropdown
-              :items="[langs.filter((i) => i.code !== locale)]"
-              :ui="{
-                wrapper: 'p-1',
-                container: 'custom-popper',
-                item: { disabled: 'cursor-text select-text', base: 'w-auto' },
-                width: 'w-auto',
-                popper: {
-                  strategy: 'absolute',
-                },
-              }"
-            >
-              <UIcon
-                :name="langs.find((i) => i.code === locale)!.icon"
-                class="w-5 h-5"
-                :aria-hidden="false"
-                :aria-label="$tt('$.aria.lang')"
-              />
-
-              <template #item="{ item }">
-                <UIcon
-                  :name="item.icon"
-                  class="w-5 h-5"
-                  :aria-hidden="false"
-                  :aria-label="item.label"
-                />
-              </template>
-            </UDropdown>
 
             <!-- hamburger icon -->
             <div v-if="menuItems?.length" class="flex lg:hidden">
@@ -246,7 +211,7 @@ const userMenuItems = computed(() => {
               active-class="hidden"
               class="flex-grow flex-shrink text-center block text-secondary-500"
               @click="isOpen = false"
-              >{{ $tt(routes.login?.meta?.title) }}</UButton
+              >{{ $tt(routes.login?.meta?.title as string) }}</UButton
             >
             <UButton
               :to="localePath(routes.login?.path)"
@@ -254,7 +219,7 @@ const userMenuItems = computed(() => {
               active-class="hidden"
               class="flex-grow flex-shrink text-center block"
               @click="isOpen = false"
-              >{{ $tt(routes.login?.meta?.title) }}</UButton
+              >{{ $tt(routes.login?.meta?.title as string) }}</UButton
             >
           </div>
         </template>

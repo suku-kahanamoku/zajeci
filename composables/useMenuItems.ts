@@ -2,7 +2,9 @@ import type { RouteRecordNormalized } from "vue-router";
 
 export function useMenuItems() {
   const router = useRouter();
-  const { locale, defaultLocale } = useI18n();
+  const {
+    i18n: { locale, defaultLocale },
+  } = useLang();
 
   const defaultRoutes = computed(() =>
     router

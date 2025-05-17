@@ -6,7 +6,9 @@ import { useDebounceFn } from "@vueuse/core";
 import { DeliveryServices } from "@/server/types/order.type";
 
 const { $tt } = useNuxtApp();
-const { locale } = useI18n();
+const {
+  i18n: { locale },
+} = useLang();
 const auth = useAuthStore();
 const cashdesk = useCashdeskStore();
 const formEl = ref();

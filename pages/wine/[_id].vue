@@ -11,7 +11,9 @@ definePageMeta({
 });
 
 const { $tt } = useNuxtApp();
-const { locale } = useI18n();
+const {
+  i18n: { locale },
+} = useLang();
 
 useHead({
   title: `${$tt("$.base.title")} | ${$tt("$.forgot_password.title")}`,

@@ -3,7 +3,9 @@ import { object, string } from "yup";
 import { useToNumber } from "@vueuse/core";
 import { useDebounceFn } from "@vueuse/core";
 
-const { locale } = useI18n();
+const {
+  i18n: { locale },
+} = useLang();
 const cashdesk = useCashdeskStore();
 const formEl = ref();
 
