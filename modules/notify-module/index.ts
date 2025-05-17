@@ -5,6 +5,7 @@ import {
   installModule,
   addServerImportsDir,
 } from "@nuxt/kit";
+import vue from "@vitejs/plugin-vue";
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -18,6 +19,12 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {},
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
+
+    // Nitro konfigurace
+    _nuxt.hook("nitro:config", (nitroConfig) => {
+      nitroConfig.rollupConfig = nitroConfig.rollupConfig || {};
+      nitroConfig.rollupConfig.plugins = [vue()];
+    });
 
     // Pridani server composables
     addServerImportsDir(resolve("./runtime/server/composables"));

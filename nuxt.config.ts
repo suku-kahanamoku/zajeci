@@ -1,5 +1,3 @@
-import vue from "@vitejs/plugin-vue";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
@@ -15,11 +13,6 @@ export default defineNuxtConfig({
   ],
 
   css: ["@/assets/css/main.css"],
-
-  nitro: {
-    compressPublicAssets: true,
-    minify: true,
-  },
 
   runtimeConfig: {
     session: {
@@ -51,12 +44,6 @@ export default defineNuxtConfig({
         icon: "emojione:flag-for-czechia",
         file: "./cs.json",
       },
-      {
-        code: "en",
-        language: "en-UK",
-        icon: "emojione:flag-for-czechia",
-        file: "./en.json",
-      },
     ],
     experimental: {
       localeDetector: "./localeDetector.ts",
@@ -65,12 +52,6 @@ export default defineNuxtConfig({
 
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
-  },
-
-  nitro: {
-    rollupConfig: {
-      plugins: [vue()],
-    },
   },
 
   compatibilityDate: "2025-04-23",
