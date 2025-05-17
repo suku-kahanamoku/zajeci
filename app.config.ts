@@ -1,6 +1,2 @@
 // app.config.ts
-export default defineAppConfig({
-  ui: {
-    primary: "custom",
-  },
-});
+export default defineAppConfig({});

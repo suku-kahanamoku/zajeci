@@ -23,6 +23,6 @@ if (auth.isAdmin) {
       <slot></slot>
     </main>
 
-    <UiFooter></UiFooter>
+    <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
   </div>
 </template>

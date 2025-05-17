@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useLang } from "#imports";
 
+const props = defineProps<{
+  url: string;
+  name: string;
+}>();
+
 const today = new Date();
 const { lang } = useLang();
 </script>
@@ -16,13 +21,9 @@ const { lang } = useLang();
     <!-- Informace o autorovi -->
     <p class="text-center text-xs text-slate-600 dark:text-slate-300 mt-1">
       {{ $tt("$.footer.made_by") }}
-      <a
-        :href="'https://www.test.cz/' + lang.code"
-        target="_blank"
-        rel="noopener"
-        class="hover:underline"
-        >CS SOFT a.s.</a
-      >
+      <a :href="url" target="_blank" rel="noopener" class="hover:underline">
+        {{ name }}
+      </a>
     </p>
   </footer>
 </template>

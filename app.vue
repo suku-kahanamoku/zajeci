@@ -46,5 +46,5 @@ function setCashdesk() {
     <NuxtPage />
   </NuxtLayout>
   <UNotifications />
-  <UiCookieBanner />
+  <CmpCookieBanner />
 </template>
