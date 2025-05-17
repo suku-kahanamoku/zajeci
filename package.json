@@ -29,7 +29,8 @@
     "nuxt-storage": "^1.2.2",
     "photoswipe": "^5.4.4",
     "ukiyojs": "^4.2.0",
-    "yup": "^1.6.1"
+    "yup": "^1.6.1",
+    "path-to-regexp": "^6.3.0"
   },
   "devDependencies": {
     "@nuxtjs/critters": "^0.8.0",
