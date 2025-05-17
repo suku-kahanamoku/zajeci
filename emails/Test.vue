@@ -40,31 +40,6 @@ const main = {
           <Text class="text-md">
             {{ tt("$.mailing.contact_form.addressed") }},
           </Text>
-          <Text class="text-md" py="12">
-            {{ tt("$.mailing.contact_form.thank_you") }}
-          </Text>
-
-          <Text class="text-sm text-gray-600" py="12">
-            {{ msg }}
-          </Text>
-
-          <Text class="text-md">
-            {{ tt("$.mailing.contact_form.message_received") }}
-          </Text>
-          <Text class="text-md" py="12">
-            {{ tt("$.mailing.contact_form.further_questions") }}
-          </Text>
-          <Text class="text-md">
-            {{ tt("$.mailing.contact_form.regards") }},
-            <br />
-            {{ tt("$.mailing.contact_form.team") }}
-          </Text>
-          <Hr class="text-gray-600" my="20" />
-          <Text class="text-xs text-gray-600">
-            © {{ new Date().getFullYear() }}
-            <Link :href="url" class="font-bold">Logo</Link>.
-            {{ tt("$.footer.reserved") }}.
-          </Text>
         </Container>
       </Body>
     </Html>

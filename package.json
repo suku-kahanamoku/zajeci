@@ -10,12 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.16.0",
-    "@vueuse/core": "^13.0.0",
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^2.22.0",
     "@nuxtjs/i18n": "^9.3.1",
     "@pinia/nuxt": "^0.11.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue-email/components": "^0.0.21",
+    "@vue-email/render": "^0.0.9",
+    "@vueuse/core": "^13.0.0",
     "animate.css": "^4.1.1",
     "bcrypt": "^5.1.1",
     "defu": "^6.1.4",
@@ -27,15 +29,13 @@
     "nuxt-storage": "^1.2.2",
     "photoswipe": "^5.4.4",
     "ukiyojs": "^4.2.0",
-    "vue-email": "^0.8.11",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@nuxtjs/seo": "^3.0.3",
     "@nuxtjs/critters": "^0.8.0",
-    "@vite-pwa/nuxt": "^0.10.6",
-    "@vue-email/nuxt": "^0.8.19",
+    "@nuxtjs/seo": "^3.0.3",
     "@types/bcrypt": "^5.0.2",
+    "@vite-pwa/nuxt": "^0.10.6",
     "nuxt-gtag": "^3.0.2",
     "typescript": "latest"
   },

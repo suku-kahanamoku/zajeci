@@ -1,7 +1,7 @@
 import { H3Event } from "h3";
 import { isValidObjectId } from "mongoose";
 
-import { useMailing } from "@/server/composables/useMailing";
+import OrderForm from "@/emails/OrderForm.vue";
 
 import { OrderModel } from "../models/order.schema";
 import { AddressModel } from "../models/address.schema";
@@ -59,13 +59,10 @@ export default defineEventHandler(async (event: H3Event) => {
     const orderId = result._id.toString();
     await send({
       subject: t("$.mailing.order.confirmed.subject", { orderId }),
-      template: await template({
-        name: "OrderForm.vue",
-        props: {
-          url: process.env.FRONTEND_HOST,
-          email: process.env.NUXT_MAILING_FROM as string,
-          orderId,
-        },
+      template: await template(OrderForm, {
+        url: process.env.FRONTEND_HOST,
+        email: process.env.NUXT_MAILING_FROM as string,
+        orderId,
       }),
       to: [
         {

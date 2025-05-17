@@ -1,7 +1,7 @@
 import { H3Event } from "h3";
-import { Buffer } from "node:buffer";
 
-import { useMailing } from "@/server/composables/useMailing";
+import ContactForm from "@/emails/ContactForm.vue";
+import ContactFormAdmin from "@/emails/ContactFormAdmin.vue";
 
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
@@ -10,13 +10,10 @@ export default defineEventHandler(async (event: H3Event) => {
   // odesle mail klientovi
   await send({
     subject: "$.mailing.contact_form.subject",
-    template: await template({
-      name: "ContactForm.vue",
-      props: {
-        url: process.env.FRONTEND_HOST,
-        email: body.email,
-        msg: body.message,
-      },
+    template: await template(ContactForm, {
+      url: process.env.FRONTEND_HOST,
+      email: body.email,
+      msg: body.message,
     }),
     to: [
       {
@@ -28,13 +25,10 @@ export default defineEventHandler(async (event: H3Event) => {
   // odesle mail adminovi
   await send({
     subject: "$.mailing.contact_form.subject",
-    template: await template({
-      name: "ContactFormAdmin.vue",
-      props: {
-        url: process.env.FRONTEND_HOST,
-        email: body.email,
-        msg: body.message,
-      },
+    template: await template(ContactFormAdmin, {
+      url: process.env.FRONTEND_HOST,
+      email: body.email,
+      msg: body.message,
     }),
     to: [
       {

@@ -1,7 +1,4 @@
-import en from "./i18n/locales/en.json";
-import cs from "./i18n/locales/cs.json";
-
-import theme from "./assets/css/theme.json";
+import vue from "@vitejs/plugin-vue";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -9,7 +6,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
-    "@vue-email/nuxt",
     "@nuxt/ui",
     "@nuxt/image",
     "@pinia/nuxt",
@@ -55,6 +51,12 @@ export default defineNuxtConfig({
         icon: "emojione:flag-for-czechia",
         file: "./cs.json",
       },
+      {
+        code: "en",
+        language: "en-UK",
+        icon: "emojione:flag-for-czechia",
+        file: "./en.json",
+      },
     ],
     experimental: {
       localeDetector: "./localeDetector.ts",
@@ -65,22 +67,9 @@ export default defineNuxtConfig({
     id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
 
-  vueEmail: {
-    baseUrl: process.env.FRONTEND_HOST,
-    autoImport: true,
-    i18n: {
-      defaultLocale: "cs",
-      translations: {
-        cs: { $: cs.$ as any },
-        en: { $: en.$ as any },
-      },
-    },
-    tailwind: {
-      theme: {
-        extend: {
-          colors: theme.colors,
-        },
-      },
+  nitro: {
+    rollupConfig: {
+      plugins: [vue()],
     },
   },
 

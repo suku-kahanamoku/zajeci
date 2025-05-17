@@ -1,8 +1,8 @@
 import { H3Event } from "h3";
 
-import { useMailing } from "@/server/composables/useMailing";
 import { UserModel } from "@/server/models/user.schema";
 import { GENERATE_HASHED_PASSWORD } from "@/modules/common-module/runtime/utils/server.functions";
+import SignupForm from "@/emails/SignupForm.vue";
 
 export default defineEventHandler(async (event: H3Event) => {
   const t = await useTranslation(event);
@@ -38,11 +38,8 @@ export default defineEventHandler(async (event: H3Event) => {
     if (user._id) {
       await send({
         subject: "$.mailing.signup.subject",
-        template: await template({
-          name: "SignupForm.vue",
-          props: {
-            url: process.env.FRONTEND_HOST,
-          },
+        template: await template(SignupForm, {
+          url: process.env.FRONTEND_HOST,
         }),
         to: [
           {
