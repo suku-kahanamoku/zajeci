@@ -6,7 +6,12 @@
  * @returns {*}  {string}
  */
 export function CAPITALIZE(value: string): string {
-  return value.trim().charAt(0).toUpperCase() + value.slice(1);
+  if (typeof value !== "string" || value.trim() === "") {
+    return value;
+  }
+
+  const trimmedValue = value.trim();
+  return trimmedValue.charAt(0).toUpperCase() + trimmedValue.slice(1);
 }
 
 /**
@@ -28,7 +33,7 @@ export function REMOVE_FIRST_STRING(
   delimiter: string,
   rmDelitimer: boolean = false
 ): string {
-  let key = value.lastIndexOf(delimiter);
+  let key = value.indexOf(delimiter);
   if (key >= 0) {
     if (rmDelitimer) {
       key += delimiter.length;
@@ -168,7 +173,7 @@ export function RESOLVE_MARKS(value: string, params: any): string {
  * @return {*}  {string}
  */
 export function GET_MARK(value: string): string {
-  return value.indexOf("?") < 0 ? "?" : "&";
+  return value.includes("?") ? "&" : "?";
 }
 
 /**
@@ -182,12 +187,17 @@ export function GET_MARK(value: string): string {
  * @export
  * @param {number} value
  * @param {number[]} values
- * @return {*}  {number}
+ * @return {*}  {(number | undefined)}
  */
-export function GET_CLOSEST_NUM(value: number, values: number[]): number {
-  return values.reduce((prev, curr) =>
-    Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
-  );
+export function GET_CLOSEST_NUM(
+  value: number,
+  values: number[]
+): number | undefined {
+  if (value && values.length) {
+    return values.reduce((prev, curr) =>
+      Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
+    );
+  }
 }
 
 /**

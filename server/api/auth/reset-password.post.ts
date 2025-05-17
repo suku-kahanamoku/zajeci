@@ -5,7 +5,7 @@ import { UserModel } from "@/server/models/user.schema";
 import {
   GENERATE_PASSWORD,
   GENERATE_HASHED_PASSWORD,
-} from "@/utils/server.functions";
+} from "@/modules/common-module/runtime/utils/server.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const t = await useTranslation(event);

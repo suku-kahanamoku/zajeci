@@ -1,7 +1,7 @@
 import { H3Event } from "h3";
 
 import { UserModel } from "@/server/models/user.schema";
-import { COMPARE_PASSWORD } from "@/utils/server.functions";
+import { COMPARE_PASSWORD } from "@/modules/common-module/runtime/utils/server.functions";
 import { useAuth } from "@/server/composables/useAuth";
 
 export default defineEventHandler(async (event: H3Event) => {

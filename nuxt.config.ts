@@ -58,12 +58,6 @@ export default defineNuxtConfig({
     langDir: "locales/",
     locales: [
       {
-        code: "en",
-        language: "en-UK",
-        icon: "emojione:flag-for-united-kingdom",
-        file: "./en.json",
-      },
-      {
         code: "cs",
         language: "cs-CZ",
         icon: "emojione:flag-for-czechia",

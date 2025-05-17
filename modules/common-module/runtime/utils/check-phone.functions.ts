@@ -25,5 +25,15 @@ export function IS_CZECH_PHONE_NUMBER(value: string | number): boolean {
  * @returns {*}  {boolean}
  */
 export function IS_PHONE_NUMBER(value: string | number): boolean {
-  return /^[+]?[()/0-9. -]{9,}$/.test(value?.toString());
+  // Convert the value to a string
+  const stringValue = value?.toString();
+
+  // Regular expression to check if the input contains only valid characters
+  const validFormatRegex = /^[+()\/0-9. \-]*$/;
+
+  // Check if the input has only valid characters and at least nine digits
+  return (
+    validFormatRegex.test(stringValue) &&
+    stringValue.replace(/[^0-9]/g, "").length >= 9
+  );
 }

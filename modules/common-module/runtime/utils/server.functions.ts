@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 
-import { ITERATE } from "./modify-object.function";
+import { ITERATE } from "./modify-object.functions";
 import { RESOLVE_MARKS } from "./modify-string.functions";
+
 
 export function RESOLVE_FACTORY(item: Record<string, any>, factory: any) {
   if (factory) {

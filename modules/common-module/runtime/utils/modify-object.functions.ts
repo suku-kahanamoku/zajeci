@@ -1,5 +1,5 @@
-import { IS_DEFINED, IS_OBJECT } from "@/utils/check.functions";
-import { TRIM } from "@/utils/modify-string.functions";
+import { IS_DEFINED, IS_OBJECT } from "./check.functions";
+import { TRIM } from "./modify-string.functions";
 
 /**
  * Naklonuje dany objekt
@@ -22,9 +22,15 @@ export function CLONE(item: any): any {
   }
 
   if (item instanceof RegExp) {
-    const flags = item.flags;
-    const pattern = item.source;
-    return new RegExp(pattern, flags);
+    return new RegExp(item.source, item.flags);
+  }
+
+  if (item instanceof File) {
+    return item;
+  }
+
+  if (typeof FileList !== "undefined" && item instanceof FileList) {
+    return item;
   }
 
   const clonedObject = {} as any;
@@ -102,7 +108,7 @@ export function ITERATE(
     let index = 0;
     for (const key in item) {
       if (item.hasOwnProperty(key)) {
-        callback((item as any)[key], key);
+        callback((item as any)[key], key, index);
         index++;
       }
     }
@@ -139,7 +145,7 @@ export function GET_VALUE(
       value = path
         .split(delimiter)
         .reduce((accum, curr) => accum && accum[curr], item);
-      if (name) {
+      if (value && name) {
         value = value[name];
       }
     } else {
@@ -155,18 +161,17 @@ export function GET_VALUE(
  *
  *
  * @export
- * @param {*} data
+ * @param {*} item
  * @param {string} [path]
- * @param {string} [delimiter='.']
- * @returns {*}  {*}
+ * @param {string} [delimiter="."]
+ * @return {*}  {*}
  */
 export function GET_OBJECT_PARAM(
-  data: any,
+  item: any,
   path?: string,
   delimiter: string = "."
 ): any {
-  const result = GET_VALUE(data, "", path, delimiter);
-  return IS_OBJECT(result) ? "" : result;
+  return IS_OBJECT(item) ? GET_VALUE(item, "", path, delimiter) : item;
 }
 
 /**
@@ -201,7 +206,7 @@ export function MERGE(
  */
 export function CONVERT_DOT_TO_OBJECT(params: Record<string, any>) {
   ITERATE(params, (value, key) => {
-    if (key.indexOf(".") >= 0) {
+    if (key.includes(".")) {
       const keys = key.split(".");
       keys.reduce((accum: any, curr: string, index: number) => {
         if (accum) {
@@ -222,161 +227,79 @@ export function CONVERT_DOT_TO_OBJECT(params: Record<string, any>) {
       delete params[key];
     }
   });
-  //
-  rm_null_id(params);
 }
 
-/**
- * Zrusi spravne _id=null
- * napr.
- * "aaa": {
-    "bbb": {
-      "ccc": {
-        "_id": null
-      }
-    }
-  };
 
-  =>
-
-  "aaa": {
-    "bbb": {
-      "ccc": null
-    }
-  };
- *
- * @param {Record<string, any>} params
- * @returns {*} 
- */
-function rm_null_id(params: Record<string, any>) {
-  if (typeof params === "object" && params !== null) {
-    // pokud v objektu existuje jen 1 parametr a je to _id=null, vrati rodici null
-    if (Object.keys(params).length < 2 && params._id === null) {
-      return null;
-    }
-    // jinak se pokousi rekurzivne volat rm_null_id fnci na kazdem atributu
-    ITERATE(params, (value, name) => (params[name] = rm_null_id(value)));
-  }
-  return params;
-}
 
 /**
- * Vrati nazev klice, dle hodnoty
+ * Prevede string datum dle formatu do Date objektu
  *
  * @export
- * @param {*} object
- * @param {*} value
- * @returns {*}  {string}
+ * @param {string} value
+ * @param {string} [format]
+ * @return {*}  {(Date | undefined)}
  */
-export function GET_KEY_BY_VALUE(object: any, value: any): string {
-  return Object.keys(object).find((key) => object[key] === value) || "";
-}
+export function PARSE_STRING_TO_DATE(value: string, format?: string): Date | undefined {
+  const formatTokens = format?.match(/(DD|MM|YYYY|HH|mm|ss)/g);
+  const dateParts: { [key: string]: number } = {
+    DD: 1,
+    MM: 0,
+    YYYY: 1970,
+    HH: 0,
+    mm: 0,
+    ss: 0,
+  };
 
-export function SORT(a: any, b: any, param: string = "position"): number {
-  if (a[param] === undefined || a[param] === null) {
-    return 1;
-  } else if (b[param] === undefined || b[param] === null) {
-    return -1;
-  } else {
-    // je to string
-    if (isNaN(a) && isNaN(b)) {
-      if (a[param] < b[param]) {
-        return -1;
+  // Pro kazdou cast formatu najdeme odpovidajici hodnotu ve stringu
+  if (format) {
+    let regexString = format;
+    formatTokens?.forEach((token) => {
+      const index = regexString.indexOf(token);
+      const valuePart = value.substring(index, index + token.length);
+
+      switch (token) {
+        case "DD":
+          dateParts.DD = parseInt(valuePart, 10);
+          break;
+        case "MM":
+          dateParts.MM = parseInt(valuePart, 10) - 1; // Mesice jsou 0-based v JS Date
+          break;
+        case "YYYY":
+          dateParts.YYYY = parseInt(valuePart, 10);
+          break;
+        case "HH":
+          dateParts.HH = parseInt(valuePart, 10);
+          break;
+        case "mm":
+          dateParts.mm = parseInt(valuePart, 10);
+          break;
+        case "ss":
+          dateParts.ss = parseInt(valuePart, 10);
+          break;
       }
-      if (a[param] > b[param]) {
-        return 1;
-      }
-      return 0;
-    }
-    // je to number
-    else {
-      return a[param] - b[param];
-    }
-  }
-}
-
-export function GENERATE_DATA(
-  type: "day" | "week" | "month",
-  count: number,
-  startDate?: string
-) {
-  const datasets = [];
-  let date;
-  if (startDate) {
-    date = new Date(startDate);
-  } else {
-    date = new Date();
+      regexString = regexString.replace(token, ".".repeat(token.length)); // aby se pozice nerozhodily
+    });
   }
 
-  // generovani nahodneho cisla v rozmezi
-  function getRandomNumber(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+  // Pokud je nektera hodnota invalidni (napr. parseInt vrati NaN)
+  if (Object.values(dateParts).some((part) => isNaN(part))) {
+    return undefined;
   }
 
-  // funkce pro pridani dne, tydne nebo mesice k datu
-  function addIntervalToDate(date: Date, interval: number) {
-    const newDate = new Date(date);
-    switch (type) {
-      case "day":
-        newDate.setDate(newDate.getDate() + interval);
-        break;
-      case "week":
-        newDate.setDate(newDate.getDate() + interval * 7);
-        break;
-      case "month":
-        newDate.setMonth(newDate.getMonth() + interval);
-        break;
-      default:
-        break;
-    }
-    return newDate;
+  // Vytvorime datum vcetne sekund
+  const parsedDate = new Date(
+    dateParts.YYYY,
+    dateParts.MM,
+    dateParts.DD,
+    dateParts.HH,
+    dateParts.mm,
+    dateParts.ss
+  );
+
+  // Overime ze je datum validni
+  if (isNaN(parsedDate.getTime())) {
+    return undefined;
   }
 
-  // vypocet pocatecniho data, ktere by melo byt prevazne v polovine pole
-  if (!startDate) {
-    const halfCount = Math.floor(count / 2);
-    date = addIntervalToDate(date, -halfCount);
-  }
-
-  // generovani dat prvni pole
-  const xValues = [];
-  for (let i = 0; i < count; i++) {
-    const newDate = new Date(date);
-    newDate.setHours(0, 0, 0, 0); // Nastavení času na půlnoc
-    xValues.push(newDate.toISOString());
-    date = addIntervalToDate(date, 1);
-  }
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  //
-  let todayIndex: any;
-  let todayValue: any;
-  const firstData = xValues.map((x, index) => {
-    const result = { x, y: getRandomNumber(30000, 60000) };
-    //
-    if (x === today.toISOString()) {
-      todayIndex = index;
-      todayValue = result.y;
-    }
-    return result;
-  });
-  datasets.push(firstData);
-
-  // generovani dat pro druhe a treti pole
-  const secondData = xValues.map((x) => ({
-    x,
-    y: new Date(x) < today ? NaN : getRandomNumber(65000, 80000),
-  }));
-  const thirdData = xValues.map((x) => ({
-    x,
-    y: new Date(x) < today ? NaN : getRandomNumber(10000, 26000),
-  }));
-  datasets.push(secondData, thirdData);
-  //
-  if (IS_DEFINED(todayIndex) && IS_DEFINED(todayValue)) {
-    datasets.forEach((item) => (item[todayIndex].y = todayValue));
-  }
-
-  return datasets;
+  return parsedDate;
 }

@@ -2,7 +2,7 @@ import { H3Event } from "h3";
 
 import { useMailing } from "@/server/composables/useMailing";
 import { UserModel } from "@/server/models/user.schema";
-import { GENERATE_HASHED_PASSWORD } from "@/utils/server.functions";
+import { GENERATE_HASHED_PASSWORD } from "@/modules/common-module/runtime/utils/server.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const t = await useTranslation(event);
