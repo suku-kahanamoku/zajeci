@@ -31,10 +31,10 @@ const { data: config } = await useAsyncData(
 async function onSubmit(body: Record<string, any>) {
   loading.value = true;
   try {
-    await useApi("/api/emails/contact", { method: "POST", body });
+    await useApi("/api/send-email", { method: "POST", body });
     // reset formulare
     ITERATE(body, (v, k) => (body[k] = undefined));
-    display({ type: "success", message: "$.home.contact.success_msg" });
+    display({ type: "success", message: "$.contact.success_msg" });
   } catch (error: any) {
     display({ type: "error", message: error.data.message });
   }

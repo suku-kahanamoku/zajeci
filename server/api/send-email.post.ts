@@ -13,7 +13,6 @@ export default defineEventHandler(async (event: H3Event) => {
     subject: t("$.mailing.contact_form.subject"),
     template: await template(ContactForm, {
       url: process.env.FRONTEND_HOST,
-      email: body.email,
       msg: body.message,
     }),
     to: [
