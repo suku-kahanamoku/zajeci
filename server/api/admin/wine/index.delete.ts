@@ -19,8 +19,7 @@ export default defineEventHandler(async (event: H3Event) => {
     const wines = await WineModel.deleteMany(where);
 
     return {
-      data: [],
-      meta: { total: wines.deletedCount },
+      data: wines.deletedCount,
     };
   }
 });

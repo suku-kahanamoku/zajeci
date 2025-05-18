@@ -7,7 +7,7 @@ import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
 import { AddressDocument } from "@/modules/auth-module/runtime/types/address.type";
 
 import { OrderModel } from "../models/order.schema";
-import { RESOLVE_FACTORY } from "~/modules/common-module/runtime/utils/server.functions";
+import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const session = await getUserSession(event);
