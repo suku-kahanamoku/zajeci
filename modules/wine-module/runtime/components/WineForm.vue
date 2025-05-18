@@ -121,7 +121,6 @@ const { routes } = useMenuItems();
       <UButton
         :to="localePath(routes.admin_wine?.path)"
         icon="i-heroicons-arrow-left"
-        color="gray"
         variant="outline"
         size="lg"
       >

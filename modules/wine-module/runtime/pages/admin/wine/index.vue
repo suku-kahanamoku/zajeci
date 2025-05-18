@@ -89,7 +89,6 @@ async function onDelete(value: boolean) {
         <UButton
           icon="i-heroicons-trash"
           class="text-error-600 dark:text-error-600"
-          :ui="{ rounded: 'rounded-full' }"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
@@ -100,7 +99,6 @@ async function onDelete(value: boolean) {
           :to="localePath(routes.admin_wine_create?.path)"
           icon="i-heroicons-plus-circle"
           class="text-orange-600 dark:text-orange-600"
-          :ui="{ rounded: 'rounded-full' }"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :loading="pending"

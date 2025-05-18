@@ -28,7 +28,6 @@ const columns = fieldOptions.map((field) => ({
         <UButton
           icon="i-heroicons-trash"
           color="error"
-          :ui="{ rounded: 'rounded-full' }"
           variant="ghost"
           :aria-label="$tt('$.aria.delete')"
           @click="emits('delete', row)"

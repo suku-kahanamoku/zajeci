@@ -77,13 +77,13 @@ function addToCashdesk() {
               />
             </span>
             <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-              <UButton variant="ghost" :ui="{ rounded: 'rounded-full' }">
+              <UButton variant="ghost">
                 <Icon name="logos:facebook" size="20" />
               </UButton>
-              <UButton variant="ghost" :ui="{ rounded: 'rounded-full' }">
+              <UButton variant="ghost">
                 <Icon name="logos:twitter" size="20" />
               </UButton>
-              <UButton variant="ghost" :ui="{ rounded: 'rounded-full' }">
+              <UButton variant="ghost">
                 <Icon name="mdi:chat-processing-outline" size="20" />
               </UButton>
             </span>
@@ -115,7 +115,7 @@ function addToCashdesk() {
               {{ fields.quantity.label }}: {{ wine?.quantity }}
             </p>
           </div>
-          <USeparator  class="my-4" />
+          <USeparator class="my-4" />
           <div class="flex items-center justify-between">
             <span class="font-bold text-2xl text-gray-600 dark:text-white">
               {{
@@ -133,13 +133,7 @@ function addToCashdesk() {
               >
                 {{ $tt("$.wine.to_cart") }}
               </UButton>
-              <UButton
-                icon="i-heroicons-heart"
-                color="gray"
-                class="ml-4"
-                size="lg"
-                :ui="{ rounded: 'rounded-full' }"
-              />
+              <UButton icon="i-heroicons-heart" class="ml-4" size="lg" />
             </div>
           </div>
         </div>

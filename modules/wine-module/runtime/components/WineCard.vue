@@ -25,7 +25,7 @@ function addToCashdesk() {
 
 <template>
   <div>
-    <UCard :ui="{ shadow: 'shadow-md' }" class="zoom-in">
+    <UCard class="zoom-in">
       <template #header>
         <NuxtImg
           :src="item.image?.main?.src || '/img/bottle.jpg'"
