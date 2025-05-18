@@ -1,0 +1,23 @@
+{
+  "syscode": "contact-form",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email",
+      "label": "$.form.email",
+      "placeholder": "john@doe.com",
+      "required": true,
+      "clearable": true,
+      "value": ""
+    },
+    {
+      "name": "message",
+      "type": "textarea",
+      "label": "$.form.msg",
+      "placeholder": "$.placeholder.leave_comment",
+      "required": true,
+      "clearable": true,
+      "value": ""
+    }
+  ]
+}

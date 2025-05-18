@@ -1,3 +1,47 @@
+<script setup lang="ts">
+import {
+  CLONE,
+  ITERATE,
+} from "@/modules/common-module/runtime/utils/modify-object.functions";
+import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
+
+import cConfig from "../../assets/configs/contact.json";
+
+const route = useRoute();
+const { updateConfig } = useUrlResolver();
+const { display } = useToastify();
+const loading = ref();
+
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(cConfig);
+      updateConfig(route, result);
+      return result as typeof cConfig;
+    } catch (error: any) {
+      return {} as typeof cConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
+
+async function onSubmit(body: Record<string, any>) {
+  loading.value = true;
+  try {
+    await useApi("/api/emails/contact", { method: "POST", body });
+    // reset formulare
+    ITERATE(body, (v, k) => (body[k] = undefined));
+    display({ type: "success", message: "$.home.contact.success_msg" });
+  } catch (error: any) {
+    display({ type: "error", message: error.data.message });
+  }
+  loading.value = false;
+}
+</script>
+
 <template>
   <div id="contact" class="py-10 lg:py-16">
     <div class="text-center pb-8 lg:pb-10">
@@ -51,7 +95,17 @@
         </div>
       </div>
       <div class="from-right">
-        <CustomFormContact />
+        <CmpForm
+          :fields="(config?.fields as IFormField[])"
+          variant="soft"
+          @submit="onSubmit"
+        >
+          <template #actions>
+            <UButton data-testid="contact-form-submit" type="submit">{{
+              $tt("$.form.submit")
+            }}</UButton>
+          </template>
+        </CmpForm>
       </div>
     </div>
   </div>

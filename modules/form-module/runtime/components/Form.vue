@@ -4,12 +4,10 @@ import {
   computed,
   reactive,
   useField,
-  watch,
   triggerRef,
-  onMounted,
   useLocalePath,
 } from "#imports";
-import type { ButtonProps } from "#ui/types";
+import type { ButtonProps, CardProps } from "#ui/types";
 import { z } from "zod";
 import defu from "defu";
 
@@ -25,6 +23,7 @@ const props = defineProps<{
   fields: IFormField[];
   item?: IItem;
   loading?: boolean;
+  variant?: CardProps["variant"];
   color?: ButtonProps["color"];
   actions?: {
     yes?: IBtn;
@@ -135,17 +134,14 @@ defineExpose({ form, model, schema, onChange });
       ref="form"
       :schema="schema"
       :state="model"
-      :class="ui?.form || 'flex flex-col gap-4'"
       @submit.prevent="onSubmit"
       @change="emits('change', model, $event)"
     >
       <UCard
+        :variant="variant"
         :ui="
           defu(ui || {}, {
-            background: 'bg-transparent',
-            body: { base: 'flex flex-col gap-4' },
-            header: { base: 'flex justify-between' },
-            footer: { base: 'flex justify-between' },
+            body: 'flex flex-col gap-4',
           })
         "
       >

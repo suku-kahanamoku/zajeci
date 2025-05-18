@@ -91,7 +91,7 @@ const isDifferent = computed(() => {
       :autofocus="field.autofocus"
       :label="$tt(field.label!)"
       :help="$tt(field.help!)"
-      :class="isDifferent ? 'field-warning' : ''"
+      :class="{ 'field-warning': isDifferent }"
       aria-label="Checkbox"
       :ui="{
         wrapper: 'items-center h-9',

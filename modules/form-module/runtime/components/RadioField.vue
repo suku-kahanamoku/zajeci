@@ -128,7 +128,7 @@ onMounted(async () => {
         :size="field.size || 'md'"
         :uiRadio="{ label: error && 'text-red-500' }"
         :autofocus="field.autofocus"
-        :class="isDifferent ? 'field-warning' : ''"
+        :class="{ 'field-warning': isDifferent }"
       />
     </template>
   </UFormField>

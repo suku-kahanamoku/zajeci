@@ -102,7 +102,8 @@ const onClear = () => {
       :minLength="field.minLength"
       :max="field.max"
       :min="field.min"
-      :class="isDifferent ? 'field-warning' : ''"
+      class="w-full"
+      :class="{ 'field-warning': isDifferent }"
       @focus="emits('focus', $event, field)"
       @blur="emits('blur', $event, field)"
     >

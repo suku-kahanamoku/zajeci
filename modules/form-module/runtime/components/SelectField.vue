@@ -242,7 +242,7 @@ onMounted(loadOptions);
       :searchable="field.type === 'search' && onSearch"
       :searchable-placeholder="field.searchPlaceholder"
       :debounce="400"
-      :class="isDifferent ? 'field-warning' : ''"
+      :class="{ 'field-warning': isDifferent }"
       :ui-menu="{
         option: {
           container: 'w-full',

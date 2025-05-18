@@ -103,8 +103,8 @@ const onClear = () => {
       :max-rows="field.maxRows"
       :autoresize="field.autoresize"
       :resize="field.resize"
-      :textareaClass="field.class"
-      :class="isDifferent ? 'field-warning' : ''"
+      class="w-full"
+      :class="{ 'field-warning': isDifferent }"
       @focus="emits('focus', $event, field)"
       @blur="emits('blur', $event, field)"
     >
