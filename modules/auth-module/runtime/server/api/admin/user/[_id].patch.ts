@@ -1,23 +1,35 @@
 import { H3Event } from "h3";
 
-import { UserModel } from "@/server/models/user.schema";
+import { UserModel } from "~/modules/auth-module/runtime/models/user.schema";
+import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
+import {
+  GET_STATUS,
+  CONNECT_WITH_RETRY,
+} from "~/modules/mongoose-module/runtime/utils";
 import {
   COMPARE_PASSWORD,
   GENERATE_HASHED_PASSWORD,
-} from "@/modules/common-module/runtime/utils/server.functions";
+} from "~/modules/auth-module/runtime/utils/password.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const t = await useTranslation(event);
+  const query = getQuery(event);
   const body = await readBody(event);
   delete body._id, body.email;
+
+  // Nejdrive zkontroluje, zda je pripojeni k databazi
+  if (GET_STATUS() === 0) {
+    await CONNECT_WITH_RETRY();
+  }
+
   // kontrola uzivatele
-  const user = await UserModel.findById(event.context.params?._id);
-  if (user?._id) {
+  const dbUser = await UserModel.findById(event.context.params?._id);
+  if (dbUser?._id) {
     if (body.password) {
       // kontrola hesla
       const isValid =
-        (await COMPARE_PASSWORD(body.password, user.password || "")) ||
-        (await COMPARE_PASSWORD(body.password, user.tempPassword || ""));
+        (await COMPARE_PASSWORD(body.password, dbUser.password || "")) ||
+        (await COMPARE_PASSWORD(body.password, dbUser.tempPassword || ""));
       delete body.password;
       if (!isValid) {
         throw createError({
@@ -40,11 +52,19 @@ export default defineEventHandler(async (event: H3Event) => {
       message: t("$.message.user_not_exists"),
     });
   }
-  const result = await UserModel.findByIdAndUpdate(
+
+  const user = await UserModel.findByIdAndUpdate(
     event.context.params?._id,
     body,
-    { new: true }
+    {
+      new: true,
+    }
   );
+  const result = { ...user?.toObject(), password: undefined };
+  RESOLVE_FACTORY(result, query.factory);
 
-  return { ...result?.toObject(), password: undefined };
+  return {
+    data: result,
+    meta: { total: result ? 1 : 0 },
+  };
 });

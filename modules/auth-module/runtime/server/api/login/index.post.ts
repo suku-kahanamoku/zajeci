@@ -25,20 +25,12 @@ export default defineEventHandler(async (event: H3Event) => {
     });
   }
 
-  let user;
-  try {
-    // Nejdrive zkontroluje, zda je pripojeni k databazi
-    if (GET_STATUS() === 0) {
-      await CONNECT_WITH_RETRY();
-    }
-
-    user = await UserModel.findOne({ email: body.email });
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      message: "Database error.",
-    });
+  // Nejdrive zkontroluje, zda je pripojeni k databazi
+  if (GET_STATUS() === 0) {
+    await CONNECT_WITH_RETRY();
   }
+
+  const user = await UserModel.findOne({ email: body.email });
 
   // kontrola uzivatele a hesla
   if (user?._id) {
@@ -61,10 +53,9 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 
   const result = { ...user?.toObject(), password: undefined };
-  // nastavi session
+  // nastavi user session
   await setUserSession(event, {
-    user: result,
-    /* loggedInAt: new Date().toISOString(), */
+    user,
   });
 
   return result;

@@ -1,4 +1,5 @@
-import { AddressDocument } from "./address.type";
+import { AddressDocument } from "@/modules/auth-module/runtime/types/address.type";
+
 import { UserDocument } from "./user.type";
 import { WineDocument } from "./wine.type";
 

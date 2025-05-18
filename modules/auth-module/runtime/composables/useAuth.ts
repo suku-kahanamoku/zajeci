@@ -1,27 +1,168 @@
-/* import { computed } from "vue"; */
-import {
-  defineStore,
-  useUserSession,
-  useLocalePath,
-  navigateTo,
-  useMenuItems,
-  computed,
-} from "#imports";
+import type { User } from "#auth-utils";
 
-export const useAuthStore = defineStore("AuthStore", () => {
-  const userSessionStore = useUserSession();
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+
+export const useAuthStore = defineStore("Auth", () => {
+  const { loggedIn, user: authUser, session, clear, fetch } = useUserSession();
   const localePath = useLocalePath();
-  const { routes } = useMenuItems();
+
+  const emptyUser = {
+    _id: "",
+    email: "",
+    phone: "",
+    givenName: "",
+    surname: "",
+    address: {
+      main: {
+        _id: "",
+        name: "",
+        street: "",
+        city: "",
+        zip: "",
+        state: "",
+      },
+      variants: [],
+    },
+    valid: false,
+  };
+
+  const user = computed<User | null>(() => {
+    if (authUser.value) {
+      authUser.value.address = authUser.value.address || {};
+      // nastavi fakturacni adresu
+      authUser.value.address.main =
+        authUser.value.address.main || CLONE(emptyUser.address.main);
+      authUser.value.address.main!.name =
+        authUser.value.address.main!.name ||
+        authUser.value.name ||
+        `${authUser.value.givenName} ${authUser.value.surname}`;
+      // pripravy dodaci adresy
+      authUser.value.address.variants = authUser.value.address.variants || [];
+    }
+    return authUser.value;
+  });
 
   const initials = computed(
     () =>
       `${
         (
-          userSessionStore.user?.value?.givenName?.charAt(0) || ""
-        ).toUpperCase() +
-        (userSessionStore.user.value?.familyName?.charAt(0) || "").toUpperCase()
+          (user.value?.givenName && user.value?.givenName[0]) ||
+          ""
+        )?.toUpperCase() +
+        ((user.value?.surname && user.value?.surname[0]) || "")?.toUpperCase()
       }`
   );
+
+  const isAdmin = computed(() => user.value?.role === "admin");
+
+  const roles: Record<string, { value: string; label: string }> = {
+    guest: { value: "guest", label: "$.profile.role.guest" },
+    user: { value: "user", label: "$.profile.role.user" },
+    admin: { value: "admin", label: "$.profile.role.admin" },
+  };
+
+  const roleOptions = Object.values(roles);
+
+  const fields: Record<
+    string,
+    {
+      key: string;
+      label: string;
+      placeholder?: string;
+      autocomplete?: string;
+    }
+  > = {
+    email: {
+      key: "email",
+      label: "$.form.email",
+      placeholder: "info@company.com",
+      autocomplete: "email",
+    },
+    phone: {
+      key: "phone",
+      label: "$.form.phone",
+      placeholder: "+420 123 456 789",
+      autocomplete: "tel",
+    },
+    name: {
+      key: "name",
+      label: "$.form.name",
+      placeholder: "$.profile.placeholder.name",
+      autocomplete: "name",
+    },
+    givenName: {
+      key: "givenName",
+      label: "$.profile.given_name",
+      placeholder: "$.profile.placeholder.given_name",
+      autocomplete: "given-name",
+    },
+    surname: {
+      key: "surname",
+      label: "$.profile.surname",
+      placeholder: "$.profile.placeholder.surname",
+      autocomplete: "family-name",
+    },
+    password: {
+      key: "password",
+      label: "$.form.password",
+      placeholder: "********",
+      autocomplete: "current-password",
+    },
+    terms: {
+      key: "terms",
+      label: "$.signup.accept_condition",
+    },
+    newsletter: {
+      key: "newsletter",
+      label: "$.profile.newsletter",
+    },
+    role: {
+      key: "role",
+      label: "$.profile.role.title",
+    },
+    street: {
+      key: "street",
+      label: "$.profile.street",
+      placeholder: "$.profile.placeholder.street",
+      autocomplete: "street-address",
+    },
+    city: {
+      key: "city",
+      label: "$.profile.city",
+      placeholder: "$.profile.placeholder.city",
+    },
+    zip: {
+      key: "zip",
+      label: "$.profile.zip",
+      placeholder: "$.profile.placeholder.zip",
+      autocomplete: "postal-code",
+    },
+    state: {
+      key: "state",
+      label: "$.profile.state",
+      placeholder: "$.form.select",
+      autocomplete: "country",
+    },
+  };
+
+  const fieldOptions = Object.values(fields);
+
+  const states: Record<
+    string,
+    {
+      value: string;
+      label: string;
+      icon: string;
+    }
+  > = {
+    cz: { value: "cz", label: "$.state.cz", icon: "emojione:flag-for-czechia" },
+    sk: {
+      value: "sk",
+      label: "$.state.sk",
+      icon: "emojione:flag-for-slovakia",
+    },
+  };
+  const stateOptions = Object.values(states);
 
   /**
    * Funkce pro prihlaseni
@@ -31,8 +172,8 @@ export const useAuthStore = defineStore("AuthStore", () => {
    */
   const login = async (data: Record<string, any>): Promise<void> => {
     await $fetch("/api/login", { method: "POST", body: data });
-    await userSessionStore.fetch();
-    await navigateTo(localePath(routes?.pz?.path));
+    await fetch();
+    await navigateTo(localePath("/admin"));
   };
 
   /**
@@ -64,8 +205,8 @@ export const useAuthStore = defineStore("AuthStore", () => {
    * @return {*}  {Promise<void>}
    */
   const logout = async (): Promise<void> => {
-    await userSessionStore.clear();
-    await navigateTo(localePath(routes?.login?.path));
+    await clear();
+    await navigateTo(localePath("/login"));
   };
 
   /**
@@ -76,8 +217,8 @@ export const useAuthStore = defineStore("AuthStore", () => {
    */
   const signup = async (data: Record<string, any>): Promise<void> => {
     await $fetch("/api/auth/signup", { method: "POST", body: data });
-    await userSessionStore.fetch();
-    await navigateTo(localePath(routes?.pz?.path));
+    await fetch();
+    await navigateTo(localePath("/admin"));
   };
 
   /**
@@ -91,6 +232,7 @@ export const useAuthStore = defineStore("AuthStore", () => {
   };
 
   return {
+    fetch,
     login,
     loginByGoogle,
     loginByLinkedin,
@@ -98,7 +240,17 @@ export const useAuthStore = defineStore("AuthStore", () => {
     signup,
     logout,
     resetPassword,
-    ...userSessionStore,
+    loggedIn,
+    emptyUser,
+    user,
+    session,
     initials,
+    isAdmin,
+    roles,
+    roleOptions,
+    fields,
+    fieldOptions,
+    states,
+    stateOptions,
   };
 });

@@ -6,4 +6,6 @@ export interface ImageDocument {
   type: string;
   name?: string;
   description?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

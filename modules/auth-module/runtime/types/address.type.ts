@@ -6,4 +6,6 @@ export interface AddressDocument {
   state: string;
   name?: string;
   country?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

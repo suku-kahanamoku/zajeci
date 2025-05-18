@@ -4,8 +4,8 @@ export interface UserDocument {
   _id: string;
   email: string;
   name?: string;
+  surname?: string;
   givenName?: string;
-  familyName?: string;
   password?: string;
   tempPassword?: string;
   terms?: boolean;
@@ -16,7 +16,7 @@ export interface UserDocument {
     variants?: AddressDocument[];
   };
   phone?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   valid?: boolean;
-  realm?: string;
-  picture?: string;
 }

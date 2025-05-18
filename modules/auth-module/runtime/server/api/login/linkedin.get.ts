@@ -25,19 +25,12 @@ export default oauth.linkedinEventHandler({
     // pokud uzivatel v db neexistuje, vytvori ho
     if (user?.email) {
       let dbUser;
-      try {
-        // Nejdrive zkontroluje, zda je pripojeni k databazi
-        if (GET_STATUS() === 0) {
-          await CONNECT_WITH_RETRY();
-        }
-
-        dbUser = await UserModel.findOne({ email: user.email });
-      } catch (error) {
-        throw createError({
-          statusCode: 500,
-          message: "Database error.",
-        });
+      // Nejdrive zkontroluje, zda je pripojeni k databazi
+      if (GET_STATUS() === 0) {
+        await CONNECT_WITH_RETRY();
       }
+
+      dbUser = await UserModel.findOne({ email: user.email });
 
       if (!dbUser?._id) {
         dbUser = await new UserModel(user).save();
@@ -56,6 +49,7 @@ export default oauth.linkedinEventHandler({
       })?.toString() || i18n?.defaultLocale;
     return await sendRedirect(event, locale === "en" ? "/pz" : `/${locale}/pz`);
   },
+
   async onError(event: H3Event) {
     const i18n = useRuntimeConfig(event).public?.i18n;
     const locale =

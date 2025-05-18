@@ -2,11 +2,11 @@ import { H3Event } from "h3";
 import { isValidObjectId } from "mongoose";
 
 import OrderForm from "@/emails/OrderForm.vue";
+import { AddressModel } from "~/modules/auth-module/runtime/models/address.schema";
+import { UserModel } from "~/modules/auth-module/runtime/models/user.schema";
+import { AddressDocument } from "~/modules/auth-module/runtime/types/address.type";
 
 import { OrderModel } from "../models/order.schema";
-import { AddressModel } from "../models/address.schema";
-import { UserModel } from "../models/user.schema";
-import { AddressDocument } from "../types/address.type";
 
 export default defineEventHandler(async (event: H3Event) => {
   const session = await getUserSession(event);
@@ -26,6 +26,8 @@ export default defineEventHandler(async (event: H3Event) => {
 
   // pokud je to prihlaseny uzivatel, aktualizuje data
   if (user._id && user.email === session.user?.email) {
+    const session = await getUserSession(event);
+
     // vytvori nebo aktualizuje adresu a uzivateli preda referenci
     user.address.main = await upsertAddress(
       user.address.main as AddressDocument
@@ -39,7 +41,7 @@ export default defineEventHandler(async (event: H3Event) => {
     // aktualizuje session
     await setUserSession(event, {
       user: result.user,
-      loggedInAt: session.loggedInAt,
+      tokens: session.tokens,
     });
   }
   // pokud uzivatel neexistuje vytvori ho
@@ -54,8 +56,8 @@ export default defineEventHandler(async (event: H3Event) => {
 
   // pokud se podari ulozit objednavku do DB, odesle se mail klientovi i adminovi
   if (result?._id) {
-    const { template, send } = await useMailing(event);
     const t = await useTranslation(event);
+    const { template, send } = await useMailing(event);
     const orderId = result._id.toString();
     await send({
       subject: t("$.mailing.order.confirmed.subject", { orderId }),

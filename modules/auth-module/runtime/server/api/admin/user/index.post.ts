@@ -1,33 +1,24 @@
 import type { H3Event } from "h3";
 import { defineEventHandler, getQuery, readBody, createError } from "#imports";
 
+import { RESOLVE_FACTORY } from "~/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils/server.functions";
-
-import { GENERATE_HASHED_PASSWORD } from "../../../../utils/password.functions";
-import { RESOLVE_FACTORY } from "../../../../utils/server.functions";
-import { UserModel } from "../../../../models/user.schema";
+import { UserModel } from "~/modules/auth-module/runtime/models/user.schema";
+import { GENERATE_HASHED_PASSWORD } from "~/modules/auth-module/runtime/utils/password.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const query = getQuery(event);
   const body = await readBody(event);
 
-  let dbUser;
-  try {
-    // Nejdrive zkontroluje, zda je pripojeni k databazi
-    if (GET_STATUS() === 0) {
-      await CONNECT_WITH_RETRY();
-    }
-
-    dbUser = await UserModel.findOne({ email: body.email });
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      message: "Database error.",
-    });
+  // Nejdrive zkontroluje, zda je pripojeni k databazi
+  if (GET_STATUS() === 0) {
+    await CONNECT_WITH_RETRY();
   }
+
+  const dbUser = await UserModel.findOne({ email: body.email });
 
   // kontrola zda uzivatel jiz existuje
   if (dbUser?._id) {
@@ -42,9 +33,11 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 
   const user = await new UserModel(body).save();
-  RESOLVE_FACTORY(user, query.factory);
+  const result = { ...user?.toObject(), password: undefined };
+  RESOLVE_FACTORY(result, query.factory);
 
   return {
-    data: user,
+    data: result,
+    meta: { total: result ? 1 : 0 },
   };
 });

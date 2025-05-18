@@ -25,19 +25,12 @@ export default oauth.googleEventHandler({
     // pokud uzivatel v db neexistuje, vytvori ho
     if (user?.email) {
       let dbUser;
-      try {
-        // Nejdrive zkontroluje, zda je pripojeni k databazi
-        if (GET_STATUS() === 0) {
-          await CONNECT_WITH_RETRY();
-        }
-
-        dbUser = await UserModel.findOne({ email: user.email });
-      } catch (error) {
-        throw createError({
-          statusCode: 500,
-          message: "Database error.",
-        });
+      // Nejdrive zkontroluje, zda je pripojeni k databazi
+      if (GET_STATUS() === 0) {
+        await CONNECT_WITH_RETRY();
       }
+
+      dbUser = await UserModel.findOne({ email: user.email });
 
       if (!dbUser?._id) {
         dbUser = await new UserModel({

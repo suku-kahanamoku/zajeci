@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+
 import { AddressModel } from "./address.schema";
 import type { AddressDocument } from "../types/address.type";
 import type { UserDocument } from "../types/user.type";
@@ -17,11 +18,11 @@ export const UserSchema = new Schema<UserDocument>(
       type: String,
       trim: true,
     },
-    givenName: {
+    surname: {
       type: String,
       trim: true,
     },
-    familyName: {
+    givenName: {
       type: String,
       trim: true,
     },
@@ -58,10 +59,6 @@ export const UserSchema = new Schema<UserDocument>(
       ],
     },
     phone: {
-      type: String,
-      trim: true,
-    },
-    realm: {
       type: String,
       trim: true,
     },

@@ -5,16 +5,16 @@ import {
   setUserSession,
   useMailing,
   createError,
-  useTranslate,
 } from "#imports";
 
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils/server.functions";
+import SignupForm from "~/emails/SignupForm.vue";
 
-import { GENERATE_HASHED_PASSWORD } from "../../../utils/password.functions";
 import { UserModel } from "../../../models/user.schema";
+import { GENERATE_HASHED_PASSWORD } from "../../../utils/password.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
@@ -27,20 +27,12 @@ export default defineEventHandler(async (event: H3Event) => {
     });
   }
 
-  let user;
-  try {
-    // Nejdrive zkontroluje, zda je pripojeni k databazi
-    if (GET_STATUS() === 0) {
-      await CONNECT_WITH_RETRY();
-    }
-
-    user = await UserModel.findOne({ email: body.email });
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      message: "Database error.",
-    });
+  // Nejdrive zkontroluje, zda je pripojeni k databazi
+  if (GET_STATUS() === 0) {
+    await CONNECT_WITH_RETRY();
   }
+
+  let user = await UserModel.findOne({ email: body.email });
 
   // kontrola zda uzivatel jiz existuje
   if (user?._id) {
@@ -56,34 +48,24 @@ export default defineEventHandler(async (event: H3Event) => {
       password: await GENERATE_HASHED_PASSWORD(body.password),
     }).save();
 
-    const strSubject = await useTranslate(event, "$.mailing.signup.subject");
-
-    try {
-      const mail = await useMailing(event);
-      const { html } = await mail.template({
-        name: "Signup.vue",
-        props: {
-          url: process.env.FRONTEND_HOST,
+    const t = await useTranslation(event);
+    const { template, send } = await useMailing(event);
+    await send({
+      subject: t("$.mailing.signup.subject"),
+      template: await template(SignupForm, {
+        url: process.env.FRONTEND_HOST,
+      }),
+      to: [
+        {
+          Email: body.email,
         },
-      });
-      // odesle registracni mail
-      await mail.send({
-        subject: strSubject,
-        template: html,
-        to: [
-          {
-            Email: body.email,
-          },
-        ],
-        bcc: [
-          {
-            Email: process.env.NUXT_MAILING_FROM!,
-          },
-        ],
-      });
-    } catch (error) {
-      console.error(error);
-    }
+      ],
+      bcc: [
+        {
+          Email: process.env.NUXT_MAILING_FROM!,
+        },
+      ],
+    });
   }
 
   const result = { ...user.toObject(), password: undefined };

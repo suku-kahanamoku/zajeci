@@ -1,14 +1,11 @@
 import type { UserDocument } from "./types/user.type";
 
 declare module "#auth-utils" {
-  interface User {
-    sub: string;
-    email?: string;
-    email_verified?: boolean;
-    name?: string;
-    nickname?: string;
-    picture?: string;
-    updated_at?: string;
+  interface User extends UserDocument {}
+
+  interface UserSession {
+    loggedInAt?: Date | string;
+    tokens?: ITokens;
   }
 }
 

@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+
 import { UserModel } from "./user.schema";
 import type { AddressDocument } from "../types/address.type";
 
@@ -38,7 +39,7 @@ export const AddressSchema = new Schema<AddressDocument>(
   }
 );
 
-const removeFromUser = async function (doc: any, next: () => void) {
+const removeFromUser = async function (doc: any, next: Function) {
   const addressId = doc._id;
 
   // Aktualizovat uzivatele, kteri maji tuto adresu jako hlavni nebo variantu
@@ -77,42 +78,39 @@ AddressSchema.post("deleteOne", removeFromUser);
 
 AddressSchema.post("findOneAndDelete", removeFromUser);
 
-AddressSchema.post(
-  "deleteMany",
-  async function (docs: any[], next: () => void) {
-    // Seznam ID adres ke smazani
-    const deletedAddressIds = docs.map((doc) => doc._id);
+AddressSchema.post("deleteMany", async function (docs: any[], next: Function) {
+  // Seznam ID adres ke smazani
+  const deletedAddressIds = docs.map((doc) => doc._id);
 
-    // Aktualizovat uzivatele, kteri maji smazane adresy
-    await UserModel.updateMany(
+  // Aktualizovat uzivatele, kteri maji smazane adresy
+  await UserModel.updateMany(
+    {
+      $or: [
+        { "address.main": { $in: deletedAddressIds } },
+        { "address.variants": { $in: deletedAddressIds } },
+      ],
+    },
+    [
+      // Odstranit ID smazanych adres z pole variants
       {
-        $or: [
-          { "address.main": { $in: deletedAddressIds } },
-          { "address.variants": { $in: deletedAddressIds } },
-        ],
-      },
-      [
-        // Odstranit ID smazanych adres z pole variants
-        {
-          $set: {
-            "address.variants": {
-              $filter: {
-                input: "$address.variants",
-                as: "variantId",
-                cond: { $not: { $in: ["$$variantId", deletedAddressIds] } },
-              },
+        $set: {
+          "address.variants": {
+            $filter: {
+              input: "$address.variants",
+              as: "variantId",
+              cond: { $not: { $in: ["$$variantId", deletedAddressIds] } },
             },
           },
         },
-        // Odstranit hlavni adresy, ktere jsou mezi smazanymi adresami
-        {
-          $unset: { "address.main": { $in: deletedAddressIds } },
-        },
-      ]
-    );
+      },
+      // Odstranit hlavni adresy, ktere jsou mezi smazanymi adresami
+      {
+        $unset: { "address.main": { $in: deletedAddressIds } },
+      },
+    ]
+  );
 
-    next();
-  }
-);
+  next();
+});
 
 export const AddressModel = model<AddressDocument>("addresses", AddressSchema);
