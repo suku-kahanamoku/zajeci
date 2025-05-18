@@ -64,95 +64,89 @@ const userMenuItems = computed(() => {
       </nav>
 
       <!-- menu napravo -->
-      <client-only>
-        <div class="flex items-center gap-4">
-          <!-- pokud je to prihlasene, zobrazi uzivatelske menu -->
-          <UDropdownMenu
-            v-if="auth.loggedIn"
-            :items="userMenuItems"
-            :popper="{ placement: 'bottom-start' }"
-          >
-            <UChip
-              size="2xl"
-              color="secondary"
-              :text="auth.initials"
-              :show="auth.initials?.length ? true : false"
-            >
-              <UAvatar
-                v-if="(auth.user as any)?.picture"
-                :src="(auth.user as any)?.picture"
-                aria-label="avatar"
-                alt="avatar"
-              />
-              <UAvatar v-else icon="i-heroicons-user" />
-            </UChip>
-
-            <template #item="{ item }">
-              <span class="truncate">{{ $tt(item.label!) }}</span>
-            </template>
-          </UDropdownMenu>
-
-          <!-- jinak zobrazi login a signup menu -->
-          <div v-else class="hidden lg:flex items-center gap-4">
-            <UButton
-              :to="localePath(routes.login?.path)"
-              class="text-secondary-500 dark:text-secondary-400"
-              variant="outline"
-              active-class="hidden"
-              >{{ $tt(routes.login?.meta?.title as string) }}</UButton
-            >
-            <UButton
-              :to="localePath(routes.signup?.path)"
-              class="dark:text-white"
-              active-class="hidden"
-              >{{ $tt(routes.signup?.meta?.title as string) }}</UButton
-            >
-          </div>
-
-          <!-- shopping cart -->
-          <UChip
-            size="2xl"
-            color="secondary"
-            :text="cashdesk.carts?.length"
-            :show="cashdesk.carts?.length ? true : false"
-          >
-            <UButton
-              :to="routes.cashdesk?.path"
-              icon="i-heroicons-shopping-cart"
-              class="text-gray-600 dark:text-gray-400 rounded-full"
-              variant="ghost"
-              :aria-label="$tt('$.aria.cart')"
-            />
-          </UChip>
-
-          <!-- toggle light & dark mode -->
+      <div class="flex items-center gap-4">
+        <!-- pokud je to prihlasene, zobrazi uzivatelske menu -->
+        <UDropdownMenu
+          v-if="auth.loggedIn"
+          :items="userMenuItems"
+          :popper="{ placement: 'bottom-start' }"
+        >
+          <UAvatar
+            v-if="(auth.user as any)?.picture"
+            :src="(auth.user as any)?.picture"
+            size="md"
+            aria-label="avatar"
+            alt="avatar"
+          />
           <UButton
-            :icon="
-              $colorMode.value === 'dark'
-                ? 'i-heroicons-moon'
-                : 'i-heroicons-sun'
-            "
-            class="text-gray-600 dark:text-gray-400 rounded-full"
-            variant="ghost"
-            :aria-label="$tt('$.aria.mode')"
-            @click="
-              $colorMode.preference =
-                $colorMode.value === 'dark' ? 'light' : 'dark'
-            "
+            v-else
+            icon="i-heroicons-user"
+            class="rounded-full cursor-pointer"
+            aria-label="avatar"
           />
 
-          <!-- hamburger icon -->
-          <div v-if="menuItems?.length" class="flex lg:hidden">
-            <UButton
-              icon="i-heroicons-bars-3"
-              square
-              variant="ghost"
-              :aria-label="$tt('$.aria.hamburger')"
-              @click="isOpen = true"
-            />
-          </div>
+          <template #item="{ item }">
+            <span class="truncate">{{ $tt(item.label!) }}</span>
+          </template>
+        </UDropdownMenu>
+
+        <!-- jinak zobrazi login a signup menu -->
+        <div v-else class="hidden lg:flex items-center gap-4">
+          <UButton
+            :to="localePath(routes.login?.path)"
+            class="text-secondary-500 dark:text-secondary-400"
+            variant="outline"
+            active-class="hidden"
+            >{{ $tt(routes.login?.meta?.title as string) }}</UButton
+          >
+          <UButton
+            :to="localePath(routes.signup?.path)"
+            class="dark:text-white"
+            active-class="hidden"
+            >{{ $tt(routes.signup?.meta?.title as string) }}</UButton
+          >
         </div>
-      </client-only>
+
+        <!-- shopping cart -->
+        <UChip
+          color="secondary"
+          :text="cashdesk.carts?.length"
+          :show="cashdesk.carts?.length ? true : false"
+        >
+          <UButton
+            :to="routes.cashdesk?.path"
+            icon="i-heroicons-shopping-cart"
+            class="rounded-full cursor-pointer"
+            variant="ghost"
+            :aria-label="$tt('$.aria.cart')"
+          />
+        </UChip>
+
+        <!-- toggle light & dark mode -->
+        <UButton
+          :icon="
+            $colorMode.value === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'
+          "
+          class="rounded-full cursor-pointer"
+          variant="ghost"
+          :aria-label="$tt('$.aria.mode')"
+          @click="
+            $colorMode.preference =
+              $colorMode.value === 'dark' ? 'light' : 'dark'
+          "
+        />
+
+        <!-- hamburger icon -->
+        <UButton
+          v-if="menuItems?.length"
+          class="flex lg:hidden cursor-pointer"
+          icon="i-heroicons-bars-3"
+          square
+          variant="ghost"
+          :aria-label="$tt('$.aria.hamburger')"
+          @click="isOpen = true"
+        />
+      </div>
     </div>
   </header>
 </template>

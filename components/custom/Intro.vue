@@ -3,10 +3,7 @@ const { routes } = useMenuItems();
 const localePath = useLocalePath();
 </script>
 <template>
-  <div
-    id="intro"
-    class="overflow-hidden relative place-items-center py-24 lg:py-48 px-8 lg:px-12"
-  >
+  <div id="intro" class="overflow-hidden relative py-24 lg:py-48 px-8 lg:px-12">
     <div class="from-left max-w-screen-xl mx-auto w-full">
       <h1 class="text-5xl lg:text-6xl font-bold tracking-tight text-white">
         {{ $tt("$.intro.title") }}
@@ -21,6 +18,8 @@ const localePath = useLocalePath();
         >{{ $tt("$.intro.btn") }}</UButton
       >
     </div>
-    <UiParallax src="/img/intro.jpg" />
+    <client-only>
+      <UiParallax src="/img/intro.jpg" />
+    </client-only>
   </div>
 </template>

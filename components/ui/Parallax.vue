@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import Ukiyo from "ukiyojs";
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 defineProps(["src"]);
 
 const parallax = ref();
 
 onMounted(() => {
-  new Ukiyo(parallax.value, { speed: 2 });
+  const breakpoints = useBreakpoints(breakpointsTailwind);
+  const lgAndLarger = breakpoints.greaterOrEqual("lg");
+  new Ukiyo(parallax.value, { speed: lgAndLarger.value ? 5 : 1 });
 });
 </script>
 
 <template>
   <div
     ref="parallax"
-    class="parallax absolute top-0 left-0 -z-10"
+    class="parallax absolute top-0 left-0 -z-10 w-full h-full"
     :style="{ 'background-image': `url(${src})` }"
   >
-    <div class="overlay"></div>
+    <div class="overlay absolute top-0 left-0 w-full h-full"></div>
   </div>
 </template>
 
@@ -24,15 +27,8 @@ onMounted(() => {
 .parallax {
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  height: 100%;
 }
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(46, 48, 70, 0.6);
 }
 
