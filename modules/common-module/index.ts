@@ -47,10 +47,7 @@ export default defineNuxtModule<ModuleOptions>({
     _nuxt.options.runtimeConfig.public = defu(
       _nuxt.options.runtimeConfig.public,
       {
-        FRONTEND_HOST: env.FRONTEND_HOST, // Hostitel frontendu
-        ALLOW_USER_REGISTRATION: ["true", true].includes(
-          env.ALLOW_USER_REGISTRATION!
-        ), // Povolení registrace uživatelů
+        FRONTEND_HOST: env.FRONTEND_HOST,
       }
     );
 

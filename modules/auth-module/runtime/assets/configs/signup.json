@@ -1,0 +1,42 @@
+{
+  "syscode": "forgot-password",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email",
+      "label": "$.form.email",
+      "placeholder": "john@doe.com",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "password",
+      "type": "password",
+      "label": "$.form.password",
+      "required": true,
+      "clearable": true,
+      "minLength": 8,
+      "size": "lg",
+      "autocomplete": "new-password",
+      "value": ""
+    },
+    {
+      "name": "confirm_password",
+      "type": "password",
+      "label": "$.signup.confirm_password",
+      "required": true,
+      "clearable": true,
+      "minLength": 8,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "terms",
+      "type": "checkbox",
+      "required": true,
+      "value": false
+    }
+  ]
+}

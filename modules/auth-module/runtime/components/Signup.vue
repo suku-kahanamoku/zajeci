@@ -1,0 +1,118 @@
+<script setup lang="ts">
+import {
+  useAuthStore,
+  useToastify,
+  ref,
+  useUrlResolver,
+  useAsyncData,
+  useLocalePath,
+  useMenuItems,
+} from "#imports";
+
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
+
+import sConfig from "../assets/configs/signup.json";
+
+const { updateConfig } = useUrlResolver();
+const localePath = useLocalePath();
+const { route, routes } = useMenuItems();
+const { signup } = useAuthStore();
+const { display } = useToastify();
+const loading = ref();
+
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(sConfig);
+      updateConfig(route, result);
+      return result as typeof sConfig;
+    } catch (error: any) {
+      return {} as typeof sConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
+
+async function onSubmit(event: Record<string, any>) {
+  loading.value = true;
+  try {
+    await signup(event);
+  } catch (error: any) {
+    display({ type: "error", message: error.data.message });
+  }
+  loading.value = false;
+}
+</script>
+<template>
+  <div
+    class="w-full border rounded-lg shadow-md dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+  >
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1
+        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+      >
+        {{ $tt("$.signup.title") }}
+      </h1>
+
+      <CmpForm
+        :fields="(config?.fields as IFormField[])"
+        :ui="{
+          base: 'flex flex-col gap-4 !bg-transparent',
+          ring: '',
+          shadow: '',
+          divide: '',
+          body: { base: 'flex flex-col gap-4', padding: '' },
+          footer: { base: 'flex flex-col gap-4', padding: '' },
+        }"
+        @submit="onSubmit"
+      >
+        <template #terms="{ field, model }">
+          <div class="flex items-center justify-between">
+            <CmpField v-model="model[field.name]" :field="field">
+              <template #label>
+                <span> {{ $tt("$.signup.accept_condition") }} </span
+                >&nbsp;<UButton
+                  data-testid="terms-conditions"
+                  :to="localePath(routes['terms-conditions']?.path)"
+                  class="text-primary-500"
+                  variant="link"
+                  size="sm"
+                  :padded="false"
+                >
+                  {{ $tt(routes["terms-conditions"]?.meta?.title as string) }}
+                </UButton>
+              </template>
+            </CmpField>
+          </div>
+        </template>
+        <template #actions>
+          <UButton
+            data-testid="signup-submit"
+            type="submit"
+            size="lg"
+            block
+            :loading="loading"
+          >
+            {{ $tt("$.signup.title") }}
+          </UButton>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            {{ $tt("$.signup.has_account") }}
+            <UButton
+              data-testid="login"
+              :to="localePath(routes?.login?.path)"
+              class="font-medium text-primary-500"
+              variant="link"
+              size="sm"
+              :padded="false"
+              >{{ $tt(routes?.login?.meta?.title as string) }}</UButton
+            >
+          </p>
+        </template>
+      </CmpForm>
+    </div>
+  </div>
+</template>

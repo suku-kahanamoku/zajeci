@@ -1,0 +1,146 @@
+<script setup lang="ts">
+import {
+  useAuthStore,
+  useToastify,
+  ref,
+  useUrlResolver,
+  useAsyncData,
+  useLocalePath,
+  useMenuItems,
+} from "#imports";
+
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
+
+import lConfig from "../assets/configs/login.json";
+
+const { updateConfig } = useUrlResolver();
+const localePath = useLocalePath();
+const { route, routes } = useMenuItems();
+const { loginByGoogle, loginByLinkedin, login } = useAuthStore();
+const { display } = useToastify();
+const loading = ref();
+
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(lConfig);
+      updateConfig(route, result);
+      return result as typeof lConfig;
+    } catch (error: any) {
+      return {} as typeof lConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
+
+async function onSubmit(event: Record<string, any>) {
+  loading.value = true;
+  try {
+    await login(event);
+  } catch (error: any) {
+    display({ type: "error", message: error.data.message });
+  }
+  loading.value = false;
+}
+</script>
+<template>
+  <div
+    class="w-full border rounded-lg shadow-md dark:border max-w-md my-4 dark:bg-gray-800 dark:border-gray-700"
+  >
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1
+        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+      >
+        {{ $tt("$.login.title") }}
+      </h1>
+
+      <div class="flex justify-between items-center w-full gap-4">
+        <UButton
+          data-testid="login-google"
+          variant="outline"
+          size="lg"
+          class="flex-1"
+          @click="loginByGoogle()"
+        >
+          <div class="flex items-center justify-center gap-2 mx-auto">
+            <Icon name="logos:google-icon" size="20" />
+            Google
+          </div>
+        </UButton>
+        <UButton
+          data-testid="login-linkedin"
+          variant="outline"
+          size="lg"
+          class="flex-1"
+          @click="loginByLinkedin()"
+        >
+          <div class="flex items-center justify-center gap-2 mx-auto">
+            <Icon name="logos:linkedin-icon" size="20" />
+            LinkedIn
+          </div>
+        </UButton>
+      </div>
+
+      <UDivider
+        :label="$tt('$.login.or')"
+        :ui="{ border: { base: 'dark:border-gray-700' } }"
+      />
+
+      <CmpForm
+        :fields="(config?.fields as IFormField[])"
+        :ui="{
+          base: 'flex flex-col gap-4 !bg-transparent',
+          ring: '',
+          shadow: '',
+          divide: '',
+          body: { base: 'flex flex-col gap-4', padding: '' },
+          footer: { base: 'flex flex-col gap-4', padding: '' },
+        }"
+        @submit="onSubmit"
+      >
+        <template #remember="{ field, model }">
+          <div class="flex items-center justify-between">
+            <CmpField v-model="model[field.name]" :field="field" />
+            <UButton
+              data-testid="forgot-password"
+              :to="localePath(routes['forgot-password']?.path)"
+              class="text-primary-500"
+              variant="link"
+              size="sm"
+              :padded="false"
+            >
+              {{ $tt(routes["forgot-password"]?.meta?.title as string) }}
+            </UButton>
+          </div>
+        </template>
+        <template #actions>
+          <UButton
+            data-testid="login-submit"
+            type="submit"
+            size="lg"
+            block
+            :loading="loading"
+          >
+            {{ $tt("$.login.signin") }}
+          </UButton>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            {{ $tt("$.login.no_account") }}
+            <UButton
+              data-testid="signup"
+              :to="localePath(routes?.signup?.path)"
+              class="font-medium text-primary-500"
+              variant="link"
+              size="sm"
+              :padded="false"
+              >{{ $tt(routes?.signup?.meta?.title as string) }}</UButton
+            >
+          </p>
+        </template>
+      </CmpForm>
+    </div>
+  </div>
+</template>
