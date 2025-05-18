@@ -11,7 +11,7 @@ import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils/server.functions";
-import SignupForm from "~/emails/SignupForm.vue";
+import SignupForm from "@/emails/SignupForm.vue";
 
 import { UserModel } from "../../../models/user.schema";
 import { GENERATE_HASHED_PASSWORD } from "../../../utils/password.functions";

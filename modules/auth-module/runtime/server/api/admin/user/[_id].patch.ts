@@ -1,15 +1,15 @@
 import { H3Event } from "h3";
 
-import { UserModel } from "~/modules/auth-module/runtime/models/user.schema";
+import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "~/modules/mongoose-module/runtime/utils";
+} from "@/modules/mongoose-module/runtime/utils";
 import {
   COMPARE_PASSWORD,
   GENERATE_HASHED_PASSWORD,
-} from "~/modules/auth-module/runtime/utils/password.functions";
+} from "@/modules/auth-module/runtime/utils/password.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const t = await useTranslation(event);

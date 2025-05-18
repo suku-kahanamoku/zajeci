@@ -2,16 +2,18 @@ import { H3Event } from "h3";
 import { isValidObjectId } from "mongoose";
 
 import OrderForm from "@/emails/OrderForm.vue";
-import { AddressModel } from "~/modules/auth-module/runtime/models/address.schema";
-import { UserModel } from "~/modules/auth-module/runtime/models/user.schema";
-import { AddressDocument } from "~/modules/auth-module/runtime/types/address.type";
+import { AddressModel } from "@/modules/auth-module/runtime/models/address.schema";
+import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
+import { AddressDocument } from "@/modules/auth-module/runtime/types/address.type";
 
 import { OrderModel } from "../models/order.schema";
+import { RESOLVE_FACTORY } from "~/modules/common-module/runtime/utils/server.functions";
 
 export default defineEventHandler(async (event: H3Event) => {
   const session = await getUserSession(event);
+  const query = getQuery(event);
   const body = await readBody(event);
-  const result = (await OrderModel.create(body)).toObject();
+  const order = (await OrderModel.create(body)).toObject();
 
   const user = body.user;
   user.address = user.address || {};
@@ -40,7 +42,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
     // aktualizuje session
     await setUserSession(event, {
-      user: result.user,
+      user: order.user,
       tokens: session.tokens,
     });
   }
@@ -55,10 +57,10 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 
   // pokud se podari ulozit objednavku do DB, odesle se mail klientovi i adminovi
-  if (result?._id) {
+  if (order?._id) {
     const t = await useTranslation(event);
     const { template, send } = await useMailing(event);
-    const orderId = result._id.toString();
+    const orderId = order._id.toString();
     await send({
       subject: t("$.mailing.order.confirmed.subject", { orderId }),
       template: await template(OrderForm, {
@@ -68,7 +70,7 @@ export default defineEventHandler(async (event: H3Event) => {
       }),
       to: [
         {
-          Email: result.user.email,
+          Email: order.user.email,
         },
       ],
       bcc: [
@@ -79,7 +81,13 @@ export default defineEventHandler(async (event: H3Event) => {
     });
   }
 
-  return result;
+  const result = order || {};
+  RESOLVE_FACTORY(result, query.factory);
+
+  return {
+    data: result,
+    meta: { total: result ? 1 : 0 },
+  };
 });
 
 /**

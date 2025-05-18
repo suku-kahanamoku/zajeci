@@ -1,11 +1,11 @@
 import { H3Event } from "h3";
 
-import { UserModel } from "~/modules/auth-module/runtime/models/user.schema";
-import { RESOLVE_FACTORY } from "~/modules/common-module/runtime/utils/server.functions";
+import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
+import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "~/modules/mongoose-module/runtime/utils";
+} from "@/modules/mongoose-module/runtime/utils";
 
 export default defineEventHandler(async (event: H3Event) => {
   const query = getQuery(event);
