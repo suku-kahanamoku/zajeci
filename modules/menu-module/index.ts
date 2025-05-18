@@ -59,10 +59,10 @@ export default defineNuxtModule<ModuleOptions>({
     // Konfigurace pro lang-module
     nuxtOpt.langModule = defu(nuxtOpt.langModule || {}, {
       locales: [
-        {
+        /* {
           code: "en",
           files: [{ path: resolve("./runtime/assets/locales/en.json") }],
-        },
+        }, */
         {
           code: "cs",
           files: [{ path: resolve("./runtime/assets/locales/cs.json") }],
