@@ -2,7 +2,7 @@
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 import { CmpWineForm } from "#components";
 
@@ -62,7 +62,7 @@ const { data: wine, pending } = await useAsyncData(async () => {
   }
 });
 
-const state = ref<WineDocument>(CLONE(wine.value));
+const state = ref<IWine>(CLONE(wine.value));
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
   pending.value = true;

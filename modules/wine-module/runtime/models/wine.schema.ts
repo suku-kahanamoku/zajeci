@@ -3,9 +3,9 @@ import { Schema, model } from "mongoose";
 import { ImageModel } from "@/server/models/image.schema";
 import type { ImageDocument } from "@/server/types/image.type";
 
-import type { WineDocument } from "../types/wine.interface";
+import type { IWine } from "../types/wine.interface";
 
-export const WineSchema = new Schema<WineDocument>(
+export const WineSchema = new Schema<IWine>(
   {
     name: {
       type: String,
@@ -87,15 +87,15 @@ WineSchema.pre("findOne", function () {
   this.populate("image.main").populate("image.variants");
 });
 
-export const WineModel = model<WineDocument>("wines", WineSchema);
+export const WineModel = model<IWine>("wines", WineSchema);
 
 /**
  * Pro dana vina nacte jednim dotazem vsechny obrazky a pak je namapuje na dana vina
  *
- * @param {WineDocument[]} wines
+ * @param {IWine[]} wines
  * @return {*}  {Promise<void>}
  */
-async function fetchWinesWithImages(wines: WineDocument[]): Promise<void> {
+async function fetchWinesWithImages(wines: IWine[]): Promise<void> {
   if (!wines || wines.length === 0) return;
 
   // Collect all image IDs

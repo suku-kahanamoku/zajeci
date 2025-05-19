@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 definePageMeta({
   layout: "admin",
@@ -18,7 +18,7 @@ const { $tt } = useNuxtApp();
 const localePath = useLocalePath();
 const { routes } = useMenuItems();
 const toast = useToast();
-const selected = ref<WineDocument[]>([]);
+const selected = ref<IWine[]>([]);
 const isOpen = ref(false);
 
 useHead({
@@ -33,9 +33,9 @@ const {
   data: wines,
   refresh,
   pending,
-} = await useAsyncData(async (): Promise<WineDocument[] | undefined> => {
+} = await useAsyncData(async (): Promise<IWine[] | undefined> => {
   try {
-    return await $fetch<WineDocument[]>(`/api/wine`);
+    return await $fetch<IWine[]>(`/api/wine`);
   } catch (error: any) {
     console.error(error);
   }

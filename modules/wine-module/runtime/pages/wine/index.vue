@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 definePageMeta({
   layout: "default",
@@ -19,7 +19,7 @@ useHead({
 });
 
 const { data: wines } = await useAsyncData(
-  async (): Promise<WineDocument[] | undefined> => {
+  async (): Promise<IWine[] | undefined> => {
     try {
       return await $fetch(`/api/wine`);
     } catch (error: any) {

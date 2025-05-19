@@ -2,7 +2,7 @@
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 definePageMeta({
@@ -53,7 +53,7 @@ const schema = object({
   published: boolean(),
 });
 
-const state = ref<WineDocument>(CLONE(defaultItem));
+const state = ref<IWine>(CLONE(defaultItem));
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
   loading.value = true;

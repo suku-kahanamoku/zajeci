@@ -10,7 +10,7 @@ import {
   PaymentServices,
   type CartDocument,
 } from "@/server/types/order.type";
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 import {
   CLONE,
   ITERATE,
@@ -116,7 +116,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
       payment.value.totalPrice
   );
 
-  const addItem = (wine: WineDocument, quantity: number): CartDocument => {
+  const addItem = (wine: IWine, quantity: number): CartDocument => {
     let result;
     const existingItem = carts.value.find((item) => item.wine._id === wine._id);
     if (existingItem) {

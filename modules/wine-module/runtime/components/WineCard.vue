@@ -2,10 +2,10 @@
 import { useToNumber } from "@vueuse/core";
 
 import type { CartDocument } from "@/server/types/order.type";
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 const props = defineProps<{
-  item: WineDocument;
+  item: IWine;
 }>();
 
 const {

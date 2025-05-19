@@ -2,7 +2,7 @@
 import { useToNumber } from "@vueuse/core";
 
 import type { CartDocument } from "@/server/types/order.type";
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 definePageMeta({
   layout: "default",
@@ -30,7 +30,7 @@ const modal = ref(false);
 const cart = ref<CartDocument>();
 
 const { data: wine, pending } = await useAsyncData(
-  async (): Promise<WineDocument | undefined> => {
+  async (): Promise<IWine | undefined> => {
     try {
       return await $fetch(`/api/wine/${route.params._id}`);
     } catch (error: any) {

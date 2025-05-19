@@ -1,6 +1,6 @@
 import type { ImageDocument } from "@/server/types/image.type";
 
-export interface WineDocument {
+export interface IWine {
   _id: string;
   name: string;
   price: number;

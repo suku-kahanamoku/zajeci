@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 defineProps<{
-  wines: WineDocument[];
+  wines: IWine[];
   pending: boolean;
 }>();
 
 const emits = defineEmits<{
-  (event: "delete", row: WineDocument): void;
+  (event: "delete", row: IWine): void;
 }>();
 
-const selected = defineModel<WineDocument[]>();
+const selected = defineModel<IWine[]>();
 
 const { routes } = useMenuItems();
 const { kinds, colors, categories, fieldOptions } = useWines();

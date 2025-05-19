@@ -1,7 +1,7 @@
 import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
-import { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
+import { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 /**
  * Enum pro typy plateb
@@ -134,7 +134,7 @@ export interface DeliveryDocument {
  * @interface CartDocument
  */
 export interface CartDocument {
-  wine: WineDocument;
+  wine: IWine;
   quantity: number;
   unitPrice: number;
   totalPrice: number;
