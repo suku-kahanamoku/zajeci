@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 import { ImageModel } from "@/server/models/image.schema";
-import type { ImageDocument } from "@/server/types/image.type";
+import type { IImage } from "@/server/types/image.type";
 
 import type { IWine } from "../types/wine.interface";
 
@@ -125,7 +125,7 @@ async function fetchWinesWithImages(wines: IWine[]): Promise<void> {
     if (wine.image?.variants) {
       wine.image.variants = wine.image?.variants?.map((variantId) =>
         imageMap.get(variantId.toString())
-      ) as ImageDocument[];
+      ) as IImage[];
     }
   });
 }

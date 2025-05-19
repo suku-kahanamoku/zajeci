@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 import { WineModel } from "@/modules/wine-module/runtime/models/wine.schema";
 
-import { ImageDocument } from "../types/image.type";
+import { IImage } from "../types/image.type";
 
 const ImageSchema = new Schema(
   {
@@ -111,4 +111,4 @@ ImageSchema.post("deleteMany", async function (docs: any[], next: Function) {
   next();
 });
 
-export const ImageModel = model<ImageDocument>("images", ImageSchema);
+export const ImageModel = model<IImage>("images", ImageSchema);

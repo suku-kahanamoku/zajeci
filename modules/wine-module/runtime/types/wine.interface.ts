@@ -1,4 +1,4 @@
-import type { ImageDocument } from "@/server/types/image.type";
+import type { IImage } from "@/server/types/image.type";
 
 export interface IWine {
   _id: string;
@@ -13,8 +13,8 @@ export interface IWine {
   volume?: number;
   year?: number;
   image?: {
-    main?: ImageDocument;
-    variants?: ImageDocument[];
+    main?: IImage;
+    variants?: IImage[];
   };
   categories?: string[];
   published?: boolean;

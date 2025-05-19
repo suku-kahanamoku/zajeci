@@ -1,4 +1,4 @@
-export interface ImageDocument {
+export interface IImage {
   _id: string;
   src: string;
   width: number;
