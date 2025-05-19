@@ -1,6 +1,6 @@
 import type { IAddress } from "./address.interface";
 
-export interface UserDocument {
+export interface IUser {
   _id: string;
   email: string;
   name?: string;

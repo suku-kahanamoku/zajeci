@@ -1,6 +1,6 @@
 import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
-import { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
+import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 import { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
 
 /**
@@ -166,7 +166,7 @@ export enum OrderStatus {
  */
 export interface OrderDocument {
   _id: string;
-  user: UserDocument;
+  user: IUser;
   carts: CartDocument[];
   totalPrice: number;
   status: OrderStatus;

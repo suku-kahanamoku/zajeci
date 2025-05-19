@@ -15,7 +15,7 @@ import {
   CLONE,
   ITERATE,
 } from "@/modules/common-module/runtime/utils/modify-object.functions";
-import type { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
+import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
@@ -23,7 +23,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
   const toast = useToast();
   const loading = ref(false);
 
-  const user = ref<UserDocument>(CLONE(auth.user || auth.emptyUser));
+  const user = ref<IUser>(CLONE(auth.user || auth.emptyUser));
   const carts = ref<CartDocument[]>([]);
   const delivery = ref<DeliveryDocument>({
     type: DeliveryServices.free,

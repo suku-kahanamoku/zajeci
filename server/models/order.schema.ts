@@ -9,7 +9,7 @@ import {
   PaymentDocument,
   PaymentServices,
 } from "../types/order.type";
-import { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
+import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 export const AddressOrderSchema = new Schema<IAddress>(
@@ -48,7 +48,7 @@ export const AddressOrderSchema = new Schema<IAddress>(
   }
 );
 
-const UserOrderSchema = new Schema<UserDocument>(
+const UserOrderSchema = new Schema<IUser>(
   {
     email: {
       type: String,

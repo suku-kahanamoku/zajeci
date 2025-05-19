@@ -2,7 +2,7 @@
 import { object, string, boolean, type InferType } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
+import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 
 const { $tt } = useNuxtApp();
 const toast = useToast();
@@ -21,7 +21,7 @@ type Schema = InferType<typeof schema>;
 
 const { user, roles, roleOptions, fields, isAdmin } = useAuthStore();
 
-const state = ref<UserDocument & { newPassword?: string }>({
+const state = ref<IUser & { newPassword?: string }>({
   _id: "",
   email: "",
   givenName: "",
@@ -35,7 +35,7 @@ const state = ref<UserDocument & { newPassword?: string }>({
 const loading = ref();
 
 onMounted(async () => {
-  const data = await $fetch<UserDocument>(`/api/admin/user/${user?._id}`, {
+  const data = await $fetch<IUser>(`/api/admin/user/${user?._id}`, {
     method: "GET",
   });
   if (data) {
@@ -46,7 +46,7 @@ onMounted(async () => {
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   loading.value = true;
   try {
-    await $fetch<UserDocument>(`/api/admin/user/${user?._id}`, {
+    await $fetch<IUser>(`/api/admin/user/${user?._id}`, {
       method: "PATCH",
       body: event.data,
     });

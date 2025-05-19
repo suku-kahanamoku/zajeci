@@ -2,9 +2,9 @@ import { Schema, model } from "mongoose";
 
 import { AddressModel } from "./address.schema";
 import type { IAddress } from "../types/address.interface";
-import type { UserDocument } from "../types/user.interface";
+import type { IUser } from "../types/user.interface";
 
-export const UserSchema = new Schema<UserDocument>(
+export const UserSchema = new Schema<IUser>(
   {
     email: {
       type: String,
@@ -77,9 +77,9 @@ UserSchema.pre("findOne", function () {
   this.populate("address.main").populate("address.variants");
 });
 
-export const UserModel = model<UserDocument>("users", UserSchema);
+export const UserModel = model<IUser>("users", UserSchema);
 
-async function fetchUsersWithAddresses(users: UserDocument[]) {
+async function fetchUsersWithAddresses(users: IUser[]) {
   if (!users || users.length === 0) return;
 
   // Collect all address IDs

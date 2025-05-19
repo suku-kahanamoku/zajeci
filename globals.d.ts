@@ -1,5 +1,5 @@
 import type { ITokens } from "@/modules/auth-module/runtime/types/auth.interface";
-import type { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
+import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 
 declare module "#app" {
   interface NuxtApp {

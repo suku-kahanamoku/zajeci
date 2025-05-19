@@ -1,7 +1,7 @@
-import type { UserDocument } from "./types/user.interface";
+import type { IUser } from "./types/user.interface";
 
 declare module "#auth-utils" {
-  interface User extends UserDocument {}
+  interface User extends IUser {}
 
   interface UserSession {
     loggedInAt?: Date | string;
