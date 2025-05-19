@@ -1,4 +1,4 @@
-import type { UserDocument } from "@/types/user.type";
+import type { UserDocument } from "./types/user.interface";
 
 declare module "#auth-utils" {
   interface User extends UserDocument {}
@@ -9,6 +9,6 @@ declare module "#auth-utils" {
   }
 }
 
-export * from "./address.type";
-export * from "./user.type";
-export * from "./auth.interface";
+export * from "./types/address.type";
+export * from "./types/user.type";
+export * from "./types/auth.interface";
