@@ -15,7 +15,7 @@ import {
   CLONE,
   ITERATE,
 } from "@/modules/common-module/runtime/utils/modify-object.functions";
-import type { UserDocument } from "@/modules/auth-module/runtime/types/user.type";
+import type { UserDocument } from "~/modules/auth-module/runtime/types/user.interface";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
