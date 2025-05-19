@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.type";
+import type { WineDocument } from "@/modules/wine-module/runtime/types/wine.type";
 
 defineProps<{
   wines: WineDocument[];

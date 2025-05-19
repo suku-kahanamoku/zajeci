@@ -9,8 +9,8 @@ import {
   PaymentDocument,
   PaymentServices,
 } from "../types/order.type";
-import { UserDocument } from "~/modules/auth-module/runtime/types/user.interface";
-import { AddressDocument } from "~/modules/auth-module/runtime/types/address.interface";
+import { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
+import { AddressDocument } from "@/modules/auth-module/runtime/types/address.interface";
 
 export const AddressOrderSchema = new Schema<AddressDocument>(
   {

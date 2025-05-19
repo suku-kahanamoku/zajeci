@@ -10,12 +10,12 @@ import {
   PaymentServices,
   type CartDocument,
 } from "@/server/types/order.type";
-import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.type";
+import type { WineDocument } from "@/modules/wine-module/runtime/types/wine.type";
 import {
   CLONE,
   ITERATE,
 } from "@/modules/common-module/runtime/utils/modify-object.functions";
-import type { UserDocument } from "~/modules/auth-module/runtime/types/user.interface";
+import type { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
