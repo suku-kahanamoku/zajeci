@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
-import type { CartDocument } from "@/server/types/order.type";
+import type { ICart } from "@/server/types/order.type";
 import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 definePageMeta({
@@ -27,7 +27,7 @@ const route = useRoute();
 const { fields, kinds, colors } = useWines();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
-const cart = ref<CartDocument>();
+const cart = ref<ICart>();
 
 const { data: wine, pending } = await useAsyncData(
   async (): Promise<IWine | undefined> => {

@@ -2,7 +2,7 @@
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { OrderDocument } from "@/server/types/order.type";
+import type { IOrder } from "@/server/types/order.type";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 definePageMeta({
@@ -68,7 +68,7 @@ const schema = object({
   }),
 });
 
-const state = ref<OrderDocument>(CLONE(defaultItem));
+const state = ref<IOrder>(CLONE(defaultItem));
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
   loading.value = true;

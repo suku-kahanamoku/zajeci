@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
-import type { CartDocument } from "@/server/types/order.type";
+import type { ICart } from "@/server/types/order.type";
 import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const { routes } = useMenuItems();
 const { fields } = useWines();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
-const cart = ref<CartDocument>();
+const cart = ref<ICart>();
 
 function addToCashdesk() {
   cart.value = cashdesk.addItem(props.item, 1);

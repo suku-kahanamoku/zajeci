@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
-import type { OrderDocument } from "@/server/types/order.type";
+import type { IOrder } from "@/server/types/order.type";
 import type { Schema } from "yup";
 
 const emits = defineEmits<{
@@ -9,7 +9,7 @@ const emits = defineEmits<{
 
 defineProps<{
   schema: Schema;
-  item: OrderDocument;
+  item: IOrder;
   loading?: boolean;
 }>();
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
-import type { CartDocument } from "@/server/types/order.type";
+import type { ICart } from "@/server/types/order.type";
 
 const { $tt } = useNuxtApp();
 const {
@@ -13,11 +13,11 @@ const cashdesk = useCashdeskStore();
 const isOpen = ref(false);
 const deleted = ref();
 
-const increaseQuantity = (cart: CartDocument) => {
+const increaseQuantity = (cart: ICart) => {
   cashdesk.addItem(cart.wine, 1);
 };
 
-const decreaseQuantity = (cart: CartDocument) => {
+const decreaseQuantity = (cart: ICart) => {
   if (cart.quantity > 1) {
     cashdesk.removeItem(cart.wine?._id);
   } else {
@@ -25,12 +25,12 @@ const decreaseQuantity = (cart: CartDocument) => {
   }
 };
 
-const removeItem = (cart: CartDocument) => {
+const removeItem = (cart: ICart) => {
   deleted.value = cart;
   isOpen.value = true;
 };
 
-const setQuantity = (value: number, cart: CartDocument) => {
+const setQuantity = (value: number, cart: ICart) => {
   if (value > 0) {
     cashdesk.setQuantity(cart.wine?._id, value);
   } else {

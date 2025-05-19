@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { OrderDocument } from "@/server/types/order.type";
+import type { IOrder } from "@/server/types/order.type";
 
 defineProps<{
-  orders: OrderDocument[];
+  orders: IOrder[];
   pending: boolean;
 }>();
 
 const emits = defineEmits<{
-  (event: "delete", row: OrderDocument): void;
+  (event: "delete", row: IOrder): void;
 }>();
 
-const selected = defineModel<OrderDocument[]>();
+const selected = defineModel<IOrder[]>();
 
 const { routes } = useMenuItems();
 const { kinds, colors, categories, fieldOptions } = useOrders();

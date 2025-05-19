@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
 
 import {
-  CartDocument,
-  DeliveryDocument,
+  ICart,
+  IDelivery,
   DeliveryServices,
-  OrderDocument,
+  IOrder,
   OrderStatus,
-  PaymentDocument,
+  IPayment,
   PaymentServices,
 } from "../types/order.type";
 import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
@@ -84,7 +84,7 @@ const UserOrderSchema = new Schema<IUser>(
 /**
  * Mongo schema pro dopravu v cashdesku
  */
-const DeliverySchema = new Schema<DeliveryDocument>(
+const DeliverySchema = new Schema<IDelivery>(
   {
     type: {
       type: String,
@@ -110,7 +110,7 @@ const DeliverySchema = new Schema<DeliveryDocument>(
 /**
  * Mongo schema pro payment v cashdesku
  */
-const PaymentSchema = new Schema<PaymentDocument>(
+const PaymentSchema = new Schema<IPayment>(
   {
     type: {
       type: String,
@@ -132,7 +132,7 @@ const PaymentSchema = new Schema<PaymentDocument>(
 /**
  * Mongo schema pro jednotlive kosiky v cashdesku
  */
-const CartSchema = new Schema<CartDocument>(
+const CartSchema = new Schema<ICart>(
   {
     wine: {
       type: Schema.Types.Mixed,
@@ -164,7 +164,7 @@ CartSchema.pre("save", function (next) {
   next();
 });
 
-const OrderSchema = new Schema<OrderDocument>(
+const OrderSchema = new Schema<IOrder>(
   {
     user: UserOrderSchema,
     carts: [CartSchema],
@@ -195,4 +195,4 @@ const OrderSchema = new Schema<OrderDocument>(
 /**
  * Mongo schema pro cashdesk
  */
-export const OrderModel = model<OrderDocument>("orders", OrderSchema);
+export const OrderModel = model<IOrder>("orders", OrderSchema);

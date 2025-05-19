@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { OrderDocument } from "@/server/types/order.type";
+import type { IOrder } from "@/server/types/order.type";
 
 definePageMeta({
   layout: "admin",
@@ -18,7 +18,7 @@ const { $tt } = useNuxtApp();
 const localePath = useLocalePath();
 const { routes } = useMenuItems();
 const toast = useToast();
-const deleteItem = ref<OrderDocument>();
+const deleteItem = ref<IOrder>();
 const isOpen = ref(false);
 
 useHead({
@@ -33,9 +33,9 @@ const {
   data: orders,
   refresh,
   pending,
-} = await useAsyncData(async (): Promise<OrderDocument[] | undefined> => {
+} = await useAsyncData(async (): Promise<IOrder[] | undefined> => {
   try {
-    return await $fetch<OrderDocument[]>(`/api/admin/order`);
+    return await $fetch<IOrder[]>(`/api/admin/order`);
   } catch (error: any) {
     console.error(error);
   }

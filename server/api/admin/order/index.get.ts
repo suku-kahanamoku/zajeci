@@ -1,7 +1,7 @@
 import { H3Event } from "h3";
 
 import { OrderModel } from "@/server/models/order.schema";
-import { OrderDocument } from "@/server/types/order.type";
+import { IOrder } from "@/server/types/order.type";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,

@@ -62,9 +62,9 @@ export const paymentObjects = {
  * Rozhrani pro payment v cashdesku
  *
  * @export
- * @interface PaymentDocument
+ * @interface IPayment
  */
-export interface PaymentDocument {
+export interface IPayment {
   type: PaymentServices;
   totalPrice: number;
   valid?: boolean;
@@ -118,9 +118,9 @@ export const deliveryObjects = {
  * Rozhrani pro delivery v cashdesku
  *
  * @export
- * @interface DeliveryDocument
+ * @interface IDelivery
  */
-export interface DeliveryDocument {
+export interface IDelivery {
   type: DeliveryServices;
   address?: IAddress;
   totalPrice: number;
@@ -131,9 +131,9 @@ export interface DeliveryDocument {
  * Rozhrani pro jednotlive kosiky
  *
  * @export
- * @interface CartDocument
+ * @interface ICart
  */
-export interface CartDocument {
+export interface ICart {
   wine: IWine;
   quantity: number;
   unitPrice: number;
@@ -162,16 +162,16 @@ export enum OrderStatus {
  * Rozhrani pro cashdesk
  *
  * @export
- * @interface OrderDocument
+ * @interface IOrder
  */
-export interface OrderDocument {
+export interface IOrder {
   _id: string;
   user: IUser;
-  carts: CartDocument[];
+  carts: ICart[];
   totalPrice: number;
   status: OrderStatus;
-  delivery: DeliveryDocument;
-  payment: PaymentDocument;
+  delivery: IDelivery;
+  payment: IPayment;
   createdAt?: Date;
   updatedAt?: Date;
 }

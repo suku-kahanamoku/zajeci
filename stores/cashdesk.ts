@@ -5,10 +5,10 @@ import {
   DeliveryServices,
   deliveryObjects,
   paymentObjects,
-  type PaymentDocument,
-  type DeliveryDocument,
+  type IPayment,
+  type IDelivery,
   PaymentServices,
-  type CartDocument,
+  type ICart,
 } from "@/server/types/order.type";
 import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 import {
@@ -24,13 +24,13 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
   const loading = ref(false);
 
   const user = ref<IUser>(CLONE(auth.user || auth.emptyUser));
-  const carts = ref<CartDocument[]>([]);
-  const delivery = ref<DeliveryDocument>({
+  const carts = ref<ICart[]>([]);
+  const delivery = ref<IDelivery>({
     type: DeliveryServices.free,
     address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
     totalPrice: 0,
   });
-  const payment = ref<PaymentDocument>({
+  const payment = ref<IPayment>({
     type: PaymentServices.bank,
     totalPrice: 0,
   });
@@ -116,7 +116,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
       payment.value.totalPrice
   );
 
-  const addItem = (wine: IWine, quantity: number): CartDocument => {
+  const addItem = (wine: IWine, quantity: number): ICart => {
     let result;
     const existingItem = carts.value.find((item) => item.wine._id === wine._id);
     if (existingItem) {
@@ -124,7 +124,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
       existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
       result = existingItem;
     } else {
-      const newItem: CartDocument = {
+      const newItem: ICart = {
         wine,
         quantity,
         unitPrice: wine.price,
