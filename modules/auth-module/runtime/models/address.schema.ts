@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 
 import { UserModel } from "./user.schema";
-import type { AddressDocument } from "../types/address.interface";
+import type { IAddress } from "../types/address.interface";
 
-export const AddressSchema = new Schema<AddressDocument>(
+export const AddressSchema = new Schema<IAddress>(
   {
     name: {
       type: String,
@@ -113,4 +113,4 @@ AddressSchema.post("deleteMany", async function (docs: any[], next: Function) {
   next();
 });
 
-export const AddressModel = model<AddressDocument>("addresses", AddressSchema);
+export const AddressModel = model<IAddress>("addresses", AddressSchema);

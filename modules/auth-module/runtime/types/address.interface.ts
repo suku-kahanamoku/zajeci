@@ -1,4 +1,4 @@
-export interface AddressDocument {
+export interface IAddress {
   _id: string;
   street: string;
   city: string;

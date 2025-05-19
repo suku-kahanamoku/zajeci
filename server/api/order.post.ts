@@ -4,7 +4,7 @@ import { isValidObjectId } from "mongoose";
 import OrderForm from "@/emails/OrderForm.vue";
 import { AddressModel } from "@/modules/auth-module/runtime/models/address.schema";
 import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
-import { AddressDocument } from "@/modules/auth-module/runtime/types/address.interface";
+import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 import { OrderModel } from "../models/order.schema";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
     // vytvori nebo aktualizuje adresu a uzivateli preda referenci
     user.address.main = await upsertAddress(
-      user.address.main as AddressDocument
+      user.address.main as IAddress
     );
     // najde a aktualizuje uzivatele
     await UserModel.findByIdAndUpdate(user._id, user, {
@@ -50,7 +50,7 @@ export default defineEventHandler(async (event: H3Event) => {
   else if (!(await UserModel.exists({ email: user.email }))?._id) {
     // vytvori adresu a uzivateli preda referenci
     user.address.main = await upsertAddress(
-      user.address.main as AddressDocument
+      user.address.main as IAddress
     );
     // vytvori uzivatele
     await UserModel.create(user);
@@ -94,18 +94,18 @@ export default defineEventHandler(async (event: H3Event) => {
  * Vytvori nebo upravy adresar
  *
  * @export
- * @param {AddressDocument} address
- * @return {*}  {Promise<AddressDocument>}
+ * @param {IAddress} address
+ * @return {*}  {Promise<IAddress>}
  */
 async function upsertAddress(
-  address: AddressDocument
-): Promise<AddressDocument> {
+  address: IAddress
+): Promise<IAddress> {
   if (address) {
     if (address._id) {
       return (await AddressModel.findByIdAndUpdate(address._id, address, {
         new: true,
         upsert: true,
-      })) as AddressDocument;
+      })) as IAddress;
     }
     // Pokud _id chybi, vytvori novou adresu
     else {

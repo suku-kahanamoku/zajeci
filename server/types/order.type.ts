@@ -1,4 +1,4 @@
-import { AddressDocument } from "@/modules/auth-module/runtime/types/address.interface";
+import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 import { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
 import { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
@@ -122,7 +122,7 @@ export const deliveryObjects = {
  */
 export interface DeliveryDocument {
   type: DeliveryServices;
-  address?: AddressDocument;
+  address?: IAddress;
   totalPrice: number;
   valid?: boolean;
 }

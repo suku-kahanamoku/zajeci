@@ -1,4 +1,4 @@
-import type { AddressDocument } from "./address.interface";
+import type { IAddress } from "./address.interface";
 
 export interface UserDocument {
   _id: string;
@@ -12,8 +12,8 @@ export interface UserDocument {
   newsletter?: boolean;
   role?: "admin" | "user" | "guest";
   address?: {
-    main?: AddressDocument;
-    variants?: AddressDocument[];
+    main?: IAddress;
+    variants?: IAddress[];
   };
   phone?: string;
   createdAt?: Date;

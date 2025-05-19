@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 import { AddressModel } from "./address.schema";
-import type { AddressDocument } from "../types/address.interface";
+import type { IAddress } from "../types/address.interface";
 import type { UserDocument } from "../types/user.interface";
 
 export const UserSchema = new Schema<UserDocument>(
@@ -109,7 +109,7 @@ async function fetchUsersWithAddresses(users: UserDocument[]) {
     if (user.address?.variants) {
       user.address.variants = user.address?.variants?.map((variantId) =>
         addressMap.get(variantId.toString())
-      ) as AddressDocument[];
+      ) as IAddress[];
     }
   });
 }

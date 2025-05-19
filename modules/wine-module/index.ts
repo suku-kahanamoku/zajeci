@@ -22,26 +22,6 @@ import {
  */
 export interface ModuleOptions {}
 
-/**
- * @module wine-module
- * @description
- * Tento modul poskytuje podporu pro správu wine v Nuxt aplikaci.
- * Přidává runtime komponenty, middleware, a další konfigurace.
- *
- * @default
- * Výchozí konfigurace:
- * - `langModule`: Přidává lokalizace pro `en` a `cs`.
- * - `tailwindcss`: Konfiguruje TailwindCSS pro runtime komponenty.
- *
- * @example
- * ```typescript
- * export default defineNuxtConfig({
- *   wineModule: {
- *     // vlastní konfigurace
- *   },
- * });
- * ```
- */
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: "wine-module",
