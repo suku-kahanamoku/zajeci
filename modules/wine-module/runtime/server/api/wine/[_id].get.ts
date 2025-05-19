@@ -1,11 +1,12 @@
 import { H3Event } from "h3";
 
-import { WineModel } from "@/server/models/wine.schema";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils";
+
+import { WineModel } from "../../../models/wine.schema";
 
 export default defineEventHandler(async (event: H3Event) => {
   const query = getQuery(event);

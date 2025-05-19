@@ -1,4 +1,4 @@
-import { ImageDocument } from "./image.type";
+import type { ImageDocument } from "@/server/types/image.type";
 
 export interface WineDocument {
   _id: string;

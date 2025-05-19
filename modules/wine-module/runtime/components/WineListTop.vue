@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { WineDocument } from "@/server/types/wine.type";
+import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.type";
 
 const { data: wines } = await useAsyncData(
   async (): Promise<WineDocument[] | undefined> => {
@@ -23,7 +23,7 @@ const { data: wines } = await useAsyncData(
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
-      <UiWineCard v-for="wine of wines" :item="wine" />
+      <CmpWineCard v-for="wine of wines" :item="wine" />
     </div>
   </div>
 </template>

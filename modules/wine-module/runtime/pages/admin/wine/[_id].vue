@@ -2,8 +2,9 @@
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { WineDocument } from "@/server/types/wine.type";
+import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.type";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import { CmpWineForm } from "#components";
 
 definePageMeta({
   layout: "admin",
@@ -101,7 +102,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
             {{ $tt("$.admin.wine.update.title", { name: state?.name }) }}
           </h1>
 
-          <AdminFormWine
+          <CmpWineForm
             v-if="state"
             :schema="schema"
             :item="state"

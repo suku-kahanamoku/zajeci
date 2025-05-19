@@ -22,11 +22,11 @@ useHead({
 
     <div class="max-w-screen-xl mx-auto px-5 w-full">
       <CustomAbout />
-      <USeparator  />
-      <CustomWine />
-      <USeparator  />
+      <USeparator />
+      <CmpWineListTop />
+      <USeparator />
       <CustomTasting />
-      <USeparator  />
+      <USeparator />
       <CustomContact />
     </div>
 

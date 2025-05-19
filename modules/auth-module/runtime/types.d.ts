@@ -1,4 +1,4 @@
-import type { UserDocument } from "./types/user.type";
+import type { UserDocument } from "@/types/user.type";
 
 declare module "#auth-utils" {
   interface User extends UserDocument {}

@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 
-import { WineModel } from "./wine.schema";
+import { WineModel } from "@/modules/wine-module/runtime/models/wine.schema";
+
 import { ImageDocument } from "../types/image.type";
 
 const ImageSchema = new Schema(

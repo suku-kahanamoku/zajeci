@@ -1,8 +1,9 @@
 import { Schema, model } from "mongoose";
 
-import { ImageModel } from "./image.schema";
-import { WineDocument } from "../types/wine.type";
-import { ImageDocument } from "../types/image.type";
+import { ImageModel } from "@/server/models/image.schema";
+import type { ImageDocument } from "@/server/types/image.type";
+
+import type { WineDocument } from "../types/wine.type";
 
 export const WineSchema = new Schema<WineDocument>(
   {

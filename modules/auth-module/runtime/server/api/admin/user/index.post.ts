@@ -6,8 +6,9 @@ import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils/server.functions";
-import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
 import { GENERATE_HASHED_PASSWORD } from "@/modules/auth-module/runtime/utils/password.functions";
+
+import { UserModel } from "../../../../models/user.schema";
 
 export default defineEventHandler(async (event: H3Event) => {
   const query = getQuery(event);

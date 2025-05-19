@@ -2,7 +2,7 @@
 import { object, string, boolean, type InferType } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { UserDocument } from "@/server/types/user.type";
+import type { UserDocument } from "@/modules/auth-module/runtime/types/user.type";
 
 const { $tt } = useNuxtApp();
 const toast = useToast();
