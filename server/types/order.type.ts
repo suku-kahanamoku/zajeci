@@ -1,7 +1,7 @@
 import { AddressDocument } from "@/modules/auth-module/runtime/types/address.interface";
 
 import { UserDocument } from "@/modules/auth-module/runtime/types/user.interface";
-import { WineDocument } from "@/modules/wine-module/runtime/types/wine.type";
+import { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
 
 /**
  * Enum pro typy plateb

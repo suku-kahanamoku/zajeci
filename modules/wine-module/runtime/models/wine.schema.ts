@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 import { ImageModel } from "@/server/models/image.schema";
 import type { ImageDocument } from "@/server/types/image.type";
 
-import type { WineDocument } from "../types/wine.type";
+import type { WineDocument } from "../types/wine.interface";
 
 export const WineSchema = new Schema<WineDocument>(
   {

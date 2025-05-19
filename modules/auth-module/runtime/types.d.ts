@@ -9,6 +9,6 @@ declare module "#auth-utils" {
   }
 }
 
-export * from "./types/address.type";
-export * from "./types/user.type";
+export * from "./types/address.interface";
+export * from "./types/user.interface";
 export * from "./types/auth.interface";

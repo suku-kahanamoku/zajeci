@@ -10,7 +10,7 @@ import {
   PaymentServices,
   type CartDocument,
 } from "@/server/types/order.type";
-import type { WineDocument } from "@/modules/wine-module/runtime/types/wine.type";
+import type { WineDocument } from "~/modules/wine-module/runtime/types/wine.interface";
 import {
   CLONE,
   ITERATE,
