@@ -1,4 +1,4 @@
-import type { AddressDocument } from "./address.type";
+import type { AddressDocument } from "./address.interface";
 
 export interface UserDocument {
   _id: string;

@@ -4,7 +4,7 @@ import { isValidObjectId } from "mongoose";
 import OrderForm from "@/emails/OrderForm.vue";
 import { AddressModel } from "@/modules/auth-module/runtime/models/address.schema";
 import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
-import { AddressDocument } from "@/modules/auth-module/runtime/types/address.type";
+import { AddressDocument } from "~/modules/auth-module/runtime/types/address.interface";
 
 import { OrderModel } from "../models/order.schema";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";

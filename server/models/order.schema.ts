@@ -10,7 +10,7 @@ import {
   PaymentServices,
 } from "../types/order.type";
 import { UserDocument } from "@/modules/auth-module/runtime/types/user.type";
-import { AddressDocument } from "@/modules/auth-module/runtime/types/address.type";
+import { AddressDocument } from "~/modules/auth-module/runtime/types/address.interface";
 
 export const AddressOrderSchema = new Schema<AddressDocument>(
   {

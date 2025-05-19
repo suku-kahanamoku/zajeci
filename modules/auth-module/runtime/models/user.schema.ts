@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 import { AddressModel } from "./address.schema";
-import type { AddressDocument } from "../types/address.type";
+import type { AddressDocument } from "../types/address.interface";
 import type { UserDocument } from "../types/user.type";
 
 export const UserSchema = new Schema<UserDocument>(
