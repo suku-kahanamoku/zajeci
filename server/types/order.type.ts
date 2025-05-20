@@ -1,6 +1,7 @@
 import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
+import { IResponse } from "~/modules/common-module/runtime/types";
 import { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
 
 /**
@@ -174,4 +175,12 @@ export interface IOrder {
   payment: IPayment;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface IOrderResponse extends IResponse {
+  data?: IOrder;
+}
+
+export interface IOrderesResponse extends IResponse {
+  data?: IOrder[];
 }

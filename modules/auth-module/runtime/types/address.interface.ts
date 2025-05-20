@@ -1,3 +1,5 @@
+import type { IResponse } from "~/modules/common-module/runtime/types";
+
 export interface IAddress {
   _id: string;
   street: string;
@@ -8,4 +10,12 @@ export interface IAddress {
   country?: string;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface IAddressResponse extends IResponse {
+  data?: IAddress;
+}
+
+export interface IAddressesResponse extends IResponse {
+  data?: IAddress[];
 }
