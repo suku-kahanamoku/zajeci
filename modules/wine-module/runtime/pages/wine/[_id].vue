@@ -2,7 +2,7 @@
 import { useToNumber } from "@vueuse/core";
 
 import type { ICart } from "@/server/types/order.type";
-import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 definePageMeta({
   layout: "default",

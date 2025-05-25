@@ -1,5 +1,5 @@
 import type { IImage } from "@/server/types/image.type";
-import type { IResponse } from "~/modules/common-module/runtime/types";
+import type { IResponse } from "@/modules/common-module/runtime/types";
 
 export interface IWine {
   _id: string;

@@ -6,22 +6,25 @@ import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils";
+import { IOrderResponse } from "@/server/types/order.type";
 
-export default defineEventHandler(async (event: H3Event) => {
-  const query = getQuery(event);
-  const body = await readBody(event);
+export default defineEventHandler(
+  async (event: H3Event): Promise<IOrderResponse> => {
+    const query = getQuery(event);
+    const body = await readBody(event);
 
-  // Nejdrive zkontroluje, zda je pripojeni k databazi
-  if (GET_STATUS() === 0) {
-    await CONNECT_WITH_RETRY();
+    // Nejdrive zkontroluje, zda je pripojeni k databazi
+    if (GET_STATUS() === 0) {
+      await CONNECT_WITH_RETRY();
+    }
+
+    const order = await OrderModel.create(body);
+    const result = order?.toObject();
+    RESOLVE_FACTORY(result, query.factory);
+
+    return {
+      data: result,
+      meta: { total: result ? 1 : 0 },
+    };
   }
-
-  const order = await OrderModel.create(body);
-  const result = order?.toObject() || {};
-  RESOLVE_FACTORY(result, query.factory);
-
-  return {
-    data: result,
-    meta: { total: result ? 1 : 0 },
-  };
-});
+);

@@ -1,4 +1,4 @@
-import type { IResponse } from "~/modules/common-module/runtime/types";
+import type { IResponse } from "@/modules/common-module/runtime/types";
 import type { IAddress } from "./address.interface";
 
 export interface IUser {

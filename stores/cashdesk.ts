@@ -10,7 +10,7 @@ import {
   PaymentServices,
   type ICart,
 } from "@/server/types/order.type";
-import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import {
   CLONE,
   ITERATE,

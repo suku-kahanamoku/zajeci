@@ -1,8 +1,8 @@
 import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
-import { IResponse } from "~/modules/common-module/runtime/types";
-import { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
+import { IResponse } from "@/modules/common-module/runtime/types";
+import { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 /**
  * Enum pro typy plateb

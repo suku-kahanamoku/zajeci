@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { IWine } from "~/modules/wine-module/runtime/types/wine.interface";
+import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import type { Schema } from "yup";
 
 const emits = defineEmits<{
