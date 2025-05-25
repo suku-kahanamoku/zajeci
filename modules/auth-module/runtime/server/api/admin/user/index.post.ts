@@ -35,7 +35,7 @@ export default defineEventHandler(
       body.password = await GENERATE_HASHED_PASSWORD(body.password?.toString());
     }
 
-    const user = await new UserModel(body).save();
+    const user = await UserModel.create(body);
     const result = { ...user?.toObject(), password: undefined };
     RESOLVE_FACTORY(result, query.factory);
 

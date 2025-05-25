@@ -33,7 +33,7 @@ export default oauth.linkedinEventHandler({
       dbUser = await UserModel.findOne({ email: user.email });
 
       if (!dbUser?._id) {
-        dbUser = await new UserModel(user).save();
+        dbUser = await UserModel.create(user);
       }
       user = { ...user, ...dbUser.toObject() };
     }

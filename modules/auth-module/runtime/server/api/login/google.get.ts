@@ -33,11 +33,11 @@ export default oauth.googleEventHandler({
       dbUser = await UserModel.findOne({ email: user.email });
 
       if (!dbUser?._id) {
-        dbUser = await new UserModel({
+        dbUser = await UserModel.create({
           ...user,
           givenName: user.given_name,
           familyName: user.family_name,
-        }).save();
+        });
       }
       user = { ...user, ...dbUser.toObject() };
     }

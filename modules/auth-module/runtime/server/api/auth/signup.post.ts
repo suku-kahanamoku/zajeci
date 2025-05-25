@@ -45,10 +45,10 @@ export default defineEventHandler(
     }
     // pokud neexistuje vytvori noveho uzivatele v DB
     else {
-      user = await new UserModel({
+      user = await UserModel.create({
         ...body,
         password: await GENERATE_HASHED_PASSWORD(body.password),
-      }).save();
+      });
 
       const t = await useTranslation(event);
       const { template, send } = await useMailing(event);
