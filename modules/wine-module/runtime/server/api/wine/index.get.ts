@@ -7,31 +7,34 @@ import {
 } from "@/modules/mongoose-module/runtime/utils";
 
 import { WineModel } from "../../../models/wine.schema";
+import { IWineesResponse } from "../../../types";
 
-export default defineEventHandler(async (event: H3Event) => {
-  const query = getQuery(event);
-  const where = JSON.parse((query.q || "{}") as string);
-  const limit = parseInt(query.limit as string, 10) || 100;
-  const page = parseInt(query.page as string, 10) || 1;
-  const skip = (page - 1) * limit;
+export default defineEventHandler(
+  async (event: H3Event): Promise<IWineesResponse> => {
+    const query = getQuery(event);
+    const where = JSON.parse((query.q || "{}") as string);
+    const limit = parseInt(query.limit as string, 10) || 100;
+    const page = parseInt(query.page as string, 10) || 1;
+    const skip = (page - 1) * limit;
 
-  // Nejdrive zkontroluje, zda je pripojeni k databazi
-  if (GET_STATUS() === 0) {
-    await CONNECT_WITH_RETRY();
+    // Nejdrive zkontroluje, zda je pripojeni k databazi
+    if (GET_STATUS() === 0) {
+      await CONNECT_WITH_RETRY();
+    }
+
+    const wines = await WineModel.find(where).limit(limit).skip(skip);
+
+    const total = await WineModel.countDocuments(where);
+
+    const result = wines?.map((i) => {
+      const o = i.toObject();
+      RESOLVE_FACTORY(o, query.factory);
+      return o;
+    });
+
+    return {
+      data: result,
+      meta: { total, limit, skip },
+    };
   }
-
-  const wines = await WineModel.find(where).limit(limit).skip(skip);
-
-  const total = await WineModel.countDocuments(where);
-
-  const result = wines?.map((i) => {
-    const o = i.toObject() || {};
-    RESOLVE_FACTORY(o, query.factory);
-    return o;
-  });
-
-  return {
-    data: result,
-    meta: { total, limit, skip },
-  };
-});
+);

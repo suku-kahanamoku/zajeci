@@ -5,7 +5,6 @@ import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils";
-
 import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
 import { IUserResponse } from "@/modules/auth-module/runtime/types";
 
