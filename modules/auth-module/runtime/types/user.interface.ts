@@ -26,6 +26,6 @@ export interface IUserResponse extends IResponse {
   data?: IUser;
 }
 
-export interface IUseresResponse extends IResponse {
+export interface IUsersResponse extends IResponse {
   data?: IUser[];
 }

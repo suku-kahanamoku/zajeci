@@ -9,7 +9,7 @@ import type { Http2ServerResponse } from "node:http2";
  * @property {IMsg[]} [msgs] - Pole zpráv obsahujících informace o výsledku operace.
  * @property {IPagination} [meta] - Metadata pro stránkování.
  */
-export interface IResponse extends Http2ServerResponse {
+export interface IResponse {
   data?: any;
   msgs?: IMsg[];
   meta?: IPagination;

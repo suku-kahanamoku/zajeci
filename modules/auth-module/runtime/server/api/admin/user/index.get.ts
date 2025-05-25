@@ -7,33 +7,36 @@ import {
 } from "@/modules/mongoose-module/runtime/utils/server.functions";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 
-import { UserModel } from "../../../../models/user.schema";
+import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
+import { IUsersResponse } from "@/modules/auth-module/runtime/types";
 
-export default defineEventHandler(async (event: H3Event) => {
-  const query = getQuery(event);
+export default defineEventHandler(
+  async (event: H3Event): Promise<IUsersResponse> => {
+    const query = getQuery(event);
 
-  const where = JSON.parse((query.q || "{}") as string);
-  const limit = Number.parseInt(query.limit as string, 10) || 100;
-  const page = Number.parseInt(query.page as string, 10) || 1;
-  const skip = (page - 1) * limit;
+    const where = JSON.parse((query.q || "{}") as string);
+    const limit = Number.parseInt(query.limit as string, 10) || 100;
+    const page = Number.parseInt(query.page as string, 10) || 1;
+    const skip = (page - 1) * limit;
 
-  // Nejdrive zkontroluje, zda je pripojeni k databazi
-  if (GET_STATUS() === 0) {
-    await CONNECT_WITH_RETRY();
+    // Nejdrive zkontroluje, zda je pripojeni k databazi
+    if (GET_STATUS() === 0) {
+      await CONNECT_WITH_RETRY();
+    }
+
+    const result = await UserModel.find(where).limit(limit).skip(skip);
+
+    const total = await UserModel.countDocuments(where);
+
+    const users = result?.map((i) => {
+      const user = { ...i.toObject(), password: undefined };
+      RESOLVE_FACTORY(user, query.factory);
+      return user;
+    });
+
+    return {
+      data: users,
+      meta: { total, limit, skip },
+    };
   }
-
-  const result = await UserModel.find(where).limit(limit).skip(skip);
-
-  const total = await UserModel.countDocuments(where);
-
-  const users = result?.map((i) => {
-    const user = { ...i.toObject(), password: undefined };
-    RESOLVE_FACTORY(user, query.factory);
-    return user;
-  });
-
-  return {
-    data: users,
-    meta: { total, limit, skip },
-  };
-});
+);
