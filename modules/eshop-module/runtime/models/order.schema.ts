@@ -1,16 +1,16 @@
 import { Schema, model } from "mongoose";
 
 import {
-  ICart,
-  IDelivery,
   DeliveryServices,
-  IOrder,
   OrderStatus,
-  IPayment,
   PaymentServices,
-} from "../types/order.type";
-import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
-import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
+  type ICart,
+  type IDelivery,
+  type IOrder,
+  type IPayment,
+} from "@/modules/eshop-module/runtime/types/order.interface";
+import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
+import type { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 
 export const AddressOrderSchema = new Schema<IAddress>(
   {

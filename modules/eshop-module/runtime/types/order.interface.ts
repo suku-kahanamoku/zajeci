@@ -1,8 +1,7 @@
-import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
-
-import { IUser } from "@/modules/auth-module/runtime/types/user.interface";
-import { IResponse } from "@/modules/common-module/runtime/types";
-import { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
+import type { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
+import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
+import type { IResponse } from "@/modules/common-module/runtime/types";
+import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 /**
  * Enum pro typy plateb

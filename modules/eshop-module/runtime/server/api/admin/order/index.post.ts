@@ -1,24 +1,25 @@
 import { H3Event } from "h3";
 
-import { OrderModel } from "@/server/models/order.schema";
+import { OrderModel } from "~/modules/eshop-module/runtime/models/order.schema";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils";
-import { IOrder, IOrderResponse } from "@/server/types/order.type";
+import { IOrderResponse } from "~/modules/eshop-module/runtime/types/order.interface";
 
 export default defineEventHandler(
   async (event: H3Event): Promise<IOrderResponse> => {
     const query = getQuery(event);
+    const body = await readBody(event);
 
     // Nejdrive zkontroluje, zda je pripojeni k databazi
     if (GET_STATUS() === 0) {
       await CONNECT_WITH_RETRY();
     }
 
-    const order = await OrderModel.findOne({ _id: event.context.params?._id });
-    const result = order?.toObject() || ({} as IOrder);
+    const order = await OrderModel.create(body);
+    const result = order?.toObject();
     RESOLVE_FACTORY(result, query.factory);
 
     return {

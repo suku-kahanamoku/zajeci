@@ -2,13 +2,13 @@
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { IOrder } from "@/server/types/order.type";
+import type { IOrder } from "~/modules/eshop-module/runtime/types/order.interface";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 definePageMeta({
   layout: "admin",
-  syscode: "admin_order_create",
-  title: "$.admin.order.create.title",
+  syscode: "admin_order_update",
+  title: "$.admin.order.update.title",
   middleware: () => {
     const auth = useAuthStore();
 
@@ -19,13 +19,13 @@ definePageMeta({
 });
 
 const { $tt } = useNuxtApp();
+const route = useRoute();
 const toast = useToast();
 const today = new Date();
-const loading = ref();
-const { defaultItem } = useOrders();
+const { getChangedParams } = useOrders();
 
 useHead({
-  title: $tt("$.admin.order.create.title"),
+  title: `${$tt("$.base.title")} | ${$tt("$.forgot_password.title")}`,
   meta: [
     { name: "description", content: $tt("$.base.description") },
     { name: "keywords", content: $tt("$.base.description") },
@@ -68,15 +68,27 @@ const schema = object({
   }),
 });
 
-const state = ref<IOrder>(CLONE(defaultItem));
+const { data: order, pending } = await useAsyncData(async () => {
+  try {
+    return await $fetch(`/api/admin/order/${route.params._id}`);
+  } catch (error: any) {
+    console.error(error);
+  }
+});
+
+const state = ref<IOrder>(CLONE(order.value));
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
-  loading.value = true;
+  pending.value = true;
   try {
-    await $fetch("/api/admin/order", { method: "POST", body: event.data });
-    state.value = CLONE(defaultItem);
+    const changedParams = getChangedParams(order.value as any, event.data);
+    const result = await $fetch(`/api/admin/order/${route.params._id}`, {
+      method: "PATCH",
+      body: changedParams,
+    });
+    state.value = CLONE(result);
     toast.add({
-      title: $tt("$.form.post_success_msg"),
+      title: $tt("$.form.patch_success_msg"),
       color: "success",
       icon: "i-heroicons-check",
     });
@@ -87,7 +99,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
       icon: "i-heroicons-exclamation-circle",
     });
   }
-  loading.value = false;
+  setTimeout(() => (pending.value = false), 400);
 }
 </script>
 
@@ -101,13 +113,14 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
           <h1
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
           >
-            {{ $tt("$.admin.order.create.title") }}
+            {{ $tt("$.admin.order.update.title", { name: state?._id }) }}
           </h1>
 
           <AdminFormOrder
+            v-if="state"
             :schema="schema"
             :item="state"
-            :loading="loading"
+            :loading="pending"
             @submit="onSubmit"
           />
         </div>

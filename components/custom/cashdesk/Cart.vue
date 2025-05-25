@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
-import type { ICart } from "@/server/types/order.type";
+import type { ICart } from "~/modules/eshop-module/runtime/types/order.interface";
 
 const { $tt } = useNuxtApp();
 const {
