@@ -104,7 +104,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
             {{ $tt("$.admin.order.create.title") }}
           </h1>
 
-          <AdminFormOrder
+          <OrderForm
             :schema="schema"
             :item="state"
             :loading="loading"

@@ -95,11 +95,11 @@ async function onNext() {
           <UTabs v-model="selected" :items="tabs">
             <template #item="{ item }">
               <div class="py-4">
-                <CustomCashdeskCart v-if="item.key === 'cart'" />
-                <CustomCashdeskDeliveryPayment
+                <CashdeskCart v-if="item.key === 'cart'" />
+                <CashdeskDeliveryPayment
                   v-else-if="item.key === 'delivery_payment'"
                 />
-                <CustomCashdeskSummary v-else-if="item.key === 'summary'" />
+                <CashdeskSummary v-else-if="item.key === 'summary'" />
               </div>
             </template>
           </UTabs>

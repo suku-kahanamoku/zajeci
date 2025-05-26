@@ -88,7 +88,7 @@ async function onDelete(value: boolean) {
         />
       </div>
 
-      <AdminListOrder
+      <OrderList
         :orders="orders || []"
         :pending="pending"
         @delete="

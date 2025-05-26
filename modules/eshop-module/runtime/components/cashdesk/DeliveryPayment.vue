@@ -26,18 +26,18 @@ const selected = ref();
         <div class="flex items-center justify-center mx-auto w-full">
           <CustomFormLogin v-if="item.key === 'login'" />
           <CustomFormSignup v-else-if="item.key === 'signup'" />
-          <CustomCashdeskContact v-else />
+          <CashdeskContact v-else />
         </div>
       </template>
     </UTabs>
     <div v-else class="flex items-center justify-center mx-auto w-full">
-      <CustomCashdeskContact />
+      <CashdeskContact />
     </div>
     <div
       class="flex flex-col md:flex-row items-stretch justify-between md:gap-8"
     >
-      <CustomCashdeskDelivery />
-      <CustomCashdeskPayment />
+      <CashdeskDelivery />
+      <CashdeskPayment />
     </div>
   </div>
 </template>

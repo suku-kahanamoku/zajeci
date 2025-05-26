@@ -116,7 +116,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
             {{ $tt("$.admin.order.update.title", { name: state?._id }) }}
           </h1>
 
-          <AdminFormOrder
+          <OrderForm
             v-if="state"
             :schema="schema"
             :item="state"
