@@ -65,14 +65,7 @@ async function onSubmit(event: Record<string, any>) {
       </p>
       <CmpForm
         :fields="(config?.fields as IFormField[])"
-        :ui="{
-          base: 'flex flex-col gap-4 !bg-transparent',
-          ring: '',
-          shadow: '',
-          divide: '',
-          body: { base: 'flex flex-col gap-4', padding: '' },
-          footer: { base: 'text-end', padding: '' },
-        }"
+        variant="soft"
         @submit="onSubmit"
       >
         <template #actions>

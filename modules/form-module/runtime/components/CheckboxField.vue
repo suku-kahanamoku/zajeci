@@ -50,14 +50,7 @@ const isDifferent = computed(() => {
     :help="$tt(field.help!)"
     :size="field.size || 'md'"
     :required="field.required"
-    :ui="
-      defu(
-        {
-          container: 'flex flex-col',
-        },
-        ui || {}
-      )
-    "
+    :ui="ui"
   >
     <!-- Slot pro description -->
     <template v-if="$slots.description" #description>
@@ -93,9 +86,6 @@ const isDifferent = computed(() => {
       :help="$tt(field.help!)"
       :class="{ 'field-warning': isDifferent }"
       aria-label="Checkbox"
-      :ui="{
-        wrapper: 'items-center h-9',
-      }"
       @focus="emits('focus', $event, field)"
       @blur="emits('blur', $event, field)"
     >

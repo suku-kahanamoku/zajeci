@@ -64,16 +64,6 @@ async function checkValidation() {
             v-model="cashdesk.delivery.type"
             :value="option.value"
             :disabled="option?.disabled"
-            :ui="{
-              wrapper: 'py-1',
-              base: `${
-                option.disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-              } mt-4`,
-              inner: 'w-full',
-              label: option.disabled
-                ? 'cursor-not-allowed opacity-50'
-                : 'cursor-pointer',
-            }"
           >
             <template #label>
               <div class="flex items-center justify-between w-full">
@@ -96,11 +86,7 @@ async function checkValidation() {
                   <span>
                     {{ $tt(option?.label) }}
                   </span>
-                  <UTooltip
-                    v-if="option?.help"
-                    :text="$tt(option.help)"
-                    :ui="{ base: 'text-ellipsis h-100' }"
-                  >
+                  <UTooltip v-if="option?.help" :text="$tt(option.help)">
                     <Icon name="mdi:question-mark-circle" size="20" />
                   </UTooltip>
                 </div>

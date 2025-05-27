@@ -42,13 +42,7 @@ const option = computed(() =>
       <div v-if="option.length" class="flex flex-wrap gap-2 -mb-1">
         <template v-for="opt in option">
           <UChip size="md" color="error">
-            <CmpTooltip
-              v-if="opt?.item?.tooltip"
-              :ui="{
-                wrapper: 'flex',
-                base: '!overflow-visible !text-wrap h-fit text-left',
-              }"
-            >
+            <CmpTooltip v-if="opt?.item?.tooltip">
               <UBadge
                 :label="$tt(opt?.label!)"
                 rounded

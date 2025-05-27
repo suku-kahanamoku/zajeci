@@ -50,5 +50,5 @@ const items = computed(() => {
 
 <template>
   <!-- Breadcrumb navigace -->
-  <UBreadcrumb :links="items" :ui="{ wrapper: 'p-4', active: '' }" />
+  <UBreadcrumb :links="items" />
 </template>

@@ -27,18 +27,7 @@ defineProps<{
 
 <template>
   <!-- Tooltip komponenta -->
-  <UTooltip
-    :popper="popper"
-    :open-delay="openDelay"
-    :close-delay="closeDelay"
-    :ui="
-      defu(ui || {}, {
-        background: 'bg-gray-700 dark:bg-white',
-        color: 'text-white dark:text-gray-900',
-        arrow: { background: 'dark:before:bg-gray-200 before:bg-gray-800' },
-      })
-    "
-  >
+  <UTooltip :popper="popper" :open-delay="openDelay" :close-delay="closeDelay">
     <!-- Obsah tooltipu -->
     <template #default>
       <slot />

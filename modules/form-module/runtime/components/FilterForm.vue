@@ -92,17 +92,6 @@ defineExpose({ form });
         ref="form"
         :fields="fields"
         :actions="{ disabled: true }"
-        :ui="{
-          ring: '',
-          shadow: '',
-          divide: '',
-          background: 'bg-gray-50',
-          body: {
-            base: 'flex flex-col sm:flex-row flex-wrap gap-2',
-            padding: '',
-          },
-          form: 'block',
-        }"
         @change="
           (payload: Record<string, any>, value: any, field: IFormField, options: IFormFieldOption[]) =>
             emits('change', payload, operators, value, field, options)
@@ -115,11 +104,6 @@ defineExpose({ form });
             v-for="field in displayFields"
             v-model="model[field.name]"
             :field="field"
-            :ui="{
-              wrapper: 'sm:w-52',
-              hint: 'flex',
-              label: { base: 'truncate', wrapper: 'min-h-6' },
-            }"
             :key="field.name + field.key"
             @clear="form?.onChange"
             @select="form?.onChange"
@@ -164,19 +148,13 @@ defineExpose({ form });
 
           <div class="flex flex-row gap-2">
             <!-- tlacitko pro pridani fieldu do filtru -->
-            <UDropdown
-              :items="[otherFields as DropdownMenuItem[]]"
-              :ui="{ wrapper: 'flex flex-col justify-end align-middle mb-1' }"
-            >
+            <UDropdown :items="[otherFields as DropdownMenuItem[]]">
               <CmpTooltip>
                 <UButton
                   data-testid="filter-form-add-field"
                   size="xs"
                   icon="i-heroicons-plus"
                   :disabled="!otherFields.length"
-                  :ui="{
-                    base: 'flex justify-center w-full sm:w-auto sm:mb-0.5',
-                  }"
                   aria-hidden
                   aria-label="Add field button"
                 />
@@ -186,11 +164,7 @@ defineExpose({ form });
             </UDropdown>
 
             <!-- tlacitko pro propojeni fieldu se sloupcem -->
-            <CmpTooltip
-              :ui="{
-                wrapper: 'flex flex-col justify-end align-middle mb-1.5',
-              }"
-            >
+            <CmpTooltip>
               <UToggle
                 v-model="fixModel"
                 size="lg"

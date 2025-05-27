@@ -81,7 +81,7 @@ async function onDelete(value: boolean) {
           :to="localePath(routes.admin_order_create?.path)"
           icon="i-heroicons-plus-circle"
           class="text-orange-600 dark:text-orange-600"
-          :ui="{ rounded: 'rounded-full' }"
+          
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :loading="pending"

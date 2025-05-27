@@ -31,12 +31,7 @@ const model = defineModel<string>({ get: (val) => val || opers.value[0] });
 </script>
 
 <template>
-  <UDropdown
-    v-model="model"
-    :items="operators"
-    :padded="false"
-    :ui="{ width: 'w-auto' }"
-  >
+  <UDropdown v-model="model" :items="operators" :padded="false">
     <CmpTooltip>
       <UButton
         :data-testid="`${field.type || 'text'}-${field.name}-toggle-operator`"
@@ -54,7 +49,7 @@ const model = defineModel<string>({ get: (val) => val || opers.value[0] });
     </CmpTooltip>
 
     <template #item="{ item }">
-      <CmpTooltip :ui="{ wrapper: 'w-full' }">
+      <CmpTooltip>
         {{ item.label }}
 
         <template #text>

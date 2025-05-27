@@ -90,12 +90,6 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
     // Login api order endpoints
-    const apiOrderDir = resolve("./runtime/server/api/order");
-    fs.readdirSync(apiOrderDir)?.forEach((file) => {
-      GENERATE_API_ENDPOINT(file, "/api/order", resolve);
-    });
-
-    // Login api order endpoints
     const apiAdminDir = resolve("./runtime/server/api/admin/order");
     fs.readdirSync(apiAdminDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/order", resolve);

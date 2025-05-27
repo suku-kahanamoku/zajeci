@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { ButtonProps } from "#ui/types";
-import defu from "defu";
 
 import type { IItem } from "@/modules/common-module/runtime/types";
 import type { IBtn } from "@/modules/ui-module/runtime/types";
@@ -55,14 +54,14 @@ defineExpose({ formCmp });
 </script>
 
 <template>
-  <UModal v-model="open" :ui="ui?.dialog">
+  <UModal v-model="open">
     <CmpForm
       ref="formCmp"
       :fields="fields"
       :item="item"
       :color="color"
       :actions="actions"
-      :ui="defu(ui || {}, { header: { padding: '' } })"
+      :ui="ui"
       :loading="loading"
       @submit="(payload: Record<string, any>) => emits('submit', payload)"
       @cancel="(payload: Record<string, any> | undefined | undefined) => emits('cancel', payload)"

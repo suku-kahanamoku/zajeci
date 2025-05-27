@@ -14,7 +14,6 @@ const authStore = useAuthStore();
     <UDropdown
       v-if="authStore?.loggedIn"
       :items="menuItems"
-      :ui="{ item: { disabled: 'cursor-text select-text' } }"
       :popper="{ placement: 'bottom-start' }"
     >
       <div data-testid="user-avatar" class="flex">

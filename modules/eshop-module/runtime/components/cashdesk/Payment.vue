@@ -53,14 +53,6 @@ async function checkValidation() {
             v-model="cashdesk.payment.type"
             :value="option.value"
             :disabled="option?.disabled"
-            :ui="{
-              wrapper: 'items-center py-1',
-              base: option.disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-              inner: 'w-full',
-              label: option.disabled
-                ? 'cursor-not-allowed opacity-50'
-                : 'cursor-pointer',
-            }"
           >
             <template #label>
               <div class="flex items-center justify-between w-full">

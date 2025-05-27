@@ -283,13 +283,7 @@ onMounted(loadOptions);
       <!-- option -->
       <template #option="{ option }">
         <div class="w-full" @click="onClick($event, option.value)">
-          <CmpTooltip
-            v-if="option.item?.tooltip"
-            :ui="{
-              wrapper: 'flex',
-              base: '!overflow-visible !text-wrap h-fit',
-            }"
-          >
+          <CmpTooltip v-if="option.item?.tooltip">
             {{ $tt(option.label) }}
 
             <template #text>

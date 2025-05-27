@@ -85,26 +85,16 @@ async function onSubmit(event: Record<string, any>) {
         </UButton>
       </div>
 
-      <UDivider
-        :label="$tt('$.login.or')"
-        :ui="{ border: { base: 'dark:border-gray-700' } }"
-      />
+      <USeparator :label="$tt('$.login.or')" />
 
       <CmpForm
         :fields="(config?.fields as IFormField[])"
-        :ui="{
-          base: 'flex flex-col gap-4 !bg-transparent',
-          ring: '',
-          shadow: '',
-          divide: '',
-          body: { base: 'flex flex-col gap-4', padding: '' },
-          footer: { base: 'flex flex-col gap-4', padding: '' },
-        }"
+        variant="soft"
         @submit="onSubmit"
       >
         <template #remember="{ field, model }">
           <div class="flex items-center justify-between">
-            <CmpField v-model="model[field.name]" :field="field" />
+            <CmpField v-model="model[field.name]" :field="field" class="flex" />
             <UButton
               data-testid="forgot-password"
               :to="localePath(routes['forgot-password']?.path)"
@@ -117,6 +107,7 @@ async function onSubmit(event: Record<string, any>) {
             </UButton>
           </div>
         </template>
+        
         <template #actions>
           <UButton
             data-testid="login-submit"

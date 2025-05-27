@@ -79,20 +79,17 @@ const columns = [
         <UButton
           icon="i-heroicons-minus"
           color="orange"
-          :ui="{ rounded: 'rounded-full' }"
           @click="decreaseQuantity(row)"
         />
         <UInput
           :model-value="row.quantity"
           type="number"
-          :ui="{ base: 'appearance-none text-center' }"
           :min="1"
           @change="setQuantity(parseInt($event), row)"
         />
         <UButton
           icon="i-heroicons-plus"
           color="success"
-          :ui="{ rounded: 'rounded-full' }"
           @click="increaseQuantity(row)"
         />
       </div>
@@ -140,20 +137,17 @@ const columns = [
           <UButton
             icon="i-heroicons-minus"
             color="orange"
-            :ui="{ rounded: 'rounded-full' }"
             @click="decreaseQuantity(cart)"
           />
           <UInput
             :model-value="cart.quantity"
             type="number"
-            :ui="{ base: 'appearance-none w-14 text-center' }"
             :min="1"
             @change="setQuantity(parseInt($event), cart)"
           />
           <UButton
             icon="i-heroicons-plus"
             color="success"
-            :ui="{ rounded: 'rounded-full' }"
             @click="increaseQuantity(cart)"
           />
         </div>

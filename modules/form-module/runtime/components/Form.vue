@@ -137,14 +137,7 @@ defineExpose({ form, model, schema, onChange });
       @submit.prevent="onSubmit"
       @change="emits('change', model, $event)"
     >
-      <UCard
-        :variant="variant"
-        :ui="
-          defu(ui || {}, {
-            body: 'flex flex-col gap-4',
-          })
-        "
-      >
+      <UCard :variant="variant" :ui="ui">
         <template v-if="$slots.header" #header>
           <slot name="header" />
         </template>
@@ -230,8 +223,8 @@ defineExpose({ form, model, schema, onChange });
                     ? true
                     : false
                   : form?.getErrors()?.length
-                  ? true
-                  : false
+                    ? true
+                    : false
               "
               :loading="loading"
             >

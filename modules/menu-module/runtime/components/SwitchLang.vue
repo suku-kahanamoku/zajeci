@@ -27,18 +27,7 @@ const { filtredLangs, lang } = useLang();
 </script>
 
 <template>
-  <UDropdown
-    :items="[filtredLangs]"
-    :ui="{
-      wrapper: 'p-1',
-      container: 'custom-popper',
-      item: { disabled: 'cursor-text select-text', base: 'w-auto' },
-      width: 'w-auto',
-      popper: {
-        strategy: 'absolute',
-      },
-    }"
-  >
+  <UDropdown :items="[filtredLangs]">
     <UButton :icon="lang.icon" variant="ghost" aria-label="Switch language" />
 
     <template #item="{ item }">

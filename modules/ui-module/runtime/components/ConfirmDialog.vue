@@ -28,7 +28,7 @@ const model = defineModel<boolean>();
 <template>
   <!-- Dialogové okno -->
   <UModal v-model="model">
-    <UCard :ui="{ header: '' }">
+    <UCard>
       <!-- Hlavička dialogu -->
       <template #header>
         <div class="flex items-start justify-between">
@@ -45,7 +45,6 @@ const model = defineModel<boolean>();
             variant="ghost"
             size="xl"
             icon="i-heroicons-x-mark-20-solid"
-            :ui="{ rounded: 'rounded-tr-lg' }"
             @click="model = false"
           />
         </div>
