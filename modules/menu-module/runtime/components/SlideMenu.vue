@@ -53,12 +53,12 @@ const localePath = useLocalePath();
           >{{ $tt(routes.login?.meta?.title as string) }}</UButton
         >
         <UButton
-          :to="localePath(routes.login?.path)"
+          :to="localePath(routes.signup?.path)"
           size="lg"
           active-class="hidden"
           class="flex-grow flex-shrink text-center block"
           @click="isOpen = false"
-          >{{ $tt(routes.login?.meta?.title as string) }}</UButton
+          >{{ $tt(routes.signup?.meta?.title as string) }}</UButton
         >
       </div>
     </template>

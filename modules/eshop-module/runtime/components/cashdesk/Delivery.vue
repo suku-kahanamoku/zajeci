@@ -3,7 +3,7 @@ import { object, string } from "yup";
 import { useToNumber } from "@vueuse/core";
 import { useDebounceFn } from "@vueuse/core";
 
-import { DeliveryServices } from "~/modules/eshop-module/runtime/types/order.interface";
+import { DeliveryServices } from "@/modules/eshop-module/runtime/types/order.interface";
 
 const { $tt } = useNuxtApp();
 const {

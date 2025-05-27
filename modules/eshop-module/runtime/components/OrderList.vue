@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IOrder } from "~/modules/eshop-module/runtime/types/order.interface";
+import type { IOrder } from "@/modules/eshop-module/runtime/types/order.interface";
 
 defineProps<{
   orders: IOrder[];

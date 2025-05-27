@@ -2,7 +2,7 @@
 import { object, string, boolean, type InferType, number, array } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 
-import type { IOrder } from "~/modules/eshop-module/runtime/types/order.interface";
+import type { IOrder } from "@/modules/eshop-module/runtime/types/order.interface";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 definePageMeta({

@@ -2,7 +2,7 @@
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 
-import { ITERATE } from "~/modules/common-module/runtime/utils/modify-object.functions";
+import { ITERATE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
 definePageMeta({
   layout: "default",

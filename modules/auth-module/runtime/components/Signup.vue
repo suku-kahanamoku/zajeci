@@ -68,42 +68,38 @@ async function onSubmit(event: Record<string, any>) {
             <CmpField v-model="model[field.name]" :field="field">
               <template #label>
                 <span> {{ $tt("$.signup.accept_condition") }} </span
-                >&nbsp;<UButton
+                >&nbsp;<ULink
                   data-testid="terms-conditions"
                   :to="localePath(routes['terms-conditions']?.path)"
                   class="text-primary-500"
-                  variant="link"
-                  size="sm"
-                  :padded="false"
                 >
                   {{ $tt(routes["terms-conditions"]?.meta?.title as string) }}
-                </UButton>
+                </ULink>
               </template>
             </CmpField>
           </div>
         </template>
         <template #actions>
-          <UButton
-            data-testid="signup-submit"
-            type="submit"
-            size="lg"
-            block
-            :loading="loading"
-          >
-            {{ $tt("$.signup.title") }}
-          </UButton>
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            {{ $tt("$.signup.has_account") }}
+          <div class="flex flex-col gap-4">
             <UButton
-              data-testid="login"
-              :to="localePath(routes?.login?.path)"
-              class="font-medium text-primary-500"
-              variant="link"
-              size="sm"
-              :padded="false"
-              >{{ $tt(routes?.login?.meta?.title as string) }}</UButton
+              data-testid="signup-submit"
+              type="submit"
+              size="lg"
+              block
+              :loading="loading"
             >
-          </p>
+              {{ $tt("$.signup.title") }}
+            </UButton>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              {{ $tt("$.signup.has_account") }}
+              <ULink
+                data-testid="login"
+                :to="localePath(routes?.login?.path)"
+                class="font-medium text-primary-500"
+                >{{ $tt(routes?.login?.meta?.title as string) }}</ULink
+              >
+            </p>
+          </div>
         </template>
       </CmpForm>
     </div>

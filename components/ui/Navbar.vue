@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { IMenuItem } from "@/modules/menu-module/runtime/types/MenuItem.interface";
+
 defineProps<{
-  menuItems?: { label: string; to: string }[];
+  menuItems?: IMenuItem[];
 }>();
 
 const localePath = useLocalePath();

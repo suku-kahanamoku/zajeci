@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
-import type { IOrder } from "~/modules/eshop-module/runtime/types/order.interface";
+import type { IOrder } from "@/modules/eshop-module/runtime/types/order.interface";
 import type { Schema } from "yup";
 
 const emits = defineEmits<{

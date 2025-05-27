@@ -1,12 +1,12 @@
 import { H3Event } from "h3";
 
-import { OrderModel } from "~/modules/eshop-module/runtime/models/order.schema";
+import { OrderModel } from "@/modules/eshop-module/runtime/models/order.schema";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils";
-import { IOrder, IOrderResponse } from "~/modules/eshop-module/runtime/types/order.interface";
+import { IOrder, IOrderResponse } from "@/modules/eshop-module/runtime/types/order.interface";
 
 export default defineEventHandler(
   async (event: H3Event): Promise<IOrderResponse> => {

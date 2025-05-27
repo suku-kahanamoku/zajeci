@@ -1,7 +1,7 @@
 import { H3Event } from "h3";
 
-import { OrderModel } from "~/modules/eshop-module/runtime/models/order.schema";
-import { IOrder, IOrderesResponse } from "~/modules/eshop-module/runtime/types/order.interface";
+import { OrderModel } from "@/modules/eshop-module/runtime/models/order.schema";
+import { IOrder, IOrderesResponse } from "@/modules/eshop-module/runtime/types/order.interface";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,

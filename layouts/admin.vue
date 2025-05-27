@@ -3,14 +3,14 @@ const { menuItem } = useMenuItems();
 const localePath = useLocalePath();
 const auth = useAuthStore();
 
-const admin = menuItem("admin");
-admin.to = localePath(admin.to);
+const admin = menuItem("admin")!;
+admin.to = localePath(admin.to!);
 
 const menuItems = [admin];
 
 if (auth.isAdmin) {
-  const adminWine = menuItem("admin_wine");
-  adminWine.to = localePath(adminWine.to);
+  const adminWine = menuItem("admin_wine")!;
+  adminWine.to = localePath(adminWine.to!);
   menuItems.push(adminWine);
 }
 </script>

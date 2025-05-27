@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
-import { PaymentServices } from "~/modules/eshop-module/runtime/types/order.interface";
+import { PaymentServices } from "@/modules/eshop-module/runtime/types/order.interface";
 
 const { $tt } = useNuxtApp();
 const {

@@ -55,115 +55,6 @@ export const useAuthStore = defineStore("Auth", () => {
 
   const isAdmin = computed(() => user.value?.role === "admin");
 
-  const roles: Record<string, { value: string; label: string }> = {
-    guest: { value: "guest", label: "$.profile.role.guest" },
-    user: { value: "user", label: "$.profile.role.user" },
-    admin: { value: "admin", label: "$.profile.role.admin" },
-  };
-
-  const roleOptions = Object.values(roles);
-
-  const fields: Record<
-    string,
-    {
-      key: string;
-      label: string;
-      placeholder?: string;
-      autocomplete?: string;
-    }
-  > = {
-    email: {
-      key: "email",
-      label: "$.form.email",
-      placeholder: "info@company.com",
-      autocomplete: "email",
-    },
-    phone: {
-      key: "phone",
-      label: "$.form.phone",
-      placeholder: "+420 123 456 789",
-      autocomplete: "tel",
-    },
-    name: {
-      key: "name",
-      label: "$.form.name",
-      placeholder: "$.profile.placeholder.name",
-      autocomplete: "name",
-    },
-    givenName: {
-      key: "givenName",
-      label: "$.profile.given_name",
-      placeholder: "$.profile.placeholder.given_name",
-      autocomplete: "given-name",
-    },
-    surname: {
-      key: "surname",
-      label: "$.profile.surname",
-      placeholder: "$.profile.placeholder.surname",
-      autocomplete: "family-name",
-    },
-    password: {
-      key: "password",
-      label: "$.form.password",
-      placeholder: "********",
-      autocomplete: "current-password",
-    },
-    terms: {
-      key: "terms",
-      label: "$.signup.accept_condition",
-    },
-    newsletter: {
-      key: "newsletter",
-      label: "$.profile.newsletter",
-    },
-    role: {
-      key: "role",
-      label: "$.profile.role.title",
-    },
-    street: {
-      key: "street",
-      label: "$.profile.street",
-      placeholder: "$.profile.placeholder.street",
-      autocomplete: "street-address",
-    },
-    city: {
-      key: "city",
-      label: "$.profile.city",
-      placeholder: "$.profile.placeholder.city",
-    },
-    zip: {
-      key: "zip",
-      label: "$.profile.zip",
-      placeholder: "$.profile.placeholder.zip",
-      autocomplete: "postal-code",
-    },
-    state: {
-      key: "state",
-      label: "$.profile.state",
-      placeholder: "$.form.select",
-      autocomplete: "country",
-    },
-  };
-
-  const fieldOptions = Object.values(fields);
-
-  const states: Record<
-    string,
-    {
-      value: string;
-      label: string;
-      icon: string;
-    }
-  > = {
-    cz: { value: "cz", label: "$.state.cz", icon: "emojione:flag-for-czechia" },
-    sk: {
-      value: "sk",
-      label: "$.state.sk",
-      icon: "emojione:flag-for-slovakia",
-    },
-  };
-  const stateOptions = Object.values(states);
-
   /**
    * Funkce pro prihlaseni
    *
@@ -246,11 +137,5 @@ export const useAuthStore = defineStore("Auth", () => {
     session,
     initials,
     isAdmin,
-    roles,
-    roleOptions,
-    fields,
-    fieldOptions,
-    states,
-    stateOptions,
   };
 });

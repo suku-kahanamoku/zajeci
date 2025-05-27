@@ -9,7 +9,7 @@ import {
   type IDelivery,
   PaymentServices,
   type ICart,
-} from "~/modules/eshop-module/runtime/types/order.interface";
+} from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import {
   CLONE,
