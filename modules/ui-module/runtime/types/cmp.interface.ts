@@ -1,34 +1,16 @@
-import type { ButtonVariant, ButtonColor, ButtonSize } from "#ui/types";
+import type { ButtonProps } from "#ui/types";
 
 /**
  * @interface IBtn
  * @description
  * Rozhraní pro tlačítko (Button).
  */
-export interface IBtn {
+export interface IBtn extends ButtonProps {
   /**
    * @property {string} [label]
    * Popisek tlačítka.
    */
   label?: string;
-
-  /**
-   * @property {ButtonColor} [color]
-   * Barva tlačítka.
-   */
-  color?: ButtonColor;
-
-  /**
-   * @property {ButtonVariant} [variant]
-   * Varianta tlačítka.
-   */
-  variant?: ButtonVariant;
-
-  /**
-   * @property {ButtonSize} [size]
-   * Velikost tlačítka.
-   */
-  size?: ButtonSize;
 
   /**
    * @property {string} [link]

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { PopperOptions } from "#ui/types";
-import defu from "defu";
+import type { PopoverProps } from "#ui/types";
 
 defineProps<{
   /**
    * @description Možnosti pro Popper.js
    */
-  popper?: PopperOptions;
+  popper?: PopoverProps;
 
   /**
    * @description Zpoždění při otevření tooltipu (v ms)

@@ -194,7 +194,7 @@ defineExpose({ form, model, schema, onChange });
               data-testid="form-cancel"
               :to="localePath(actions?.no?.link!)"
               type="button"
-              :color="actions?.no?.color || 'gray'"
+              :color="actions?.no?.color"
               :variant="actions?.no?.variant"
               :size="actions?.no?.size"
               :icon="actions?.no?.icon"

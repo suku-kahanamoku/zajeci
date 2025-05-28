@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Button } from "#ui/types";
+import type { ButtonProps } from "#ui/types";
 
 const props = defineProps<{
   btns?: {
-    cancel?: Button;
-    ok?: Button;
+    cancel?: ButtonProps;
+    ok?: ButtonProps;
   };
 }>();
 
@@ -26,7 +26,6 @@ const model = defineModel<boolean>();
           </h3>
           <UButton
             icon="i-heroicons-x-mark"
-            color="white"
             square
             variant="solid"
             :aria-label="$tt('$.aria.close')"
@@ -42,7 +41,7 @@ const model = defineModel<boolean>();
           <div>
             <UButton
               :icon="btns?.cancel?.icon || 'i-heroicons-arrow-left'"
-              :color="btns?.cancel?.color || 'gray'"
+              :color="btns?.cancel?.color"
               :variant="btns?.cancel?.variant || 'outline'"
               size="lg"
               @click="model = false"

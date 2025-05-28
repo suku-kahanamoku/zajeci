@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Button, ButtonColor } from "#ui/types";
+import type { ButtonProps } from "#ui/types";
 
 const props = defineProps<{
-  color?: ButtonColor;
+  color?: ButtonProps["color"];
   btns?: {
-    cancel?: Button;
-    ok?: Button;
+    cancel?: ButtonProps;
+    ok?: ButtonProps;
   };
 }>();
 
@@ -37,7 +37,6 @@ watch(model, (value) => {
           </h3>
           <UButton
             icon="i-heroicons-x-mark"
-            color="white"
             square
             variant="solid"
             :aria-label="$tt('$.aria.close')"
@@ -52,7 +51,7 @@ watch(model, (value) => {
         <div class="flex justify-between">
           <UButton
             :icon="btns?.cancel?.icon"
-            :color="btns?.cancel?.color || 'gray'"
+            :color="btns?.cancel?.color"
             :variant="btns?.cancel?.variant || 'soft'"
             @click="model = false"
           >

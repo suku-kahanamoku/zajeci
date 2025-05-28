@@ -108,7 +108,7 @@ async function onNext() {
             <UButton
               :to="selected < 1 ? routes.wine.path : undefined"
               icon="i-heroicons-arrow-left"
-              color="white"
+              
               size="lg"
               @click="selected ? (selected -= 1) : undefined"
             >

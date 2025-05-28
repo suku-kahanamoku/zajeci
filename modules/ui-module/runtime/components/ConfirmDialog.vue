@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonColor } from "#ui/types";
+import type { ButtonProps } from "#ui/types";
 
 import type { IBtn } from "../types/cmp.interface";
 
@@ -7,7 +7,7 @@ defineProps<{
   /**
    * @description Barva dialogu
    */
-  color?: ButtonColor;
+  color?: ButtonProps["color"];
 
   /**
    * @description Akce pro tlačítka dialogu
@@ -59,7 +59,7 @@ const model = defineModel<boolean>();
           <!-- Tlačítko "Ne" -->
           <UButton
             data-testid="dialog-no"
-            :color="actions?.no?.color || 'gray'"
+            :color="actions?.no?.color"
             :variant="actions?.no?.variant"
             :size="actions?.no?.size"
             @click="model = false"

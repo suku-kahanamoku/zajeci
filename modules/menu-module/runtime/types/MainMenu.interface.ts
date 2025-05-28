@@ -1,4 +1,4 @@
-import type { Button } from "#ui/types";
+import type { ButtonProps } from "#ui/types";
 
 import type { IMenuItem } from "./MenuItem.interface";
 
@@ -15,7 +15,7 @@ export interface IMainMenuConfig {
   themeMenu?: {
     disabled?: boolean;
     aria?: string;
-  } & Button;
+  } & ButtonProps;
 
   /**
    * @property {Object} [langMenu]
@@ -24,7 +24,7 @@ export interface IMainMenuConfig {
   langMenu?: {
     disabled?: boolean;
     aria?: string;
-  } & Button;
+  } & ButtonProps;
 
   /**
    * @property {Object} [hamburgerMenu]
@@ -33,7 +33,7 @@ export interface IMainMenuConfig {
   hamburgerMenu?: {
     disabled?: boolean;
     aria?: string;
-  } & Button;
+  } & ButtonProps;
 }
 
 /**
