@@ -116,8 +116,9 @@ async function onDelete(value: boolean) {
       />
     </div>
 
-    <UiModalConfirm
+    <CmpConfirmDialog
       v-model="isOpen"
+      :title="$tt('$.btn.delete')"
       color="error"
       :btns="{
         ok: {
@@ -126,10 +127,6 @@ async function onDelete(value: boolean) {
       }"
       @confirm="onDelete"
     >
-      <template #header>
-        {{ $tt("$.btn.delete") }}
-      </template>
-
       {{
         selected?.length > 1
           ? $tt("$.message.delete_question_multi", {
@@ -137,6 +134,6 @@ async function onDelete(value: boolean) {
             })
           : $tt("$.message.delete_question", { name: selected?.[0]?.name })
       }}
-    </UiModalConfirm>
+    </CmpConfirmDialog>
   </div>
 </template>

@@ -68,8 +68,8 @@ function addToCashdesk() {
       </template>
     </UCard>
 
-    <UiModalCart v-model="modal">
-      <div>
+    <UModal v-model:open="modal" :title="$tt('$.cashdesk.cart.added')">
+      <template #body>
         <h3
           class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"
         >
@@ -102,7 +102,7 @@ function addToCashdesk() {
           color="info"
           class="mt-5"
         />
-      </div>
-    </UiModalCart>
+      </template>
+    </UModal>
   </div>
 </template>

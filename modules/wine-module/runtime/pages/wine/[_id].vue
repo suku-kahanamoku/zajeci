@@ -140,8 +140,8 @@ function addToCashdesk() {
       </div>
     </div>
 
-    <UiModalCart v-model="modal">
-      <div>
+    <UModal v-model:open="modal">
+      <template #body>
         <h3
           class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"
         >
@@ -174,7 +174,7 @@ function addToCashdesk() {
           color="info"
           class="mt-5"
         />
-      </div>
-    </UiModalCart>
+      </template>
+    </UModal>
   </section>
 </template>

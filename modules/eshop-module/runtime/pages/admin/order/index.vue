@@ -81,7 +81,6 @@ async function onDelete(value: boolean) {
           :to="localePath(routes.admin_order_create?.path)"
           icon="i-heroicons-plus-circle"
           class="text-orange-600 dark:text-orange-600"
-          
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :loading="pending"
@@ -98,8 +97,9 @@ async function onDelete(value: boolean) {
       />
     </div>
 
-    <UiModalConfirm
+    <CmpConfirmDialog
       v-model="isOpen"
+      :title="$tt('$.btn.delete')"
       color="error"
       :btns="{
         ok: {
@@ -108,11 +108,7 @@ async function onDelete(value: boolean) {
       }"
       @confirm="onDelete"
     >
-      <template #header>
-        {{ $tt("$.btn.delete") }}
-      </template>
-
       {{ $tt("$.message.delete_question", { name: deleteItem?._id }) }}
-    </UiModalConfirm>
+    </CmpConfirmDialog>
   </div>
 </template>

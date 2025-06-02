@@ -219,13 +219,11 @@ const columns = [
     </div>
   </div>
 
-  <UiModalConfirm
+  <CmpConfirmDialog
     v-model="isOpen"
+    :title="$tt('$.cashdesk.cart.remove_from_cart')"
     @confirm="$event && cashdesk.deleteItem(deleted?.wine?._id)"
   >
-    <template #header>
-      {{ $tt("$.cashdesk.cart.remove_from_cart") }}
-    </template>
     {{ $tt("$.cashdesk.cart.remove", { name: deleted?.wine?.name }) }}
-  </UiModalConfirm>
+  </CmpConfirmDialog>
 </template>
