@@ -34,7 +34,7 @@ async function onCopy() {
 </script>
 
 <template>
-  <CmpTooltip :popper="{ placement: 'left-start' }">
+  <CmpTooltip>
     <UButton
       data-testid="info-btn"
       icon="i-heroicons-information-circle"

@@ -342,6 +342,12 @@ export interface IRestOption {
   label: string;
 
   /**
+   * @property {string} description
+   * Popisek možnosti.
+   */
+  description: string;
+
+  /**
    * @property {string} [searchValue]
    * Hodnota pro vyhledávání.
    */
@@ -365,6 +371,12 @@ export interface IFormFieldOption {
    * Popisek možnosti.
    */
   label: string;
+
+  /**
+   * @property {string} description
+   * Popisek možnosti.
+   */
+  description?: string;
 
   /**
    * @property {boolean} [disabled]

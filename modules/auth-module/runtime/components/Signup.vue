@@ -73,7 +73,11 @@ async function onSubmit(event: Record<string, any>) {
                   :to="localePath(routes['terms-conditions']?.path)"
                   class="text-primary-500"
                 >
-                  {{ $tt(routes["terms-conditions"]?.meta?.title as string) }}
+                  {{
+                    $tt(
+                      routes["terms-conditions"]?.meta?.title as string
+                    )?.toLocaleLowerCase()
+                  }}
                 </ULink>
               </template>
             </CmpField>

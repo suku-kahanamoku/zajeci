@@ -52,11 +52,6 @@ const isDifferent = computed(() => {
     :required="field.required"
     :ui="ui"
   >
-    <!-- Slot pro description -->
-    <template v-if="$slots.description" #description>
-      <slot name="description" v-bind:field="field" v-bind:model="model" />
-    </template>
-
     <!-- Slot pro hint -->
     <template #hint>
       <slot
@@ -76,6 +71,7 @@ const isDifferent = computed(() => {
       :data-testid="`${field.type}-${field.name}`"
       ref="el"
       v-model="model"
+      :default-value="field.value"
       :type="field.type"
       :name="field.name"
       :required="field.required"
@@ -89,6 +85,15 @@ const isDifferent = computed(() => {
       @focus="emits('focus', $event, field)"
       @blur="emits('blur', $event, field)"
     >
+      <!-- Slot pro label -->
+      <template v-if="$slots.label" #label>
+        <slot name="label" v-bind:field="field" v-bind:model="model" />
+      </template>
+
+      <!-- Slot pro description -->
+      <template v-if="$slots.description" #description>
+        <slot name="description" v-bind:field="field" v-bind:model="model" />
+      </template>
     </UCheckbox>
   </UFormField>
 </template>

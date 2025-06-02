@@ -135,6 +135,10 @@ export function useField() {
         ?.map((option) => ({
           value: GET_OBJECT_PARAM(option, restOptions?.value || "value"),
           label: GET_OBJECT_PARAM(option, restOptions?.label || "label"),
+          description: GET_OBJECT_PARAM(
+            option,
+            restOptions?.description || "description"
+          ),
           disabled: option.disabled,
           item: option.item || option,
         }))
@@ -143,6 +147,10 @@ export function useField() {
       return {
         value: GET_OBJECT_PARAM(data, restOptions?.value || "value"),
         label: GET_OBJECT_PARAM(data, restOptions?.label || "label"),
+        description: GET_OBJECT_PARAM(
+          data,
+          restOptions?.description || "description"
+        ),
         disabled: data.disabled,
         item: data.item || data,
       };
