@@ -39,74 +39,70 @@ const setQuantity = (value: number, cart: ICart) => {
 };
 
 const columns = [
-  { key: "name", label: $tt("$.admin.wine.form.name") },
-  { key: "quantity", label: $tt("$.form.quantity") },
-  { key: "price", label: $tt("$.form.price") },
+  { accessorKey: "name", header: $tt("$.admin.wine.form.name") },
+  { accessorKey: "quantity", header: $tt("$.form.quantity") },
+  { accessorKey: "price", header: $tt("$.form.price") },
 ];
+console.log(cashdesk.carts);
 </script>
 
 <template>
-  <UTable :columns="columns" :rows="cashdesk.carts" class="hidden sm:block">
-    <template #quantity-header="{ column }">
-      <div class="text-center">
-        {{ column.label }}
-      </div>
-    </template>
-    <template #price-header="{ column }">
-      <div class="text-center">
-        {{ column.label }}
-      </div>
-    </template>
-
-    <template #name-data="{ row }">
+  <UTable
+    v-if="cashdesk?.carts?.length"
+    :columns="columns"
+    :data="cashdesk.carts"
+    class="hidden sm:block"
+  >
+    <template #name-cell="{ row }">
       <NuxtLink
-        :to="localePath(`${routes.wine.path}/${row.wine._id}`)"
+        :to="localePath(`${routes.wine.path}/${row.original.wine._id}`)"
         class="flex items-center"
       >
         <NuxtImg
-          :src="row.wine.image?.main?.src || '/img/bottle.jpg'"
+          :src="row.original.wine.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
           loading="lazy"
           format="webp"
           height="100"
           class="object-cover rounded-lg"
         />
-        <h3 class="text-lg font-semibold text-pretty">{{ row.wine.name }}</h3>
+        <h3 class="text-lg font-semibold text-pretty">
+          {{ row.original.wine.name }}
+        </h3>
       </NuxtLink>
     </template>
-    <template #quantity-data="{ row }">
+    <template #quantity-cell="{ row }">
       <div class="flex items-center justify-between space-x-2 w-36 mx-auto">
         <UButton
           icon="i-heroicons-minus"
-          color="orange"
-          @click="decreaseQuantity(row)"
+          @click="decreaseQuantity(row.original)"
         />
         <UInput
-          :model-value="row.quantity"
+          :model-value="row.original.quantity"
           type="number"
           :min="1"
-          @change="setQuantity(parseInt($event), row)"
+          @change="setQuantity(parseInt($event), row.original)"
         />
         <UButton
           icon="i-heroicons-plus"
           color="success"
-          @click="increaseQuantity(row)"
+          @click="increaseQuantity(row.original)"
         />
       </div>
     </template>
-    <template #price-data="{ row }">
+    <template #price-cell="{ row }">
       <div class="flex justify-between space-x-4">
         <p class="text-lg font-semibold text-end w-full">
           {{
-            useToNumber(row?.totalPrice?.toFixed(2) || 0).value.toLocaleString(
-              locale
-            )
+            useToNumber(
+              row.original.totalPrice?.toFixed(2) || 0
+            ).value.toLocaleString(locale)
           }}&nbsp;{{ $tt("$.czk") }}
         </p>
         <UButton
           icon="i-heroicons-trash"
           color="error"
-          @click="removeItem(row)"
+          @click="removeItem(row.original)"
         />
       </div>
     </template>
@@ -134,11 +130,7 @@ const columns = [
       </NuxtLink>
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">
-          <UButton
-            icon="i-heroicons-minus"
-            color="orange"
-            @click="decreaseQuantity(cart)"
-          />
+          <UButton icon="i-heroicons-minus" @click="decreaseQuantity(cart)" />
           <UInput
             :model-value="cart.quantity"
             type="number"

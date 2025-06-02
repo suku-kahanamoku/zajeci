@@ -12,7 +12,7 @@ defineProps<
       yes?: IBtn;
       no?: IBtn;
     };
-  } & ModalProps
+  } & /* @vue-ignore */ ModalProps
 >();
 
 const emits = defineEmits<{

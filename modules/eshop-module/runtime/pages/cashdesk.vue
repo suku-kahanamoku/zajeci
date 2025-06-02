@@ -23,16 +23,16 @@ const { routes } = useMenuItems();
 
 const tabs = ref([
   {
-    key: "cart",
+    slot: "cart",
     label: $tt("$.cashdesk.cart.title"),
   },
   {
-    key: "delivery_payment",
+    slot: "delivery_payment",
     label: $tt("$.cashdesk.delivery_payment"),
     disabled: computed(() => !cashdesk.carts?.length),
   },
   {
-    key: "summary",
+    slot: "summary",
     label: $tt("$.cashdesk.summary"),
     disabled: computed(
       () =>
@@ -92,15 +92,15 @@ async function onNext() {
       </h1>
       <div class="py-10">
         <client-only>
-          <UTabs v-model="selected" :items="tabs">
-            <template #item="{ item }">
-              <div class="py-4">
-                <CashdeskCart v-if="item.key === 'cart'" />
-                <CashdeskDeliveryPayment
-                  v-else-if="item.key === 'delivery_payment'"
-                />
-                <CashdeskSummary v-else-if="item.key === 'summary'" />
-              </div>
+          <UTabs :items="tabs">
+            <template #cart>
+              <CmpCashdeskCart />
+            </template>
+
+            <template #delivery_payment>
+            </template>
+
+            <template #summary>
             </template>
           </UTabs>
 
@@ -108,7 +108,6 @@ async function onNext() {
             <UButton
               :to="selected < 1 ? routes.wine.path : undefined"
               icon="i-heroicons-arrow-left"
-              
               size="lg"
               @click="selected ? (selected -= 1) : undefined"
             >
