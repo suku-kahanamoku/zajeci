@@ -55,11 +55,11 @@ console.log(cashdesk.carts);
   >
     <template #name-cell="{ row }">
       <NuxtLink
-        :to="localePath(`${routes.wine.path}/${row.original.wine._id}`)"
+        :to="localePath(`${routes.wine.path}/${row.original?.wine?._id}`)"
         class="flex items-center"
       >
         <NuxtImg
-          :src="row.original.wine.image?.main?.src || '/img/bottle.jpg'"
+          :src="row.original?.wine?.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
           loading="lazy"
           format="webp"
@@ -67,7 +67,7 @@ console.log(cashdesk.carts);
           class="object-cover rounded-lg"
         />
         <h3 class="text-lg font-semibold text-pretty">
-          {{ row.original.wine.name }}
+          {{ row.original?.wine?.name }}
         </h3>
       </NuxtLink>
     </template>
@@ -78,10 +78,10 @@ console.log(cashdesk.carts);
           @click="decreaseQuantity(row.original)"
         />
         <UInput
-          :model-value="row.original.quantity"
+          :model-value="row.original?.quantity"
           type="number"
           :min="1"
-          @change="setQuantity(parseInt($event), row.original)"
+          @change="setQuantity(parseInt($event as any), row.original)"
         />
         <UButton
           icon="i-heroicons-plus"
@@ -95,7 +95,7 @@ console.log(cashdesk.carts);
         <p class="text-lg font-semibold text-end w-full">
           {{
             useToNumber(
-              row.original.totalPrice?.toFixed(2) || 0
+              row.original?.totalPrice?.toFixed(2) || 0
             ).value.toLocaleString(locale)
           }}&nbsp;{{ $tt("$.czk") }}
         </p>
@@ -111,22 +111,22 @@ console.log(cashdesk.carts);
   <div class="sm:hidden">
     <div
       v-for="cart in cashdesk.carts"
-      :key="cart.wine._id"
+      :key="cart.wine?._id"
       class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
       <NuxtLink
-        :to="localePath(`${routes.wine.path}/${cart.wine._id}`)"
+        :to="localePath(`${routes.wine.path}/${cart.wine?._id}`)"
         class="flex flex-col md:flex-row items-center"
       >
         <NuxtImg
-          :src="cart.wine.image?.main?.src || '/img/bottle.jpg'"
+          :src="cart.wine?.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
           loading="lazy"
           format="webp"
           height="100"
           class="object-cover rounded-lg"
         />
-        <h3 class="text-lg font-semibold">{{ cart.wine.name }}</h3>
+        <h3 class="text-lg font-semibold">{{ cart.wine?.name }}</h3>
       </NuxtLink>
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">
@@ -135,7 +135,7 @@ console.log(cashdesk.carts);
             :model-value="cart.quantity"
             type="number"
             :min="1"
-            @change="setQuantity(parseInt($event), cart)"
+            @change="setQuantity(parseInt($event as any), cart)"
           />
           <UButton
             icon="i-heroicons-plus"

@@ -24,37 +24,40 @@ const model = defineModel<boolean>();
 
 <template>
   <!-- Dialogové okno -->
-  <UModal v-model:open="model">
+  <UModal
+    v-model:open="model"
+    close-icon="i-heroicons-x-mark"
+    :ui="{ footer: 'w-full justify-between' }"
+  >
     <!-- Obsah dialogu -->
-    <slot />
+    <template #body>
+      <slot />
+    </template>
 
     <!-- Patička dialogu -->
     <template #footer>
-      <div class="flex items-start justify-between">
-        <!-- Tlačítko "Ne" -->
-        <UButton
-          data-testid="dialog-no"
-          :color="actions?.no?.color"
-          :variant="actions?.no?.variant"
-          :size="actions?.no?.size"
-          @click="model = false"
-        >
-          {{ $tt(actions?.no?.label || "$.btn.cancel") }}
-        </UButton>
-        <!-- Tlačítko "Ano" -->
-        <UButton
-          data-testid="dialog-yes"
-          :color="actions?.yes?.color"
-          :variant="actions?.yes?.variant || 'solid'"
-          :size="actions?.yes?.size"
-          @click="
-            emits('confirm', true);
-            model = false;
-          "
-        >
-          {{ $tt(actions?.yes?.label || "$.btn.yes") }}
-        </UButton>
-      </div>
+      <!-- Tlačítko "Ne" -->
+      <UButton
+        data-testid="dialog-no"
+        :label="$tt(actions?.no?.label || '$.btn.cancel')"
+        :color="actions?.no?.color"
+        :variant="actions?.no?.variant || 'ghost'"
+        :size="actions?.no?.size"
+        @click="model = false"
+      />
+
+      <!-- Tlačítko "Ano" -->
+      <UButton
+        data-testid="dialog-yes"
+        :label="$tt(actions?.yes?.label || '$.btn.yes')"
+        :color="actions?.yes?.color"
+        :variant="actions?.yes?.variant || 'solid'"
+        :size="actions?.yes?.size"
+        @click="
+          emits('confirm', true);
+          model = false;
+        "
+      />
     </template>
   </UModal>
 </template>

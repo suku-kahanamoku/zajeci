@@ -20,20 +20,24 @@ const cashdesk = useCashdeskStore();
 const route = useRoute();
 const router = useRouter();
 const { routes } = useMenuItems();
+const stepper = useTemplateRef("stepper");
 
-const tabs = ref([
+const steps = ref([
   {
     slot: "cart",
-    label: $tt("$.cashdesk.cart.title"),
+    title: $tt("$.cashdesk.cart.title"),
+    icon: "i-heroicons-shopping-cart",
   },
   {
     slot: "delivery_payment",
-    label: $tt("$.cashdesk.delivery_payment"),
+    title: $tt("$.cashdesk.delivery_payment"),
+    icon: "i-heroicons-truck",
     disabled: computed(() => !cashdesk.carts?.length),
   },
   {
     slot: "summary",
-    label: $tt("$.cashdesk.summary"),
+    title: $tt("$.cashdesk.summary"),
+    icon: "i-heroicons-credit-card",
     disabled: computed(
       () =>
         !cashdesk.carts?.length ||
@@ -44,42 +48,30 @@ const tabs = ref([
   },
 ]);
 
-const selected = computed({
-  get() {
-    const index = tabs.value.findIndex(
-      (item) => item.label === route.query.tab
-    );
-    if (index === -1 || tabs.value[index]?.disabled) {
-      return 0;
-    }
-
-    return index;
-  },
-  set(value) {
-    // Hash is specified here to prevent the page from scrolling to the top
-    router.replace({ query: { tab: tabs.value[value].label } });
-  },
+const defaultIndex = steps.value.findIndex(
+  (item) => item.title === route.query.step
+);
+const selectedStep = ref(defaultIndex > 0 ? defaultIndex : 0);
+const backBtn = computed(() => {
+  if (stepper.value?.hasPrev) {
+    return steps.value[selectedStep.value - 1]?.title;
+  } else {
+    return "$.btn.back_shopping";
+  }
+});
+const nextBtn = computed(() => {
+  if (stepper.value?.hasNext) {
+    return steps.value[selectedStep.value + 1]?.title;
+  } else {
+    return "$.btn.complete_order";
+  }
 });
 
-const backBtn = [
-  "$.btn.back_shopping",
-  "$.cashdesk.cart.title",
-  "$.cashdesk.delivery_payment",
-];
-const continueBtn = [
-  "$.cashdesk.delivery_payment",
-  "$.cashdesk.summary",
-  "$.btn.complete_order",
-];
-const continueBtnColor = ["primary", "primary", "secondary"];
-
-async function onNext() {
-  if (selected.value + 1 >= tabs.value.length) {
-    await cashdesk.onSubmit();
-  } else {
-    selected.value += 1;
-  }
-}
+watch(selectedStep, () => {
+  router.replace({
+    query: { step: steps.value[selectedStep.value].title },
+  });
+});
 </script>
 
 <template>
@@ -91,47 +83,45 @@ async function onNext() {
         {{ $tt("$.cashdesk.title") }}
       </h1>
       <div class="py-10">
-        <client-only>
-          <UTabs :items="tabs">
-            <template #cart>
-              <CmpCashdeskCart />
-            </template>
+        <UStepper ref="stepper" v-model="selectedStep" :items="steps">
+          <template #cart>
+            <CmpCashdeskCart />
+          </template>
 
-            <template #delivery_payment>
-            </template>
+          <template #delivery_payment>
+            <CmpCashdeskDeliveryPayment />
+          </template>
 
-            <template #summary>
-            </template>
-          </UTabs>
+          <template #summary>
+            <CmpCashdeskSummary />
+          </template>
+        </UStepper>
 
-          <div class="flex justify-between mt-8">
-            <UButton
-              :to="selected < 1 ? routes.wine.path : undefined"
-              icon="i-heroicons-arrow-left"
-              size="lg"
-              @click="selected ? (selected -= 1) : undefined"
-            >
-              <span class="hidden sm:block">
-                {{ $tt(backBtn[selected] || "$.btn.back") }}
-              </span>
-            </UButton>
-            <UButton
-              size="lg"
-              :disabled="cashdesk.loading || tabs[selected + 1]?.disabled"
-              :loading="cashdesk.loading"
-              :color="continueBtnColor[selected]"
-              @click="onNext"
-            >
-              {{ $tt(continueBtn[selected] || "$.btn.continue") }}
-              <template #trailing>
-                <UIcon
-                  name="i-heroicons-arrow-right-20-solid"
-                  class="w-5 h-5"
-                />
-              </template>
-            </UButton>
-          </div>
-        </client-only>
+        <div class="flex justify-between mt-8">
+          <UButton
+            :to="stepper?.hasPrev ? undefined : routes.wine.path"
+            :color="stepper?.hasPrev ? 'primary' : 'secondary'"
+            icon="i-heroicons-arrow-left"
+            size="lg"
+            variant="outline"
+            @click="stepper?.hasPrev && stepper?.prev()"
+          >
+            <span class="hidden sm:block">
+              {{ $tt(backBtn!) }}
+            </span>
+          </UButton>
+
+          <UButton
+            trailing-icon="i-heroicons-arrow-right-20-solid"
+            :color="stepper?.hasNext ? 'primary' : 'secondary'"
+            size="lg"
+            :disabled="!stepper?.hasNext"
+            :loading="cashdesk.loading"
+            @click="stepper?.hasNext ? stepper?.next() : cashdesk.onSubmit()"
+          >
+            {{ $tt(nextBtn!) }}
+          </UButton>
+        </div>
       </div>
     </div>
   </div>

@@ -68,7 +68,11 @@ function addToCashdesk() {
       </template>
     </UCard>
 
-    <UModal v-model:open="modal" :title="$tt('$.cashdesk.cart.added')">
+    <UModal
+      v-model:open="modal"
+      :title="$tt('$.cashdesk.cart.added')"
+      close-icon="i-heroicons-x-mark"
+    >
       <template #body>
         <h3
           class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"
