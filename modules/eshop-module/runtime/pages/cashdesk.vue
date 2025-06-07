@@ -20,8 +20,22 @@ const cashdesk = useCashdeskStore();
 const route = useRoute();
 const router = useRouter();
 const { routes } = useMenuItems();
-const stepper = useTemplateRef("stepper");
 
+const backBtn = computed(() => {
+  if (stepper.value?.hasPrev) {
+    return steps.value[selectedStep.value - 1]?.title;
+  } else {
+    return "$.btn.back_shopping";
+  }
+});
+const nextBtn = computed(() => {
+  if (stepper.value?.hasNext) {
+    return steps.value[selectedStep.value + 1]?.title;
+  } else {
+    return "$.btn.complete_order";
+  }
+});
+const stepper = useTemplateRef("stepper");
 const steps = ref([
   {
     slot: "cart",
@@ -47,25 +61,10 @@ const steps = ref([
     ),
   },
 ]);
-
 const defaultIndex = steps.value.findIndex(
   (item) => item.title === route.query.step
 );
 const selectedStep = ref(defaultIndex > 0 ? defaultIndex : 0);
-const backBtn = computed(() => {
-  if (stepper.value?.hasPrev) {
-    return steps.value[selectedStep.value - 1]?.title;
-  } else {
-    return "$.btn.back_shopping";
-  }
-});
-const nextBtn = computed(() => {
-  if (stepper.value?.hasNext) {
-    return steps.value[selectedStep.value + 1]?.title;
-  } else {
-    return "$.btn.complete_order";
-  }
-});
 
 watch(selectedStep, () => {
   router.replace({
