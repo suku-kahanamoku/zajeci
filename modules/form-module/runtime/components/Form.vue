@@ -141,6 +141,7 @@ defineExpose({ form, model, schema, onChange });
         :variant="variant"
         :ui="
           defu(ui || {}, {
+            root: 'bg-transparent',
             body: 'flex flex-col gap-4',
           })
         "

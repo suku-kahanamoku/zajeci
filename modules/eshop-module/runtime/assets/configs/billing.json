@@ -1,0 +1,92 @@
+{
+  "syscode": "billing",
+  "title": "$.cashdesk.billing_address",
+  "fields": [
+    {
+      "name": "user.email",
+      "type": "email",
+      "label": "$.form.email",
+      "placeholder": "john@doe.com",
+      "autocomplete": "email",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "user.phone",
+      "type": "phone",
+      "label": "$.form.phone",
+      "placeholder": "+420 721 456 897",
+      "autocomplete": "tel",
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "user.givenName",
+      "label": "$.form.given_name",
+      "placeholder": "John",
+      "autocomplete": "given-name",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "user.surname",
+      "label": "$.form.surname",
+      "placeholder": "Doe",
+      "autocomplete": "family-name",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "delivery.address.street",
+      "label": "$.form.street",
+      "placeholder": "Blvd Ave. 12",
+      "autocomplete": "street-address",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "delivery.address.city",
+      "label": "$.form.city",
+      "placeholder": "London",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "delivery.address.zip",
+      "label": "$.form.zip",
+      "placeholder": "Blvd Ave. 12",
+      "autocomplete": "postal-code",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "validation": [
+        {
+          "pattern": "",
+          "msg": "$.message.invalid_zip"
+        }
+      ],
+      "value": ""
+    },
+    {
+      "name": "delivery.address.state",
+      "type": "select",
+      "label": "$.form.state",
+      "placeholder": "Blvd Ave. 12",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    }
+  ]
+}

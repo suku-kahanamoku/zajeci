@@ -1,5 +1,5 @@
 {
-  "syscode": "forgot-password",
+  "syscode": "login",
   "fields": [
     {
       "name": "email",

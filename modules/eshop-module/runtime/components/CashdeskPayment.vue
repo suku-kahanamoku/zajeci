@@ -1,86 +1,47 @@
 <script setup lang="ts">
-import { object, string } from "yup";
-import { useToNumber } from "@vueuse/core";
-import { useDebounceFn } from "@vueuse/core";
+import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
 
-const {
-  i18n: { locale },
-} = useLang();
-const cashdesk = useCashdeskStore();
-const formEl = ref();
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 
-const schema = object({
-  type: string().required(" "),
-});
+import pConfig from "../assets/configs/payment.json";
 
-onMounted(checkValidation);
+const { updateConfig } = useUrlResolver();
+const { route } = useMenuItems();
 
-watch(cashdesk.payment, useDebounceFn(checkValidation, 400));
-
-async function checkValidation() {
-  if (cashdesk.payment) {
-    cashdesk.payment.totalPrice =
-      cashdesk.payments[cashdesk.payment.type]?.price || 0;
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
     try {
-      await formEl.value.validate();
-      cashdesk.payment.valid = true;
-    } catch (error) {
-      cashdesk.payment.valid = false;
+      const result = CLONE(pConfig);
+      updateConfig(route, result);
+      return result as typeof pConfig;
+    } catch (error: any) {
+      return {} as typeof pConfig;
     }
-  }
-}
+  },
+  { watch: [() => route.query] }
+);
 </script>
 <template>
-  <UForm
-    ref="formEl"
-    :schema="schema"
-    :state="cashdesk.payment"
-    class="w-full border rounded-lg shadow-md my-4 dark:border dark:bg-gray-800 dark:border-gray-700"
+  <CmpForm
+    v-if="config"
+    :fields="(config.fields as IFormField[])"
+    variant="subtle"
+    :actions="{ disabled: true }"
+    :ui="{
+      body: 'grid md:grid-cols-2 gap-4',
+    }"
+    class="w-full"
   >
-    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-      <UFormField name="type">
-        <template #label>
-          <h3
-            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
-          >
-            {{ $tt(cashdesk.fields.payment.label) }}
-          </h3>
-        </template>
-        <div class="pt-4">
-          <URadio
-            v-for="option of cashdesk.paymentOptions"
-            :key="option.value"
-            v-model="cashdesk.payment.type"
-            :value="option.value"
-            :disabled="option?.disabled"
-          >
-            <template #label>
-              <div class="flex items-center justify-between w-full">
-                <div class="flex items-center gap-2">
-                  <Icon
-                    :name="option.avatar as string"
-                    size="30"
-                    class="w-20"
-                  />
-                  <span>
-                    {{ $tt(option?.label) }}
-                  </span>
-                </div>
-                <span v-if="option.price! > 0">
-                  {{
-                    useToNumber(
-                      option?.price?.toFixed(2) || 0
-                    ).value.toLocaleString(locale)
-                  }}&nbsp;{{ $tt("$.czk") }}
-                </span>
-                <span v-else>
-                  {{ $tt("$.btn.free") }}
-                </span>
-              </div>
-            </template>
-          </URadio>
-        </div>
-      </UFormField>
-    </div>
-  </UForm>
+    <template #header>
+      <h3
+        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+      >
+        {{ $tt(config.title) }}
+      </h3>
+    </template>
+  </CmpForm>
 </template>

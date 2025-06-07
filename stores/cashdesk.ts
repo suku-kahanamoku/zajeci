@@ -75,33 +75,6 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
 
   const paymentOptions = Object.values(payments);
 
-  const fields: Record<
-    string,
-    {
-      key: string;
-      label: string;
-      placeholder?: string;
-      autocomplete?: string;
-    }
-  > = {
-    totalPrice: {
-      key: "totalPrice",
-      label: "$.cashdesk.total_price",
-    },
-    status: {
-      key: "status",
-      label: "$.cashdesk.status",
-    },
-    delivery: {
-      key: "delivery",
-      label: "$.cashdesk.delivery.title",
-    },
-    payment: {
-      key: "payment",
-      label: "$.cashdesk.payment.title",
-    },
-  };
-
   const totalItems = computed(() => {
     return carts.value.reduce((total, item) => total + item.quantity, 0);
   });
@@ -238,15 +211,15 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
         method: "POST",
         body: order,
       });
-      if (result?._id) {
+      if (result.data?._id) {
         // aktualizace prihlaseneho uzivatele
         await auth.fetch();
         reset();
         navigateTo({
           path: localePath("cashdesk-completed"),
           query: {
-            orderId: result._id,
-            email: result.user.email,
+            orderId: result.data._id,
+            email: result.data.user.email,
           },
         });
       }
@@ -280,7 +253,6 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
     setUser,
     totalItems,
     totalPrice,
-    fields,
     delivery,
     deliveries,
     deliveryOptions,

@@ -22,22 +22,22 @@ const selected = ref();
 <template>
   <div>
     <UTabs v-if="!auth.loggedIn" v-model="selected" :items="items">
-      <template #item="{ item }">
+      <template #content="{ item }">
         <div class="flex items-center justify-center mx-auto w-full">
-          <CustomFormLogin v-if="item.key === 'login'" />
-          <CustomFormSignup v-else-if="item.key === 'signup'" />
-          <CashdeskContact v-else />
+          <CmpLogin v-if="item.key === 'login'" />
+          <CmpSignup v-else-if="item.key === 'signup'" />
+          <CmpCashdeskBilling v-else />
         </div>
       </template>
     </UTabs>
     <div v-else class="flex items-center justify-center mx-auto w-full">
-      <CashdeskContact />
+      <CmpCashdeskBilling />
     </div>
     <div
       class="flex flex-col md:flex-row items-stretch justify-between md:gap-8"
     >
-      <CashdeskDelivery />
-      <CashdeskPayment />
+      <CmpCashdeskDelivery />
+      <CmpCashdeskPayment />
     </div>
   </div>
 </template>

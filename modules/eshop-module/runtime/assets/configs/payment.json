@@ -1,0 +1,86 @@
+{
+  "syscode": "payment",
+  "title": "$.cashdesk.payment.title",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email",
+      "label": "$.form.email",
+      "placeholder": "john@doe.com",
+      "autocomplete": "email",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "phone",
+      "type": "phone",
+      "label": "$.form.phone",
+      "placeholder": "+420 721 456 897",
+      "autocomplete": "tel",
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "givenName",
+      "label": "$.form.given_name",
+      "placeholder": "John",
+      "autocomplete": "given-name",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "surname",
+      "label": "$.form.surname",
+      "placeholder": "Doe",
+      "autocomplete": "family-name",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "street",
+      "label": "$.form.street",
+      "placeholder": "Blvd Ave. 12",
+      "autocomplete": "street-address",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "city",
+      "label": "$.form.city",
+      "placeholder": "London",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "zip",
+      "label": "$.form.zip",
+      "placeholder": "Blvd Ave. 12",
+      "autocomplete": "postal-code",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    },
+    {
+      "name": "state",
+      "type": "select",
+      "label": "$.form.state",
+      "placeholder": "Blvd Ave. 12",
+      "required": true,
+      "clearable": true,
+      "size": "lg",
+      "value": ""
+    }
+  ]
+}
