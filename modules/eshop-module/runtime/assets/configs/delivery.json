@@ -3,7 +3,7 @@
   "title": "$.cashdesk.delivery.title",
   "fields": [
     {
-      "name": "name",
+      "name": "delivery.address.name",
       "label": "$.form.name",
       "placeholder": "John Doe",
       "required": true,
@@ -12,7 +12,7 @@
       "value": ""
     },
     {
-      "name": "street",
+      "name": "delivery.address.street",
       "label": "$.form.street",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "street-address",
@@ -22,7 +22,7 @@
       "value": ""
     },
     {
-      "name": "city",
+      "name": "delivery.address.city",
       "label": "$.form.city",
       "placeholder": "London",
       "required": true,
@@ -31,7 +31,7 @@
       "value": ""
     },
     {
-      "name": "zip",
+      "name": "delivery.address.zip",
       "label": "$.form.zip",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "postal-code",
@@ -41,13 +41,17 @@
       "value": ""
     },
     {
-      "name": "state",
+      "name": "delivery.address.state",
       "type": "select",
       "label": "$.form.state",
       "placeholder": "Blvd Ave. 12",
       "required": true,
       "clearable": true,
       "size": "lg",
+      "options": [
+        { "label": "CZ", "value": "cs" },
+        { "label": "SK", "value": "sk" }
+      ],
       "value": ""
     }
   ]

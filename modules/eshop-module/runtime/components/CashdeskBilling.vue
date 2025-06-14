@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
+import defu from "defu";
 
 import {
   CLONE,
@@ -9,7 +10,6 @@ import type { IFormConfig } from "@/modules/form-module/runtime/types/form.inter
 import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 
 import lConfig from "../assets/configs/billing.json";
-import defu from "defu";
 
 const { updateConfig } = useUrlResolver();
 const { route } = useMenuItems();
@@ -32,11 +32,55 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] }
 );
 
-function onChange(body: Record<string, any>) {
+function onChange(body: Record<string, any>, event: any) {
   if (config.value) {
-    const tmpBody = CLONE(body);
-    CONVERT_DOT_TO_OBJECT(tmpBody);
-    cashdesk.setUser(defu(tmpBody.user, cashdesk.user));
+    const data = CLONE(body);
+    CONVERT_DOT_TO_OBJECT(data);
+    cashdesk.setUser(defu(data.user, cashdesk.user));
+    //
+    const name = event.srcElement.name;
+    switch (name) {
+      case "user.givenName":
+      case "user.surname":
+        if (
+          !cashdesk.delivery.address!.name &&
+          body["user.givenName"] &&
+          body["user.surname"]
+        ) {
+          cashdesk.delivery.address!.name = `${body["user.givenName"]} ${body["user.surname"]}`;
+          cashdesk.delivery.key!++;
+        }
+        break;
+
+      case "user.address.main.street":
+        if (!cashdesk.delivery.address!.street) {
+          cashdesk.delivery.address!.street = body[name];
+          cashdesk.delivery.key!++;
+        }
+        break;
+
+      case "user.address.main.city":
+        if (!cashdesk.delivery.address!.city) {
+          cashdesk.delivery.address!.city = body[name];
+          cashdesk.delivery.key!++;
+        }
+        break;
+
+      case "user.address.main.zip":
+        if (!cashdesk.delivery.address!.zip) {
+          cashdesk.delivery.address!.zip = body[name];
+          cashdesk.delivery.key!++;
+        }
+        break;
+
+      case "user.address.main.state":
+        if (!cashdesk.delivery.address!.state) {
+          cashdesk.delivery.address!.state = body[name];
+          cashdesk.delivery.key!++;
+        }
+        break;
+    }
+    console.log(cashdesk.delivery);
   }
 }
 </script>
@@ -49,6 +93,7 @@ function onChange(body: Record<string, any>) {
     variant="subtle"
     :actions="{ disabled: true }"
     :ui="{
+      root: '',
       body: 'grid md:grid-cols-2 gap-4',
     }"
     class="w-full"

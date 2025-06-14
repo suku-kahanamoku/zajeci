@@ -125,6 +125,7 @@ export interface IDelivery {
   address?: IAddress;
   totalPrice: number;
   valid?: boolean;
+  key?: number;
 }
 
 /**

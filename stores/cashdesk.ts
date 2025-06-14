@@ -29,6 +29,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
     type: DeliveryServices.free,
     address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
     totalPrice: 0,
+    key: 0,
   });
   const payment = ref<IPayment>({
     type: PaymentServices.bank,
@@ -85,8 +86,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
         (total, item) => total + item.unitPrice * item.quantity,
         0
       ) +
-      delivery.value.totalPrice +
-      payment.value.totalPrice
+      (delivery.value.totalPrice + payment.value.totalPrice)
   );
 
   const addItem = (wine: IWine, quantity: number): ICart => {
@@ -153,6 +153,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
       type: DeliveryServices.free,
       address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
       totalPrice: 0,
+      key: 0,
     };
     payment.value = {
       type: PaymentServices.bank,
@@ -179,6 +180,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
         delivery.value = local.delivery;
         delivery.value.address =
           delivery.value.address || CLONE(auth.emptyUser.address.main);
+        delivery.value.key = 0;
       }
       if (local.payment) {
         payment.value = local.payment;
