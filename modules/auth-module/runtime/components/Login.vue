@@ -49,7 +49,7 @@ async function onSubmit(event: Record<string, any>) {
 </script>
 <template>
   <div
-    class="w-full border border-gray-200 rounded-lg shadow-md dark:border max-w-md my-4 dark:bg-gray-800 dark:border-gray-700"
+    class="w-full border border-gray-200 rounded-lg shadow-md dark:border max-w-md dark:bg-gray-800 dark:border-gray-700"
   >
     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
       <h1

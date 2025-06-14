@@ -13,7 +13,6 @@ import defu from "defu";
 
 const { updateConfig } = useUrlResolver();
 const { route } = useMenuItems();
-const { getObjectValues } = useField();
 const cashdesk = useCashdeskStore();
 const formCmp = ref();
 
@@ -37,9 +36,7 @@ function onChange(body: Record<string, any>) {
   if (config.value) {
     const tmpBody = CLONE(body);
     CONVERT_DOT_TO_OBJECT(tmpBody);
-    cashdesk.user = defu(tmpBody.user, cashdesk.user);
-    cashdesk.delivery = defu(tmpBody.delivery, cashdesk.delivery);
-    console.log(tmpBody, cashdesk);
+    cashdesk.setUser(defu(tmpBody.user, cashdesk.user));
   }
 }
 </script>

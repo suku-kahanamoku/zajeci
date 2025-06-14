@@ -15,7 +15,9 @@ useHead({
   ],
 });
 
-const cashdesk = useCashdeskStore();
+const { carts, user, delivery, payment, loading, onSubmit } =
+  useCashdeskStore();
+  console.log(carts, user, delivery, payment)
 
 const route = useRoute();
 const router = useRouter();
@@ -46,18 +48,14 @@ const steps = ref([
     slot: "delivery_payment",
     title: $tt("$.cashdesk.delivery_payment"),
     icon: "i-heroicons-truck",
-    disabled: computed(() => !cashdesk.carts?.length),
+    disabled: computed(() => !carts?.length),
   },
   {
     slot: "summary",
     title: $tt("$.cashdesk.summary"),
     icon: "i-heroicons-credit-card",
     disabled: computed(
-      () =>
-        !cashdesk.carts?.length ||
-        !cashdesk.user?.valid ||
-        !cashdesk.delivery.valid ||
-        !cashdesk.payment.valid
+      () => !carts?.length || !user?.valid || !delivery.valid || !payment.valid
     ),
   },
 ]);
@@ -115,8 +113,8 @@ watch(selectedStep, () => {
             :color="stepper?.hasNext ? 'primary' : 'secondary'"
             size="lg"
             :disabled="!stepper?.hasNext"
-            :loading="cashdesk.loading"
-            @click="stepper?.hasNext ? stepper?.next() : cashdesk.onSubmit()"
+            :loading="loading"
+            @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
           >
             {{ $tt(nextBtn!) }}
           </UButton>

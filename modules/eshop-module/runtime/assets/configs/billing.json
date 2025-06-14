@@ -44,7 +44,7 @@
       "value": ""
     },
     {
-      "name": "delivery.address.street",
+      "name": "user.address.main.street",
       "label": "$.form.street",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "street-address",
@@ -54,7 +54,7 @@
       "value": ""
     },
     {
-      "name": "delivery.address.city",
+      "name": "user.address.main.city",
       "label": "$.form.city",
       "placeholder": "London",
       "required": true,
@@ -63,7 +63,7 @@
       "value": ""
     },
     {
-      "name": "delivery.address.zip",
+      "name": "user.address.main.zip",
       "label": "$.form.zip",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "postal-code",
@@ -79,13 +79,16 @@
       "value": ""
     },
     {
-      "name": "delivery.address.state",
+      "name": "user.address.main.state",
       "type": "select",
       "label": "$.form.state",
-      "placeholder": "Blvd Ave. 12",
       "required": true,
       "clearable": true,
       "size": "lg",
+      "options": [
+        { "label": "CZ", "value": "cs" },
+        { "label": "SK", "value": "sk" }
+      ],
       "value": ""
     }
   ]

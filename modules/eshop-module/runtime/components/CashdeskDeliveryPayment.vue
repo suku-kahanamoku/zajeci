@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { $tt } = useNuxtApp();
-const auth = useAuthStore();
+const { loggedIn } = useAuthStore();
 
 const items = [
   {
@@ -20,8 +20,14 @@ const items = [
 const selected = ref();
 </script>
 <template>
-  <div>
-    <UTabs v-if="!auth.loggedIn" v-model="selected" :items="items">
+  <div class="flex flex-col gap-8">
+    <div
+      v-if="loggedIn"
+      class="flex items-center justify-center mx-auto w-full"
+    >
+      <CmpCashdeskBilling />
+    </div>
+    <UTabs v-else v-model="selected" :items="items">
       <template #content="{ item }">
         <div class="flex items-center justify-center mx-auto w-full">
           <CmpLogin v-if="item.key === 'login'" />
@@ -30,12 +36,7 @@ const selected = ref();
         </div>
       </template>
     </UTabs>
-    <div v-else class="flex items-center justify-center mx-auto w-full">
-      <CmpCashdeskBilling />
-    </div>
-    <div
-      class="flex flex-col md:flex-row items-stretch justify-between md:gap-8"
-    >
+    <div class="flex flex-col md:flex-row items-stretch justify-between gap-8">
       <CmpCashdeskDelivery />
       <CmpCashdeskPayment />
     </div>
