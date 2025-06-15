@@ -34,7 +34,7 @@ const columns = fieldOptions.map((field) => ({
           :loading="pending"
         />
         <ULink
-          :to="routes.admin_order_update?.path?.replace(':_id()', row._id)"
+          :to="routes.admin_order_update?.path?.replace('[_id]', row._id)"
         >
           {{ row.user.email }}
         </ULink>

@@ -17,7 +17,7 @@ useHead({
 
 const { carts, user, delivery, payment, loading, onSubmit } =
   useCashdeskStore();
-  console.log(carts, user, delivery, payment)
+console.log(carts, user, delivery, payment);
 
 const route = useRoute();
 const router = useRouter();
@@ -80,7 +80,12 @@ watch(selectedStep, () => {
         {{ $tt("$.cashdesk.title") }}
       </h1>
       <div class="py-10">
-        <UStepper ref="stepper" v-model="selectedStep" :items="steps">
+        <UStepper
+          ref="stepper"
+          v-model="selectedStep"
+          :items="steps"
+          :linear="true"
+        >
           <template #cart>
             <CmpCashdeskCart />
           </template>

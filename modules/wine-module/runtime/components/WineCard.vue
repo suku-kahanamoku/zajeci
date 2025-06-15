@@ -38,7 +38,7 @@ function addToCashdesk() {
       </template>
 
       <NuxtLink
-        :to="`${routes.wine_detail?.path?.replace(':_id()', item._id)}`"
+        :to="`${routes.wine_detail?.path?.replace('[_id]', item._id)}`"
       >
         <h3
           class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400"

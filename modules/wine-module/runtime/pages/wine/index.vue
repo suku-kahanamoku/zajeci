@@ -40,7 +40,7 @@ const { data: wines } = await useAsyncData(
       </h1>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
-        <CmpWineCard v-for="wine of wines" :item="wine" />
+        <CmpWineCard v-for="wine of wines?.data" :item="wine" />
       </div>
     </div>
   </div>

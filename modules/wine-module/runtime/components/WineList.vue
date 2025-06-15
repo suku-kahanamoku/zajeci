@@ -33,7 +33,7 @@ const columns = fieldOptions.map((field) => ({
           @click="emits('delete', row)"
           :loading="pending"
         />
-        <ULink :to="routes.admin_wine_update?.path?.replace(':_id()', row._id)">
+        <ULink :to="routes.admin_wine_update?.path?.replace('[_id]', row._id)">
           {{ row.name }}
         </ULink>
       </div>

@@ -109,9 +109,10 @@ const userMenuItems = computed(() => {
 
         <!-- shopping cart -->
         <UChip
+          :show="cashdesk.carts?.length ? true : false"
           color="secondary"
           :text="cashdesk.carts?.length"
-          :show="cashdesk.carts?.length ? true : false"
+          size="3xl"
         >
           <UButton
             :to="routes.cashdesk?.path"
