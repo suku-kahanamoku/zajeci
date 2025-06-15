@@ -4,7 +4,7 @@ import { useToNumber } from "@vueuse/core";
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import { UCard } from "#components";
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const {
   i18n: { locale },
 } = useLang();
@@ -40,9 +40,9 @@ const setQuantity = (value: number, cart: ICart) => {
 };
 
 const columns = [
-  { accessorKey: "name", header: $tt("$.admin.wine.form.name") },
-  { accessorKey: "quantity", header: $tt("$.form.quantity") },
-  { accessorKey: "price", header: $tt("$.form.price") },
+  { accessorKey: "name", header: t("$.admin.wine.form.name") },
+  { accessorKey: "quantity", header: t("$.form.quantity") },
+  { accessorKey: "price", header: t("$.form.price") },
 ];
 console.log(cashdesk);
 </script>

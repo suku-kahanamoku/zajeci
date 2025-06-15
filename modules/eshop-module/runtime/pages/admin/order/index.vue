@@ -14,7 +14,7 @@ definePageMeta({
   },
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const localePath = useLocalePath();
 const { routes } = useMenuItems();
 const toast = useToast();
@@ -22,10 +22,10 @@ const deleteItem = ref<IOrder>();
 const isOpen = ref(false);
 
 useHead({
-  title: `${$tt("$.base.title")} | ${$tt("$.dashboard.title")}`,
+  title: `${t("$.base.title")} | ${t("$.dashboard.title")}`,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 
@@ -49,7 +49,7 @@ async function onDelete(value: boolean) {
         method,
       });
       toast.add({
-        title: $tt("$.form.delete_success_msg"),
+        title: t("$.form.delete_success_msg"),
         color: "success",
         icon: "i-heroicons-check",
       });

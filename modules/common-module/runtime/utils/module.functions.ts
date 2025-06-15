@@ -78,6 +78,8 @@ export function GENERATE_PAGES(
     let resolvedName = name === "index" ? dirName : name; // Pokud je název "index", použije se název adresáře.
     // Příklad: Pokud `dirName` je "/about" a `name` je "index", `resolvedName` bude "/about".
 
+    resolvedName = resolvedName.replaceAll('[_id]', ':id')
+
     if (dirName !== resolvedName) {
       resolvedName = dirName.endsWith("/")
         ? dirName + resolvedName
@@ -93,6 +95,7 @@ export function GENERATE_PAGES(
         `./runtime/pages${dirName.endsWith("/") ? "" : dirName}/${base}`
       ), // Cesta k souboru stránky.
     };
+    console.log(options)
 
     extendPages((pages) => {
       pages.push(options); // Přidání stránky do Nuxt konfigurace.

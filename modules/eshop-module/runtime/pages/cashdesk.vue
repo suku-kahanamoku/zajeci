@@ -5,13 +5,13 @@ definePageMeta({
   title: "$.cashdesk.title",
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 
 useHead({
-  title: `${$tt("$.base.title")} | ${$tt("$.cashdesk.title")}`,
+  title: `${t("$.base.title")} | ${t("$.cashdesk.title")}`,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 
@@ -41,18 +41,18 @@ const stepper = useTemplateRef("stepper");
 const steps = ref([
   {
     slot: "cart",
-    title: $tt("$.cashdesk.cart.title"),
+    title: t("$.cashdesk.cart.title"),
     icon: "i-heroicons-shopping-cart",
   },
   {
     slot: "delivery_payment",
-    title: $tt("$.cashdesk.delivery_payment"),
+    title: t("$.cashdesk.delivery_payment"),
     icon: "i-heroicons-truck",
     disabled: computed(() => !carts?.length),
   },
   {
     slot: "summary",
-    title: $tt("$.cashdesk.summary"),
+    title: t("$.cashdesk.summary"),
     icon: "i-heroicons-credit-card",
     disabled: computed(
       () => !carts?.length || !user?.valid || !delivery.valid || !payment.valid

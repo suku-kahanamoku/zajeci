@@ -10,13 +10,13 @@ definePageMeta({
   title: "$.navbar.gallery",
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 
 useHead({
-  title: `${$tt("$.base.title")} | ${$tt("$.gallery.title")}`,
+  title: `${t("$.base.title")} | ${t("$.gallery.title")}`,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 

@@ -1,19 +1,19 @@
 <script setup lang="ts">
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const { loggedIn } = useAuthStore();
 
 const items = [
   {
     key: "anonymous",
-    label: $tt("$.cashdesk.anonymous"),
+    label: t("$.cashdesk.anonymous"),
   },
   {
     key: "login",
-    label: $tt("$.navbar.login"),
+    label: t("$.navbar.login"),
   },
   {
     key: "signup",
-    label: $tt("$.navbar.signup"),
+    label: t("$.navbar.signup"),
   },
 ];
 
@@ -35,7 +35,7 @@ const selected = ref();
         </div>
       </div>
     </div>
-    
+
     <UTabs v-else v-model="selected" :items="items">
       <template #content="{ item }">
         <div class="flex items-center justify-center mx-auto w-full">

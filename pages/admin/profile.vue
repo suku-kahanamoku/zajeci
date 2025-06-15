@@ -5,13 +5,13 @@ definePageMeta({
   title: "$.profile.title",
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 
 useHead({
-  title: `${$tt("$.base.title")} | ${$tt("$.profile.title")}`,
+  title: `${t("$.base.title")} | ${t("$.profile.title")}`,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 </script>

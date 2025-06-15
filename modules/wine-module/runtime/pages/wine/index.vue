@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
+import wConfig from "../../assets/configs/wine-list.json";
 
 definePageMeta({
   layout: "default",
@@ -7,23 +9,47 @@ definePageMeta({
   title: "$.wine.title",
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const route = useRoute();
+const { updateConfig } = useUrlResolver();
+
+const title = computed(() => t(route.meta.title as string));
 
 useHead({
-  title: $tt("$.base.title"),
+  title: title,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(wConfig);
+      updateConfig(route, result);
+      return result as typeof wConfig;
+    } catch (error: any) {
+      return {} as typeof wConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
+
+/**
+ * Load data
+ */
 const { data: wines } = await useAsyncData(
   async (): Promise<IWine[] | undefined> => {
-    try {
-      return await $fetch(`/api/wine`);
-    } catch (error: any) {
-      console.error(error);
+    if (config.value?.restUrl) {
+      try {
+        return await $fetch(config.value?.restUrl);
+      } catch (error: any) {
+        console.error(error);
+      }
     }
   },
   { watch: [route] }

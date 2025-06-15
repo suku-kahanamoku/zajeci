@@ -18,17 +18,17 @@ definePageMeta({
   },
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const toast = useToast();
 const today = new Date();
 const loading = ref();
 const { defaultItem } = useWines();
 
 useHead({
-  title: $tt("$.admin.wine.create.title"),
+  title: t("$.admin.wine.create.title"),
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 
@@ -61,7 +61,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
     await $fetch("/api/admin/wine", { method: "POST", body: event.data });
     state.value = CLONE(defaultItem);
     toast.add({
-      title: $tt("$.form.post_success_msg"),
+      title: t("$.form.post_success_msg"),
       color: "success",
       icon: "i-heroicons-check",
     });

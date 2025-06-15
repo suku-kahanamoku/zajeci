@@ -18,17 +18,17 @@ definePageMeta({
   },
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const route = useRoute();
 const toast = useToast();
 const today = new Date();
 const { getChangedParams } = useOrders();
 
 useHead({
-  title: `${$tt("$.base.title")} | ${$tt("$.forgot_password.title")}`,
+  title: `${t("$.base.title")} | ${t("$.forgot_password.title")}`,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 
@@ -88,7 +88,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
     });
     state.value = CLONE(result);
     toast.add({
-      title: $tt("$.form.patch_success_msg"),
+      title: t("$.form.patch_success_msg"),
       color: "success",
       icon: "i-heroicons-check",
     });

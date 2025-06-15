@@ -1,5 +1,5 @@
 export function useWines() {
-  const { $tt } = useNuxtApp();
+  const { t } = useLang();
   const today = new Date();
 
   const defaultItem = {
@@ -17,37 +17,37 @@ export function useWines() {
   };
 
   const kinds: Record<string, { value: string; label: string }> = {
-    dry: { value: "dry", label: $tt("$.admin.wine.kind.dry") },
-    semiDry: { value: "semiDry", label: $tt("$.admin.wine.kind.semi_dry") },
-    sweet: { value: "sweet", label: $tt("$.admin.wine.kind.sweet") },
+    dry: { value: "dry", label: t("$.admin.wine.kind.dry") },
+    semiDry: { value: "semiDry", label: t("$.admin.wine.kind.semi_dry") },
+    sweet: { value: "sweet", label: t("$.admin.wine.kind.sweet") },
     semiSweet: {
       value: "semiSweet",
-      label: $tt("$.admin.wine.kind.semi_sweet"),
+      label: t("$.admin.wine.kind.semi_sweet"),
     },
-    extraDry: { value: "extraDry", label: $tt("$.admin.wine.kind.extra_dry") },
-    offDry: { value: "offDry", label: $tt("$.admin.wine.kind.off_dry") },
+    extraDry: { value: "extraDry", label: t("$.admin.wine.kind.extra_dry") },
+    offDry: { value: "offDry", label: t("$.admin.wine.kind.off_dry") },
     mediumDry: {
       value: "mediumDry",
-      label: $tt("$.admin.wine.kind.medium_dry"),
+      label: t("$.admin.wine.kind.medium_dry"),
     },
     mediumSweet: {
       value: "mediumSweet",
-      label: $tt("$.admin.wine.kind.medium_sweet"),
+      label: t("$.admin.wine.kind.medium_sweet"),
     },
     verySweet: {
       value: "verySweet",
-      label: $tt("$.admin.wine.kind.very_sweet"),
+      label: t("$.admin.wine.kind.very_sweet"),
     },
-    dessert: { value: "dessert", label: $tt("$.admin.wine.kind.dessert") },
+    dessert: { value: "dessert", label: t("$.admin.wine.kind.dessert") },
   };
 
   const kindOptions = Object.values(kinds);
 
   const colors: Record<string, { value: string; label: string }> = {
-    white: { value: "white", label: $tt("$.admin.wine.color.white") },
-    red: { value: "red", label: $tt("$.admin.wine.color.red") },
-    rose: { value: "rose", label: $tt("$.admin.wine.color.rose") },
-    orange: { value: "orange", label: $tt("$.admin.wine.color.orange") },
+    white: { value: "white", label: t("$.admin.wine.color.white") },
+    red: { value: "red", label: t("$.admin.wine.color.red") },
+    rose: { value: "rose", label: t("$.admin.wine.color.rose") },
+    orange: { value: "orange", label: t("$.admin.wine.color.orange") },
   };
 
   const colorOptions = Object.values(colors);
@@ -55,10 +55,10 @@ export function useWines() {
   const categories: Record<string, { value: string; label: string }> = {
     favourite: {
       value: "favourite",
-      label: $tt("$.admin.wine.category.favourite"),
+      label: t("$.admin.wine.category.favourite"),
     },
-    top: { value: "top", label: $tt("$.admin.wine.category.top") },
-    new: { value: "new", label: $tt("$.admin.wine.category.new") },
+    top: { value: "top", label: t("$.admin.wine.category.top") },
+    new: { value: "new", label: t("$.admin.wine.category.new") },
   };
 
   const categoryOptions = Object.values(categories);
@@ -69,53 +69,53 @@ export function useWines() {
   > = {
     name: {
       key: "name",
-      label: $tt("$.admin.wine.form.name"),
-      placeholder: $tt("$.admin.wine.placeholder.name"),
+      label: t("$.admin.wine.form.name"),
+      placeholder: t("$.admin.wine.placeholder.name"),
     },
     kind: {
       key: "kind",
-      label: $tt("$.admin.wine.form.kind"),
-      placeholder: $tt("$.form.select"),
+      label: t("$.admin.wine.form.kind"),
+      placeholder: t("$.form.select"),
     },
     quality: {
       key: "quality",
-      label: $tt("$.admin.wine.form.quality"),
-      placeholder: $tt("$.admin.wine.placeholder.quality"),
+      label: t("$.admin.wine.form.quality"),
+      placeholder: t("$.admin.wine.placeholder.quality"),
     },
     color: {
       key: "color",
-      label: $tt("$.admin.wine.form.color"),
-      placeholder: $tt("$.form.select"),
+      label: t("$.admin.wine.form.color"),
+      placeholder: t("$.form.select"),
     },
     variety: {
       key: "variety",
-      label: $tt("$.admin.wine.form.variety"),
-      placeholder: $tt("$.admin.wine.placeholder.variety"),
+      label: t("$.admin.wine.form.variety"),
+      placeholder: t("$.admin.wine.placeholder.variety"),
     },
     volume: {
       key: "volume",
-      label: $tt("$.admin.wine.form.volume"),
+      label: t("$.admin.wine.form.volume"),
     },
     year: {
       key: "year",
-      label: $tt("$.admin.wine.form.year"),
+      label: t("$.admin.wine.form.year"),
     },
     price: {
       key: "price",
-      label: $tt("$.form.price"),
+      label: t("$.form.price"),
     },
     quantity: {
       key: "quantity",
-      label: $tt("$.form.quantity_stock"),
+      label: t("$.form.quantity_stock"),
     },
     categories: {
       key: "categories",
-      label: $tt("$.form.categories"),
-      placeholder: $tt("$.form.select"),
+      label: t("$.form.categories"),
+      placeholder: t("$.form.select"),
     },
     description: {
       key: "description",
-      label: $tt("$.form.description"),
+      label: t("$.form.description"),
     },
   };
 

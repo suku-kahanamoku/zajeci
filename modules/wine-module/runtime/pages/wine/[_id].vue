@@ -10,16 +10,16 @@ definePageMeta({
   title: "$.wine.detail.title",
 });
 
-const { $tt } = useNuxtApp();
+const { t } = useLang();
 const {
   i18n: { locale },
 } = useLang();
 
 useHead({
-  title: `${$tt("$.base.title")} | ${$tt("$.forgot_password.title")}`,
+  title: `${t("$.base.title")} | ${t("$.forgot_password.title")}`,
   meta: [
-    { name: "description", content: $tt("$.base.description") },
-    { name: "keywords", content: $tt("$.base.description") },
+    { name: "description", content: t("$.base.description") },
+    { name: "keywords", content: t("$.base.description") },
   ],
 });
 
