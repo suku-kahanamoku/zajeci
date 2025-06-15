@@ -3,16 +3,16 @@ import { useToNumber } from "@vueuse/core";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
+import type { IFormField } from "~/modules/form-module/runtime/types";
 
 const props = defineProps<{
+  fields: IFormField[];
   item: IWine;
 }>();
 
 const {
   i18n: { locale },
 } = useLang();
-const { routes } = useMenuItems();
-const { fields } = useWines();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
 const cart = ref<ICart>();
@@ -37,9 +37,7 @@ function addToCashdesk() {
         />
       </template>
 
-      <NuxtLink
-        :to="`${routes.wine_detail?.path?.replace('[_id]', item._id)}`"
-      >
+      <NuxtLink :to="item.gen_data?.url">
         <h3
           class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400"
         >
@@ -50,7 +48,9 @@ function addToCashdesk() {
       <template #footer>
         <div class="flex justify-between items-center">
           <div class="font-bold lg:text-lg text-gray-600 dark:text-white">
-            {{ fields.price.label }}:&nbsp;{{
+            {{
+              $tt(fields?.find((field) => field.name === "price")?.label!)
+            }}:&nbsp;{{
               useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(
                 locale
               )

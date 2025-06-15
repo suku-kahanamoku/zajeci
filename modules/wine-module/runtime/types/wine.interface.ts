@@ -1,8 +1,7 @@
 import type { IImage } from "@/server/types/image.type";
-import type { IResponse } from "@/modules/common-module/runtime/types";
+import type { IItem, IResponse } from "@/modules/common-module/runtime/types";
 
-export interface IWine {
-  _id: string;
+export interface IWine extends IItem {
   name: string;
   price: number;
   quantity: number;
@@ -27,6 +26,6 @@ export interface IWineResponse extends IResponse {
   data?: IWine;
 }
 
-export interface IWineesResponse extends IResponse {
+export interface IWinesResponse extends IResponse {
   data?: IWine[];
 }

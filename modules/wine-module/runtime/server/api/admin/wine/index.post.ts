@@ -7,7 +7,7 @@ import {
 } from "@/modules/mongoose-module/runtime/utils";
 
 import { WineModel } from "../../../../models/wine.schema";
-import { IWineResponse } from "@/modules/wine-module/runtime/types";
+import { IWineResponse } from "../../../../types";
 
 export default defineEventHandler(
   async (event: H3Event): Promise<IWineResponse> => {

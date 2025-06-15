@@ -1,4 +1,14 @@
 {
   "syscode": "wine-list",
-  "restUrl": "/api/wine"
+  "restUrl": "/api/wine",
+  "factory": {
+    "url": "${name}--$${_id}"
+  },
+  "fields": [
+    {
+      "name": "price",
+      "type": "number",
+      "label": "$.form.price"
+    }
+  ]
 }

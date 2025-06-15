@@ -63,64 +63,6 @@ export function useWines() {
 
   const categoryOptions = Object.values(categories);
 
-  const fields: Record<
-    string,
-    { key: string; label: string; placeholder?: string }
-  > = {
-    name: {
-      key: "name",
-      label: t("$.admin.wine.form.name"),
-      placeholder: t("$.admin.wine.placeholder.name"),
-    },
-    kind: {
-      key: "kind",
-      label: t("$.admin.wine.form.kind"),
-      placeholder: t("$.form.select"),
-    },
-    quality: {
-      key: "quality",
-      label: t("$.admin.wine.form.quality"),
-      placeholder: t("$.admin.wine.placeholder.quality"),
-    },
-    color: {
-      key: "color",
-      label: t("$.admin.wine.form.color"),
-      placeholder: t("$.form.select"),
-    },
-    variety: {
-      key: "variety",
-      label: t("$.admin.wine.form.variety"),
-      placeholder: t("$.admin.wine.placeholder.variety"),
-    },
-    volume: {
-      key: "volume",
-      label: t("$.admin.wine.form.volume"),
-    },
-    year: {
-      key: "year",
-      label: t("$.admin.wine.form.year"),
-    },
-    price: {
-      key: "price",
-      label: t("$.form.price"),
-    },
-    quantity: {
-      key: "quantity",
-      label: t("$.form.quantity_stock"),
-    },
-    categories: {
-      key: "categories",
-      label: t("$.form.categories"),
-      placeholder: t("$.form.select"),
-    },
-    description: {
-      key: "description",
-      label: t("$.form.description"),
-    },
-  };
-
-  const fieldOptions = Object.values(fields);
-
   function getChangedParams(
     firstItem: Record<string, any>,
     secondItem: Record<string, any>
@@ -148,8 +90,6 @@ export function useWines() {
     colorOptions,
     categories,
     categoryOptions,
-    fields,
-    fieldOptions,
     defaultItem,
     getChangedParams,
   };

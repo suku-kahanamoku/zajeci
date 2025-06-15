@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
+import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
-import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
+
+import wConfig from "../../assets/configs/wine-detail.json";
+import type { IWineResponse } from "../../types";
 
 definePageMeta({
   layout: "default",
@@ -24,24 +27,48 @@ useHead({
 });
 
 const route = useRoute();
-const { fields, kinds, colors } = useWines();
+const { updateConfig } = useUrlResolver();
+const { kinds, colors } = useWines();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
 const cart = ref<ICart>();
 
-const { data: wine, pending } = await useAsyncData(
-  async (): Promise<IWine | undefined> => {
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
     try {
-      return await $fetch(`/api/wine/${route.params._id}`);
+      const result = CLONE(wConfig);
+      updateConfig(route, result);
+      return result as typeof wConfig;
     } catch (error: any) {
-      console.error(error);
+      return {} as typeof wConfig;
     }
-  }
+  },
+  { watch: [() => route.query] }
+);
+
+/**
+ * Load data
+ */
+const { data: wine } = await useAsyncData(
+  async (): Promise<IWineResponse | undefined> => {
+    if (config.value?.restUrl) {
+      try {
+        let url = useCompleteUrl(config.value?.restUrl, config.value);
+        return await $fetch(url);
+      } catch (error: any) {
+        console.error(error);
+      }
+    }
+  },
+  { watch: [route] }
 );
 
 function addToCashdesk() {
-  if (wine.value) {
-    cart.value = cashdesk.addItem(wine.value, 1);
+  if (wine.value?.data) {
+    cart.value = cashdesk.addItem(wine.value.data, 1);
     modal.value = true;
   }
 }
@@ -49,12 +76,13 @@ function addToCashdesk() {
 
 <template>
   <section
+    v-if="config"
     class="max-w-screen-xl mx-auto text-gray-700 body-font overflow-hidden"
   >
     <div class="px-5 py-24 mx-auto">
       <div class="mx-auto flex flex-wrap w-full">
         <NuxtImg
-          :src="wine?.image?.main?.src || '/img/bottle.jpg'"
+          :src="wine?.data?.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
           loading="lazy"
           format="webp"
@@ -65,7 +93,7 @@ function addToCashdesk() {
           <h1
             class="text-3xl title-font font-medium mb-1 text-primary-600 dark:text-primary-400"
           >
-            {{ wine?.name }}
+            {{ wine?.data?.name }}
           </h1>
           <div class="flex mb-4">
             <span class="flex items-center">
@@ -89,39 +117,72 @@ function addToCashdesk() {
             </span>
           </div>
           <p class="text-lg leading-relaxed dark:text-white">
-            {{ wine?.description }}
+            {{ wine?.data?.description }}
           </p>
           <div class="leading-relaxed mt-4">
             <p class="text-gray-600 dark:text-white">
-              {{ fields.kind.label }}: {{ kinds[wine?.kind as string]?.label }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "kind")?.label!
+                )
+              }}:
+              {{ kinds[wine?.data?.kind as string]?.label }}
             </p>
             <p class="text-gray-600 dark:text-white">
-              {{ fields.color.label }}:
-              {{ colors[wine?.color as string]?.label }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "color")?.label!
+                )
+              }}:
+              {{ colors[wine?.data?.color as string]?.label }}
             </p>
             <p class="text-gray-600 dark:text-white">
-              {{ fields.quality.label }}: {{ wine?.quality }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "quantity")
+                    ?.label!
+                )
+              }}: {{ wine?.data?.quality }}
             </p>
             <p class="text-gray-600 dark:text-white">
-              {{ fields.variety.label }}: {{ wine?.variety }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "variety")
+                    ?.label!
+                )
+              }}: {{ wine?.data?.variety }}
             </p>
             <p class="text-gray-600 dark:text-white">
-              {{ fields.volume.label }}: {{ wine?.volume }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "volume")
+                    ?.label!
+                )
+              }}: {{ wine?.data?.volume }}
             </p>
             <p class="text-gray-600 dark:text-white">
-              {{ fields.year.label }}: {{ wine?.year }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "year")?.label!
+                )
+              }}: {{ wine?.data?.year }}
             </p>
             <p class="text-gray-600 dark:text-white">
-              {{ fields.quantity.label }}: {{ wine?.quantity }}
+              {{
+                $tt(
+                  config.fields?.find((field) => field.name === "quantity")
+                    ?.label!
+                )
+              }}: {{ wine?.data?.quantity }}
             </p>
           </div>
           <USeparator class="my-4" />
           <div class="flex items-center justify-between">
             <span class="font-bold text-2xl text-gray-600 dark:text-white">
               {{
-                useToNumber(wine?.price?.toFixed(2) || 0).value.toLocaleString(
-                  locale
-                )
+                useToNumber(
+                  wine?.data?.price?.toFixed(2) || 0
+                ).value.toLocaleString(locale)
               }}&nbsp;{{ $tt("$.czk") }}
             </span>
             <div>

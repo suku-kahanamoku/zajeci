@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
-import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
+
 import wConfig from "../../assets/configs/wine-list.json";
+import type { IWinesResponse } from "../../types";
 
 definePageMeta({
   layout: "default",
@@ -10,7 +11,7 @@ definePageMeta({
 });
 
 const { t } = useLang();
-const route = useRoute();
+const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 
 const title = computed(() => t(route.meta.title as string));
@@ -43,10 +44,12 @@ const { data: config } = await useAsyncData(
  * Load data
  */
 const { data: wines } = await useAsyncData(
-  async (): Promise<IWine[] | undefined> => {
+  async (): Promise<IWinesResponse | undefined> => {
     if (config.value?.restUrl) {
       try {
-        return await $fetch(config.value?.restUrl);
+        let url = useCompleteUrl(config.value?.restUrl, config.value);
+        url = useFactory(url, config.value.factory, routes.wine?.path);
+        return await $fetch(url);
       } catch (error: any) {
         console.error(error);
       }
@@ -57,7 +60,7 @@ const { data: wines } = await useAsyncData(
 </script>
 
 <template>
-  <div class="max-w-screen-xl mx-auto px-5 w-full">
+  <div v-if="config" class="max-w-screen-xl mx-auto px-5 w-full">
     <div id="terms" class="py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400 pb-8"
@@ -66,7 +69,11 @@ const { data: wines } = await useAsyncData(
       </h1>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
-        <CmpWineCard v-for="wine of wines?.data" :item="wine" />
+        <CmpWineCard
+          v-for="wine of wines?.data"
+          :fields="config.fields"
+          :item="wine"
+        />
       </div>
     </div>
   </div>

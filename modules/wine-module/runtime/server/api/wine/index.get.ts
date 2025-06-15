@@ -7,10 +7,10 @@ import {
 } from "@/modules/mongoose-module/runtime/utils";
 
 import { WineModel } from "../../../models/wine.schema";
-import { IWineesResponse } from "../../../types";
+import { IWinesResponse } from "../../../types";
 
 export default defineEventHandler(
-  async (event: H3Event): Promise<IWineesResponse> => {
+  async (event: H3Event): Promise<IWinesResponse> => {
     const query = getQuery(event);
     const where = JSON.parse((query.q || "{}") as string);
     const limit = parseInt(query.limit as string, 10) || 100;

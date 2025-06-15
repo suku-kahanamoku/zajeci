@@ -1,0 +1,68 @@
+{
+  "syscode": "wine-list",
+  "restUrl": "/api/wine/${route.params._id}",
+  "fields": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "$.admin.wine.form.name",
+      "placeholder": "$.admin.wine.placeholder.name"
+    },
+    {
+      "name": "kind",
+      "type": "select",
+      "label": "$.admin.wine.form.kind",
+      "placeholder": "$.form.select"
+    },
+    {
+      "name": "quality",
+      "type": "text",
+      "label": "$.admin.wine.form.quality",
+      "placeholder": "$.admin.wine.placeholder.quality"
+    },
+    {
+      "name": "color",
+      "type": "select",
+      "label": "$.admin.wine.form.color",
+      "placeholder": "$.form.select"
+    },
+    {
+      "name": "variety",
+      "type": "text",
+      "label": "$.admin.wine.form.variety",
+      "placeholder": "$.admin.wine.placeholder.variety"
+    },
+    {
+      "name": "volume",
+      "type": "number",
+      "label": "$.admin.wine.form.volume"
+    },
+    {
+      "name": "year",
+      "type": "number",
+      "label": "$.admin.wine.form.year"
+    },
+    {
+      "name": "price",
+      "type": "number",
+      "label": "$.form.price"
+    },
+    {
+      "name": "quantity",
+      "type": "number",
+      "label": "$.form.quantity_stock"
+    },
+    {
+      "name": "categories",
+      "type": "select",
+      "label": "$.form.categories",
+      "placeholder": "$.form.select",
+      "multiple": true
+    },
+    {
+      "name": "description",
+      "type": "textarea",
+      "label": "$.form.description"
+    }
+  ]
+}
