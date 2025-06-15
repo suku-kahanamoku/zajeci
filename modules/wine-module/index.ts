@@ -82,6 +82,7 @@ export default defineNuxtModule<ModuleOptions>({
     GENERATE_PAGES("/", resolve);
     GENERATE_PAGES("/wine", resolve);
     GENERATE_PAGES("/admin", resolve);
+    GENERATE_PAGES("/admin/wine", resolve);
 
     // Login api wine endpoints
     const apiAuthDir = resolve("./runtime/server/api/wine");

@@ -19,13 +19,15 @@ definePageMeta({
 });
 
 const { t } = useLang();
+const route = useRoute();
 const toast = useToast();
-const today = new Date();
 const loading = ref();
 const { defaultItem } = useOrders();
 
+const title = computed(() => t(route.meta.title as string));
+
 useHead({
-  title: t("$.admin.order.create.title"),
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },

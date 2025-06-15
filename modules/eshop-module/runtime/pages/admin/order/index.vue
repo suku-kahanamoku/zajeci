@@ -16,13 +16,15 @@ definePageMeta({
 
 const { t } = useLang();
 const localePath = useLocalePath();
-const { routes } = useMenuItems();
+const { routes, route } = useMenuItems();
 const toast = useToast();
 const deleteItem = ref<IOrder>();
 const isOpen = ref(false);
 
+const title = computed(() => t(route.meta.title as string));
+
 useHead({
-  title: `${t("$.base.title")} | ${t("$.dashboard.title")}`,
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },

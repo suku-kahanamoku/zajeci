@@ -16,13 +16,15 @@ definePageMeta({
 
 const { t } = useLang();
 const localePath = useLocalePath();
-const { routes } = useMenuItems();
+const { routes, route } = useMenuItems();
 const toast = useToast();
 const selected = ref<IWine[]>([]);
 const isOpen = ref(false);
 
+const title = computed(() => t(route.meta.title as string));
+
 useHead({
-  title: `${t("$.base.title")} | ${t("$.dashboard.title")}`,
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },
@@ -45,18 +47,10 @@ async function onDelete(value: boolean) {
   if (value && selected.value?.length) {
     const method = "DELETE";
     try {
-      if (selected.value.length === 1) {
-        // Single delete
-        await $fetch(`/api/admin/wine/${selected.value[0]._id}`, {
-          method,
-        });
-      } else {
-        // Multiple delete
-        const ids = selected.value.map((wine) => wine._id).join('","');
-        await $fetch(`/api/admin/wine?q={"_id":{"$in":["${ids}"]}}`, {
-          method,
-        });
-      }
+      // Single delete
+      await $fetch(`/api/admin/wine/${selected.value[0]._id}`, {
+        method,
+      });
       toast.add({
         title: t("$.form.delete_success_msg"),
         color: "success",

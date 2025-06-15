@@ -1,11 +1,10 @@
 <script setup lang="ts">
-const { menuItem } = useMenuItems();
+const { menuItem, routes } = useMenuItems();
 const localePath = useLocalePath();
 const auth = useAuthStore();
 
 const admin = menuItem("admin")!;
 admin.to = localePath(admin.to!);
-
 const menuItems = [admin];
 
 if (auth.isAdmin) {

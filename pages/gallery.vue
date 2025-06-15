@@ -11,9 +11,12 @@ definePageMeta({
 });
 
 const { t } = useLang();
+const { routes, route } = useMenuItems();
+
+const title = computed(() => t(route.meta.title as string));
 
 useHead({
-  title: `${t("$.base.title")} | ${t("$.gallery.title")}`,
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },

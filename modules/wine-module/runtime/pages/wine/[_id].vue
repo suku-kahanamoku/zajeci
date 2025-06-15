@@ -18,8 +18,10 @@ const {
   i18n: { locale },
 } = useLang();
 
+const title = computed(() => t(route.meta.title as string));
+
 useHead({
-  title: `${t("$.base.title")} | ${t("$.forgot_password.title")}`,
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },
@@ -79,7 +81,7 @@ function addToCashdesk() {
     v-if="config"
     class="max-w-screen-xl mx-auto text-gray-700 body-font overflow-hidden"
   >
-    <div class="px-5 py-24 mx-auto">
+    <div class="w-full px-5 py-24 mx-auto border">
       <div class="mx-auto flex flex-wrap w-full">
         <NuxtImg
           :src="wine?.data?.image?.main?.src || '/img/bottle.jpg'"

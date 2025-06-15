@@ -21,11 +21,12 @@ definePageMeta({
 const { t } = useLang();
 const route = useRoute();
 const toast = useToast();
-const today = new Date();
 const { getChangedParams } = useOrders();
 
+const title = computed(() => t(route.meta.title as string));
+
 useHead({
-  title: `${t("$.base.title")} | ${t("$.forgot_password.title")}`,
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },

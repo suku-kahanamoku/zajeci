@@ -7,8 +7,10 @@ definePageMeta({
 
 const { t } = useLang();
 
+const title = computed(() => t(route.meta.title as string));
+
 useHead({
-  title: `${t("$.base.title")} | ${t("$.cashdesk.title")}`,
+  title,
   meta: [
     { name: "description", content: t("$.base.description") },
     { name: "keywords", content: t("$.base.description") },
