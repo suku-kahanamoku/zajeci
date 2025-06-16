@@ -80,7 +80,6 @@ function onChange(body: Record<string, any>, event: any) {
         }
         break;
     }
-    console.log(cashdesk.delivery);
   }
 }
 </script>

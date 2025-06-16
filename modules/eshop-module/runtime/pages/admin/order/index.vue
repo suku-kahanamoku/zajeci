@@ -20,7 +20,6 @@ const { routes, route } = useMenuItems();
 const toast = useToast();
 const deleteItem = ref<IOrder>();
 const isOpen = ref(false);
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({

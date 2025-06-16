@@ -13,7 +13,6 @@ definePageMeta({
 const { t } = useLang();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({
@@ -49,7 +48,7 @@ const { data: wines } = await useAsyncData(
       try {
         let url = useCompleteUrl(config.value?.restUrl, config.value);
         url = useFactory(url, config.value.factory, routes.wine?.path);
-        return await $fetch(url);
+        return await useApi(url);
       } catch (error: any) {
         console.error(error);
       }

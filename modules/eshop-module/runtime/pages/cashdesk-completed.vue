@@ -6,7 +6,9 @@ definePageMeta({
 });
 
 const { t } = useLang();
-
+const route = useRoute();
+const { routes } = useMenuItems();
+const localePath = useLocalePath();
 const title = computed(() => t(route.meta.title as string));
 
 useHead({
@@ -16,10 +18,6 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
-
-const route = useRoute();
-const { routes } = useMenuItems();
-const localePath = useLocalePath();
 </script>
 
 <template>

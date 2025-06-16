@@ -17,7 +17,12 @@ const { t } = useLang();
 const {
   i18n: { locale },
 } = useLang();
-
+const route = useRoute();
+const { updateConfig } = useUrlResolver();
+const { kinds, colors } = useWines();
+const cashdesk = useCashdeskStore();
+const modal = ref(false);
+const cart = ref<ICart>();
 const title = computed(() => t(route.meta.title as string));
 
 useHead({
@@ -27,13 +32,6 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
-
-const route = useRoute();
-const { updateConfig } = useUrlResolver();
-const { kinds, colors } = useWines();
-const cashdesk = useCashdeskStore();
-const modal = ref(false);
-const cart = ref<ICart>();
 
 /**
  * Load config
@@ -59,7 +57,7 @@ const { data: wine } = await useAsyncData(
     if (config.value?.restUrl) {
       try {
         let url = useCompleteUrl(config.value?.restUrl, config.value);
-        return await $fetch(url);
+        return await useApi(url);
       } catch (error: any) {
         console.error(error);
       }

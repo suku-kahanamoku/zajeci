@@ -23,7 +23,6 @@ const route = useRoute();
 const toast = useToast();
 const loading = ref();
 const { defaultItem } = useOrders();
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({

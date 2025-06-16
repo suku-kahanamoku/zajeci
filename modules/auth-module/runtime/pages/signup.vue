@@ -15,7 +15,6 @@ definePageMeta({
 
 const { t } = useLang();
 const { route } = useMenuItems();
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({

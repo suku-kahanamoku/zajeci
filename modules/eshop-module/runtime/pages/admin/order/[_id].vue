@@ -22,7 +22,6 @@ const { t } = useLang();
 const route = useRoute();
 const toast = useToast();
 const { getChangedParams } = useOrders();
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({

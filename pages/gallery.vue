@@ -12,7 +12,6 @@ definePageMeta({
 
 const { t } = useLang();
 const { routes, route } = useMenuItems();
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({
@@ -30,7 +29,8 @@ ITERATE(glob, (value, key) => {
   if (process.client) {
     const img = new Image();
     img.onload = function () {
-      data.value.push({ src, width: this.width, height: this.height });
+      const that = this as any;
+      data.value.push({ src, width: that.width, height: that.height });
     };
     img.src = src;
   }

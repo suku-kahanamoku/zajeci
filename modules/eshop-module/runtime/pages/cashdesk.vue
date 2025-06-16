@@ -6,7 +6,9 @@ definePageMeta({
 });
 
 const { t } = useLang();
-
+const route = useRoute();
+const router = useRouter();
+const { routes } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
 
 useHead({
@@ -19,11 +21,6 @@ useHead({
 
 const { carts, user, delivery, payment, loading, onSubmit } =
   useCashdeskStore();
-console.log(carts, user, delivery, payment);
-
-const route = useRoute();
-const router = useRouter();
-const { routes } = useMenuItems();
 
 const backBtn = computed(() => {
   if (stepper.value?.hasPrev) {

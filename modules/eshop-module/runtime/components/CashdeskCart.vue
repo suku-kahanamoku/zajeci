@@ -43,7 +43,6 @@ const columns = [
   { accessorKey: "quantity", header: t("$.form.quantity") },
   { accessorKey: "price", header: t("$.form.price") },
 ];
-console.log(cashdesk);
 </script>
 
 <template>

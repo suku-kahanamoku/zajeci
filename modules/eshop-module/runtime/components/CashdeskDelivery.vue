@@ -39,8 +39,6 @@ function onChange(body: Record<string, any>, event: any) {
     const data = CLONE(body);
     CONVERT_DOT_TO_OBJECT(data);
     cashdesk.delivery = defu(data.delivery, cashdesk.delivery);
-
-    console.log(cashdesk.delivery);
   }
 }
 </script>

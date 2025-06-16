@@ -20,7 +20,6 @@ const { routes, route } = useMenuItems();
 const toast = useToast();
 const selected = ref<IWine[]>([]);
 const isOpen = ref(false);
-
 const title = computed(() => t(route.meta.title as string));
 
 useHead({
