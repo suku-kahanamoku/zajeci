@@ -12,7 +12,19 @@
       "name": "kind",
       "type": "select",
       "label": "$.admin.wine.form.kind",
-      "placeholder": "$.form.select"
+      "placeholder": "$.form.select",
+      "options": [
+        { "value": "dry", "label": "$.admin.wine.kind.dry" },
+        { "value": "semiDry", "label": "$.admin.wine.kind.semi_dry" },
+        { "value": "sweet", "label": "$.admin.wine.kind.sweet" },
+        { "value": "semiSweet", "label": "$.admin.wine.kind.semi_sweet" },
+        { "value": "extraDry", "label": "$.admin.wine.kind.extra_dry" },
+        { "value": "offDry", "label": "$.admin.wine.kind.off_dry" },
+        { "value": "mediumDry", "label": "$.admin.wine.kind.medium_dry" },
+        { "value": "mediumSweet", "label": "$.admin.wine.kind.medium_sweet" },
+        { "value": "verySweet", "label": "$.admin.wine.kind.very_sweet" },
+        { "value": "dessert", "label": "$.admin.wine.kind.dessert" }
+      ]
     },
     {
       "name": "quality",
@@ -24,7 +36,13 @@
       "name": "color",
       "type": "select",
       "label": "$.admin.wine.form.color",
-      "placeholder": "$.form.select"
+      "placeholder": "$.form.select",
+      "options": [
+        { "value": "white", "label": "$.admin.wine.color.white" },
+        { "value": "red", "label": "$.admin.wine.color.red" },
+        { "value": "rose", "label": "$.admin.wine.color.rose" },
+        { "value": "orange", "label": "$.admin.wine.color.orange" }
+      ]
     },
     {
       "name": "variety",
@@ -57,7 +75,12 @@
       "type": "select",
       "label": "$.form.categories",
       "placeholder": "$.form.select",
-      "multiple": true
+      "multiple": true,
+      "options": [
+        { "value": "favourite", "label": "$.admin.wine.category.favourite" },
+        { "value": "top", "label": "$.admin.wine.category.top" },
+        { "value": "new", "label": "$.admin.wine.category.new" }
+      ]
     },
     {
       "name": "description",

@@ -139,17 +139,17 @@ export function useFormNavigable() {
    */
   async function onSubmit(
     config: IFormConfig,
-    data: Record<string, any>,
+    body: Record<string, any>,
     model?: Record<string, any>
   ): Promise<IResponse | undefined> {
     let result;
     const method = config.method || "POST";
-    const body = getFieldsPayload(data, config.fields, model);
-    CONVERT_DOT_TO_OBJECT(body);
-    const options: Record<string, any> = { method, body };
+    const data = getFieldsPayload(body, config.fields, model);
+    CONVERT_DOT_TO_OBJECT(data);
+    const options: Record<string, any> = { method, body: data };
     let url = method === "PATCH" ? config.patchUrl : config.postUrl;
     if (url) {
-      url = useUrl(url, { route, item: model || body });
+      url = useUrl(url, { route, item: model || data });
       url = useFactory(url, config.factory, route?.path);
       try {
         const response = await useApi(url, options);

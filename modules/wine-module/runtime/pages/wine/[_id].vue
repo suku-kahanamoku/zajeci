@@ -19,7 +19,6 @@ const {
 } = useLang();
 const route = useRoute();
 const { updateConfig } = useUrlResolver();
-const { kinds, colors } = useWines();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
 const cart = ref<ICart>();
@@ -129,7 +128,12 @@ function addToCashdesk() {
                   config.fields?.find((field) => field.name === "kind")?.label!
                 )
               }}:
-              {{ kinds[wine?.data?.kind as string]?.label }}
+              {{
+                config.fields
+                  ?.find((field) => field.name === "kind")
+                  ?.options?.find((option) => option.value === wine?.data?.kind)
+                  ?.label
+              }}
             </p>
             <p class="text-gray-600 dark:text-white">
               {{
@@ -137,7 +141,13 @@ function addToCashdesk() {
                   config.fields?.find((field) => field.name === "color")?.label!
                 )
               }}:
-              {{ colors[wine?.data?.color as string]?.label }}
+              {{
+                config.fields
+                  ?.find((field) => field.name === "color")
+                  ?.options?.find(
+                    (option) => option.value === wine?.data?.color
+                  )?.label
+              }}
             </p>
             <p class="text-gray-600 dark:text-white">
               {{

@@ -143,6 +143,7 @@ defineExpose({ form, model, schema, onChange });
           defu(ui || {}, {
             root: 'bg-transparent',
             body: 'flex flex-col gap-4',
+            footer: 'flex justify-between items-center'
           })
         "
       >

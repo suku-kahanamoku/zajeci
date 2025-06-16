@@ -18,8 +18,8 @@ export interface IWine extends IItem {
   };
   categories?: string[];
   published?: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IWineResponse extends IResponse {
