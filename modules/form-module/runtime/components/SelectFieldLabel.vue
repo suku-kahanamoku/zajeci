@@ -7,7 +7,6 @@ import type { IFormFieldOption, IFormFieldSelect } from "../types";
 const props = defineProps<{
   field: IFormFieldSelect;
   options: IFormFieldOption[];
-  open: boolean;
   onRemove: (...args: any) => void;
   onClear: (...args: any) => void;
 }>();
@@ -41,7 +40,7 @@ const option = computed(() =>
       <!-- pokud ma nejakou hodnotu -->
       <div v-if="option.length" class="flex flex-wrap gap-2 -mb-1">
         <template v-for="opt in option">
-          <UChip size="md" color="error">
+          <UChip size="xl" color="error">
             <CmpTooltip v-if="opt?.item?.tooltip">
               <UBadge
                 :label="$tt(opt?.label!)"
@@ -92,27 +91,6 @@ const option = computed(() =>
               : field.placeholder || "$.form.select")
         )
       }}
-    </span>
-
-    <!-- ikony: clear a sipky (down, right) -->
-    <span v-if="!field.disabled && !field.readonly" class="w-5 h-5">
-      <UIcon
-        v-if="field.clearable && model?.toString()?.length"
-        :data-testid="`${field.type || 'text'}-${field.name}-clear`"
-        name="i-heroicons-x-mark-20-solid"
-        class="w-5 h-5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-        :tabIndex="-1"
-        aria-hidden
-        aria-label="Button to remove field value"
-        @click="onClear"
-      />
-
-      <UIcon
-        v-else
-        name="i-heroicons-chevron-right-20-solid"
-        class="w-5 h-5 transition-transform text-gray-400 dark:text-gray-500"
-        :class="[open && 'transform rotate-90']"
-      />
     </span>
   </div>
 </template>

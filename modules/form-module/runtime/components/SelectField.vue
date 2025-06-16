@@ -84,6 +84,8 @@ const isDifferent = computed(
     )
 );
 
+const open = ref();
+
 // Pokud se klikne na clear button, tak se smaze hodnota a provede se focus
 const onClear = () => {
   model.value = props.field.multiple ? [] : "";
@@ -223,6 +225,24 @@ onMounted(loadOptions);
     </template>
 
     <!-- Input -->
-    <USelect v-model="model" :items="options" class="w-full" />
+    <USelect
+      v-model="model"
+      v-model:open="open"
+      :items="options"
+      :multiple="field.multiple"
+      :trailingIcon="
+        open ? 'i-heroicons-chevron-down' : 'i-heroicons-chevron-right'
+      "
+      class="w-full"
+    >
+      <CmpSelectFieldLabel
+        v-model="model"
+        :field="field"
+        :options="options"
+        :onRemove="onRemove"
+        :onClear="onClear"
+        @click="onClickBadge"
+      />
+    </USelect>
   </UFormField>
 </template>
