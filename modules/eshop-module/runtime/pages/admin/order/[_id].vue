@@ -70,7 +70,7 @@ const schema = object({
 
 const { data: order, pending } = await useAsyncData(async () => {
   try {
-    return await $fetch(`/api/admin/order/${route.params._id}`);
+    return await $fetch(`/api/admin/order/${route.meta.id}`);
   } catch (error: any) {
     console.error(error);
   }
@@ -82,7 +82,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
   pending.value = true;
   try {
     const changedParams = getChangedParams(order.value as any, event.data);
-    const result = await $fetch(`/api/admin/order/${route.params._id}`, {
+    const result = await $fetch(`/api/admin/order/${route.meta.id}`, {
       method: "PATCH",
       body: changedParams,
     });
@@ -113,7 +113,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
           <h1
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
           >
-            {{ $tt("$.admin.order.update.title", { name: state?._id }) }}
+            {{ title }}
           </h1>
 
           <OrderForm

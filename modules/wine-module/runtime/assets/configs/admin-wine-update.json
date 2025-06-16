@@ -1,5 +1,5 @@
 {
-  "syscode": "wine-detail",
+  "syscode": "admin-wine-detail",
   "restUrl": "/api/wine/${route.meta.id}",
   "fields": [
     {

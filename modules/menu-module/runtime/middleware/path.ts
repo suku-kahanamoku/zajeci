@@ -32,29 +32,10 @@ export default async function (
 
   // Nastavení metadat na základě parametrů cesty
   to.params = to.params || {};
-  if (to.params.page) {
-    to.meta.id = REMOVE_FIRST_STRING(to.params.page as string, "--$", true);
-  }
-  if (to.params.subpage) {
-    to.meta.subid = REMOVE_FIRST_STRING(
-      to.params.subpage as string,
-      "--$",
-      true
-    );
-  }
-  if (to.params.subpage2) {
-    to.meta.subid2 = REMOVE_FIRST_STRING(
-      to.params.subpage2 as string,
-      "--$",
-      true
-    );
-  }
-  if (to.params.subpage3) {
-    to.meta.subid3 = REMOVE_FIRST_STRING(
-      to.params.subpage3 as string,
-      "--$",
-      true
-    );
+  if (to.params.id) {
+    const [label, id] = (to.params.id as string)?.split("--$");
+    to.meta.label = label;
+    to.meta.id = id;
   }
 
   // Najde defaultní route podle názvu

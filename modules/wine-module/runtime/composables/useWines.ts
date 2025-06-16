@@ -1,20 +1,5 @@
 export function useWines() {
   const { t } = useLang();
-  const today = new Date();
-
-  const defaultItem = {
-    name: "",
-    description: "",
-    kind: "",
-    quality: "",
-    color: "",
-    variety: "",
-    volume: 0.75,
-    year: today.getFullYear(),
-    price: 180,
-    categories: [],
-    published: false,
-  };
 
   const kinds: Record<string, { value: string; label: string }> = {
     dry: { value: "dry", label: t("$.admin.wine.kind.dry") },
@@ -90,7 +75,6 @@ export function useWines() {
     colorOptions,
     categories,
     categoryOptions,
-    defaultItem,
     getChangedParams,
   };
 }

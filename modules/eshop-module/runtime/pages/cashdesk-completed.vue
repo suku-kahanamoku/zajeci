@@ -25,7 +25,7 @@ useHead({
     <div id="cashdesk-completed" class="py-10">
       <UCard class="max-w-lg mx-auto">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">
-          {{ $tt("$.cashdesk_completed.title") }}
+          {{ title }}
         </h1>
         <p
           class="text-gray-700 mb-4"

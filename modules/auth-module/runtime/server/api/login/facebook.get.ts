@@ -56,9 +56,6 @@ export default oauth.facebookEventHandler({
         lang: "",
         name: i18n?.detectBrowserLanguage?.cookieKey,
       })?.toString() || i18n?.defaultLocale;
-    return await sendRedirect(
-      event,
-      locale === "en" ? "/login" : `/${locale}/login`
-    );
+    return await sendRedirect(event, "/login");
   },
 });

@@ -56,7 +56,10 @@ const { data: wine } = await useAsyncData(
   async (): Promise<IWineResponse | undefined> => {
     if (config.value?.restUrl) {
       try {
-        let url = useCompleteUrl(config.value?.restUrl, config.value);
+        let url = useCompleteUrl(config.value?.restUrl, {
+          config: config.value,
+          route,
+        });
         return await useApi(url);
       } catch (error: any) {
         console.error(error);
@@ -79,7 +82,7 @@ function addToCashdesk() {
     v-if="config"
     class="max-w-screen-xl mx-auto text-gray-700 body-font overflow-hidden"
   >
-    <div class="w-full px-5 py-24 mx-auto border">
+    <div class="w-full px-5 py-24 mx-auto">
       <div class="mx-auto flex flex-wrap w-full">
         <NuxtImg
           :src="wine?.data?.image?.main?.src || '/img/bottle.jpg'"

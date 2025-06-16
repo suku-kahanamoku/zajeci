@@ -1,19 +1,26 @@
 <script setup lang="ts">
+import type {
+  IWine,
+  IWineResponse,
+} from "@/modules/wine-module/runtime/types/wine.interface";
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
 
-import wConfig from "../../assets/configs/wine-list.json";
-import type { IWinesResponse } from "../../types";
+import wConfig from "../../../assets/configs/admin-wine-update.json";
 
 definePageMeta({
-  layout: "default",
-  syscode: "wine",
-  title: "$.wine.title",
+  layout: "admin",
+  syscode: "admin_wine_detail",
+  title: "$.admin.wine_detail.title",
 });
 
 const { t } = useLang();
+const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const title = computed(() => t(route.meta.title as string));
+const toast = useToast();
+const title = computed(
+  () => t((route.params.id || route.meta.title) as string).split("--$")[0]
+);
 
 useHead({
   title,
@@ -42,15 +49,18 @@ const { data: config } = await useAsyncData(
 /**
  * Load data
  */
-const { data: wines } = await useAsyncData(
-  async (): Promise<IWinesResponse | undefined> => {
+const {
+  data: wine,
+  pending,
+  refresh,
+} = await useAsyncData(
+  async (): Promise<IWineResponse | undefined> => {
     if (config.value?.restUrl) {
       try {
         let url = useCompleteUrl(config.value?.restUrl, {
           config: config.value,
           route,
         });
-        url = useFactory(url, config.value.factory, route?.path);
         return await useApi(url);
       } catch (error: any) {
         console.error(error);
@@ -62,21 +72,20 @@ const { data: wines } = await useAsyncData(
 </script>
 
 <template>
-  <div v-if="config" class="max-w-screen-xl mx-auto px-5 w-full">
-    <div id="terms" class="py-10">
+  <div class="max-w-screen-xl mx-auto px-5 w-full">
+    <div class="flex flex-col gap-8 py-10">
       <h1
-        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400 pb-8"
+        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
       >
         {{ title }}
       </h1>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
-        <CmpWineCard
-          v-for="wine of wines?.data"
-          :fields="config.fields"
-          :item="wine"
-        />
-      </div>
+      <CmpForm
+        v-if="config?.fields"
+        :fields="config.fields"
+        :item="wine?.data"
+        :loading="pending"
+      />
     </div>
   </div>
 </template>

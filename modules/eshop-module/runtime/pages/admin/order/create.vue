@@ -102,7 +102,7 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
           <h1
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
           >
-            {{ $tt("$.admin.order.create.title") }}
+            {{ title }}
           </h1>
 
           <OrderForm

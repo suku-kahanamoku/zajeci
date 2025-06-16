@@ -76,7 +76,7 @@ watch(selectedStep, () => {
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
       >
-        {{ $tt("$.cashdesk.title") }}
+        {{ title }}
       </h1>
       <div class="py-10">
         <UStepper

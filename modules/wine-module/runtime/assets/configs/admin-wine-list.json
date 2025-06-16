@@ -1,6 +1,10 @@
 {
-  "syscode": "wine-detail",
-  "restUrl": "/api/wine/${route.meta.id}",
+  "syscode": "admin-wine-list",
+  "restUrl": "/api/wine",
+  "deleteUrl": "/api/wine/${item._id}",
+  "factory": {
+    "url": "${name}--$${_id}"
+  },
   "fields": [
     {
       "name": "name",
