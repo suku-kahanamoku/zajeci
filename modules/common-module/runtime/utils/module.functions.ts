@@ -29,7 +29,7 @@ export function GENERATE_API_ENDPOINT(
 
   let route = prefix; // Základní cesta endpointu.
   if (!nameArr[0].includes("index")) {
-    route += `/${nameArr[0]}`; // Pokud název neobsahuje "index", přidá se první část názvu do cesty.
+    route += `/${nameArr[0].replaceAll("[_id]", ":id")}`; // Pokud název neobsahuje "index", přidá se první část názvu do cesty.
     // Příklad: Pokud `prefix` je "/api" a `nameArr[0]` je "user", výsledná cesta bude "/api/user".
   }
 
