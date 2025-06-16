@@ -18,7 +18,7 @@ export default defineEventHandler(
       await CONNECT_WITH_RETRY();
     }
 
-    const wine = await WineModel.findOne({ _id: event.context.params?._id });
+    const wine = await WineModel.findOne({ _id: event.context.params?.id });
     const result = wine?.toObject() || ({} as IWine);
     RESOLVE_FACTORY(result, query.factory);
 

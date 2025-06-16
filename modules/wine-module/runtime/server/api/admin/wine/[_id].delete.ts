@@ -19,7 +19,7 @@ export default defineEventHandler(
     }
 
     const wine = await WineModel.findOneAndDelete({
-      _id: event.context.params?._id,
+      _id: event.context.params?.id,
     });
     const result = wine?.toObject() || ({} as IWine);
     RESOLVE_FACTORY(result, query.factory);

@@ -18,7 +18,7 @@ export default defineEventHandler(
     }
 
     const order = await OrderModel.findOneAndDelete({
-      _id: event.context.params?._id,
+      _id: event.context.params?.id,
     });
     const result = order?.toObject() || ({} as IOrder);
     RESOLVE_FACTORY(result, query.factory);

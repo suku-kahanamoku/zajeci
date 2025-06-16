@@ -19,7 +19,7 @@ export default defineEventHandler(
     }
 
     const order = await OrderModel.findByIdAndUpdate(
-      event.context.params?._id,
+      event.context.params?.id,
       body,
       { new: true }
     );

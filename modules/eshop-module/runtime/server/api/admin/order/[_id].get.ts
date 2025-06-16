@@ -17,7 +17,7 @@ export default defineEventHandler(
       await CONNECT_WITH_RETRY();
     }
 
-    const order = await OrderModel.findOne({ _id: event.context.params?._id });
+    const order = await OrderModel.findOne({ _id: event.context.params?.id });
     const result = order?.toObject() || ({} as IOrder);
     RESOLVE_FACTORY(result, query.factory);
 

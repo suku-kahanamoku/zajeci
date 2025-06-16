@@ -17,7 +17,7 @@ export default defineEventHandler(
       await CONNECT_WITH_RETRY();
     }
 
-    const user = await UserModel.findOne({ _id: event.context.params?._id });
+    const user = await UserModel.findOne({ _id: event.context.params?.id });
     const result = { ...user?.toObject(), password: undefined };
     RESOLVE_FACTORY(result, query.factory);
 

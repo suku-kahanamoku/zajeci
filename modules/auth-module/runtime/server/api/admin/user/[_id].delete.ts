@@ -18,7 +18,7 @@ export default defineEventHandler(
     }
 
     const user = await UserModel.findOneAndDelete({
-      _id: event.context.params?._id,
+      _id: event.context.params?.id,
     });
     const result = { ...user?.toObject(), password: undefined };
     RESOLVE_FACTORY(result, query.factory);

@@ -20,7 +20,7 @@ export default defineEventHandler(
     }
 
     const wine = await WineModel.findByIdAndUpdate(
-      event.context.params?._id,
+      event.context.params?.id,
       body,
       { new: true }
     );

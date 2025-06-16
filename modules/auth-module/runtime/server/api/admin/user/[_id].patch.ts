@@ -25,7 +25,7 @@ export default defineEventHandler(
     }
 
     // kontrola uzivatele
-    const dbUser = await UserModel.findById(event.context.params?._id);
+    const dbUser = await UserModel.findById(event.context.params?.id);
     if (dbUser?._id) {
       if (body.password) {
         // kontrola hesla
@@ -56,7 +56,7 @@ export default defineEventHandler(
     }
 
     const user = await UserModel.findByIdAndUpdate(
-      event.context.params?._id,
+      event.context.params?.id,
       body,
       {
         new: true,
