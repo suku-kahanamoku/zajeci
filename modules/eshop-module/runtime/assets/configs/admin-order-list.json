@@ -1,0 +1,35 @@
+{
+  "syscode": "admin-order-list",
+  "restUrl": "/api/admin/order",
+  "deleteUrl": "/api/admin/order/${item._id}",
+  "factory": {
+    "url": "${name}--$${_id}"
+  },
+  "fields": [
+    {
+      "name": "_id",
+      "label": "$.admin.order.order_id"
+    },
+    {
+      "name": "user.email",
+      "label": "$.admin.order.user_email"
+    },
+    {
+      "name": "user.phone",
+      "label": "$.admin.order.user_phone"
+    },
+    {
+      "name": "delivery.type",
+      "label": "$.admin.order.delivery_type"
+    },
+    {
+      "name": "payment.type",
+      "label": "$.admin.order.payment_type"
+    },
+    {
+      "name": "totalPrice",
+      "type": "number",
+      "label": "$.admin.order.total_price"
+    }
+  ]
+}

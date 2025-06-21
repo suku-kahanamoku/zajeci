@@ -1,7 +1,10 @@
 import { H3Event } from "h3";
 
 import { OrderModel } from "@/modules/eshop-module/runtime/models/order.schema";
-import { IOrder, IOrderesResponse } from "@/modules/eshop-module/runtime/types/order.interface";
+import {
+  IOrder,
+  IOrdersResponse,
+} from "@/modules/eshop-module/runtime/types/order.interface";
 import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
 import {
   GET_STATUS,
@@ -9,7 +12,7 @@ import {
 } from "@/modules/mongoose-module/runtime/utils";
 
 export default defineEventHandler(
-  async (event: H3Event): Promise<IOrderesResponse> => {
+  async (event: H3Event): Promise<IOrdersResponse> => {
     const query = getQuery(event);
     const where = JSON.parse((query.q || "{}") as string);
     const limit = parseInt(query.limit as string, 10) || 100;

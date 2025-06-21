@@ -80,8 +80,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Dynamicky nacitat vsechny pages z runtime/pages
     GENERATE_PAGES("/", resolve);
-    GENERATE_PAGES("/admin/order", resolve);
     GENERATE_PAGES("/admin", resolve);
+    GENERATE_PAGES("/admin/order", resolve);
 
     // Login api order endpoints
     const apiDir = resolve("./runtime/server/api");

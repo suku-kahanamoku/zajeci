@@ -279,7 +279,8 @@
           "user_phone": "Telefon uživatele",
           "delivery_type": "Typ dopravy",
           "payment_type": "Typ platby"
-        }
+        },
+        "order_id": "ID objednávky"
       }
     },
     "state": {

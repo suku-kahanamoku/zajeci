@@ -1,26 +1,20 @@
 <script setup lang="ts">
-import type { IOrder } from "@/modules/eshop-module/runtime/types/order.interface";
+import oConfig from "../../../assets/configs/admin-order-list.json";
+import type { IOrder } from "../../../types";
 
 definePageMeta({
   layout: "admin",
   syscode: "admin_order",
   title: "$.admin.order.title",
-  middleware: () => {
-    const auth = useAuthStore();
-
-    if (!auth.isAdmin) {
-      return navigateTo("/403");
-    }
-  },
 });
 
 const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
-const toast = useToast();
-const deleteItem = ref<IOrder>();
-const isOpen = ref(false);
 const title = computed(() => t(route.meta.title as string));
+
+const { config, orders, pending, columns, selected, isOpen, onDelete } =
+  useOrderAdmin(oConfig);
 
 useHead({
   title,
@@ -29,48 +23,15 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
-
-const {
-  data: orders,
-  refresh,
-  pending,
-} = await useAsyncData(async (): Promise<IOrder[] | undefined> => {
-  try {
-    return await $fetch<IOrder[]>(`/api/admin/order`);
-  } catch (error: any) {
-    console.error(error);
-  }
-});
-
-async function onDelete(value: boolean) {
-  if (value) {
-    const method = "DELETE";
-    try {
-      await $fetch(`/api/admin/order/${deleteItem.value?._id}`, {
-        method,
-      });
-      toast.add({
-        title: t("$.form.delete_success_msg"),
-        color: "success",
-        icon: "i-heroicons-check",
-      });
-    } catch (error: any) {
-      toast.add({
-        title: error.data.message,
-        color: "error",
-        icon: "i-heroicons-exclamation-circle",
-      });
-    }
-    delete deleteItem.value;
-    isOpen.value = false;
-    await refresh();
-  }
-}
 </script>
 
 <template>
-  <div class="max-w-screen-xl mx-auto px-5 w-full">
-    <div id="dashboard" class="py-10">
+  <div
+    v-if="config"
+    :id="config.syscode"
+    class="max-w-screen-xl mx-auto px-5 w-full"
+  >
+    <div class="flex flex-col gap-8 py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
       >
@@ -78,6 +39,15 @@ async function onDelete(value: boolean) {
       </h1>
 
       <div class="flex justify-end">
+        <UButton
+          icon="i-heroicons-trash"
+          class="text-error-600 dark:text-error-600"
+          variant="ghost"
+          :aria-label="$tt('$.aria.delete_selected')"
+          :disabled="!selected.length"
+          :loading="pending"
+          @click="isOpen = true"
+        />
         <UButton
           :to="localePath(routes.admin_order_create?.path)"
           icon="i-heroicons-plus-circle"
@@ -88,14 +58,18 @@ async function onDelete(value: boolean) {
         />
       </div>
 
-      <OrderList
-        :orders="orders || []"
-        :pending="pending"
-        @delete="
-          deleteItem = $event;
-          isOpen = true;
-        "
-      />
+      <UTable
+        v-if="orders?.data"
+        :data="(orders.data as IOrder[])"
+        :columns="columns"
+        class="flex-1"
+      >
+        <template #_id-cell="{ row }">
+          <NuxtLink :to="row.original?.gen_data?.url">
+            {{ row.original?._id }}
+          </NuxtLink>
+        </template>
+      </UTable>
     </div>
 
     <CmpConfirmDialog
@@ -109,7 +83,13 @@ async function onDelete(value: boolean) {
       }"
       @confirm="onDelete"
     >
-      {{ $tt("$.message.delete_question", { name: deleteItem?._id }) }}
+      {{
+        selected?.length > 1
+          ? $tt("$.message.delete_question_multi", {
+              length: selected?.length,
+            })
+          : $tt("$.message.delete_question", { name: selected?.[0]?._id })
+      }}
     </CmpConfirmDialog>
   </div>
 </template>

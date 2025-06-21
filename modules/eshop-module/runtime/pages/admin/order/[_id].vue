@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import { object, string, boolean, type InferType, number, array } from "yup";
-import type { FormSubmitEvent } from "#ui/types";
-
-import type { IOrder } from "@/modules/eshop-module/runtime/types/order.interface";
-import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import oConfig from "../../../assets/configs/admin-order-update.json";
+import type { IOrder } from "../../../types";
 
 definePageMeta({
   layout: "admin",
-  syscode: "admin_order_update",
-  title: "$.admin.order.update.title",
-  middleware: () => {
-    const auth = useAuthStore();
-
-    if (!auth.isAdmin) {
-      return navigateTo("/403");
-    }
-  },
+  syscode: "admin_order_detail",
+  title: "$.admin.order_detail.title",
 });
 
 const { t } = useLang();
-const route = useRoute();
-const toast = useToast();
-const { getChangedParams } = useOrders();
-const title = computed(() => t(route.meta.title as string));
+const { routes, route } = useMenuItems();
+const title = computed(() =>
+  t((route.meta.label || route.meta.title) as string)
+);
+
+const { config, orders, pending, onUpdate } = useOrderAdmin(oConfig);
+const order = computed(() => orders.value?.data as IOrder);
+const address = computed(() => order.value?.user?.address?.main);
 
 useHead({
   title,
@@ -31,100 +25,90 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
-
-const schema = object({
-  user: object({
-    email: string().required(),
-    name: string().required(),
-    surname: string().required(),
-    phone: string().required(),
-  }),
-  carts: array()
-    .of(
-      object({
-        wine: string().required(),
-        quantity: number().required().positive().integer(),
-        unitPrice: number().required().positive(),
-        totalPrice: number().required().positive(),
-      })
-    )
-    .required(),
-  totalPrice: number().required().positive(),
-  status: string().required(),
-  delivery: object({
-    type: string().required(),
-    address: object({
-      street: string().required(),
-      city: string().required(),
-      state: string().required(),
-      zip: string().required(),
-      country: string(),
-    }).required(),
-    totalPrice: number().required().positive(),
-  }),
-  payment: object({
-    type: string().required(),
-    totalPrice: number().required().positive(),
-  }),
-});
-
-const { data: order, pending } = await useAsyncData(async () => {
-  try {
-    return await $fetch(`/api/admin/order/${route.meta.id}`);
-  } catch (error: any) {
-    console.error(error);
-  }
-});
-
-const state = ref<IOrder>(CLONE(order.value));
-
-async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
-  pending.value = true;
-  try {
-    const changedParams = getChangedParams(order.value as any, event.data);
-    const result = await $fetch(`/api/admin/order/${route.meta.id}`, {
-      method: "PATCH",
-      body: changedParams,
-    });
-    state.value = CLONE(result);
-    toast.add({
-      title: t("$.form.patch_success_msg"),
-      color: "success",
-      icon: "i-heroicons-check",
-    });
-  } catch (error: any) {
-    toast.add({
-      title: error.data.message,
-      color: "error",
-      icon: "i-heroicons-exclamation-circle",
-    });
-  }
-  setTimeout(() => (pending.value = false), 400);
-}
 </script>
 
 <template>
-  <div class="flex w-full">
-    <div class="flex items-center justify-center mx-auto w-full sm:py-12">
-      <div
-        class="w-full border rounded-lg shadow-md sm:max-w-lg md:max-w-xl dark:border dark:bg-gray-800 dark:border-gray-700"
+  <div
+    v-if="config"
+    :id="config.syscode"
+    class="max-w-screen-xl mx-auto px-5 w-full"
+  >
+    <div class="flex flex-col gap-8 py-10">
+      <h1
+        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
       >
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1
-            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
-          >
-            {{ title }}
-          </h1>
+        {{ title }}
+      </h1>
 
-          <OrderForm
-            v-if="state"
-            :schema="schema"
-            :item="state"
-            :loading="pending"
-            @submit="onSubmit"
-          />
-        </div>
-      </div>
+      <UCard v-if="order">
+        <template #header>
+          <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+            Objednávka #{{ order._id }}
+          </h2>
+        </template>
+
+        <template #default>
+          <div class="mb-4">
+            <div class="font-semibold">Uživatel</div>
+            <div class="text-gray-700 dark:text-gray-200">
+              {{ order.user.name }} {{ order.user.surname }} ({{
+                order.user.email
+              }})
+            </div>
+            <div class="text-gray-500 dark:text-gray-400 text-sm">
+              Telefon: {{ order.user.phone }}
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="font-semibold">Adresa</div>
+            <div class="text-gray-700 dark:text-gray-200">
+              {{ address?.street }}, {{ address?.city }}, {{ address?.zip }},
+              {{ address?.state }}
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="font-semibold">Doprava</div>
+            <div class="text-gray-700 dark:text-gray-200">
+              {{ order.delivery.type }}
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="font-semibold">Platba</div>
+            <div class="text-gray-700 dark:text-gray-200">
+              {{ order.payment.type }}
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="font-semibold">Stav objednávky</div>
+            <div class="text-gray-700 dark:text-gray-200">
+              {{ order.status }}
+            </div>
+          </div>
+        </template>
+
+        <template #footer>
+          <div class="mb-4">
+            <div class="font-semibold">Košík</div>
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+              <li
+                v-for="cart in order.carts"
+                class="py-2 flex justify-between items-center"
+              >
+                <span>{{ cart.wine?.name }}</span>
+                <span>{{ cart.quantity }} × {{ cart.unitPrice }} Kč</span>
+                <span class="font-semibold">= {{ cart.totalPrice }} Kč</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-6 text-right">
+            <span
+              class="text-lg font-bold text-primary-600 dark:text-primary-400"
+              >Celkem: {{ order.totalPrice }} Kč</span
+            >
+          </div>
+        </template>
+      </UCard>
     </div>
   </div>
 </template>

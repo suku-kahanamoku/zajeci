@@ -279,7 +279,8 @@
           "user_phone": "User Phone",
           "delivery_type": "Delivery Type",
           "payment_type": "Payment Type"
-        }
+        },
+        "order_id": "Order ID"
       }
     },
     "state": {

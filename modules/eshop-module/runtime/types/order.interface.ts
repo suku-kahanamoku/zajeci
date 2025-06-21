@@ -181,6 +181,6 @@ export interface IOrderResponse extends IResponse {
   data?: IOrder;
 }
 
-export interface IOrderesResponse extends IResponse {
+export interface IOrdersResponse extends IResponse {
   data?: IOrder[];
 }
