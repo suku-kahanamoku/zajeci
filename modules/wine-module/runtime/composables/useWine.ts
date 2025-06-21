@@ -42,7 +42,7 @@ export function useWine(wConfig: any) {
     pending,
     refresh,
   } = useAsyncData(
-    () => (config.value?.syscode || "") + "data",
+    () => (config.value?.syscode || "") + "data" + route.fullPath,
     async () => {
       if (config?.value?.restUrl) {
         try {
