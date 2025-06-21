@@ -4,6 +4,7 @@ const localePath = useLocalePath();
 const auth = useAuthStore();
 
 const menuItems: any[] = [];
+console.log(menuItems)
 
 if (auth.isAdmin) {
   const adminWine = menuItem("admin_wine")!;
