@@ -25,7 +25,7 @@ useHead({
 </script>
 
 <template>
-  <div class="max-w-screen-xl mx-auto px-5 w-full">
+  <div :id="wConfig.syscode" class="max-w-screen-xl mx-auto px-5 w-full">
     <div class="flex flex-col gap-8 py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
