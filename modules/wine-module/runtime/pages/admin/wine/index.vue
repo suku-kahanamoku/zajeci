@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import type {
-  IWine,
-  IWinesResponse,
-} from "@/modules/wine-module/runtime/types/wine.interface";
-import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
-
 import wConfig from "../../../assets/configs/admin-wine-list.json";
-import type { TableColumn } from "@nuxt/ui";
 
 definePageMeta({
   layout: "admin",
@@ -17,9 +10,10 @@ definePageMeta({
 const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
-const { updateConfig } = useUrlResolver();
-const toast = useToast();
 const title = computed(() => t(route.meta.title as string));
+
+const { wines, pending, columns, selected, isOpen, onDelete } =
+  useWineAdmin(wConfig);
 
 useHead({
   title,
@@ -28,85 +22,6 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
-
-const selected = ref<IWine[]>([]);
-const isOpen = ref(false);
-const columns: Ref<TableColumn<IWine>[]> = computed(
-  () =>
-    config.value?.fields?.map((f) => ({
-      accessorKey: f.name,
-      header: t(f.label),
-    })) ?? []
-);
-
-/**
- * Load config
- */
-const { data: config } = await useAsyncData(
-  async () => {
-    try {
-      const result = CLONE(wConfig);
-      updateConfig(route, result);
-      return result as typeof wConfig;
-    } catch (error: any) {
-      return {} as typeof wConfig;
-    }
-  },
-  { watch: [() => route.query] }
-);
-
-/**
- * Load data
- */
-const {
-  data: wines,
-  pending,
-  refresh,
-} = await useAsyncData(
-  async (): Promise<IWinesResponse | undefined> => {
-    if (config.value?.restUrl) {
-      try {
-        let url = useCompleteUrl(config.value?.restUrl, {
-          config: config.value,
-          route,
-        });
-        url = useFactory(url, config.value.factory, route?.path);
-        return await useApi(url);
-      } catch (error: any) {
-        console.error(error);
-      }
-    }
-  },
-  { watch: [route] }
-);
-
-async function onDelete(value: boolean) {
-  if (value && config.value?.deleteUrl && selected.value?.length) {
-    const method = "DELETE";
-    try {
-      let url = useUrl(config.value.deleteUrl, {
-        config: config.value,
-        route,
-        item: selected.value,
-      });
-      await useApi(url);
-      toast.add({
-        title: t("$.form.delete_success_msg"),
-        color: "success",
-        icon: "i-heroicons-check",
-      });
-    } catch (error: any) {
-      toast.add({
-        title: error.data.message,
-        color: "error",
-        icon: "i-heroicons-exclamation-circle",
-      });
-    }
-    selected.value = [];
-    isOpen.value = false;
-    await refresh();
-  }
-}
 </script>
 
 <template>
@@ -138,7 +53,12 @@ async function onDelete(value: boolean) {
         />
       </div>
 
-      <UTable :data="wines?.data" :columns="columns" class="flex-1">
+      <UTable
+        v-if="wines?.data?.length"
+        :data="wines.data"
+        :columns="columns"
+        class="flex-1"
+      >
         <template #name-cell="{ row }">
           <NuxtLink :to="row.original?.gen_data?.url">
             {{ row.original?.name }}

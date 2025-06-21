@@ -85,11 +85,6 @@
         { "value": "top", "label": "$.admin.wine.category.top" },
         { "value": "new", "label": "$.admin.wine.category.new" }
       ]
-    },
-    {
-      "name": "description",
-      "type": "textarea",
-      "label": "$.form.description"
     }
   ]
 }
