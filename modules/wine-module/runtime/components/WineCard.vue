@@ -18,8 +18,8 @@ const modal = ref(false);
 const cart = ref<ICart>();
 
 function addToCashdesk() {
-  if (props.wine?.data) {
-    cart.value = cashdesk.addItem(props.wine.data, 1);
+  if (props.wine) {
+    cart.value = cashdesk.addItem(props.wine, 1);
     modal.value = true;
   }
 }
@@ -70,45 +70,6 @@ function addToCashdesk() {
       </template>
     </UCard>
 
-    <UModal
-      v-model:open="modal"
-      :title="$tt('$.cashdesk.cart.added')"
-      close-icon="i-heroicons-x-mark"
-    >
-      <template #body>
-        <h3
-          class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"
-        >
-          {{ cart?.wine?.name }}
-        </h3>
-        <div class="mt-6 flex flex-col gap-2">
-          <div>
-            {{ $tt("$.form.price") }}:&nbsp;{{
-              useToNumber(
-                cart?.totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
-            }}&nbsp;{{ $tt("$.czk") }}
-          </div>
-          <div>
-            {{ $tt("$.form.quantity") }}:&nbsp;{{
-              useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
-            }}&nbsp;{{ $tt("$.pcs") }}
-          </div>
-          <div>
-            {{ $tt("$.cashdesk.cart.total") }}:&nbsp;{{
-              useToNumber(
-                cashdesk?.totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
-            }}&nbsp;{{ $tt("$.czk") }}
-          </div>
-        </div>
-        <UAlert
-          icon="i-heroicons-truck"
-          :title="$tt('$.cashdesk.delivery.limit_free')"
-          color="info"
-          class="mt-5"
-        />
-      </template>
-    </UModal>
+    <CmpCartDialog v-model="modal" :cart="cart" />
   </div>
 </template>

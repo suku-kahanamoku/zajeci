@@ -31,6 +31,10 @@ useHead({
     :id="config.syscode"
     class="max-w-screen-xl mx-auto text-gray-700 body-font overflow-hidden"
   >
-    <CmpWineDetailCard :fields="config.fields" :wine="(wine?.data as IWine)" />
+    <CmpWineDetailCard
+      v-if="wine?.data"
+      :fields="config.fields"
+      :wine="(wine?.data as IWine)"
+    />
   </section>
 </template>

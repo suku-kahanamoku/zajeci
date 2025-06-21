@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import wConfig from "../../../assets/configs/admin-wine-list.json";
+import type { IWine } from "../../../types";
 
 definePageMeta({
   layout: "admin",
@@ -59,7 +60,7 @@ useHead({
 
       <UTable
         v-if="wines?.data?.length"
-        :data="wines.data"
+        :data="(wines.data as IWine[])"
         :columns="columns"
         class="flex-1"
       >

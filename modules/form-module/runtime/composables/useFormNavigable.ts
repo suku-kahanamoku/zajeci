@@ -150,7 +150,7 @@ export function useFormNavigable() {
     let url = method === "PATCH" ? config.patchUrl : config.postUrl;
     if (url) {
       url = useUrl(url, { route, item: model || data });
-      url = useFactory(url, config.factory, route?.path);
+      url = useFactory(url, config.factory, route.path);
       try {
         const response = await useApi(url, options);
         onSubmitSuccess(response!, method, config);

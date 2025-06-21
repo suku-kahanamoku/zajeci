@@ -7,7 +7,7 @@
       "anonymous": "Anonym",
       "cart": {
         "title": "Košík",
-        "added": "Přidáno do košíku:",
+        "added": "Přidáno do košíku: {name}",
         "total": "V košíku je zboží celkem za",
         "total_price": "Celkem k úhradě",
         "empty": "Košík je prázdný",

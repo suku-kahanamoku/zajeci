@@ -1,5 +1,5 @@
 {
-  "syscode": "admin-wine-detail",
+  "syscode": "admin-wine-update",
   "restUrl": "/api/wine/${route.meta.id}",
   "patchUrl": "/api/admin/wine/${route.meta.id}",
   "method": "PATCH",

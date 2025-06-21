@@ -39,8 +39,9 @@ useHead({
       </h1>
 
       <CmpForm
+        v-if="wine?.data"
         :fields="config.fields"
-        :item="(wine?.data as IWine)"
+        :item="(wine.data as IWine)"
         :loading="pending"
         :ui="{
           body: 'grid md:grid-cols-2 gap-4',

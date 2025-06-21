@@ -7,7 +7,7 @@
       "anonymous": "Anonymous",
       "cart": {
         "title": "Cart",
-        "added": "Added to cart:",
+        "added": "Added to cart: {name}",
         "total": "Total of items in the basket",
         "total_price": "Total to pay",
         "empty": "The cart is empty",

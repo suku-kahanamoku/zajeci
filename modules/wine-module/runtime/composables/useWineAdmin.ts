@@ -25,7 +25,7 @@ export function useWineAdmin(wConfig: any) {
   );
 
   const { data: config } = useAsyncData(
-    () => (wConfig?.restUrl || "") + "config",
+    () => (wConfig?.syscode || "") + "config",
     async () => {
       try {
         const result = CLONE(wConfig);
@@ -44,7 +44,7 @@ export function useWineAdmin(wConfig: any) {
     pending,
     refresh,
   } = useAsyncData(
-    () => (config.value?.restUrl || "") + "data",
+    () => (config.value?.syscode || "") + "data",
     async () => {
       if (config?.value?.restUrl) {
         try {
@@ -52,7 +52,7 @@ export function useWineAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, route?.path);
+          url = useFactory(url, config.value.factory, route.path);
           return (await useApi(url)) as IWineResponse | IWinesResponse;
         } catch (error: any) {
           console.error(error);
