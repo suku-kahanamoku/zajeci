@@ -2,7 +2,7 @@
 definePageMeta({
   layout: "default",
   syscode: "home",
-  title: "$.home.title",
+  title: "$.base.title",
 });
 
 const { t } = useLang();

@@ -8,15 +8,7 @@ import {
 
 export default defineEventHandler(async (event: H3Event) => {
   const { pathname } = getRequestURL(event);
-  if (
-    pathname.includes("/pz") ||
-    pathname.includes("/admin") ||
-    pathname.includes("/auth/signup")
-  ) {
+  if (pathname.includes("/pz") || pathname.includes("/admin")) {
     await requireUserSession(event);
   }
-  /* else {
-    user = (await getUserSession(event)).user;
-  } */
-  /* console.log(pathname); */
 });

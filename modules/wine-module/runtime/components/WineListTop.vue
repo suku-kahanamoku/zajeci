@@ -2,7 +2,7 @@
 import wConfig from "../assets/configs/wine-list-top.json";
 import type { IWine } from "../types";
 
-const { config, wines, pending } = useWineAdmin(wConfig);
+const { config, wines, pending } = useWine(wConfig);
 </script>
 
 <template>

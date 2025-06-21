@@ -39,13 +39,44 @@ function addToCashdesk() {
         />
       </template>
 
-      <NuxtLink :to="wine.gen_data?.url">
-        <h3
-          class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400"
+      <template #default>
+        <NuxtLink :to="wine.gen_data?.url">
+          <h3
+            class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400"
+          >
+            {{ wine.name }}
+          </h3>
+        </NuxtLink>
+        <!-- Parametry vína s ikonami -->
+        <div
+          class="flex flex-wrap gap-3 justify-center py-2 text-gray-700 dark:text-gray-200"
         >
-          {{ wine.name }}
-        </h3>
-      </NuxtLink>
+          <span v-if="wine.kind" class="flex items-center gap-1">
+            <UIcon name="i-heroicons-tag" class="text-primary-500" />
+            <span>{{ wine.kind }}</span>
+          </span>
+          <span v-if="wine.color" class="flex items-center gap-1">
+            <UIcon name="i-heroicons-paint-brush" class="text-pink-500" />
+            <span>{{ wine.color }}</span>
+          </span>
+          <span v-if="wine.year" class="flex items-center gap-1">
+            <UIcon name="i-heroicons-calendar" class="text-amber-500" />
+            <span>{{ wine.year }}</span>
+          </span>
+          <span v-if="wine.volume" class="flex items-center gap-1">
+            <UIcon name="i-heroicons-beaker" class="text-blue-500" />
+            <span>{{ wine.volume }}ml</span>
+          </span>
+          <span v-if="wine.variety" class="flex items-center gap-1">
+            <UIcon name="i-heroicons-sparkles" class="text-green-500" />
+            <span>{{ wine.variety }}</span>
+          </span>
+          <span v-if="wine.quality" class="flex items-center gap-1">
+            <UIcon name="i-heroicons-star" class="text-yellow-500" />
+            <span>{{ wine.quality }}</span>
+          </span>
+        </div>
+      </template>
 
       <template #footer>
         <div class="flex justify-between items-center">

@@ -52,7 +52,7 @@ export function useWineAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, route.path);
+          url = useFactory(url, config.value.factory, routes.admin_wine.path);
           return (await useApi(url)) as IWineResponse | IWinesResponse;
         } catch (error: any) {
           console.error(error);
@@ -107,6 +107,18 @@ export function useWineAdmin(wConfig: any) {
     pending.value = false;
   }
 
+  async function onCreate(body: Record<string, any>) {
+    pending.value = true;
+    const result = await onSubmit(config?.value!, body);
+    if (result?.data) {
+      document
+        .querySelectorAll(".field-warning")
+        .forEach((el) => el.classList.remove("field-warning"));
+      navigateTo(routes.admin_wine.path);
+    }
+    pending.value = false;
+  }
+
   return {
     config,
     columns,
@@ -117,5 +129,6 @@ export function useWineAdmin(wConfig: any) {
     refresh,
     onDelete,
     onUpdate,
+    onCreate,
   };
 }

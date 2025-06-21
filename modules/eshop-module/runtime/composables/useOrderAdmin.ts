@@ -52,7 +52,7 @@ export function useOrderAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, route.path);
+          url = useFactory(url, config.value.factory, routes.admin_order.path);
           return (await useApi(url)) as IOrderResponse | IOrdersResponse;
         } catch (error: any) {
           console.error(error);

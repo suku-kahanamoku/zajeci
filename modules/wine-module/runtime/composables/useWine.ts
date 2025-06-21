@@ -50,7 +50,7 @@ export function useWine(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, route.path);
+          url = useFactory(url, config.value.factory, routes.wine.path);
           return (await useApi(url)) as IWineResponse | IWinesResponse;
         } catch (error: any) {
           console.error(error);

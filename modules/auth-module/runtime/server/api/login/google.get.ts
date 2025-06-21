@@ -51,7 +51,7 @@ export default oauth.googleEventHandler({
         lang: "",
         name: i18n?.detectBrowserLanguage?.cookieKey,
       })?.toString() || i18n?.defaultLocale;
-    return await sendRedirect(event, locale === "en" ? "/pz" : `/${locale}/pz`);
+    return await sendRedirect(event, "/pz");
   },
   async onError(event: H3Event) {
     const i18n = useRuntimeConfig(event).public?.i18n;

@@ -12,7 +12,7 @@ const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
 
-const { config, wines, pending } = useWineAdmin(wConfig);
+const { config, wines, pending } = useWine(wConfig);
 
 useHead({
   title,

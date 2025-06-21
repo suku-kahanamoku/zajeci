@@ -33,7 +33,7 @@ const userMenuItems = computed(() => {
     [
       {
         label: "$.navbar.logout",
-        click: async () => await auth.logout(),
+        onSelect: auth.logout,
       },
     ],
   ];

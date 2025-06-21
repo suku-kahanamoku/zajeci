@@ -41,7 +41,7 @@ export default async function (
     }
   }
   // neni prihlaseny, ale chce jit na zabezpecenou stranku
-  else if (to.path.includes("/pz")) {
+  else if (to.path.includes("/pz") || to.path.includes("/admin")) {
     switch (fromSyscode) {
       // pokud jde z login, signup nebo password, zrusi navigaci
       case "login":
