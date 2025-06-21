@@ -51,11 +51,7 @@ const { data: config } = await useAsyncData(
 /**
  * Load data
  */
-const {
-  data: wine,
-  pending,
-  refresh,
-} = await useAsyncData(
+const { data: wine, pending } = await useAsyncData(
   async (): Promise<IWineResponse | undefined> => {
     if (config.value?.restUrl) {
       try {
