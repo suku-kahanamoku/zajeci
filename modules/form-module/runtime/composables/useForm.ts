@@ -9,11 +9,7 @@ import {
   RESOLVE_MARKS,
   INTERSECTION,
 } from "@/modules/common-module/runtime/utils";
-import type {
-  IDefinitionField,
-  IFormField,
-  ISetter,
-} from "../types/field.interface";
+import type { IFormField } from "../types/field.interface";
 
 export function useForm() {
   /**
@@ -637,134 +633,9 @@ export function useForm() {
     }
   }
 
-  /**
-   * "definition":  [
-                        {
-                            "value": true,
-                            "operation": "eq",
-                            "set": {
-                              "tin": [
-                                {
-                                  "type": "type",
-                                  "value": "text"
-                                }
-                              ]
-                            }
-                        }
-                    ]
-   *
-   * @param {IFormField} field
-   * @param {*} value
-   * @param {IFormField[]} trgFields
-   * @param {IFormField[]} defaultFields
-   */
-  function resolveDefinitions(
-    srcField: IFormField,
-    value: any,
-    trgFields: IFormField[],
-    defaultFields: IFormField[]
-  ) {
-    srcField.definition?.forEach((defField) => {
-      if (defField?.operation && defField.set) {
-        // pokud se to matchne
-        if (_isMatch(value, defField)) {
-          ITERATE(defField.set, (setters: ISetter[], name: string) => {
-            const trgField = trgFields.find((field) => field.name === name);
-            if (trgField) {
-              setters?.forEach((setter) => {
-                const setterValue = RESOLVE_MARKS(setter.value, { value });
-                trgField[setter.type] = setterValue;
-                trgField.key = trgField.key || 0;
-              });
-            }
-          });
-        }
-        // pokud se to nematchne, tak se musi vratit puvodni hodnota
-        else {
-          ITERATE(defField.set, (setters: ISetter[], name: string) => {
-            const trgField = trgFields.find((field) => field.name === name);
-            const oldField = defaultFields.find((field) => field.name === name);
-            if (trgField && oldField) {
-              setters?.forEach((setter) => {
-                trgField[setter.type] = oldField[setter.type];
-                trgField.key = trgField.key || 0;
-              });
-            }
-          });
-        }
-      }
-    });
-  }
-
-  /**
-   *
-   *
-   * @param {*} value
-   * @param {IDefinitionField} defField
-   * @return {*}  {boolean}
-   */
-  function _isMatch(value: any, defField: IDefinitionField): boolean {
-    let result = false;
-    if (defField.value === "*") {
-      result = true;
-    } else if (IS_DEFINED(value) && defField.operation) {
-      value = value || "";
-      const fieldValue = defField.value || "";
-      switch (defField.operation) {
-        case "in":
-          result =
-            Array.isArray(value) && Array.isArray(fieldValue)
-              ? INTERSECTION(value, fieldValue).length
-                ? true
-                : false
-              : value.includes(fieldValue) || fieldValue.includes(value)
-              ? true
-              : false;
-          break;
-
-        case "nin":
-          result =
-            Array.isArray(value) && Array.isArray(fieldValue)
-              ? INTERSECTION(value, fieldValue).length
-                ? false
-                : true
-              : value.includes(fieldValue) || fieldValue.includes(value)
-              ? false
-              : true;
-          break;
-
-        case "lt":
-          result = +fieldValue > +value;
-          break;
-
-        case "lte":
-          result = +fieldValue >= +value;
-          break;
-
-        case "gt":
-          result = +fieldValue < +value;
-          break;
-
-        case "gte":
-          result = +fieldValue <= +value;
-          break;
-
-        case "ne":
-          result = fieldValue !== value;
-          break;
-
-        default:
-          result = fieldValue === value;
-          break;
-      }
-    }
-    return result;
-  }
-
   return {
     getFieldsPayload,
     getUrlFieldsPayload,
     getRestUrlFieldsPayload,
-    resolveDefinitions,
   };
 }
