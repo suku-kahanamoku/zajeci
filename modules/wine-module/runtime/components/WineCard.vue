@@ -7,7 +7,7 @@ import type { IFormField } from "~/modules/form-module/runtime/types";
 
 const props = defineProps<{
   fields: IFormField[];
-  item: IWine;
+  wine?: IWine;
 }>();
 
 const {
@@ -18,17 +18,19 @@ const modal = ref(false);
 const cart = ref<ICart>();
 
 function addToCashdesk() {
-  cart.value = cashdesk.addItem(props.item, 1);
-  modal.value = true;
+  if (props.wine?.data) {
+    cart.value = cashdesk.addItem(props.wine.data, 1);
+    modal.value = true;
+  }
 }
 </script>
 
 <template>
-  <div>
+  <div v-if="wine" :id="wine._id">
     <UCard class="zoom-in">
       <template #header>
         <NuxtImg
-          :src="item.image?.main?.src || '/img/bottle.jpg'"
+          :src="wine.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
           loading="lazy"
           format="webp"
@@ -37,11 +39,11 @@ function addToCashdesk() {
         />
       </template>
 
-      <NuxtLink :to="item.gen_data?.url">
+      <NuxtLink :to="wine.gen_data?.url">
         <h3
           class="text-lg lg:text-xl font-bold pb-4 text-primary-600 dark:text-primary-400"
         >
-          {{ item.name }}
+          {{ wine.name }}
         </h3>
       </NuxtLink>
 
@@ -51,7 +53,7 @@ function addToCashdesk() {
             {{
               $tt(fields?.find((field) => field.name === "price")?.label!)
             }}:&nbsp;{{
-              useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(
+              useToNumber(wine?.price?.toFixed(2) || 0).value.toLocaleString(
                 locale
               )
             }}&nbsp;{{ $tt("$.czk") }}

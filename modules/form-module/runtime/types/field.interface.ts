@@ -163,12 +163,6 @@ export interface IFormField {
     | string;
 
   /**
-   * @property {IDefinitionField[]} [definition]
-   * Dynamické úpravy jiných polí na základě nastavení.
-   */
-  definition?: IDefinitionField[];
-
-  /**
    * @property {IOperator} [operator]
    * Operátor pole.
    */
@@ -460,48 +454,4 @@ export interface IOperator {
    * Možnosti operátoru.
    */
   options?: string[];
-}
-
-/**
- * @interface IDefinitionField
- * @description
- * Rozhraní pro dynamické úpravy jiných polí na základě nastavení.
- */
-export interface IDefinitionField {
-  /**
-   * @property {*} value
-   * Hodnota pro match.
-   */
-  value: any | any[];
-
-  /**
-   * @property {string} operation
-   * Operace pro match (např. $gte).
-   */
-  operation: string;
-
-  /**
-   * @property {Record<string, ISetter[]>} [set]
-   * Nastavení pro úpravy jiných polí.
-   */
-  set?: Record<string, ISetter[]>;
-}
-
-/**
- * @interface ISetter
- * @description
- * Rozhraní pro úpravy hodnot nebo atributů polí.
- */
-export interface ISetter {
-  /**
-   * @property {string} type
-   * Typ atributu, který se má upravit (např. type, value).
-   */
-  type: string;
-
-  /**
-   * @property {*} value
-   * Hodnota, na kterou se má atribut upravit.
-   */
-  value: any;
 }

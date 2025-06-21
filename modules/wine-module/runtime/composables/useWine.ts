@@ -5,11 +5,9 @@ import { CLONE } from "~/modules/common-module/runtime/utils";
 
 import type { IWine, IWineResponse, IWinesResponse } from "../types";
 
-export function useWineAdmin(wConfig: any) {
+export function useWine(wConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
-  const toast = useToast();
-  const { onSubmit } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
   const selected = ref<IWine[]>([]);
@@ -65,47 +63,6 @@ export function useWineAdmin(wConfig: any) {
     }
   );
 
-  // Delete
-  async function onDelete(value: boolean) {
-    if (value && config?.value?.deleteUrl && selected.value?.length) {
-      const method = "DELETE";
-      try {
-        let url = useUrl(config.value.deleteUrl, {
-          config: config.value,
-          route,
-          item: selected.value,
-        });
-        await useApi(url, { method });
-        toast.add({
-          title: t("$.form.delete_success_msg"),
-          color: "success",
-          icon: "i-heroicons-check",
-        });
-      } catch (error: any) {
-        toast.add({
-          title: error.data.message,
-          color: "error",
-          icon: "i-heroicons-exclamation-circle",
-        });
-      }
-      selected.value = [];
-      isOpen.value = false;
-      await refresh();
-    }
-  }
-
-  async function onUpdate(body: Record<string, any>, wine: IWine) {
-    pending.value = true;
-    const result = await onSubmit(config?.value!, body, wine);
-    if (result?.data) {
-      document
-        .querySelectorAll(".field-warning")
-        .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine.path);
-    }
-    pending.value = false;
-  }
-
   return {
     config,
     columns,
@@ -114,7 +71,5 @@ export function useWineAdmin(wConfig: any) {
     selected,
     isOpen,
     refresh,
-    onDelete,
-    onUpdate,
   };
 }
