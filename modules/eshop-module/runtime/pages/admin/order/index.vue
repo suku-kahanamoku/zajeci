@@ -41,7 +41,7 @@ useHead({
       <div class="flex justify-end">
         <UButton
           icon="i-heroicons-trash"
-          class="text-error-600 dark:text-error-600"
+          color="error"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
@@ -51,7 +51,7 @@ useHead({
         <UButton
           :to="localePath(routes.admin_order_create?.path)"
           icon="i-heroicons-plus-circle"
-          class="text-orange-600 dark:text-orange-600"
+          color="secondary"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :loading="pending"

@@ -1,7 +1,7 @@
 {
   "syscode": "admin-wine-list",
   "restUrl": "/api/wine",
-  "deleteUrl": "/api/wine/${item._id}",
+  "deleteUrl": "/api/admin/wine/${item._id}",
   "factory": {
     "url": "${name}--$${_id}"
   },

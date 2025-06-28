@@ -1,7 +1,6 @@
 {
   "syscode": "admin-order-list",
   "restUrl": "/api/admin/order",
-  "deleteUrl": "/api/admin/order/${item._id}",
   "factory": {
     "url": "${name}--$${_id}"
   },

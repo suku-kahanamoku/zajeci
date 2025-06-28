@@ -43,7 +43,7 @@ if (auth.isAdmin) {
         :items="menuItems"
         :highlight="true"
         :ui="{
-          root: 'border-r border-gray-200',
+          root: 'hidden lg:flex border-r border-gray-200',
         }"
       >
         <template #item-label="{ item }">

@@ -15,15 +15,6 @@ export function useWineAdmin(wConfig: any) {
   const selected = ref<IWine[]>([]);
   const isOpen = ref(false);
 
-  // Columns
-  const columns: Ref<TableColumn<any>[]> = computed(
-    () =>
-      config?.value?.fields?.map((f) => ({
-        accessorKey: f.name,
-        header: t(f.label!),
-      })) ?? []
-  );
-
   const { data: config } = useAsyncData(
     () => (wConfig?.syscode || "") + "config",
     async () => {
@@ -68,15 +59,30 @@ export function useWineAdmin(wConfig: any) {
 
   // Delete
   async function onDelete(value: boolean) {
-    if (value && config?.value?.deleteUrl && selected.value?.length) {
+    if (value && config.value?.deleteUrl && selected.value?.length) {
       const method = "DELETE";
       try {
-        let url = useUrl(config.value.deleteUrl, {
-          config: config.value,
-          route,
-          item: selected.value,
-        });
-        await useApi(url, { method });
+        if (selected.value.length > 1) {
+          // Mazání více záznamů přes Promise.all
+          await Promise.all(
+            selected.value.map((item) => {
+              const url = useUrl(config.value!.deleteUrl!, {
+                config: config.value!,
+                route,
+                item,
+              });
+              return useApi(url, { method });
+            })
+          );
+        } else {
+          // Mazání jednoho záznamu
+          let url = useUrl(config.value!.deleteUrl!, {
+            config: config.value!,
+            route,
+            item: selected.value[0],
+          });
+          await useApi(url, { method });
+        }
         toast.add({
           title: t("$.form.delete_success_msg"),
           color: "success",
@@ -84,7 +90,7 @@ export function useWineAdmin(wConfig: any) {
         });
       } catch (error: any) {
         toast.add({
-          title: error.data.message,
+          title: error.data?.message || error.message,
           color: "error",
           icon: "i-heroicons-exclamation-circle",
         });
@@ -121,7 +127,6 @@ export function useWineAdmin(wConfig: any) {
 
   return {
     config,
-    columns,
     wines,
     pending,
     selected,

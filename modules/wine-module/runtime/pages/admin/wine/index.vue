@@ -12,8 +12,7 @@ const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
-
-const { config, wines, pending, columns, selected, isOpen, onDelete } =
+const { config, wines, pending, selected, isOpen, onDelete } =
   useWineAdmin(wConfig);
 
 useHead({
@@ -23,6 +22,12 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
+const tableCmp = useTemplateRef("tableCmp");
+
+async function onDeleteHandler(event: boolean) {
+  await onDelete(event);
+  tableCmp.value?.tableEl?.tableApi.resetRowSelection();
+}
 </script>
 
 <template>
@@ -41,7 +46,7 @@ useHead({
       <div class="flex justify-end">
         <UButton
           icon="i-heroicons-trash"
-          class="text-error-600 dark:text-error-600"
+          color="error"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
@@ -51,25 +56,20 @@ useHead({
         <UButton
           :to="localePath(routes.admin_wine_create?.path)"
           icon="i-heroicons-plus-circle"
-          class="text-orange-600 dark:text-orange-600"
+          color="secondary"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :loading="pending"
         />
       </div>
 
-      <UTable
-        v-if="wines?.data?.length"
-        :data="(wines.data as IWine[])"
-        :columns="columns"
-        class="flex-1"
-      >
-        <template #name-cell="{ row }">
-          <NuxtLink :to="row.original?.gen_data?.url">
-            {{ row.original?.name }}
-          </NuxtLink>
-        </template>
-      </UTable>
+      <CmpTable
+        ref="tableCmp"
+        v-model:selected="selected"
+        :config="config"
+        :data="(wines?.data as IWine[])"
+        @delete="isOpen = true"
+      />
     </div>
 
     <CmpConfirmDialog
@@ -81,7 +81,7 @@ useHead({
           icon: 'i-heroicons-trash',
         },
       }"
-      @confirm="onDelete"
+      @confirm="onDeleteHandler"
     >
       {{
         selected?.length > 1
