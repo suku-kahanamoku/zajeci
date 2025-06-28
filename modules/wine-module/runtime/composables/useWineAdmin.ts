@@ -128,7 +128,7 @@ export function useWineAdmin(wConfig: any) {
   return {
     config,
     wines,
-    pending,
+    loading: pending,
     selected,
     isOpen,
     refresh,

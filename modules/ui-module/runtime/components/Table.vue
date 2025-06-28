@@ -7,6 +7,7 @@ import type { IItem } from "~/modules/common-module/runtime/types";
 
 const UCheckbox = resolveComponent("UCheckbox");
 const UButton = resolveComponent("UButton");
+const UDropdownMenu = resolveComponent("UDropdownMenu");
 
 const props = defineProps<{
   config: IFormConfig;
@@ -20,9 +21,9 @@ const emits = defineEmits<{
 
 const selected = defineModel("selected");
 
+const { t } = useLang();
 const tableEl = useTemplateRef("tableEl");
 const selection = ref({});
-const { t } = useLang();
 
 const columns = computed<TableColumn<IItem>[]>(() => {
   const result: TableColumn<IItem>[] =
@@ -65,6 +66,44 @@ const columns = computed<TableColumn<IItem>[]>(() => {
 
   result.push({
     id: "actions",
+    header: ({ table }) =>
+      h(
+        UDropdownMenu,
+        {
+          content: {
+            align: "end",
+          },
+          items: table
+            ?.getAllColumns()
+            .filter(
+              (column) =>
+                column.getCanHide() &&
+                !["select", "actions"].includes(column.id)
+            )
+            .map((column) => ({
+              label: t(
+                props.config.fields?.find((f) => f.name === column.id)?.label!
+              ),
+              type: "checkbox" as const,
+              checked: column.getIsVisible(),
+              onUpdateChecked(checked: boolean) {
+                table?.getColumn(column.id)?.toggleVisibility(!!checked);
+              },
+              onSelect(e?: Event) {
+                e?.preventDefault();
+              },
+            })),
+          "aria-label": "Actions dropdown",
+        },
+        () =>
+          h(UButton, {
+            icon: "i-lucide-ellipsis-vertical",
+            color: "neutral",
+            variant: "ghost",
+            class: "ml-auto",
+            "aria-label": "Actions dropdown",
+          })
+      ),
     cell: ({ row }) =>
       h(UButton, {
         icon: "i-heroicons-trash",
@@ -92,12 +131,18 @@ defineExpose({ tableEl });
       :data="props.data"
       :columns="columns"
       :loading="loading"
+      :sticky="true"
     />
 
-    <div class="px-4 py-3.5 border-t border-accented text-sm text-muted">
-      {{ tableEl?.tableApi?.getFilteredSelectedRowModel().rows.length || 0 }}
-      of {{ tableEl?.tableApi?.getFilteredRowModel().rows.length || 0 }} row(s)
-      selected.
+    <div class="flex justify-center border-t border-default pt-4">
+      <UPagination
+        :default-page="
+          (tableEl?.tableApi?.getState().pagination.pageIndex || 0) + 1
+        "
+        :items-per-page="tableEl?.tableApi?.getState().pagination.pageSize"
+        :total="tableEl?.tableApi?.getFilteredRowModel().rows.length"
+        @update:page="(p) => tableEl?.tableApi?.setPageIndex(p - 1)"
+      />
     </div>
   </div>
 </template>

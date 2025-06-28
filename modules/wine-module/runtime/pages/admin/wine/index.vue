@@ -12,7 +12,7 @@ const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
-const { config, wines, pending, selected, isOpen, onDelete } =
+const { config, wines, loading, selected, isOpen, onDelete } =
   useWineAdmin(wConfig);
 
 useHead({
@@ -50,7 +50,7 @@ async function onDeleteHandler(event: boolean) {
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
-          :loading="pending"
+          :loading="loading"
           @click="isOpen = true"
         />
         <UButton
@@ -59,7 +59,7 @@ async function onDeleteHandler(event: boolean) {
           color="secondary"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
-          :loading="pending"
+          :loading="loading"
         />
       </div>
 
@@ -68,6 +68,7 @@ async function onDeleteHandler(event: boolean) {
         v-model:selected="selected"
         :config="config"
         :data="(wines?.data as IWine[])"
+        :loading="loading"
         @delete="isOpen = true"
       />
     </div>
