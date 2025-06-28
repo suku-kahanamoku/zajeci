@@ -8,6 +8,7 @@ import type { IItem } from "~/modules/common-module/runtime/types";
 const UCheckbox = resolveComponent("UCheckbox");
 const UButton = resolveComponent("UButton");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
+const NuxtLink = resolveComponent("NuxtLink");
 
 const props = defineProps<{
   config: IFormConfig;
@@ -116,6 +117,15 @@ const columns = computed<TableColumn<IItem>[]>(() => {
         },
       }),
   });
+
+  const redirCol = result[1];
+  redirCol.cell = ({ row }) =>
+    h(UButton, {
+      to: row.original.gen_data?.url,
+      color: "link",
+      variant: "link",
+      label: row.original.name,
+    });
 
   return result;
 });
