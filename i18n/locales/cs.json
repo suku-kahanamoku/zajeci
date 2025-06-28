@@ -264,6 +264,7 @@
         }
       },
       "order": {
+        "title": "Administrace objednávek",
         "user_email": "Email uživatele",
         "user_name": "Jméno uživatele",
         "user_surname": "Příjmení uživatele",

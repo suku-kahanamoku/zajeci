@@ -4,6 +4,7 @@ const localePath = useLocalePath();
 const auth = useAuthStore();
 
 const menuItems: any[] = [];
+const isOpen = ref(false);
 
 if (auth.isAdmin) {
   const adminWine = menuItem("admin_wine")!;
@@ -18,7 +19,23 @@ if (auth.isAdmin) {
 
 <template>
   <div class="min-h-screen flex flex-col">
-    <UiNavbar :menuItems="menuItems" />
+    <CmpMainMenu v-model:is-open="isOpen" :config="{}">
+      <template #logo>
+        <ULink :to="localePath('/')" class="h-full">
+          <UiLogo />
+        </ULink>
+      </template>
+    </CmpMainMenu>
+
+    <CmpSlideMenu
+      v-model:is-open="isOpen"
+      :menu-items="menuItems"
+      :config="{ side: 'right', ui: { title: 'h-8' } }"
+    >
+      <template #logo>
+        <UiLogo />
+      </template>
+    </CmpSlideMenu>
 
     <main class="flex-1 flex">
       <UNavigationMenu
@@ -28,7 +45,11 @@ if (auth.isAdmin) {
         :ui="{
           root: 'border-r border-gray-200',
         }"
-      />
+      >
+        <template #item-label="{ item }">
+          {{ $tt(item.label) }}
+        </template>
+      </UNavigationMenu>
 
       <div class="w-full">
         <slot></slot>

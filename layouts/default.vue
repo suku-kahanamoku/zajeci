@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const localePath = useLocalePath();
+
 const menuItems = [
   {
     label: "$.navbar.about",
@@ -21,11 +23,28 @@ const menuItems = [
     to: "/gallery",
   },
 ];
+const isOpen = ref(false);
 </script>
 
 <template>
   <div class="min-h-screen flex flex-col">
-    <UiNavbar :menuItems="menuItems" />
+    <CmpMainMenu v-model:is-open="isOpen" :config="{}" :menu-items="menuItems">
+      <template #logo>
+        <ULink :to="localePath('/')" class="h-full">
+          <UiLogo />
+        </ULink>
+      </template>
+    </CmpMainMenu>
+
+    <CmpSlideMenu
+      v-model:is-open="isOpen"
+      :menu-items="menuItems"
+      :config="{ side: 'right', ui: { title: 'h-8' } }"
+    >
+      <template #logo>
+        <UiLogo />
+      </template>
+    </CmpSlideMenu>
 
     <main class="flex-1 flex">
       <slot></slot>

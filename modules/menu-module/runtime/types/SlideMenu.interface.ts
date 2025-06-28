@@ -1,3 +1,4 @@
+import type { SlideoverProps } from "#ui/types";
 import type { IMenuItem } from "./MenuItem.interface";
 
 /**
@@ -5,15 +6,7 @@ import type { IMenuItem } from "./MenuItem.interface";
  * @description
  * Konfigurace pro boční menu (SlideMenu).
  */
-export interface ISlideMenuConfig {
-  /**
-   * @property {("left" | "right")} [side]
-   * Určuje, na které straně se zobrazí boční menu.
-   * - `left`: Levá strana.
-   * - `right`: Pravá strana.
-   */
-  side?: "left" | "right";
-}
+export interface ISlideMenuConfig extends SlideoverProps {}
 
 /**
  * @interface ISlideMenu

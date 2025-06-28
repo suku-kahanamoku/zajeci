@@ -19,12 +19,16 @@ defineProps<ISlideMenu>();
 
 const isOpen = defineModel<boolean>("isOpen");
 const auth = useAuthStore();
-const { routes, menuItem } = useMenuItems();
+const { routes } = useMenuItems();
 const localePath = useLocalePath();
 </script>
 
 <template>
-  <USlideover v-model:open="isOpen" side="left">
+  <USlideover v-model:open="isOpen" :side="config?.side" :ui="config?.ui">
+    <template #title>
+      <slot name="logo" />
+    </template>
+
     <template #body>
       <div class="h-full overflow-y-auto">
         <ul class="space-y-2 font-medium">

@@ -264,6 +264,7 @@
         }
       },
       "order": {
+        "title": "Order administration",
         "user_email": "User Email",
         "user_name": "User Name",
         "user_surname": "User Surname",

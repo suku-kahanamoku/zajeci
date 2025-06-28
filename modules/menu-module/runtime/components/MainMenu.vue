@@ -141,7 +141,7 @@ const userMenuItems = computed(() => {
 
         <!-- hamburger icon -->
         <UButton
-          v-if="menuItems?.length"
+          v-if="!config?.hamburgerMenu?.disabled"
           class="flex lg:hidden cursor-pointer"
           icon="i-heroicons-bars-3"
           square
