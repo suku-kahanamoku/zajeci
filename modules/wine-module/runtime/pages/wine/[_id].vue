@@ -12,6 +12,9 @@ definePageMeta({
 const { t } = useLang();
 const route = useRoute();
 const { updateConfig } = useUrlResolver();
+const title = computed(() =>
+  t((wine.value?.data?.name || route.meta.label || route.meta.title) as string)
+);
 
 /**
  * Load config
@@ -48,6 +51,20 @@ const { data: wine } = await useAsyncData(
   },
   { watch: [route] }
 );
+
+useHead({
+  title,
+  meta: [
+    {
+      name: "description",
+      content: wine.value?.data?.description || t("$.base.description"),
+    },
+    {
+      name: "keywords",
+      content: wine.value?.data?.description || t("$.base.description"),
+    },
+  ],
+});
 </script>
 
 <template>
