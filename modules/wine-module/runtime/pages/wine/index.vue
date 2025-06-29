@@ -3,7 +3,6 @@ import wConfig from "../../assets/configs/wine-list.json";
 import type { IWine } from "../../types";
 
 definePageMeta({
-  layout: "default",
   syscode: "wine",
   title: "$.wine.title",
 });

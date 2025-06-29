@@ -1,6 +1,5 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: "default",
   syscode: "home",
   title: "$.base.title",
 });

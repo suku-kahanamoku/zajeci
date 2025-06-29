@@ -1,6 +1,5 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: "default",
   syscode: "cashdesk_completed",
   title: "$.cashdesk_completed.title",
 });

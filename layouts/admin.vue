@@ -6,6 +6,10 @@ const auth = useAuthStore();
 const menuItems: any[] = [];
 const isOpen = ref(false);
 
+useSeoMeta({
+  robots: "noindex, follow",
+});
+
 if (auth.isAdmin) {
   const adminWine = menuItem("admin_wine")!;
   adminWine.to = localePath(adminWine.to!);
