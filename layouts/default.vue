@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 
+useSeoMeta({
+  robots: "index, follow",
+});
+
 const menuItems = [
   {
     label: "$.navbar.about",

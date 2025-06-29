@@ -7,21 +7,7 @@ definePageMeta({
   title: "$.wine.detail.title",
 });
 
-const { t } = useLang();
-const route = useRoute();
-const title = computed(() =>
-  t((route.meta.label || route.meta.title) as string)
-);
-
 const { config, wines: wine, pending } = useWine(wConfig);
-
-useHead({
-  title,
-  meta: [
-    { name: "description", content: t("$.base.description") },
-    { name: "keywords", content: t("$.base.description") },
-  ],
-});
 </script>
 
 <template>

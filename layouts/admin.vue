@@ -7,7 +7,7 @@ const menuItems: any[] = [];
 const isOpen = ref(false);
 
 useSeoMeta({
-  robots: "noindex, follow",
+  robots: "noindex, nofollow",
 });
 
 if (auth.isAdmin) {

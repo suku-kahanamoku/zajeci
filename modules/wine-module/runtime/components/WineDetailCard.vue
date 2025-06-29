@@ -21,6 +21,20 @@ const cashdesk = useCashdeskStore();
 const modal = ref(false);
 const cart = ref<ICart>();
 
+useHead({
+  title: props.wine?.name,
+  meta: [
+    {
+      name: "description",
+      content: props.wine?.description || t("$.base.description"),
+    },
+    {
+      name: "keywords",
+      content: props.wine?.description || t("$.base.description"),
+    },
+  ],
+});
+
 function addToCashdesk() {
   if (props.wine) {
     cart.value = cashdesk.addItem(props.wine, 1);
@@ -64,7 +78,9 @@ function getSelectLabel(
           height="500"
           class="mx-auto"
         />
-        <div class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3">
+        <div
+          class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3"
+        >
           <h1
             class="text-3xl title-font font-medium mb-1 text-primary-600 dark:text-primary-400"
           >
