@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { CLONE } from "~/modules/common-module/runtime/utils";
+
 import wConfig from "../../assets/configs/wine-list.json";
-import type { IWine } from "../../types";
+import type { IWine, IWinesResponse } from "../../types";
 
 definePageMeta({
   syscode: "wine",
@@ -9,9 +11,8 @@ definePageMeta({
 
 const { t } = useLang();
 const { routes, route } = useMenuItems();
+const { updateConfig } = useUrlResolver();
 const title = computed(() => t(route.meta.title as string));
-
-const { config, wines, pending } = useWine(wConfig);
 
 useHead({
   title,
@@ -20,6 +21,43 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
+
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(wConfig);
+      updateConfig(route, result);
+      return result as typeof wConfig;
+    } catch (error: any) {
+      return {} as typeof wConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
+
+/**
+ * Load data
+ */
+const { data: wines } = await useAsyncData(
+  async (): Promise<IWinesResponse | undefined> => {
+    if (config.value?.restUrl) {
+      try {
+        let url = useCompleteUrl(config.value?.restUrl, {
+          config: config.value,
+          route,
+        });
+        url = useFactory(url, config.value.factory, routes.wine.path);
+        return await useApi(url);
+      } catch (error: any) {
+        console.error(error);
+      }
+    }
+  },
+  { watch: [route] }
+);
 </script>
 
 <template>
