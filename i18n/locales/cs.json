@@ -232,7 +232,11 @@
           "color": "Barva",
           "year": "Ročník",
           "variety": "Odrůda",
-          "volume": "Objem"
+          "volume": "Objem",
+          "price": "Cena",
+          "quantity_stock": "Množství na skladě",
+          "categories": "Kategorie",
+          "description": "Popis"
         },
         "placeholder": {
           "name": "Sauvignon Blanc, výběr z hroznů",
@@ -261,6 +265,17 @@
           "favourite": "Oblíbené",
           "top": "Nejlepší",
           "new": "Nové"
+        },
+        "quality": {
+          "kabinett": "Kabinetní víno",
+          "late_harvest": "Pozdní sběr",
+          "selection_of_grapes": "Výběr z hroznů",
+          "selection_of_berries": "Výběr z bobulí",
+          "ice_wine": "Ledové víno",
+          "straw_wine": "Slámové víno",
+          "quality_wine": "Jakostní víno",
+          "archive_wine": "Archivní víno",
+          "table_wine": "Stolní víno"
         }
       },
       "order": {

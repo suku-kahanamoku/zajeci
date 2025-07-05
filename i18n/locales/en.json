@@ -232,7 +232,11 @@
           "color": "Color",
           "year": "Year",
           "variety": "Variety",
-          "volume": "Volume"
+          "volume": "Volume",
+          "price": "Price",
+          "quantity_stock": "Quantity in stock",
+          "categories": "Categories",
+          "description": "Description"
         },
         "placeholder": {
           "name": "Sauvignon Blanc, selection of grapes",
@@ -261,6 +265,17 @@
           "favourite": "Favourite",
           "top": "Top",
           "new": "New"
+        },
+        "quality": {
+          "kabinett": "Kabinett wine",
+          "late_harvest": "Late harvest",
+          "selection_of_grapes": "Selection of grapes",
+          "selection_of_berries": "Selection of berries",
+          "ice_wine": "Ice wine",
+          "straw_wine": "Straw wine",
+          "quality_wine": "Quality wine",
+          "archive_wine": "Archive wine",
+          "table_wine": "Table wine"
         }
       },
       "order": {

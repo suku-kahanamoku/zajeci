@@ -17,6 +17,7 @@ const {
   i18n: { locale },
   t,
 } = useLang();
+const { getSelectLabel } = useField();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
 const cart = ref<ICart>();
@@ -39,29 +40,6 @@ function addToCashdesk() {
   if (props.wine) {
     cart.value = cashdesk.addItem(props.wine, 1);
     modal.value = true;
-  }
-}
-
-function getSelectLabel(
-  fieldName: string,
-  value: string | string[] | undefined
-) {
-  const field = props.fields.find((f) => f.name === fieldName);
-  if (!field || field.type !== "select" || !field.options) return value;
-  if (Array.isArray(value)) {
-    return value
-      .map((v) => {
-        const opt = (field.options as IFormFieldOption[]).find(
-          (o: IFormFieldOption) => o.value === v
-        );
-        return opt ? t(opt.label) : v;
-      })
-      .join(", ");
-  } else {
-    const opt = (field.options as IFormFieldOption[]).find(
-      (o: IFormFieldOption) => o.value === value
-    );
-    return opt ? t(opt.label) : value;
   }
 }
 </script>
@@ -126,7 +104,7 @@ function getSelectLabel(
                 }}
               </span>
               <span class="font-semibold text-sm">
-                {{ getSelectLabel("kind", wine.kind) }}
+                {{ getSelectLabel(fields, "kind", wine.kind) }}
               </span>
             </div>
             <div
@@ -144,7 +122,7 @@ function getSelectLabel(
                 }}
               </span>
               <span class="font-semibold text-sm">
-                {{ getSelectLabel("color", wine.color) }}
+                {{ getSelectLabel(fields, "color", wine.color) }}
               </span>
             </div>
             <div
@@ -161,7 +139,9 @@ function getSelectLabel(
                   $tt(fields?.find((field) => field.name === "quality")?.label!)
                 }}
               </span>
-              <span class="font-semibold text-sm">{{ wine.quality }}</span>
+              <span class="font-semibold text-sm">
+                {{ getSelectLabel(fields, "quality", wine.quality) }}
+              </span>
             </div>
             <div
               v-if="wine.variety"

@@ -8,7 +8,6 @@ import type { IItem } from "~/modules/common-module/runtime/types";
 const UCheckbox = resolveComponent("UCheckbox");
 const UButton = resolveComponent("UButton");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
-const NuxtLink = resolveComponent("NuxtLink");
 
 const props = defineProps<{
   config: IFormConfig;

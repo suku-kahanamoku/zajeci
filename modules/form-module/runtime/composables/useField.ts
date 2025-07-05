@@ -30,6 +30,8 @@ import type {
  * ```
  */
 export function useField() {
+  const { t } = useLang();
+
   /**
    * @function compare
    * @description
@@ -356,6 +358,30 @@ export function useField() {
     return value;
   }
 
+  function getSelectLabel(
+    fields: IFormField[],
+    fieldName: string,
+    value: string | string[] | undefined
+  ) {
+    const field = fields.find((f) => f.name === fieldName);
+    if (!field || field.type !== "select" || !field.options) return value;
+    if (Array.isArray(value)) {
+      return value
+        .map((v) => {
+          const opt = (field.options as IFormFieldOption[]).find(
+            (o: IFormFieldOption) => o.value === v
+          );
+          return opt ? t(opt.label) : v;
+        })
+        .join(", ");
+    } else {
+      const opt = (field.options as IFormFieldOption[]).find(
+        (o: IFormFieldOption) => o.value === value
+      );
+      return opt ? t(opt.label) : value;
+    }
+  }
+
   return {
     compare,
     getObjectValues,
@@ -363,5 +389,6 @@ export function useField() {
     loadOptionsWithCustomData,
     loadOptionsWithSearchData,
     getResolvedValue,
+    getSelectLabel,
   };
 }

@@ -243,6 +243,10 @@ onMounted(loadOptions);
         :onClear="onClear"
         @click="onClickBadge"
       />
+
+      <template #item-label="{ item }">
+        {{ $tt(item.label) }}
+      </template>
     </USelect>
   </UFormField>
 </template>

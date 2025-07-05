@@ -3,10 +3,7 @@ import { useToNumber } from "@vueuse/core";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
-import type {
-  IFormField,
-  IFormFieldOption,
-} from "~/modules/form-module/runtime/types";
+import type { IFormField } from "~/modules/form-module/runtime/types";
 
 const props = defineProps<{
   fields: IFormField[];
@@ -16,7 +13,7 @@ const props = defineProps<{
 const {
   i18n: { locale },
 } = useLang();
-const { t } = useLang();
+const { getSelectLabel } = useField();
 const cashdesk = useCashdeskStore();
 const modal = ref(false);
 const cart = ref<ICart>();
@@ -25,29 +22,6 @@ function addToCashdesk() {
   if (props.wine) {
     cart.value = cashdesk.addItem(props.wine, 1);
     modal.value = true;
-  }
-}
-
-function getSelectLabel(
-  fieldName: string,
-  value: string | string[] | undefined
-) {
-  const field = props.fields.find((f) => f.name === fieldName);
-  if (!field || field.type !== "select" || !field.options) return value;
-  if (Array.isArray(value)) {
-    return value
-      .map((v) => {
-        const opt = (field.options as IFormFieldOption[]).find(
-          (o: IFormFieldOption) => o.value === v
-        );
-        return opt ? t(opt.label) : v;
-      })
-      .join(", ");
-  } else {
-    const opt = (field.options as IFormFieldOption[]).find(
-      (o: IFormFieldOption) => o.value === value
-    );
-    return opt ? t(opt.label) : value;
   }
 }
 </script>
@@ -87,11 +61,11 @@ function getSelectLabel(
           >
             <span v-if="wine.color" class="flex items-center gap-1">
               <UIcon name="i-heroicons-paint-brush" class="text-pink-500" />
-              <span>{{ getSelectLabel("color", wine.color) }}</span>
+              <span>{{ getSelectLabel(fields, "color", wine.color) }}</span>
             </span>
             <span v-if="wine.kind" class="flex items-center gap-1">
               <UIcon name="i-heroicons-tag" class="text-primary-500" />
-              <span>{{ getSelectLabel("kind", wine.kind) }}</span>
+              <span>{{ getSelectLabel(fields, "kind", wine.kind) }}</span>
             </span>
             <span v-if="wine.year" class="flex items-center gap-1">
               <UIcon name="i-heroicons-calendar" class="text-amber-500" />
@@ -111,7 +85,7 @@ function getSelectLabel(
             </span>
             <span v-if="wine.quality" class="flex items-center gap-1">
               <UIcon name="i-heroicons-star" class="text-yellow-500" />
-              <span>{{ wine.quality }}</span>
+              <span>{{ getSelectLabel(fields, "quality", wine.quality) }}</span>
             </span>
           </div>
         </div>

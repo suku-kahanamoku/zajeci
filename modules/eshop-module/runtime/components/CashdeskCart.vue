@@ -70,6 +70,7 @@ const columns = [
         </h3>
       </NuxtLink>
     </template>
+
     <template #quantity-cell="{ row }">
       <div class="flex items-center justify-between space-x-2 w-36 mx-auto">
         <UButton
@@ -89,6 +90,7 @@ const columns = [
         />
       </div>
     </template>
+    
     <template #price-cell="{ row }">
       <div class="flex justify-between space-x-4">
         <p class="text-lg font-semibold text-end w-full">

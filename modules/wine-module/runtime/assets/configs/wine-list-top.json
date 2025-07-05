@@ -31,9 +31,35 @@
     },
     {
       "name": "quality",
-      "type": "text",
+      "type": "select",
       "label": "$.admin.wine.form.quality",
-      "placeholder": "$.admin.wine.placeholder.quality"
+      "placeholder": "$.form.select",
+      "options": [
+        { "value": "kabinett", "label": "$.admin.wine.quality.kabinett" },
+        {
+          "value": "late_harvest",
+          "label": "$.admin.wine.quality.late_harvest"
+        },
+        {
+          "value": "selection_of_grapes",
+          "label": "$.admin.wine.quality.selection_of_grapes"
+        },
+        {
+          "value": "selection_of_berries",
+          "label": "$.admin.wine.quality.selection_of_berries"
+        },
+        { "value": "ice_wine", "label": "$.admin.wine.quality.ice_wine" },
+        { "value": "straw_wine", "label": "$.admin.wine.quality.straw_wine" },
+        {
+          "value": "quality_wine",
+          "label": "$.admin.wine.quality.quality_wine"
+        },
+        {
+          "value": "archive_wine",
+          "label": "$.admin.wine.quality.archive_wine"
+        },
+        { "value": "table_wine", "label": "$.admin.wine.quality.table_wine" }
+      ]
     },
     {
       "name": "color",
