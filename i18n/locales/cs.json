@@ -276,6 +276,26 @@
           "quality_wine": "Jakostní víno",
           "archive_wine": "Archivní víno",
           "table_wine": "Stolní víno"
+        },
+        "variety": {
+          "riesling": "Ryzlink rýnský",
+          "gruner_veltliner": "Veltlínské zelené",
+          "welschriesling": "Ryzlink vlašský",
+          "sauvignon_blanc": "Sauvignon blanc",
+          "pinot_gris": "Rulandské šedé",
+          "pinot_blanc": "Rulandské bílé",
+          "chardonnay": "Chardonnay",
+          "traminer": "Tramín červený",
+          "muscat": "Muškát moravský",
+          "mueller_thurgau": "Müller Thurgau",
+          "st_laurent": "Svatovavřinecké",
+          "pinot_noir": "Rulandské modré",
+          "zweigelt": "Zweigeltrebe",
+          "cabernet_sauvignon": "Cabernet Sauvignon",
+          "merlot": "Merlot",
+          "frankovka": "Frankovka",
+          "modry_portugal": "Modrý Portugal",
+          "other": "Jiná odrůda"
         }
       },
       "order": {

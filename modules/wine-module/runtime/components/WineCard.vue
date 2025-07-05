@@ -81,7 +81,7 @@ function addToCashdesk() {
           >
             <span v-if="wine.variety" class="flex items-center gap-1">
               <UIcon name="i-heroicons-sparkles" class="text-green-500" />
-              <span>{{ wine.variety }}</span>
+              <span>{{ getSelectLabel(fields, "variety", wine.variety) }}</span>
             </span>
             <span v-if="wine.quality" class="flex items-center gap-1">
               <UIcon name="i-heroicons-star" class="text-yellow-500" />

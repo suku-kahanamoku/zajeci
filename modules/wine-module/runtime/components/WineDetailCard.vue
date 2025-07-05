@@ -157,7 +157,9 @@ function addToCashdesk() {
                   $tt(fields?.find((field) => field.name === "variety")?.label!)
                 }}
               </span>
-              <span class="font-semibold text-sm">{{ wine.variety }}</span>
+              <span class="font-semibold text-sm"
+                >{{ getSelectLabel(fields, "variety", wine.variety) }}
+              </span>
             </div>
             <div
               v-if="wine.volume"

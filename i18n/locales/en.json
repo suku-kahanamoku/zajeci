@@ -276,6 +276,26 @@
           "quality_wine": "Quality wine",
           "archive_wine": "Archive wine",
           "table_wine": "Table wine"
+        },
+        "variety": {
+          "riesling": "Riesling",
+          "gruner_veltliner": "Grüner Veltliner",
+          "welschriesling": "Welschriesling",
+          "sauvignon_blanc": "Sauvignon Blanc",
+          "pinot_gris": "Pinot Gris",
+          "pinot_blanc": "Pinot Blanc",
+          "chardonnay": "Chardonnay",
+          "traminer": "Traminer",
+          "muscat": "Moravian Muscat",
+          "mueller_thurgau": "Müller Thurgau",
+          "st_laurent": "St. Laurent",
+          "pinot_noir": "Pinot Noir",
+          "zweigelt": "Zweigelt",
+          "cabernet_sauvignon": "Cabernet Sauvignon",
+          "merlot": "Merlot",
+          "frankovka": "Frankovka",
+          "modry_portugal": "Modrý Portugal",
+          "other": "Other variety"
         }
       },
       "order": {

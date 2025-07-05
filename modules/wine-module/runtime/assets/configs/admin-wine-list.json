@@ -76,9 +76,47 @@
     },
     {
       "name": "variety",
-      "type": "text",
+      "type": "select",
       "label": "$.admin.wine.form.variety",
-      "placeholder": "$.admin.wine.placeholder.variety"
+      "placeholder": "$.form.select",
+      "options": [
+        {
+          "value": "cabernet_sauvignon",
+          "label": "$.admin.wine.variety.cabernet_sauvignon"
+        },
+        { "value": "chardonnay", "label": "$.admin.wine.variety.chardonnay" },
+        { "value": "frankovka", "label": "$.admin.wine.variety.frankovka" },
+        {
+          "value": "gruner_veltliner",
+          "label": "$.admin.wine.variety.gruner_veltliner"
+        },
+        { "value": "merlot", "label": "$.admin.wine.variety.merlot" },
+        {
+          "value": "modry_portugal",
+          "label": "$.admin.wine.variety.modry_portugal"
+        },
+        {
+          "value": "mueller_thurgau",
+          "label": "$.admin.wine.variety.mueller_thurgau"
+        },
+        { "value": "muscat", "label": "$.admin.wine.variety.muscat" },
+        { "value": "pinot_blanc", "label": "$.admin.wine.variety.pinot_blanc" },
+        { "value": "pinot_gris", "label": "$.admin.wine.variety.pinot_gris" },
+        { "value": "pinot_noir", "label": "$.admin.wine.variety.pinot_noir" },
+        { "value": "riesling", "label": "$.admin.wine.variety.riesling" },
+        {
+          "value": "sauvignon_blanc",
+          "label": "$.admin.wine.variety.sauvignon_blanc"
+        },
+        { "value": "st_laurent", "label": "$.admin.wine.variety.st_laurent" },
+        { "value": "traminer", "label": "$.admin.wine.variety.traminer" },
+        {
+          "value": "welschriesling",
+          "label": "$.admin.wine.variety.welschriesling"
+        },
+        { "value": "zweigelt", "label": "$.admin.wine.variety.zweigelt" },
+        { "value": "other", "label": "$.admin.wine.variety.other" }
+      ]
     },
     {
       "name": "volume",
