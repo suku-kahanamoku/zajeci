@@ -14,7 +14,7 @@ const title = computed(() =>
   t((route.meta.label || route.meta.title) as string)
 );
 
-const { config, orders, pending, onUpdate } = useOrderAdmin(oConfig);
+const { config, orders, loading, onUpdate } = useOrderAdmin(oConfig);
 const order = computed(() => orders.value?.data as IOrder);
 const address = computed(() => order.value?.user?.address?.main);
 

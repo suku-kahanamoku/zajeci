@@ -14,7 +14,7 @@ const title = computed(() =>
   t((route.meta.label || route.meta.title) as string)
 );
 
-const { config, pending, onCreate } = useWineAdmin(wConfig);
+const { config, loading, onCreate } = useWineAdmin(wConfig);
 
 useHead({
   title,
@@ -40,7 +40,7 @@ useHead({
 
       <CmpForm
         :fields="config.fields"
-        :loading="pending"
+        :loading="loading"
         :ui="{
           body: 'grid md:grid-cols-2 gap-4',
         }"

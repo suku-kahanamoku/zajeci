@@ -32,7 +32,7 @@ export function useWineAdmin(wConfig: any) {
   // Wines
   const {
     data: wines,
-    pending,
+    pending: loading,
     refresh,
   } = useAsyncData(
     () => (config.value?.syscode || "") + "data" + route.fullPath,
@@ -102,7 +102,7 @@ export function useWineAdmin(wConfig: any) {
   }
 
   async function onUpdate(body: Record<string, any>, wine: IWine) {
-    pending.value = true;
+    loading.value = true;
     const result = await onSubmit(config?.value!, body, wine);
     if (result?.data) {
       document
@@ -110,11 +110,11 @@ export function useWineAdmin(wConfig: any) {
         .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_wine.path);
     }
-    pending.value = false;
+    loading.value = false;
   }
 
   async function onCreate(body: Record<string, any>) {
-    pending.value = true;
+    loading.value = true;
     const result = await onSubmit(config?.value!, body);
     if (result?.data) {
       document
@@ -122,13 +122,13 @@ export function useWineAdmin(wConfig: any) {
         .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_wine.path);
     }
-    pending.value = false;
+    loading.value = false;
   }
 
   return {
     config,
     wines,
-    loading: pending,
+    loading,
     selected,
     isOpen,
     refresh,

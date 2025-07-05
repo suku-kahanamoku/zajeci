@@ -14,7 +14,7 @@ const title = computed(() =>
   t((route.meta.label || route.meta.title) as string)
 );
 
-const { config, wines: wine, pending, onUpdate } = useWineAdmin(wConfig);
+const { config, wines: wine, loading, onUpdate } = useWineAdmin(wConfig);
 
 useHead({
   title,
@@ -42,7 +42,7 @@ useHead({
         v-if="wine?.data"
         :fields="config.fields"
         :item="(wine.data as IWine)"
-        :loading="pending"
+        :loading="loading"
         :ui="{
           body: 'grid md:grid-cols-2 gap-4',
         }"

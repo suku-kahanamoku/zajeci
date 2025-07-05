@@ -13,7 +13,7 @@ const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
 
-const { config, orders, pending, columns, selected, isOpen, onDelete } =
+const { config, orders, loading, columns, selected, isOpen, onDelete } =
   useOrderAdmin(oConfig);
 
 useHead({
@@ -45,7 +45,7 @@ useHead({
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
-          :loading="pending"
+          :loading="loading"
           @click="isOpen = true"
         />
         <UButton
@@ -54,7 +54,7 @@ useHead({
           color="secondary"
           variant="ghost"
           :aria-label="$tt('$.aria.delete_selected')"
-          :loading="pending"
+          :loading="loading"
         />
       </div>
 

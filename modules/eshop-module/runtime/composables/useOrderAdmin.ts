@@ -41,7 +41,7 @@ export function useOrderAdmin(wConfig: any) {
   // Orders
   const {
     data: orders,
-    pending,
+    pending: loading,
     refresh,
   } = useAsyncData(
     () => (config.value?.syscode || "") + "data" + route.fullPath,
@@ -96,7 +96,7 @@ export function useOrderAdmin(wConfig: any) {
   }
 
   async function onUpdate(body: Record<string, any>, order: IOrder) {
-    pending.value = true;
+    loading.value = true;
     const result = await onSubmit(config?.value!, body, order);
     if (result?.data) {
       document
@@ -104,14 +104,14 @@ export function useOrderAdmin(wConfig: any) {
         .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_order.path);
     }
-    pending.value = false;
+    loading.value = false;
   }
 
   return {
     config,
     columns,
     orders,
-    pending,
+    loading,
     selected,
     isOpen,
     refresh,
