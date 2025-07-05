@@ -124,14 +124,14 @@
       "label": "$.admin.wine.form.year"
     },
     {
+      "name": "quantity",
+      "type": "number",
+      "label": "$.form.quantity"
+    },
+    {
       "name": "price",
       "type": "number",
       "label": "$.form.price"
-    },
-    {
-      "name": "quantity",
-      "type": "number",
-      "label": "$.form.quantity_stock"
     },
     {
       "name": "categories",

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
+import type { TableColumn } from "@nuxt/ui";
 
 import { CLONE } from "~/modules/common-module/runtime/utils";
 import type { IFormConfig } from "~/modules/form-module/runtime/types";
@@ -15,12 +16,6 @@ const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const cashdesk = useCashdeskStore();
 
-const columns = [
-  { accessorKey: "name", header: t("$.admin.wine.form.name") },
-  { accessorKey: "quantity", header: t("$.form.quantity") },
-  { accessorKey: "price", header: t("$.form.price") },
-];
-
 /**
  * Load config
  */
@@ -35,6 +30,21 @@ const { data: config } = await useAsyncData(
     }
   },
   { watch: [() => route.query] }
+);
+
+// Columns
+const columns: Ref<TableColumn<any>[]> = computed(
+  () =>
+    config?.value?.fields
+      ?.filter((f) => ["name", "quantity", "price"].includes(f.name))
+      ?.map((f) => ({
+        accessorKey: f.name,
+        header: ({ table }) =>
+          h("div", {
+            innerHTML: t(f.label!),
+            class: f.type === "number" ? "text-end" : "",
+          }),
+      })) ?? []
 );
 </script>
 
@@ -80,8 +90,12 @@ const { data: config } = await useAsyncData(
     </template>
 
     <template #quantity-cell="{ row }">
-      <div class="w-full text-center text-lg font-semibold">
-        {{ row.original?.quantity }}
+      <div class="w-full text-lg font-semibold text-end">
+        {{
+          useToNumber(
+            row.original?.quantity?.toFixed(2) || 0
+          ).value.toLocaleString(locale)
+        }}
       </div>
     </template>
 
@@ -127,14 +141,20 @@ const { data: config } = await useAsyncData(
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="w-full text-center text-lg font-semibold flex gap-2">
           <p>{{ $tt("$.form.quantity") }}:</p>
-          <p>{{ cart.quantity }}</p>
+          <p>
+            {{
+              useToNumber(cart.quantity?.toFixed(2) || 0).value.toLocaleString(
+                locale
+              )
+            }}
+          </p>
         </div>
         <div class="w-full text-center text-lg font-semibold flex gap-2">
           <p>{{ $tt("$.form.price") }}:</p>
           <p>
             {{
               useToNumber(
-                cart?.totalPrice?.toFixed(2) || 0
+                cart.totalPrice?.toFixed(2) || 0
               ).value.toLocaleString(locale)
             }}&nbsp;{{ $tt("$.czk") }}
           </p>
@@ -186,14 +206,8 @@ const { data: config } = await useAsyncData(
       </template>
 
       <div class="flex flex-col gap-y-2">
-        <h4 class="font-semibold text-lg">
-          {{
-            $tt(
-              cashdesk.delivery?.type === "free"
-                ? "$.cashdesk.delivery.brno_free"
-                : cashdesk.deliveries[cashdesk.delivery?.type]?.label
-            )
-          }}
+        <h4 class="font-semibold">
+          {{ $tt(cashdesk.deliveries[cashdesk.delivery?.type]?.label) }}
         </h4>
 
         <p class="text-gray-600 dark:text-white">
@@ -211,6 +225,12 @@ const { data: config } = await useAsyncData(
         <p class="text-gray-600 dark:text-white">
           {{ cashdesk.delivery.address?.zip }}
         </p>
+
+        <UAlert
+          v-if="cashdesk.delivery?.type === 'free'"
+          :description="$tt('$.cashdesk.delivery.brno_free')"
+          color="info"
+        />
       </div>
     </UCard>
 

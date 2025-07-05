@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
+import type { TableColumn } from "@nuxt/ui";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import { CLONE } from "@/modules/common-module/runtime/utils";
@@ -34,6 +35,21 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] }
 );
 
+// Columns
+const columns: Ref<TableColumn<any>[]> = computed(
+  () =>
+    config?.value?.fields
+      ?.filter((f) => ["name", "quantity", "price"].includes(f.name))
+      ?.map((f) => ({
+        accessorKey: f.name,
+        header: ({ table }) =>
+          h("div", {
+            innerHTML: t(f.label!),
+            class: f.type === "number" ? "text-center" : "",
+          }),
+      })) ?? []
+);
+
 const increaseQuantity = (cart: ICart) => {
   cashdesk.addItem(cart.wine, 1);
 };
@@ -58,12 +74,6 @@ const setQuantity = (value: number, cart: ICart) => {
     removeItem(cart);
   }
 };
-
-const columns = [
-  { accessorKey: "name", header: t("$.admin.wine.form.name") },
-  { accessorKey: "quantity", header: t("$.form.quantity") },
-  { accessorKey: "price", header: t("$.form.price") },
-];
 </script>
 
 <template>
