@@ -14,8 +14,8 @@ import dConfig from "../assets/configs/delivery.json";
 const {
   i18n: { locale },
 } = useLang();
-const { updateConfig } = useUrlResolver();
 const { route } = useMenuItems();
+const { updateConfig } = useUrlResolver();
 const cashdesk = useCashdeskStore();
 
 /**

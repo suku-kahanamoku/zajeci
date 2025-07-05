@@ -1,63 +1,52 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 
-import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
-import { UCard } from "#components";
+import { CLONE } from "~/modules/common-module/runtime/utils";
+import type { IFormConfig } from "~/modules/form-module/runtime/types";
+
+import cConfig from "../assets/configs/cart.json";
 
 const { t } = useLang();
 const {
   i18n: { locale },
 } = useLang();
 const localePath = useLocalePath();
-const { routes } = useMenuItems();
+const { routes, route } = useMenuItems();
+const { updateConfig } = useUrlResolver();
 const cashdesk = useCashdeskStore();
-const isOpen = ref(false);
-const deleted = ref();
-
-const increaseQuantity = (cart: ICart) => {
-  cashdesk.addItem(cart.wine, 1);
-};
-
-const decreaseQuantity = (cart: ICart) => {
-  if (cart.quantity > 1) {
-    cashdesk.removeItem(cart.wine?._id);
-  } else {
-    removeItem(cart);
-  }
-};
-
-const removeItem = (cart: ICart) => {
-  deleted.value = cart;
-  isOpen.value = true;
-};
-
-const setQuantity = (value: number, cart: ICart) => {
-  if (value > 0) {
-    cashdesk.setQuantity(cart.wine?._id, value);
-  } else {
-    removeItem(cart);
-  }
-};
 
 const columns = [
   { accessorKey: "name", header: t("$.admin.wine.form.name") },
   { accessorKey: "quantity", header: t("$.form.quantity") },
   { accessorKey: "price", header: t("$.form.price") },
 ];
+
+/**
+ * Load config
+ */
+const { data: config } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(cConfig);
+      updateConfig(route, result);
+      return result as IFormConfig;
+    } catch (error: any) {
+      return {} as IFormConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
 </script>
 
 <template>
   <UTable
-    v-if="cashdesk?.carts?.length"
+    v-if="config && cashdesk?.carts?.length"
     :columns="columns"
     :data="cashdesk.carts"
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
-      <NuxtLink
-        :to="localePath(`${routes.wine.path}/${row.original?.wine?._id}`)"
-        class="flex items-center"
-      >
+      <div class="flex gap-4">
         <NuxtImg
           :src="row.original?.wine?.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
@@ -66,17 +55,37 @@ const columns = [
           height="100"
           class="object-cover rounded-lg"
         />
-        <h3 class="text-lg font-semibold text-pretty">
-          {{ row.original?.wine?.name }}
-        </h3>
-      </NuxtLink>
+
+        <div class="flex flex-col gap-2">
+          <NuxtLink
+            :to="
+              localePath(
+                `${routes.wine.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
+              )
+            "
+            class="flex items-center"
+          >
+            <h3 class="text-lg font-semibold text-pretty">
+              {{ row.original?.wine?.name }}
+            </h3>
+          </NuxtLink>
+
+          <!-- Parametry vína s ikonami ve dvou řádcích -->
+          <CmpWineIconAttrs
+            :wine="row.original?.wine"
+            :fields="config.fields"
+          />
+        </div>
+      </div>
     </template>
-    <template #quantity-data="{ row }">
+
+    <template #quantity-cell="{ row }">
       <div class="w-full text-center text-lg font-semibold">
         {{ row.original?.quantity }}
       </div>
     </template>
-    <template #price-data="{ row }">
+
+    <template #price-cell="{ row }">
       <p class="text-lg font-semibold min-w-24 text-end">
         {{
           useToNumber(
@@ -87,14 +96,18 @@ const columns = [
     </template>
   </UTable>
 
-  <div class="sm:hidden">
+  <div v-if="config" class="sm:hidden">
     <div
       v-for="cart in cashdesk.carts"
       :key="cart.wine?._id"
       class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
       <NuxtLink
-        :to="localePath(`${routes.wine.path}/${cart.wine?._id}`)"
+        :to="
+          localePath(
+            `${routes.wine.path}/${cart.wine?.name}--$${cart.wine?._id}`
+          )
+        "
         class="flex flex-col md:flex-row items-center"
       >
         <NuxtImg
@@ -107,6 +120,10 @@ const columns = [
         />
         <h3 class="text-lg font-semibold">{{ cart.wine?.name }}</h3>
       </NuxtLink>
+
+      <!-- Parametry vína s ikonami ve dvou řádcích -->
+      <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
+
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="w-full text-center text-lg font-semibold flex gap-2">
           <p>{{ $tt("$.form.quantity") }}:</p>

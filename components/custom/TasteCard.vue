@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ITaste } from "~/types/taste.interface";
+import type { ITaste } from "@/types/taste.interface";
 
 const props = defineProps<{
   item: ITaste;

@@ -11,8 +11,8 @@ import type { IFormField } from "@/modules/form-module/runtime/types/field.inter
 
 import lConfig from "../assets/configs/billing.json";
 
-const { updateConfig } = useUrlResolver();
 const { route } = useMenuItems();
+const { updateConfig } = useUrlResolver();
 const cashdesk = useCashdeskStore();
 const formCmp = ref();
 

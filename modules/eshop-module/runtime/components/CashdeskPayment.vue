@@ -3,15 +3,14 @@ import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
 import { useToNumber } from "@vueuse/core";
 
 import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
-import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 
 import pConfig from "../assets/configs/payment.json";
 
 const {
   i18n: { locale },
 } = useLang();
-const { updateConfig } = useUrlResolver();
 const { route } = useMenuItems();
+const { updateConfig } = useUrlResolver();
 const cashdesk = useCashdeskStore();
 
 /**

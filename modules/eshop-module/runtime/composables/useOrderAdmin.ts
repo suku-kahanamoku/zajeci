@@ -1,7 +1,7 @@
 import type { TableColumn } from "@nuxt/ui";
 
-import type { IFormConfig } from "~/modules/form-module/runtime/types";
-import { CLONE } from "~/modules/common-module/runtime/utils";
+import type { IFormConfig } from "@/modules/form-module/runtime/types";
+import { CLONE } from "@/modules/common-module/runtime/utils";
 
 import type { IOrder, IOrderResponse, IOrdersResponse } from "../types";
 

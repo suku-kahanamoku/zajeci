@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CLONE } from "~/modules/common-module/runtime/utils";
+import { CLONE } from "@/modules/common-module/runtime/utils";
 
 import wConfig from "../../assets/configs/wine-detail.json";
 import type { IWine, IWineResponse } from "../../types";

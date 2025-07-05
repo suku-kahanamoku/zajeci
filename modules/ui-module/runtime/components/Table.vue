@@ -2,8 +2,8 @@
 import { h, resolveComponent, nextTick } from "vue";
 import type { TableColumn } from "@nuxt/ui";
 
-import type { IFormConfig } from "~/modules/form-module/runtime/types";
-import type { IItem } from "~/modules/common-module/runtime/types";
+import type { IFormConfig } from "@/modules/form-module/runtime/types";
+import type { IItem } from "@/modules/common-module/runtime/types";
 
 const UCheckbox = resolveComponent("UCheckbox");
 const UButton = resolveComponent("UButton");
