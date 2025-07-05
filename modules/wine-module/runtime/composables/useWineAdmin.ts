@@ -54,6 +54,7 @@ export function useWineAdmin(wConfig: any) {
     },
     {
       watch: [config],
+      immediate: true,
     }
   );
 

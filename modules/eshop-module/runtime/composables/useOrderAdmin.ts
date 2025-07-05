@@ -63,6 +63,7 @@ export function useOrderAdmin(wConfig: any) {
     },
     {
       watch: [config],
+      immediate: true,
     }
   );
 
