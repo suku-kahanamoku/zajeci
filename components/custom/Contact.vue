@@ -97,13 +97,17 @@ async function onSubmit(body: Record<string, any>) {
       <div class="from-right">
         <CmpForm
           :fields="(config?.fields as IFormField[])"
-          variant="soft"
+          variant="outline"
           @submit="onSubmit"
         >
           <template #actions>
-            <UButton data-testid="contact-form-submit" type="submit">{{
-              $tt("$.form.submit")
-            }}</UButton>
+            <UButton
+              data-testid="contact-form-submit"
+              class="ms-auto"
+              type="submit"
+              :loading="loading"
+              >{{ $tt("$.form.submit") }}</UButton
+            >
           </template>
         </CmpForm>
       </div>

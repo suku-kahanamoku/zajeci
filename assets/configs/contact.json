@@ -17,6 +17,7 @@
       "placeholder": "$.placeholder.leave_comment",
       "required": true,
       "clearable": true,
+      "rows": 4,
       "value": ""
     }
   ]
