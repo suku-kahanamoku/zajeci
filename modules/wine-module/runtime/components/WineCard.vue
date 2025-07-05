@@ -54,7 +54,13 @@ function getSelectLabel(
 
 <template>
   <div v-if="wine" :id="wine._id">
-    <UCard class="zoom-in">
+    <UCard
+      class="zoom-in h-full flex flex-col"
+      :ui="{
+        body: 'flex-1',
+        footer: 'flex justify-between items-center mt-auto',
+      }"
+    >
       <template #header>
         <NuxtImg
           :src="wine.image?.main?.src || '/img/bottle.jpg'"
@@ -112,25 +118,23 @@ function getSelectLabel(
       </template>
 
       <template #footer>
-        <div class="flex justify-between items-center">
-          <div class="font-bold lg:text-lg text-gray-600 dark:text-white">
-            {{
-              $tt(fields?.find((field) => field.name === "price")?.label!)
-            }}:&nbsp;{{
-              useToNumber(wine?.price?.toFixed(2) || 0).value.toLocaleString(
-                locale
-              )
-            }}&nbsp;{{ $tt("$.czk") }}
-          </div>
-          <UButton
-            icon="i-heroicons-pencil-square"
-            color="secondary"
-            class="lg:text-lg dark:text-white"
-            @click="addToCashdesk"
-          >
-            {{ $tt("$.wine.to_cart") }}
-          </UButton>
+        <div class="font-bold lg:text-lg text-gray-600 dark:text-white">
+          {{
+            $tt(fields?.find((field) => field.name === "price")?.label!)
+          }}:&nbsp;{{
+            useToNumber(wine?.price?.toFixed(2) || 0).value.toLocaleString(
+              locale
+            )
+          }}&nbsp;{{ $tt("$.czk") }}
         </div>
+        <UButton
+          icon="i-heroicons-pencil-square"
+          color="secondary"
+          class="lg:text-lg dark:text-white"
+          @click="addToCashdesk"
+        >
+          {{ $tt("$.wine.to_cart") }}
+        </UButton>
       </template>
     </UCard>
 

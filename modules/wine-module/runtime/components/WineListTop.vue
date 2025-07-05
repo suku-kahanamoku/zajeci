@@ -56,11 +56,14 @@ const { data: wines } = await useAsyncData(
       </h2>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4 items-stretch"
+    >
       <CmpWineCard
         v-for="wine of wines?.data"
         :fields="config.fields"
         :wine="(wine as IWine)"
+        class="h-full"
       />
     </div>
   </div>
