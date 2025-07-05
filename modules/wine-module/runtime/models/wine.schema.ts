@@ -1,58 +1,13 @@
 
+
 import { Schema, model } from "mongoose";
-// Enums for allowed values (should match UI/configs)
-export const WineKindEnum = [
-  "dry",
-  "semiDry",
-  "sweet",
-  "semiSweet",
-  "extraDry",
-  "offDry",
-  "mediumDry",
-  "mediumSweet",
-  "verySweet",
-  "dessert"
-];
+import { WineKind, WineQuality, WineColor, WineVariety } from "../types/wine.interface";
 
-export const WineQualityEnum = [
-  "kabinett",
-  "late_harvest",
-  "selection_of_grapes",
-  "selection_of_berries",
-  "ice_wine",
-  "straw_wine",
-  "quality_wine",
-  "archive_wine",
-  "table_wine"
-];
-
-export const WineColorEnum = [
-  "white",
-  "red",
-  "rose",
-  "orange"
-];
-
-export const WineVarietyEnum = [
-  "cabernet_sauvignon",
-  "chardonnay",
-  "frankovka",
-  "gruner_veltliner",
-  "merlot",
-  "modry_portugal",
-  "mueller_thurgau",
-  "muscat",
-  "pinot_blanc",
-  "pinot_gris",
-  "pinot_noir",
-  "riesling",
-  "sauvignon_blanc",
-  "st_laurent",
-  "traminer",
-  "welschriesling",
-  "zweigelt",
-  "other"
-];
+// Use enum values from TypeScript enums for Mongoose enum validation
+export const WineKindEnum = Object.values(WineKind);
+export const WineQualityEnum = Object.values(WineQuality);
+export const WineColorEnum = Object.values(WineColor);
+export const WineVarietyEnum = Object.values(WineVariety);
 
 import { ImageModel } from "@/server/models/image.schema";
 import type { IImage } from "@/server/types/image.type";
