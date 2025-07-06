@@ -103,6 +103,11 @@ export default defineNuxtModule<ModuleOptions>({
       mode: "client",
     });
 
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
+
     // Instalace Pinia modulu, pokud není již nainstalován
     if (!hasNuxtModule("@pinia/nuxt")) {
       await installModule("@pinia/nuxt");

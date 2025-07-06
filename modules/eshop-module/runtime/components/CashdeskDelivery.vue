@@ -6,7 +6,7 @@ import { useToNumber } from "@vueuse/core";
 import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
-} from "@/modules/common-module/runtime/utils/modify-object.functions";
+} from "@suku-kahanamoku/common-module/utils";
 import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 
 import dConfig from "../assets/configs/delivery.json";

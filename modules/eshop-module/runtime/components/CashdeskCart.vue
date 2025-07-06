@@ -3,7 +3,7 @@ import { useToNumber } from "@vueuse/core";
 import type { TableColumn } from "@nuxt/ui";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
-import { CLONE } from "@/modules/common-module/runtime/utils";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@/modules/form-module/runtime/types";
 
 import cConfig from "../assets/configs/cart.json";

@@ -1,6 +1,6 @@
 import type { User } from "#auth-utils";
 
-import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 
 export const useAuthStore = defineStore("Auth", () => {
   const { loggedIn, user: authUser, session, clear, fetch } = useUserSession();

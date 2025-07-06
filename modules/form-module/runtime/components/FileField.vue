@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import type { IItem } from "@/modules/common-module/runtime/types/item.interface";
+import type { IItem } from "@suku-kahanamoku/common-module/utils";
 
 import type { IFormField } from "../types";
 

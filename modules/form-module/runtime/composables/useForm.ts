@@ -8,7 +8,7 @@ import {
   IS_DEFINED,
   RESOLVE_MARKS,
   INTERSECTION,
-} from "@/modules/common-module/runtime/utils";
+} from "@suku-kahanamoku/common-module/utils";
 import type { IFormField } from "../types/field.interface";
 
 export function useForm() {

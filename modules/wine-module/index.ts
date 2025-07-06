@@ -13,7 +13,7 @@ import * as fs from "node:fs";
 import {
   GENERATE_API_ENDPOINT,
   GENERATE_PAGES,
-} from "@/modules/common-module/runtime/utils/module.functions";
+} from "@suku-kahanamoku/common-module/server-utils";
 
 /**
  * @typedef {Object} ModuleOptions
@@ -95,5 +95,10 @@ export default defineNuxtModule<ModuleOptions>({
     fs.readdirSync(apiAdminDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/wine", resolve);
     });
+
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
   },
 });

@@ -5,7 +5,7 @@ import defu from "defu";
 import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
-} from "@/modules/common-module/runtime/utils/modify-object.functions";
+} from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@/modules/form-module/runtime/types/form.interface";
 import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CLONE } from "./modules/common-module/runtime/utils/modify-object.functions";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import { DeliveryServices } from "./modules/eshop-module/runtime/types/order.interface";
 
 const {

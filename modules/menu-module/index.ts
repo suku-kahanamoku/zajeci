@@ -101,5 +101,10 @@ export default defineNuxtModule<ModuleOptions>({
       },
       { prepend: true }
     );
+
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
   },
 });

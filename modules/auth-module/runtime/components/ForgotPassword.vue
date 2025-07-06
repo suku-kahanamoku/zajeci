@@ -9,7 +9,7 @@ import {
   useMenuItems,
 } from "#imports";
 
-import { CLONE, ITERATE } from "@/modules/common-module/runtime/utils";
+import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormField } from "@/modules/form-module/runtime/types";
 
 import fConfig from "../assets/configs/forgot_password.json";

@@ -88,6 +88,11 @@ export default defineNuxtModule<ModuleOptions>({
     // Přidání server composables
     addServerImportsDir(resolve("./runtime/server/composables"));
 
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
+
     // Instalace i18n modulu, pokud není již nainstalován
     if (!hasNuxtModule("@nuxtjs/i18n")) {
       await installModule("@nuxtjs/i18n", options);

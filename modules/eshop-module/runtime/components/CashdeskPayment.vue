@@ -2,7 +2,7 @@
 import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
 import { useToNumber } from "@vueuse/core";
 
-import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 
 import pConfig from "../assets/configs/payment.json";
 

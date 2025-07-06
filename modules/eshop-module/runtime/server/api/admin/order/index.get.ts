@@ -5,7 +5,7 @@ import {
   IOrder,
   IOrdersResponse,
 } from "@/modules/eshop-module/runtime/types/order.interface";
-import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
+import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,

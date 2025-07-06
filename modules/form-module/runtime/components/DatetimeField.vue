@@ -2,8 +2,8 @@
 import { ref, computed, onMounted } from "vue";
 import { useDateFormat } from "@vueuse/core";
 
-import type { IItem } from "@/modules/common-module/runtime/types";
-import { GET_OBJECT_PARAM } from "@/modules/common-module/runtime/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import { GET_OBJECT_PARAM } from "@suku-kahanamoku/common-module/utils";
 
 import { useField } from "../composables/useField";
 import type { IFormField, IFormFieldDatetime } from "../types";

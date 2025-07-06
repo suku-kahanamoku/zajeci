@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
-import type { IPagination } from "@/modules/common-module/runtime/types/response.interface";
+import type { IPagination } from "@suku-kahanamoku/common-module/utils";
 
 const props = defineProps<{
   /**

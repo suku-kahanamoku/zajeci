@@ -1,7 +1,7 @@
 import { defineNuxtModule, createResolver, addServerPlugin } from "@nuxt/kit";
 import * as fs from "node:fs";
 
-import { GENERATE_API_ENDPOINT } from "@/modules/common-module/runtime/utils/module.functions";
+import { GENERATE_API_ENDPOINT } from "@suku-kahanamoku/common-module/server-utils";
 
 /**
  * @typedef {Object} ModuleOptions

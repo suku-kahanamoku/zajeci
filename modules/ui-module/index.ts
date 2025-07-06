@@ -94,6 +94,11 @@ export default defineNuxtModule<ModuleOptions>({
     // Přidání composables
     addImportsDir(resolve("./runtime/composables"));
 
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
+
     // Instalace nuxt-ui modulu
     if (!hasNuxtModule("@nuxt/ui")) {
       await installModule("@nuxt/ui");

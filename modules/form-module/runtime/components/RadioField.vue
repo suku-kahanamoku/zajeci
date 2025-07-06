@@ -2,8 +2,8 @@
 import { ref, computed } from "vue";
 import { useApi, onMounted, type Ref } from "#imports";
 
-import type { IItem } from "@/modules/common-module/runtime/types";
-import { GET_OBJECT_PARAM } from "@/modules/common-module/runtime/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import { GET_OBJECT_PARAM } from "@suku-kahanamoku/common-module/utils";
 
 import type { IFormFieldOption, IFormFieldRadio } from "../types";
 import { useField } from "../composables/useField";

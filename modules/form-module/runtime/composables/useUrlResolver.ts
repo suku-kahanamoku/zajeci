@@ -1,13 +1,13 @@
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
-import type { IConfig } from "@/modules/common-module/runtime/types";
+import type { IConfig } from "@suku-kahanamoku/common-module/utils";
 import {
   ITERATE,
   MERGE,
   IS_OBJECT,
   REMOVE_LAST_STRING,
   GET_MARK,
-} from "@/modules/common-module/runtime/utils";
+} from "@suku-kahanamoku/common-module/utils";
 
 import { useForm } from "./useForm";
 import type { IFormField } from "../types/field.interface";

@@ -5,7 +5,7 @@ import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
 } from "@/modules/mongoose-module/runtime/utils/server.functions";
-import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
+import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
 import { IUsersResponse } from "@/modules/auth-module/runtime/types";
 

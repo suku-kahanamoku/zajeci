@@ -5,7 +5,7 @@ import OrderForm from "@/emails/OrderForm.vue";
 import { AddressModel } from "@/modules/auth-module/runtime/models/address.schema";
 import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
 import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
-import { RESOLVE_FACTORY } from "@/modules/common-module/runtime/utils/server.functions";
+import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 
 import { OrderModel } from "../../models/order.schema";
 import { IOrderResponse } from "../../types/order.interface";

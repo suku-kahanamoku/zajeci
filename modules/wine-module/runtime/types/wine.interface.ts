@@ -1,5 +1,5 @@
 import type { IImage } from "@/server/types/image.type";
-import type { IItem, IResponse } from "@/modules/common-module/runtime/types";
+import type { IItem, IResponse } from "@suku-kahanamoku/common-module/utils";
 
 export enum WineKind {
   dry = "dry",

@@ -2,7 +2,7 @@
 import {
   CLONE,
   ITERATE,
-} from "@/modules/common-module/runtime/utils/modify-object.functions";
+} from "@suku-kahanamoku/common-module/utils";
 import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 
 import cConfig from "../../assets/configs/contact.json";

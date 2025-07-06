@@ -3,11 +3,11 @@ import type { IFormConfig, IFormField } from "../types";
 import type {
   IResponse,
   IHttpMethod,
-} from "@/modules/common-module/runtime/types";
+} from "@suku-kahanamoku/common-module/utils";
 import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
-} from "@/modules/common-module/runtime/utils";
+} from "@suku-kahanamoku/common-module/utils";
 
 /**
  * @composable useFormNavigable

@@ -9,7 +9,7 @@ import {
 import {
   REMOVE_FIRST_STRING,
   REMOVE_LAST_STRING,
-} from "@/modules/common-module/runtime/utils/modify-string.functions";
+} from "@suku-kahanamoku/common-module/utils";
 
 /**
  * @middleware path

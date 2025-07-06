@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { useNuxtApp } from "#imports";
 
-import { IS_DEFINED } from "@/modules/common-module/runtime/utils";
+import { IS_DEFINED } from "@suku-kahanamoku/common-module/utils";
 
 import type { IFormField } from "../types/field.interface";
 

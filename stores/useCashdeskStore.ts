@@ -14,7 +14,7 @@ import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import {
   CLONE,
   ITERATE,
-} from "@/modules/common-module/runtime/utils/modify-object.functions";
+} from "@suku-kahanamoku/common-module/utils";
 import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {

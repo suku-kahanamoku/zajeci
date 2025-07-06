@@ -1,6 +1,6 @@
 import type { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
 import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
-import type { IResponse } from "@/modules/common-module/runtime/types";
+import type { IResponse } from "@suku-kahanamoku/common-module/utils";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 /**

@@ -2,11 +2,11 @@
 import { ref, computed } from "vue";
 import defu from "defu";
 
-import type { IItem } from "@/modules/common-module/runtime/types";
+import type { IItem } from "@suku-kahanamoku/common-module/utils";
 import {
   IS_DEFINED,
   GET_OBJECT_PARAM,
-} from "@/modules/common-module/runtime/utils";
+} from "@suku-kahanamoku/common-module/utils";
 
 import type { IFormField } from "../types";
 import { useField } from "../composables/useField";

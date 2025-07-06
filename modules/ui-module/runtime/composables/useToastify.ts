@@ -1,5 +1,5 @@
 import { useNuxtApp, useToast } from "#imports";
-import type { IMsg } from "@/modules/common-module/runtime/types/response.interface";
+import type { IMsg } from "@suku-kahanamoku/common-module/utils";
 
 /**
  * @interface IMsg

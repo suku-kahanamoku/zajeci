@@ -15,7 +15,7 @@ import {
   GENERATE_PAGES,
   GENERATE_API_ENDPOINT,
   READ_FILE,
-} from "@/modules/common-module/runtime/utils/module.functions";
+} from "@suku-kahanamoku/common-module/server-utils";
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -115,6 +115,11 @@ export default defineNuxtModule<ModuleOptions>({
     fs.readdirSync(apiAdminDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/user", resolve);
     });
+
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
 
     // Install pinia module
     if (!hasNuxtModule("@pinia/nuxt")) {

@@ -9,7 +9,7 @@ import {
   useMenuItems,
 } from "#imports";
 
-import { CLONE } from "@/modules/common-module/runtime/utils/modify-object.functions";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
 
 import sConfig from "../assets/configs/signup.json";

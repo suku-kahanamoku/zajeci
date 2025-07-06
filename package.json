@@ -14,6 +14,7 @@
     "@nuxt/ui": "^3.1.2",
     "@nuxtjs/i18n": "^9.3.1",
     "@pinia/nuxt": "^0.11.0",
+    "@suku-kahanamoku/common-module": "^1.0.14",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue-email/components": "^0.0.21",
     "@vue-email/render": "^0.0.9",
@@ -28,10 +29,10 @@
     "nuxt-auth-utils": "^0.2.1",
     "nuxt-rating": "^0.1.5",
     "nuxt-storage": "^1.2.2",
+    "path-to-regexp": "^6.3.0",
     "photoswipe": "^5.4.4",
     "ukiyojs": "^4.2.0",
     "yup": "^1.6.1",
-    "path-to-regexp": "^6.3.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

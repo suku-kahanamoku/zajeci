@@ -2,7 +2,7 @@ import type { RouteRecord, RouteLocationNormalizedLoaded } from "vue-router";
 import { match, pathToRegexp, type Key } from "path-to-regexp";
 import { computed, useLang, useRoute, useRouter } from "#imports";
 
-import { REMOVE_LAST_STRING } from "@/modules/common-module/runtime/utils/modify-string.functions";
+import { REMOVE_LAST_STRING } from "@suku-kahanamoku/common-module/utils";
 
 import type { IMenuItem } from "../types/MenuItem.interface";
 

@@ -28,5 +28,10 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Pridani server composables
     addServerImportsDir(resolve("./runtime/server/composables"));
+
+    // Install common module
+    if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
+      await installModule("@suku-kahanamoku/common-module");
+    }
   },
 });
