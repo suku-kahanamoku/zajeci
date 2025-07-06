@@ -20,6 +20,7 @@ import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
   const auth = useAuthStore();
+  const { routes } = useMenuItems();
   const toast = useToast();
   const loading = ref(false);
 
@@ -218,7 +219,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
         await auth.fetch();
         reset();
         navigateTo({
-          path: localePath("cashdesk-completed"),
+          path: localePath(routes.cashdesk_completed.path),
           query: {
             orderId: result.data._id,
             email: result.data.user.email,

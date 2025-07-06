@@ -217,7 +217,7 @@ const setQuantity = (value: number, cart: ICart) => {
 
   <UAlert
     icon="i-heroicons-truck"
-    :title="$tt('$.cashdesk.delivery.limit_free')"
+    :title="$tt('$.delivery.limit_free')"
     color="info"
     class="my-4"
   />
@@ -227,7 +227,7 @@ const setQuantity = (value: number, cart: ICart) => {
   >
     <div class="flex justify-end items-center gap-4">
       <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cashdesk.delivery.title") }}:
+        {{ $tt("$.delivery.title") }}:
       </p>
       <p class="w-32 sm:w-44 text-right">
         {{
@@ -240,7 +240,7 @@ const setQuantity = (value: number, cart: ICart) => {
 
     <div class="flex justify-end items-center gap-4">
       <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cashdesk.payment.title") }}:
+        {{ $tt("$.payment.title") }}:
       </p>
       <p class="w-32 sm:w-44 text-right">
         {{
@@ -253,7 +253,7 @@ const setQuantity = (value: number, cart: ICart) => {
 
     <div class="flex justify-end items-center gap-4">
       <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cashdesk.cart.total_price") }}:
+        {{ $tt("$.cart.total_price") }}:
       </p>
       <p class="w-32 sm:w-44 text-right">
         {{
@@ -267,9 +267,9 @@ const setQuantity = (value: number, cart: ICart) => {
 
   <CmpConfirmDialog
     v-model="isOpen"
-    :title="$tt('$.cashdesk.cart.remove_from_cart')"
+    :title="$tt('$.cart.remove_from_cart')"
     @confirm="$event && cashdesk.deleteItem(deleted?.wine?._id)"
   >
-    {{ $tt("$.cashdesk.cart.remove", { name: deleted?.wine?.name }) }}
+    {{ $tt("$.cart.remove", { name: deleted?.wine?.name }) }}
   </CmpConfirmDialog>
 </template>

@@ -5,53 +5,53 @@
       "delivery_payment": "Delivery and payment",
       "summary": "Summary",
       "anonymous": "Anonymous",
-      "cart": {
-        "title": "Cart",
-        "added": "Added to cart: {name}",
-        "total": "Total of items in the basket",
-        "total_price": "Total to pay",
-        "empty": "The cart is empty",
-        "remove": "Do you really want to remove: \"{name}\" from the cart?",
-        "remove_from_cart": "Remove from cart"
-      },
       "billing_address": "Billing address",
-      "delivery_address": "Delivery address",
-      "delivery": {
-        "title": "Delivery",
-        "brno": "Brno center",
-        "free": "Free Shipping",
-        "ppl": "PPL",
-        "gls": "GLS",
-        "dpd": "DPD",
-        "post": "Czech Post",
-        "zas": "Zásilkovna",
-        "dhl": "DHL",
-        "geis": "GEIS",
-        "messenger": "Messenger",
-        "brno_free": "Delivery within the Brno-City district and Modřice is free every Thursday.",
-        "limit_free": "For orders over 2500 CZK, shipping is free.",
-        "third_day": "Delivery on the third day after dispatch at the latest.",
-        "not_quaranteed": "Delivery is not guaranteed."
-      },
-      "payment": {
-        "title": "Payment",
-        "bank": "Bank Transfer",
-        "card": "Card Payment",
-        "paypal": "PAYPAL",
-        "gopay": "GOPAY",
-        "apple_pay": "APPLE PAY",
-        "google_pay": "GOOGLE PAY",
-        "cash": "Cash",
-        "account_num": "Account number",
-        "variable_sym": "Variable symbol",
-        "recipient_msg": "Message for recipient"
-      }
+      "delivery_address": "Delivery address"
     },
     "cashdesk_completed": {
       "title": "Děkujeme za objednávku!",
       "order": "Vaše objednávka č. {orderId} byla přijata.",
       "send_to_email": "Potvrzení a další informace byly odeslány na e-mail {email}.",
       "thank_you": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
+    },
+    "cart": {
+      "title": "Cart",
+      "added": "Added to cart: {name}",
+      "total": "Total of items in the basket",
+      "total_price": "Total to pay",
+      "empty": "The cart is empty",
+      "remove": "Do you really want to remove: \"{name}\" from the cart?",
+      "remove_from_cart": "Remove from cart"
+    },
+    "delivery": {
+      "title": "Delivery",
+      "brno": "Brno center",
+      "free": "Free Shipping",
+      "ppl": "PPL",
+      "gls": "GLS",
+      "dpd": "DPD",
+      "post": "Czech Post",
+      "zas": "Zásilkovna",
+      "dhl": "DHL",
+      "geis": "GEIS",
+      "messenger": "Messenger",
+      "brno_free": "Delivery within the Brno-City district and Modřice is free every Thursday.",
+      "limit_free": "For orders over 2500 CZK, shipping is free.",
+      "third_day": "Delivery on the third day after dispatch at the latest.",
+      "not_quaranteed": "Delivery is not guaranteed."
+    },
+    "payment": {
+      "title": "Payment",
+      "bank": "Bank Transfer",
+      "card": "Card Payment",
+      "paypal": "PAYPAL",
+      "gopay": "GOPAY",
+      "apple_pay": "APPLE PAY",
+      "google_pay": "GOOGLE PAY",
+      "cash": "Cash",
+      "account_num": "Account number",
+      "variable_sym": "Variable symbol",
+      "recipient_msg": "Message for recipient"
     },
     "form": {
       "given_name": "Given name",

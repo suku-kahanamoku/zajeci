@@ -98,7 +98,7 @@ async function checkValidation() {
                   }}&nbsp;{{ $tt("$.czk") }}
                 </span>
                 <span v-else>
-                  {{ $tt("$.cashdesk.delivery.free") }}
+                  {{ $tt("$.delivery.free") }}
                 </span>
               </div>
 

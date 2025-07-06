@@ -1,6 +1,6 @@
 {
   "syscode": "delivery",
-  "title": "$.cashdesk.delivery.title",
+  "title": "$.delivery.title",
   "fields": [
     {
       "name": "delivery.address.name",

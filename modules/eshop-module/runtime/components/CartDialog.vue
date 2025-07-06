@@ -19,7 +19,7 @@ const cashdesk = useCashdeskStore();
 <template>
   <UModal
     v-model:open="model"
-    :title="$tt('$.cashdesk.cart.added', { name: cart?.wine?.name })"
+    :title="$tt('$.cart.added', { name: cart?.wine?.name })"
     close-icon="i-heroicons-x-mark"
     :ui="{
       footer: 'flex justify-between items-center gap-2'
@@ -45,7 +45,7 @@ const cashdesk = useCashdeskStore();
           }}&nbsp;{{ $tt("$.pcs") }}
         </div>
         <div>
-          {{ $tt("$.cashdesk.cart.total") }}:&nbsp;{{
+          {{ $tt("$.cart.total") }}:&nbsp;{{
             useToNumber(
               cashdesk?.totalPrice?.toFixed(2) || 0
             ).value.toLocaleString(locale)
@@ -54,7 +54,7 @@ const cashdesk = useCashdeskStore();
       </div>
       <UAlert
         icon="i-heroicons-truck"
-        :title="$tt('$.cashdesk.delivery.limit_free')"
+        :title="$tt('$.delivery.limit_free')"
         color="info"
         class="mt-5"
       />

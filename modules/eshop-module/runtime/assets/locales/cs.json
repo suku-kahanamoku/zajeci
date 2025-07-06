@@ -5,53 +5,53 @@
       "delivery_payment": "Doprava a platba",
       "summary": "Shrnutí",
       "anonymous": "Anonym",
-      "cart": {
-        "title": "Košík",
-        "added": "Přidáno do košíku: {name}",
-        "total": "V košíku je zboží celkem za",
-        "total_price": "Celkem k úhradě",
-        "empty": "Košík je prázdný",
-        "remove": "Opravdu chcete odstranit: \"{name}\" z košíku?",
-        "remove_from_cart": "Odebrat z košíku"
-      },
       "billing_address": "Fakturační adresa",
-      "delivery_address": "Dodací adresa",
-      "delivery": {
-        "title": "Doprava",
-        "brno": "Brno město",
-        "free": "Doprava zdarma",
-        "ppl": "PPL",
-        "gls": "GLS",
-        "dpd": "DPD",
-        "post": "Česká pošta",
-        "zas": "Zásilkovna",
-        "dhl": "DHL",
-        "geis": "GEIS",
-        "messenger": "Messenger",
-        "brno_free": "Dovoz v rámci okresu Brno-město a Modřice je zdarma každý čtvrtek.",
-        "limit_free": "Při objednávce nad 2500 Kč je doprava zdarma.",
-        "third_day": "Doruceni třetí den po odeslání nejpozději.",
-        "not_quaranteed": "Doruceni nezaručuje."
-      },
-      "payment": {
-        "title": "Platba",
-        "bank": "Bankovním převodem",
-        "card": "Platební kartou",
-        "paypal": "PAY PAL",
-        "gopay": "GO PAY",
-        "apple_pay": "APPLE PAY",
-        "google_pay": "GOOGLE PAY",
-        "cash": "Hotovost",
-        "account_num": "Číslo účtu",
-        "variable_sym": "Variabilní symbol",
-        "recipient_msg": "Zpráva pro příjemce"
-      }
+      "delivery_address": "Dodací adresa"
     },
     "cashdesk_completed": {
       "title": "Děkujeme za objednávku!",
       "order": "Vaše objednávka č. {orderId} byla přijata.",
       "send_to_email": "Potvrzení a další informace byly odeslány na e-mail {email}.",
       "thank_you": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
+    },
+    "cart": {
+      "title": "Košík",
+      "added": "Přidáno do košíku: {name}",
+      "total": "V košíku je zboží celkem za",
+      "total_price": "Celkem k úhradě",
+      "empty": "Košík je prázdný",
+      "remove": "Opravdu chcete odstranit: \"{name}\" z košíku?",
+      "remove_from_cart": "Odebrat z košíku"
+    },
+    "delivery": {
+      "title": "Doprava",
+      "brno": "Brno město",
+      "free": "Doprava zdarma",
+      "ppl": "PPL",
+      "gls": "GLS",
+      "dpd": "DPD",
+      "post": "Česká pošta",
+      "zas": "Zásilkovna",
+      "dhl": "DHL",
+      "geis": "GEIS",
+      "messenger": "Messenger",
+      "brno_free": "Dovoz v rámci okresu Brno-město a Modřice je zdarma každý čtvrtek.",
+      "limit_free": "Při objednávce nad 2500 Kč je doprava zdarma.",
+      "third_day": "Doruceni třetí den po odeslání nejpozději.",
+      "not_quaranteed": "Doruceni nezaručuje."
+    },
+    "payment": {
+      "title": "Platba",
+      "bank": "Bankovním převodem",
+      "card": "Platební kartou",
+      "paypal": "PAY PAL",
+      "gopay": "GO PAY",
+      "apple_pay": "APPLE PAY",
+      "google_pay": "GOOGLE PAY",
+      "cash": "Hotovost",
+      "account_num": "Číslo účtu",
+      "variable_sym": "Variabilní symbol",
+      "recipient_msg": "Zpráva pro příjemce"
     },
     "form": {
       "given_name": "Křestní jméno",

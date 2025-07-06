@@ -20,38 +20,38 @@ export enum PaymentServices {
 }
 
 export const paymentObjects = {
-  cash: { label: "$.cashdesk.payment.cash", price: 0, avatar: "mdi:cash-100" },
+  cash: { label: "$.payment.cash", price: 0, avatar: "mdi:cash-100" },
   bank: {
-    label: "$.cashdesk.payment.bank",
+    label: "$.payment.bank",
     price: 0,
     avatar: "mdi:bank-outline",
   },
   card: {
-    label: "$.cashdesk.payment.card",
+    label: "$.payment.card",
     price: 0,
     avatar: "mdi:credit-card-outline",
     disabled: true,
   },
   paypal: {
-    label: "$.cashdesk.payment.paypal",
+    label: "$.payment.paypal",
     price: 0,
     avatar: "logos:paypal",
     disabled: true,
   },
   gopay: {
-    label: "$.cashdesk.payment.gopay",
+    label: "$.payment.gopay",
     price: 0,
     avatar: "arcticons:gopay",
     disabled: true,
   },
   applePay: {
-    label: "$.cashdesk.payment.apple_pay",
+    label: "$.payment.apple_pay",
     price: 0,
     avatar: "simple-icons:applepay",
     disabled: true,
   },
   googlePay: {
-    label: "$.cashdesk.payment.google_pay",
+    label: "$.payment.google_pay",
     price: 0,
     avatar: "simple-icons:googlepay",
     disabled: true,
@@ -89,28 +89,28 @@ export enum DeliveryServices {
 
 export const deliveryObjects = {
   free: {
-    label: "$.cashdesk.delivery.brno",
+    label: "$.delivery.brno",
     price: 0,
     avatar: "mdi:home-city-outline",
-    help: "$.cashdesk.delivery.brno_free",
+    help: "$.delivery.brno_free",
   },
   post: {
-    label: "$.cashdesk.delivery.post",
+    label: "$.delivery.post",
     price: 209,
     avatar: "/img/delivery/post.jpg",
-    help: "$.cashdesk.delivery.not_quaranteed",
+    help: "$.delivery.not_quaranteed",
   },
   dpd: {
-    label: "$.cashdesk.delivery.dpd",
+    label: "$.delivery.dpd",
     price: 150,
     avatar: "mdi:truck-outline",
-    help: "$.cashdesk.delivery.not_quaranteed",
+    help: "$.delivery.not_quaranteed",
   },
   messenger: {
-    label: "$.cashdesk.delivery.messenger",
+    label: "$.delivery.messenger",
     price: 175,
     avatar: "mdi:truck-outline",
-    help: "$.cashdesk.delivery.third_day",
+    help: "$.delivery.third_day",
   },
 };
 

@@ -1,6 +1,6 @@
 {
   "syscode": "payment",
-  "title": "$.cashdesk.payment.title",
+  "title": "$.payment.title",
   "fields": [
     {
       "name": "email",

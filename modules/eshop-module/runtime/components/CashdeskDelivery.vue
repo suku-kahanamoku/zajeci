@@ -89,7 +89,7 @@ function onChange(body: Record<string, any>, event: any) {
             }}&nbsp;{{ $tt("$.czk") }}
           </span>
           <span v-else>
-            {{ $tt("$.cashdesk.delivery.free") }}
+            {{ $tt("$.delivery.free") }}
           </span>
         </div>
 

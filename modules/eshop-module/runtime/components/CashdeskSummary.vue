@@ -201,7 +201,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.cashdesk.delivery.title") }}
+          {{ $tt("$.delivery.title") }}
         </h3>
       </template>
 
@@ -228,7 +228,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
         <UAlert
           v-if="cashdesk.delivery?.type === 'free'"
-          :description="$tt('$.cashdesk.delivery.brno_free')"
+          :description="$tt('$.delivery.brno_free')"
           color="info"
         />
       </div>
@@ -239,19 +239,19 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.cashdesk.delivery.title") }}
+          {{ $tt("$.delivery.title") }}
         </h3>
       </template>
 
       <div class="flex flex-col gap-y-2">
         <h4 class="font-semibold text-lg">
-          {{ $tt("$.cashdesk.payment.account_num") }}:
+          {{ $tt("$.payment.account_num") }}:
         </h4>
 
         <div v-if="cashdesk.payment.type === 'bank'">
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">
-              {{ $tt("$.cashdesk.payment.account_num") }}:
+              {{ $tt("$.payment.account_num") }}:
             </h3>
             <p class="text-gray-600 dark:text-white">1234567890/1234</p>
           </div>
@@ -269,7 +269,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </div>
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">
-              {{ $tt("$.cashdesk.payment.variable_sym") }}:
+              {{ $tt("$.payment.variable_sym") }}:
             </h3>
             <p class="text-gray-600 dark:text-white">12345</p>
           </div>

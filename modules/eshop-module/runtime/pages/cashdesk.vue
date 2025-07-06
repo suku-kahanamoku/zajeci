@@ -39,14 +39,17 @@ const stepper = useTemplateRef("stepper");
 const steps = ref([
   {
     slot: "cart",
-    title: t("$.cashdesk.cart.title"),
+    title: t("$.cart.title"),
     icon: "i-heroicons-shopping-cart",
+    disabled: computed(() => !carts?.length),
   },
   {
     slot: "delivery_payment",
-    title: t("$.cashdesk.delivery_payment"),
+    title: t("$.delivery_payment"),
     icon: "i-heroicons-truck",
-    disabled: computed(() => !carts?.length),
+    disabled: computed(
+      () => !carts?.length || !user?.valid || !delivery.valid || !payment.valid
+    ),
   },
   {
     slot: "summary",
@@ -115,7 +118,7 @@ watch(selectedStep, () => {
             trailing-icon="i-heroicons-arrow-right-20-solid"
             :color="stepper?.hasNext ? 'primary' : 'secondary'"
             size="lg"
-            :disabled="!stepper?.hasNext"
+            :disabled="steps[selectedStep].disabled"
             :loading="loading"
             @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
           >

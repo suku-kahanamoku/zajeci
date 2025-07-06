@@ -172,7 +172,7 @@ const columns = [
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.cashdesk.delivery.title") }}
+          {{ $tt("$.delivery.title") }}
         </h3>
 
         <div class="flex flex-col gap-y-2">
@@ -180,7 +180,7 @@ const columns = [
             {{
               $tt(
                 cashdesk.delivery?.type === "free"
-                  ? "$.cashdesk.delivery.brno_free"
+                  ? "$.delivery.brno_free"
                   : cashdesk.deliveries[cashdesk.delivery?.type]?.label
               )
             }}
@@ -240,7 +240,7 @@ const columns = [
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.cashdesk.payment.title") }}
+          {{ $tt("$.payment.title") }}
         </h3>
 
         <div class="flex flex-col gap-y-2">
@@ -250,7 +250,7 @@ const columns = [
           <template v-if="cashdesk.payment.type === PaymentServices.bank">
             <div>
               <h3 class="font-semibold text-gray-700 dark:text-white">
-                {{ $tt("$.cashdesk.payment.account_num") }}:
+                {{ $tt("$.payment.account_num") }}:
               </h3>
               <p class="text-gray-600 dark:text-white">1234567890/1234</p>
             </div>
@@ -268,13 +268,13 @@ const columns = [
             </div>
             <div>
               <h3 class="font-semibold text-gray-700 dark:text-white">
-                {{ $tt("$.cashdesk.payment.variable_sym") }}:
+                {{ $tt("$.payment.variable_sym") }}:
               </h3>
               <p class="text-gray-600 dark:text-white">12345</p>
             </div>
             <div>
               <h3 class="font-semibold text-gray-700 dark:text-white">
-                {{ $tt("$.cashdesk.payment.recipient_msg") }}:
+                {{ $tt("$.payment.recipient_msg") }}:
               </h3>
               <p class="text-gray-600 dark:text-white">
                 Číslo objednávky 12345
@@ -291,7 +291,7 @@ const columns = [
   >
     <div class="flex justify-end items-center gap-4">
       <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cashdesk.delivery.title") }}:
+        {{ $tt("$.delivery.title") }}:
       </p>
       <p class="w-32 sm:w-44 text-right">
         {{
@@ -304,7 +304,7 @@ const columns = [
 
     <div class="flex justify-end items-center gap-4">
       <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cashdesk.payment.title") }}:
+        {{ $tt("$.payment.title") }}:
       </p>
       <p class="w-32 sm:w-44 text-right">
         {{
@@ -317,7 +317,7 @@ const columns = [
 
     <div class="flex justify-end items-center gap-4">
       <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cashdesk.cart.total_price") }}:
+        {{ $tt("$.cart.total_price") }}:
       </p>
       <p class="w-32 sm:w-44 text-right">
         {{
