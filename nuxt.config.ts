@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "nuxt-gtag",
     "nuxt-rating",
+    "@suku-kahanamoku/mongoose-module",
   ],
 
   css: ["@/assets/css/main.css"],

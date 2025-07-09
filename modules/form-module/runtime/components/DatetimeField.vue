@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import { useDateFormat } from "@vueuse/core";
 
-import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 import { GET_OBJECT_PARAM } from "@suku-kahanamoku/common-module/utils";
 
 import { useField } from "../composables/useField";

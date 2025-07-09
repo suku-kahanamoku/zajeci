@@ -1,7 +1,7 @@
 import type {
   IConfig,
   IHttpMethod,
-} from "@suku-kahanamoku/common-module/utils";
+} from "@suku-kahanamoku/common-module/types";
 
 import type { IFormField } from "./field.interface";
 

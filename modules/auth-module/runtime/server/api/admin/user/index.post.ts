@@ -5,7 +5,7 @@ import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "@/modules/mongoose-module/runtime/utils/server.functions";
+} from "@suku-kahanamoku/mongoose-module/server-utils";
 import { GENERATE_HASHED_PASSWORD } from "@/modules/auth-module/runtime/utils/password.functions";
 
 import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";

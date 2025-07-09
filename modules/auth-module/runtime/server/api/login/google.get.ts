@@ -11,7 +11,7 @@ import { tryCookieLocale } from "@intlify/utils/h3";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "@/modules/mongoose-module/runtime/utils/server.functions";
+} from "@suku-kahanamoku/mongoose-module/server-utils";
 
 import type { ITokens } from "../../../types/auth.interface";
 import { UserModel } from "../../../models/user.schema";

@@ -5,7 +5,7 @@ import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "@/modules/mongoose-module/runtime/utils";
+} from "@suku-kahanamoku/mongoose-module/server-utils";
 import { IOrderResponse } from "@/modules/eshop-module/runtime/types/order.interface";
 
 export default defineEventHandler(

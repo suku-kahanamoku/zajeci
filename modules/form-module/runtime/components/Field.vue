@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 
 import type {
   IFormField,

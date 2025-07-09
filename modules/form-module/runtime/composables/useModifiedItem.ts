@@ -1,6 +1,6 @@
 import { defineStore, reactive } from "#imports";
 
-import type { IHttpMethod, IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IHttpMethod, IItem} from "@suku-kahanamoku/common-module/types";
 
 /**
  * @composable useModifiedItemStore

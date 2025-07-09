@@ -1,7 +1,7 @@
 import { useApi } from "#imports";
 import { useDateFormat } from "@vueuse/core";
 
-import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 import {
   DIFFERENCE,
   GET_OBJECT_PARAM,

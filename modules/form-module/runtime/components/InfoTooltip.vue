@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useLang, useField, useToastify } from "#imports";
 import { useClipboard } from "@vueuse/core";
 
-import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 
 import type { IFormConfig } from "../types/form.interface";
 

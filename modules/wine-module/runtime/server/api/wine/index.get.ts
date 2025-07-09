@@ -4,7 +4,7 @@ import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "@/modules/mongoose-module/runtime/utils";
+} from "@suku-kahanamoku/mongoose-module/server-utils";
 
 import { WineModel } from "../../../models/wine.schema";
 import { IWinesResponse } from "../../../types";

@@ -1,6 +1,6 @@
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
-import type { IConfig } from "@suku-kahanamoku/common-module/utils";
+import type { IConfig } from "@suku-kahanamoku/common-module/types";
 import {
   ITERATE,
   MERGE,

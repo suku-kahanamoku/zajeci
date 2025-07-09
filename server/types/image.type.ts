@@ -1,4 +1,4 @@
-import { IResponse } from "@suku-kahanamoku/common-module/utils";
+import { IResponse } from "@suku-kahanamoku/common-module/types";
 
 export interface IImage {
   _id: string;

@@ -9,7 +9,7 @@ import {
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "@/modules/mongoose-module/runtime/utils/server.functions";
+} from "@suku-kahanamoku/mongoose-module/server-utils";
 
 import { COMPARE_PASSWORD } from "../../../utils/password.functions";
 import { UserModel } from "../../../models/user.schema";

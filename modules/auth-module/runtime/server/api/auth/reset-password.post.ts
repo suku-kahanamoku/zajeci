@@ -4,7 +4,7 @@ import { defineEventHandler, readBody, useMailing } from "#imports";
 import {
   GET_STATUS,
   CONNECT_WITH_RETRY,
-} from "@/modules/mongoose-module/runtime/utils/server.functions";
+} from "@suku-kahanamoku/mongoose-module/server-utils";
 import ResetPasswordForm from "@/emails/ResetPasswordForm.vue";
 
 import {

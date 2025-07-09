@@ -11,7 +11,7 @@ import type { ButtonProps, CardProps } from "#ui/types";
 import { z } from "zod";
 import defu from "defu";
 
-import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
 import type { IBtn } from "@/modules/ui-module/runtime/types";
 

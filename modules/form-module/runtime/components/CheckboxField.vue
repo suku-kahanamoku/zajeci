@@ -2,7 +2,7 @@
 import { ref, computed } from "vue";
 import defu from "defu";
 
-import type { IItem } from "@suku-kahanamoku/common-module/utils";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 import {
   IS_DEFINED,
   GET_OBJECT_PARAM,

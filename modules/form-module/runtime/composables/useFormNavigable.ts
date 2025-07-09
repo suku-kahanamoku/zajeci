@@ -1,9 +1,6 @@
 import { useForm } from "./useForm";
 import type { IFormConfig, IFormField } from "../types";
-import type {
-  IResponse,
-  IHttpMethod,
-} from "@suku-kahanamoku/common-module/utils";
+import type { IResponse, IHttpMethod } from "@suku-kahanamoku/common-module/types";
 import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
