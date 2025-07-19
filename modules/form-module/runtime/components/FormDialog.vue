@@ -3,7 +3,7 @@ import { ref } from "vue";
 import type { ButtonProps } from "#ui/types";
 
 import type { IItem } from "@suku-kahanamoku/common-module/types";
-import type { IBtn } from "@/modules/ui-module/runtime/types";
+import type { IBtn } from "@suku-kahanamoku/ui-module/types";
 
 import type { IFormField, IFormFieldOption } from "../types/field.interface";
 

@@ -104,5 +104,10 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@suku-kahanamoku/lang-module")) {
       await installModule("@suku-kahanamoku/lang-module");
     }
+
+    // Install ui module
+    if (!hasNuxtModule("@suku-kahanamoku/ui-module")) {
+      await installModule("@suku-kahanamoku/ui-module");
+    }
   },
 });

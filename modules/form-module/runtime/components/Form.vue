@@ -13,7 +13,7 @@ import defu from "defu";
 
 import type { IItem } from "@suku-kahanamoku/common-module/types";
 import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
-import type { IBtn } from "@/modules/ui-module/runtime/types";
+import type { IBtn } from "@suku-kahanamoku/ui-module/types";
 
 import type { IFormField, IFormFieldOption } from "../types/field.interface";
 import { useZod } from "../composables/useZod";
@@ -143,7 +143,7 @@ defineExpose({ form, model, schema, onChange });
           defu(ui || {}, {
             root: 'bg-transparent',
             body: 'flex flex-col gap-4',
-            footer: 'flex justify-between items-center'
+            footer: 'flex justify-between items-center',
           })
         "
       >
