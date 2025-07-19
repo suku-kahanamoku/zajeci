@@ -108,6 +108,11 @@ export default defineNuxtModule<ModuleOptions>({
       await installModule("@suku-kahanamoku/common-module");
     }
 
+    // Install lang module
+    if (!hasNuxtModule("@suku-kahanamoku/lang-module")) {
+      await installModule("@suku-kahanamoku/lang-module");
+    }
+
     // Instalace Pinia modulu, pokud není již nainstalován
     if (!hasNuxtModule("@pinia/nuxt")) {
       await installModule("@pinia/nuxt");

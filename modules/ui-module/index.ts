@@ -99,6 +99,11 @@ export default defineNuxtModule<ModuleOptions>({
       await installModule("@suku-kahanamoku/common-module");
     }
 
+    // Install lang module
+    if (!hasNuxtModule("@suku-kahanamoku/lang-module")) {
+      await installModule("@suku-kahanamoku/lang-module");
+    }
+
     // Instalace nuxt-ui modulu
     if (!hasNuxtModule("@nuxt/ui")) {
       await installModule("@nuxt/ui");

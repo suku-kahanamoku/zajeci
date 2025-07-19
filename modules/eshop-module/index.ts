@@ -99,5 +99,10 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
       await installModule("@suku-kahanamoku/common-module");
     }
+
+    // Install lang module
+    if (!hasNuxtModule("@suku-kahanamoku/lang-module")) {
+      await installModule("@suku-kahanamoku/lang-module");
+    }
   },
 });
