@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
-import type { IFormField } from "@/modules/form-module/runtime/types";
+import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 const props = defineProps<{
   fields: IFormField[];

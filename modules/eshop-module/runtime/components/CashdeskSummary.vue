@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 import type { TableColumn } from "@nuxt/ui";
+import { useUrlResolver } from "#imports";
 
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import type { IFormConfig } from "~/modules/form-module/runtime/types";
+import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../assets/configs/cart.json";
 

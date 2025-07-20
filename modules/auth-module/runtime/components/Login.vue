@@ -10,7 +10,7 @@ import {
 } from "#imports";
 
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
+import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 import lConfig from "../assets/configs/login.json";
 

@@ -6,7 +6,7 @@ import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import type {
   IFormField,
   IFormFieldOption,
-} from "@/modules/form-module/runtime/types";
+} from "@suku-kahanamoku/form-module/types";
 
 const props = defineProps<{
   fields: IFormField[];

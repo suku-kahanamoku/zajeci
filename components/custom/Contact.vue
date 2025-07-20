@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import {
-  CLONE,
-  ITERATE,
-} from "@suku-kahanamoku/common-module/utils";
-import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
+import { useUrlResolver } from "#imports";
+
+import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
+import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../../assets/configs/contact.json";
 
@@ -106,7 +105,7 @@ async function onSubmit(body: Record<string, any>) {
               class="ms-auto"
               type="submit"
               :loading="loading"
-              >{{ $tt("$.form.submit") }}</UButton
+              >{{ $tt("$.btn.submit") }}</UButton
             >
           </template>
         </CmpForm>

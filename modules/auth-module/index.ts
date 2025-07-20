@@ -131,6 +131,11 @@ export default defineNuxtModule<ModuleOptions>({
       await installModule("@suku-kahanamoku/ui-module");
     }
 
+    // Install form module
+    if (!hasNuxtModule("@suku-kahanamoku/form-module")) {
+      await installModule("@suku-kahanamoku/form-module");
+    }
+
     // Install pinia module
     if (!hasNuxtModule("@pinia/nuxt")) {
       await installModule("@pinia/nuxt");

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useToNumber } from "@vueuse/core";
 import type { TableColumn } from "@nuxt/ui";
+import { useUrlResolver } from "#imports";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import type { IFormConfig } from "@/modules/form-module/runtime/types";
+import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../assets/configs/cart.json";
 
@@ -226,9 +227,7 @@ const setQuantity = (value: number, cart: ICart) => {
     class="py-4 px-4 mt-2 text-lg font-semibold text-end text-gray-600 dark:text-white border border-gray-200 dark:border-gray-700"
   >
     <div class="flex justify-end items-center gap-4">
-      <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.delivery.title") }}:
-      </p>
+      <p class="w-40 sm:w-44 text-left">{{ $tt("$.delivery.title") }}:</p>
       <p class="w-32 sm:w-44 text-right">
         {{
           useToNumber(
@@ -239,9 +238,7 @@ const setQuantity = (value: number, cart: ICart) => {
     </div>
 
     <div class="flex justify-end items-center gap-4">
-      <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.payment.title") }}:
-      </p>
+      <p class="w-40 sm:w-44 text-left">{{ $tt("$.payment.title") }}:</p>
       <p class="w-32 sm:w-44 text-right">
         {{
           useToNumber(
@@ -252,9 +249,7 @@ const setQuantity = (value: number, cart: ICart) => {
     </div>
 
     <div class="flex justify-end items-center gap-4">
-      <p class="w-40 sm:w-44 text-left">
-        {{ $tt("$.cart.total_price") }}:
-      </p>
+      <p class="w-40 sm:w-44 text-left">{{ $tt("$.cart.total_price") }}:</p>
       <p class="w-32 sm:w-44 text-right">
         {{
           useToNumber(

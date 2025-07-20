@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useUrlResolver } from "#imports";
+
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 
 import wConfig from "../assets/configs/wine-list-top.json";
@@ -35,7 +37,7 @@ const { data: wines } = await useAsyncData(
           config: config.value,
           route,
         });
-        url = useFactory(url, config.value.factory, routes.wine.path);
+        url = useFactory(url, config.value.factory, routes.wine?.path);
         return await useApi(url);
       } catch (error: any) {
         console.error(error);

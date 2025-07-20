@@ -10,7 +10,7 @@ import {
 } from "#imports";
 
 import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
-import type { IFormField } from "@/modules/form-module/runtime/types";
+import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 import fConfig from "../assets/configs/forgot_password.json";
 
@@ -74,7 +74,7 @@ async function onSubmit(event: Record<string, any>) {
             type="submit"
             :loading="loading"
           >
-            {{ $tt("$.form.submit") }}
+            {{ $tt("$.btn.submit") }}
           </UButton>
         </template>
       </CmpForm>

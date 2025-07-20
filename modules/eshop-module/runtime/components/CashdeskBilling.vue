@@ -6,8 +6,7 @@ import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
 } from "@suku-kahanamoku/common-module/utils";
-import type { IFormConfig } from "@/modules/form-module/runtime/types/form.interface";
-import type { IFormField } from "@/modules/form-module/runtime/types/field.interface";
+import type { IFormConfig IFormField } from "@suku-kahanamoku/form-module/types";
 
 import lConfig from "../assets/configs/billing.json";
 

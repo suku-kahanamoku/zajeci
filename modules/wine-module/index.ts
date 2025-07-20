@@ -110,5 +110,10 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@suku-kahanamoku/ui-module")) {
       await installModule("@suku-kahanamoku/ui-module");
     }
+
+    // Install form module
+    if (!hasNuxtModule("@suku-kahanamoku/form-module")) {
+      await installModule("@suku-kahanamoku/form-module");
+    }
   },
 });
