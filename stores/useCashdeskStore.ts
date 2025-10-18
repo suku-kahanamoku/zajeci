@@ -11,11 +11,8 @@ import {
   type ICart,
 } from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
-import {
-  CLONE,
-  ITERATE,
-} from "@suku-kahanamoku/common-module/utils";
-import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
+import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
+import type { IUser } from "@suku-kahanamoku/auth-module/types";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();

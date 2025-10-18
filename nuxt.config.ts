@@ -6,10 +6,16 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/image",
     "@pinia/nuxt",
-    "nuxt-auth-utils",
     "nuxt-gtag",
     "nuxt-rating",
+    "@suku-kahanamoku/common-module",
+    "@suku-kahanamoku/lang-module",
     "@suku-kahanamoku/mongoose-module",
+    "@suku-kahanamoku/ui-module",
+    "@suku-kahanamoku/notify-module",
+    "@suku-kahanamoku/form-module",
+    "@suku-kahanamoku/menu-module",
+    "@suku-kahanamoku/auth-module",
   ],
 
   css: ["@/assets/css/main.css"],

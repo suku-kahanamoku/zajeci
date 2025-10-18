@@ -2,9 +2,9 @@ import { H3Event } from "h3";
 import { isValidObjectId } from "mongoose";
 
 import OrderForm from "@/emails/OrderForm.vue";
-import { AddressModel } from "@/modules/auth-module/runtime/models/address.schema";
-import { UserModel } from "@/modules/auth-module/runtime/models/user.schema";
-import { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
+import { AddressModel } from "@suku-kahanamoku/auth-module/models";
+import { UserModel } from "@suku-kahanamoku/auth-module/models";
+import { IAddress } from "@suku-kahanamoku/auth-module/types";
 import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 
 import { OrderModel } from "../../models/order.schema";

@@ -115,5 +115,20 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@suku-kahanamoku/form-module")) {
       await installModule("@suku-kahanamoku/form-module");
     }
+
+    // Install notify module
+    if (!hasNuxtModule("@suku-kahanamoku/notify-module")) {
+      await installModule("@suku-kahanamoku/notify-module");
+    }
+
+    // Install menu module
+    if (!hasNuxtModule("@suku-kahanamoku/menu-module")) {
+      await installModule("@suku-kahanamoku/menu-module");
+    }
+
+    // Install auth module
+    if (!hasNuxtModule("@suku-kahanamoku/auth-module")) {
+      await installModule("@suku-kahanamoku/auth-module");
+    }
   },
 });

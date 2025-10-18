@@ -1,5 +1,4 @@
-import type { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
-import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
+import type { IAddress, IUser } from "@suku-kahanamoku/auth-module/types";
 import type { IResponse } from "@suku-kahanamoku/common-module/types";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 

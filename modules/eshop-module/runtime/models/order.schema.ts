@@ -9,8 +9,7 @@ import {
   type IOrder,
   type IPayment,
 } from "@/modules/eshop-module/runtime/types/order.interface";
-import type { IUser } from "@/modules/auth-module/runtime/types/user.interface";
-import type { IAddress } from "@/modules/auth-module/runtime/types/address.interface";
+import type { IUser, IAddress } from "@suku-kahanamoku/auth-module/types";
 
 export const AddressOrderSchema = new Schema<IAddress>(
   {

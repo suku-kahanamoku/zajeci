@@ -19,22 +19,18 @@
     "@suku-kahanamoku/form-module": "latest",
     "@suku-kahanamoku/menu-module": "latest",
     "@suku-kahanamoku/notify-module": "latest",
+    "@suku-kahanamoku/auth-module": "latest",
     "@vueuse/core": "^13.0.0",
     "animate.css": "^4.1.1",
     "date-fns": "^4.1.0",
     "defu": "^6.1.4",
     "nuxt": "^3.16.2",
-    "nuxt-auth-utils": "^0.2.1",
     "nuxt-rating": "^0.1.5",
     "nuxt-storage": "^1.2.2",
     "photoswipe": "^5.4.4",
     "ukiyojs": "^4.2.0"
   },
   "devDependencies": {
-    "@nuxtjs/critters": "^0.8.0",
-    "@nuxtjs/seo": "^3.0.3",
-    "@types/bcrypt": "^5.0.2",
-    "@vite-pwa/nuxt": "^0.10.6",
     "nuxt-gtag": "^3.0.2",
     "typescript": "latest"
   },
