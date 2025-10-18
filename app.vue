@@ -5,32 +5,29 @@ import { DeliveryServices } from "./modules/eshop-module/runtime/types/order.int
 const {
   i18n: { locale },
 } = useLang();
-const auth = useAuthStore();
 const cashdesk = useCashdeskStore();
+const { loggedIn, user } = useUserSession();
 
 onMounted(() => {
   setCashdesk();
 });
 
-watch(
-  () => auth.loggedIn,
-  (value, oldValue) => {
-    // prihlaseni
-    if (value === true && oldValue === false) {
-      setCashdesk();
-    }
-    //
-    else if (value === false && oldValue === true) {
-      cashdesk.reset();
-    }
+watch(loggedIn, (value, oldValue) => {
+  // prihlaseni
+  if (value === true && oldValue === false) {
+    setCashdesk();
   }
-);
+  //
+  else if (value === false && oldValue === true) {
+    cashdesk.reset();
+  }
+});
 
 function setCashdesk() {
-  if (auth.user) {
+  if (user.value) {
     // pokud neni vyplnena fakturacni adresa, doplni
     if (!cashdesk.user.valid) {
-      cashdesk.setUser(auth.user);
+      cashdesk.setUser(user.value);
     }
     // pokud neni vyplnena dodaci adresa, doplni
     if (
@@ -39,7 +36,7 @@ function setCashdesk() {
         cashdesk.delivery.type
       )
     ) {
-      cashdesk.delivery.address = CLONE(auth.user.address?.main);
+      cashdesk.delivery.address = CLONE(user.value.address?.main);
     }
   }
 }

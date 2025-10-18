@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { menuItem, routes } = useMenuItems();
 const localePath = useLocalePath();
-const auth = useAuthStore();
+const { user } = useUserSession();
 
 const menuItems: any[] = [];
 const isOpen = ref(false);
@@ -10,7 +10,7 @@ useSeoMeta({
   robots: "noindex, nofollow",
 });
 
-if (auth.isAdmin) {
+if (user.value?.role === "admin") {
   const adminWine = menuItem("admin_wine")!;
   adminWine.to = localePath(adminWine.to!);
   menuItems.push(adminWine);

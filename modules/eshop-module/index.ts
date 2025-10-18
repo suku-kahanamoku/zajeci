@@ -40,33 +40,6 @@ export default defineNuxtModule<ModuleOptions>({
    */
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
-    const nuxtOpt = _nuxt.options as any;
-
-    // Konfigurace pro lang-module
-    nuxtOpt.langModule = defu(nuxtOpt.langModule || {}, {
-      locales: [
-        /* {
-          code: "en",
-          files: [{ path: resolve("./runtime/assets/locales/en.json") }],
-        }, */
-        {
-          code: "cs",
-          files: [{ path: resolve("./runtime/assets/locales/cs.json") }],
-        },
-      ],
-    });
-
-    // Konfigurace TailwindCSS pro runtime komponenty
-    nuxtOpt.tailwindcss = defu(nuxtOpt.tailwindcss || {}, {
-      config: {
-        content: [
-          resolve("./runtime/components/**/*.{vue,mjs,js,ts}"),
-          resolve("./runtime/layouts/**/*.{vue,mjs,js,ts}"),
-          resolve("./runtime/pages/**/*.{vue,mjs,js,ts}"),
-          resolve("./runtime/*.{mjs,js,ts}"),
-        ],
-      },
-    });
 
     // Přidání runtime komponent
     addComponentsDir({
@@ -129,5 +102,21 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@suku-kahanamoku/auth-module")) {
       await installModule("@suku-kahanamoku/auth-module");
     }
+
+    _nuxt.hook("i18n:registerModule", (register) => {
+      register({
+        langDir: resolve("./runtime/assets/locales"),
+        locales: [
+          {
+            code: "en",
+            file: "en.json",
+          },
+          {
+            code: "cs",
+            file: "cs.json",
+          },
+        ],
+      });
+    });
   },
 });

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useLang();
-const { loggedIn } = useAuthStore();
+const { loggedIn } = useUserSession();
 
 const items = [
   {

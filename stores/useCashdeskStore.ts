@@ -16,16 +16,16 @@ import type { IUser } from "@suku-kahanamoku/auth-module/types";
 
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
-  const auth = useAuthStore();
+  const { user: authUser } = useUserSession();
   const { routes } = useMenuItems();
   const toast = useToast();
   const loading = ref(false);
 
-  const user = ref<IUser>(CLONE(auth.user || auth.emptyUser));
+  const user = ref<IUser>(CLONE(authUser.value || {}));
   const carts = ref<ICart[]>([]);
   const delivery = ref<IDelivery>({
     type: DeliveryServices.free,
-    address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
+    address: CLONE(user.value?.address?.main || {}),
     totalPrice: 0,
     key: 0,
   });
@@ -110,8 +110,8 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
 
   const removeItem = (wineId: string) => {
     const itemIndex = carts.value.findIndex((item) => item.wine._id === wineId);
-    if (itemIndex !== -1) {
-      const item = carts.value[itemIndex];
+    if (itemIndex >= 0) {
+      const item = carts.value[itemIndex]!;
       item.quantity -= 1;
       item.totalPrice = item.unitPrice * item.quantity;
       if (item.quantity <= 0) {
@@ -136,20 +136,19 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
   };
 
   const setUser = (newUser: User) => {
-    user.value = CLONE({ ...auth.emptyUser, ...newUser });
+    user.value = CLONE(newUser);
     user.value.address = user.value.address || {};
     // nastavi fakturacni adresu
-    user.value.address.main =
-      user.value.address?.main || CLONE(auth.emptyUser.address.main);
+    user.value.address.main = user.value.address?.main;
     delete user.value.address?.variants;
   };
 
   const reset = () => {
-    setUser(auth.user || auth.emptyUser);
+    setUser(authUser.value || {});
     carts.value = [];
     delivery.value = {
       type: DeliveryServices.free,
-      address: CLONE(user.value.address?.main || auth.emptyUser.address.main),
+      address: CLONE(user.value.address?.main),
       totalPrice: 0,
       key: 0,
     };
@@ -176,8 +175,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
       }
       if (local.delivery) {
         delivery.value = local.delivery;
-        delivery.value.address =
-          delivery.value.address || CLONE(auth.emptyUser.address.main);
+        delivery.value.address = delivery.value.address;
         delivery.value.key = 0;
       }
       if (local.payment) {
@@ -212,11 +210,9 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
         body: order,
       });
       if (result.data?._id) {
-        // aktualizace prihlaseneho uzivatele
-        await auth.fetch();
         reset();
         navigateTo({
-          path: localePath(routes.cashdesk_completed.path),
+          path: localePath(routes.cashdesk_completed?.path!),
           query: {
             orderId: result.data._id,
             email: result.data.user.email,
