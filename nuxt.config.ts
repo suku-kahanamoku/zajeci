@@ -46,6 +46,12 @@ export default defineNuxtConfig({
         icon: "emojione:flag-for-czechia",
         file: "./cs.json",
       },
+      {
+        code: "en",
+        language: "en-US",
+        icon: "emojione:flag-for-czechia",
+        file: "./en.json",
+      },
     ],
     experimental: {
       localeDetector: "./localeDetector.ts",
@@ -55,6 +61,4 @@ export default defineNuxtConfig({
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
-
-  compatibilityDate: "2025-04-23",
 });

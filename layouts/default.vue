@@ -13,6 +13,7 @@ const menuItems = [
   {
     label: "$.navbar.wine",
     to: "/wine",
+    class: "text-primary",
   },
   {
     label: "$.navbar.taste",
@@ -25,39 +26,46 @@ const menuItems = [
   {
     label: "$.navbar.gallery",
     to: "/gallery",
+    class: "text-primary",
   },
 ];
-const isOpen = ref(false);
 </script>
 
 <template>
-  <UHeader>
+  <UHeader mode="slideover">
     <template #title>
       <div class="h-16 w-auto">
         <UiLogo />
       </div>
     </template>
 
-    <UNavigationMenu :items="menuItems" />
+    <UNavigationMenu :items="menuItems" variant="link" color="primary">
+      <template #item-label="{ item }">
+        {{ $tt(item.label) }}
+      </template>
+    </UNavigationMenu>
 
     <template #right>
       <UColorModeButton />
     </template>
+
+    <template #body>
+      <UNavigationMenu
+        :items="menuItems"
+        variant="link"
+        color="primary"
+        orientation="vertical"
+      >
+        <template #item-label="{ item }">
+          {{ $tt(item.label) }}
+        </template>
+      </UNavigationMenu>
+    </template>
   </UHeader>
 
-  <CmpSlideMenu
-    v-model:is-open="isOpen"
-    :menu-items="menuItems"
-    :config="{ side: 'right', ui: { title: 'h-8' } }"
-  >
-    <template #logo>
-      <UiLogo />
-    </template>
-  </CmpSlideMenu>
-
-  <main class="flex-1 flex">
+  <UMain>
     <slot></slot>
-  </main>
+  </UMain>
 
   <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
 </template>

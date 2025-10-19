@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const { menuItem, routes } = useMenuItems();
+const { menuItem } = useMenuItems();
 const localePath = useLocalePath();
 const { user } = useUserSession();
 
 const menuItems: any[] = [];
-const isOpen = ref(false);
 
 useSeoMeta({
   robots: "noindex, nofollow",
@@ -22,44 +21,40 @@ if (user.value?.role === "admin") {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
-    <CmpMainMenu v-model:is-open="isOpen" :config="{}">
-      <template #logo>
-        <ULink :to="localePath('/')" class="h-full">
-          <UiLogo />
-        </ULink>
-      </template>
-    </CmpMainMenu>
-
-    <CmpSlideMenu
-      v-model:is-open="isOpen"
-      :menu-items="menuItems"
-      :config="{ side: 'right', ui: { title: 'h-8' } }"
-    >
-      <template #logo>
+  <UHeader mode="slideover">
+    <template #title>
+      <div class="h-16 w-auto">
         <UiLogo />
-      </template>
-    </CmpSlideMenu>
+      </div>
+    </template>
 
-    <main class="flex-1 flex">
+    <UNavigationMenu :items="menuItems" variant="link" color="primary">
+      <template #item-label="{ item }">
+        {{ $tt(item.label) }}
+      </template>
+    </UNavigationMenu>
+
+    <template #right>
+      <UColorModeButton />
+    </template>
+
+    <template #body>
       <UNavigationMenu
-        orientation="vertical"
         :items="menuItems"
-        :highlight="true"
-        :ui="{
-          root: 'hidden lg:flex border-r border-gray-200',
-        }"
+        variant="link"
+        color="primary"
+        orientation="vertical"
       >
         <template #item-label="{ item }">
           {{ $tt(item.label) }}
         </template>
       </UNavigationMenu>
+    </template>
+  </UHeader>
 
-      <div class="w-full">
-        <slot></slot>
-      </div>
-    </main>
+  <UMain>
+    <slot></slot>
+  </UMain>
 
-    <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
-  </div>
+  <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
 </template>
