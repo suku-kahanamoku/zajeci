@@ -31,29 +31,33 @@ const isOpen = ref(false);
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
-    <CmpMainMenu v-model:is-open="isOpen" :config="{}" :menu-items="menuItems">
-      <template #logo>
-        <ULink :to="localePath('/')" class="h-full">
-          <UiLogo />
-        </ULink>
-      </template>
-    </CmpMainMenu>
-
-    <CmpSlideMenu
-      v-model:is-open="isOpen"
-      :menu-items="menuItems"
-      :config="{ side: 'right', ui: { title: 'h-8' } }"
-    >
-      <template #logo>
+  <UHeader>
+    <template #title>
+      <div class="h-16 w-auto">
         <UiLogo />
-      </template>
-    </CmpSlideMenu>
+      </div>
+    </template>
 
-    <main class="flex-1 flex">
-      <slot></slot>
-    </main>
+    <UNavigationMenu :items="menuItems" />
 
-    <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
-  </div>
+    <template #right>
+      <UColorModeButton />
+    </template>
+  </UHeader>
+
+  <CmpSlideMenu
+    v-model:is-open="isOpen"
+    :menu-items="menuItems"
+    :config="{ side: 'right', ui: { title: 'h-8' } }"
+  >
+    <template #logo>
+      <UiLogo />
+    </template>
+  </CmpSlideMenu>
+
+  <main class="flex-1 flex">
+    <slot></slot>
+  </main>
+
+  <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
 </template>
