@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { routes } = useMenuItems();
 const localePath = useLocalePath();
-const userSessionStore = useUserSession();
 
 useSeoMeta({
   robots: "index, follow",

@@ -45,7 +45,7 @@ const steps = ref([
   },
   {
     slot: "delivery_payment",
-    title: t("$.delivery_payment"),
+    title: t("$.cashdesk.delivery_payment"),
     icon: "i-heroicons-truck",
     disabled: computed(
       () => !carts?.length || !user?.valid || !delivery.valid || !payment.valid
