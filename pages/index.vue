@@ -24,7 +24,7 @@ useHead({
     <div class="max-w-screen-xl mx-auto px-5 w-full">
       <CustomAbout />
       <USeparator />
-      <!-- <CmpWineListTop /> -->
+      <CmpWineListTop />
       <USeparator />
       <CustomTasting />
       <USeparator />

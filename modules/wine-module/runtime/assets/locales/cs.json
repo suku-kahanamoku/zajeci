@@ -1,5 +1,94 @@
 {
-    "$": {
-        
+  "$": {
+    "wine": {
+      "title": "Nabídka vín",
+      "to_cart": "Do košíku",
+      "detail": {
+        "title": "Detail vína"
+      }
+    },
+    "admin": {
+      "wine": {
+        "title": "Administrace vín",
+        "create": {
+          "title": "Vytvořit nové víno"
+        },
+        "update": {
+          "title": "Editace vína: \"{name}\""
+        },
+        "form": {
+          "name": "Název vína",
+          "kind": "Druh",
+          "quality": "Přívlastek",
+          "color": "Barva",
+          "year": "Ročník",
+          "variety": "Odrůda",
+          "volume": "Objem",
+          "price": "Cena",
+          "quantity_stock": "Množství na skladě",
+          "categories": "Kategorie",
+          "description": "Popis"
+        },
+        "placeholder": {
+          "name": "Sauvignon Blanc, výběr z hroznů",
+          "quality": "Výběr z hroznů",
+          "variety": "Sauvignon Blanc"
+        },
+        "kind": {
+          "dry": "Suché",
+          "semi_dry": "Polosuché",
+          "sweet": "Sladké",
+          "semi_sweet": "Polosladké",
+          "extra_dry": "Extra suché",
+          "off_dry": "Polosuché",
+          "medium_dry": "Středně suché",
+          "medium_sweet": "Středně sladké",
+          "very_sweet": "Velmi sladké",
+          "dessert": "Dezertní víno"
+        },
+        "color": {
+          "white": "Bílé",
+          "red": "Červené",
+          "rose": "Růžové",
+          "orange": "Oranžové"
+        },
+        "category": {
+          "favourite": "Oblíbené",
+          "top": "Nejlepší",
+          "new": "Nové"
+        },
+        "quality": {
+          "kabinett": "Kabinetní víno",
+          "late_harvest": "Pozdní sběr",
+          "selection_of_grapes": "Výběr z hroznů",
+          "selection_of_berries": "Výběr z bobulí",
+          "ice_wine": "Ledové víno",
+          "straw_wine": "Slámové víno",
+          "quality_wine": "Jakostní víno",
+          "archive_wine": "Archivní víno",
+          "table_wine": "Stolní víno"
+        },
+        "variety": {
+          "riesling": "Ryzlink rýnský",
+          "gruner_veltliner": "Veltlínské zelené",
+          "welschriesling": "Ryzlink vlašský",
+          "sauvignon_blanc": "Sauvignon blanc",
+          "pinot_gris": "Rulandské šedé",
+          "pinot_blanc": "Rulandské bílé",
+          "chardonnay": "Chardonnay",
+          "traminer": "Tramín červený",
+          "muscat": "Muškát moravský",
+          "mueller_thurgau": "Müller Thurgau",
+          "st_laurent": "Svatovavřinecké",
+          "pinot_noir": "Rulandské modré",
+          "zweigelt": "Zweigeltrebe",
+          "cabernet_sauvignon": "Cabernet Sauvignon",
+          "merlot": "Merlot",
+          "frankovka": "Frankovka",
+          "modry_portugal": "Modrý Portugal",
+          "other": "Jiná odrůda"
+        }
+      }
     }
+  }
 }

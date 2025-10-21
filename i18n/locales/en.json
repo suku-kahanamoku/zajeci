@@ -18,12 +18,6 @@
       "signup": "Sign Up",
       "logout": "Logout"
     },
-    "footer": {
-      "copyright": "Copyright",
-      "reserved": "All rights reserved",
-      "made_by": "Made by",
-      "cookies": "This website uses cookies to ensure optimal user experience and measure its performance. If you continue to use this website, we assume that you agree to the use of cookies. However, you can change your cookie settings at any time through your browser's relevant features."
-    },
     "intro": {
       "title": "Zaječí Winery Nová Hora",
       "subtitle": "Discover delicious Moravian wines with us. Local varieties, traditional processing, unforgettable aroma, and taste. Don't hesitate to contact us and let us share our passion for wine growing and production with you.",
@@ -33,13 +27,6 @@
       "title": "Why Our Wine?",
       "subtitle": "Traditional wines born in South Moravia.",
       "description": "Passion for wine and enthusiasm for the beauty of South Moravian landscape and nature led us to Zaječí. Over time, we exchanged office and clinic work for work in the vineyard and cellar. We pass on this passion, enthusiasm, wonder, and beauty, exhaustion from work, and refreshment after it in our wines."
-    },
-    "wine": {
-      "title": "Wine Selection",
-      "to_cart": "Add to Cart",
-      "detail": {
-        "title": "Wine detail"
-      }
     },
     "info": {
       "history": "Moravian and Czech wines are gaining increasing popularity not only here but also worldwide. In the Czech Republic, over 50 varieties are grown, thanks to the diversity and ruggedness of the terrain. Each region contributes specific characteristics to individual varieties, so everyone can choose the best wine for themselves. Explore quality wines from Moravia and Bohemia and discover the beauty through a wine glass.",
@@ -76,28 +63,6 @@
       "success_msg": "Your inquiries have been successfully sent. Thank you for your interest! We will try to respond to your inquiries as quickly as possible.",
       "error_msg": "We apologize, but the form was not submitted. Please check your connection and try again later."
     },
-    "terms_conditions": {
-      "title": "Terms of Use"
-    },
-    "login": {
-      "title": "Sign in to Your Account",
-      "remember": "Remember Me",
-      "signin": "Sign In",
-      "no_account": "Don't have an account yet?",
-      "or": "or"
-    },
-    "signup": {
-      "title": "Create Account",
-      "confirm_password": "Confirm Password",
-      "accept_condition": "I agree with the",
-      "has_account": "Already have an account?"
-    },
-    "forgot_password": {
-      "title": "Forgot Your Password?",
-      "description": "Don't worry! Just enter your email, and we'll send you a password reset code!",
-      "reset_password": "Reset Password",
-      "success_msg": "Password reset email has been sent."
-    },
     "dashboard": {
       "title": "Dashboard"
     },
@@ -129,10 +94,6 @@
       }
     },
     "form": {
-      "email": "Email",
-      "phone": "Phone",
-      "password": "Password",
-      "select": "Select",
       "msg": "Message",
       "price": "Price",
       "quantity": "Quantity",
@@ -214,109 +175,6 @@
           "invoice": "We are sending you the invoice in the attachment. Please take a moment to check all the details. If anything is incorrect, just contact us at the email address.",
           "taste": "We believe you will enjoy our wine and that you will choose us again next time."
         }
-      }
-    },
-    "admin": {
-      "wine": {
-        "title": "Admin wines",
-        "create": {
-          "title": "Create new wine"
-        },
-        "update": {
-          "title": "Update wine: \"{name}\""
-        },
-        "form": {
-          "name": "Wine name",
-          "kind": "Kind",
-          "quality": "Adjective",
-          "color": "Color",
-          "year": "Year",
-          "variety": "Variety",
-          "volume": "Volume",
-          "price": "Price",
-          "quantity_stock": "Quantity in stock",
-          "categories": "Categories",
-          "description": "Description"
-        },
-        "placeholder": {
-          "name": "Sauvignon Blanc, selection of grapes",
-          "quality": "Selection of grapes",
-          "variety": "Sauvignon Blanc"
-        },
-        "kind": {
-          "dry": "Dry",
-          "semi_dry": "Semi-dry",
-          "sweet": "Sweet",
-          "semi_sweet": "Semi-sweet",
-          "extra_dry": "Extra dry",
-          "off_dry": "Off-dry",
-          "medium_dry": "Medium-dry",
-          "medium_sweet": "Medium-sweet",
-          "very_sweet": "Very sweet",
-          "dessert": "Dessert wine"
-        },
-        "color": {
-          "white": "White",
-          "red": "Red",
-          "rose": "Rose",
-          "orange": "Orange"
-        },
-        "category": {
-          "favourite": "Favourite",
-          "top": "Top",
-          "new": "New"
-        },
-        "quality": {
-          "kabinett": "Kabinett wine",
-          "late_harvest": "Late harvest",
-          "selection_of_grapes": "Selection of grapes",
-          "selection_of_berries": "Selection of berries",
-          "ice_wine": "Ice wine",
-          "straw_wine": "Straw wine",
-          "quality_wine": "Quality wine",
-          "archive_wine": "Archive wine",
-          "table_wine": "Table wine"
-        },
-        "variety": {
-          "riesling": "Riesling",
-          "gruner_veltliner": "Grüner Veltliner",
-          "welschriesling": "Welschriesling",
-          "sauvignon_blanc": "Sauvignon Blanc",
-          "pinot_gris": "Pinot Gris",
-          "pinot_blanc": "Pinot Blanc",
-          "chardonnay": "Chardonnay",
-          "traminer": "Traminer",
-          "muscat": "Moravian Muscat",
-          "mueller_thurgau": "Müller Thurgau",
-          "st_laurent": "St. Laurent",
-          "pinot_noir": "Pinot Noir",
-          "zweigelt": "Zweigelt",
-          "cabernet_sauvignon": "Cabernet Sauvignon",
-          "merlot": "Merlot",
-          "frankovka": "Frankovka",
-          "modry_portugal": "Modrý Portugal",
-          "other": "Other variety"
-        }
-      },
-      "order": {
-        "title": "Order administration",
-        "user_email": "User Email",
-        "user_name": "User Name",
-        "user_surname": "User Surname",
-        "user_phone": "User Phone",
-        "total_price": "Total Price",
-        "status": "Status",
-        "delivery_type": "Delivery Type",
-        "payment_type": "Payment Type",
-        "form": {
-          "user_email": "User Email",
-          "user_name": "User Name",
-          "user_surname": "User Surname",
-          "user_phone": "User Phone",
-          "delivery_type": "Delivery Type",
-          "payment_type": "Payment Type"
-        },
-        "order_id": "Order ID"
       }
     },
     "state": {

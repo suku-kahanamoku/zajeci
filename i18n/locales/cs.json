@@ -18,12 +18,6 @@
       "signup": "Registrovat",
       "logout": "Odhlásit"
     },
-    "footer": {
-      "copyright": "Copyright",
-      "reserved": "Všechna práva vyhrazena",
-      "made_by": "Vytvořeno",
-      "cookies": "Tento web používá soubory cookies k zajištění optimálního uživatelského zážitku a měření jeho výkonu. Pokud budete nadále používat tento web, předpokládáme, že souhlasíte s používáním souborů cookies. Můžete však kdykoli změnit svá nastavení souborů cookies prostřednictvím příslušných funkcí vašeho prohlížeče."
-    },
     "intro": {
       "title": "Zaječské vinařství Nová hora",
       "subtitle": "Objevte s námi lahodná moravská vína. Místní odrůdy, tradiční zpracování, nezapomenutelná vůně i chuť. Neváhejte nás kontaktovat a dovolte nám s vámi sdílet naši vášeň pro pěstování a výrobu vína.  ",
@@ -33,13 +27,6 @@
       "title": "Proč naše víno?",
       "subtitle": "Tradiční vína zrozená na jihu Moravy.",
       "description": "Vášeň pro víno a nadšení pro krásu jihomoravské krajiny a přírody nás dovedly do Zaječí. Postupem času měníme práci v kanceláři a v ordinaci za práci ve vinohradě a ve sklepě. Tuto vášeň a nadšení, úžas a krásu, únavu z práce i osvěžení po ní, předáváme dál v našich vínech."
-    },
-    "wine": {
-      "title": "Nabídka vín",
-      "to_cart": "Do košíku",
-      "detail": {
-        "title": "Detail vína"
-      }
     },
     "info": {
       "history": "Moravská a česká vína získávají stále větší oblibu nejen u nás, ale taky ve světě. V České republice se pěstuje přes 50 odrůd. A to díky rozmanitosti a členitosti území. Každá oblast dodává jednotlivým odrůdám specifické vlastnosti, takže nejlepší víno si pro sebe vybere každý. Prozkoumejte kvalitní vína z Moravy a Čech a objevujte krásy skrze vinnou sklenku",
@@ -76,28 +63,6 @@
       "success_msg": "Vaše dotazy byly úspěšně odeslány. Děkujeme vám za váš zájem! Na vaše dotazy se pokusíme reagovat co nejrychleji.",
       "error_msg": "Omlouváme se, ale nedošlo k odeslání formuláře. Prosím, zkontrolujte své spojení a zkuste to znovu později."
     },
-    "terms_conditions": {
-      "title": "Podmínky použití"
-    },
-    "login": {
-      "title": "Přihlaste se do svého účtu",
-      "remember": "Pamatuj si mě",
-      "signin": "Přihlásit se",
-      "no_account": "Ještě nemáte účet?",
-      "or": "nebo"
-    },
-    "signup": {
-      "title": "Vytvořit účet",
-      "confirm_password": "Potvrdit heslo",
-      "accept_condition": "Souhlasím s",
-      "has_account": "Již máte účet?"
-    },
-    "forgot_password": {
-      "title": "Zapomněli jste heslo?",
-      "description": "Nemějte obavy! Stačí zadat svůj e-mail a my vám pošleme kód k resetování hesla!",
-      "reset_password": "Obnovit heslo",
-      "success_msg": "Email pro reset hesla byl odeslán."
-    },
     "dashboard": {
       "title": "Dashboard"
     },
@@ -129,10 +94,6 @@
       }
     },
     "form": {
-      "email": "E-mail",
-      "phone": "Tel",
-      "password": "Heslo",
-      "select": "Vybrat",
       "msg": "Zpráva",
       "price": "Cena",
       "quantity": "Množství",
@@ -214,109 +175,6 @@
           "invoice": "Posíláme Vám fakturu v příloze. Věnujte prosím chvilku překontrolování všech údajů. Pokud by cokoliv nesouhlasilo, stačí nás kontaktovat na emailové adrese",
           "taste": "Věříme, že Vám naše víno bude chutnat a že si u nás příště zase vyberete."
         }
-      }
-    },
-    "admin": {
-      "wine": {
-        "title": "Administrace vín",
-        "create": {
-          "title": "Vytvořit nové víno"
-        },
-        "update": {
-          "title": "Editace vína: \"{name}\""
-        },
-        "form": {
-          "name": "Název vína",
-          "kind": "Druh",
-          "quality": "Přívlastek",
-          "color": "Barva",
-          "year": "Ročník",
-          "variety": "Odrůda",
-          "volume": "Objem",
-          "price": "Cena",
-          "quantity_stock": "Množství na skladě",
-          "categories": "Kategorie",
-          "description": "Popis"
-        },
-        "placeholder": {
-          "name": "Sauvignon Blanc, výběr z hroznů",
-          "quality": "Výběr z hroznů",
-          "variety": "Sauvignon Blanc"
-        },
-        "kind": {
-          "dry": "Suché",
-          "semi_dry": "Polosuché",
-          "sweet": "Sladké",
-          "semi_sweet": "Polosladké",
-          "extra_dry": "Extra suché",
-          "off_dry": "Polosuché",
-          "medium_dry": "Středně suché",
-          "medium_sweet": "Středně sladké",
-          "very_sweet": "Velmi sladké",
-          "dessert": "Dezertní víno"
-        },
-        "color": {
-          "white": "Bílé",
-          "red": "Červené",
-          "rose": "Růžové",
-          "orange": "Oranžové"
-        },
-        "category": {
-          "favourite": "Oblíbené",
-          "top": "Nejlepší",
-          "new": "Nové"
-        },
-        "quality": {
-          "kabinett": "Kabinetní víno",
-          "late_harvest": "Pozdní sběr",
-          "selection_of_grapes": "Výběr z hroznů",
-          "selection_of_berries": "Výběr z bobulí",
-          "ice_wine": "Ledové víno",
-          "straw_wine": "Slámové víno",
-          "quality_wine": "Jakostní víno",
-          "archive_wine": "Archivní víno",
-          "table_wine": "Stolní víno"
-        },
-        "variety": {
-          "riesling": "Ryzlink rýnský",
-          "gruner_veltliner": "Veltlínské zelené",
-          "welschriesling": "Ryzlink vlašský",
-          "sauvignon_blanc": "Sauvignon blanc",
-          "pinot_gris": "Rulandské šedé",
-          "pinot_blanc": "Rulandské bílé",
-          "chardonnay": "Chardonnay",
-          "traminer": "Tramín červený",
-          "muscat": "Muškát moravský",
-          "mueller_thurgau": "Müller Thurgau",
-          "st_laurent": "Svatovavřinecké",
-          "pinot_noir": "Rulandské modré",
-          "zweigelt": "Zweigeltrebe",
-          "cabernet_sauvignon": "Cabernet Sauvignon",
-          "merlot": "Merlot",
-          "frankovka": "Frankovka",
-          "modry_portugal": "Modrý Portugal",
-          "other": "Jiná odrůda"
-        }
-      },
-      "order": {
-        "title": "Administrace objednávek",
-        "user_email": "Email uživatele",
-        "user_name": "Jméno uživatele",
-        "user_surname": "Příjmení uživatele",
-        "user_phone": "Telefon uživatele",
-        "total_price": "Celková cena",
-        "status": "Stav",
-        "delivery_type": "Typ dopravy",
-        "payment_type": "Typ platby",
-        "form": {
-          "user_email": "Email uživatele",
-          "user_name": "Jméno uživatele",
-          "user_surname": "Příjmení uživatele",
-          "user_phone": "Telefon uživatele",
-          "delivery_type": "Typ dopravy",
-          "payment_type": "Typ platby"
-        },
-        "order_id": "ID objednávky"
       }
     },
     "state": {
