@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { routes } = useMenuItems();
 const localePath = useLocalePath();
+const { loggedIn } = useUserSession();
 
 useSeoMeta({
   robots: "index, follow",
@@ -47,9 +48,7 @@ const menuItems = [
     </UNavigationMenu>
 
     <template #right>
-      <UColorModeButton />
-
-      <div class="space-x-2">
+      <div v-if="!loggedIn" class="space-x-2 me-4">
         <UButton
           v-if="routes?.login?.path"
           data-testid="menu-login"
@@ -79,6 +78,7 @@ const menuItems = [
           }}
         </UButton>
       </div>
+      <UColorModeButton />
     </template>
 
     <template #body>
