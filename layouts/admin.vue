@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { menuItem } = useMenuItems();
+const { loggedIn } = useUserSession();
 const localePath = useLocalePath();
 const { user } = useUserSession();
+const { menuItem } = useMenuItems();
 
 const menuItems: any[] = [];
 
@@ -35,6 +36,9 @@ if (user.value?.role === "admin") {
     </UNavigationMenu>
 
     <template #right>
+      <UiProfileDropdownMenu v-if="loggedIn" />
+      <UiSignBtns v-else />
+
       <UColorModeButton />
     </template>
 

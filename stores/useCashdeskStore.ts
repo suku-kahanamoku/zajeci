@@ -166,6 +166,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
       if (local.user) {
         // prida id prihlaseneho uzivatele
         local.user._id = user.value._id;
+        local.user.address.main = {};
         // prida id fakturacni adresy
         local.user.address.main._id = user.value.address?.main?._id;
         setUser(local.user);

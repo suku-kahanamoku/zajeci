@@ -12,7 +12,7 @@ const localePath = useLocalePath();
         {{ $tt("$.intro.subtitle") }}
       </p>
       <UButton
-        :to="localePath(routes.wine?.path)"
+        :to="localePath(routes.wine?.path!)"
         color="secondary"
         class="mt-10 md:text-lg lg:text-xl dark:text-white"
         >{{ $tt("$.intro.btn") }}</UButton
