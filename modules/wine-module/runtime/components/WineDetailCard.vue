@@ -225,12 +225,18 @@ function addToCashdesk() {
               <UButton
                 icon="i-heroicons-pencil-square"
                 color="secondary"
+                variant="outline"
                 class="lg:text-lg dark:text-white"
                 @click="addToCashdesk"
               >
                 {{ $tt("$.wine.to_cart") }}
               </UButton>
-              <UButton icon="i-heroicons-heart" class="ml-4" size="lg" />
+              <UButton
+                icon="i-heroicons-heart"
+                class="ml-4"
+                size="lg"
+                variant="outline"
+              />
             </div>
           </div>
         </div>

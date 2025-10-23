@@ -72,6 +72,7 @@ function addToCashdesk() {
           icon="i-heroicons-pencil-square"
           color="secondary"
           class="lg:text-lg dark:text-white"
+          variant="outline"
           @click="addToCashdesk"
         >
           {{ $tt("$.wine.to_cart") }}

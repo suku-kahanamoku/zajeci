@@ -49,6 +49,7 @@ useHead({
           class="mt-6"
           :to="localePath(routes.wine.path!)"
           icon="i-heroicons-arrow-left"
+          variant="outline"
         >
           {{ $tt("$.btn.back_shopping") }}
         </UButton>

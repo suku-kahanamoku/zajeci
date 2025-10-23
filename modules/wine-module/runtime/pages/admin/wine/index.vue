@@ -39,11 +39,11 @@ async function onDeleteHandler(event: boolean) {
         {{ title }}
       </h1>
 
-      <div class="flex justify-end">
+      <div class="flex justify-end gap-2">
         <UButton
           icon="i-heroicons-trash"
           color="error"
-          variant="ghost"
+          variant="outline"
           :aria-label="$tt('$.aria.delete_selected')"
           :disabled="!selected.length"
           :loading="loading"
@@ -53,7 +53,7 @@ async function onDeleteHandler(event: boolean) {
           :to="localePath(routes.admin_wine_create?.path!)"
           icon="i-heroicons-plus-circle"
           color="secondary"
-          variant="ghost"
+          variant="outline"
           :aria-label="$tt('$.aria.delete_selected')"
           :loading="loading"
         />

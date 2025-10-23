@@ -104,6 +104,7 @@ async function onSubmit(body: Record<string, any>) {
               data-testid="contact-form-submit"
               class="ms-auto"
               type="submit"
+              variant="outline"
               :loading="loading"
               >{{ $tt("$.btn.submit") }}</UButton
             >
