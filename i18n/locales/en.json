@@ -63,7 +63,7 @@
       "success_msg": "Your inquiries have been successfully sent. Thank you for your interest! We will try to respond to your inquiries as quickly as possible.",
       "error_msg": "We apologize, but the form was not submitted. Please check your connection and try again later."
     },
-    "dashboard": {
+    "pz": {
       "title": "Dashboard"
     },
     "profile": {

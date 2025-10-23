@@ -63,7 +63,7 @@
       "success_msg": "Vaše dotazy byly úspěšně odeslány. Děkujeme vám za váš zájem! Na vaše dotazy se pokusíme reagovat co nejrychleji.",
       "error_msg": "Omlouváme se, ale nedošlo k odeslání formuláře. Prosím, zkontrolujte své spojení a zkuste to znovu později."
     },
-    "dashboard": {
+    "pz": {
       "title": "Dashboard"
     },
     "profile": {

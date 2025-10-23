@@ -57,8 +57,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="max-w-screen-xl mx-auto px-5 w-full">
-    <div id="gallery" class="py-10">
+  <div class="max-w-7xl mx-auto px-5 w-full">
+    <div :id="(routes.gallery?.meta?.syscode as string)" class="py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
       >

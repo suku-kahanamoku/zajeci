@@ -13,6 +13,7 @@
         "create": {
           "title": "Create new wine"
         },
+        "create_wine": "Create wine",
         "update": {
           "title": "Update wine: \"{name}\""
         },

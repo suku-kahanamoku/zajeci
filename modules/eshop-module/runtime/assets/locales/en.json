@@ -64,6 +64,7 @@
     "admin": {
       "order": {
         "title": "Order administration",
+        "create_order": "Create order",
         "user_email": "User Email",
         "user_name": "User Name",
         "user_surname": "User Surname",

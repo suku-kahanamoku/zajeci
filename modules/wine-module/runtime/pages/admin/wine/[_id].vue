@@ -29,7 +29,7 @@ useHead({
   <div
     v-if="config"
     :id="config.syscode"
-    class="max-w-screen-xl mx-auto px-5 w-full"
+    class="max-w-7xl mx-auto px-5 w-full"
   >
     <div class="flex flex-col gap-8 py-10">
       <h1

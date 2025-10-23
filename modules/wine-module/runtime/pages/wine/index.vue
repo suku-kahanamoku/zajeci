@@ -63,12 +63,8 @@ const { data: wines } = await useAsyncData(
 </script>
 
 <template>
-  <div
-    v-if="config"
-    :id="config.syscode"
-    class="max-w-screen-xl mx-auto px-5 w-full"
-  >
-    <div id="terms" class="py-10">
+  <div v-if="config" :id="config.syscode" class="max-w-7xl mx-auto px-5 w-full">
+    <div :id="(routes.winde?.meta?.syscode as string)" class="py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400 pb-8"
       >

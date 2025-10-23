@@ -1,8 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
   layout: "admin",
-  syscode: "admin_profile",
-  title: "$.profile.title",
+  syscode: "pz",
+  title: "$.pz.title",
 });
 
 const { t } = useLang();
@@ -19,8 +19,8 @@ useHead({
 </script>
 
 <template>
-  <div class="w-full mx-auto px-5 py-5 flex flex-col gap-10">
-    <div class="w-full h-full flex justify-center items-center">
+  <div class="max-w-7xl mx-auto px-5 w-full">
+    <div :id="(routes.pz?.meta?.syscode as string)" class="py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
       >

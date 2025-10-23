@@ -8,7 +8,7 @@ const { routes } = useMenuItems();
     <UButton
       v-if="routes?.login?.path"
       data-testid="menu-login"
-      :to="localePath(routes?.login?.path)"
+      :to="localePath(routes?.login?.path!)"
       class="text-secondary-500 dark:text-secondary-400"
       variant="outline"
       active-class="hidden"
@@ -22,7 +22,7 @@ const { routes } = useMenuItems();
     <UButton
       v-if="routes?.signup?.path"
       data-testid="menu-signup"
-      :to="localePath(routes?.signup?.path)"
+      :to="localePath(routes?.signup?.path!)"
       variant="ghost"
       active-class="hidden"
     >

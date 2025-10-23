@@ -13,6 +13,7 @@
         "create": {
           "title": "Vytvořit nové víno"
         },
+        "create_wine": "Vytvořit víno",
         "update": {
           "title": "Editace vína: \"{name}\""
         },

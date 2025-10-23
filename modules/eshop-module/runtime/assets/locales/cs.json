@@ -64,6 +64,7 @@
     "admin": {
       "order": {
         "title": "Administrace objednávek",
+        "create_order": "Vytvořit objednávku",
         "user_email": "Email uživatele",
         "user_name": "Jméno uživatele",
         "user_surname": "Příjmení uživatele",

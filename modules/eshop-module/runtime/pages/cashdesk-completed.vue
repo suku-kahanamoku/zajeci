@@ -5,8 +5,7 @@ definePageMeta({
 });
 
 const { t } = useLang();
-const route = useRoute();
-const { routes } = useMenuItems();
+const { route, routes } = useMenuItems();
 const localePath = useLocalePath();
 const title = computed(() => t(route.meta.title as string));
 
@@ -20,8 +19,11 @@ useHead({
 </script>
 
 <template>
-  <div class="max-w-screen-xl mx-auto px-5 w-full">
-    <div id="cashdesk-completed" class="py-10">
+  <div class="max-w-7xl mx-auto px-5 w-full">
+    <div
+      :id="(routes.cashdesk_completed?.meta?.syscode as string)"
+      class="py-10"
+    >
       <UCard class="max-w-lg mx-auto">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">
           {{ title }}
@@ -45,7 +47,7 @@ useHead({
         <p class="text-gray-700">{{ $tt("$.cashdesk_completed.thank_you") }}</p>
         <UButton
           class="mt-6"
-          :to="localePath(routes.wine.path)"
+          :to="localePath(routes.wine.path!)"
           icon="i-heroicons-arrow-left"
         >
           {{ $tt("$.btn.back_shopping") }}

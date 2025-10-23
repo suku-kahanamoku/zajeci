@@ -5,7 +5,7 @@ import type { IOrder } from "../../../types";
 definePageMeta({
   layout: "admin",
   syscode: "admin_order_detail",
-  title: "$.admin.order_detail.title",
+  title: "$.admin.order.create_order",
 });
 
 const { t } = useLang();
@@ -28,11 +28,7 @@ useHead({
 </script>
 
 <template>
-  <div
-    v-if="config"
-    :id="config.syscode"
-    class="max-w-screen-xl mx-auto px-5 w-full"
-  >
+  <div v-if="config" :id="config.syscode" class="max-w-7xl mx-auto px-5 w-full">
     <div class="flex flex-col gap-8 py-10">
       <h1
         class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
