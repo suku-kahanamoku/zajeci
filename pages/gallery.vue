@@ -58,12 +58,12 @@ onUnmounted(() => {
 
 <template>
   <div class="max-w-7xl mx-auto px-5 w-full">
-    <div :id="(routes.gallery?.meta?.syscode as string)" class="py-10">
-      <h1
-        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
-      >
-        {{ title }}
-      </h1>
+  <div :id="(routes.gallery?.meta?.syscode as string)">
+      <UPageHeader
+        :title="title"
+        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+        class="border-none"
+      />
       <div
         id="gallery"
         class="d-flex grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10 items-center"

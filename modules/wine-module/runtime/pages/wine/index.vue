@@ -51,7 +51,7 @@ const { data: wines } = await useAsyncData(
           config: config.value,
           route,
         });
-        url = useFactory(url, config.value.factory, routes.wine.path);
+        url = useFactory(url, config.value.factory, routes.wine?.path);
         return await useApi(url);
       } catch (error: any) {
         console.error(error);
@@ -64,12 +64,12 @@ const { data: wines } = await useAsyncData(
 
 <template>
   <div v-if="config" :id="config.syscode" class="max-w-7xl mx-auto px-5 w-full">
-    <div :id="(routes.winde?.meta?.syscode as string)" class="py-10">
-      <h1
-        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400 pb-8"
-      >
-        {{ title }}
-      </h1>
+    <div :id="(routes.winde?.meta?.syscode as string)">
+      <UPageHeader
+        :title="title"
+        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+        class="border-none"
+      />
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
         <CmpWineCard

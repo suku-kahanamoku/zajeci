@@ -22,12 +22,14 @@ useHead({
   <div class="max-w-7xl mx-auto px-5 w-full">
     <div
       :id="(routes.cashdesk_completed?.meta?.syscode as string)"
-      class="py-10"
+
     >
       <UCard class="max-w-lg mx-auto" variant="subtle">
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">
-          {{ title }}
-        </h1>
+        <UPageHeader
+          :title="title"
+          :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+          class="border-none"
+        />
         <p
           class="text-gray-700 mb-4"
           v-html="
@@ -47,7 +49,7 @@ useHead({
         <p class="text-gray-700">{{ $tt("$.cashdesk_completed.thank_you") }}</p>
         <UButton
           class="mt-6"
-          :to="localePath(routes.wine.path!)"
+          :to="localePath(routes.wine?.path!)"
           icon="i-heroicons-arrow-left"
           variant="outline"
         >

@@ -21,11 +21,11 @@ useHead({
 <template>
   <div class="w-full mx-auto px-5 py-5 flex flex-col gap-10">
     <div class="w-full h-full flex justify-center items-center">
-      <h1
-        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
-      >
-        {{ title }}
-      </h1>
+      <UPageHeader
+        :title="title"
+        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+        class="border-none"
+      />
     </div>
   </div>
 </template>

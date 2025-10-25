@@ -71,7 +71,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           <NuxtLink
             :to="
               localePath(
-                `${routes.wine.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
               )
             "
             class="flex items-center"
@@ -120,7 +120,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <NuxtLink
         :to="
           localePath(
-            `${routes.wine.path}/${cart.wine?.name}--$${cart.wine?._id}`
+            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?._id}`
           )
         "
         class="flex flex-col md:flex-row items-center"

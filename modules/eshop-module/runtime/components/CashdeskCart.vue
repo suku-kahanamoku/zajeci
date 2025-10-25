@@ -106,7 +106,7 @@ const setQuantity = (value: number, cart: ICart) => {
           <NuxtLink
             :to="
               localePath(
-                `${routes.wine.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
               )
             "
             class="flex items-center"

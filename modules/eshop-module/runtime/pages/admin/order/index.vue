@@ -31,12 +31,12 @@ useHead({
     :id="config.syscode"
     class="max-w-7xl mx-auto px-5 w-full"
   >
-    <div class="flex flex-col gap-8 py-10">
-      <h1
-        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
-      >
-        {{ title }}
-      </h1>
+  <div class="flex flex-col gap-8">
+      <UPageHeader
+        :title="title"
+        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+        class="border-none"
+      />
 
       <div class="flex justify-end">
         <UButton
