@@ -231,6 +231,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           v-if="cashdesk.delivery?.type === 'free'"
           :description="$tt('$.delivery.brno_free')"
           color="info"
+          variant="subtle"
         />
       </div>
     </UCard>

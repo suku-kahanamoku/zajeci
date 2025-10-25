@@ -59,7 +59,8 @@
       "street": "Street",
       "city": "City",
       "zip": "Postal code",
-      "state": "State"
+      "state": "State",
+      "total": "Total price"
     },
     "admin": {
       "order": {

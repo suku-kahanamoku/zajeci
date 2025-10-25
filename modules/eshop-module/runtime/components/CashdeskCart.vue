@@ -19,6 +19,11 @@ const { updateConfig } = useUrlResolver();
 const cashdesk = useCashdeskStore();
 const isOpen = ref(false);
 const deleted = ref();
+const headerClass: any = {
+  quantity: "text-center",
+  price: "text-right",
+  total_price: "text-right",
+};
 
 /**
  * Load config
@@ -40,13 +45,15 @@ const { data: config } = await useAsyncData(
 const columns: Ref<TableColumn<any>[]> = computed(
   () =>
     config?.value?.fields
-      ?.filter((f) => ["name", "quantity", "price"].includes(f.name))
+      ?.filter((f) =>
+        ["name", "quantity", "price", "total_price"].includes(f.name)
+      )
       ?.map((f) => ({
         accessorKey: f.name,
         header: ({ table }) =>
           h("div", {
             innerHTML: t(f.label!),
-            class: f.type === "number" ? "text-center" : "",
+            class: headerClass[f.name],
           }),
       })) ?? []
 );
@@ -139,6 +146,16 @@ const setQuantity = (value: number, cart: ICart) => {
     </template>
 
     <template #price-cell="{ row }">
+      <p class="text-lg font-semibold text-end w-full">
+        {{
+          useToNumber(
+            row.original?.unitPrice?.toFixed(2) || 0
+          ).value.toLocaleString(locale)
+        }}&nbsp;{{ $tt("$.czk") }}
+      </p>
+    </template>
+
+    <template #total_price-cell="{ row }">
       <div class="flex justify-between space-x-4">
         <p class="text-lg font-semibold text-end w-full">
           {{
@@ -165,7 +182,7 @@ const setQuantity = (value: number, cart: ICart) => {
       <NuxtLink
         :to="
           localePath(
-            `${routes.wine.path}/${cart.wine?._id}--$${cart.wine?._id}`
+            `${routes.wine?.path}/${cart.wine?._id}--$${cart.wine?._id}`
           )
         "
         class="flex flex-col md:flex-row items-center"
@@ -220,45 +237,9 @@ const setQuantity = (value: number, cart: ICart) => {
     icon="i-heroicons-truck"
     :title="$tt('$.delivery.limit_free')"
     color="info"
+    variant="subtle"
     class="my-4"
   />
-
-  <div
-    class="py-4 px-4 mt-2 text-lg font-semibold text-end text-gray-600 dark:text-white border border-gray-200 dark:border-gray-700"
-  >
-    <div class="flex justify-end items-center gap-4">
-      <p class="w-40 sm:w-44 text-left">{{ $tt("$.delivery.title") }}:</p>
-      <p class="w-32 sm:w-44 text-right">
-        {{
-          useToNumber(
-            cashdesk.delivery?.totalPrice?.toFixed(2) || 0
-          ).value.toLocaleString(locale)
-        }}&nbsp;{{ $tt("$.czk") }}
-      </p>
-    </div>
-
-    <div class="flex justify-end items-center gap-4">
-      <p class="w-40 sm:w-44 text-left">{{ $tt("$.payment.title") }}:</p>
-      <p class="w-32 sm:w-44 text-right">
-        {{
-          useToNumber(
-            cashdesk.payment?.totalPrice?.toFixed(2) || 0
-          ).value.toLocaleString(locale)
-        }}&nbsp;{{ $tt("$.czk") }}
-      </p>
-    </div>
-
-    <div class="flex justify-end items-center gap-4">
-      <p class="w-40 sm:w-44 text-left">{{ $tt("$.cart.total_price") }}:</p>
-      <p class="w-32 sm:w-44 text-right">
-        {{
-          useToNumber(
-            cashdesk.totalPrice?.toFixed(2) || 0
-          ).value.toLocaleString(locale)
-        }}&nbsp;{{ $tt("$.czk") }}
-      </p>
-    </div>
-  </div>
 
   <CmpConfirmDialog
     v-model="isOpen"

@@ -134,6 +134,11 @@
       "label": "$.form.price"
     },
     {
+      "name": "total_price",
+      "type": "number",
+      "label": "$.form.total"
+    },
+    {
       "name": "categories",
       "type": "select",
       "label": "$.form.categories",

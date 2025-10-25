@@ -29,6 +29,7 @@ function addToCashdesk() {
 <template>
   <div v-if="wine" :id="wine._id">
     <UCard
+      variant="outline"
       class="zoom-in h-full flex flex-col"
       :ui="{
         body: 'flex-1',

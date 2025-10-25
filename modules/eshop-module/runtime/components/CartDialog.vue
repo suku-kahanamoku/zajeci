@@ -56,6 +56,7 @@ const cashdesk = useCashdeskStore();
         icon="i-heroicons-truck"
         :title="$tt('$.delivery.limit_free')"
         color="info"
+        variant="subtle"
         class="mt-5"
       />
     </template>

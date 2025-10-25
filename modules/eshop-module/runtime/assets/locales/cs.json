@@ -59,7 +59,8 @@
       "street": "Ulice",
       "city": "Město",
       "zip": "PSČ",
-      "state": "Stát"
+      "state": "Stát",
+      "total": "Celková cena"
     },
     "admin": {
       "order": {

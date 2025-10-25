@@ -86,7 +86,7 @@ async function onSubmit(body: Record<string, any>) {
           </div>
           <div class="flex items-start mt-3 space-x-3 text-gray-600">
             <Icon class="text-secondary-400" name="uil:map-marker" size="26" />
-            <span class="dark:text-white">
+            <span class="dark:text-white text-blue">
               Školní 156, 69105 Zaječí<br />
               IČ 19737491, DIČ CZ7951084053
             </span>
@@ -96,19 +96,14 @@ async function onSubmit(body: Record<string, any>) {
       <div class="from-right">
         <CmpForm
           :fields="(config?.fields as IFormField[])"
-          variant="outline"
+          variant="subtle"
+          :actions="{
+            no: {
+              disabled: true,
+            },
+          }"
           @submit="onSubmit"
         >
-          <template #actions>
-            <UButton
-              data-testid="contact-form-submit"
-              class="ms-auto"
-              type="submit"
-              variant="outline"
-              :loading="loading"
-              >{{ $tt("$.btn.submit") }}</UButton
-            >
-          </template>
         </CmpForm>
       </div>
     </div>

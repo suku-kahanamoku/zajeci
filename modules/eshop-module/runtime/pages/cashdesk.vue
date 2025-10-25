@@ -67,7 +67,7 @@ const selectedStep = ref(defaultIndex > 0 ? defaultIndex : 0);
 
 watch(selectedStep, () => {
   router.replace({
-    query: { step: steps.value[selectedStep.value].title },
+    query: { step: steps.value[selectedStep.value]?.title },
   });
 });
 </script>
@@ -102,7 +102,7 @@ watch(selectedStep, () => {
 
         <div class="flex justify-between mt-8">
           <UButton
-            :to="stepper?.hasPrev ? undefined : routes.wine.path"
+            :to="stepper?.hasPrev ? undefined : routes.wine?.path"
             :color="stepper?.hasPrev ? 'primary' : 'secondary'"
             icon="i-heroicons-arrow-left"
             size="lg"
@@ -118,7 +118,6 @@ watch(selectedStep, () => {
             trailing-icon="i-heroicons-arrow-right-20-solid"
             :color="stepper?.hasNext ? 'primary' : 'secondary'"
             size="lg"
-            :disabled="steps[selectedStep].disabled"
             :loading="loading"
             @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
           >

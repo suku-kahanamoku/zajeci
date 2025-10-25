@@ -24,7 +24,7 @@ useHead({
       :id="(routes.cashdesk_completed?.meta?.syscode as string)"
       class="py-10"
     >
-      <UCard class="max-w-lg mx-auto">
+      <UCard class="max-w-lg mx-auto" variant="subtle">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">
           {{ title }}
         </h1>
