@@ -73,58 +73,58 @@ watch(selectedStep, () => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto px-5 w-full">
-  <div :id="(routes.cashdesk?.meta?.syscode as string)">
-      <h1
-        class="text-center text-primary-600 text-4xl  font-bold tracking-tight dark:text-primary-400"
+  <div
+    :id="(routes.cashdesk?.meta?.syscode as string)"
+    class="max-w-7xl mx-auto px-5 w-full"
+  >
+    <UPageHeader
+      :title="title"
+      :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+      class="border-none"
+    />
+
+    <UStepper
+      ref="stepper"
+      v-model="selectedStep"
+      :items="steps"
+      :linear="true"
+    >
+      <template #cart>
+        <CmpCashdeskCart />
+      </template>
+
+      <template #delivery_payment>
+        <CmpCashdeskDeliveryPayment />
+      </template>
+
+      <template #summary>
+        <CmpCashdeskSummary />
+      </template>
+    </UStepper>
+
+    <div class="flex justify-between mt-8">
+      <UButton
+        :to="stepper?.hasPrev ? undefined : routes.wine?.path"
+        :color="stepper?.hasPrev ? 'primary' : 'secondary'"
+        icon="i-heroicons-arrow-left"
+        size="lg"
+        variant="outline"
+        @click="stepper?.hasPrev && stepper?.prev()"
       >
-        {{ title }}
-      </h1>
-  <div>
-        <UStepper
-          ref="stepper"
-          v-model="selectedStep"
-          :items="steps"
-          :linear="true"
-        >
-          <template #cart>
-            <CmpCashdeskCart />
-          </template>
+        <span class="hidden sm:block">
+          {{ $tt(backBtn!) }}
+        </span>
+      </UButton>
 
-          <template #delivery_payment>
-            <CmpCashdeskDeliveryPayment />
-          </template>
-
-          <template #summary>
-            <CmpCashdeskSummary />
-          </template>
-        </UStepper>
-
-        <div class="flex justify-between mt-8">
-          <UButton
-            :to="stepper?.hasPrev ? undefined : routes.wine?.path"
-            :color="stepper?.hasPrev ? 'primary' : 'secondary'"
-            icon="i-heroicons-arrow-left"
-            size="lg"
-            variant="outline"
-            @click="stepper?.hasPrev && stepper?.prev()"
-          >
-            <span class="hidden sm:block">
-              {{ $tt(backBtn!) }}
-            </span>
-          </UButton>
-
-          <UButton
-            trailing-icon="i-heroicons-arrow-right-20-solid"
-            :color="stepper?.hasNext ? 'primary' : 'secondary'"
-            size="lg"
-            :loading="loading"
-            @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
-          >
-            {{ $tt(nextBtn!) }}
-          </UButton>
-        </div>
-      </div>
+      <UButton
+        trailing-icon="i-heroicons-arrow-right-20-solid"
+        :color="stepper?.hasNext ? 'primary' : 'secondary'"
+        size="lg"
+        :loading="loading"
+        @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
+      >
+        {{ $tt(nextBtn!) }}
+      </UButton>
     </div>
   </div>
 </template>

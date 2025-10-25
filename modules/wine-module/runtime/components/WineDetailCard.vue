@@ -59,11 +59,11 @@ function addToCashdesk() {
         <div
           class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3"
         >
-          <h1
-            class="text-3xl title-font font-medium mb-1 text-primary-600 dark:text-primary-400"
-          >
-            {{ wine.name }}
-          </h1>
+          <UPageHeader
+            :title="wine.name"
+            :ui="{ title: 'text-primary-600 dark:text-white' }"
+            class="border-none"
+          />
           <div class="flex mb-4">
             <span class="flex items-center">
               <NuxtRating
