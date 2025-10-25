@@ -180,6 +180,11 @@
     "state": {
       "cz": "Česká Republika",
       "sk": "Slovensko"
+    },
+    "footer": {
+      "copyright": "Všechna práva vyhrazena",
+      "reserved": "Všechna práva vyhrazena",
+      "made_by": "Vytvořil"
     }
   }
 }
