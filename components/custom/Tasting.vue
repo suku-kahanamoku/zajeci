@@ -52,7 +52,7 @@ const tasting = [
     </div>
 
     <div
-      class="grid md:grid-cols-3 gap-6 lg:gap-10 justify-center mx-auto max-w-screen-lg py-4"
+      class="grid md:grid-cols-3 gap-6 lg:gap-10 justify-center mx-auto max-w-5xl py-4"
     >
       <TasteCard
         v-for="(item, index) of tasting"
