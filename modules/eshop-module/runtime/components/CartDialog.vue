@@ -7,7 +7,7 @@ const props = defineProps<{
   cart?: ICart;
 }>();
 
-const model = defineModel<boolean>();
+const open = defineModel<boolean>();
 
 const {
   i18n: { locale },
@@ -18,11 +18,11 @@ const cashdesk = useCashdeskStore();
 
 <template>
   <UModal
-    v-model:open="model"
+    v-model:open="open"
     :title="$tt('$.cart.added', { name: cart?.wine?.name })"
     close-icon="i-heroicons-x-mark"
     :ui="{
-      footer: 'flex justify-between items-center gap-2'
+      footer: 'flex justify-between items-center gap-2',
     }"
   >
     <template #body>
@@ -68,7 +68,7 @@ const cashdesk = useCashdeskStore();
         :label="$tt('$.btn.continue_shopping')"
         color="neutral"
         variant="ghost"
-        @click="model = false"
+        @click="open = false"
       />
 
       <!-- Tlačítko "Ano" -->

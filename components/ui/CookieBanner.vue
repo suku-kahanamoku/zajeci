@@ -11,7 +11,7 @@ const isOpen = ref(control.value ? false : true);
 <template>
   <!-- Cookie banner -->
   <div v-if="isOpen" class="fixed bottom-0 w-full bg-gray-800 text-white p-4">
-    <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <!-- Ikona cookie -->
       <div class="inline">
         <Icon name="mdi:cookie" size="36" class="text-primary-400" />

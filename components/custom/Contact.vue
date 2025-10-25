@@ -51,7 +51,7 @@ async function onSubmit(body: Record<string, any>) {
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-5xl py-4">
+    <div class="grid md:grid-cols-2 gap-10 mx-auto py-4">
       <div class="from-left">
         <h3
           class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"

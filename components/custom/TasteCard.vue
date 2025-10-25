@@ -7,7 +7,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <UCard class="zoom-in">
+  <UCard
+    variant="solid"
+    class="zoom-in w-96 divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
+  >
     <template #header>
       <div class="text-center">
         <h3

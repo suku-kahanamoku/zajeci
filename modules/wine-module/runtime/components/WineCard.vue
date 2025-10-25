@@ -29,22 +29,24 @@ function addToCashdesk() {
 <template>
   <div v-if="wine" :id="wine._id">
     <UCard
-      variant="outline"
-      class="zoom-in h-full flex flex-col"
+      variant="soft"
+      class="zoom-in w-96 divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
       :ui="{
         body: 'flex-1',
         footer: 'flex justify-between items-center mt-auto',
       }"
     >
       <template #header>
-        <NuxtImg
-          :src="wine.image?.main?.src || '/img/bottle.jpg'"
-          :alt="'wine'"
-          loading="lazy"
-          format="webp"
-          height="300"
-          class="mx-auto"
-        />
+        <NuxtLink :to="wine.gen_data?.url">
+          <NuxtImg
+            :src="wine.image?.main?.src || '/img/bottle.jpg'"
+            :alt="'wine'"
+            loading="lazy"
+            format="webp"
+            height="300"
+            class="mx-auto"
+          />
+        </NuxtLink>
       </template>
 
       <template #default>
@@ -54,9 +56,9 @@ function addToCashdesk() {
           >
             {{ wine.name }}
           </h3>
+          <!-- Parametry vína s ikonami ve dvou řádcích -->
+          <CmpWineIconAttrs :wine="wine" :fields="fields" />
         </NuxtLink>
-        <!-- Parametry vína s ikonami ve dvou řádcích -->
-        <CmpWineIconAttrs :wine="wine" :fields="fields" />
       </template>
 
       <template #footer>
