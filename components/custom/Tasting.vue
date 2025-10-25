@@ -42,10 +42,10 @@ const tasting = [
 </script>
 
 <template>
-  <div id="tasting" class="lg:py-16">
+  <div id="tasting" class="lg:py-12">
     <div class="text-center pb-8 lg:pb-10">
       <h2
-        class="text-4xl lg:text-5xl font-bold tracking-tight text-primary-600 dark:text-primary-400"
+        class="text-4xl  font-bold tracking-tight text-primary-600 dark:text-primary-400"
       >
         {{ $tt("$.tasting.title") }}
       </h2>

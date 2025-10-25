@@ -14,7 +14,7 @@ const props = defineProps<{
     <template #header>
       <div class="text-center">
         <h3
-          class="mt-3 text-2xl lg:text-3xl font-bold text-gray-900 dark:text-primary-300"
+          class="mt-3 text-2xl  font-bold text-gray-900 dark:text-primary-300"
         >
           {{ $tt(item.name) }}
         </h3>

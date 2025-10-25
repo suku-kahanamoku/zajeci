@@ -76,7 +76,7 @@ watch(selectedStep, () => {
   <div class="max-w-7xl mx-auto px-5 w-full">
   <div :id="(routes.cashdesk?.meta?.syscode as string)">
       <h1
-        class="text-center text-primary-600 text-4xl lg:text-5xl font-bold tracking-tight dark:text-primary-400"
+        class="text-center text-primary-600 text-4xl  font-bold tracking-tight dark:text-primary-400"
       >
         {{ title }}
       </h1>
