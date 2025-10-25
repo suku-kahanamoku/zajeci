@@ -14,6 +14,17 @@ import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
 import type { IUser } from "@suku-kahanamoku/auth-module/types";
 
+const emptyUser = {
+  email: "",
+  name: "",
+  surname: "",
+  givenName: "",
+  address: {
+    main: {} as any,
+  },
+  phone: "",
+};
+
 export const useCashdeskStore = defineStore("Cashdesk", () => {
   const localePath = useLocalePath();
   const { user: authUser } = useUserSession();
@@ -21,7 +32,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
   const toast = useToast();
   const loading = ref(false);
 
-  const user = ref<IUser>(CLONE(authUser.value || {}));
+  const user = ref<IUser>(CLONE(authUser.value || emptyUser));
   const carts = ref<ICart[]>([]);
   const delivery = ref<IDelivery>({
     type: DeliveryServices.free,
@@ -117,15 +128,16 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
   };
 
   const setUser = (newUser: User) => {
-    user.value = CLONE(newUser);
-    user.value.address = user.value.address || {};
+    user.value = CLONE(newUser || emptyUser);
+    if (!user.value.address)
+      user.value.address = { main: { ...emptyUser.address.main } };
     // nastavi fakturacni adresu
-    user.value.address.main = user.value.address?.main;
+    if (user.value.address) user.value.address.main = user.value.address?.main;
     delete user.value.address?.variants;
   };
 
   const reset = () => {
-    setUser(authUser.value || {});
+    setUser(authUser.value || emptyUser);
     carts.value = [];
     delivery.value = {
       type: DeliveryServices.free,

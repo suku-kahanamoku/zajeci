@@ -45,7 +45,7 @@ function onChange(body: Record<string, any>, event: any) {
       case "user.givenName":
       case "user.surname":
         if (
-          !cashdesk.delivery.address!.name &&
+          !cashdesk.delivery.address?.name &&
           body["user.givenName"] &&
           body["user.surname"]
         ) {
@@ -55,28 +55,28 @@ function onChange(body: Record<string, any>, event: any) {
         break;
 
       case "user.address.main.street":
-        if (!cashdesk.delivery.address!.street) {
+        if (!cashdesk.delivery.address?.street) {
           cashdesk.delivery.address!.street = body[name];
           cashdesk.delivery.key!++;
         }
         break;
 
       case "user.address.main.city":
-        if (!cashdesk.delivery.address!.city) {
+        if (!cashdesk.delivery.address?.city) {
           cashdesk.delivery.address!.city = body[name];
           cashdesk.delivery.key!++;
         }
         break;
 
       case "user.address.main.zip":
-        if (!cashdesk.delivery.address!.zip) {
+        if (!cashdesk.delivery.address?.zip) {
           cashdesk.delivery.address!.zip = body[name];
           cashdesk.delivery.key!++;
         }
         break;
 
       case "user.address.main.state":
-        if (!cashdesk.delivery.address!.state) {
+        if (!cashdesk.delivery.address?.state) {
           cashdesk.delivery.address!.state = body[name];
           cashdesk.delivery.key!++;
         }
