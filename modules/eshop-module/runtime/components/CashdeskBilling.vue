@@ -97,7 +97,6 @@ function onChange(body: Record<string, any>, event: any) {
       root: '',
       body: 'grid md:grid-cols-2 gap-4',
     }"
-    class="w-full"
     @change="onChange"
   >
     <template #header>

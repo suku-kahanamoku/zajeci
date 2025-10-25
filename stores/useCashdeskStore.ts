@@ -34,17 +34,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
     totalPrice: 0,
   });
 
-  const deliveries: Record<
-    string,
-    {
-      value: string;
-      label: string;
-      price?: number;
-      avatar?: string;
-      disabled?: boolean;
-      help?: string;
-    }
-  > = {};
+  const deliveries: Record<string, any> = {};
   ITERATE(
     deliveryObjects,
     (item, name) => (deliveries[name] = { ...item, ...{ value: name } })
@@ -57,16 +47,7 @@ export const useCashdeskStore = defineStore("Cashdesk", () => {
     }))
   );
 
-  const payments: Record<
-    string,
-    {
-      value: string;
-      label: string;
-      price?: number;
-      avatar?: string;
-      disabled?: boolean;
-    }
-  > = {};
+  const payments: Record<string, any> = {};
   ITERATE(
     paymentObjects,
     (item, name) => (payments[name] = { ...item, ...{ value: name } })

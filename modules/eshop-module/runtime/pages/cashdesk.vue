@@ -75,7 +75,7 @@ watch(selectedStep, () => {
 <template>
   <div
     :id="(routes.cashdesk?.meta?.syscode as string)"
-    class="max-w-7xl mx-auto px-5 w-full"
+    class="max-w-7xl mx-auto px-5"
   >
     <UPageHeader
       :title="title"
@@ -121,6 +121,7 @@ watch(selectedStep, () => {
         :color="stepper?.hasNext ? 'primary' : 'secondary'"
         size="lg"
         :loading="loading"
+        :disabled="steps[selectedStep]?.disabled"
         @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
       >
         {{ $tt(nextBtn!) }}
