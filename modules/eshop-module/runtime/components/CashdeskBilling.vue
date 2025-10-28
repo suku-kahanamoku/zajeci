@@ -15,6 +15,7 @@ import lConfig from "../assets/configs/billing.json";
 const { t } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
+const { loggedIn } = useUserSession();
 const { user, setUser, delivery, setDelivery } = useCashdesk();
 const formCmp = ref();
 
@@ -47,7 +48,18 @@ function _onChange(body: Record<string, any>) {
 }
 
 // Debounced change handler (300ms default)
-const onChange = useDebounceFn(_onChange, 300);
+const onFormChange = useDebounceFn(_onChange, 300);
+
+watch(
+  () => formCmp.value?.form,
+  async (form: any) => {
+    if (loggedIn.value) {
+      await form?.validate({ silent: true, transform: true });
+      user.value.valid = form?.getErrors().length ? false : true;
+    }
+  },
+  { once: true }
+);
 </script>
 <template>
   <CmpForm
@@ -61,7 +73,7 @@ const onChange = useDebounceFn(_onChange, 300);
       root: '',
       body: 'grid md:grid-cols-2 gap-4',
     }"
-    @change="onChange"
+    @change="onFormChange"
   >
     <template #header>
       <h3

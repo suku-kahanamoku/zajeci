@@ -1,10 +1,6 @@
 import nuxtStorage from "nuxt-storage";
 import type { User } from "#auth-utils";
 
-import {
-  type IPayment,
-  type IDelivery,
-} from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IUser } from "@suku-kahanamoku/auth-module/types";
@@ -54,7 +50,7 @@ function createCashdesk() {
   const totalPrice = computed(
     () =>
       cartTotalPrice.value +
-      (delivery.value.unitPrice + payment.value.unitPrice)
+      (delivery.value.totalPrice! + payment.value.totalPrice!)
   );
 
   // Wrap cart mutation methods to keep localStorage updates
@@ -157,7 +153,7 @@ function createCashdesk() {
   onMounted(() => {
     loadFromLocalStorage();
     // Pokud je prihlaseny uzivatel, ale nejsou validni adresy, aktualizuje je dle prihlaseneho uzivatele
-    if (loggedIn) {
+    if (loggedIn.value) {
       if (!user.value.valid) {
         setUser();
       }
@@ -171,22 +167,6 @@ function createCashdesk() {
   watch(carts, updateLocalStorage);
   watch(delivery, updateLocalStorage);
   watch(payment, updateLocalStorage);
-
-  watch(loggedIn, (value, oldValue) => {
-    // prihlaseni
-    if (value === true && oldValue === false) {
-      if (!user.value.valid) {
-        setUser();
-      }
-      if (!delivery.value.valid) {
-        setDelivery(delivery.value, authUser.value?.address?.main);
-      }
-    }
-    // odhlaseni
-    else if (value === false && oldValue === true) {
-      reset();
-    }
-  });
 
   return {
     loading,

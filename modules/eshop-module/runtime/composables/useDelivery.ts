@@ -64,6 +64,7 @@ function createDelivery() {
     const item = CLONE(newDelivery || deliveryObjects.free);
     item.address = address ? CLONE(address || {}) : item.address;
     item.key = (delivery.value.key || 0) + 1;
+    item.totalPrice = totalPrice.value > 2500 ? 0 : item.unitPrice;
     delivery.value = item;
   }
 

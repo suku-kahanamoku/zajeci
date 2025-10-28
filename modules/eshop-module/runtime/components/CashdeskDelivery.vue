@@ -13,6 +13,7 @@ const {
 } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
+const { loggedIn } = useUserSession();
 const { delivery, deliveryOptions, setDelivery } = useCashdesk();
 const formCmp = ref();
 
@@ -36,7 +37,7 @@ function _onChange(body: Record<string, any>) {
   setDelivery(delivery.value, body);
 }
 
-const onChange = useDebounceFn(_onChange, 300);
+const onFormChange = useDebounceFn(_onChange, 300);
 
 watch(
   delivery,
@@ -44,6 +45,17 @@ watch(
     (delivery.value.valid = formCmp.value.form.getErrors().length
       ? false
       : true)
+);
+
+watch(
+  () => formCmp.value?.form,
+  async (form: any) => {
+    if (loggedIn.value) {
+      await form?.validate({ silent: true });
+      delivery.value.valid = form?.getErrors().length ? false : true;
+    }
+  },
+  { once: true }
 );
 </script>
 <template>
@@ -106,7 +118,7 @@ watch(
           }"
           :key="delivery.key"
           class="w-full"
-          @change="onChange"
+          @change="onFormChange"
         >
         </CmpForm>
       </template>

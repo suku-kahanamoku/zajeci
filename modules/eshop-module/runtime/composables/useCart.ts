@@ -11,10 +11,7 @@ function createCart() {
   );
 
   const totalPrice = computed(() =>
-    carts.value.reduce(
-      (total, item) => total + item.unitPrice * item.quantity,
-      0
-    )
+    carts.value.reduce((total, item) => total + item.totalPrice, 0)
   );
 
   const addItem = (wine: IWine, quantity: number): ICart => {

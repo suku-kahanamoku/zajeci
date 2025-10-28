@@ -79,8 +79,8 @@ function createPayment() {
   function setPayment(newPayment?: IPayment | null) {
     const item = CLONE(
       newPayment || {
-        type: PaymentServices.bank,
-        totalPrice: 0,
+        ...paymentObjects.bank,
+        totalPrice: totalPrice.value > 2500 ? 0 : paymentObjects.bank.unitPrice,
       }
     );
     payment.value = item;
