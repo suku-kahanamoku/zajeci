@@ -11,7 +11,7 @@ const {
 } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const { payment, paymentOptions } = useCashdesk();
+const { payment, paymentOptions, setPayment } = useCashdesk();
 const { t } = useLang();
 
 /**
@@ -28,6 +28,13 @@ const { data: config } = await useAsyncData(
     }
   },
   { watch: [() => route.query] }
+);
+
+watch(
+  () => payment.value.type,
+  (val) => {
+    setPayment(paymentOptions.value.find((d) => d.type === val));
+  }
 );
 </script>
 <template>

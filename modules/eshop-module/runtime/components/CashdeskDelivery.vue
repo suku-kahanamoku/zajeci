@@ -57,6 +57,16 @@ watch(
   },
   { once: true }
 );
+
+watch(
+  () => delivery.value.type,
+  (val) => {
+    setDelivery(
+      deliveryOptions.value.find((d) => d.type === val),
+      delivery.value.address
+    );
+  }
+);
 </script>
 <template>
   <UCard v-if="config" variant="subtle" class="w-full">

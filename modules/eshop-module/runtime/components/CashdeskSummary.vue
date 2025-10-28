@@ -15,7 +15,7 @@ const {
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const { carts, user, delivery, payment } = useCashdesk();
+const { carts, user, delivery, payment, totalPrice } = useCashdesk();
 
 /**
  * Load config
@@ -108,6 +108,20 @@ const columns: Ref<TableColumn<any>[]> = computed(
           ).value.toLocaleString(locale)
         }}&nbsp;{{ t("$.czk") }}
       </p>
+    </template>
+
+    <template #body-bottom>
+      <tr>
+        <td colspan="99" class="p-4">
+          <p class="text-lg font-semibold min-w-24 text-end">
+            {{
+              useToNumber(
+                totalPrice?.toFixed(2) || 0
+              ).value.toLocaleString(locale)
+            }}&nbsp;{{ t("$.czk") }}
+          </p>
+        </td>
+      </tr>
     </template>
   </UTable>
 
