@@ -1,22 +1,21 @@
 <script setup lang="ts">
 import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
+import { useDebounceFn } from "@vueuse/core";
+import defu from "defu";
 
 import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
 } from "@suku-kahanamoku/common-module/utils";
-import type {
-  IFormConfig,
-  IFormField,
-} from "@suku-kahanamoku/form-module/types";
+import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 
 import lConfig from "../assets/configs/billing.json";
-import type { IItem } from "@suku-kahanamoku/common-module/types";
 
 const { t } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const { user, setUser, delivery } = useCashdesk();
+const { user, setUser, delivery, setDelivery } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -35,57 +34,20 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] }
 );
 
-function onChange(body: Record<string, any>, event: any) {
-  if (config.value) {
-    const data = CLONE(body);
-    CONVERT_DOT_TO_OBJECT(data);
-    data.user.valid = formCmp.value.form.getErrors().length ? false : true;
-    setUser(data.user);
-    //
-    const name = event.srcElement.name;
-    switch (name) {
-      case "givenName":
-      case "surname":
-        if (
-          !delivery.value.address?.name &&
-          body["givenName"] &&
-          body["surname"]
-        ) {
-          delivery.value.address!.name = `${body["givenName"]} ${body["surname"]}`;
-          delivery.value.key!++;
-        }
-        break;
-
-      case "address.main.street":
-        if (!delivery.value.address?.street) {
-          delivery.value.address!.street = body[name];
-          delivery.value.key!++;
-        }
-        break;
-
-      case "address.main.city":
-        if (!delivery.value.address?.city) {
-          delivery.value.address!.city = body[name];
-          delivery.value.key!++;
-        }
-        break;
-
-      case "address.main.zip":
-        if (!delivery.value.address?.zip) {
-          delivery.value.address!.zip = body[name];
-          delivery.value.key!++;
-        }
-        break;
-
-      case "address.main.state":
-        if (!delivery.value.address?.state) {
-          delivery.value.address!.state = body[name];
-          delivery.value.key!++;
-        }
-        break;
-    }
-  }
+function _onChange(body: Record<string, any>) {
+  const data = CLONE(body);
+  CONVERT_DOT_TO_OBJECT(data);
+  data.valid = formCmp.value.form.getErrors().length ? false : true;
+  setUser(data);
+  const address = defu(delivery.value.address, {
+    ...data.address?.main,
+    name: `${data.givenName} ${data.surname}`,
+  });
+  setDelivery(delivery.value, address);
 }
+
+// Debounced change handler (300ms default)
+const onChange = useDebounceFn(_onChange, 300);
 </script>
 <template>
   <CmpForm

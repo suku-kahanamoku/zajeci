@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
-import defu from "defu";
-import { useToNumber } from "@vueuse/core";
+import { useToNumber, useDebounceFn } from "@vueuse/core";
 
-import {
-  CLONE,
-  CONVERT_DOT_TO_OBJECT,
-} from "@suku-kahanamoku/common-module/utils";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import dConfig from "../assets/configs/delivery.json";
@@ -17,7 +13,8 @@ const {
 } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const { delivery, deliveryOptions } = useCashdesk();
+const { delivery, deliveryOptions, setDelivery } = useCashdesk();
+const formCmp = ref();
 
 /**
  * Load config
@@ -35,13 +32,19 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] }
 );
 
-function onChange(body: Record<string, any>, event: any) {
-  if (config?.value) {
-    const data = CLONE(body);
-    CONVERT_DOT_TO_OBJECT(data);
-    delivery.value = defu(data.delivery, delivery.value);
-  }
+function _onChange(body: Record<string, any>) {
+  setDelivery(delivery.value, body);
 }
+
+const onChange = useDebounceFn(_onChange, 300);
+
+watch(
+  delivery,
+  () =>
+    (delivery.value.valid = formCmp.value.form.getErrors().length
+      ? false
+      : true)
+);
 </script>
 <template>
   <UCard v-if="config" variant="subtle" class="w-full">
@@ -93,8 +96,9 @@ function onChange(body: Record<string, any>, event: any) {
 
         <CmpForm
           v-if="modelValue === item.value"
+          ref="formCmp"
           :fields="config.fields || []"
-          :item="(delivery as any)"
+          :item="delivery.address"
           variant="soft"
           :actions="{ disabled: true }"
           :ui="{

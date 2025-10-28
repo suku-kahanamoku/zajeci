@@ -18,8 +18,7 @@ useHead({
   ],
 });
 
-const { key, carts, user, delivery, payment, loading, onSubmit } =
-  useCashdesk();
+const { carts, user, delivery, loading, onSubmit } = useCashdesk();
 
 const stepper = useTemplateRef("stepper");
 
@@ -49,14 +48,8 @@ const stepModel = ref(
 
 const validations = computed(() => [
   !!carts.value?.length,
-  !!carts.value?.length &&
-    user.value?.valid &&
-    delivery.value.valid &&
-    payment.value.valid,
-  !!carts.value?.length &&
-    user.value?.valid &&
-    delivery.value.valid &&
-    payment.value.valid,
+  !!carts.value?.length && user.value?.valid && delivery.value.valid,
+  !!carts.value?.length && user.value?.valid && delivery.value.valid,
 ]);
 
 const backBtn = computed(() => {
@@ -92,7 +85,6 @@ watch(stepModel, (value, oldValue) => {
   <div
     :id="(routes.cashdesk?.meta?.syscode as string)"
     class="max-w-7xl mx-auto px-5"
-    :key="key"
   >
     <UPageHeader
       :title="title"

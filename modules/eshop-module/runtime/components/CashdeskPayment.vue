@@ -13,7 +13,6 @@ const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { payment, paymentOptions } = useCashdesk();
 const { t } = useLang();
-const model = ref(payment.value.type);
 
 /**
  * Load config
@@ -41,7 +40,7 @@ const { data: config } = await useAsyncData(
       </h3>
     </template>
 
-    <URadioGroup v-model="model" :items="paymentOptions">
+    <URadioGroup v-model="payment.type" :items="paymentOptions">
       <template #label="{ item }">
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center gap-2">

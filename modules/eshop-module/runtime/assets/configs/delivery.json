@@ -3,7 +3,7 @@
   "title": "$.delivery.title",
   "fields": [
     {
-      "name": "address.name",
+      "name": "name",
       "label": "$.form.name",
       "placeholder": "John Doe",
       "required": true,
@@ -12,7 +12,7 @@
       "value": ""
     },
     {
-      "name": "address.street",
+      "name": "street",
       "label": "$.form.street",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "street-address",
@@ -22,7 +22,7 @@
       "value": ""
     },
     {
-      "name": "address.city",
+      "name": "city",
       "label": "$.form.city",
       "placeholder": "London",
       "required": true,
@@ -31,7 +31,7 @@
       "value": ""
     },
     {
-      "name": "address.zip",
+      "name": "zip",
       "label": "$.form.zip",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "postal-code",
@@ -41,7 +41,7 @@
       "value": ""
     },
     {
-      "name": "address.state",
+      "name": "state",
       "type": "select",
       "label": "$.form.state",
       "placeholder": "Blvd Ave. 12",
