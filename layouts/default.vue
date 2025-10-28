@@ -69,6 +69,4 @@ const menuItems = [
   <UMain>
     <slot></slot>
   </UMain>
-
-  <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
 </template>

@@ -18,56 +18,72 @@ useHead({
   ],
 });
 
-const { carts, user, delivery, payment, loading, onSubmit } =
-  useCashdeskStore();
+const { key, carts, user, delivery, payment, loading, onSubmit } =
+  useCashdesk();
 
-const backBtn = computed(() => {
-  if (stepper.value?.hasPrev) {
-    return steps.value[selectedStep.value - 1]?.title;
-  } else {
-    return "$.btn.back_shopping";
-  }
-});
-const nextBtn = computed(() => {
-  if (stepper.value?.hasNext) {
-    return steps.value[selectedStep.value + 1]?.title;
-  } else {
-    return "$.btn.complete_order";
-  }
-});
 const stepper = useTemplateRef("stepper");
+
 const steps = ref([
   {
     slot: "cart",
     title: t("$.cart.title"),
     icon: "i-heroicons-shopping-cart",
-    disabled: computed(() => !carts?.length),
   },
   {
     slot: "delivery_payment",
     title: t("$.cashdesk.delivery_payment"),
     icon: "i-heroicons-truck",
-    disabled: computed(
-      () => !carts?.length || !user?.valid || !delivery.valid || !payment.valid
-    ),
   },
   {
     slot: "summary",
     title: t("$.cashdesk.summary"),
     icon: "i-heroicons-credit-card",
-    disabled: computed(
-      () => !carts?.length || !user?.valid || !delivery.valid || !payment.valid
-    ),
   },
 ]);
-const defaultIndex = steps.value.findIndex(
-  (item) => item.title === route.query.step
-);
-const selectedStep = ref(defaultIndex > 0 ? defaultIndex : 0);
 
-watch(selectedStep, () => {
+const stepModel = ref(
+  steps.value.findIndex((item) => item.title === route.query.step) > 0
+    ? steps.value.findIndex((item) => item.title === route.query.step)
+    : 0
+);
+
+const validations = computed(() => [
+  !!carts.value?.length,
+  !!carts.value?.length &&
+    user.value?.valid &&
+    delivery.value.valid &&
+    payment.value.valid,
+  !!carts.value?.length &&
+    user.value?.valid &&
+    delivery.value.valid &&
+    payment.value.valid,
+]);
+
+const backBtn = computed(() => {
+  if (stepper.value?.hasPrev) {
+    return steps.value[stepModel.value - 1]?.title;
+  } else {
+    return "$.btn.back_shopping";
+  }
+});
+
+const nextBtn = computed(() => {
+  if (stepper.value?.hasNext) {
+    return steps.value[stepModel.value + 1]?.title;
+  } else {
+    return "$.btn.complete_order";
+  }
+});
+
+watch(stepModel, (value, oldValue) => {
+  if (value > oldValue) {
+    if (!validations.value[oldValue]) {
+      stepModel.value = oldValue;
+      return;
+    }
+  }
   router.replace({
-    query: { step: steps.value[selectedStep.value]?.title },
+    query: { step: steps.value[stepModel.value]?.title },
   });
 });
 </script>
@@ -76,6 +92,7 @@ watch(selectedStep, () => {
   <div
     :id="(routes.cashdesk?.meta?.syscode as string)"
     class="max-w-7xl mx-auto px-5"
+    :key="key"
   >
     <UPageHeader
       :title="title"
@@ -83,49 +100,46 @@ watch(selectedStep, () => {
       class="border-none"
     />
 
-    <UStepper
-      ref="stepper"
-      v-model="selectedStep"
-      :items="steps"
-      :linear="true"
-    >
-      <template #cart>
-        <CmpCashdeskCart />
-      </template>
+    <div v-if="loading !== null">
+      <UStepper ref="stepper" v-model="stepModel" :items="steps" :linear="true">
+        <template #cart>
+          <CmpCashdeskCart />
+        </template>
 
-      <template #delivery_payment>
-        <CmpCashdeskDeliveryPayment />
-      </template>
+        <template #delivery_payment>
+          <CmpCashdeskDeliveryPayment />
+        </template>
 
-      <template #summary>
-        <CmpCashdeskSummary />
-      </template>
-    </UStepper>
+        <template #summary>
+          <CmpCashdeskSummary />
+        </template>
+      </UStepper>
 
-    <div class="flex justify-between mt-8">
-      <UButton
-        :to="stepper?.hasPrev ? undefined : routes.wine?.path"
-        :color="stepper?.hasPrev ? 'primary' : 'secondary'"
-        icon="i-heroicons-arrow-left"
-        size="lg"
-        variant="outline"
-        @click="stepper?.hasPrev && stepper?.prev()"
-      >
-        <span class="hidden sm:block">
-          {{ $tt(backBtn!) }}
-        </span>
-      </UButton>
+      <div class="flex justify-between mt-8">
+        <UButton
+          :to="stepper?.hasPrev ? undefined : routes.wine?.path"
+          :color="stepper?.hasPrev ? 'primary' : 'secondary'"
+          icon="i-heroicons-arrow-left"
+          size="lg"
+          variant="outline"
+          @click="stepper?.hasPrev && stepper?.prev()"
+        >
+          <span class="hidden sm:block">
+            {{ t(backBtn!) }}
+          </span>
+        </UButton>
 
-      <UButton
-        trailing-icon="i-heroicons-arrow-right-20-solid"
-        :color="stepper?.hasNext ? 'primary' : 'secondary'"
-        size="lg"
-        :loading="loading"
-        :disabled="steps[selectedStep]?.disabled"
-        @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
-      >
-        {{ $tt(nextBtn!) }}
-      </UButton>
+        <UButton
+          trailing-icon="i-heroicons-arrow-right-20-solid"
+          :color="stepper?.hasNext ? 'primary' : 'secondary'"
+          size="lg"
+          :loading="(loading as boolean)"
+          :disabled="!validations[stepModel]"
+          @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
+        >
+          {{ t(nextBtn!) }}
+        </UButton>
+      </div>
     </div>
   </div>
 </template>

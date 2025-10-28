@@ -11,7 +11,9 @@ const {
 } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const cashdesk = useCashdeskStore();
+const { payment, paymentOptions } = useCashdesk();
+const { t } = useLang();
+const model = ref(payment.value.type);
 
 /**
  * Load config
@@ -30,36 +32,33 @@ const { data: config } = await useAsyncData(
 );
 </script>
 <template>
-  <UCard variant="subtle" class="w-full">
+  <UCard v-if="config" variant="subtle" class="w-full">
     <template #header>
       <h3
         class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
       >
-        {{ $tt(config?.title!) }}
+        {{ t(config.title!) }}
       </h3>
     </template>
 
-    <URadioGroup
-      v-model="cashdesk.payment.type"
-      :items="cashdesk.paymentOptions"
-    >
+    <URadioGroup v-model="model" :items="paymentOptions">
       <template #label="{ item }">
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center gap-2">
             <Icon :name="item.avatar as string" size="30" class="w-20" />
             <span>
-              {{ $tt(item?.label) }}
+              {{ t(item?.label) }}
             </span>
           </div>
-          <span v-if="item.price! > 0">
+          <span v-if="item.totalPrice! > 0">
             {{
-              useToNumber(item?.price?.toFixed(2) || 0).value.toLocaleString(
-                locale
-              )
-            }}&nbsp;{{ $tt("$.czk") }}
+              useToNumber(
+                item?.totalPrice?.toFixed(2) || 0
+              ).value.toLocaleString(locale)
+            }}&nbsp;{{ t("$.czk") }}
           </span>
           <span v-else>
-            {{ $tt("$.btn.free") }}
+            {{ t("$.btn.free") }}
           </span>
         </div>
       </template>

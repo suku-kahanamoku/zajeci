@@ -16,7 +16,13 @@ const {
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const cashdesk = useCashdeskStore();
+const {
+  carts,
+  addItem,
+  removeItem: removeCartItem,
+  setQuantity: setCartQuantity,
+  deleteItem: deleteCartItem,
+} = useCashdesk();
 const isOpen = ref(false);
 const deleted = ref();
 const headerClass: any = {
@@ -59,36 +65,36 @@ const columns: Ref<TableColumn<any>[]> = computed(
 );
 
 const increaseQuantity = (cart: ICart) => {
-  cashdesk.addItem(cart.wine, 1);
+  addItem(cart.wine, 1);
 };
 
 const decreaseQuantity = (cart: ICart) => {
   if (cart.quantity > 1) {
-    cashdesk.removeItem(cart.wine?._id);
+    removeCartItem(cart.wine?._id);
   } else {
-    removeItem(cart);
+    openRemoveDialog(cart);
   }
 };
 
-const removeItem = (cart: ICart) => {
+const openRemoveDialog = (cart: ICart) => {
   deleted.value = cart;
   isOpen.value = true;
 };
 
-const setQuantity = (value: number, cart: ICart) => {
+const handleSetQuantity = (value: number, cart: ICart) => {
   if (value > 0) {
-    cashdesk.setQuantity(cart.wine?._id, value);
+    setCartQuantity(cart.wine?._id, value);
   } else {
-    removeItem(cart);
+    openRemoveDialog(cart);
   }
 };
 </script>
 
 <template>
   <UTable
-    v-if="config && cashdesk?.carts?.length"
+    v-if="config && carts?.length"
     :columns="columns"
-    :data="cashdesk.carts"
+    :data="carts"
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
@@ -135,7 +141,7 @@ const setQuantity = (value: number, cart: ICart) => {
           :model-value="row.original?.quantity"
           type="number"
           :min="1"
-          @change="setQuantity(parseInt($event as any), row.original)"
+          @change="handleSetQuantity(parseInt($event as any), row.original)"
         />
         <UButton
           icon="i-heroicons-plus"
@@ -151,7 +157,7 @@ const setQuantity = (value: number, cart: ICart) => {
           useToNumber(
             row.original?.unitPrice?.toFixed(2) || 0
           ).value.toLocaleString(locale)
-        }}&nbsp;{{ $tt("$.czk") }}
+        }}&nbsp;{{ t("$.czk") }}
       </p>
     </template>
 
@@ -162,12 +168,12 @@ const setQuantity = (value: number, cart: ICart) => {
             useToNumber(
               row.original?.totalPrice?.toFixed(2) || 0
             ).value.toLocaleString(locale)
-          }}&nbsp;{{ $tt("$.czk") }}
+          }}&nbsp;{{ t("$.czk") }}
         </p>
         <UButton
           icon="i-heroicons-trash"
           color="error"
-          @click="removeItem(row.original)"
+          @click="openRemoveDialog(row.original)"
         />
       </div>
     </template>
@@ -175,7 +181,7 @@ const setQuantity = (value: number, cart: ICart) => {
 
   <div v-if="config" class="sm:hidden">
     <div
-      v-for="cart in cashdesk.carts"
+      v-for="cart in carts"
       :key="cart.wine?._id"
       class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
@@ -207,7 +213,7 @@ const setQuantity = (value: number, cart: ICart) => {
             :model-value="cart.quantity"
             type="number"
             :min="1"
-            @change="setQuantity(parseInt($event as any), cart)"
+            @change="handleSetQuantity(parseInt($event as any), cart)"
           />
           <UButton
             icon="i-heroicons-plus"
@@ -221,12 +227,12 @@ const setQuantity = (value: number, cart: ICart) => {
               useToNumber(
                 cart?.totalPrice?.toFixed(2) || 0
               ).value.toLocaleString(locale)
-            }}&nbsp;{{ $tt("$.czk") }}
+            }}&nbsp;{{ t("$.czk") }}
           </p>
           <UButton
             icon="i-heroicons-trash"
             color="error"
-            @click="removeItem(cart)"
+            @click="openRemoveDialog(cart)"
           />
         </div>
       </div>
@@ -235,7 +241,7 @@ const setQuantity = (value: number, cart: ICart) => {
 
   <UAlert
     icon="i-heroicons-truck"
-    :title="$tt('$.delivery.limit_free')"
+    :title="t('$.delivery.limit_free')"
     color="info"
     variant="subtle"
     class="my-4"
@@ -243,9 +249,9 @@ const setQuantity = (value: number, cart: ICart) => {
 
   <CmpConfirmDialog
     v-model="isOpen"
-    :title="$tt('$.cart.remove_from_cart')"
-    @confirm="$event && cashdesk.deleteItem(deleted?.wine?._id)"
+    :title="t('$.cart.remove_from_cart')"
+    @confirm="$event && deleteCartItem(deleted?.wine?._id)"
   >
-    {{ $tt("$.cart.remove", { name: deleted?.wine?.name }) }}
+    {{ t("$.cart.remove", { name: deleted?.wine?.name }) }}
   </CmpConfirmDialog>
 </template>

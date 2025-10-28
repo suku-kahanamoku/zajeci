@@ -18,45 +18,6 @@ export enum PaymentServices {
   cash = "cash",
 }
 
-export const paymentObjects = {
-  cash: { label: "$.payment.cash", price: 0, avatar: "mdi:cash-100" },
-  bank: {
-    label: "$.payment.bank",
-    price: 0,
-    avatar: "mdi:bank-outline",
-  },
-  card: {
-    label: "$.payment.card",
-    price: 0,
-    avatar: "mdi:credit-card-outline",
-    disabled: true,
-  },
-  paypal: {
-    label: "$.payment.paypal",
-    price: 0,
-    avatar: "logos:paypal",
-    disabled: true,
-  },
-  gopay: {
-    label: "$.payment.gopay",
-    price: 0,
-    avatar: "arcticons:gopay",
-    disabled: true,
-  },
-  applePay: {
-    label: "$.payment.apple_pay",
-    price: 0,
-    avatar: "simple-icons:applepay",
-    disabled: true,
-  },
-  googlePay: {
-    label: "$.payment.google_pay",
-    price: 0,
-    avatar: "simple-icons:googlepay",
-    disabled: true,
-  },
-};
-
 /**
  * Rozhrani pro payment v cashdesku
  *
@@ -64,9 +25,14 @@ export const paymentObjects = {
  * @interface IPayment
  */
 export interface IPayment {
-  type: PaymentServices;
-  totalPrice: number;
+  type: PaymentServices | string;
+  label: string;
+  unitPrice: number;
+  totalPrice?: number;
+  avatar?: string;
+  disabled?: boolean;
   valid?: boolean;
+  value?: PaymentServices | string;
 }
 
 /**
@@ -86,33 +52,6 @@ export enum DeliveryServices {
   geis = "geis",
 }
 
-export const deliveryObjects = {
-  free: {
-    label: "$.delivery.brno",
-    price: 0,
-    avatar: "mdi:home-city-outline",
-    help: "$.delivery.brno_free",
-  },
-  post: {
-    label: "$.delivery.post",
-    price: 209,
-    avatar: "/img/delivery/post.jpg",
-    help: "$.delivery.not_quaranteed",
-  },
-  dpd: {
-    label: "$.delivery.dpd",
-    price: 150,
-    avatar: "mdi:truck-outline",
-    help: "$.delivery.not_quaranteed",
-  },
-  messenger: {
-    label: "$.delivery.messenger",
-    price: 175,
-    avatar: "mdi:truck-outline",
-    help: "$.delivery.third_day",
-  },
-};
-
 /**
  * Rozhrani pro delivery v cashdesku
  *
@@ -120,11 +59,16 @@ export const deliveryObjects = {
  * @interface IDelivery
  */
 export interface IDelivery {
-  type: DeliveryServices;
+  type: DeliveryServices | string;
+  label: string;
+  unitPrice: number;
+  totalPrice?: number;
+  avatar?: string;
+  help?: string;
   address?: IAddress;
-  totalPrice: number;
   valid?: boolean;
   key?: number;
+  value: DeliveryServices | string;
 }
 
 /**

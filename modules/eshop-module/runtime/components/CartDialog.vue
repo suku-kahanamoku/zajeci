@@ -13,7 +13,7 @@ const {
   i18n: { locale },
 } = useLang();
 const { routes } = useMenuItems();
-const cashdesk = useCashdeskStore();
+const { totalPrice } = useCashdesk();
 </script>
 
 <template>
@@ -46,9 +46,9 @@ const cashdesk = useCashdeskStore();
         </div>
         <div>
           {{ $tt("$.cart.total") }}:&nbsp;{{
-            useToNumber(
-              cashdesk?.totalPrice?.toFixed(2) || 0
-            ).value.toLocaleString(locale)
+            useToNumber(totalPrice.value?.toFixed(2) || 0).value.toLocaleString(
+              locale
+            )
           }}&nbsp;{{ $tt("$.czk") }}
         </div>
       </div>

@@ -15,7 +15,7 @@ const {
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const cashdesk = useCashdeskStore();
+const { carts, user, delivery, payment } = useCashdesk();
 
 /**
  * Load config
@@ -51,9 +51,9 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
 <template>
   <UTable
-    v-if="config && cashdesk?.carts?.length"
+    v-if="config && carts?.length"
     :columns="columns"
-    :data="cashdesk.carts"
+    :data="carts"
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
@@ -106,14 +106,14 @@ const columns: Ref<TableColumn<any>[]> = computed(
           useToNumber(
             row.original?.totalPrice?.toFixed(2) || 0
           ).value.toLocaleString(locale)
-        }}&nbsp;{{ $tt("$.czk") }}
+        }}&nbsp;{{ t("$.czk") }}
       </p>
     </template>
   </UTable>
 
   <div v-if="config" class="sm:hidden">
     <div
-      v-for="cart in cashdesk.carts"
+      v-for="cart in carts"
       :key="cart.wine?._id"
       class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
@@ -141,7 +141,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="w-full text-center text-lg font-semibold flex gap-2">
-          <p>{{ $tt("$.form.quantity") }}:</p>
+          <p>{{ t("$.form.quantity") }}:</p>
           <p>
             {{
               useToNumber(cart.quantity?.toFixed(2) || 0).value.toLocaleString(
@@ -151,13 +151,13 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </p>
         </div>
         <div class="w-full text-center text-lg font-semibold flex gap-2">
-          <p>{{ $tt("$.form.price") }}:</p>
+          <p>{{ t("$.form.price") }}:</p>
           <p>
             {{
               useToNumber(
                 cart.totalPrice?.toFixed(2) || 0
               ).value.toLocaleString(locale)
-            }}&nbsp;{{ $tt("$.czk") }}
+            }}&nbsp;{{ t("$.czk") }}
           </p>
         </div>
       </div>
@@ -170,29 +170,29 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.cashdesk.billing_address") }}
+          {{ t("$.cashdesk.billing_address") }}
         </h3>
       </template>
 
       <div class="flex flex-col gap-y-2">
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.user.email }}
+          {{ user.email }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.user?.givenName }}&nbsp;{{ cashdesk.user?.surname }}
+          {{ user?.givenName }}&nbsp;{{ user?.surname }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.user.address?.main?.street }}
+          {{ user.address?.main?.street }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.user.address?.main?.city }}
+          {{ user.address?.main?.city }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.user.address?.main?.zip }}
+          {{ user.address?.main?.zip }}
         </p>
       </div>
     </UCard>
@@ -202,34 +202,34 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.delivery.title") }}
+          {{ t("$.delivery.title") }}
         </h3>
       </template>
 
       <div class="flex flex-col gap-y-2">
         <h4 class="font-semibold">
-          {{ $tt(cashdesk.deliveries[cashdesk.delivery?.type]?.label) }}
+          {{ delivery.type }}
         </h4>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.delivery.address?.name }}
+          {{ delivery.address?.name }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.delivery.address?.street }}
+          {{ delivery.address?.street }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.delivery.address?.city }}
+          {{ delivery.address?.city }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ cashdesk.delivery.address?.zip }}
+          {{ delivery.address?.zip }}
         </p>
 
         <UAlert
-          v-if="cashdesk.delivery?.type === 'free'"
-          :description="$tt('$.delivery.brno_free')"
+          v-if="delivery?.type === 'free'"
+          :description="t('$.delivery.brno_free')"
           color="info"
           variant="subtle"
         />
@@ -241,19 +241,17 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ $tt("$.delivery.title") }}
+          {{ t("$.delivery.title") }}
         </h3>
       </template>
 
       <div class="flex flex-col gap-y-2">
-        <h4 class="font-semibold text-lg">
-          {{ $tt("$.payment.account_num") }}:
-        </h4>
+        <h4 class="font-semibold text-lg">{{ t("$.payment.account_num") }}:</h4>
 
-        <div v-if="cashdesk.payment.type === 'bank'">
+        <div v-if="payment.type === 'bank'">
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">
-              {{ $tt("$.payment.account_num") }}:
+              {{ t("$.payment.account_num") }}:
             </h3>
             <p class="text-gray-600 dark:text-white">1234567890/1234</p>
           </div>
@@ -271,7 +269,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </div>
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">
-              {{ $tt("$.payment.variable_sym") }}:
+              {{ t("$.payment.variable_sym") }}:
             </h3>
             <p class="text-gray-600 dark:text-white">12345</p>
           </div>

@@ -59,6 +59,4 @@ if (user.value?.role === "admin") {
   <UMain>
     <slot></slot>
   </UMain>
-
-  <CmpFooter url="https://www.prasentace.cz/" name="PRASENTACE" />
 </template>

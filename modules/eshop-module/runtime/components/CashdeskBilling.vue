@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
-import defu from "defu";
 
 import {
   CLONE,
@@ -12,10 +11,12 @@ import type {
 } from "@suku-kahanamoku/form-module/types";
 
 import lConfig from "../assets/configs/billing.json";
+import type { IItem } from "@suku-kahanamoku/common-module/types";
 
+const { t } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const cashdesk = useCashdeskStore();
+const { user, setUser, delivery } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -38,47 +39,48 @@ function onChange(body: Record<string, any>, event: any) {
   if (config.value) {
     const data = CLONE(body);
     CONVERT_DOT_TO_OBJECT(data);
-    cashdesk.setUser(defu(data.user, cashdesk.user));
+    data.user.valid = formCmp.value.form.getErrors().length ? false : true;
+    setUser(data.user);
     //
     const name = event.srcElement.name;
     switch (name) {
-      case "user.givenName":
-      case "user.surname":
+      case "givenName":
+      case "surname":
         if (
-          !cashdesk.delivery.address?.name &&
-          body["user.givenName"] &&
-          body["user.surname"]
+          !delivery.value.address?.name &&
+          body["givenName"] &&
+          body["surname"]
         ) {
-          cashdesk.delivery.address!.name = `${body["user.givenName"]} ${body["user.surname"]}`;
-          cashdesk.delivery.key!++;
+          delivery.value.address!.name = `${body["givenName"]} ${body["surname"]}`;
+          delivery.value.key!++;
         }
         break;
 
-      case "user.address.main.street":
-        if (!cashdesk.delivery.address?.street) {
-          cashdesk.delivery.address!.street = body[name];
-          cashdesk.delivery.key!++;
+      case "address.main.street":
+        if (!delivery.value.address?.street) {
+          delivery.value.address!.street = body[name];
+          delivery.value.key!++;
         }
         break;
 
-      case "user.address.main.city":
-        if (!cashdesk.delivery.address?.city) {
-          cashdesk.delivery.address!.city = body[name];
-          cashdesk.delivery.key!++;
+      case "address.main.city":
+        if (!delivery.value.address?.city) {
+          delivery.value.address!.city = body[name];
+          delivery.value.key!++;
         }
         break;
 
-      case "user.address.main.zip":
-        if (!cashdesk.delivery.address?.zip) {
-          cashdesk.delivery.address!.zip = body[name];
-          cashdesk.delivery.key!++;
+      case "address.main.zip":
+        if (!delivery.value.address?.zip) {
+          delivery.value.address!.zip = body[name];
+          delivery.value.key!++;
         }
         break;
 
-      case "user.address.main.state":
-        if (!cashdesk.delivery.address?.state) {
-          cashdesk.delivery.address!.state = body[name];
-          cashdesk.delivery.key!++;
+      case "address.main.state":
+        if (!delivery.value.address?.state) {
+          delivery.value.address!.state = body[name];
+          delivery.value.key!++;
         }
         break;
     }
@@ -89,8 +91,8 @@ function onChange(body: Record<string, any>, event: any) {
   <CmpForm
     v-if="config"
     ref="formCmp"
-    :fields="(config.fields as IFormField[])"
-    :item="(cashdesk as any)"
+    :fields="config.fields"
+    :item="(user as IItem)"
     variant="subtle"
     :actions="{ disabled: true }"
     :ui="{
@@ -103,7 +105,7 @@ function onChange(body: Record<string, any>, event: any) {
       <h3
         class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
       >
-        {{ $tt(config.title!) }}
+        {{ t(config.title!) }}
       </h3>
     </template>
   </CmpForm>

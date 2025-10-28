@@ -5,7 +5,12 @@ import { DeliveryServices } from "./modules/eshop-module/runtime/types/order.int
 const {
   i18n: { locale },
 } = useLang();
-const cashdesk = useCashdeskStore();
+const {
+  user: cashdeskUser,
+  delivery: cashdeskDelivery,
+  reset: cashdeskReset,
+  setUser: cashdeskSetUser,
+} = useCashdesk();
 const { loggedIn, user } = useUserSession();
 
 onMounted(() => {
@@ -19,24 +24,24 @@ watch(loggedIn, (value, oldValue) => {
   }
   //
   else if (value === false && oldValue === true) {
-    cashdesk.reset();
+    cashdeskReset();
   }
 });
 
 function setCashdesk() {
   if (user.value) {
     // pokud neni vyplnena fakturacni adresa, doplni
-    if (!cashdesk.user.valid) {
-      cashdesk.setUser(user.value);
+    if (!cashdeskUser.value?.valid) {
+      cashdeskSetUser(user.value);
     }
     // pokud neni vyplnena dodaci adresa, doplni
     if (
-      !cashdesk.delivery.valid &&
+      !cashdeskDelivery.value?.valid &&
       [DeliveryServices.free, DeliveryServices.post].includes(
-        cashdesk.delivery.type
+        cashdeskDelivery.value.type
       )
     ) {
-      cashdesk.delivery.address = CLONE(user.value.address?.main);
+      cashdeskDelivery.value.address = CLONE(user.value.address?.main);
     }
   }
 }
@@ -46,6 +51,6 @@ function setCashdesk() {
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <CmpCookieBanner />
+    <UiCookieBanner />
   </UApp>
 </template>

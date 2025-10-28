@@ -18,7 +18,7 @@ const {
   t,
 } = useLang();
 const { getSelectLabel } = useField();
-const cashdesk = useCashdeskStore();
+const { addItem } = useCashdesk();
 const modal = ref(false);
 const cart = ref<ICart>();
 
@@ -38,7 +38,7 @@ useHead({
 
 function addToCashdesk() {
   if (props.wine) {
-    cart.value = cashdesk.addItem(props.wine, 1);
+    cart.value = addItem(props.wine, 1);
     modal.value = true;
   }
 }

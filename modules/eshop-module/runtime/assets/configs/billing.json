@@ -3,7 +3,7 @@
   "title": "$.cashdesk.billing_address",
   "fields": [
     {
-      "name": "user.email",
+      "name": "email",
       "type": "email",
       "label": "$.form.email",
       "placeholder": "john@doe.com",
@@ -14,7 +14,7 @@
       "value": ""
     },
     {
-      "name": "user.phone",
+      "name": "phone",
       "type": "phone",
       "label": "$.form.phone",
       "placeholder": "+420 721 456 897",
@@ -24,7 +24,7 @@
       "value": ""
     },
     {
-      "name": "user.givenName",
+      "name": "givenName",
       "label": "$.form.given_name",
       "placeholder": "John",
       "autocomplete": "given-name",
@@ -34,7 +34,7 @@
       "value": ""
     },
     {
-      "name": "user.surname",
+      "name": "surname",
       "label": "$.form.surname",
       "placeholder": "Doe",
       "autocomplete": "family-name",
@@ -44,7 +44,7 @@
       "value": ""
     },
     {
-      "name": "user.address.main.street",
+      "name": "address.main.street",
       "label": "$.form.street",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "street-address",
@@ -54,7 +54,7 @@
       "value": ""
     },
     {
-      "name": "user.address.main.city",
+      "name": "address.main.city",
       "label": "$.form.city",
       "placeholder": "London",
       "required": true,
@@ -63,7 +63,7 @@
       "value": ""
     },
     {
-      "name": "user.address.main.zip",
+      "name": "address.main.zip",
       "label": "$.form.zip",
       "placeholder": "Blvd Ave. 12",
       "autocomplete": "postal-code",
@@ -79,7 +79,7 @@
       "value": ""
     },
     {
-      "name": "user.address.main.state",
+      "name": "address.main.state",
       "type": "select",
       "label": "$.form.state",
       "required": true,
