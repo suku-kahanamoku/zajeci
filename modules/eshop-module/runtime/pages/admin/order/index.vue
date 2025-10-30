@@ -26,51 +26,45 @@ useHead({
 </script>
 
 <template>
-  <div
-    v-if="config"
-    :id="config.syscode"
-    class="max-w-7xl mx-auto px-5 w-full"
-  >
-  <div class="flex flex-col gap-8">
-      <UPageHeader
-        :title="title"
-        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
-        class="border-none"
+  <div v-if="config" :id="config.syscode" class="w-full max-w-7xl mx-auto px-5">
+    <UPageHeader
+      :title="title"
+      :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+      class="border-none"
+    />
+
+    <div class="flex justify-end">
+      <UButton
+        icon="i-heroicons-trash"
+        color="error"
+        variant="ghost"
+        :aria-label="$tt('$.aria.delete_selected')"
+        :disabled="!selected.length"
+        :loading="loading"
+        @click="isOpen = true"
       />
-
-      <div class="flex justify-end">
-        <UButton
-          icon="i-heroicons-trash"
-          color="error"
-          variant="ghost"
-          :aria-label="$tt('$.aria.delete_selected')"
-          :disabled="!selected.length"
-          :loading="loading"
-          @click="isOpen = true"
-        />
-        <UButton
-          :to="localePath(routes.admin_order_create?.path!)"
-          icon="i-heroicons-plus-circle"
-          color="secondary"
-          variant="ghost"
-          :aria-label="$tt('$.aria.delete_selected')"
-          :loading="loading"
-        />
-      </div>
-
-      <UTable
-        v-if="orders?.data"
-        :data="(orders.data as IOrder[])"
-        :columns="columns"
-        class="flex-1"
-      >
-        <template #_id-cell="{ row }">
-          <NuxtLink :to="row.original?.gen_data?.url">
-            {{ row.original?._id }}
-          </NuxtLink>
-        </template>
-      </UTable>
+      <UButton
+        :to="localePath(routes.admin_order_create?.path!)"
+        icon="i-heroicons-plus-circle"
+        color="secondary"
+        variant="ghost"
+        :aria-label="$tt('$.aria.delete_selected')"
+        :loading="loading"
+      />
     </div>
+
+    <UTable
+      v-if="orders?.data"
+      :data="(orders.data as IOrder[])"
+      :columns="columns"
+      class="flex-1"
+    >
+      <template #_id-cell="{ row }">
+        <NuxtLink :to="row.original?.gen_data?.url">
+          {{ row.original?._id }}
+        </NuxtLink>
+      </template>
+    </UTable>
 
     <CmpConfirmDialog
       v-model="isOpen"

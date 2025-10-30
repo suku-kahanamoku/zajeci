@@ -46,198 +46,188 @@ function addToCashdesk() {
 
 <template>
   <div v-if="wine" :id="wine._id">
-    <div class="w-full px-5 py-24 mx-auto">
-      <div class="mx-auto flex flex-wrap w-full">
-        <NuxtImg
-          :src="wine.image?.main?.src || '/img/bottle.jpg'"
-          :alt="'wine'"
-          loading="lazy"
-          format="webp"
-          height="500"
-          class="mx-auto"
+    <div class="w-full flex flex-wrap mx-auto px-5">
+      <NuxtImg
+        :src="wine.image?.main?.src || '/img/bottle.jpg'"
+        :alt="'wine'"
+        loading="lazy"
+        format="webp"
+        height="500"
+        class="mx-auto"
+      />
+      <div
+        class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3"
+      >
+        <UPageHeader
+          :title="wine.name"
+          :ui="{ title: 'text-primary-600 dark:text-white' }"
+          class="border-none"
         />
-        <div
-          class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3"
-        >
-          <UPageHeader
-            :title="wine.name"
-            :ui="{ title: 'text-primary-600 dark:text-white' }"
-            class="border-none"
-          />
-          <div class="flex mb-4">
-            <span class="flex items-center">
-              <NuxtRating
-                :read-only="false"
-                :ratingValue="4.5"
-                rating-size="30px"
-              />
+        <div class="flex mb-4">
+          <span class="flex items-center">
+            <NuxtRating
+              :read-only="false"
+              :ratingValue="4.5"
+              rating-size="30px"
+            />
+          </span>
+          <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+            <UButton variant="ghost">
+              <Icon name="logos:facebook" size="20" />
+            </UButton>
+            <UButton variant="ghost">
+              <Icon name="logos:twitter" size="20" />
+            </UButton>
+            <UButton variant="ghost">
+              <Icon name="mdi:chat-processing-outline" size="20" />
+            </UButton>
+          </span>
+        </div>
+        <p class="text-lg leading-relaxed dark:text-white">
+          {{ wine.description }}
+        </p>
+        <!-- Moderní badge styl pro atributy vína, roztažené bloky -->
+        <div class="flex flex-wrap gap-3 mt-4 w-full">
+          <div
+            v-if="wine.kind"
+            class="flex flex-col items-center bg-primary-50 dark:bg-primary-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-tag"
+              class="text-primary-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
+              {{ $tt(fields?.find((field) => field.name === "kind")?.label!) }}
             </span>
-            <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-              <UButton variant="ghost">
-                <Icon name="logos:facebook" size="20" />
-              </UButton>
-              <UButton variant="ghost">
-                <Icon name="logos:twitter" size="20" />
-              </UButton>
-              <UButton variant="ghost">
-                <Icon name="mdi:chat-processing-outline" size="20" />
-              </UButton>
+            <span class="font-semibold text-sm">
+              {{ getSelectLabel(fields, "kind", wine.kind) }}
             </span>
           </div>
-          <p class="text-lg leading-relaxed dark:text-white">
-            {{ wine.description }}
-          </p>
-          <!-- Moderní badge styl pro atributy vína, roztažené bloky -->
-          <div class="flex flex-wrap gap-3 mt-4 w-full">
-            <div
-              v-if="wine.kind"
-              class="flex flex-col items-center bg-primary-50 dark:bg-primary-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-tag"
-                class="text-primary-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(fields?.find((field) => field.name === "kind")?.label!)
-                }}
-              </span>
-              <span class="font-semibold text-sm">
-                {{ getSelectLabel(fields, "kind", wine.kind) }}
-              </span>
-            </div>
-            <div
-              v-if="wine.color"
-              class="flex flex-col items-center bg-pink-50 dark:bg-pink-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-paint-brush"
-                class="text-pink-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(fields?.find((field) => field.name === "color")?.label!)
-                }}
-              </span>
-              <span class="font-semibold text-sm">
-                {{ getSelectLabel(fields, "color", wine.color) }}
-              </span>
-            </div>
-            <div
-              v-if="wine.quality"
-              class="flex flex-col items-center bg-yellow-50 dark:bg-yellow-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-star"
-                class="text-yellow-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(fields?.find((field) => field.name === "quality")?.label!)
-                }}
-              </span>
-              <span class="font-semibold text-sm">
-                {{ getSelectLabel(fields, "quality", wine.quality) }}
-              </span>
-            </div>
-            <div
-              v-if="wine.variety"
-              class="flex flex-col items-center bg-green-50 dark:bg-green-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-sparkles"
-                class="text-green-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(fields?.find((field) => field.name === "variety")?.label!)
-                }}
-              </span>
-              <span class="font-semibold text-sm"
-                >{{ getSelectLabel(fields, "variety", wine.variety) }}
-              </span>
-            </div>
-            <div
-              v-if="wine.volume"
-              class="flex flex-col items-center bg-blue-50 dark:bg-blue-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-beaker"
-                class="text-blue-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(fields?.find((field) => field.name === "volume")?.label!)
-                }}
-              </span>
-              <span class="font-semibold text-sm">{{ wine.volume }}</span>
-            </div>
-            <div
-              v-if="wine.year"
-              class="flex flex-col items-center bg-amber-50 dark:bg-amber-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-calendar"
-                class="text-amber-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(fields?.find((field) => field.name === "year")?.label!)
-                }}
-              </span>
-              <span class="font-semibold text-sm">{{ wine.year }}</span>
-            </div>
-            <div
-              v-if="wine.quantity"
-              class="flex flex-col items-center bg-gray-100 dark:bg-gray-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
-            >
-              <UIcon
-                name="i-heroicons-archive-box"
-                class="text-gray-500 mb-1"
-                size="20"
-              />
-              <span class="text-xs text-gray-500 dark:text-gray-300">
-                {{
-                  $tt(
-                    fields?.find((field) => field.name === "quantity")?.label!
-                  )
-                }}
-              </span>
-              <span class="font-semibold text-sm">{{ wine.quantity }}</span>
-            </div>
+          <div
+            v-if="wine.color"
+            class="flex flex-col items-center bg-pink-50 dark:bg-pink-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-paint-brush"
+              class="text-pink-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
+              {{ $tt(fields?.find((field) => field.name === "color")?.label!) }}
+            </span>
+            <span class="font-semibold text-sm">
+              {{ getSelectLabel(fields, "color", wine.color) }}
+            </span>
           </div>
-          <USeparator class="my-4" />
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-2xl text-gray-600 dark:text-white">
+          <div
+            v-if="wine.quality"
+            class="flex flex-col items-center bg-yellow-50 dark:bg-yellow-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-star"
+              class="text-yellow-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
-                useToNumber(wine.price?.toFixed(2) || 0).value.toLocaleString(
-                  locale
-                )
-              }}&nbsp;{{ $tt("$.czk") }}
+                $tt(fields?.find((field) => field.name === "quality")?.label!)
+              }}
             </span>
-            <div>
-              <UButton
-                icon="i-heroicons-pencil-square"
-                color="secondary"
-                variant="outline"
-                class="lg:text-lg dark:text-white"
-                @click="addToCashdesk"
-              >
-                {{ $tt("$.wine.to_cart") }}
-              </UButton>
-              <UButton
-                icon="i-heroicons-heart"
-                class="ml-4"
-                size="lg"
-                variant="outline"
-              />
-            </div>
+            <span class="font-semibold text-sm">
+              {{ getSelectLabel(fields, "quality", wine.quality) }}
+            </span>
+          </div>
+          <div
+            v-if="wine.variety"
+            class="flex flex-col items-center bg-green-50 dark:bg-green-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-sparkles"
+              class="text-green-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
+              {{
+                $tt(fields?.find((field) => field.name === "variety")?.label!)
+              }}
+            </span>
+            <span class="font-semibold text-sm"
+              >{{ getSelectLabel(fields, "variety", wine.variety) }}
+            </span>
+          </div>
+          <div
+            v-if="wine.volume"
+            class="flex flex-col items-center bg-blue-50 dark:bg-blue-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-beaker"
+              class="text-blue-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
+              {{
+                $tt(fields?.find((field) => field.name === "volume")?.label!)
+              }}
+            </span>
+            <span class="font-semibold text-sm">{{ wine.volume }}</span>
+          </div>
+          <div
+            v-if="wine.year"
+            class="flex flex-col items-center bg-amber-50 dark:bg-amber-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-calendar"
+              class="text-amber-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
+              {{ $tt(fields?.find((field) => field.name === "year")?.label!) }}
+            </span>
+            <span class="font-semibold text-sm">{{ wine.year }}</span>
+          </div>
+          <div
+            v-if="wine.quantity"
+            class="flex flex-col items-center bg-gray-100 dark:bg-gray-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
+          >
+            <UIcon
+              name="i-heroicons-archive-box"
+              class="text-gray-500 mb-1"
+              size="20"
+            />
+            <span class="text-xs text-gray-500 dark:text-gray-300">
+              {{
+                $tt(fields?.find((field) => field.name === "quantity")?.label!)
+              }}
+            </span>
+            <span class="font-semibold text-sm">{{ wine.quantity }}</span>
+          </div>
+        </div>
+        <USeparator class="my-4" />
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-2xl text-gray-600 dark:text-white">
+            {{
+              useToNumber(wine.price?.toFixed(2) || 0).value.toLocaleString(
+                locale
+              )
+            }}&nbsp;{{ $tt("$.czk") }}
+          </span>
+          <div>
+            <UButton
+              icon="i-heroicons-pencil-square"
+              color="secondary"
+              variant="outline"
+              class="lg:text-lg dark:text-white"
+              @click="addToCashdesk"
+            >
+              {{ $tt("$.wine.to_cart") }}
+            </UButton>
+            <UButton
+              icon="i-heroicons-heart"
+              class="ml-4"
+              size="lg"
+              variant="outline"
+            />
           </div>
         </div>
       </div>

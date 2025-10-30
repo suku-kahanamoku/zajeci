@@ -42,8 +42,8 @@ async function onSubmit(body: Record<string, any>) {
 </script>
 
 <template>
-  <div id="contact" class="lg:py-12">
-    <div class="text-center pb-8 lg:pb-10">
+  <div id="contact">
+    <div class="text-center py-10">
       <h2
         class="text-primary-600 text-4xl  font-bold tracking-tight dark:text-primary-400"
       >

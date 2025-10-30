@@ -26,28 +26,22 @@ useHead({
 </script>
 
 <template>
-  <div
-    v-if="config"
-    :id="config.syscode"
-    class="max-w-7xl mx-auto px-5 w-full"
-  >
-  <div class="flex flex-col gap-8">
-      <UPageHeader
-        :title="title"
-        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
-        class="border-none"
-      />
+  <div v-if="config" :id="config.syscode" class="w-full max-w-7xl mx-auto px-5">
+    <UPageHeader
+      :title="title"
+      :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+      class="border-none"
+    />
 
-      <CmpForm
-        v-if="wine?.data"
-        :fields="config.fields"
-        :item="(wine.data as IWine)"
-        :loading="loading"
-        :ui="{
-          body: 'grid md:grid-cols-2 gap-4',
-        }"
-        @submit="onUpdate($event, wine?.data as IWine)"
-      />
-    </div>
+    <CmpForm
+      v-if="wine?.data"
+      :fields="config.fields"
+      :item="(wine.data as IWine)"
+      :loading="loading"
+      :ui="{
+        body: 'grid md:grid-cols-2 gap-4',
+      }"
+      @submit="onUpdate($event, wine?.data as IWine)"
+    />
   </div>
 </template>

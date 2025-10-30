@@ -31,43 +31,41 @@ async function onDeleteHandler(event: boolean) {
 </script>
 
 <template>
-  <div v-if="config" :id="config.syscode" class="max-w-7xl mx-auto px-5 w-full">
-  <div class="flex flex-col gap-8">
-      <UPageHeader
-        :title="title"
-        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
-        class="border-none"
-      />
+  <div v-if="config" :id="config.syscode" class="w-full max-w-7xl mx-auto px-5">
+    <UPageHeader
+      :title="title"
+      :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+      class="border-none"
+    />
 
-      <div class="flex justify-end gap-2">
-        <UButton
-          icon="i-heroicons-trash"
-          color="error"
-          variant="outline"
-          :aria-label="$tt('$.aria.delete_selected')"
-          :disabled="!selected.length"
-          :loading="loading"
-          @click="isOpen = true"
-        />
-        <UButton
-          :to="localePath(routes.admin_wine_create?.path!)"
-          icon="i-heroicons-plus-circle"
-          color="secondary"
-          variant="outline"
-          :aria-label="$tt('$.aria.delete_selected')"
-          :loading="loading"
-        />
-      </div>
-
-      <CmpTable
-        ref="tableCmp"
-        v-model:selected="selected"
-        :config="config"
-        :data="(wines?.data as IWine[])"
+    <div class="flex justify-end gap-2">
+      <UButton
+        icon="i-heroicons-trash"
+        color="error"
+        variant="outline"
+        :aria-label="$tt('$.aria.delete_selected')"
+        :disabled="!selected.length"
         :loading="loading"
-        @delete="isOpen = true"
+        @click="isOpen = true"
+      />
+      <UButton
+        :to="localePath(routes.admin_wine_create?.path!)"
+        icon="i-heroicons-plus-circle"
+        color="secondary"
+        variant="outline"
+        :aria-label="$tt('$.aria.delete_selected')"
+        :loading="loading"
       />
     </div>
+
+    <CmpTable
+      ref="tableCmp"
+      v-model:selected="selected"
+      :config="config"
+      :data="(wines?.data as IWine[])"
+      :loading="loading"
+      @delete="isOpen = true"
+    />
 
     <CmpConfirmDialog
       v-model="isOpen"

@@ -1,14 +1,12 @@
 <template>
-  <div id="about" class="lg:py-12">
-    <div class="text-center pb-8 lg:pb-10">
+  <div id="about">
+    <div class="text-center py-10">
       <h2
         class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
       >
         {{ $tt("$.about.title") }}
       </h2>
-      <h3
-        class="pt-8 text-xl  font-bold text-gray-600 dark:text-gray-400"
-      >
+      <h3 class="pt-8 text-xl font-bold text-gray-600 dark:text-gray-400">
         {{ $tt("$.about.subtitle") }}
       </h3>
     </div>

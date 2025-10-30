@@ -49,23 +49,20 @@ const { data: wines } = await useAsyncData(
 </script>
 
 <template>
-  <div v-if="config" :id="config.syscode" class="lg:py-12">
-    <div class="text-center pb-8 lg:pb-10">
+  <div v-if="config" :id="config.syscode">
+    <div class="text-center py-10">
       <h2
-        class="text-primary-600 text-4xl  font-bold tracking-tight dark:text-primary-400"
+        class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
       >
         {{ $tt("$.wine.title") }}
       </h2>
     </div>
 
-    <div
-      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4 items-stretch"
-    >
+    <div class="flex flex-wrap justify-center gap-10 items-stretch">
       <CmpWineCard
         v-for="wine of wines?.data"
         :fields="config.fields"
         :wine="(wine as IWine)"
-        class="h-full"
       />
     </div>
   </div>

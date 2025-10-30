@@ -84,7 +84,7 @@ watch(stepModel, (value, oldValue) => {
 <template>
   <div
     :id="(routes.cashdesk?.meta?.syscode as string)"
-    class="max-w-7xl mx-auto px-5"
+    class="max-w-7xl mx-auto px-5 pb-16"
   >
     <UPageHeader
       :title="title"

@@ -42,22 +42,19 @@ const tasting = [
 </script>
 
 <template>
-  <div id="tasting" class="lg:py-12">
-    <div class="text-center pb-8 lg:pb-10">
+  <div id="tasting">
+    <div class="text-center py-10">
       <h2
-        class="text-4xl  font-bold tracking-tight text-primary-600 dark:text-primary-400"
+        class="text-4xl font-bold tracking-tight text-primary-600 dark:text-primary-400"
       >
         {{ $tt("$.tasting.title") }}
       </h2>
     </div>
 
-    <div
-      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4 items-stretch"
-    >
+    <div class="flex flex-wrap justify-center gap-10 items-stretch">
       <TasteCard
         v-for="(item, index) of tasting"
         :item="item"
-        :class="{ 'sm:col-span-2 md:col-auto': index === 2 }"
       />
     </div>
   </div>

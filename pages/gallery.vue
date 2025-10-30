@@ -57,8 +57,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto px-5 w-full">
-  <div :id="(routes.gallery?.meta?.syscode as string)">
+  <div class="w-full max-w-7xl mx-auto px-5">
+    <div :id="(routes.gallery?.meta?.syscode as string)">
       <UPageHeader
         :title="title"
         :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"

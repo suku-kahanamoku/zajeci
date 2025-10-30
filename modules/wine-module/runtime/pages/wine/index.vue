@@ -63,7 +63,11 @@ const { data: wines } = await useAsyncData(
 </script>
 
 <template>
-  <div v-if="config" :id="config.syscode" class="max-w-7xl mx-auto px-5 w-full">
+  <div
+    v-if="config"
+    :id="config.syscode"
+    class="w-full max-w-7xl mx-auto px-5 space-y-16 py-16"
+  >
     <div :id="(routes.winde?.meta?.syscode as string)">
       <UPageHeader
         :title="title"
@@ -71,7 +75,7 @@ const { data: wines } = await useAsyncData(
         class="border-none"
       />
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 py-4">
+      <div class="flex flex-wrap justify-center gap-10 items-stretch">
         <CmpWineCard
           v-for="wine of (wines?.data as IWine[])"
           :fields="config.fields"
