@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { loggedIn } = useUserSession();
+const { totalItemsLength } = useCashdesk();
+const { routes } = useMenuItems();
 
 useSeoMeta({
   robots: "index, follow",
@@ -49,6 +51,19 @@ const menuItems = [
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />
 
+      <UChip
+        :show="totalItemsLength"
+        :text="totalItemsLength"
+        size="3xl"
+        :inset="true"
+        color="secondary"
+      >
+        <UButton
+          :to="routes.cashdesk?.path"
+          icon="i-heroicons-bell"
+          variant="ghost"
+        />
+      </UChip>
       <UColorModeButton />
     </template>
 

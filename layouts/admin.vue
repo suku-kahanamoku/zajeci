@@ -2,7 +2,8 @@
 const { loggedIn } = useUserSession();
 const localePath = useLocalePath();
 const { user } = useUserSession();
-const { menuItem } = useMenuItems();
+const { totalItemsLength } = useCashdesk();
+const { routes, menuItem } = useMenuItems();
 
 const menuItems: any[] = [];
 
@@ -39,6 +40,19 @@ if (user.value?.role === "admin") {
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />
 
+      <UChip
+        :show="totalItemsLength"
+        :text="totalItemsLength"
+        size="3xl"
+        :inset="true"
+        color="secondary"
+      >
+        <UButton
+          :to="routes?.cashdesk?.path"
+          icon="i-heroicons-bell"
+          variant="ghost"
+        />
+      </UChip>
       <UColorModeButton />
     </template>
 

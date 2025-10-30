@@ -162,7 +162,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     </template>
 
     <template #total_price-cell="{ row }">
-      <div class="flex justify-between space-x-4">
+      <div class="flex justify-between items-center space-x-4">
         <p class="font-semibold text-end w-full">
           {{
             useToNumber(
@@ -221,8 +221,8 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             @click="increaseQuantity(cart)"
           />
         </div>
-        <div class="flex justify-between space-x-4 sm:space-x-12">
-          <p class="font-semibold min-w-20 text-end">
+        <div class="flex justify-between items-center space-x-4 sm:space-x-12">
+          <p class="font-semibold text-end">
             {{
               useToNumber(
                 cart?.totalPrice?.toFixed(2) || 0

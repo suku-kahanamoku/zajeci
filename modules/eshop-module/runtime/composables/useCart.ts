@@ -6,7 +6,7 @@ let _cartSingleton: ReturnType<typeof createCart> | null = null;
 function createCart() {
   const carts = ref<ICart[]>([]);
 
-  const totalItems = computed(() =>
+  const totalItemsLength = computed(() =>
     carts.value.reduce((total, item) => total + item.quantity, 0)
   );
 
@@ -60,7 +60,7 @@ function createCart() {
 
   return {
     carts,
-    totalItems,
+    totalItemsLength,
     totalPrice,
     addItem,
     removeItem,

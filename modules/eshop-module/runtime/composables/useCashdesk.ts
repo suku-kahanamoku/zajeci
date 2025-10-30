@@ -39,7 +39,7 @@ function createCashdesk() {
     removeItem,
     setQuantity,
     deleteItem,
-    totalItems,
+    totalItemsLength,
     totalPrice: cartTotalPrice,
   } = useCart();
 
@@ -173,7 +173,7 @@ function createCashdesk() {
     user,
     setUser,
     carts,
-    totalItems,
+    totalItemsLength,
     totalPrice,
     addItem: _addItem,
     removeItem: _removeItem,
