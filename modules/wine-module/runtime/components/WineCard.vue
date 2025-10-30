@@ -32,7 +32,6 @@ function addToCashdesk() {
       variant="soft"
       class="divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
       :ui="{
-        body: 'flex-1',
         footer: 'flex justify-between items-center mt-auto',
       }"
     >

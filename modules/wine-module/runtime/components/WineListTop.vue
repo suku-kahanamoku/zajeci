@@ -58,7 +58,7 @@ const { data: wines } = await useAsyncData(
       </h2>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-10 items-stretch">
+    <div class="flex flex-wrap justify-center gap-4 items-stretch">
       <CmpWineCard
         v-for="wine of wines?.data"
         :fields="config.fields"

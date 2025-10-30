@@ -9,14 +9,14 @@ const props = defineProps<{
 <template>
   <UCard
     variant="solid"
-    class="zoom-in flex-1 min-w-80 divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
+    class="zoom-in flex-1 min-w-80 divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl py-2"
   >
     <template #header>
-      <div class="text-center">
-        <h3 class="mt-3 text-2xl font-bold text-gray-900 dark:text-white">
+      <div class="text-center space-y-2">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
           {{ $tt(item.name) }}
         </h3>
-        <p class="mt-2 text-gray-600 dark:text-gray-300">
+        <p class="text-gray-600 dark:text-gray-300">
           {{
             item.price && typeof item.price === "object"
               ? item.price.value

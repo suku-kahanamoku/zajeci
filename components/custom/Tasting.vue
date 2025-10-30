@@ -51,11 +51,8 @@ const tasting = [
       </h2>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-10 items-stretch">
-      <TasteCard
-        v-for="(item, index) of tasting"
-        :item="item"
-      />
+    <div class="flex flex-wrap justify-center gap-4 items-stretch">
+      <TasteCard v-for="(item, index) of tasting" :item="item" />
     </div>
   </div>
 </template>
