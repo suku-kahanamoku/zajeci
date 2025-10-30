@@ -74,7 +74,6 @@ const { totalPrice } = useCashdesk();
         :to="routes.cashdesk?.path"
         data-testid="dialog-yes"
         :label="$tt('$.btn.to_order')"
-        size="xl"
         color="primary"
       />
     </template>

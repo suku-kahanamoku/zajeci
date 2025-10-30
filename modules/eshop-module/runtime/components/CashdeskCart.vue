@@ -117,7 +117,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             "
             class="flex items-center"
           >
-            <h3 class="text-lg font-semibold text-pretty">
+            <h3 class="font-semibold text-pretty">
               {{ row.original?.wine?.name }}
             </h3>
           </NuxtLink>
@@ -152,7 +152,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     </template>
 
     <template #price-cell="{ row }">
-      <p class="text-lg font-semibold text-end w-full">
+      <p class="font-semibold text-end w-full">
         {{
           useToNumber(
             row.original?.unitPrice?.toFixed(2) || 0
@@ -163,7 +163,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #total_price-cell="{ row }">
       <div class="flex justify-between space-x-4">
-        <p class="text-lg font-semibold text-end w-full">
+        <p class="font-semibold text-end w-full">
           {{
             useToNumber(
               row.original?.totalPrice?.toFixed(2) || 0
@@ -201,7 +201,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           height="100"
           class="object-cover rounded-lg"
         />
-        <h3 class="text-lg font-semibold">{{ cart.wine?.name }}</h3>
+        <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
       </NuxtLink>
 
       <!-- Parametry vína s ikonami ve dvou řádcích -->
@@ -222,7 +222,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           />
         </div>
         <div class="flex justify-between space-x-4 sm:space-x-12">
-          <p class="text-lg font-semibold min-w-20 text-end">
+          <p class="font-semibold min-w-20 text-end">
             {{
               useToNumber(
                 cart?.totalPrice?.toFixed(2) || 0

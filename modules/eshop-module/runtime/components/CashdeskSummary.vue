@@ -76,7 +76,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
             "
             class="flex items-center"
           >
-            <h3 class="text-lg font-semibold text-pretty">
+            <h3 class="font-semibold text-pretty">
               {{ row.original?.wine?.name }}
             </h3>
           </NuxtLink>
@@ -91,7 +91,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     </template>
 
     <template #quantity-cell="{ row }">
-      <div class="w-full text-lg font-semibold text-end">
+      <div class="w-full font-semibold text-end">
         {{
           useToNumber(
             row.original?.quantity?.toFixed(2) || 0
@@ -101,7 +101,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     </template>
 
     <template #price-cell="{ row }">
-      <p class="text-lg font-semibold min-w-24 text-end">
+      <p class="font-semibold min-w-24 text-end">
         {{
           useToNumber(
             row.original?.totalPrice?.toFixed(2) || 0
@@ -113,11 +113,11 @@ const columns: Ref<TableColumn<any>[]> = computed(
     <template #body-bottom>
       <tr>
         <td colspan="99" class="p-4">
-          <p class="text-lg font-semibold min-w-24 text-end">
+          <p class="font-semibold min-w-24 text-end">
             {{
-              useToNumber(
-                totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
+              useToNumber(totalPrice?.toFixed(2) || 0).value.toLocaleString(
+                locale
+              )
             }}&nbsp;{{ t("$.czk") }}
           </p>
         </td>
@@ -147,14 +147,14 @@ const columns: Ref<TableColumn<any>[]> = computed(
           height="100"
           class="object-cover rounded-lg"
         />
-        <h3 class="text-lg font-semibold">{{ cart.wine?.name }}</h3>
+        <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
       </NuxtLink>
 
       <!-- Parametry vína s ikonami ve dvou řádcích -->
       <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
 
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
-        <div class="w-full text-center text-lg font-semibold flex gap-2">
+        <div class="w-full text-center font-semibold flex gap-2">
           <p>{{ t("$.form.quantity") }}:</p>
           <p>
             {{
@@ -164,7 +164,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
             }}
           </p>
         </div>
-        <div class="w-full text-center text-lg font-semibold flex gap-2">
+        <div class="w-full text-center font-semibold flex gap-2">
           <p>{{ t("$.form.price") }}:</p>
           <p>
             {{
@@ -260,7 +260,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       </template>
 
       <div class="flex flex-col gap-y-2">
-        <h4 class="font-semibold text-lg">{{ t("$.payment.account_num") }}:</h4>
+        <h4 class="font-semibold">{{ t("$.payment.account_num") }}:</h4>
 
         <div v-if="payment.type === 'bank'">
           <div>

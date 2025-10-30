@@ -27,10 +27,10 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div v-if="wine" :id="wine._id" class="zoom-in flex-1 min-w-96">
+  <div v-if="wine" :id="wine._id" class="zoom-in flex-1 flex min-w-96">
     <UCard
       variant="soft"
-      class="divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
+      class="w-full flex-1 flex flex-col divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
       :ui="{
         footer: 'flex justify-between items-center mt-auto',
       }"
@@ -39,7 +39,7 @@ function addToCashdesk() {
         <NuxtLink :to="wine.gen_data?.url">
           <NuxtImg
             :src="wine.image?.main?.src || '/img/bottle.jpg'"
-            :alt="'wine'"
+            :alt="wine.name || 'wine'"
             loading="lazy"
             format="webp"
             height="300"
