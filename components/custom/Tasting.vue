@@ -43,7 +43,7 @@ const tasting = [
 
 <template>
   <div id="tasting">
-    <div class="text-center py-10">
+    <div class="text-center pt-20 pb-10">
       <h2
         class="text-4xl font-bold tracking-tight text-primary-600 dark:text-primary-400"
       >

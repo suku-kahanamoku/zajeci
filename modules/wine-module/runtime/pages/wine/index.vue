@@ -66,7 +66,7 @@ const { data: wines } = await useAsyncData(
   <div
     v-if="config"
     :id="config.syscode"
-    class="w-full max-w-7xl mx-auto px-5 space-y-16 py-16"
+    class="w-full max-w-7xl mx-auto px-5 pb-10"
   >
     <div :id="(routes.winde?.meta?.syscode as string)">
       <UPageHeader

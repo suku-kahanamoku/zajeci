@@ -21,7 +21,7 @@ useHead({
   <div class="w-full overflow-hidden">
     <CustomIntro />
 
-    <div class="w-full max-w-7xl mx-auto px-5 space-y-16 py-16">
+    <div class="w-full max-w-7xl mx-auto px-5 space-y-10 py-10">
       <CustomAbout />
       <CmpWineListTop />
       <CustomTasting />

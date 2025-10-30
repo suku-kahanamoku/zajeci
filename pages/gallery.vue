@@ -57,35 +57,36 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full max-w-7xl mx-auto px-5">
-    <div :id="(routes.gallery?.meta?.syscode as string)">
-      <UPageHeader
-        :title="title"
-        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
-        class="border-none"
-      />
-      <div
-        id="gallery"
-        class="d-flex grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10 items-center"
+  <div
+    :id="(routes.gallery?.meta?.syscode as string)"
+    class="w-full max-w-7xl mx-auto px-5 pb-10"
+  >
+    <UPageHeader
+      :title="title"
+      :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
+      class="border-none"
+    />
+    <div
+      id="gallery"
+      class="d-flex grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center"
+    >
+      <a
+        v-for="img of data"
+        :href="img.src"
+        target="_blank"
+        rel="noreferrer"
+        class="flex border-2 border-[#D8DEE9] rounded-md overflow-hidden sm:max-h-60 shadow-sm hover:shadow-lg items-center align-middle justify-center justify-items-center"
+        :data-pswp-width="img.width"
+        :data-pswp-height="img.height"
       >
-        <a
-          v-for="img of data"
-          :href="img.src"
-          target="_blank"
-          rel="noreferrer"
-          class="flex border-2 border-[#D8DEE9] rounded-md overflow-hidden sm:max-h-60 shadow-sm hover:shadow-lg items-center align-middle justify-center justify-items-center"
-          :data-pswp-width="img.width"
-          :data-pswp-height="img.height"
-        >
-          <img
-            :src="img.src"
-            alt="Gallery img"
-            loading="lazy"
-            format="webp"
-            width="300"
-          />
-        </a>
-      </div>
+        <img
+          :src="img.src"
+          alt="Gallery img"
+          loading="lazy"
+          format="webp"
+          width="300"
+        />
+      </a>
     </div>
   </div>
 </template>

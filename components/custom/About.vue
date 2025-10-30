@@ -1,6 +1,6 @@
 <template>
   <div id="about">
-    <div class="text-center py-10">
+    <div class="text-center pt-20 pb-10">
       <h2
         class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
       >
