@@ -52,7 +52,7 @@ function addToCashdesk() {
       <template #default>
         <NuxtLink :to="wine.gen_data?.url">
           <h3
-            class="text-center text-lg lg:text-xl font-bold pb-6 text-primary-600 dark:text-primary-400"
+            class="text-center text-xl font-bold pb-6 text-primary-600 dark:text-white"
           >
             {{ wine.name }}
           </h3>
@@ -62,7 +62,7 @@ function addToCashdesk() {
       </template>
 
       <template #footer>
-        <div class="font-bold lg:text-lg text-gray-600 dark:text-white">
+        <div class="font-bold text-gray-600 dark:text-white">
           {{
             $tt(fields?.find((field) => field.name === "price")?.label!)
           }}:&nbsp;{{
@@ -74,7 +74,7 @@ function addToCashdesk() {
         <UButton
           icon="i-heroicons-pencil-square"
           color="secondary"
-          class="lg:text-lg dark:text-white"
+          class="dark:text-white"
           variant="outline"
           @click="addToCashdesk"
         >

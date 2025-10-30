@@ -13,7 +13,7 @@ const { getSelectLabel } = useField();
 <template>
   <div v-if="wine" class="space-y-1">
     <div
-      class="flex flex-wrap gap-3 justify-between py-1 text-gray-700 dark:text-gray-200"
+      class="flex flex-wrap gap-4 justify-between py-1 text-gray-700 dark:text-gray-200"
     >
       <span v-if="wine.color" class="flex items-center gap-1">
         <UIcon name="i-heroicons-paint-brush" class="text-pink-500" />

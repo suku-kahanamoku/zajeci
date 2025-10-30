@@ -83,7 +83,7 @@ function addToCashdesk() {
             </UButton>
           </span>
         </div>
-        <p class="text-lg leading-relaxed dark:text-white">
+        <p class="leading-relaxed dark:text-white">
           {{ wine.description }}
         </p>
         <!-- Moderní badge styl pro atributy vína, roztažené bloky -->
@@ -217,7 +217,7 @@ function addToCashdesk() {
               icon="i-heroicons-pencil-square"
               color="secondary"
               variant="outline"
-              class="lg:text-lg dark:text-white"
+              class="dark:text-white"
               @click="addToCashdesk"
             >
               {{ $tt("$.wine.to_cart") }}

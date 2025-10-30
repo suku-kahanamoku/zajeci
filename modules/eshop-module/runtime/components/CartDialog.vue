@@ -26,9 +26,7 @@ const { totalPrice } = useCashdesk();
     }"
   >
     <template #body>
-      <h3
-        class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"
-      >
+      <h3 class="text-xl font-bold text-primary-600 dark:text-white">
         {{ cart?.wine?.name }}
       </h3>
       <div class="mt-6 flex flex-col gap-2">

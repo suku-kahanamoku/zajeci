@@ -13,7 +13,7 @@ const props = defineProps<{
   >
     <template #header>
       <div class="text-center">
-        <h3 class="mt-3 text-2xl font-bold text-gray-900 dark:text-primary-300">
+        <h3 class="mt-3 text-2xl font-bold text-gray-900 dark:text-white">
           {{ $tt(item.name) }}
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
@@ -29,12 +29,12 @@ const props = defineProps<{
     <ul class="grid text-left gap-4">
       <li
         v-for="feature of item.features"
-        class="flex items-center gap-3 text-gray-600 dark:text-white"
+        class="flex items-center gap-3 text-primary-600 dark:text-white"
       >
         <div>
           <Icon class="text-secondary-400" :name="feature.icon" size="32" />
         </div>
-        <div class="font-semibold lg:text-lg">
+        <div>
           {{ $tt(feature.label) }}
         </div>
       </li>

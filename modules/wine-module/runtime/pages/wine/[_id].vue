@@ -73,7 +73,7 @@ useHead({
   <section
     v-if="config"
     :id="config.syscode"
-    class="max-w-7xl mx-auto text-gray-700 body-font overflow-hidden"
+    class="max-w-7xl mx-auto overflow-hidden"
   >
     <CmpWineDetailCard
       v-if="wine?.data"
