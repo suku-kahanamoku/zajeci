@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "@suku-kahanamoku/mongoose-module",
     "@suku-kahanamoku/lang-module",
     "@suku-kahanamoku/common-module",
+    "@suku-kahanamoku/seo-module",
     "@nuxt/image",
     "@pinia/nuxt",
     "nuxt-gtag",
