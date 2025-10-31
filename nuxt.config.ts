@@ -33,10 +33,6 @@ export default defineNuxtConfig({
     },
   },
 
-  pinia: {
-    storesDirs: ["./stores/**"],
-  },
-
   i18n: {
     defaultLocale: "cs",
     langDir: "locales/",
