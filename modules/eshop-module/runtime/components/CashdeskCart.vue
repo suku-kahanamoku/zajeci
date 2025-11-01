@@ -243,7 +243,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     icon="i-heroicons-truck"
     :title="t('$.delivery.limit_free')"
     color="info"
-    variant="subtle"
+    variant="outline"
     class="my-4"
   />
 

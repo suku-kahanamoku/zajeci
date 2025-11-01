@@ -44,7 +44,7 @@ export function useWineAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, routes.admin_wine.path);
+          url = useFactory(url, config.value.factory, routes.admin_wine?.path);
           return (await useApi(url)) as IWineResponse | IWinesResponse;
         } catch (error: any) {
           console.error(error);
@@ -110,7 +110,7 @@ export function useWineAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine.path);
+      navigateTo(routes.admin_wine?.path);
     }
     loading.value = false;
   }
@@ -122,7 +122,7 @@ export function useWineAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine.path);
+      navigateTo(routes.admin_wine?.path);
     }
     loading.value = false;
   }

@@ -245,7 +245,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           v-if="delivery?.type === 'free'"
           :description="t('$.delivery.brno_free')"
           color="info"
-          variant="subtle"
+          variant="outline"
         />
       </div>
     </UCard>

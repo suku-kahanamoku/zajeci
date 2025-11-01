@@ -35,10 +35,11 @@
       "dhl": "DHL",
       "geis": "GEIS",
       "messenger": "Messenger",
+      "address": "Doručovací adresa",
       "brno_free": "Dovoz v rámci okresu Brno-město a Modřice je zdarma každý čtvrtek.",
       "limit_free": "Při objednávce nad 2500 Kč je doprava zdarma.",
-      "third_day": "Doruceni třetí den po odeslání nejpozději.",
-      "not_quaranteed": "Doruceni nezaručuje."
+      "third_day": "Doručení třetí den po odeslání nejpozději.",
+      "not_quaranteed": "Doručení nezaručuje."
     },
     "payment": {
       "title": "Platba",
@@ -60,6 +61,7 @@
       "city": "Město",
       "zip": "PSČ",
       "state": "Stát",
+      "phone": "Telefon",
       "total": "Celková cena"
     },
     "admin": {

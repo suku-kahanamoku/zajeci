@@ -48,11 +48,8 @@ const menuItems = [
     </UNavigationMenu>
 
     <template #right>
-      <UiProfileDropdownMenu v-if="loggedIn" />
-      <UiSignBtns v-else />
-
       <UChip
-        :show="totalItemsLength"
+        :show="!!totalItemsLength"
         :text="totalItemsLength"
         size="3xl"
         :inset="true"
@@ -65,6 +62,9 @@ const menuItems = [
         />
       </UChip>
       <UColorModeButton />
+
+      <UiProfileDropdownMenu v-if="loggedIn" />
+      <UiSignBtns v-else />
     </template>
 
     <template #body>
@@ -73,6 +73,10 @@ const menuItems = [
         variant="link"
         color="primary"
         orientation="vertical"
+        :ui="{
+          list: 'space-y-1',
+          link: 'text-lg',
+        }"
       >
         <template #item-label="{ item }">
           {{ $tt(item.label) }}

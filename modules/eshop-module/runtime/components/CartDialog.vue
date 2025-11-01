@@ -25,11 +25,14 @@ const { totalPrice } = useCashdesk();
       footer: 'flex justify-between items-center gap-2',
     }"
   >
-    <template #body>
+    <template #title>
       <h3 class="text-xl font-bold text-primary-600 dark:text-white">
-        {{ cart?.wine?.name }}
+        {{ $tt("$.cart.added", { name: cart?.wine?.name }) }}
       </h3>
-      <div class="mt-6 flex flex-col gap-2">
+    </template>
+
+    <template #body>
+      <div class="space-y-2">
         <div>
           {{ $tt("$.form.price") }}:&nbsp;{{
             useToNumber(cart?.totalPrice?.toFixed(2) || 0).value.toLocaleString(
@@ -54,7 +57,7 @@ const { totalPrice } = useCashdesk();
         icon="i-heroicons-truck"
         :title="$tt('$.delivery.limit_free')"
         color="info"
-        variant="subtle"
+        variant="outline"
         class="mt-5"
       />
     </template>

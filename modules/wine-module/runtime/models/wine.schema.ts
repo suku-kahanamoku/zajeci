@@ -1,7 +1,10 @@
-
-
 import { Schema, model } from "mongoose";
-import { WineKind, WineQuality, WineColor, WineVariety } from "../types/wine.interface";
+import {
+  WineKind,
+  WineQuality,
+  WineColor,
+  WineVariety,
+} from "../types/wine.interface";
 
 // Use enum values from TypeScript enums for Mongoose enum validation
 export const WineKindEnum = Object.values(WineKind);
@@ -23,14 +26,18 @@ export const WineSchema = new Schema<IWine>(
       index: true,
       trim: true,
     },
+    quantity: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
     price: {
       type: Number,
       required: true,
       default: 0,
     },
-    quantity: {
+    oldPrice: {
       type: Number,
-      required: true,
       default: 0,
     },
     description: {

@@ -69,7 +69,7 @@ function createPayment() {
 
   const payment = ref<IPayment>(paymentObjects.bank);
 
-  const paymentOptions = computed(() =>
+  const paymentOptions = computed<IPayment[]>(() =>
     Object.values(paymentObjects).map((item) => ({
       ...item,
       totalPrice: totalPrice.value > 2500 ? 0 : item.unitPrice,

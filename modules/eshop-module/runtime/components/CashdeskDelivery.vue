@@ -78,9 +78,18 @@ watch(
       </h3>
     </template>
 
-    <URadioGroup v-model="delivery.type" :items="deliveryOptions">
-      <template #label="{ item, modelValue }">
-        <div class="flex items-center justify-between w-full">
+    <URadioGroup
+      v-model="delivery.type"
+      :items="deliveryOptions"
+      :ui="{ item: 'items-center' }"
+    >
+      <template #label="{ item }">
+        <div
+          class="flex items-center justify-between w-full"
+          :class="
+            item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+          "
+        >
           <div class="flex items-center gap-2">
             <Icon
               v-if="item?.avatar?.startsWith('mdi:')"
@@ -104,34 +113,34 @@ watch(
               <Icon name="mdi:question-mark-circle" size="20" />
             </UTooltip>
           </div>
-          <span v-if="item.totalPrice! > 0">
-            {{
-              useToNumber(
-                item?.totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
-            }}&nbsp;{{ t("$.czk") }}
-          </span>
+
+          <UiPrice v-if="item.totalPrice! > 0" :price="item?.totalPrice!" />
           <span v-else>
             {{ t("$.delivery.free") }}
           </span>
         </div>
-
-        <CmpForm
-          v-if="modelValue === item.value"
-          ref="formCmp"
-          :fields="config.fields || []"
-          :item="delivery.address"
-          variant="soft"
-          :actions="{ disabled: true }"
-          :ui="{
-            body: 'grid md:grid-cols-2 gap-4',
-          }"
-          :key="delivery.key"
-          class="w-full"
-          @change="onFormChange"
-        >
-        </CmpForm>
       </template>
     </URadioGroup>
+
+    <template #footer>
+      <UAccordion :items="[{ label: t('$.delivery.address') }]">
+        <template #body>
+          <CmpForm
+            ref="formCmp"
+            :fields="config.fields || []"
+            :item="delivery.address"
+            variant="outline"
+            :actions="{ disabled: true }"
+            :ui="{
+              body: 'grid md:grid-cols-2 gap-4',
+            }"
+            :key="delivery.key"
+            class="w-full"
+            @change="onFormChange"
+          >
+          </CmpForm>
+        </template>
+      </UAccordion>
+    </template>
   </UCard>
 </template>

@@ -35,6 +35,7 @@
       "dhl": "DHL",
       "geis": "GEIS",
       "messenger": "Messenger",
+      "address": "Doručovací adresa",
       "brno_free": "Delivery within the Brno-City district and Modřice is free every Thursday.",
       "limit_free": "For orders over 2500 CZK, shipping is free.",
       "third_day": "Delivery on the third day after dispatch at the latest.",
@@ -60,6 +61,7 @@
       "city": "City",
       "zip": "Postal code",
       "state": "State",
+      "phone": "Phone",
       "total": "Total price"
     },
     "admin": {

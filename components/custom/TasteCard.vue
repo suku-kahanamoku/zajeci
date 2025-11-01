@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <UCard
     variant="solid"
-    class="zoom-in flex-1 min-w-80 divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl py-2"
+    class="zoom-in flex-1 min-w-80 divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
   >
     <template #header>
       <div class="text-center space-y-2">

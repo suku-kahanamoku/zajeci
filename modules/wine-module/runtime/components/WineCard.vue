@@ -10,9 +10,6 @@ const props = defineProps<{
   wine?: IWine;
 }>();
 
-const {
-  i18n: { locale },
-} = useLang();
 const { getSelectLabel } = useField();
 const { addItem } = useCashdesk();
 const modal = ref(false);
@@ -27,10 +24,10 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div v-if="wine" :id="wine._id" class="zoom-in flex-1 flex min-w-96">
+  <div v-if="wine" :id="wine._id" class="zoom-in flex-1 flex min-w-80 max-w-96">
     <UCard
       variant="soft"
-      class="w-full flex-1 flex flex-col divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
+      class="w-full flex flex-col divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
       :ui="{
         footer: 'flex justify-between items-center mt-auto',
       }"
@@ -42,8 +39,8 @@ function addToCashdesk() {
             :alt="wine.name || 'wine'"
             loading="lazy"
             format="webp"
-            height="300"
-            class="mx-auto"
+            sizes="200px md:300px"
+            class="mx-auto h-[200px] md:h-[300px]"
           />
         </NuxtLink>
       </template>
@@ -61,14 +58,10 @@ function addToCashdesk() {
       </template>
 
       <template #footer>
-        <div class="font-bold text-gray-600 dark:text-white">
+        <div class="flex flex-wrap font-bold text-gray-600 dark:text-white">
           {{
             $tt(fields?.find((field) => field.name === "price")?.label!)
-          }}:&nbsp;{{
-            useToNumber(wine?.price?.toFixed(2) || 0).value.toLocaleString(
-              locale
-            )
-          }}&nbsp;{{ $tt("$.czk") }}
+          }}:&nbsp;<UiPrice :price="wine.price" :old-price="wine.oldPrice" />
         </div>
         <UButton
           icon="i-heroicons-pencil-square"

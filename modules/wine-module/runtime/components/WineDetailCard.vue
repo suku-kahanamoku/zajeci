@@ -3,10 +3,7 @@ import { useToNumber } from "@vueuse/core";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
-import type {
-  IFormField,
-  IFormFieldOption,
-} from "@suku-kahanamoku/form-module/types";
+import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 const props = defineProps<{
   fields: IFormField[];
@@ -52,8 +49,8 @@ function addToCashdesk() {
         :alt="'wine'"
         loading="lazy"
         format="webp"
-        height="500"
-        class="mx-auto"
+        sizes="300px md:500px"
+        class="mx-auto h-[300px] md:h-[500px]"
       />
       <div
         class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3"
@@ -98,7 +95,12 @@ function addToCashdesk() {
               size="20"
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
-              {{ $tt(fields?.find((field) => field.name === "kind")?.label!) }}
+              {{
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "kind")
+                    ?.label!
+                )
+              }}
             </span>
             <span class="font-semibold text-sm">
               {{ getSelectLabel(fields, "kind", wine.kind) }}
@@ -114,7 +116,12 @@ function addToCashdesk() {
               size="20"
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
-              {{ $tt(fields?.find((field) => field.name === "color")?.label!) }}
+              {{
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "color")
+                    ?.label!
+                )
+              }}
             </span>
             <span class="font-semibold text-sm">
               {{ getSelectLabel(fields, "color", wine.color) }}
@@ -131,7 +138,10 @@ function addToCashdesk() {
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
-                $tt(fields?.find((field) => field.name === "quality")?.label!)
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "quality")
+                    ?.label!
+                )
               }}
             </span>
             <span class="font-semibold text-sm">
@@ -149,7 +159,10 @@ function addToCashdesk() {
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
-                $tt(fields?.find((field) => field.name === "variety")?.label!)
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "variety")
+                    ?.label!
+                )
               }}
             </span>
             <span class="font-semibold text-sm"
@@ -167,7 +180,10 @@ function addToCashdesk() {
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
-                $tt(fields?.find((field) => field.name === "volume")?.label!)
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "volume")
+                    ?.label!
+                )
               }}
             </span>
             <span class="font-semibold text-sm">{{ wine.volume }}</span>
@@ -182,7 +198,12 @@ function addToCashdesk() {
               size="20"
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
-              {{ $tt(fields?.find((field) => field.name === "year")?.label!) }}
+              {{
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "year")
+                    ?.label!
+                )
+              }}
             </span>
             <span class="font-semibold text-sm">{{ wine.year }}</span>
           </div>
@@ -197,21 +218,26 @@ function addToCashdesk() {
             />
             <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
-                $tt(fields?.find((field) => field.name === "quantity")?.label!)
+                $tt(
+                  fields?.find((field: IFormField) => field.name === "quantity")
+                    ?.label!
+                )
               }}
             </span>
             <span class="font-semibold text-sm">{{ wine.quantity }}</span>
           </div>
         </div>
+
         <USeparator class="my-4" />
+
         <div class="flex items-center justify-between">
-          <span class="font-bold text-2xl text-gray-600 dark:text-white">
+          <div
+            class="flex flex-wrap font-bold text-xl text-gray-600 dark:text-white"
+          >
             {{
-              useToNumber(wine.price?.toFixed(2) || 0).value.toLocaleString(
-                locale
-              )
-            }}&nbsp;{{ $tt("$.czk") }}
-          </span>
+              $tt(fields?.find((field) => field.name === "price")?.label!)
+            }}:&nbsp;<UiPrice :price="wine.price" :old-price="wine.oldPrice" />
+          </div>
           <div>
             <UButton
               icon="i-heroicons-pencil-square"

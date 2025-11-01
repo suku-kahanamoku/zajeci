@@ -56,8 +56,9 @@ export enum WineVariety {
 
 export interface IWine extends IItem {
   name: string;
-  price: number;
   quantity: number;
+  price: number;
+  oldPrice?: number;
   description?: string;
   kind?: WineKind;
   quality?: WineQuality;

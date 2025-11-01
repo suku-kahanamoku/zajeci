@@ -63,6 +63,7 @@ export interface IDelivery {
   label: string;
   unitPrice: number;
   totalPrice?: number;
+  disabled?: boolean;
   avatar?: string;
   help?: string;
   address?: IAddress;

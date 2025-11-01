@@ -130,6 +130,11 @@
       "label": "$.form.price"
     },
     {
+      "name": "oldPrice",
+      "type": "number",
+      "label": "$.form.old_price"
+    },
+    {
       "name": "quantity",
       "type": "number",
       "label": "$.form.quantity_stock"

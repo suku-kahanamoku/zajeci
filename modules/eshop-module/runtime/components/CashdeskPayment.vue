@@ -47,22 +47,26 @@ watch(
       </h3>
     </template>
 
-    <URadioGroup v-model="payment.type" :items="paymentOptions">
+    <URadioGroup
+      v-model="payment.type"
+      :items="paymentOptions"
+      :ui="{ item: 'items-center' }"
+    >
       <template #label="{ item }">
-        <div class="flex items-center justify-between w-full">
+        <div
+          class="flex items-center justify-between w-full"
+          :class="
+            item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+          "
+        >
           <div class="flex items-center gap-2">
             <Icon :name="item.avatar as string" size="30" class="w-20" />
             <span>
               {{ t(item?.label) }}
             </span>
           </div>
-          <span v-if="item.totalPrice! > 0">
-            {{
-              useToNumber(
-                item?.totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
-            }}&nbsp;{{ t("$.czk") }}
-          </span>
+
+          <UiPrice v-if="item.totalPrice! > 0" :price="item?.totalPrice!" />
           <span v-else>
             {{ t("$.btn.free") }}
           </span>

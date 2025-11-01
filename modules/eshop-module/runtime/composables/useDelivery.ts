@@ -52,7 +52,7 @@ function createDelivery() {
     address: {} as any,
   });
 
-  const deliveryOptions = computed(() =>
+  const deliveryOptions = computed<IDelivery[]>(() =>
     Object.values(deliveryObjects).map((item) => ({
       ...item,
       // Free delivery threshold (kept same logic as before but based on subtotal, not circular total)
