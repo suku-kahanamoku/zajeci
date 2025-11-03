@@ -7,24 +7,24 @@
   "fields": [
     {
       "name": "user.email",
-      "label": "$.order.form.user_email"
+      "label": "$.form.user_email"
     },
     {
       "name": "user.phone",
-      "label": "$.order.form.user_phone"
+      "label": "$.form.user_phone"
     },
     {
       "name": "delivery.type",
-      "label": "$.order.form.delivery_type"
+      "label": "$.form.delivery_type"
     },
     {
       "name": "payment.type",
-      "label": "$.order.form.payment_type"
+      "label": "$.form.payment_type"
     },
     {
       "name": "totalPrice",
       "type": "number",
-      "label": "$.order.form.total_price"
+      "label": "$.form.total_price"
     }
   ]
 }

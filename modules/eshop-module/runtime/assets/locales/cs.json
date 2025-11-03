@@ -64,28 +64,18 @@
       "phone": "Telefon",
       "total": "Celková cena"
     },
-    "admin": {
-      "order": {
-        "title": "Administrace objednávek",
-        "create_order": "Vytvořit objednávku",
-        "user_email": "Email uživatele",
-        "user_name": "Jméno uživatele",
-        "user_surname": "Příjmení uživatele",
-        "user_phone": "Telefon uživatele",
-        "total_price": "Celková cena",
-        "status": "Stav",
-        "delivery_type": "Typ dopravy",
-        "payment_type": "Typ platby",
-        "form": {
-          "user_email": "Email uživatele",
-          "user_name": "Jméno uživatele",
-          "user_surname": "Příjmení uživatele",
-          "user_phone": "Telefon uživatele",
-          "delivery_type": "Typ dopravy",
-          "payment_type": "Typ platby"
-        },
-        "order_id": "ID objednávky"
-      }
+    "order": {
+      "title": "Administrace objednávek",
+      "create_order": "Vytvořit objednávku",
+      "user_email": "Email uživatele",
+      "user_name": "Jméno uživatele",
+      "user_surname": "Příjmení uživatele",
+      "user_phone": "Telefon uživatele",
+      "total_price": "Celková cena",
+      "status": "Stav",
+      "delivery_type": "Typ dopravy",
+      "payment_type": "Typ platby",
+      "order_id": "ID objednávky"
     }
   }
 }
