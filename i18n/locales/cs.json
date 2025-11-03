@@ -96,14 +96,12 @@
     "form": {
       "msg": "Zpráva",
       "price": "Cena",
+      "old_price": "Původní cena",
       "quantity": "Množství",
       "quantity_stock": "Množství na skladě",
       "description": "Popis",
       "categories": "Kategorie",
-      "quality": "Kvalita",
-      "name": "Název",
-      "patch_success_msg": "Záznam byl úspěšně upraven",
-      "post_success_msg": "Záznam byl úspěšně vytvořen"
+      "name": "Název"
     },
     "placeholder": {
       "leave_comment": "Napište zprávu..."
@@ -121,7 +119,9 @@
       "password_min": "Musí obsahovat alespoň {count} znaků",
       "password_not_match": "Hesla se neshodují",
       "delete_question": "Opravdu chcete smazat záznam: \"{name}\"?",
-      "delete_question_multi": "Opravdu chcete smazat {length} záznamů?"
+      "delete_question_multi": "Opravdu chcete smazat {length} záznamů?",
+      "patch_success_msg": "Záznam byl úspěšně upraven",
+      "post_success_msg": "Záznam byl úspěšně vytvořen"
     },
     "btn": {
       "submit": "Odeslat",

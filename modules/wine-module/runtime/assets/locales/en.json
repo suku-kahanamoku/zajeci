@@ -5,90 +5,86 @@
       "to_cart": "Add to Cart",
       "detail": {
         "title": "Wine detail"
+      },
+      "form": {
+        "name": "Wine name",
+        "kind": "Kind",
+        "quality": "Adjective",
+        "color": "Color",
+        "year": "Year",
+        "variety": "Variety",
+        "volume": "Volume"
+      },
+      "placeholder": {
+        "name": "Sauvignon Blanc, selection of grapes",
+        "quality": "Selection of grapes",
+        "variety": "Sauvignon Blanc"
+      },
+      "kind": {
+        "dry": "Dry",
+        "semi_dry": "Semi-dry",
+        "sweet": "Sweet",
+        "semi_sweet": "Semi-sweet",
+        "extra_dry": "Extra dry",
+        "off_dry": "Off-dry",
+        "medium_dry": "Medium-dry",
+        "medium_sweet": "Medium-sweet",
+        "very_sweet": "Very sweet",
+        "dessert": "Dessert wine"
+      },
+      "color": {
+        "white": "White",
+        "red": "Red",
+        "rose": "Rose",
+        "orange": "Orange"
+      },
+      "category": {
+        "favourite": "Favourite",
+        "top": "Top",
+        "new": "New"
+      },
+      "quality": {
+        "kabinett": "Kabinett wine",
+        "late_harvest": "Late harvest",
+        "selection_of_grapes": "Selection of grapes",
+        "selection_of_berries": "Selection of berries",
+        "ice_wine": "Ice wine",
+        "straw_wine": "Straw wine",
+        "quality_wine": "Quality wine",
+        "archive_wine": "Archive wine",
+        "table_wine": "Table wine"
+      },
+      "variety": {
+        "riesling": "Riesling",
+        "gruner_veltliner": "Grüner Veltliner",
+        "welschriesling": "Welschriesling",
+        "sauvignon_blanc": "Sauvignon Blanc",
+        "pinot_gris": "Pinot Gris",
+        "pinot_blanc": "Pinot Blanc",
+        "chardonnay": "Chardonnay",
+        "traminer": "Traminer",
+        "muscat": "Moravian Muscat",
+        "mueller_thurgau": "Müller Thurgau",
+        "st_laurent": "St. Laurent",
+        "pinot_noir": "Pinot Noir",
+        "zweigelt": "Zweigelt",
+        "cabernet_sauvignon": "Cabernet Sauvignon",
+        "merlot": "Merlot",
+        "frankovka": "Frankovka",
+        "modry_portugal": "Modrý Portugal",
+        "other": "Other variety"
       }
-    },
-    "admin": {
-      "wine": {
-        "title": "Admin wines",
-        "create": {
-          "title": "Create new wine"
-        },
-        "create_wine": "Create wine",
-        "update": {
-          "title": "Update wine: \"{name}\""
-        },
-        "form": {
-          "name": "Wine name",
-          "kind": "Kind",
-          "quality": "Adjective",
-          "color": "Color",
-          "year": "Year",
-          "variety": "Variety",
-          "volume": "Volume",
-          "price": "Price",
-          "quantity_stock": "Quantity in stock",
-          "categories": "Categories",
-          "description": "Description"
-        },
-        "placeholder": {
-          "name": "Sauvignon Blanc, selection of grapes",
-          "quality": "Selection of grapes",
-          "variety": "Sauvignon Blanc"
-        },
-        "kind": {
-          "dry": "Dry",
-          "semi_dry": "Semi-dry",
-          "sweet": "Sweet",
-          "semi_sweet": "Semi-sweet",
-          "extra_dry": "Extra dry",
-          "off_dry": "Off-dry",
-          "medium_dry": "Medium-dry",
-          "medium_sweet": "Medium-sweet",
-          "very_sweet": "Very sweet",
-          "dessert": "Dessert wine"
-        },
-        "color": {
-          "white": "White",
-          "red": "Red",
-          "rose": "Rose",
-          "orange": "Orange"
-        },
-        "category": {
-          "favourite": "Favourite",
-          "top": "Top",
-          "new": "New"
-        },
-        "quality": {
-          "kabinett": "Kabinett wine",
-          "late_harvest": "Late harvest",
-          "selection_of_grapes": "Selection of grapes",
-          "selection_of_berries": "Selection of berries",
-          "ice_wine": "Ice wine",
-          "straw_wine": "Straw wine",
-          "quality_wine": "Quality wine",
-          "archive_wine": "Archive wine",
-          "table_wine": "Table wine"
-        },
-        "variety": {
-          "riesling": "Riesling",
-          "gruner_veltliner": "Grüner Veltliner",
-          "welschriesling": "Welschriesling",
-          "sauvignon_blanc": "Sauvignon Blanc",
-          "pinot_gris": "Pinot Gris",
-          "pinot_blanc": "Pinot Blanc",
-          "chardonnay": "Chardonnay",
-          "traminer": "Traminer",
-          "muscat": "Moravian Muscat",
-          "mueller_thurgau": "Müller Thurgau",
-          "st_laurent": "St. Laurent",
-          "pinot_noir": "Pinot Noir",
-          "zweigelt": "Zweigelt",
-          "cabernet_sauvignon": "Cabernet Sauvignon",
-          "merlot": "Merlot",
-          "frankovka": "Frankovka",
-          "modry_portugal": "Modrý Portugal",
-          "other": "Other variety"
-        }
+    }
+  },
+  "admin": {
+    "wine": {
+      "title": "Admin wines",
+      "create": {
+        "title": "Create new wine"
+      },
+      "create_wine": "Create wine",
+      "update": {
+        "title": "Update wine: \"{name}\""
       }
     }
   }

@@ -96,14 +96,12 @@
     "form": {
       "msg": "Message",
       "price": "Price",
+      "old_price": "Old cena",
       "quantity": "Quantity",
       "quantity_stock": "Quantity in stock",
       "description": "Description",
       "categories": "Categories",
-      "quality": "Quality",
-      "name": "Name",
-      "patch_success_msg": "Record successfully edited",
-      "post_success_msg": "Record successfully created"
+      "name": "Name"
     },
     "placeholder": {
       "leave_comment": "Leave a message..."
@@ -121,7 +119,9 @@
       "password_min": "Must be at least {count} characters long",
       "password_not_match": "Passwords do not match",
       "delete_question": "Do you realy want delete: \"{name}\"?",
-      "delete_question_multi": "Do you realy want delete {length} records?"
+      "delete_question_multi": "Do you realy want delete {length} records?",
+      "patch_success_msg": "Record successfully edited",
+      "post_success_msg": "Record successfully created"
     },
     "btn": {
       "submit": "Submit",
