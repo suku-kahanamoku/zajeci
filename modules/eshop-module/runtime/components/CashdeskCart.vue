@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useToNumber } from "@vueuse/core";
 import type { TableColumn } from "@nuxt/ui";
 import { useUrlResolver } from "#imports";
 
@@ -153,22 +152,14 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        {{
-          useToNumber(
-            row.original?.unitPrice?.toFixed(2) || 0
-          ).value.toLocaleString(locale)
-        }}&nbsp;{{ t("$.czk") }}
+        <UiPrice :price="row.original?.unitPrice!" />
       </p>
     </template>
 
     <template #total_price-cell="{ row }">
       <div class="flex justify-between items-center space-x-4">
         <p class="font-semibold text-end w-full">
-          {{
-            useToNumber(
-              row.original?.totalPrice?.toFixed(2) || 0
-            ).value.toLocaleString(locale)
-          }}&nbsp;{{ t("$.czk") }}
+          <UiPrice :price="row.original?.totalPrice!" />
         </p>
         <UButton
           icon="i-heroicons-trash"
@@ -223,11 +214,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
         </div>
         <div class="flex justify-between items-center space-x-4 sm:space-x-12">
           <p class="font-semibold text-end">
-            {{
-              useToNumber(
-                cart?.totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
-            }}&nbsp;{{ t("$.czk") }}
+            <UiPrice :price="cart?.totalPrice!" />
           </p>
           <UButton
             icon="i-heroicons-trash"

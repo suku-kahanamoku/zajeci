@@ -13,18 +13,20 @@ const {
 </script>
 
 <template>
-  <div class="flex items-baseline gap-1">
+  <div class="space-x-1">
     <span
       v-if="oldPrice"
       class="line-through text-gray-400 text-sm"
       aria-label="Old price"
     >
-      {{ useToNumber(oldPrice?.toFixed(2) || 0).value.toLocaleString(locale) }}
-      &nbsp;{{ t("$.czk") }}
+      {{
+        useToNumber(oldPrice?.toFixed(2) || 0).value.toLocaleString(locale)
+      }}&nbsp;{{ t("$.czk") }}
     </span>
-    <span class="font-semibold" aria-label="Current price">
-      {{ useToNumber(price?.toFixed(2) || 0).value.toLocaleString(locale) }}
-      &nbsp;{{ t("$.czk") }}
+    <span aria-label="Current price">
+      {{
+        useToNumber(price?.toFixed(2) || 0).value.toLocaleString(locale)
+      }}&nbsp;{{ t("$.czk") }}
     </span>
   </div>
 </template>

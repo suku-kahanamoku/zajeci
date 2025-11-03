@@ -5,7 +5,7 @@ import type { IOrder } from "../../../types";
 definePageMeta({
   layout: "admin",
   syscode: "admin_order_detail",
-  title: "$.admin.order.create_order",
+  title: "$.order.create_order",
 });
 
 const { t } = useLang();

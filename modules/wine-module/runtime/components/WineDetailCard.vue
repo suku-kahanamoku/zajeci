@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { useToNumber } from "@vueuse/core";
+import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
-import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 const props = defineProps<{
   fields: IFormField[];

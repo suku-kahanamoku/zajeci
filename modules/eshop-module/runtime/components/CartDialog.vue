@@ -33,24 +33,16 @@ const { totalPrice } = useCashdesk();
 
     <template #body>
       <div class="space-y-2">
-        <div>
-          {{ $tt("$.form.price") }}:&nbsp;{{
-            useToNumber(cart?.totalPrice?.toFixed(2) || 0).value.toLocaleString(
-              locale
-            )
-          }}&nbsp;{{ $tt("$.czk") }}
+        <div class="flex">
+          {{ $tt("$.form.price") }}:&nbsp;<UiPrice :price="cart?.unitPrice!" />
         </div>
         <div>
           {{ $tt("$.form.quantity") }}:&nbsp;{{
             useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
           }}&nbsp;{{ $tt("$.pcs") }}
         </div>
-        <div>
-          {{ $tt("$.cart.total") }}:&nbsp;{{
-            useToNumber(totalPrice.value?.toFixed(2) || 0).value.toLocaleString(
-              locale
-            )
-          }}&nbsp;{{ $tt("$.czk") }}
+        <div class="flex">
+          {{ $tt("$.cart.total") }}:&nbsp;<UiPrice :price="totalPrice!" />
         </div>
       </div>
       <UAlert

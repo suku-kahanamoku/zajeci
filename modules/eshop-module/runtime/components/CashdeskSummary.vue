@@ -7,7 +7,6 @@ import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../assets/configs/cart.json";
-import dConfig from "../assets/configs/delivery.json";
 
 const { t } = useLang();
 const {
@@ -25,22 +24,6 @@ const { data: config } = await useAsyncData(
   async () => {
     try {
       const result = CLONE(cConfig);
-      updateConfig(route, result);
-      return result as IFormConfig;
-    } catch (error: any) {
-      return {} as IFormConfig;
-    }
-  },
-  { watch: [() => route.query] }
-);
-
-/**
- * Load config
- */
-const { data: deliveryConfig } = await useAsyncData(
-  async () => {
-    try {
-      const result = CLONE(dConfig);
       updateConfig(route, result);
       return result as IFormConfig;
     } catch (error: any) {
@@ -119,11 +102,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
     <template #price-cell="{ row }">
       <p class="font-semibold min-w-24 text-end">
-        {{
-          useToNumber(
-            row.original?.totalPrice?.toFixed(2) || 0
-          ).value.toLocaleString(locale)
-        }}&nbsp;{{ t("$.czk") }}
+        <UiPrice :price="row.original?.totalPrice!" />
       </p>
     </template>
 
@@ -131,11 +110,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <tr>
         <td colspan="99" class="p-4">
           <p class="font-semibold min-w-24 text-end">
-            {{
-              useToNumber(totalPrice?.toFixed(2) || 0).value.toLocaleString(
-                locale
-              )
-            }}&nbsp;{{ t("$.czk") }}
+            <UiPrice :price="totalPrice" />
           </p>
         </td>
       </tr>
@@ -184,11 +159,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <div class="w-full text-center font-semibold flex gap-2">
           <p>{{ t("$.form.price") }}:</p>
           <p>
-            {{
-              useToNumber(
-                cart.totalPrice?.toFixed(2) || 0
-              ).value.toLocaleString(locale)
-            }}&nbsp;{{ t("$.czk") }}
+            <UiPrice :price="cart.totalPrice" />
           </p>
         </div>
       </div>
