@@ -50,12 +50,16 @@ function _onChange(body: Record<string, any>) {
 // Debounced change handler (300ms default)
 const onFormChange = useDebounceFn(_onChange, 300);
 
+async function validate(form: any) {
+  await form?.validate({ silent: true });
+  user.value.valid = form?.getErrors().length ? false : true;
+}
+
 watch(
   () => formCmp.value?.form,
   async (form: any) => {
     if (loggedIn.value) {
-      await form?.validate({ silent: true, transform: true });
-      user.value.valid = form?.getErrors().length ? false : true;
+      await validate(form);
     }
   },
   { once: true }

@@ -33,40 +33,17 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] }
 );
 
-function _onChange(body: Record<string, any>) {
-  setDelivery(delivery.value, body);
+const onFormChange = useDebounceFn(
+  (body) => setDelivery(delivery.value, body),
+  300
+);
+
+async function validate(form: any) {
+  await form?.validate({ silent: true });
+  delivery.value.valid = form?.getErrors().length ? false : true;
 }
 
-const onFormChange = useDebounceFn(_onChange, 300);
-
-watch(
-  delivery,
-  () =>
-    (delivery.value.valid = formCmp.value.form.getErrors().length
-      ? false
-      : true)
-);
-
-watch(
-  () => formCmp.value?.form,
-  async (form: any) => {
-    if (loggedIn.value) {
-      await form?.validate({ silent: true });
-      delivery.value.valid = form?.getErrors().length ? false : true;
-    }
-  },
-  { once: true }
-);
-
-watch(
-  () => delivery.value.type,
-  (val) => {
-    setDelivery(
-      deliveryOptions.value.find((d) => d.type === val),
-      delivery.value.address
-    );
-  }
-);
+watch(() => formCmp.value?.form, validate);
 </script>
 <template>
   <UCard v-if="config" variant="subtle" class="w-full">
@@ -123,7 +100,10 @@ watch(
     </URadioGroup>
 
     <template #footer>
-      <UAccordion :items="[{ label: t('$.delivery.address') }]">
+      <UAccordion
+        :items="[{ label: t('$.delivery.address') }]"
+        :unmount-on-hide="false"
+      >
         <template #body>
           <CmpForm
             ref="formCmp"

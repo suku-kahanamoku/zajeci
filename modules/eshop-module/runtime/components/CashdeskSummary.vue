@@ -7,6 +7,7 @@ import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../assets/configs/cart.json";
+import dConfig from "../assets/configs/delivery.json";
 
 const { t } = useLang();
 const {
@@ -24,6 +25,22 @@ const { data: config } = await useAsyncData(
   async () => {
     try {
       const result = CLONE(cConfig);
+      updateConfig(route, result);
+      return result as IFormConfig;
+    } catch (error: any) {
+      return {} as IFormConfig;
+    }
+  },
+  { watch: [() => route.query] }
+);
+
+/**
+ * Load config
+ */
+const { data: deliveryConfig } = await useAsyncData(
+  async () => {
+    try {
+      const result = CLONE(dConfig);
       updateConfig(route, result);
       return result as IFormConfig;
     } catch (error: any) {
@@ -57,7 +74,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
-      <div class="flex gap-4">
+      <div class="flex gap-4 items-center">
         <NuxtImg
           :src="row.original?.wine?.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
@@ -188,10 +205,10 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </h3>
       </template>
 
-      <div class="flex flex-col gap-y-2">
-        <p class="text-gray-600 dark:text-white">
+      <div class="flex flex-col gap-y-1">
+        <h4 class="font-semibold">
           {{ user.email }}
-        </p>
+        </h4>
 
         <p class="text-gray-600 dark:text-white">
           {{ user?.givenName }}&nbsp;{{ user?.surname }}
@@ -220,9 +237,9 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </h3>
       </template>
 
-      <div class="flex flex-col gap-y-2">
+      <div class="flex flex-col gap-y-1">
         <h4 class="font-semibold">
-          {{ delivery.type }}
+          {{ t(`$.delivery.${delivery.type}`) }}
         </h4>
 
         <p class="text-gray-600 dark:text-white">
@@ -255,12 +272,12 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ t("$.delivery.title") }}
+          {{ t("$.payment.title") }}
         </h3>
       </template>
 
-      <div class="flex flex-col gap-y-2">
-        <h4 class="font-semibold">{{ t("$.payment.account_num") }}:</h4>
+      <div class="flex flex-col gap-y-1">
+        <h4 class="font-semibold">{{ t(`$.payment.${payment.type}`) }}</h4>
 
         <div v-if="payment.type === 'bank'">
           <div>

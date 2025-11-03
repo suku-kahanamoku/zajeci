@@ -98,7 +98,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
-      <div class="flex gap-4">
+      <div class="flex gap-4 items-center">
         <NuxtImg
           :src="row.original?.wine?.image?.main?.src || '/img/bottle.jpg'"
           :alt="'wine'"
