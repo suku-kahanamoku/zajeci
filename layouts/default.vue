@@ -57,7 +57,7 @@ const menuItems = [
       >
         <UButton
           :to="routes.cashdesk?.path"
-          icon="i-heroicons-bell"
+          icon="i-heroicons-shopping-cart"
           variant="ghost"
         />
       </UChip>

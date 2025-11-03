@@ -108,6 +108,18 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
     <template #body-bottom>
       <tr>
+        <td colspan="2" class="p-4">
+          <h3 class="font-semibold text-pretty">
+            {{ t("$.delivery.title") }}
+          </h3>
+        </td>
+        <td class="p-4">
+          <div class="text-end">
+            <UiPrice :price="delivery.totalPrice!" />
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td colspan="99" class="p-4">
           <p class="font-semibold min-w-24 text-end">
             <UiPrice :price="totalPrice" />

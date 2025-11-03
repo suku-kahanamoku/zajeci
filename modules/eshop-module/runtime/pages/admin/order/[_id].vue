@@ -93,6 +93,13 @@ useHead({
               <span>{{ cart.quantity }} × {{ cart.unitPrice }} Kč</span>
               <span class="font-semibold">= {{ cart.totalPrice }} Kč</span>
             </li>
+
+            <li class="py-2 flex justify-between items-center">
+              <span>Doprava</span>
+              <span class="font-semibold"
+                >{{ order.delivery.totalPrice }} Kč</span
+              >
+            </li>
           </ul>
         </div>
 

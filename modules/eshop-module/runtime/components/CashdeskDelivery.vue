@@ -14,7 +14,7 @@ const {
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { loggedIn } = useUserSession();
-const { delivery, deliveryOptions, setDelivery } = useCashdesk();
+const { carts, delivery, deliveryOptions, setDelivery } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -44,6 +44,16 @@ async function validate(form: any) {
 }
 
 watch(() => formCmp.value?.form, validate);
+
+watch(
+  () => delivery.value.type,
+  (val) => {
+    setDelivery(
+      deliveryOptions.value.find((d) => d.type === val),
+      delivery.value.address
+    );
+  }
+);
 </script>
 <template>
   <UCard v-if="config" variant="subtle" class="w-full">

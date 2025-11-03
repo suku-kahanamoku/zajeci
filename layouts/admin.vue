@@ -25,7 +25,7 @@ if (user.value?.role === "admin") {
 <template>
   <UHeader mode="slideover">
     <template #title>
-      <div class="h-16 w-auto">
+      <div class="w-24">
         <UiLogo />
       </div>
     </template>
@@ -46,7 +46,7 @@ if (user.value?.role === "admin") {
       >
         <UButton
           :to="routes?.cashdesk?.path"
-          icon="i-heroicons-bell"
+          icon="i-heroicons-shopping-cart"
           variant="ghost"
         />
       </UChip>

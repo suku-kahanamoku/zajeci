@@ -21,6 +21,9 @@ const {
   removeItem: removeCartItem,
   setQuantity: setCartQuantity,
   deleteItem: deleteCartItem,
+  delivery,
+  deliveryOptions,
+  setDelivery,
 } = useCashdesk();
 const isOpen = ref(false);
 const deleted = ref();
@@ -65,6 +68,10 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
 const increaseQuantity = (cart: ICart) => {
   addItem(cart.wine, 1);
+  setDelivery(
+    deliveryOptions.value.find((d) => d.type === delivery.value.type),
+    delivery.value.address
+  );
 };
 
 const decreaseQuantity = (cart: ICart) => {
@@ -73,10 +80,18 @@ const decreaseQuantity = (cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
+  setDelivery(
+    deliveryOptions.value.find((d) => d.type === delivery.value.type),
+    delivery.value.address
+  );
 };
 
 const openRemoveDialog = (cart: ICart) => {
   deleted.value = cart;
+  setDelivery(
+    deliveryOptions.value.find((d) => d.type === delivery.value.type),
+    delivery.value.address
+  );
   isOpen.value = true;
 };
 
@@ -86,6 +101,10 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
+  setDelivery(
+    deliveryOptions.value.find((d) => d.type === delivery.value.type),
+    delivery.value.address
+  );
 };
 </script>
 
