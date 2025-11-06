@@ -30,7 +30,7 @@ const { data: config } = await useAsyncData(
 async function onSubmit(body: Record<string, any>) {
   loading.value = true;
   try {
-    await useApi("/api/send-email", { method: "POST", body });
+    await useApi("/api/email/contact", { method: "POST", body });
     // reset formulare
     ITERATE(body, (v, k) => (body[k] = undefined));
     display({ type: "success", message: "$.contact.success_msg" });
@@ -45,7 +45,7 @@ async function onSubmit(body: Record<string, any>) {
   <div id="contact">
     <div class="text-center pt-20 pb-10">
       <h2
-        class="text-primary-600 text-4xl  font-bold tracking-tight dark:text-primary-400"
+        class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
       >
         {{ $tt("$.contact.title") }}
       </h2>

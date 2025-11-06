@@ -101,7 +101,13 @@
       "quantity_stock": "Množství na skladě",
       "description": "Popis",
       "categories": "Kategorie",
-      "name": "Název"
+      "name": "Název",
+      "old_password": "Staré heslo",
+      "new_password": "Nové heslo",
+      "role": "Oprávnění",
+      "guest": "Host",
+      "user": "Uživatel",
+      "admin": "Administrátor"
     },
     "placeholder": {
       "leave_comment": "Napište zprávu..."
@@ -112,12 +118,6 @@
       "invalid_zip": "Neplatné PSČ",
       "bad_request": "Špatný požadavek",
       "miss_fields": "Chybějící povinná pole",
-      "unauthorized": "Neoprávněný",
-      "incorrect_login": "Nesprávné přihlašovací údaje",
-      "user_exist": "Uživatel již existuje",
-      "user_not_exists": "Uživatel neexistuje",
-      "password_min": "Musí obsahovat alespoň {count} znaků",
-      "password_not_match": "Hesla se neshodují",
       "delete_question": "Opravdu chcete smazat záznam: \"{name}\"?",
       "delete_question_multi": "Opravdu chcete smazat {length} záznamů?",
       "patch_success_msg": "Záznam byl úspěšně upraven",

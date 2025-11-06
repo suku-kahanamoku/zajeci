@@ -56,27 +56,7 @@ export default defineEventHandler(
 
     // pokud se podari ulozit objednavku do DB, odesle se mail klientovi i adminovi
     if (order.user.email) {
-      const t = await useTranslation(event);
-      const { template, send } = await useMailing(event);
-      const orderId = order._id.toString();
-      await send({
-        subject: t("$.mailing.order.confirmed.subject", { orderId }),
-        template: await template(OrderForm, {
-          url: process.env.FRONTEND_HOST,
-          email: process.env.NUXT_MAILING_FROM as string,
-          orderId,
-        }),
-        to: [
-          {
-            Email: order.user.email,
-          },
-        ],
-        bcc: [
-          {
-            Email: process.env.NUXT_MAILING_FROM as string,
-          },
-        ],
-      });
+      await $fetch("/api/email/order", { method: "POST", body: { ...order } });
     }
 
     const result = order;

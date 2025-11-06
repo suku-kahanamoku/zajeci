@@ -96,12 +96,18 @@
     "form": {
       "msg": "Message",
       "price": "Price",
-      "old_price": "Old cena",
+      "old_price": "Old price",
       "quantity": "Quantity",
       "quantity_stock": "Quantity in stock",
       "description": "Description",
       "categories": "Categories",
-      "name": "Name"
+      "name": "Name",
+      "old_password": "Old password",
+      "new_password": "New password",
+      "role": "Role",
+      "guest": "Guest",
+      "user": "User",
+      "admin": "Admin"
     },
     "placeholder": {
       "leave_comment": "Leave a message..."
@@ -112,12 +118,6 @@
       "invalid_zip": "Invalid postal code",
       "bad_request": "Bad request",
       "miss_fields": "Missing required fields",
-      "unauthorized": "Unauthorized",
-      "incorrect_login": "Incorrect login credentials",
-      "user_exist": "User already exists",
-      "user_not_exists": "User does not exist",
-      "password_min": "Must be at least {count} characters long",
-      "password_not_match": "Passwords do not match",
       "delete_question": "Do you realy want delete: \"{name}\"?",
       "delete_question_multi": "Do you realy want delete {length} records?",
       "patch_success_msg": "Record successfully edited",

@@ -1,7 +1,7 @@
-import { H3Event } from "h3";
+import { defineEventHandler, H3Event, readBody } from "h3";
 
 import ContactForm from "@/emails/ContactForm.vue";
-import ContactFormAdmin from "@/emails/ContactFormAdmin.vue";
+import ContactFormAdmin from "@/emails/ContactForm.vue";
 
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
@@ -12,6 +12,7 @@ export default defineEventHandler(async (event: H3Event) => {
   await send({
     subject: t("$.mailing.contact_form.subject"),
     template: await template(ContactForm, {
+      tt: t,
       url: process.env.FRONTEND_HOST,
       msg: body.message,
     }),
@@ -26,6 +27,7 @@ export default defineEventHandler(async (event: H3Event) => {
   await send({
     subject: t("$.mailing.contact_form.subject"),
     template: await template(ContactFormAdmin, {
+      tt: t,
       url: process.env.FRONTEND_HOST,
       email: body.email,
       msg: body.message,

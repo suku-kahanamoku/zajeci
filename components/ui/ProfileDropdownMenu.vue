@@ -21,9 +21,9 @@ const profileMenuItems = [
         to: localePath(routes.pz?.path!),
       },
       {
-        label: t(routes.profile?.meta?.title as string),
+        label: t(routes.admin_profile?.meta?.title as string),
         icon: "i-heroicons-pencil",
-        to: localePath(routes.profile?.path!),
+        to: localePath(routes.admin_profile?.path!),
       },
       {
         label: t("$.navbar.logout"),
