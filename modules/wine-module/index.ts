@@ -58,14 +58,14 @@ export default defineNuxtModule<ModuleOptions>({
     GENERATE_PAGES("/admin/wine", resolve);
 
     // Login api wine endpoints
-    const apiAuthDir = resolve("./runtime/server/api/wine");
-    fs.readdirSync(apiAuthDir)?.forEach((file) => {
+    const apiWineDir = resolve("./runtime/server/api/wine");
+    fs.readdirSync(apiWineDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/wine", resolve);
     });
 
     // Login api wine endpoints
-    const apiAdminDir = resolve("./runtime/server/api/admin/wine");
-    fs.readdirSync(apiAdminDir)?.forEach((file) => {
+    const apiAdminWineDir = resolve("./runtime/server/api/admin/wine");
+    fs.readdirSync(apiAdminWineDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/wine", resolve);
     });
 

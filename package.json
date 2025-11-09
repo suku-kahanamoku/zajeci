@@ -27,6 +27,7 @@
     "nuxt": "^4.1.3",
     "nuxt-rating": "^0.1.6",
     "nuxt-storage": "^1.2.2",
+    "pdfkit": "^0.17.2",
     "photoswipe": "^5.4.4",
     "ukiyojs": "^4.2.0"
   },
