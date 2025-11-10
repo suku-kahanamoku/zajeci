@@ -1,7 +1,24 @@
 import PDFDocument from "pdfkit";
 
+const fontUrl =
+  "https://cdn.jsdelivr.net/npm/dejavu-fonts-ttf@2.37.0/ttf/DejaVuSans.ttf";
+const font = "dejavu";
 const size = "A4";
 const padding = 40;
+
+async function getPdfDoc(): Promise<{ doc: PDFDocument; buffers: Buffer[] }> {
+  const doc = new PDFDocument({ size, padding });
+  const buffers: Buffer[] = [];
+  doc.on("data", buffers.push.bind(buffers));
+
+  const fontRes = await fetch(fontUrl);
+  const fontBuffer = await fontRes.arrayBuffer();
+  doc.registerFont(font, Buffer.from(fontBuffer));
+  doc.font(font);
+  doc.fontSize(12);
+
+  return { doc, buffers };
+}
 
 function renderIcoDic(
   doc: PDFDocument,
@@ -23,7 +40,11 @@ function renderIcoDic(
   const currentY = doc.y;
   const lineStartX = x || padding;
   const lineEndX = lineStartX + 200;
-  doc.moveTo(lineStartX, currentY).lineTo(lineEndX, currentY).stroke();
+  doc
+    .strokeOpacity(0.3)
+    .moveTo(lineStartX, currentY)
+    .lineTo(lineEndX, currentY)
+    .stroke();
 }
 
 function renderCustomer(doc: PDFDocument, customer: any, lineOptions: any) {
@@ -63,6 +84,7 @@ function renderCustomer(doc: PDFDocument, customer: any, lineOptions: any) {
   // Přidání čáry pod datum splatnosti
   const currentY = doc.y;
   doc
+    .strokeOpacity(0.3)
     .moveTo(rightColX, currentY)
     .lineTo(rightColX + 200, currentY)
     .stroke();
@@ -84,54 +106,72 @@ function renderSupplier(doc: PDFDocument, supplier: any, lineOptions: any) {
   // Přidání čáry pod způsob platby
   const currentY = doc.y;
   doc
+    .strokeOpacity(0.3)
     .moveTo(padding, currentY)
     .lineTo(padding + 200, currentY)
     .stroke();
 }
 
+function renderItems(doc: PDFDocument, invoiceData: any, lineOptions: any) {
+  // Items table header
+  const headerY = doc.y;
+  const nameColX = padding;
+  const priceColX = 400;
+  const tableWidth = 500;
+
+  // Draw table header
+  doc.fontSize(14).text("Položka", nameColX, headerY, lineOptions);
+  doc.text("Cena", priceColX, headerY, lineOptions);
+
+  // Draw header underline
+  const headerUnderlineY = doc.y;
+  doc
+    .moveTo(nameColX, headerUnderlineY)
+    .lineTo(nameColX + tableWidth, headerUnderlineY)
+    .strokeOpacity(0.7)
+    .stroke()
+
+  // Reset font size and add spacing
+  doc.fontSize(12).moveDown();
+
+  // Draw items
+  invoiceData.items.forEach((item: any, idx: number) => {
+    const itemY = doc.y;
+    doc.text(`${item.name}`, nameColX, itemY, lineOptions);
+    doc.text(`${item.price} Kč`, priceColX, itemY, lineOptions);
+  });
+
+  // Draw table bottom line
+  const bottomLineY = doc.y + 5;
+  doc
+    .moveTo(nameColX, bottomLineY)
+    .lineTo(nameColX + tableWidth, bottomLineY)
+    .stroke();
+
+  // Total
+  doc.moveDown();
+  doc.fontSize(14);
+  const totalY = doc.y;
+  doc.text("Celková cena:", nameColX, totalY, lineOptions);
+  doc.text(`${invoiceData.total} Kč`, priceColX, totalY, lineOptions);
+}
+
 export async function createInvoicePdf(invoiceData: any): Promise<Buffer> {
   return new Promise(async (resolve) => {
-    const doc = new PDFDocument({ size, padding });
-    const buffers: Buffer[] = [];
-    doc.on("data", buffers.push.bind(buffers));
-    doc.on("end", () => {
-      resolve(Buffer.concat(buffers));
-    });
+    const { doc, buffers } = await getPdfDoc();
+    doc.on("end", () => resolve(Buffer.concat(buffers)));
 
-    // Stáhni font z CDN
-    const fontUrl =
-      "https://cdn.jsdelivr.net/npm/dejavu-fonts-ttf@2.37.0/ttf/DejaVuSans.ttf";
-    const fontRes = await fetch(fontUrl);
-    const fontBuffer = await fontRes.arrayBuffer();
-    doc.registerFont("dejavu", Buffer.from(fontBuffer));
-    doc.font("dejavu");
-
-    // Header - two columns
-    doc.fontSize(12);
     const lineOptions = { lineGap: 4 };
-
     renderSupplier(doc, invoiceData.supplier, lineOptions);
     renderCustomer(doc, invoiceData.customer, lineOptions);
 
-    // Description
-    doc.moveDown();
+    // Description with padding
+    doc.y += 20; // Padding před description
     doc.text(invoiceData.description, padding, undefined, lineOptions);
+    doc.y += 20; // Padding po description
 
-    // Items
-    doc.moveDown();
-    invoiceData.items.forEach((item: any, idx: number) => {
-      doc.text(`${item.name}`, padding, undefined, lineOptions);
-      doc.text(`${item.price} Kč`, 400, undefined, lineOptions);
-    });
-
-    // Total
-    doc.moveDown();
-    doc.text(
-      `Celková cena: ${invoiceData.total} Kč`,
-      400,
-      undefined,
-      lineOptions
-    );
+    // Items table
+    renderItems(doc, invoiceData, lineOptions);
 
     doc.end();
   });
