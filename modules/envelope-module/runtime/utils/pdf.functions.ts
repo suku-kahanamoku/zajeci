@@ -4,10 +4,13 @@ const fontUrl =
   "https://cdn.jsdelivr.net/npm/dejavu-fonts-ttf@2.37.0/ttf/DejaVuSans.ttf";
 const font = "dejavu";
 const size = "A4";
-const padding = 40;
+const margin = 40;
 
-async function getPdfDoc(): Promise<{ doc: PDFDocument; buffers: Buffer[] }> {
-  const doc = new PDFDocument({ size, padding });
+async function getPdfDoc(): Promise<{
+  doc: typeof PDFDocument;
+  buffers: Buffer[];
+}> {
+  const doc = new PDFDocument({ size, margin });
   const buffers: Buffer[] = [];
   doc.on("data", buffers.push.bind(buffers));
 
@@ -21,7 +24,7 @@ async function getPdfDoc(): Promise<{ doc: PDFDocument; buffers: Buffer[] }> {
 }
 
 function renderIcoDic(
-  doc: PDFDocument,
+  doc: typeof PDFDocument,
   entity: { ico?: string; dic?: string },
   x?: number,
   y?: number,
@@ -38,7 +41,7 @@ function renderIcoDic(
 
   // Přidání čáry pod DIČ
   const currentY = doc.y;
-  const lineStartX = x || padding;
+  const lineStartX = x || margin;
   const lineEndX = lineStartX + 200;
   doc
     .strokeOpacity(0.3)
@@ -47,9 +50,13 @@ function renderIcoDic(
     .stroke();
 }
 
-function renderCustomer(doc: PDFDocument, customer: any, lineOptions: any) {
+function renderCustomer(
+  doc: typeof PDFDocument,
+  customer: any,
+  lineOptions: any
+) {
   const rightColX = 300;
-  doc.text("Odběratel:", rightColX, padding, lineOptions);
+  doc.text("Odběratel:", rightColX, margin, lineOptions);
   doc.text(customer.company, rightColX, undefined, lineOptions);
   doc.text(customer.address, rightColX, undefined, lineOptions);
   doc.text(
@@ -90,13 +97,17 @@ function renderCustomer(doc: PDFDocument, customer: any, lineOptions: any) {
     .stroke();
 }
 
-function renderSupplier(doc: PDFDocument, supplier: any, lineOptions: any) {
-  doc.text("Dodavatel:", padding, padding, lineOptions);
+function renderSupplier(
+  doc: typeof PDFDocument,
+  supplier: any,
+  lineOptions: any
+) {
+  doc.text("Dodavatel:", margin, margin, lineOptions);
   doc.text(supplier.name, lineOptions);
   doc.text(supplier.address, lineOptions);
   doc.text(`${supplier.zip} ${supplier.city}`, lineOptions);
   doc.moveDown();
-  renderIcoDic(doc, supplier, padding, undefined, lineOptions);
+  renderIcoDic(doc, supplier, margin, undefined, lineOptions);
 
   doc.moveDown();
   doc.text(`Bankovní účet: ${supplier.bank}`, lineOptions);
@@ -107,15 +118,19 @@ function renderSupplier(doc: PDFDocument, supplier: any, lineOptions: any) {
   const currentY = doc.y;
   doc
     .strokeOpacity(0.3)
-    .moveTo(padding, currentY)
-    .lineTo(padding + 200, currentY)
+    .moveTo(margin, currentY)
+    .lineTo(margin + 200, currentY)
     .stroke();
 }
 
-function renderItems(doc: PDFDocument, invoiceData: any, lineOptions: any) {
+function renderItems(
+  doc: typeof PDFDocument,
+  invoiceData: any,
+  lineOptions: any
+) {
   // Items table header
   const headerY = doc.y;
-  const nameColX = padding;
+  const nameColX = margin;
   const priceColX = 400;
   const tableWidth = 500;
 
@@ -129,7 +144,7 @@ function renderItems(doc: PDFDocument, invoiceData: any, lineOptions: any) {
     .moveTo(nameColX, headerUnderlineY)
     .lineTo(nameColX + tableWidth, headerUnderlineY)
     .strokeOpacity(0.7)
-    .stroke()
+    .stroke();
 
   // Reset font size and add spacing
   doc.fontSize(12).moveDown();
@@ -165,10 +180,10 @@ export async function createInvoicePdf(invoiceData: any): Promise<Buffer> {
     renderSupplier(doc, invoiceData.supplier, lineOptions);
     renderCustomer(doc, invoiceData.customer, lineOptions);
 
-    // Description with padding
-    doc.y += 20; // Padding před description
-    doc.text(invoiceData.description, padding, undefined, lineOptions);
-    doc.y += 20; // Padding po description
+    // Description with margin
+    doc.y += 20; // margin před description
+    doc.text(invoiceData.description, margin, undefined, lineOptions);
+    doc.y += 20; // margin po description
 
     // Items table
     renderItems(doc, invoiceData, lineOptions);

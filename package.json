@@ -18,8 +18,8 @@
     "@suku-kahanamoku/menu-module": "latest",
     "@suku-kahanamoku/mongoose-module": "latest",
     "@suku-kahanamoku/notify-module": "latest",
-    "@suku-kahanamoku/ui-module": "latest",
     "@suku-kahanamoku/seo-module": "latest",
+    "@suku-kahanamoku/ui-module": "latest",
     "@vueuse/core": "^13.9.0",
     "animate.css": "^4.1.1",
     "date-fns": "^4.1.0",
@@ -32,6 +32,7 @@
     "ukiyojs": "^4.2.0"
   },
   "devDependencies": {
+    "@types/pdfkit": "^0.17.3",
     "nuxt-gtag": "^4.1.0",
     "typescript": "latest"
   },
