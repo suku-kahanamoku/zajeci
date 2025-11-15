@@ -1,0 +1,22 @@
+{
+  "$": {
+    "invoice": {
+      "title": "Invoice",
+      "ico": "ICO",
+      "dic": "VAT ID",
+      "vat_exempt": "VAT Exempt",
+      "customer": "Customer",
+      "order_number": "Order Number",
+      "issue_date": "Issue Date",
+      "due_date": "Due Date",
+      "supplier": "Supplier",
+      "bank_account": "Bank Account",
+      "variable_symbol": "Variable Symbol",
+      "payment_method": "Payment Method",
+      "item": "Item",
+      "price": "Price",
+      "currency": "CZK",
+      "total": "Total"
+    }
+  }
+}

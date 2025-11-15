@@ -6,6 +6,7 @@ import {
   hasNuxtModule,
   installModule,
   addComponentsDir,
+  addServerImportsDir,
 } from "@nuxt/kit";
 import defu from "defu";
 import * as fs from "node:fs";
@@ -38,6 +39,9 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
+    // Pridani server composables
+    addServerImportsDir(resolve("./runtime/server/composables"));
+
     // Login api wine endpoints
     const apiDir = resolve("./runtime/server/api");
     fs.readdirSync(apiDir)?.forEach((file) => {
@@ -53,5 +57,21 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@suku-kahanamoku/lang-module")) {
       await installModule("@suku-kahanamoku/lang-module");
     }
+
+    _nuxt.hook("i18n:registerModule", (register) => {
+      register({
+        langDir: resolve("./runtime/assets/locales"),
+        locales: [
+          {
+            code: "cs",
+            file: "cs.json",
+          },
+          {
+            code: "en", 
+            file: "en.json",
+          },
+        ],
+      });
+    });
   },
 });

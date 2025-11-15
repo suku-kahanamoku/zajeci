@@ -1,9 +1,11 @@
-import { createInvoicePdf } from "~/modules/envelope-module/runtime/utils/pdf.functions";
 import { defineEventHandler } from "h3";
 
 export default defineEventHandler(async (event) => {
+  const { createInvoicePdf } = await useInvoice(event);
+
   // Example data structure, replace with real data from body
   const invoiceData = {
+    invoiceNumber: "2025-0020",
     supplier: {
       name: "Jan Novák",
       address: "Ulice 123",

@@ -1,0 +1,22 @@
+{
+  "$": {
+    "invoice": {
+      "title": "Faktura",
+      "ico": "IČO",
+      "dic": "DIČ",
+      "vat_exempt": "Neplátce DPH",
+      "customer": "Odběratel",
+      "order_number": "Číslo objednávky",
+      "issue_date": "Datum vystavení",
+      "due_date": "Datum splatnosti",
+      "supplier": "Dodavatel",
+      "bank_account": "Bankovní účet",
+      "variable_symbol": "Variabilní symbol",
+      "payment_method": "Způsob platby",
+      "item": "Položka",
+      "price": "Cena",
+      "currency": "Kč",
+      "total": "Celková cena"
+    }
+  }
+}
