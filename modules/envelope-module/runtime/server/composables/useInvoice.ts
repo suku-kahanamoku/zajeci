@@ -1,6 +1,10 @@
 import PDFDocument from "pdfkit";
 import type { H3Event } from "h3";
 import { useTranslation } from "@intlify/h3";
+
+import type { IUser } from "@suku-kahanamoku/auth-module/types";
+import type { ICart, IOrder } from "@/modules/eshop-module/runtime/types";
+
 import {
   renderLabelValue,
   renderLabel,
@@ -22,23 +26,32 @@ export async function useInvoice(event: H3Event) {
     y?: number,
     lineOptions?: any
   ) {
-    if (entity.ico) {
-      renderLabelValue(doc, tt("$.invoice.ico"), entity.ico, x, y, lineOptions);
-    }
+    renderLabelValue(
+      doc,
+      tt("$.invoice.ico"),
+      entity.ico || "---",
+      x,
+      y,
+      lineOptions
+    );
 
-    const dicY = y === undefined ? undefined : y + 15;
-    if (entity.dic) {
-      renderLabelValue(
-        doc,
-        tt("$.invoice.dic"),
-        entity.dic,
-        x,
-        dicY,
-        lineOptions
-      );
-    } else {
-      // Zobrazit "Neplátce DPH" pokud není DIČ
-      doc.fillOpacity(1).text(tt("$.invoice.vat_exempt"), x, dicY, lineOptions);
+    if (entity.ico) {
+      const dicY = y === undefined ? undefined : y + 15;
+      if (entity.dic) {
+        renderLabelValue(
+          doc,
+          tt("$.invoice.dic"),
+          entity.dic,
+          x,
+          dicY,
+          lineOptions
+        );
+      } else {
+        // Zobrazit "Neplátce DPH" pokud není DIČ
+        doc
+          .fillOpacity(1)
+          .text(tt("$.invoice.vat_exempt"), x, dicY, lineOptions);
+      }
     }
 
     // Přidání čáry pod DIČ/VAT exempt
@@ -148,43 +161,58 @@ export async function useInvoice(event: H3Event) {
     doc.fontSize(12); // reset font size
   }
 
-  function renderCustomer(customer: any, lineOptions: any) {
+  function renderCustomer(customer: IUser, lineOptions: any) {
     const rightColX = 300;
     renderLabel(doc, tt("$.invoice.customer"), rightColX, 100, lineOptions);
 
     doc.moveDown();
-    doc.text(customer.company, rightColX, undefined, lineOptions);
-    doc.text(customer.address, rightColX, undefined, lineOptions);
-    doc.text(
-      `${customer.zip} ${customer.city}`,
-      rightColX,
-      undefined,
-      lineOptions
-    );
+    const fullName = `${customer.givenName || customer.name || ""} ${
+      customer.surname || ""
+    }`.trim();
+    doc.text(fullName, rightColX, undefined, lineOptions);
+
+    if (customer.address?.main) {
+      doc.text(customer.address.main.street, rightColX, undefined, lineOptions);
+      doc.text(
+        `${customer.address.main.zip} ${customer.address.main.city}`,
+        rightColX,
+        undefined,
+        lineOptions
+      );
+    }
 
     doc.moveDown();
-    renderIcoDic(customer, rightColX, undefined, lineOptions);
+    renderIcoDic(customer as any, rightColX, undefined, lineOptions);
 
     doc.moveDown();
-    renderInvoiceInfo(customer, rightColX, undefined, lineOptions);
+    renderInvoiceInfo(customer as any, rightColX, undefined, lineOptions);
   }
 
-  function renderSupplier(supplier: any, lineOptions: any) {
+  function renderSupplier(supplier: IUser, lineOptions: any) {
     renderLabel(doc, tt("$.invoice.supplier"), margin, 100, lineOptions);
 
     doc.moveDown();
-    doc.text(supplier.name, lineOptions);
-    doc.text(supplier.address, lineOptions);
-    doc.text(`${supplier.zip} ${supplier.city}`, lineOptions);
+    const fullName = `${supplier.givenName || supplier.name || ""} ${
+      supplier.surname || ""
+    }`.trim();
+    doc.text(fullName, lineOptions);
+
+    if (supplier.address?.main) {
+      doc.text(supplier.address.main.street, lineOptions);
+      doc.text(
+        `${supplier.address.main.zip} ${supplier.address.main.city}`,
+        lineOptions
+      );
+    }
 
     doc.moveDown();
-    renderIcoDic(supplier, margin, undefined, lineOptions);
+    renderIcoDic(supplier as any, margin, undefined, lineOptions);
 
     doc.moveDown();
-    renderBankingInfo(supplier, margin, undefined, lineOptions);
+    renderBankingInfo(supplier as any, margin, undefined, lineOptions);
   }
 
-  function renderItems(invoiceData: any, lineOptions: any) {
+  function renderItems(items: ICart[], totalPrice: number, lineOptions: any) {
     // Items table header
     const headerY = doc.y;
     const nameColX = margin;
@@ -207,13 +235,19 @@ export async function useInvoice(event: H3Event) {
     doc.fontSize(12).moveDown();
 
     // Draw items
-    invoiceData.items.forEach((item: any) => {
+    items.forEach((item: any) => {
       const itemY = doc.y;
-      doc.text(`${item.name}`, nameColX, itemY, lineOptions);
-      doc.text(`${item.price} ${tt("$.invoice.currency")}`, priceColX, itemY, {
-        ...lineOptions,
-        align: "right",
-      });
+      const itemName = `${item.wine.name} (${item.quantity}x)`;
+      doc.text(itemName, nameColX, itemY, lineOptions);
+      doc.text(
+        `${item.totalPrice} ${tt("$.invoice.currency")}`,
+        priceColX,
+        itemY,
+        {
+          ...lineOptions,
+          align: "right",
+        }
+      );
     });
 
     // Draw table bottom line
@@ -224,18 +258,13 @@ export async function useInvoice(event: H3Event) {
     doc.fontSize(12);
     const totalY = doc.y;
     renderLabel(doc, tt("$.invoice.total"), nameColX, totalY, lineOptions);
-    doc.text(
-      `${invoiceData.total} ${tt("$.invoice.currency")}`,
-      priceColX,
-      totalY,
-      {
-        ...lineOptions,
-        align: "right",
-      }
-    );
+    doc.text(`${totalPrice} ${tt("$.invoice.currency")}`, priceColX, totalY, {
+      ...lineOptions,
+      align: "right",
+    });
   }
 
-  async function createInvoicePdf(invoiceData: any): Promise<Buffer> {
+  async function createInvoicePdf(invoiceData: IOrder): Promise<Buffer> {
     return new Promise(async (resolve) => {
       doc.on("end", () => resolve(Buffer.concat(buffers)));
 
@@ -247,8 +276,8 @@ export async function useInvoice(event: H3Event) {
         lineOptions
       );
 
-      renderSupplier(invoiceData.supplier, lineOptions);
-      renderCustomer(invoiceData.customer, lineOptions);
+      renderSupplier(invoiceData.user, lineOptions);
+      renderCustomer(invoiceData.user, lineOptions);
 
       // Přidání extra řádku pod supplier a customer sekce
       doc.moveDown();
@@ -260,7 +289,7 @@ export async function useInvoice(event: H3Event) {
       }
 
       // Items table
-      renderItems(invoiceData, lineOptions);
+      renderItems(invoiceData.carts, invoiceData.totalPrice, lineOptions);
 
       doc.end();
     });

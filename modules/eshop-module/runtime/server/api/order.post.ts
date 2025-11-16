@@ -56,7 +56,7 @@ export default defineEventHandler(
 
     // pokud se podari ulozit objednavku do DB, odesle se mail klientovi i adminovi
     if (order.user.email) {
-      await $fetch("/api/email/order", { method: "POST", body: { ...order } });
+      await $fetch("/api/email/order", { method: "POST", body: order });
     }
 
     const result = order;
