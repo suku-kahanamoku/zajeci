@@ -4,14 +4,11 @@ import SignupForm from "@/emails/SignupForm.vue";
 
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
-  const t = await useTranslation(event);
   const { template, send } = await useMailing(event);
 
   await send({
-    subject: t("$.mailing.signup.subject"),
-    template: await template(SignupForm, {
-      url: process.env.FRONTEND_HOST,
-    }),
+    subject: "$.mailing.signup.subject",
+    template: await template(SignupForm, body),
     to: [
       {
         Email: body.email,

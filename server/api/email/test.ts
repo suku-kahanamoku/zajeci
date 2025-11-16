@@ -7,7 +7,6 @@ export default defineEventHandler(async (event: H3Event) => {
 
   // odesle mail klientovi
   const html = await template(Test, {
-    url: "process.env.FRONTEND_HOST",
     msg: "hlaska",
   });
 

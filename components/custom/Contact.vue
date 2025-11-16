@@ -102,6 +102,7 @@ async function onSubmit(body: Record<string, any>) {
               disabled: true,
             },
           }"
+          :loading="loading"
           @submit="onSubmit"
         >
         </CmpForm>

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event: H3Event) => {
   await send({
     subject: t("$.mailing.order.confirmed.subject", { orderId: body._id }),
     template: await template(OrderForm, {
-      url: process.env.FRONTEND_HOST,
+      ...body,
       email: process.env.NUXT_MAILING_FROM as string,
       orderId: body._id,
     }),
