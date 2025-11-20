@@ -1,0 +1,34 @@
+{
+  "syscode": "admin-enum-list",
+  "restUrl": "/api/admin/enum",
+  "deleteUrl": "/api/admin/enum/${item._id}",
+  "factory": {
+    "url": "${syscode}--$${_id}"
+  },
+  "fields": [
+    {
+      "name": "syscode",
+      "type": "text",
+      "label": "$.enum.form.syscode",
+      "placeholder": "$.enum.placeholder.syscode"
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "label": "$.enum.form.name",
+      "placeholder": "$.enum.placeholder.name"
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "$.enum.form.description",
+      "placeholder": "$.enum.placeholder.description"
+    },
+    {
+      "name": "items",
+      "type": "array",
+      "label": "$.enum.form.items",
+      "placeholder": "$.enum.placeholder.items"
+    }
+  ]
+}

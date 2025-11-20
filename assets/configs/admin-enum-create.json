@@ -1,0 +1,27 @@
+{
+  "syscode": "admin-enum-create",
+  "postUrl": "/api/admin/enum",
+  "method": "POST",
+  "modelType": "enum",
+  "fields": [
+    {
+      "name": "syscode",
+      "type": "text",
+      "label": "$.enum.form.syscode",
+      "placeholder": "$.enum.placeholder.syscode",
+      "required": true
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "label": "$.enum.form.name",
+      "placeholder": "$.enum.placeholder.name"
+    },
+    {
+      "name": "description",
+      "type": "textarea",
+      "label": "$.enum.form.description",
+      "placeholder": "$.enum.placeholder.description"
+    }
+  ]
+}

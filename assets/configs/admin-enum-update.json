@@ -1,0 +1,28 @@
+{
+  "syscode": "admin-enum-update",
+  "restUrl": "/api/admin/enum/${route.meta.id}",
+  "patchUrl": "/api/admin/enum/${route.meta.id}",
+  "method": "PATCH",
+  "modelType": "enum",
+  "fields": [
+    {
+      "name": "syscode",
+      "type": "text",
+      "label": "$.enum.form.syscode",
+      "placeholder": "$.enum.placeholder.syscode",
+      "required": true
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "label": "$.enum.form.name",
+      "placeholder": "$.enum.placeholder.name"
+    },
+    {
+      "name": "description",
+      "type": "textarea",
+      "label": "$.enum.form.description",
+      "placeholder": "$.enum.placeholder.description"
+    }
+  ]
+}

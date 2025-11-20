@@ -19,6 +19,10 @@ if (user.value?.role === "admin") {
   const adminOrder = menuItem("admin_order")!;
   adminOrder.to = localePath(adminOrder.to!);
   menuItems.push(adminOrder);
+
+  const adminEnum = menuItem("admin_enum")!;
+  adminEnum.to = localePath(adminEnum.to!);
+  menuItems.push(adminEnum);
 }
 </script>
 

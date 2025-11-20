@@ -181,6 +181,41 @@
       "cz": "Czechia",
       "sk": "Slovakia"
     },
+    "enum": {
+      "form": {
+        "syscode": "System code",
+        "name": "Name",
+        "description": "Description",
+        "items": "Items"
+      },
+      "placeholder": {
+        "syscode": "Enter system code",
+        "name": "Enter name",
+        "description": "Enter description",
+        "items": "Add items"
+      },
+      "item": {
+        "syscode": "Item code",
+        "name": "Item name",
+        "description": "Item description",
+        "disabled": "Disabled",
+        "hidden": "Hidden",
+        "placeholder": {
+          "syscode": "Enter item code",
+          "name": "Enter item name",
+          "description": "Enter item description"
+        }
+      }
+    },
+    "admin": {
+      "enum": {
+        "title": "Enum Management",
+        "create_enum": "Create New Enum",
+        "enum_detail": {
+          "title": "Enum Detail"
+        }
+      }
+    },
     "footer": {
       "copyright": "All rights reserved",
       "reserved": "All rights reserved",

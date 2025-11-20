@@ -181,6 +181,41 @@
       "cz": "Česká Republika",
       "sk": "Slovensko"
     },
+    "enum": {
+      "form": {
+        "syscode": "Systémový kód",
+        "name": "Název",
+        "description": "Popis",
+        "items": "Položky"
+      },
+      "placeholder": {
+        "syscode": "Zadejte systémový kód",
+        "name": "Zadejte název",
+        "description": "Zadejte popis",
+        "items": "Přidejte položky"
+      },
+      "item": {
+        "syscode": "Kód položky",
+        "name": "Název položky",
+        "description": "Popis položky",
+        "disabled": "Zakázáno",
+        "hidden": "Skryto",
+        "placeholder": {
+          "syscode": "Zadejte kód položky",
+          "name": "Zadejte název položky",
+          "description": "Zadejte popis položky"
+        }
+      }
+    },
+    "admin": {
+      "enum": {
+        "title": "Správa enumerátorů",
+        "create_enum": "Vytvořit nový enumerátor",
+        "enum_detail": {
+          "title": "Detail enumerátoru"
+        }
+      }
+    },
     "footer": {
       "copyright": "Všechna práva vyhrazena",
       "reserved": "Všechna práva vyhrazena",
