@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import eConfig from "../../../assets/configs/admin-enum-list.json";
 import type { IEnum } from "@suku-kahanamoku/mongoose-module/types";
+
+import eConfig from "@/assets/configs/admin-enum-list.json";
 
 definePageMeta({
   layout: "admin",

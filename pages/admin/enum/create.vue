@@ -35,6 +35,9 @@ useHead({
     <CmpForm
       :fields="config.fields"
       :loading="loading"
+      :actions="{
+        no: { link: routes.admin_enum as any },
+      }"
       :ui="{
         body: 'grid md:grid-cols-1 gap-4',
       }"

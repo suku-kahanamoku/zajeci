@@ -61,7 +61,6 @@ export function useEnumAdmin(eConfig: any) {
       immediate: true,
     }
   );
-  console.log(enums.value, config?.value?.restUrl);
 
   // Delete
   async function onDelete(value: boolean) {

@@ -36,6 +36,9 @@ useHead({
     <CmpForm
       :fields="config.fields"
       :loading="loading"
+      :actions="{
+        no: { link: routes.admin_wine as any },
+      }"
       :ui="{
         body: 'grid md:grid-cols-2 gap-4',
       }"

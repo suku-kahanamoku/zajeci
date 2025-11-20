@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import eConfig from "../../../assets/configs/admin-enum-update.json";
 import type { IEnum } from "@suku-kahanamoku/mongoose-module/types";
+
+import eConfig from "@/assets/configs/admin-enum-update.json";
 
 definePageMeta({
   layout: "admin",
@@ -36,8 +37,11 @@ useHead({
     <CmpForm
       v-if="enumData?.data"
       :fields="config.fields"
-      :item="enumData.data"
+      :item="(enumData.data as IEnum)"
       :loading="loading"
+      :actions="{
+        no: { link: routes.admin_enum as any },
+      }"
       :ui="{
         body: 'grid md:grid-cols-1 gap-4',
       }"

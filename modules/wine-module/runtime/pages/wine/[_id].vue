@@ -12,7 +12,7 @@ definePageMeta({
 });
 
 const { t } = useLang();
-const route = useRoute();
+const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const title = computed(() =>
   t((wine.value?.data?.name || route.meta.label || route.meta.title) as string)
@@ -78,6 +78,9 @@ useHead({
     <CmpWineDetailCard
       v-if="wine?.data"
       :fields="config.fields"
+      :actions="{
+        no: { link: routes.admin_wine as any },
+      }"
       :wine="(wine?.data as IWine)"
     />
   </section>

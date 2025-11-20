@@ -38,6 +38,9 @@ useHead({
       :fields="config.fields"
       :item="(wine.data as IWine)"
       :loading="loading"
+      :actions="{
+        no: { link: routes.admin_wine as any },
+      }"
       :ui="{
         body: 'grid md:grid-cols-2 gap-4',
       }"
