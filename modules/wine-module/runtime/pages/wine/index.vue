@@ -37,7 +37,7 @@ const { data: config } = await useAsyncData(
       return {} as typeof wConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 /**
@@ -58,7 +58,7 @@ const { data: wines } = await useAsyncData(
       }
     }
   },
-  { watch: [route] }
+  { watch: [route] },
 );
 </script>
 
@@ -68,7 +68,7 @@ const { data: wines } = await useAsyncData(
     :id="config.syscode"
     class="w-full max-w-7xl mx-auto px-5 pb-10"
   >
-    <div :id="(routes.winde?.meta?.syscode as string)">
+    <div :id="routes.winde?.meta?.syscode as string">
       <UPageHeader
         :title="title"
         :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
@@ -76,11 +76,12 @@ const { data: wines } = await useAsyncData(
       />
 
       <div class="flex flex-wrap justify-center gap-4 items-stretch">
-        <CmpWineCard
+        <CustomEshopUnderConstruction />
+        <!-- <CmpWineCard
           v-for="wine of wines?.data"
           :fields="config.fields"
           :wine="wine"
-        />
+        /> -->
       </div>
     </div>
   </div>

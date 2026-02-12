@@ -23,7 +23,7 @@ const { data: config } = await useAsyncData(
       return {} as typeof wConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 /**
@@ -44,7 +44,7 @@ const { data: wines } = await useAsyncData(
       }
     }
   },
-  { watch: [route] }
+  { watch: [route] },
 );
 </script>
 
@@ -59,11 +59,12 @@ const { data: wines } = await useAsyncData(
     </div>
 
     <div class="flex flex-wrap justify-center gap-4 items-stretch">
-      <CmpWineCard
+      <CustomEshopUnderConstruction />
+      <!-- <CmpWineCard
         v-for="wine of wines?.data"
         :fields="config.fields"
         :wine="(wine as IWine)"
-      />
+      /> -->
     </div>
   </div>
 </template>

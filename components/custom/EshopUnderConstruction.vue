@@ -3,7 +3,7 @@
     :title="$tt('$.eshop.construction.title')"
     :description="$tt('$.eshop.construction.description')"
     color="warning"
-    variant="soft"
+    variant="subtle"
     icon="i-lucide-construction"
   />
 </template>

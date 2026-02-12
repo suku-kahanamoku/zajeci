@@ -86,7 +86,6 @@ const menuItems = [
   </UHeader>
 
   <UMain>
-    <CustomEshopUnderConstruction />
     <slot></slot>
   </UMain>
 </template>
