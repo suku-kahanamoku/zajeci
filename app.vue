@@ -8,6 +8,6 @@ const {
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <UiCookieBanner />
+    <!-- <UiCookieBanner /> -->
   </UApp>
 </template>

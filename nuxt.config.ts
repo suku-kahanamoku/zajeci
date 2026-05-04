@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: "2026-05-04",
   ssr: true,
   devtools: { enabled: true },
 
@@ -21,9 +22,6 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     phpApiBaseUrl: process.env.PHP_API_BASE_URL || "http://localhost/php/php-core/api",
-    fakturoidAccountSlug: process.env.FAKTUROID_ACCOUNT_SLUG,
-    fakturoidClientId: process.env.FAKTUROID_CLIENT_ID,
-    fakturoidClientSecret: process.env.FAKTUROID_CLIENT_SECRET,
   },
 
   router: {
@@ -56,5 +54,11 @@ export default defineNuxtConfig({
 
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: ["@vue/devtools-core", "@vue/devtools-kit", "ukiyojs", "@vueuse/core"],
+    },
   },
 });
