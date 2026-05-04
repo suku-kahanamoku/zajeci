@@ -1,9 +1,4 @@
-import type {
-  IEnum,
-  IEnumItem,
-  IEnumResponse,
-  IEnumsResponse,
-} from "@suku-kahanamoku/mongoose-module/types";
+import type { IEnumItem, IEnumResponse, IEnumsResponse } from "@/types/enum.types";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import { useUrlResolver, useFormNavigable } from "#imports";
@@ -15,7 +10,7 @@ export function useEnumAdmin(eConfig: any) {
   const { onSubmit } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<IEnum[]>([]);
+  const selected = ref<IEnumItem[]>([]);
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(

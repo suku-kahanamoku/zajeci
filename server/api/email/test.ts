@@ -1,11 +1,19 @@
-import { defineEventHandler, H3Event, readBody } from "h3";
+import { defineEventHandler, H3Event } from "h3";
 import ContactForm from "@/emails/ContactForm.vue";
-import { OrderModel } from "~/modules/eshop-module/runtime/models/order.schema";
 
 export default defineEventHandler(async (event: H3Event) => {
   const { template, send } = await useMailing(event);
   const locale = event.context.nuxtI18n.vueI18nOptions.locale;
-  const body = await OrderModel.findById("6900e2bd41c4b9456f6709d0");
+
+  // Fetch a sample order from PHP API for testing
+  const config = useRuntimeConfig();
+  let body: any = null;
+  try {
+    const phpRes = await $fetch<any>(`${config.phpApiBaseUrl}/orders?limit=1`);
+    body = phpRes?.data?.items?.[0] ?? null;
+  } catch (error) {
+    console.error("Chyba při načítání testovací objednávky:", error);
+  }
 
   // Stažení PDF přílohy z invoice endpointu
   let attachments: any[] = [];

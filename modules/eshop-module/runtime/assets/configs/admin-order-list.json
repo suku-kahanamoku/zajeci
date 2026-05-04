@@ -2,31 +2,27 @@
   "syscode": "admin-order-list",
   "restUrl": "/api/admin/order",
   "factory": {
-    "url": "${name}--$${_id}"
+    "url": "${order_number}--$${id}"
   },
   "fields": [
     {
-      "name": "_id",
+      "name": "id",
       "label": "$.order.order_id"
     },
     {
-      "name": "user.email",
-      "label": "$.order.user_email"
+      "name": "order_number",
+      "label": "$.order.order_number"
     },
     {
-      "name": "user.phone",
-      "label": "$.order.user_phone"
+      "name": "status",
+      "label": "$.order.status"
     },
     {
-      "name": "delivery.type",
-      "label": "$.order.delivery_type"
-    },
-    {
-      "name": "payment.type",
+      "name": "payment_method",
       "label": "$.order.payment_type"
     },
     {
-      "name": "totalPrice",
+      "name": "total_amount",
       "type": "number",
       "label": "$.order.total_price"
     }

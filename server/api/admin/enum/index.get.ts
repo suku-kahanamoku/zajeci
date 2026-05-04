@@ -3,6 +3,6 @@ import { phpApiFetch, toLegacyListResponse } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event: H3Event) => {
   const query = getQuery(event);
-  const phpResponse = await phpApiFetch(event, "/products", { query });
+  const phpResponse = await phpApiFetch(event, "/enumerations", { query });
   return toLegacyListResponse(phpResponse);
 });

@@ -1,9 +1,9 @@
 {
   "syscode": "admin-wine-list",
   "restUrl": "/api/wine",
-  "deleteUrl": "/api/admin/wine/${item._id}",
+  "deleteUrl": "/api/admin/wine/${item.id}",
   "factory": {
-    "url": "${name}--$${_id}"
+    "url": "${name}--$${id}"
   },
   "fields": [
     {

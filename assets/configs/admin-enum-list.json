@@ -1,9 +1,9 @@
 {
   "syscode": "admin-enum-list",
   "restUrl": "/api/admin/enum",
-  "deleteUrl": "/api/admin/enum/${item._id}",
+  "deleteUrl": "/api/admin/enum/${item.id}",
   "factory": {
-    "url": "${syscode}--$${_id}"
+    "url": "${syscode}--$${id}"
   },
   "fields": [
     {

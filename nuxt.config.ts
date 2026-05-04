@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     "@suku-kahanamoku/form-module",
     "@suku-kahanamoku/notify-module",
     "@suku-kahanamoku/ui-module",
-    "@suku-kahanamoku/mongoose-module",
     "@suku-kahanamoku/lang-module",
     "@suku-kahanamoku/common-module",
     "@suku-kahanamoku/seo-module",
@@ -21,6 +20,7 @@ export default defineNuxtConfig({
   css: ["@/assets/css/main.css"],
 
   runtimeConfig: {
+    phpApiBaseUrl: process.env.PHP_API_BASE_URL || "http://localhost/php/php-core/api",
     fakturoidAccountSlug: process.env.FAKTUROID_ACCOUNT_SLUG,
     fakturoidClientId: process.env.FAKTUROID_CLIENT_ID,
     fakturoidClientSecret: process.env.FAKTUROID_CLIENT_SECRET,

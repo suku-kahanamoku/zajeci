@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IEnum } from "@suku-kahanamoku/mongoose-module/types";
+import type { IEnumItem } from "@/types/enum.types";
 
 import eConfig from "@/assets/configs/admin-enum-update.json";
 
@@ -37,7 +37,7 @@ useHead({
     <CmpForm
       v-if="enumData?.data"
       :fields="config.fields"
-      :item="(enumData.data as IEnum)"
+      :item="(enumData.data as IEnumItem)"
       :loading="loading"
       :actions="{
         no: { link: routes.admin_enum as any },
@@ -45,7 +45,7 @@ useHead({
       :ui="{
         body: 'grid md:grid-cols-1 gap-4',
       }"
-      @submit="onUpdate($event, enumData?.data as IEnum)"
+      @submit="onUpdate($event, enumData?.data as IEnumItem)"
     />
   </div>
 </template>

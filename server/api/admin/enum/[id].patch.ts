@@ -3,8 +3,10 @@ import { phpApiFetch, toLegacySingleResponse } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event: H3Event) => {
   const id = event.context.params?.id;
-  const phpResponse = await phpApiFetch(event, `/products/${id}`, {
-    method: "DELETE",
+  const body = await readBody(event);
+  const phpResponse = await phpApiFetch(event, `/enumerations/${id}`, {
+    method: "PATCH",
+    body,
   });
   return toLegacySingleResponse(phpResponse);
 });

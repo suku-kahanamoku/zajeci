@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IEnum } from "@suku-kahanamoku/mongoose-module/types";
+import type { IEnumItem } from "@/types/enum.types";
 
 import eConfig from "@/assets/configs/admin-enum-list.json";
 
