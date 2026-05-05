@@ -60,7 +60,7 @@ function addToCashdesk() {
         <div class="flex flex-wrap font-bold text-gray-600 dark:text-white">
           {{
             $tt(fields?.find((field) => field.name === "price")?.label!)
-          }}:&nbsp;<UiPrice :price="wine.price" :old-price="wine.oldPrice" />
+          }}:&nbsp;<UiPrice :price="wine.price" />
         </div>
         <UButton
           icon="i-heroicons-pencil-square"

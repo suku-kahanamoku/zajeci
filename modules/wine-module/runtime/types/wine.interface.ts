@@ -60,7 +60,6 @@ export interface IWine extends IItem {
   name: string;
   stock_quantity: number;
   price: number;
-  oldPrice?: number;
   description?: string;
   kind?: WineKind;
   quality?: WineQuality;

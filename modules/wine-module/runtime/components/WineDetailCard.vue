@@ -235,7 +235,7 @@ function addToCashdesk() {
           >
             {{
               $tt(fields?.find((field) => field.name === "price")?.label!)
-            }}:&nbsp;<UiPrice :price="wine.price" :old-price="wine.oldPrice" />
+            }}:&nbsp;<UiPrice :price="wine.price" />
           </div>
           <div>
             <UButton

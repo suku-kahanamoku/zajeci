@@ -3,8 +3,9 @@ import { useToNumber } from "@vueuse/core";
 
 const props = defineProps<{
   price: number;
-  oldPrice?: number;
 }>();
+
+const oldPrice = computed(() => props.price * 1.1);
 
 const {
   i18n: { locale },
@@ -15,12 +16,11 @@ const {
 <template>
   <div class="space-x-1">
     <span
-      v-if="oldPrice"
       class="line-through text-gray-400 text-sm"
       aria-label="Old price"
     >
       {{
-        useToNumber(oldPrice?.toFixed(2) || 0).value.toLocaleString(locale)
+        useToNumber(oldPrice.toFixed(2)).value.toLocaleString(locale)
       }}&nbsp;{{ t("$.czk") }}
     </span>
     <span aria-label="Current price">
