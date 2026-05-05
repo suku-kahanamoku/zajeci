@@ -76,9 +76,7 @@ export interface IWine extends IItem {
     main?: IImage;
     variants?: IImage[];
   };
-  published?: boolean;
-  createdAt?: string;
-  updatedAt?: string;
+  is_active?: boolean;
   created_at?: string;
   updated_at?: string;
 }

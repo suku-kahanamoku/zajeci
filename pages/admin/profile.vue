@@ -80,7 +80,7 @@ async function onUpdate(body: Record<string, any>) {
       :ui="{
         body: 'grid md:grid-cols-2 gap-4',
       }"
-      :key="(item?.updatedAt as any)"
+      :key="(item?.updated_at as any)"
       @submit="onUpdate"
     />
   </div>
