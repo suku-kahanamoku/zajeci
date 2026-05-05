@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    "@nuxtjs/color-mode",
     "@suku-kahanamoku/auth-module",
     "@suku-kahanamoku/menu-module",
     "@suku-kahanamoku/form-module",
