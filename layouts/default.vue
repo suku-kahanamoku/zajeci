@@ -61,7 +61,7 @@ const menuItems = [
           variant="ghost"
         />
       </UChip>
-      <!-- <UColorModeButton /> -->
+      <UColorModeButton />
 
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />
