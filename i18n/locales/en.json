@@ -235,7 +235,7 @@
       "role": "Role",
       "is_active": "Active",
       "placeholder": {
-        "email": "user@example.com",
+        "email": "user{'@'}example.com",
         "name": "John",
         "surname": "Doe",
         "phone": "+420 123 456 789"

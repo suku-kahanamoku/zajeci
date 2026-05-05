@@ -235,7 +235,7 @@
       "role": "Role",
       "is_active": "Aktivní",
       "placeholder": {
-        "email": "uzivatel@example.com",
+        "email": "uzivatel{'@'}example.com",
         "name": "Jan",
         "surname": "Novák",
         "phone": "+420 123 456 789"
