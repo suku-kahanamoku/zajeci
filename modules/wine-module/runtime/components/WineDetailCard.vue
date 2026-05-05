@@ -207,7 +207,7 @@ function addToCashdesk() {
             <span class="font-semibold text-sm">{{ wine.year }}</span>
           </div>
           <div
-            v-if="wine.quantity"
+            v-if="wine.stock_quantity"
             class="flex flex-col items-center bg-gray-100 dark:bg-gray-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
           >
             <UIcon
@@ -218,12 +218,12 @@ function addToCashdesk() {
             <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
                 $tt(
-                  fields?.find((field: IFormField) => field.name === "quantity")
+                  fields?.find((field: IFormField) => field.name === "stock_quantity")
                     ?.label!
                 )
               }}
             </span>
-            <span class="font-semibold text-sm">{{ wine.quantity }}</span>
+            <span class="font-semibold text-sm">{{ wine.stock_quantity }}</span>
           </div>
         </div>
 

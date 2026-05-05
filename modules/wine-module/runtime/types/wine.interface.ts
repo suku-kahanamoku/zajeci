@@ -58,9 +58,7 @@ export interface IWine extends IItem {
   /** PHP backend integer ID */
   id?: number;
   name: string;
-  /** PHP: stock_quantity */
-  quantity: number;
-  stock_quantity?: number;
+  stock_quantity: number;
   price: number;
   oldPrice?: number;
   description?: string;
