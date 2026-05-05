@@ -1,0 +1,35 @@
+{
+  "syscode": "admin-user-list",
+  "restUrl": "/api/admin/user",
+  "deleteUrl": "/api/admin/user/${item.id}",
+  "factory": {
+    "url": "${email}--$${id}"
+  },
+  "fields": [
+    {
+      "name": "id",
+      "label": "$.user.id"
+    },
+    {
+      "name": "email",
+      "label": "$.user.email"
+    },
+    {
+      "name": "name",
+      "label": "$.user.name"
+    },
+    {
+      "name": "surname",
+      "label": "$.user.surname"
+    },
+    {
+      "name": "role",
+      "label": "$.user.role"
+    },
+    {
+      "name": "is_active",
+      "type": "boolean",
+      "label": "$.user.is_active"
+    }
+  ]
+}

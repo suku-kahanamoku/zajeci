@@ -1,0 +1,31 @@
+{
+  "syscode": "admin-text-list",
+  "restUrl": "/api/admin/text",
+  "deleteUrl": "/api/admin/text/${item.id}",
+  "factory": {
+    "url": "${syscode}--$${id}"
+  },
+  "fields": [
+    {
+      "name": "id",
+      "label": "$.text.id"
+    },
+    {
+      "name": "syscode",
+      "label": "$.text.syscode"
+    },
+    {
+      "name": "title",
+      "label": "$.text.title"
+    },
+    {
+      "name": "language",
+      "label": "$.text.language"
+    },
+    {
+      "name": "is_active",
+      "type": "boolean",
+      "label": "$.text.is_active"
+    }
+  ]
+}

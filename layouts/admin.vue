@@ -20,6 +20,18 @@ if (user.value?.role === "admin") {
   adminOrder.to = localePath(adminOrder.to!);
   menuItems.push(adminOrder);
 
+  const adminCategory = menuItem("admin_category")!;
+  adminCategory.to = localePath(adminCategory.to!);
+  menuItems.push(adminCategory);
+
+  const adminUser = menuItem("admin_user")!;
+  adminUser.to = localePath(adminUser.to!);
+  menuItems.push(adminUser);
+
+  const adminText = menuItem("admin_text")!;
+  adminText.to = localePath(adminText.to!);
+  menuItems.push(adminText);
+
   const adminEnum = menuItem("admin_enum")!;
   adminEnum.to = localePath(adminEnum.to!);
   menuItems.push(adminEnum);

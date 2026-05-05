@@ -212,12 +212,74 @@
         }
       }
     },
+    "category": {
+      "id": "ID",
+      "name": "Název",
+      "syscode": "Kód",
+      "parent_id": "Nadřazená kategorie",
+      "description": "Popis",
+      "is_active": "Aktivní",
+      "placeholder": {
+        "name": "Bílá vína",
+        "syscode": "bila-vina",
+        "parent_id": "ID nadřazené kategorie",
+        "description": "Popis kategorie"
+      }
+    },
+    "user": {
+      "id": "ID",
+      "email": "E-mail",
+      "name": "Jméno",
+      "surname": "Příjmení",
+      "phone": "Telefon",
+      "role": "Role",
+      "is_active": "Aktivní",
+      "placeholder": {
+        "email": "uzivatel@example.com",
+        "name": "Jan",
+        "surname": "Novák",
+        "phone": "+420 123 456 789"
+      }
+    },
+    "text": {
+      "id": "ID",
+      "syscode": "Kód",
+      "title": "Nadpis",
+      "content": "Obsah",
+      "language": "Jazyk",
+      "is_active": "Aktivní",
+      "placeholder": {
+        "syscode": "uvodni-text",
+        "title": "Úvodní text",
+        "content": "Text obsahu..."
+      }
+    },
     "admin": {
       "enum": {
         "title": "Správa enumerátorů",
         "create_enum": "Vytvořit nový enumerátor",
         "enum_detail": {
           "title": "Detail enumerátoru"
+        }
+      },
+      "category": {
+        "title": "Správa kategorií",
+        "create_category": "Vytvořit novou kategorii",
+        "update": {
+          "title": "Editace kategorie"
+        }
+      },
+      "user": {
+        "title": "Správa uživatelů",
+        "update": {
+          "title": "Editace uživatele"
+        }
+      },
+      "text": {
+        "title": "Správa textů",
+        "create_text": "Vytvořit nový text",
+        "update": {
+          "title": "Editace textu"
         }
       }
     },

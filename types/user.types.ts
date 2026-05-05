@@ -1,0 +1,21 @@
+import type { IResponse } from "@suku-kahanamoku/common-module/types";
+
+export interface IAdminUser {
+  id?: number;
+  email: string;
+  name?: string;
+  surname?: string;
+  phone?: string;
+  role?: string;
+  is_active?: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface IUserResponse extends IResponse {
+  data?: IAdminUser;
+}
+
+export interface IUsersResponse extends IResponse {
+  data?: IAdminUser[];
+}

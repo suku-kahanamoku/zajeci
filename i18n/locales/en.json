@@ -212,12 +212,74 @@
         }
       }
     },
+    "category": {
+      "id": "ID",
+      "name": "Name",
+      "syscode": "Code",
+      "parent_id": "Parent Category",
+      "description": "Description",
+      "is_active": "Active",
+      "placeholder": {
+        "name": "White Wines",
+        "syscode": "white-wines",
+        "parent_id": "Parent category ID",
+        "description": "Category description"
+      }
+    },
+    "user": {
+      "id": "ID",
+      "email": "Email",
+      "name": "First Name",
+      "surname": "Last Name",
+      "phone": "Phone",
+      "role": "Role",
+      "is_active": "Active",
+      "placeholder": {
+        "email": "user@example.com",
+        "name": "John",
+        "surname": "Doe",
+        "phone": "+420 123 456 789"
+      }
+    },
+    "text": {
+      "id": "ID",
+      "syscode": "Code",
+      "title": "Title",
+      "content": "Content",
+      "language": "Language",
+      "is_active": "Active",
+      "placeholder": {
+        "syscode": "intro-text",
+        "title": "Introduction Text",
+        "content": "Text content..."
+      }
+    },
     "admin": {
       "enum": {
         "title": "Enum Management",
         "create_enum": "Create New Enum",
         "enum_detail": {
           "title": "Enum Detail"
+        }
+      },
+      "category": {
+        "title": "Category Management",
+        "create_category": "Create New Category",
+        "update": {
+          "title": "Edit Category"
+        }
+      },
+      "user": {
+        "title": "User Management",
+        "update": {
+          "title": "Edit User"
+        }
+      },
+      "text": {
+        "title": "Text Management",
+        "create_text": "Create New Text",
+        "update": {
+          "title": "Edit Text"
         }
       }
     },

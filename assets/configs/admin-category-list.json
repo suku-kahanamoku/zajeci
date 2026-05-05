@@ -1,0 +1,31 @@
+{
+  "syscode": "admin-category-list",
+  "restUrl": "/api/admin/category",
+  "deleteUrl": "/api/admin/category/${item.id}",
+  "factory": {
+    "url": "${name}--$${id}"
+  },
+  "fields": [
+    {
+      "name": "id",
+      "label": "$.category.id"
+    },
+    {
+      "name": "name",
+      "label": "$.category.name"
+    },
+    {
+      "name": "syscode",
+      "label": "$.category.syscode"
+    },
+    {
+      "name": "parent_id",
+      "label": "$.category.parent_id"
+    },
+    {
+      "name": "is_active",
+      "type": "boolean",
+      "label": "$.category.is_active"
+    }
+  ]
+}

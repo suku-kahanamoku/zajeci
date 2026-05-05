@@ -1,0 +1,37 @@
+{
+  "syscode": "admin-category-create",
+  "postUrl": "/api/admin/category",
+  "method": "POST",
+  "fields": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "$.category.name",
+      "placeholder": "$.category.placeholder.name",
+      "required": true
+    },
+    {
+      "name": "syscode",
+      "type": "text",
+      "label": "$.category.syscode",
+      "placeholder": "$.category.placeholder.syscode"
+    },
+    {
+      "name": "parent_id",
+      "type": "number",
+      "label": "$.category.parent_id",
+      "placeholder": "$.category.placeholder.parent_id"
+    },
+    {
+      "name": "description",
+      "type": "textarea",
+      "label": "$.category.description",
+      "placeholder": "$.category.placeholder.description"
+    },
+    {
+      "name": "is_active",
+      "type": "boolean",
+      "label": "$.category.is_active"
+    }
+  ]
+}
