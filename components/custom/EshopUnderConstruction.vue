@@ -1,7 +1,7 @@
 <template>
   <UAlert
-    :title="'fdsa'"
-    :description="'fdsafsd'"
+    :title="$tt('$.eshop.construction.title')"
+    :description="$tt('$.eshop.construction.description')"
     color="warning"
     variant="subtle"
     icon="i-lucide-construction"
