@@ -24,7 +24,7 @@ const { data: config } = await useAsyncData(
       return {} as typeof cConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 async function onSubmit(body: Record<string, any>) {
@@ -63,19 +63,19 @@ async function onSubmit(body: Record<string, any>) {
         </p>
         <div class="mt-5">
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
-            <Icon class="text-secondary-400" name="uil:envelope" size="26" />
+            <UIcon class="text-secondary-400" name="uil:envelope" size="26" />
             <a class="dark:text-white" href="mailto:vyborne@vinozezajeci.cz">
               vyborne@vinozezajeci.cz
             </a>
           </div>
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
-            <Icon class="text-secondary-400" name="uil:phone" size="26" />
+            <UIcon class="text-secondary-400" name="uil:phone" size="26" />
             <a class="dark:text-white" href="tel:+420770199999">
               +420 770 199 999
             </a>
           </div>
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
-            <Icon
+            <UIcon
               class="text-secondary-400"
               name="mdi:phone-classic"
               size="26"
@@ -85,7 +85,7 @@ async function onSubmit(body: Record<string, any>) {
             </a>
           </div>
           <div class="flex items-start mt-3 space-x-3 text-gray-600">
-            <Icon class="text-secondary-400" name="uil:map-marker" size="26" />
+            <UIcon class="text-secondary-400" name="uil:map-marker" size="26" />
             <span class="dark:text-white text-blue">
               Školní 156, 69105 Zaječí<br />
               IČ 19737491, DIČ CZ7951084053
@@ -95,7 +95,7 @@ async function onSubmit(body: Record<string, any>) {
       </div>
       <div class="from-right">
         <CmpForm
-          :fields="(config?.fields as IFormField[])"
+          :fields="config?.fields as IFormField[]"
           variant="subtle"
           :actions="{
             no: {

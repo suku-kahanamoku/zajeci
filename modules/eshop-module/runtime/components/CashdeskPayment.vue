@@ -59,7 +59,7 @@ watch(
           "
         >
           <div class="flex items-center gap-2">
-            <Icon :name="item.avatar as string" size="30" class="w-20" />
+            <UIcon :name="item.avatar as string" size="30" class="w-20" />
             <span>
               {{ t(item?.label) }}
             </span>

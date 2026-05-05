@@ -14,7 +14,7 @@ const isOpen = ref(control.value ? false : true);
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <!-- Ikona cookie -->
       <div class="inline">
-        <Icon name="mdi:cookie" size="36" class="text-primary-400" />
+        <UIcon name="mdi:cookie" size="36" class="text-primary-400" />
       </div>
       <!-- Text cookie banneru -->
       <p class="text-sm pe-4">

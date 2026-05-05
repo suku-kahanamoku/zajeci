@@ -78,7 +78,7 @@ watch(
           "
         >
           <div class="flex items-center gap-2">
-            <Icon
+            <UIcon
               v-if="item?.avatar?.startsWith('mdi:')"
               :name="item.avatar"
               size="30"
@@ -97,7 +97,7 @@ watch(
               {{ t(item?.label) }}
             </span>
             <UTooltip v-if="item?.help" :text="t(item.help)">
-              <Icon name="mdi:question-mark-circle" size="20" />
+              <UIcon name="mdi:question-mark-circle" size="20" />
             </UTooltip>
           </div>
 

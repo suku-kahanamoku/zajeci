@@ -69,13 +69,13 @@ function addToCashdesk() {
           </span>
           <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
             <UButton variant="ghost">
-              <Icon name="logos:facebook" size="20" />
+              <UIcon name="logos:facebook" size="20" />
             </UButton>
             <UButton variant="ghost">
-              <Icon name="logos:twitter" size="20" />
+              <UIcon name="logos:twitter" size="20" />
             </UButton>
             <UButton variant="ghost">
-              <Icon name="mdi:chat-processing-outline" size="20" />
+              <UIcon name="mdi:chat-processing-outline" size="20" />
             </UButton>
           </span>
         </div>

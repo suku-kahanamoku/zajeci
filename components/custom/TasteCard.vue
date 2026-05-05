@@ -32,7 +32,7 @@ const props = defineProps<{
         class="flex items-center gap-3 text-primary-600 dark:text-white"
       >
         <div>
-          <Icon class="text-secondary-400" :name="feature.icon" size="32" />
+          <UIcon class="text-secondary-400" :name="feature.icon" size="32" />
         </div>
         <div>
           {{ $tt(feature.label) }}
