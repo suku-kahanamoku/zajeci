@@ -31,9 +31,9 @@ const { getSelectLabel } = useField();
       <UIcon name="i-heroicons-beaker" class="text-blue-500" />
       <span>{{ wine.volume }}ml</span>
     </span>
-    <span v-if="wine.variety" class="flex items-center gap-1">
+    <span v-if="wine.variant" class="flex items-center gap-1">
       <UIcon name="i-heroicons-sparkles" class="text-green-500" />
-      <span>{{ getSelectLabel(fields, "variety", wine.variety) }}</span>
+      <span>{{ getSelectLabel(fields, "variant", wine.variant) }}</span>
     </span>
     <span v-if="wine.quality" class="flex items-center gap-1">
       <UIcon name="i-heroicons-star" class="text-yellow-500" />

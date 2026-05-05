@@ -33,7 +33,7 @@ export enum WineColor {
   orange = "orange",
 }
 
-export enum WineVariety {
+export enum WineVariant {
   cabernet_sauvignon = "cabernet_sauvignon",
   chardonnay = "chardonnay",
   frankovka = "frankovka",
@@ -64,7 +64,7 @@ export interface IWine extends IItem {
   kind?: WineKind;
   quality?: WineQuality;
   color?: WineColor;
-  variety?: WineVariety;
+  variant?: WineVariant;
   volume?: number;
   year?: number;
   /** PHP fields */

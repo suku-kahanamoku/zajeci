@@ -148,7 +148,7 @@ function addToCashdesk() {
             </span>
           </div>
           <div
-            v-if="wine.variety"
+            v-if="wine.variant"
             class="flex flex-col items-center bg-green-50 dark:bg-green-900/30 rounded-xl px-3 py-2 flex-1 min-w-[120px]"
           >
             <UIcon
@@ -159,13 +159,13 @@ function addToCashdesk() {
             <span class="text-xs text-gray-500 dark:text-gray-300">
               {{
                 $tt(
-                  fields?.find((field: IFormField) => field.name === "variety")
+                  fields?.find((field: IFormField) => field.name === "variant")
                     ?.label!
                 )
               }}
             </span>
             <span class="font-semibold text-sm"
-              >{{ getSelectLabel(fields, "variety", wine.variety) }}
+              >{{ getSelectLabel(fields, "variant", wine.variant) }}
             </span>
           </div>
           <div

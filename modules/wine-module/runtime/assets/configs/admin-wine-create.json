@@ -73,47 +73,47 @@
       ]
     },
     {
-      "name": "variety",
+      "name": "variant",
       "type": "select",
       "label": "$.wine.form.variety",
       "placeholder": "$.form.select",
       "options": [
         {
           "value": "cabernet_sauvignon",
-          "label": "$.wine.variety.cabernet_sauvignon"
+          "label": "$.wine.variant.cabernet_sauvignon"
         },
-        { "value": "chardonnay", "label": "$.wine.variety.chardonnay" },
-        { "value": "frankovka", "label": "$.wine.variety.frankovka" },
+        { "value": "chardonnay", "label": "$.wine.variant.chardonnay" },
+        { "value": "frankovka", "label": "$.wine.variant.frankovka" },
         {
           "value": "gruner_veltliner",
-          "label": "$.wine.variety.gruner_veltliner"
+          "label": "$.wine.variant.gruner_veltliner"
         },
-        { "value": "merlot", "label": "$.wine.variety.merlot" },
+        { "value": "merlot", "label": "$.wine.variant.merlot" },
         {
           "value": "modry_portugal",
-          "label": "$.wine.variety.modry_portugal"
+          "label": "$.wine.variant.modry_portugal"
         },
         {
           "value": "mueller_thurgau",
-          "label": "$.wine.variety.mueller_thurgau"
+          "label": "$.wine.variant.mueller_thurgau"
         },
-        { "value": "muscat", "label": "$.wine.variety.muscat" },
-        { "value": "pinot_blanc", "label": "$.wine.variety.pinot_blanc" },
-        { "value": "pinot_gris", "label": "$.wine.variety.pinot_gris" },
-        { "value": "pinot_noir", "label": "$.wine.variety.pinot_noir" },
-        { "value": "riesling", "label": "$.wine.variety.riesling" },
+        { "value": "muscat", "label": "$.wine.variant.muscat" },
+        { "value": "pinot_blanc", "label": "$.wine.variant.pinot_blanc" },
+        { "value": "pinot_gris", "label": "$.wine.variant.pinot_gris" },
+        { "value": "pinot_noir", "label": "$.wine.variant.pinot_noir" },
+        { "value": "riesling", "label": "$.wine.variant.riesling" },
         {
           "value": "sauvignon_blanc",
-          "label": "$.wine.variety.sauvignon_blanc"
+          "label": "$.wine.variant.sauvignon_blanc"
         },
-        { "value": "st_laurent", "label": "$.wine.variety.st_laurent" },
-        { "value": "traminer", "label": "$.wine.variety.traminer" },
+        { "value": "st_laurent", "label": "$.wine.variant.st_laurent" },
+        { "value": "traminer", "label": "$.wine.variant.traminer" },
         {
           "value": "welschriesling",
-          "label": "$.wine.variety.welschriesling"
+          "label": "$.wine.variant.welschriesling"
         },
-        { "value": "zweigelt", "label": "$.wine.variety.zweigelt" },
-        { "value": "other", "label": "$.wine.variety.other" }
+        { "value": "zweigelt", "label": "$.wine.variant.zweigelt" },
+        { "value": "other", "label": "$.wine.variant.other" }
       ]
     },
     {

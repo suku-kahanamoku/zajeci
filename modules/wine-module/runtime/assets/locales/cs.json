@@ -12,13 +12,13 @@
         "quality": "Přívlastek",
         "color": "Barva",
         "year": "Ročník",
-        "variety": "Odrůda",
+        "variant": "Odrůda",
         "volume": "Objem"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, výběr z hroznů",
         "quality": "Výběr z hroznů",
-        "variety": "Sauvignon Blanc"
+        "variant": "Sauvignon Blanc"
       },
       "kind": {
         "dry": "Suché",
@@ -49,7 +49,7 @@
         "archive_wine": "Archivní víno",
         "table_wine": "Stolní víno"
       },
-      "variety": {
+      "variant": {
         "riesling": "Ryzlink rýnský",
         "gruner_veltliner": "Veltlínské zelené",
         "welschriesling": "Ryzlink vlašský",

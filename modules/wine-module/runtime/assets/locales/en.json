@@ -12,13 +12,13 @@
         "quality": "Adjective",
         "color": "Color",
         "year": "Year",
-        "variety": "Variety",
+        "variant": "Variety",
         "volume": "Volume"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",
         "quality": "Selection of grapes",
-        "variety": "Sauvignon Blanc"
+        "variant": "Sauvignon Blanc"
       },
       "kind": {
         "dry": "Dry",
@@ -49,7 +49,7 @@
         "archive_wine": "Archive wine",
         "table_wine": "Table wine"
       },
-      "variety": {
+      "variant": {
         "riesling": "Riesling",
         "gruner_veltliner": "Grüner Veltliner",
         "welschriesling": "Welschriesling",
