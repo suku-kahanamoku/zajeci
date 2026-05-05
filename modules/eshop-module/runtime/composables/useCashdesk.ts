@@ -50,7 +50,7 @@ function createCashdesk() {
   const totalPrice = computed(
     () =>
       cartTotalPrice.value +
-      (delivery.value.totalPrice! + payment.value.totalPrice!)
+      (delivery.value.totalPrice! + payment.value.totalPrice!),
   );
 
   // Wrap cart mutation methods to keep localStorage updates
@@ -129,13 +129,13 @@ function createCashdesk() {
         method: "POST",
         body: order,
       });
-      if ((result as any).data?._id) {
+      if ((result as any).data?.id) {
         reset();
         navigateTo({
           path: localePath(routes.cashdesk_completed?.path!),
           query: {
-            orderId: (result as any).data._id,
-            email: (result as any).data.user.email,
+            orderId: (result as any).data.id,
+            email: user.value?.email,
           },
         });
       }

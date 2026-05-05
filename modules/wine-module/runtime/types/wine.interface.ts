@@ -55,8 +55,12 @@ export enum WineVariety {
 }
 
 export interface IWine extends IItem {
+  /** PHP backend integer ID */
+  id?: number;
   name: string;
+  /** PHP: stock_quantity */
   quantity: number;
+  stock_quantity?: number;
   price: number;
   oldPrice?: number;
   description?: string;
@@ -66,6 +70,10 @@ export interface IWine extends IItem {
   variety?: WineVariety;
   volume?: number;
   year?: number;
+  /** PHP fields */
+  sku?: string;
+  vat_rate?: string;
+  category_id?: number;
   image?: {
     main?: IImage;
     variants?: IImage[];
@@ -74,6 +82,8 @@ export interface IWine extends IItem {
   published?: boolean;
   createdAt?: string;
   updatedAt?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface IWineResponse extends IResponse {

@@ -9,14 +9,19 @@ definePageMeta({
 });
 
 const { t } = useLang();
+const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() =>
-  t((route.meta.label || route.meta.title) as string)
+  t((route.meta.label || route.meta.title) as string),
 );
 
-const { config, orders, loading, onUpdate } = useOrderAdmin(oConfig);
+const { config, orders, loading } = useOrderAdmin(oConfig);
 const order = computed(() => orders.value?.data as IOrder);
-const address = computed(() => order.value?.user?.address?.main);
+
+/** Parse delivery/address info from the note field (e.g. "Doprava: DPD | Adresa: ...") */
+const noteLines = computed(() =>
+  (order.value?.note || "").split(" | ").filter(Boolean),
+);
 
 useHead({
   title,
@@ -37,76 +42,67 @@ useHead({
 
     <UCard v-if="order">
       <template #header>
-        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
-          Objednávka #{{ order._id }}
-        </h2>
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+            Objednávka {{ order.order_number }}
+          </h2>
+          <UBadge :label="order.status" color="primary" variant="soft" />
+        </div>
       </template>
 
       <template #default>
-        <div class="mb-4">
-          <div class="font-semibold">Uživatel</div>
-          <div class="text-gray-700 dark:text-gray-200">
-            {{ order.user.name }} {{ order.user.surname }} ({{
-              order.user.email
-            }})
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <div class="font-semibold mb-1">
+              Zákazník (ID: {{ order.user_id }})
+            </div>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-0.5">
+              <li v-for="line in noteLines" :key="line">{{ line }}</li>
+            </ul>
           </div>
-          <div class="text-gray-500 dark:text-gray-400 text-sm">
-            Telefon: {{ order.user.phone }}
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="font-semibold">Adresa</div>
-          <div class="text-gray-700 dark:text-gray-200">
-            {{ address?.street }}, {{ address?.city }}, {{ address?.zip }},
-            {{ address?.state }}
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="font-semibold">Doprava</div>
-          <div class="text-gray-700 dark:text-gray-200">
-            {{ order.delivery.type }}
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="font-semibold">Platba</div>
-          <div class="text-gray-700 dark:text-gray-200">
-            {{ order.payment.type }}
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="font-semibold">Stav objednávky</div>
-          <div class="text-gray-700 dark:text-gray-200">
-            {{ order.status }}
+          <div>
+            <div class="font-semibold mb-1">Platba / Doprava</div>
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              Platba: <strong>{{ order.payment_method }}</strong>
+            </div>
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              Měna: <strong>{{ order.currency }}</strong>
+            </div>
           </div>
         </div>
       </template>
 
       <template #footer>
         <div class="mb-4">
-          <div class="font-semibold">Košík</div>
+          <div class="font-semibold mb-2">Položky objednávky</div>
           <ul class="divide-y divide-gray-200 dark:divide-gray-700">
             <li
-              v-for="cart in order.carts"
-              class="py-2 flex justify-between items-center"
+              v-for="item in order.items"
+              :key="item.id"
+              class="py-2 flex justify-between items-center text-sm"
             >
-              <span>{{ cart.wine?.name }}</span>
-              <span>{{ cart.quantity }} × {{ cart.unitPrice }} Kč</span>
-              <span class="font-semibold">= {{ cart.totalPrice }} Kč</span>
-            </li>
-
-            <li class="py-2 flex justify-between items-center">
-              <span>Doprava</span>
-              <span class="font-semibold"
-                >{{ order.delivery.totalPrice }} Kč</span
+              <span class="text-gray-500"
+                >ID produktu: {{ item.product_id }}</span
               >
+              <span>{{ item.quantity }} × {{ item.unit_price }} Kč</span>
+              <span class="font-semibold">= {{ item.total_price }} Kč</span>
             </li>
           </ul>
         </div>
-
-        <div class="mt-6 text-right">
-          <span class="text-lg font-bold text-primary-600 dark:text-primary-400"
-            >Celkem: {{ order.totalPrice }} Kč</span
+        <div
+          class="mt-4 text-right text-lg font-bold text-primary-600 dark:text-primary-400"
+        >
+          Celkem: {{ order.total_amount }} Kč
+        </div>
+        <div class="mt-4 flex justify-start">
+          <UButton
+            :to="localePath(routes.admin_order?.path)"
+            color="secondary"
+            variant="outline"
+            icon="i-heroicons-arrow-left"
           >
+            Zpět na seznam
+          </UButton>
         </div>
       </template>
     </UCard>

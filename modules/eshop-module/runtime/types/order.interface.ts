@@ -109,16 +109,31 @@ export enum OrderStatus {
  * @export
  * @interface IOrder
  */
+export interface IOrderItem {
+  id: number;
+  product_id: number;
+  quantity: number;
+  unit_price: string;
+  total_price: string;
+  description?: string;
+}
+
+/** PHP backend order response */
 export interface IOrder {
-  _id: string;
-  user: IUser;
-  carts: ICart[];
-  totalPrice: number;
-  status: OrderStatus;
-  delivery: IDelivery;
-  payment: IPayment;
-  createdAt?: Date;
-  updatedAt?: Date;
+  /** PHP integer ID */
+  id: number;
+  order_number: string;
+  user_id: number;
+  status: OrderStatus | string;
+  total_amount: string;
+  currency: string;
+  payment_method: string;
+  shipping_address_id?: number | null;
+  billing_address_id?: number | null;
+  note?: string;
+  items?: IOrderItem[];
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface IOrderResponse extends IResponse {

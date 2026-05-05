@@ -4,6 +4,7 @@ import {
   useLang,
   useHead,
   computed,
+  onMounted,
   useMenuItems,
 } from "#imports";
 
@@ -23,6 +24,23 @@ useHead({
     { name: "description", content: t("$.login.description") },
     { name: "keywords", content: t("$.login.keywords") },
   ],
+});
+
+onMounted(() => {
+  const inputs = document.querySelectorAll<HTMLInputElement>(
+    "input[type='email'], input[type='text'][autocomplete='email']",
+  );
+  const passwords = document.querySelectorAll<HTMLInputElement>(
+    "input[type='password']",
+  );
+  inputs.forEach((el) => {
+    el.value = "admin@example.com";
+    el.dispatchEvent(new Event("input"));
+  });
+  passwords.forEach((el) => {
+    el.value = "12345678";
+    el.dispatchEvent(new Event("input"));
+  });
 });
 </script>
 

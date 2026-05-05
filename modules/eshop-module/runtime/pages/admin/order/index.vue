@@ -55,13 +55,22 @@ useHead({
 
     <UTable
       v-if="orders?.data"
-      :data="(orders.data as IOrder[])"
+      :data="orders.data as IOrder[]"
       :columns="columns"
       class="flex-1"
     >
-      <template #_id-cell="{ row }">
-        <NuxtLink :to="row.original?.gen_data?.url">
-          {{ row.original?._id }}
+      <template #id-cell="{ row }">
+        <NuxtLink
+          :to="
+            localePath(
+              routes.admin_order_detail?.path?.replace(
+                ':id',
+                String(row.original?.id),
+              ),
+            )
+          "
+        >
+          {{ row.original?.order_number || row.original?.id }}
         </NuxtLink>
       </template>
     </UTable>
@@ -82,7 +91,9 @@ useHead({
           ? $tt("$.message.delete_question_multi", {
               length: selected?.length,
             })
-          : $tt("$.message.delete_question", { name: selected?.[0]?._id })
+          : $tt("$.message.delete_question", {
+              name: selected?.[0]?.order_number || selected?.[0]?.id,
+            })
       }}
     </CmpConfirmDialog>
   </div>

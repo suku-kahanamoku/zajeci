@@ -7,16 +7,16 @@ function createCart() {
   const carts = ref<ICart[]>([]);
 
   const totalItemsLength = computed(() =>
-    carts.value.reduce((total, item) => total + item.quantity, 0)
+    carts.value.reduce((total, item) => total + item.quantity, 0),
   );
 
   const totalPrice = computed(() =>
-    carts.value.reduce((total, item) => total + item.totalPrice, 0)
+    carts.value.reduce((total, item) => total + item.totalPrice, 0),
   );
 
   const addItem = (wine: IWine, quantity: number): ICart => {
     let result: ICart;
-    const existingItem = carts.value.find((item) => item.wine._id === wine._id);
+    const existingItem = carts.value.find((item) => item.wine.id === wine.id);
     if (existingItem) {
       existingItem.quantity += quantity;
       existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
@@ -25,8 +25,8 @@ function createCart() {
       const newItem: ICart = {
         wine,
         quantity,
-        unitPrice: wine.price,
-        totalPrice: wine.price * quantity,
+        unitPrice: Number(wine.price),
+        totalPrice: Number(wine.price) * quantity,
       };
       carts.value.push(newItem);
       result = newItem;
@@ -34,8 +34,8 @@ function createCart() {
     return result;
   };
 
-  const removeItem = (wineId: string) => {
-    const itemIndex = carts.value.findIndex((item) => item.wine._id === wineId);
+  const removeItem = (wineId: number) => {
+    const itemIndex = carts.value.findIndex((item) => item.wine.id === wineId);
     if (itemIndex >= 0) {
       const item = carts.value[itemIndex]!;
       item.quantity -= 1;
@@ -46,16 +46,16 @@ function createCart() {
     }
   };
 
-  const setQuantity = (wineId: string, quantity: number) => {
-    const existingItem = carts.value.find((item) => item.wine._id === wineId);
+  const setQuantity = (wineId: number, quantity: number) => {
+    const existingItem = carts.value.find((item) => item.wine.id === wineId);
     if (existingItem) {
       existingItem.quantity = quantity;
       existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
     }
   };
 
-  const deleteItem = (wineId: string) => {
-    carts.value = carts.value.filter((item) => item.wine._id !== wineId);
+  const deleteItem = (wineId: number) => {
+    carts.value = carts.value.filter((item) => item.wine.id !== wineId);
   };
 
   return {
