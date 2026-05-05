@@ -60,4 +60,27 @@ export default defineNuxtConfig({
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
+
+  pwa: {
+    manifest: {
+      name: "Víno ze Zaječí",
+      short_name: "Zaječí",
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
+    },
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "ukiyojs",
+        "@vueuse/core",
+        "nuxt-storage",
+        "workbox-window",
+      ],
+    },
+  },
 });
