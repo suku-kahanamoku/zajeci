@@ -9,7 +9,7 @@ import type { IOrder, IOrderResponse, IOrdersResponse } from "../types";
 export function useOrderAdmin(wConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
-  const toast = useToast();
+  const { success, error: toastError } = useToastify();
   const { onSubmit } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
@@ -79,17 +79,9 @@ export function useOrderAdmin(wConfig: any) {
           item: selected.value,
         });
         await useApi(url, { method });
-        toast.add({
-          title: t("$.form.delete_success_msg"),
-          color: "success",
-          icon: "i-heroicons-check",
-        });
+        success(t("$.form.delete_success_msg"));
       } catch (error: any) {
-        toast.add({
-          title: error.data.message,
-          color: "error",
-          icon: "i-heroicons-exclamation-circle",
-        });
+        toastError(error);
       }
       selected.value = [];
       isOpen.value = false;

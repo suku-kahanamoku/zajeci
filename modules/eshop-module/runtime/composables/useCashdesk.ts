@@ -27,7 +27,7 @@ function createCashdesk() {
   const localePath = useLocalePath();
   const { user: authUser, loggedIn } = useUserSession();
   const { routes } = useMenuItems();
-  const toast = useToast();
+  const { error: toastError } = useToastify();
   const loading = ref<boolean | null>(null);
 
   const user = ref<IUser>(CLONE(authUser.value));
@@ -140,11 +140,7 @@ function createCashdesk() {
         });
       }
     } catch (error: any) {
-      toast.add({
-        title: error.data?.message || error.message,
-        color: "error",
-        icon: "i-heroicons-exclamation-circle",
-      });
+      toastError(error);
     }
 
     loading.value = false;

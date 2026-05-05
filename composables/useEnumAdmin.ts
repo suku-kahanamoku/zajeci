@@ -6,7 +6,7 @@ import { useUrlResolver, useFormNavigable } from "#imports";
 export function useEnumAdmin(eConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
-  const toast = useToast();
+  const { success, error: toastError } = useToastify();
   const { onSubmit } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
@@ -36,7 +36,6 @@ export function useEnumAdmin(eConfig: any) {
     () => (config.value?.syscode || "") + "data" + route.fullPath,
     async () => {
       if (config?.value?.restUrl) {
-        console.log(route);
         try {
           let url = useCompleteUrl(config.value?.restUrl, {
             config: config.value,
@@ -45,7 +44,6 @@ export function useEnumAdmin(eConfig: any) {
           url = useFactory(url, config.value.factory, routes.admin_enum?.path);
           return (await useApi(url)) as IEnumResponse | IEnumsResponse;
         } catch (error: any) {
-          console.error(error);
           return {};
         }
       }
@@ -83,17 +81,9 @@ export function useEnumAdmin(eConfig: any) {
           });
           await useApi(url, { method });
         }
-        toast.add({
-          title: t("$.form.delete_success_msg"),
-          color: "success",
-          icon: "i-heroicons-check",
-        });
+        success(t("$.form.delete_success_msg"));
       } catch (error: any) {
-        toast.add({
-          title: error.data?.message || error.message,
-          color: "error",
-          icon: "i-heroicons-exclamation-circle",
-        });
+        toastError(error);
       }
       selected.value = [];
       isOpen.value = false;
