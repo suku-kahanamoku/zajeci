@@ -71,12 +71,11 @@ export interface IWine extends IItem {
   /** PHP fields */
   sku?: string;
   vat_rate?: string;
-  category_id?: number;
+  category_ids?: number[];
   image?: {
     main?: IImage;
     variants?: IImage[];
   };
-  categories?: string[];
   published?: boolean;
   createdAt?: string;
   updatedAt?: string;

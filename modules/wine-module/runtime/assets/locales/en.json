@@ -38,11 +38,6 @@
         "rose": "Rose",
         "orange": "Orange"
       },
-      "category": {
-        "favourite": "Favourite",
-        "top": "Top",
-        "new": "New"
-      },
       "quality": {
         "kabinett": "Kabinett wine",
         "late_harvest": "Late harvest",

@@ -106,7 +106,6 @@
       "quantity": "Quantity",
       "quantity_stock": "Quantity in stock",
       "description": "Description",
-      "categories": "Categories",
       "name": "Name",
       "old_password": "Old password",
       "new_password": "New password",

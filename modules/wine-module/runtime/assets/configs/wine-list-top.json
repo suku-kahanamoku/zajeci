@@ -1,6 +1,6 @@
 {
   "syscode": "wine-list-top",
-  "restUrl": "/api/wine?q={\"categories\":{\"$in\":[\"top\"]}}",
+  "restUrl": "/api/wine?category_syscode=top",
   "factory": {
     "url": "${name}--$${_id}"
   },
@@ -141,18 +141,6 @@
       "name": "stock_quantity",
       "type": "number",
       "label": "$.form.quantity_stock"
-    },
-    {
-      "name": "categories",
-      "type": "select",
-      "label": "$.form.categories",
-      "placeholder": "$.form.select",
-      "multiple": true,
-      "options": [
-        { "value": "favourite", "label": "$.wine.category.favourite" },
-        { "value": "top", "label": "$.wine.category.top" },
-        { "value": "new", "label": "$.wine.category.new" }
-      ]
     }
   ]
 }
