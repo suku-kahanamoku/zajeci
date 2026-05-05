@@ -127,6 +127,14 @@ h1, h2, h3, .font-serif {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--color-primary-300); border-radius: 3px; }
 
+/* Override Nuxt UI solid button hover — prevents washed-out opacity effect */
+.bg-primary\/75, [class*="hover\:bg-primary\/75"]:hover {
+  background-color: var(--color-primary-700) !important;
+}
+.bg-secondary\/75, [class*="hover\:bg-secondary\/75"]:hover {
+  background-color: var(--color-secondary-600) !important;
+}
+
 /* Wine section bg stripe */
 .wine-section-bg {
   background: linear-gradient(135deg, var(--color-primary-50) 0%, white 60%);

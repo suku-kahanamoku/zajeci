@@ -5,6 +5,7 @@ import type { IFormField } from "@suku-kahanamoku/form-module/types";
 const props = defineProps<{
   fields: IFormField[];
   wine?: IWine;
+  limit?: number;
 }>();
 
 const { t } = useLang();
@@ -89,7 +90,7 @@ const attrs = computed(() => {
       label: fieldLabel("data.serving_temp"),
       value: w.data?.serving_temp,
     },
-  ].filter((a) => a.value != null && a.value !== "");
+  ].filter((a) => a.value != null && a.value !== "").slice(0, props.limit ?? Infinity);
 });
 </script>
 

@@ -72,7 +72,7 @@ const { data: wines } = await useAsyncData(
       <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
         {{ $tt("$.wine.eyebrow") || "Naše vína" }}
       </p>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 mb-6">
         {{ title }}
       </h1>
       <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
