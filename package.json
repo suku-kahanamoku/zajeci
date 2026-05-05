@@ -16,7 +16,7 @@
     "@suku-kahanamoku/form-module": "^1.0.17",
     "@suku-kahanamoku/lang-module": "^1.0.22",
     "@suku-kahanamoku/menu-module": "^1.0.17",
-    "@suku-kahanamoku/notify-module": "^1.0.8",
+    "@suku-kahanamoku/notify-module": "^1.0.9",
     "@suku-kahanamoku/seo-module": "^1.0.9",
     "@suku-kahanamoku/ui-module": "^1.0.30",
     "@vueuse/core": "^14.3.0",
