@@ -37,7 +37,7 @@ export default defineEventHandler(async (event: H3Event) => {
   // Transform cashdesk format → PHP /orders format
   const phpBody = {
     items: (body.carts || []).map((c: any) => ({
-      product_id: c.wine?.id ?? c.wine?._id,
+      product_id: c.wine?.id,
       quantity: c.quantity,
     })),
     currency: "CZK",

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event: H3Event) => {
   // body is PHP order response + _cashdeskUser from order.post.ts
   const cashdeskUser = body._cashdeskUser || {};
   const recipientEmail = cashdeskUser.email || body.user?.email;
-  const orderId = body.order_number || body.id || body._id;
+  const orderId = body.order_number || body.id;
 
   if (!recipientEmail) return { message: "No recipient email, skipped" };
 

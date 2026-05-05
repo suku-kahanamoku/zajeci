@@ -76,7 +76,7 @@ const increaseQuantity = (cart: ICart) => {
 
 const decreaseQuantity = (cart: ICart) => {
   if (cart.quantity > 1) {
-    removeCartItem(cart.wine?._id);
+    removeCartItem(cart.wine?.id);
   } else {
     openRemoveDialog(cart);
   }
@@ -97,7 +97,7 @@ const openRemoveDialog = (cart: ICart) => {
 
 const handleSetQuantity = (value: number, cart: ICart) => {
   if (value > 0) {
-    setCartQuantity(cart.wine?._id, value);
+    setCartQuantity(cart.wine?.id, value);
   } else {
     openRemoveDialog(cart);
   }
@@ -130,7 +130,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <NuxtLink
             :to="
               localePath(
-                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`
               )
             "
             class="flex items-center"
@@ -192,13 +192,13 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   <div v-if="config" class="sm:hidden">
     <div
       v-for="cart in carts"
-      :key="cart.wine?._id"
+      :key="cart.wine?.id"
       class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
       <NuxtLink
         :to="
           localePath(
-            `${routes.wine?.path}/${cart.wine?._id}--$${cart.wine?._id}`
+            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`
           )
         "
         class="flex flex-col md:flex-row items-center"
@@ -256,7 +256,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   <CmpConfirmDialog
     v-model="isOpen"
     :title="t('$.cart.remove_from_cart')"
-    @confirm="$event && deleteCartItem(deleted?.wine?._id)"
+    @confirm="$event && deleteCartItem(deleted?.wine?.id)"
   >
     {{ t("$.cart.remove", { name: deleted?.wine?.name }) }}
   </CmpConfirmDialog>

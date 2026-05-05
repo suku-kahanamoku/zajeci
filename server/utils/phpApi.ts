@@ -1,4 +1,5 @@
 import type { H3Event } from "h3";
+import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 
 export interface PhpApiResponse<T = any> {
   success: boolean;
@@ -63,11 +64,16 @@ export async function phpApiFetch<T = any>(
  * expected by the existing frontend composables.
  */
 export function toLegacyListResponse<T>(
-  phpResponse: PhpApiResponse<PhpApiPaginatedData<T>>
+  phpResponse: PhpApiResponse<PhpApiPaginatedData<T>>,
+  factory?: string
 ) {
   const d = phpResponse.data;
+  const items = d?.items ?? [];
+  if (factory) {
+    items.forEach((item: any) => RESOLVE_FACTORY(item, factory));
+  }
   return {
-    data: d?.items ?? [],
+    data: items,
     meta: {
       total: d?.total ?? 0,
       limit: d?.limit ?? 20,

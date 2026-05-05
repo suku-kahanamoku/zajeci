@@ -2,7 +2,7 @@
   "syscode": "wine-list-top",
   "restUrl": "/api/wine?category_syscode=top",
   "factory": {
-    "url": "${name}--$${_id}"
+    "url": "${name}--$${id}"
   },
   "fields": [
     {

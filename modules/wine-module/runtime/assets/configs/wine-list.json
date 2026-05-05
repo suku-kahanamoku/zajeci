@@ -2,7 +2,7 @@
   "syscode": "wine-list",
   "restUrl": "/api/wine",
   "factory": {
-    "url": "${name}--$${_id}"
+    "url": "${name}--$${id}"
   },
   "fields": [
     {

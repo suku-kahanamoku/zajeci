@@ -59,12 +59,12 @@ const { data: wines } = await useAsyncData(
     </div>
 
     <div class="flex flex-wrap justify-center gap-4 items-stretch">
-      <CustomEshopUnderConstruction />
-      <!-- <CmpWineCard
+      <CmpWineCard
         v-for="wine of wines?.data"
+        :key="(wine as IWine).id"
         :fields="config.fields"
         :wine="(wine as IWine)"
-      /> -->
+      />
     </div>
   </div>
 </template>

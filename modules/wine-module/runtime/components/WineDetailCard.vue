@@ -41,7 +41,7 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div v-if="wine" :id="wine._id">
+  <div v-if="wine" :id="String(wine.id)">
     <div class="w-full flex flex-wrap mx-auto px-5">
       <NuxtImg
         :src="wine.image?.main?.src || '/img/bottle.jpg'"

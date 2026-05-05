@@ -71,7 +71,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           <NuxtLink
             :to="
               localePath(
-                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?._id}`
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`
               )
             "
             class="flex items-center"
@@ -132,13 +132,13 @@ const columns: Ref<TableColumn<any>[]> = computed(
   <div v-if="config" class="sm:hidden">
     <div
       v-for="cart in carts"
-      :key="cart.wine?._id"
+      :key="cart.wine?.id"
       class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
       <NuxtLink
         :to="
           localePath(
-            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?._id}`
+            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`
           )
         "
         class="flex flex-col md:flex-row items-center"
