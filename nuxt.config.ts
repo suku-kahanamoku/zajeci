@@ -20,8 +20,13 @@ export default defineNuxtConfig({
 
   css: ["@/assets/css/main.css"],
 
+  ui: {
+    prefix: "U",
+  },
+
   runtimeConfig: {
-    phpApiBaseUrl: process.env.PHP_API_BASE_URL || "http://localhost/php/php-core/api",
+    phpApiBaseUrl:
+      process.env.PHP_API_BASE_URL || "http://localhost/php/php-core/api",
   },
 
   router: {
@@ -54,11 +59,5 @@ export default defineNuxtConfig({
 
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
-  },
-
-  vite: {
-    optimizeDeps: {
-      include: ["@vue/devtools-core", "@vue/devtools-kit", "ukiyojs", "@vueuse/core"],
-    },
   },
 });

@@ -54,7 +54,7 @@ if (user.value?.role === "admin") {
           variant="ghost"
         />
       </UChip>
-      <UColorModeButton />
+      <!-- <UColorModeButton /> -->
 
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />
