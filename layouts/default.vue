@@ -88,4 +88,60 @@ const menuItems = [
   <UMain>
     <slot></slot>
   </UMain>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 dark:border-gray-800 bg-primary-900 dark:bg-gray-950 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-5 py-12">
+      <div class="grid md:grid-cols-3 gap-8 items-start">
+        <!-- Brand -->
+        <div class="space-y-3">
+          <div class="w-16 h-16">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.465 200" class="h-full w-full fill-white">
+              <polygon points="107.622,51.472 107.622,38.91 110.747,38.91 110.747,36.914 107.622,36.914 107.622,33.5 105.627,33.5 105.627,36.914 102.502,36.914 102.502,38.91 105.627,38.91 105.627,51.594 95.409,81.725 95.409,181.944 109.218,181.944 109.218,111.771 118.443,100.092 118.443,81.603"/>
+              <polygon points="149.93,72.711 118.444,109.269 118.444,109.249 114.6,113.711 114.645,181.944 120.066,181.944 120.066,144.792 127.661,135.971 127.661,117.017 155.154,85.157 182.629,117.017 182.629,181.944 188.056,181.944 188.056,117.017"/>
+              <polygon points="165.336,156.022 143.456,155.966 125.489,167.709 125.489,182.081 165.336,182.081"/>
+              <path d="M154.44,116.984l-10.896,12.659v22.698h5.44v-11.548c0-3.017,2.439-5.463,5.456-5.463s5.456,2.446,5.456,5.463v11.548h5.439v-22.698L154.44,116.984z"/>
+            </svg>
+          </div>
+          <p class="font-serif text-lg font-semibold text-white">Víno ze Zaječí</p>
+          <p class="text-sm text-primary-300">Školní 156, 691 05 Zaječí</p>
+        </div>
+
+        <!-- Links -->
+        <div class="space-y-3">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-400">Navigace</p>
+          <nav class="flex flex-col gap-2">
+            <NuxtLink to="/#about" class="text-sm text-primary-200 hover:text-white transition-colors">{{ $tt("$.navbar.about") }}</NuxtLink>
+            <NuxtLink to="/wine" class="text-sm text-primary-200 hover:text-white transition-colors">{{ $tt("$.navbar.wine") }}</NuxtLink>
+            <NuxtLink to="/#tasting" class="text-sm text-primary-200 hover:text-white transition-colors">{{ $tt("$.navbar.taste") }}</NuxtLink>
+            <NuxtLink to="/#contact" class="text-sm text-primary-200 hover:text-white transition-colors">{{ $tt("$.navbar.contact") }}</NuxtLink>
+          </nav>
+        </div>
+
+        <!-- Contact -->
+        <div class="space-y-3">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-400">Kontakt</p>
+          <div class="space-y-2">
+            <a href="mailto:vyborne@vinozezajeci.cz" class="flex items-center gap-2 text-sm text-primary-200 hover:text-white transition-colors">
+              <UIcon name="uil:envelope" size="16" />
+              vyborne@vinozezajeci.cz
+            </a>
+            <a href="tel:+420770199999" class="flex items-center gap-2 text-sm text-primary-200 hover:text-white transition-colors">
+              <UIcon name="uil:phone" size="16" />
+              +420 770 199 999
+            </a>
+            <a href="tel:+420778711111" class="flex items-center gap-2 text-sm text-primary-200 hover:text-white transition-colors">
+              <UIcon name="mdi:phone-classic" size="16" />
+              +420 778 711 111
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-primary-800 flex flex-col md:flex-row items-center justify-between gap-2">
+        <p class="text-xs text-primary-400">© {{ new Date().getFullYear() }} Víno ze Zaječí · IČ 19737491</p>
+        <p class="text-xs text-primary-500">Pijte zodpovědně. Alkohol je určen pouze osobám starším 18 let.</p>
+      </div>
+    </div>
+  </footer>
 </template>

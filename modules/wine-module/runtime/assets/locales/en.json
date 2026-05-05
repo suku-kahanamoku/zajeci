@@ -1,7 +1,9 @@
 {
   "$": {
     "wine": {
+      "eyebrow": "Our Wines",
       "title": "Wine Selection",
+      "show_all": "View all wines",
       "to_cart": "Add to Cart",
       "detail": {
         "title": "Wine detail"
@@ -13,7 +15,13 @@
         "color": "Color",
         "year": "Year",
         "variant": "Variety",
-        "volume": "Volume"
+        "volume": "Volume",
+        "grape": "Grape variety",
+        "winery": "Winery",
+        "region": "Region",
+        "alcohol": "Alcohol",
+        "sugar": "Sugar",
+        "serving_temp": "Serving temperature"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",

@@ -136,6 +136,36 @@
       "name": "stock_quantity",
       "type": "number",
       "label": "$.form.quantity_stock"
+    },
+    {
+      "name": "data.grape",
+      "type": "text",
+      "label": "$.wine.form.grape"
+    },
+    {
+      "name": "data.winery",
+      "type": "text",
+      "label": "$.wine.form.winery"
+    },
+    {
+      "name": "data.region",
+      "type": "text",
+      "label": "$.wine.form.region"
+    },
+    {
+      "name": "data.alcohol",
+      "type": "number",
+      "label": "$.wine.form.alcohol"
+    },
+    {
+      "name": "data.sugar",
+      "type": "text",
+      "label": "$.wine.form.sugar"
+    },
+    {
+      "name": "data.serving_temp",
+      "type": "text",
+      "label": "$.wine.form.serving_temp"
     }
   ]
 }

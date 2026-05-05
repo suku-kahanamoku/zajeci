@@ -1,7 +1,9 @@
 {
   "$": {
     "wine": {
+      "eyebrow": "Naše vína",
       "title": "Nabídka vín",
+      "show_all": "Zobrazit všechna vína",
       "to_cart": "Do košíku",
       "detail": {
         "title": "Detail vína"
@@ -13,7 +15,13 @@
         "color": "Barva",
         "year": "Ročník",
         "variant": "Odrůda",
-        "volume": "Objem"
+        "volume": "Objem",
+        "grape": "Odrůda",
+        "winery": "Vinařství",
+        "region": "Oblast",
+        "alcohol": "Alkohol",
+        "sugar": "Cukr",
+        "serving_temp": "Teplota podávání"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, výběr z hroznů",

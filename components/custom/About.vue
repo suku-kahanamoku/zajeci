@@ -1,20 +1,23 @@
 <template>
-  <div id="about">
-    <div class="text-center pt-20 pb-10">
-      <h2
-        class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
-      >
+  <div id="about" class="relative">
+    <div class="text-center pt-20 pb-8">
+      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+        {{ $tt("$.about.eyebrow") || "Naše příběh" }}
+      </p>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 leading-tight">
         {{ $tt("$.about.title") }}
       </h2>
-      <h3 class="pt-8 text-xl font-bold text-gray-600 dark:text-gray-400">
+      <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
+        <UIcon name="ph:wine-duotone" size="18" />
+      </div>
+      <h3 class="text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
         {{ $tt("$.about.subtitle") }}
       </h3>
     </div>
 
-    <div
-      class="from-bottom text-center lg:text-lg text-gray-600 dark:text-white"
-    >
+    <div class="from-bottom text-center lg:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
       {{ $tt("$.about.description") }}
     </div>
   </div>
 </template>
+

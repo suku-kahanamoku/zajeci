@@ -43,12 +43,16 @@ async function onSubmit(body: Record<string, any>) {
 
 <template>
   <div id="contact">
-    <div class="text-center pt-20 pb-10">
-      <h2
-        class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
-      >
+    <div class="text-center pt-20 pb-8">
+      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+        {{ $tt("$.contact.eyebrow") || "Napište nám" }}
+      </p>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300">
         {{ $tt("$.contact.title") }}
       </h2>
+      <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
+        <UIcon name="uil:envelope" size="16" />
+      </div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto py-4">

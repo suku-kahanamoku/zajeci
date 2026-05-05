@@ -54,11 +54,9 @@ function addToCashdesk() {
       <div
         class="flex flex-col lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 gap-3"
       >
-        <UPageHeader
-          :title="wine.name"
-          :ui="{ title: 'text-primary-600 dark:text-white' }"
-          class="border-none"
-        />
+        <h1 class="font-serif text-3xl md:text-4xl font-bold text-primary-700 dark:text-primary-300 leading-tight">
+          {{ wine.name }}
+        </h1>
         <div class="flex mb-4">
           <span class="flex items-center">
             <NuxtRating
@@ -229,29 +227,32 @@ function addToCashdesk() {
 
         <USeparator class="my-4" />
 
-        <div class="flex items-center justify-between">
-          <div
-            class="flex flex-wrap font-bold text-xl text-gray-600 dark:text-white"
-          >
-            {{
-              $tt(fields?.find((field) => field.name === "price")?.label!)
-            }}:&nbsp;<UiPrice :price="wine.price" />
+        <div class="flex items-center justify-between pt-2">
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs text-gray-500 uppercase tracking-wide">
+              {{ $tt(fields?.find((field) => field.name === "price")?.label!) }}
+            </span>
+            <span class="font-bold text-2xl">
+              <UiPrice :price="wine.price" />
+            </span>
           </div>
-          <div>
+          <div class="flex gap-2">
             <UButton
-              icon="i-heroicons-pencil-square"
+              icon="i-heroicons-shopping-cart"
               color="secondary"
-              variant="outline"
-              class="dark:text-white"
+              variant="solid"
+              size="lg"
+              class="rounded-xl font-semibold"
               @click="addToCashdesk"
             >
               {{ $tt("$.wine.to_cart") }}
             </UButton>
             <UButton
               icon="i-heroicons-heart"
-              class="ml-4"
               size="lg"
               variant="outline"
+              color="secondary"
+              class="rounded-xl"
             />
           </div>
         </div>

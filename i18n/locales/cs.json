@@ -19,11 +19,14 @@
       "logout": "Odhlásit"
     },
     "intro": {
+      "eyebrow": "Moravské vinařství",
       "title": "Zaječské vinařství Nová hora",
       "subtitle": "Objevte s námi lahodná moravská vína. Místní odrůdy, tradiční zpracování, nezapomenutelná vůně i chuť. Neváhejte nás kontaktovat a dovolte nám s vámi sdílet naši vášeň pro pěstování a výrobu vína.  ",
-      "btn": "CHCI VÍNO"
+      "btn": "CHCI VÍNO",
+      "btn_tasting": "Degustace"
     },
     "about": {
+      "eyebrow": "Náš příběh",
       "title": "Proč naše víno?",
       "subtitle": "Tradiční vína zrozená na jihu Moravy.",
       "description": "Vášeň pro víno a nadšení pro krásu jihomoravské krajiny a přírody nás dovedly do Zaječí. Postupem času měníme práci v kanceláři a v ordinaci za práci ve vinohradě a ve sklepě. Tuto vášeň a nadšení, úžas a krásu, únavu z práce i osvěžení po ní, předáváme dál v našich vínech."
@@ -33,6 +36,7 @@
       "history2": "Typový charakter vín je podobný vínům odrůdy Tramín červený, ale kořenitá plnost bývá nižší a naproti tomu acidita poněkud vyšší. Aciditu je každopádně nutné zachovat pro příjemné vyznění. Vína bývají obvykle zlatožluté barvy, ve vůni jsou aromatické látky Tramínu, tedy růží, doplněné o vanilkové tóny, chuť je plná, dlouhotrvající, jemnější harmonie než u Tramínu. Ve vůni a chuti můžeme hledat koření, muškát, vanilku, mandarinky."
     },
     "tasting": {
+      "eyebrow": "Zažijte nás naživo",
       "title": "Degustace",
       "basic": {
         "title": "Basic",
@@ -57,6 +61,7 @@
       "title": "Fotogalerie"
     },
     "contact": {
+      "eyebrow": "Napište nám",
       "title": "Kontakt",
       "subtitle": "Zaječské vinařství Nová hora",
       "appointment": "Neváhejte nám zavolat, rádi vám poradíme s výběrem nebo odpovíme na jakékoliv otázky ohledně našich vín.",

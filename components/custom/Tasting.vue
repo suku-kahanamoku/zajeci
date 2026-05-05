@@ -43,12 +43,16 @@ const tasting = [
 
 <template>
   <div id="tasting">
-    <div class="text-center pt-20 pb-10">
-      <h2
-        class="text-4xl font-bold tracking-tight text-primary-600 dark:text-primary-400"
-      >
+    <div class="text-center pt-20 pb-8">
+      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+        {{ $tt("$.tasting.eyebrow") || "Zažijte nás naživo" }}
+      </p>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300">
         {{ $tt("$.tasting.title") }}
       </h2>
+      <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
+        <UIcon name="ph:wine-duotone" size="16" />
+      </div>
     </div>
 
     <div class="flex flex-wrap justify-center gap-4 items-stretch">

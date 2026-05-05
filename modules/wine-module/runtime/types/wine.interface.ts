@@ -54,6 +54,25 @@ export enum WineVariant {
   other = "other",
 }
 
+export interface IWineData {
+  year?: number;
+  volume?: number;
+  quality?: string;
+  grape?: string;
+  winery?: string;
+  region?: string;
+  subregion?: string;
+  village?: string;
+  alcohol?: number;
+  acidity?: number;
+  sugar?: string;
+  residual_sugar?: number;
+  serving_temp?: string;
+  food_pairing?: string;
+  awards?: string[];
+  ean?: string;
+}
+
 export interface IWine extends IItem {
   /** PHP backend integer ID */
   id?: number;
@@ -71,6 +90,8 @@ export interface IWine extends IItem {
   sku?: string;
   vat_rate?: string;
   category_ids?: number[];
+  /** JSON data column with extended attributes */
+  data?: IWineData;          
   image?: {
     main?: IImage;
     variants?: IImage[];

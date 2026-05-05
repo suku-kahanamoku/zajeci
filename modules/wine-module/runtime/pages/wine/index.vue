@@ -66,23 +66,27 @@ const { data: wines } = await useAsyncData(
   <div
     v-if="config"
     :id="config.syscode"
-    class="w-full max-w-7xl mx-auto px-5 pb-10"
+    class="w-full max-w-7xl mx-auto px-5 pb-16"
   >
-    <div :id="routes.winde?.meta?.syscode as string">
-      <UPageHeader
-        :title="title"
-        :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
-        class="border-none"
-      />
-
-      <div class="flex flex-wrap justify-center gap-4 items-stretch">
-        <CmpWineCard
-          v-for="wine of wines?.data"
-          :key="wine.id"
-          :fields="config.fields"
-          :wine="wine"
-        />
+    <div class="text-center pt-12 pb-8">
+      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+        {{ $tt("$.wine.eyebrow") || "Naše vína" }}
+      </p>
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300">
+        {{ title }}
+      </h1>
+      <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
+        <UIcon name="ph:wine-duotone" size="18" />
       </div>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-6 items-stretch">
+      <CmpWineCard
+        v-for="wine of wines?.data"
+        :key="wine.id"
+        :fields="config.fields"
+        :wine="wine"
+      />
     </div>
   </div>
 </template>

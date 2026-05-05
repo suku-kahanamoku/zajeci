@@ -19,11 +19,14 @@
       "logout": "Logout"
     },
     "intro": {
+      "eyebrow": "Moravian Winery",
       "title": "Zaječí Winery Nová Hora",
       "subtitle": "Discover delicious Moravian wines with us. Local varieties, traditional processing, unforgettable aroma, and taste. Don't hesitate to contact us and let us share our passion for wine growing and production with you.",
-      "btn": "I WANT WINE"
+      "btn": "I WANT WINE",
+      "btn_tasting": "Wine Tasting"
     },
     "about": {
+      "eyebrow": "Our Story",
       "title": "Why Our Wine?",
       "subtitle": "Traditional wines born in South Moravia.",
       "description": "Passion for wine and enthusiasm for the beauty of South Moravian landscape and nature led us to Zaječí. Over time, we exchanged office and clinic work for work in the vineyard and cellar. We pass on this passion, enthusiasm, wonder, and beauty, exhaustion from work, and refreshment after it in our wines."
@@ -33,6 +36,7 @@
       "history2": "The typical character of the wines is similar to Tramín Red variety wines, but the spicy fullness is usually lower, and on the contrary, the acidity is somewhat higher. However, it is necessary to maintain acidity for a pleasant finish. Wines are usually golden-yellow in color, with Tramín aromatic substances in the aroma, namely roses, complemented by vanilla tones; the taste is full, long-lasting, with a gentler harmony than Tramín. In aroma and taste, we can find spices, nutmeg, vanilla, tangerines."
     },
     "tasting": {
+      "eyebrow": "Experience Us Live",
       "title": "Tasting",
       "basic": {
         "title": "Basic",
@@ -57,6 +61,7 @@
       "title": "Photo Gallery"
     },
     "contact": {
+      "eyebrow": "Get in Touch",
       "title": "Contact",
       "subtitle": "Zaječí Winery Nová Hora",
       "appointment": "Feel free to call us; we will be happy to advise you on selection or answer any questions regarding our wines.",

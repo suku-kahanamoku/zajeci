@@ -23,57 +23,64 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div v-if="wine" :id="String(wine.id)" class="zoom-in flex-1 flex min-w-80 max-w-96">
-    <UCard
-      variant="soft"
-      class="w-full flex flex-col divide-none bg-transparent hover:shadow-lg dark:hover:shadow-xl"
-      :ui="{
-        footer: 'flex justify-between items-center mt-auto',
-      }"
-    >
-      <template #header>
-        <NuxtLink :to="wine.gen_data?.url">
-          <NuxtImg
-            :src="wine.image?.main?.src || '/img/bottle.jpg'"
-            :alt="wine.name || 'wine'"
-            loading="lazy"
-            format="webp"
-            sizes="200px md:300px"
-            class="mx-auto h-[200px] md:h-[300px]"
-          />
-        </NuxtLink>
-      </template>
+  <div v-if="wine" :id="String(wine.id)" class="zoom-in flex flex-col w-full max-w-72">
+    <!-- Card -->
+    <div class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300">
 
-      <template #default>
+      <!-- Image area -->
+      <NuxtLink :to="wine.gen_data?.url" class="relative block overflow-hidden bg-gray-50 dark:bg-gray-800">
+        <NuxtImg
+          :src="wine.image?.main?.src || '/img/bottle.jpg'"
+          :alt="wine.name || 'wine'"
+          loading="lazy"
+          format="webp"
+          sizes="200px md:300px"
+          class="mx-auto h-[240px] md:h-[280px] object-contain transition-transform duration-500 group-hover:scale-105"
+        />
+        <!-- Color badge -->
+        <div v-if="wine.color" class="absolute top-3 left-3">
+          <span class="inline-block bg-white/90 dark:bg-gray-900/90 text-primary-600 dark:text-primary-300 text-xs font-semibold tracking-wide px-2 py-1 rounded-full shadow-sm">
+            {{ getSelectLabel(fields, 'color', wine.color) }}
+          </span>
+        </div>
+      </NuxtLink>
+
+      <!-- Content -->
+      <div class="flex flex-col flex-1 p-5 gap-3">
         <NuxtLink :to="wine.gen_data?.url">
-          <h3
-            class="text-center text-xl font-bold pb-6 text-primary-600 dark:text-white"
-          >
+          <h3 class="font-serif text-lg font-bold text-primary-700 dark:text-white leading-snug hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors">
             {{ wine.name }}
           </h3>
-          <!-- Parametry vína s ikonami ve dvou řádcích -->
-          <CmpWineIconAttrs :wine="wine" :fields="fields" />
         </NuxtLink>
-      </template>
 
-      <template #footer>
-        <div class="flex flex-wrap font-bold text-gray-600 dark:text-white">
-          {{
-            $tt(fields?.find((field) => field.name === "price")?.label!)
-          }}:&nbsp;<UiPrice :price="wine.price" />
+        <!-- Icon attrs -->
+        <CmpWineIconAttrs :wine="wine" :fields="fields" class="flex-1" />
+
+        <!-- Footer -->
+        <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+          <div class="flex flex-col">
+            <span class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+              {{ $tt(fields?.find((field) => field.name === "price")?.label!) }}
+            </span>
+            <span class="font-bold text-lg text-secondary-600 dark:text-secondary-400">
+              <UiPrice :price="wine.price" />
+            </span>
+          </div>
+          <UButton
+            icon="i-heroicons-shopping-cart"
+            color="secondary"
+            variant="solid"
+            size="sm"
+            class="rounded-xl font-semibold"
+            @click="addToCashdesk"
+          >
+            {{ $tt("$.wine.to_cart") }}
+          </UButton>
         </div>
-        <UButton
-          icon="i-heroicons-pencil-square"
-          color="secondary"
-          class="dark:text-white"
-          variant="outline"
-          @click="addToCashdesk"
-        >
-          {{ $tt("$.wine.to_cart") }}
-        </UButton>
-      </template>
-    </UCard>
+      </div>
+    </div>
 
     <CmpCartDialog v-model="modal" :cart="cart" />
   </div>
 </template>
+

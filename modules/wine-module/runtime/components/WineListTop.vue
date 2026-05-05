@@ -49,22 +49,39 @@ const { data: wines } = await useAsyncData(
 </script>
 
 <template>
-  <div v-if="config" :id="config.syscode">
-    <div class="text-center pt-20 pb-10">
-      <h2
-        class="text-primary-600 text-4xl font-bold tracking-tight dark:text-primary-400"
-      >
+  <div v-if="config" :id="config.syscode" class="relative">
+    <div class="text-center pt-20 pb-8">
+      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+        {{ $tt("$.wine.eyebrow") || "Naše vína" }}
+      </p>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300">
         {{ $tt("$.wine.title") }}
       </h2>
+      <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
+        <UIcon name="ph:wine-duotone" size="18" />
+      </div>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-4 items-stretch">
+    <div class="flex flex-wrap justify-center gap-6 items-stretch">
       <CmpWineCard
         v-for="wine of wines?.data"
         :key="(wine as IWine).id"
         :fields="config.fields"
         :wine="(wine as IWine)"
       />
+    </div>
+
+    <div class="text-center mt-10">
+      <UButton
+        :to="routes.wine?.path"
+        variant="outline"
+        color="primary"
+        size="lg"
+        class="font-semibold tracking-wide"
+        trailing-icon="i-heroicons-arrow-right"
+      >
+        {{ $tt("$.wine.show_all") || "Zobrazit všechna vína" }}
+      </UButton>
     </div>
   </div>
 </template>

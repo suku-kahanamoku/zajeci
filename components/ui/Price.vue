@@ -2,10 +2,11 @@
 import { useToNumber } from "@vueuse/core";
 
 const props = defineProps<{
-  price: number;
+  price: number | string;
 }>();
 
-const oldPrice = computed(() => props.price * 1.1);
+const numericPrice = computed(() => Number(props.price) || 0);
+const oldPrice = computed(() => numericPrice.value * 1.1);
 
 const {
   i18n: { locale },
@@ -14,19 +15,15 @@ const {
 </script>
 
 <template>
-  <div class="space-x-1">
+  <span class="inline-flex items-baseline gap-1.5">
     <span
-      class="line-through text-gray-400 text-sm"
+      class="line-through text-gray-400 dark:text-gray-500 text-sm font-normal"
       aria-label="Old price"
     >
-      {{
-        useToNumber(oldPrice.toFixed(2)).value.toLocaleString(locale)
-      }}&nbsp;{{ t("$.czk") }}
+      {{ useToNumber(oldPrice.toFixed(2)).value.toLocaleString(locale) }}&nbsp;{{ t("$.czk") }}
     </span>
-    <span aria-label="Current price">
-      {{
-        useToNumber(price?.toFixed(2) || 0).value.toLocaleString(locale)
-      }}&nbsp;{{ t("$.czk") }}
+    <span class="font-bold text-secondary-600 dark:text-secondary-400" aria-label="Current price">
+      {{ useToNumber(numericPrice.toFixed(2)).value.toLocaleString(locale) }}&nbsp;{{ t("$.czk") }}
     </span>
-  </div>
+  </span>
 </template>
