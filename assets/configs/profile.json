@@ -27,7 +27,7 @@
       "value": "guest"
     },
     {
-      "name": "givenName",
+      "name": "given_name",
       "type": "text",
       "label": "$.form.given_name",
       "placeholder": "John",
@@ -57,7 +57,7 @@
       "value": ""
     },
     {
-      "name": "newPassword",
+      "name": "new_password",
       "type": "password",
       "label": "$.form.new_password",
       "clearable": true,

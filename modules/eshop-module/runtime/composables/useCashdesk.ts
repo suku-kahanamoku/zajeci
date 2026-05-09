@@ -13,7 +13,7 @@ const emptyUser = {
   email: "",
   name: "",
   surname: "",
-  givenName: "",
+  given_name: "",
   address: {
     main: {} as any,
   },
@@ -79,6 +79,8 @@ function createCashdesk() {
     const item = CLONE(newUser || authUser.value || emptyUser);
     item.address ||= authUser.value?.address || emptyUser.address;
     item.address.main ||= {};
+    // Map givenName (from external IUser/auth) → given_name (snake_case field name)
+    item.given_name ||= item.givenName;
     user.value = item;
   };
 

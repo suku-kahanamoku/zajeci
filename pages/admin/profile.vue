@@ -22,6 +22,7 @@ const title = computed(() =>
 const loading = ref(false);
 const item = ref({
   ...user.value,
+  given_name: user.value?.givenName,
   password: undefined,
   tempPassword: undefined,
 });

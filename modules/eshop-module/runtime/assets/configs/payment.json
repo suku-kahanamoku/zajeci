@@ -24,7 +24,7 @@
       "value": ""
     },
     {
-      "name": "givenName",
+      "name": "given_name",
       "label": "$.form.given_name",
       "placeholder": "John",
       "autocomplete": "given-name",

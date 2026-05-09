@@ -42,7 +42,7 @@ function _onChange(body: Record<string, any>) {
   setUser(data);
   const address = defu(delivery.value.address, {
     ...data.address?.main,
-    name: `${data.givenName} ${data.surname}`,
+    name: `${data.given_name} ${data.surname}`,
   });
   setDelivery(delivery.value, address);
 }

@@ -195,7 +195,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </h4>
 
         <p class="text-gray-600 dark:text-white">
-          {{ user?.givenName }}&nbsp;{{ user?.surname }}
+          {{ (user as any)?.given_name }}&nbsp;{{ user?.surname }}
         </p>
 
         <p class="text-gray-600 dark:text-white">

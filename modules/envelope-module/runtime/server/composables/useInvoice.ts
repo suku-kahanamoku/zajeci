@@ -166,7 +166,7 @@ export async function useInvoice(event: H3Event) {
     renderLabel(doc, tt("$.invoice.customer"), rightColX, 100, lineOptions);
 
     doc.moveDown();
-    const fullName = `${customer.givenName || customer.name || ""} ${
+    const fullName = `${(customer as any).given_name || customer.givenName || customer.name || ""} ${
       customer.surname || ""
     }`.trim();
     doc.text(fullName, rightColX, undefined, lineOptions);
@@ -192,7 +192,7 @@ export async function useInvoice(event: H3Event) {
     renderLabel(doc, tt("$.invoice.supplier"), margin, 100, lineOptions);
 
     doc.moveDown();
-    const fullName = `${supplier.givenName || supplier.name || ""} ${
+    const fullName = `${(supplier as any).given_name || supplier.givenName || supplier.name || ""} ${
       supplier.surname || ""
     }`.trim();
     doc.text(fullName, lineOptions);

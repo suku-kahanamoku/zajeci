@@ -22,7 +22,7 @@
       "label": "$.form.payment_type"
     },
     {
-      "name": "totalPrice",
+      "name": "total_price",
       "type": "number",
       "label": "$.form.total_price"
     }
