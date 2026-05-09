@@ -17,12 +17,62 @@ export interface PhpApiPaginatedData<T = any> {
 }
 
 /**
+ * Normalizes a Nuxt-style query object to PHP API format:
+ * - `projection`: JSON array/object → comma-separated string
+ * - `skip` + `limit` → `page` + `limit`
+ * - Strips nuxt-internal params (`factory`)
+ */
+export function normalizePhpQuery(
+  query: Record<string, any>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+
+  for (const [key, value] of Object.entries(query)) {
+    if (key === "factory") continue;
+
+    if (key === "projection") {
+      let proj: any = value;
+      if (typeof proj === "string") {
+        try {
+          proj = JSON.parse(proj);
+        } catch {
+          // already a plain string — pass through
+          result[key] = proj;
+          continue;
+        }
+      }
+      if (Array.isArray(proj)) {
+        result[key] = proj.join(",");
+      } else if (proj !== null && typeof proj === "object") {
+        result[key] = Object.keys(proj).join(",");
+      }
+      continue;
+    }
+
+    if (key === "skip") continue; // converted to page below
+
+    result[key] = value;
+  }
+
+  // Convert skip → page
+  if ("skip" in query && "limit" in query) {
+    const skip = Number(query.skip) || 0;
+    const limit = Number(query.limit) || 20;
+    result.page = Math.floor(skip / limit) + 1;
+  }
+
+  return result;
+}
+
+/**
  * Fetches the Bearer token from the current user session.
  */
 async function getSessionToken(event: H3Event): Promise<string | null> {
   try {
     const session = await getUserSession(event);
-    return (session as any)?.token || (session as any)?.tokens?.access_token || null;
+    return (
+      (session as any)?.token || (session as any)?.tokens?.access_token || null
+    );
   } catch {
     return null;
   }
@@ -38,7 +88,7 @@ export async function phpApiFetch<T = any>(
     method?: string;
     body?: any;
     query?: Record<string, any>;
-  } = {}
+  } = {},
 ): Promise<PhpApiResponse<T>> {
   const config = useRuntimeConfig();
   const baseUrl = config.phpApiBaseUrl as string;
@@ -65,7 +115,7 @@ export async function phpApiFetch<T = any>(
  */
 export function toLegacyListResponse<T>(
   phpResponse: PhpApiResponse<PhpApiPaginatedData<T>>,
-  factory?: string
+  factory?: string,
 ) {
   const d = phpResponse.data;
   const items = d?.items ?? [];
