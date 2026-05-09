@@ -1,5 +1,6 @@
 import type { H3Event } from "h3";
-import { phpApiFetch, RESOLVE_FACTORY } from "@/server/utils/phpApi";
+import { phpApiFetch } from "@/server/utils/phpApi";
+import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 
 export default defineEventHandler(async (event: H3Event) => {
   const rawQuery = getQuery(event);

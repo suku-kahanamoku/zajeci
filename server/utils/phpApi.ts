@@ -1,5 +1,4 @@
 import type { H3Event } from "h3";
-import { RESOLVE_FACTORY } from "@suku-kahanamoku/common-module/server-utils";
 
 export interface PhpApiResponse<T = any> {
   success: boolean;
@@ -104,5 +103,3 @@ export async function phpApiFetch<T = any>(
     ...(query ? { query } : {}),
   });
 }
-
-export { RESOLVE_FACTORY };
