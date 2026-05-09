@@ -20,14 +20,12 @@ export interface IWineData {
   year?: number;
   volume?: number;
   quality?: string;
-  grape?: string;
   winery?: string;
   region?: string;
   subregion?: string;
   village?: string;
   alcohol?: number;
   acidity?: number;
-  sugar?: string;
   residual_sugar?: number;
   serving_temp?: string;
   food_pairing?: string;

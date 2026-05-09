@@ -14,37 +14,32 @@
         "quality": "Adjective",
         "color": "Color",
         "year": "Year",
-        "variant": "Bottle format",
+        "variant": "Grape variety",
         "volume": "Volume",
-        "grape": "Grape variety",
         "winery": "Winery",
         "region": "Region",
         "alcohol": "Alcohol",
-        "sugar": "Sugar",
         "serving_temp": "Serving temperature",
         "sku": "SKU",
         "vat_rate": "VAT rate (%)"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",
-        "quality": "Selection of grapes",
-        "variant": "0.75l",
-        "grape": "Traminer"
+        "variant": "Traminer"
       },
       "kind": {
         "dry": "Dry",
-        "semiDry": "Semi-dry",
+        "semi_dry": "Semi-dry",
         "sweet": "Sweet",
-        "semiSweet": "Semi-sweet",
-        "extraDry": "Extra dry",
-        "offDry": "Off-dry",
-        "mediumDry": "Medium dry",
-        "mediumSweet": "Medium sweet",
-        "verySweet": "Very sweet",
+        "semi_sweet": "Semi-sweet",
+        "extra_dry": "Extra dry",
+        "off_dry": "Off-dry",
+        "medium_dry": "Medium dry",
+        "medium_sweet": "Medium sweet",
+        "very_sweet": "Very sweet",
         "dessert": "Dessert"
       },
       "color": {
-        "yellow": "Yellow",
         "white": "White",
         "red": "Red",
         "rose": "Rosé"
@@ -59,26 +54,6 @@
         "quality_wine": "Quality wine",
         "archive_wine": "Archive wine",
         "table_wine": "Table wine"
-      },
-      "variant": {
-        "riesling": "Riesling",
-        "gruner_veltliner": "Grüner Veltliner",
-        "welschriesling": "Welschriesling",
-        "sauvignon_blanc": "Sauvignon Blanc",
-        "pinot_gris": "Pinot Gris",
-        "pinot_blanc": "Pinot Blanc",
-        "chardonnay": "Chardonnay",
-        "traminer": "Traminer",
-        "muscat": "Moravian Muscat",
-        "mueller_thurgau": "Müller Thurgau",
-        "st_laurent": "St. Laurent",
-        "pinot_noir": "Pinot Noir",
-        "zweigelt": "Zweigelt",
-        "cabernet_sauvignon": "Cabernet Sauvignon",
-        "merlot": "Merlot",
-        "frankovka": "Frankovka",
-        "modry_portugal": "Modrý Portugal",
-        "other": "Other variety"
       },
       "variety": {
         "riesling": "Riesling",

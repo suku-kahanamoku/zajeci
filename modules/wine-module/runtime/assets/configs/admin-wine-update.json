@@ -16,9 +16,7 @@
     "is_active",
     "data.year",
     "data.volume",
-    "data.grape",
     "data.quality",
-    "data.sugar",
     "data.alcohol",
     "data.winery",
     "data.region",
@@ -219,12 +217,6 @@
       "label": "$.wine.form.volume"
     },
     {
-      "name": "data.grape",
-      "type": "text",
-      "label": "$.wine.form.grape",
-      "placeholder": "$.wine.placeholder.grape"
-    },
-    {
       "name": "data.quality",
       "type": "select",
       "label": "$.wine.form.quality",
@@ -267,11 +259,6 @@
           "label": "$.wine.quality.table_wine"
         }
       ]
-    },
-    {
-      "name": "data.sugar",
-      "type": "text",
-      "label": "$.wine.form.sugar"
     },
     {
       "name": "data.alcohol",

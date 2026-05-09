@@ -85,7 +85,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           <CmpWineIconAttrs
             :wine="row.original?.wine"
             :fields="config.fields"
-            :allowed-names="['color', 'quality', 'volume', 'sugar']"
+            :allowed-names="['color', 'kind', 'quality', 'variant']"
           />
         </div>
       </div>
@@ -156,7 +156,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       </NuxtLink>
 
       <!-- Parametry vína s ikonami ve dvou řádcích -->
-      <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
+      <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" :allowed-names="['color', 'kind', 'quality', 'variant']" />
 
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="w-full text-center font-semibold flex gap-2">

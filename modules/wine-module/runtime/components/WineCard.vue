@@ -69,7 +69,7 @@ function addToCashdesk() {
         <CmpWineIconAttrs
           :wine="wine"
           :fields="fields"
-          :limit="4"
+          :allowed-names="['color', 'kind', 'quality', 'variant']"
           class="flex-1"
         />
 

@@ -144,7 +144,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <CmpWineIconAttrs
             :wine="row.original?.wine"
             :fields="config.fields"
-            :allowed-names="['color', 'quality', 'volume', 'sugar']"
+            :allowed-names="['color', 'kind', 'quality', 'variant']"
           />
         </div>
       </div>
@@ -219,7 +219,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
       <CmpWineIconAttrs
         :wine="cart.wine"
         :fields="config.fields"
-        :allowed-names="['color', 'quality', 'volume', 'sugar']"
+        :allowed-names="['color', 'kind', 'quality', 'variant']"
       />
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">

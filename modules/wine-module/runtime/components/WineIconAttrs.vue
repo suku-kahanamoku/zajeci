@@ -44,11 +44,11 @@ const attrs = computed(() => {
       value: w.data?.volume != null ? `${w.data.volume} l` : null,
     },
     {
-      name: "grape",
+      name: "variant",
       icon: "i-heroicons-sparkles",
       color: "text-green-500",
-      label: fieldLabel("data.grape"),
-      value: w.data?.grape,
+      label: fieldLabel("variant"),
+      value: w.variant,
     },
     {
       name: "quality",
@@ -58,11 +58,11 @@ const attrs = computed(() => {
       value: w.data?.quality,
     },
     {
-      name: "sugar",
+      name: "kind",
       icon: "i-heroicons-tag",
       color: "text-primary-500",
-      label: fieldLabel("data.sugar"),
-      value: w.data?.sugar,
+      label: fieldLabel("kind"),
+      value: w.kind,
     },
     {
       name: "alcohol",

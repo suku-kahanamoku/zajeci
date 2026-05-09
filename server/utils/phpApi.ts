@@ -20,13 +20,20 @@ export interface PhpApiPaginatedData<T = any> {
  * Called automatically inside phpApiFetch.
  * - projection: JSON array/object or array → comma-separated string (PHP format)
  * - skip + limit → page + limit
- * - Strips nuxt-internal params (factory)
+ * - factory: keeps string as-is, object/array serializes to JSON string
  */
 function normalizeQuery(query: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   for (const [key, value] of Object.entries(query)) {
-    if (key === "factory") continue;
+    if (key === "factory") {
+      if (typeof value === "string") {
+        result[key] = value;
+      } else if (value !== undefined && value !== null) {
+        result[key] = JSON.stringify(value);
+      }
+      continue;
+    }
 
     if (key === "projection") {
       let proj: any = value;
@@ -63,7 +70,9 @@ function normalizeQuery(query: Record<string, any>): Record<string, any> {
 async function getSessionToken(event: H3Event): Promise<string | null> {
   try {
     const session = await getUserSession(event);
-    return (session as any)?.token || (session as any)?.tokens?.access_token || null;
+    return (
+      (session as any)?.token || (session as any)?.tokens?.access_token || null
+    );
   } catch {
     return null;
   }

@@ -14,37 +14,32 @@
         "quality": "Přívlastek",
         "color": "Barva",
         "year": "Ročník",
-        "variant": "Formát lahve",
+        "variant": "Odrůda",
         "volume": "Objem",
-        "grape": "Odrůda",
         "winery": "Vinařství",
         "region": "Oblast",
         "alcohol": "Alkohol",
-        "sugar": "Cukr",
         "serving_temp": "Teplota podávání",
         "sku": "SKU",
         "vat_rate": "Sazba DPH (%)"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, výběr z hroznů",
-        "quality": "Výběr z hroznů",
-        "variant": "0.75l",
-        "grape": "Tramín červený"
+        "variant": "Tramín červený"
       },
       "kind": {
         "dry": "Suché",
-        "semiDry": "Polosuché",
+        "semi_dry": "Polosuché",
         "sweet": "Sladké",
-        "semiSweet": "Polosladké",
-        "extraDry": "Extra suché",
-        "offDry": "Lehce suché",
-        "mediumDry": "Středně suché",
-        "mediumSweet": "Středně sladké",
-        "verySweet": "Velmi sladké",
+        "semi_sweet": "Polosladké",
+        "extra_dry": "Extra suché",
+        "off_dry": "Lehce suché",
+        "medium_dry": "Středně suché",
+        "medium_sweet": "Středně sladké",
+        "very_sweet": "Velmi sladké",
         "dessert": "Dezertní"
       },
       "color": {
-        "yellow": "Žluté",
         "white": "Bílé",
         "red": "Červené",
         "rose": "Rosé"
@@ -59,26 +54,6 @@
         "quality_wine": "Jakostní víno",
         "archive_wine": "Archivní víno",
         "table_wine": "Stolní víno"
-      },
-      "variant": {
-        "riesling": "Ryzlink rýnský",
-        "gruner_veltliner": "Veltlínské zelené",
-        "welschriesling": "Ryzlink vlašský",
-        "sauvignon_blanc": "Sauvignon blanc",
-        "pinot_gris": "Rulandské šedé",
-        "pinot_blanc": "Rulandské bílé",
-        "chardonnay": "Chardonnay",
-        "traminer": "Tramín červený",
-        "muscat": "Muškát moravský",
-        "mueller_thurgau": "Müller Thurgau",
-        "st_laurent": "Svatovavřinecké",
-        "pinot_noir": "Rulandské modré",
-        "zweigelt": "Zweigeltrebe",
-        "cabernet_sauvignon": "Cabernet Sauvignon",
-        "merlot": "Merlot",
-        "frankovka": "Frankovka",
-        "modry_portugal": "Modrý Portugal",
-        "other": "Jiná odrůda"
       },
       "variety": {
         "riesling": "Ryzlink rýnský",

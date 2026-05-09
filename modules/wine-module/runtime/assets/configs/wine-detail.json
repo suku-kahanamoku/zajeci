@@ -12,8 +12,6 @@
     "data.quality",
     "data.volume",
     "data.year",
-    "data.grape",
-    "data.sugar",
     "data.alcohol",
     "data.winery",
     "data.region",
@@ -227,16 +225,6 @@
       "name": "data.year",
       "type": "number",
       "label": "$.wine.form.year"
-    },
-    {
-      "name": "data.grape",
-      "type": "text",
-      "label": "$.wine.form.grape"
-    },
-    {
-      "name": "data.sugar",
-      "type": "text",
-      "label": "$.wine.form.sugar"
     },
     {
       "name": "data.alcohol",

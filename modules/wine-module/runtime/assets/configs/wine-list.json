@@ -14,11 +14,9 @@
     "data.year",
     "price",
     "stock_quantity",
-    "data.grape",
     "data.winery",
     "data.region",
     "data.alcohol",
-    "data.sugar",
     "data.serving_temp"
   ],
   "fields": [
@@ -241,11 +239,6 @@
       "label": "$.form.quantity_stock"
     },
     {
-      "name": "data.grape",
-      "type": "text",
-      "label": "$.wine.form.grape"
-    },
-    {
       "name": "data.winery",
       "type": "text",
       "label": "$.wine.form.winery"
@@ -259,11 +252,6 @@
       "name": "data.alcohol",
       "type": "number",
       "label": "$.wine.form.alcohol"
-    },
-    {
-      "name": "data.sugar",
-      "type": "text",
-      "label": "$.wine.form.sugar"
     },
     {
       "name": "data.serving_temp",
