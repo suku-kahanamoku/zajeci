@@ -6,8 +6,8 @@
     "url": "${syscode}--$${id}"
   },
   "projection": [
-    "type",
     "syscode",
+    "type",
     "label",
     "value",
     "position",
@@ -15,15 +15,15 @@
   ],
   "fields": [
     {
-      "name": "type",
-      "type": "text",
-      "label": "$.enum.form.type"
-    },
-    {
       "name": "syscode",
       "type": "text",
       "label": "$.enum.form.syscode",
       "placeholder": "$.enum.placeholder.syscode"
+    },
+    {
+      "name": "type",
+      "type": "text",
+      "label": "$.enum.form.type"
     },
     {
       "name": "label",
