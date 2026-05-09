@@ -105,8 +105,18 @@
     },
     {
       "name": "is_active",
-      "type": "toggle",
-      "label": "$.form.active"
+      "type": "select",
+      "label": "$.form.active",
+      "options": [
+        {
+          "value": 1,
+          "label": "$.form.yes"
+        },
+        {
+          "value": 0,
+          "label": "$.form.no"
+        }
+      ]
     }
   ]
 }

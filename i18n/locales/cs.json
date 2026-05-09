@@ -117,7 +117,12 @@
       "role": "Oprávnění",
       "guest": "Host",
       "user": "Uživatel",
-      "admin": "Administrátor"
+      "admin": "Administrátor",
+      "active": "Publikováno",
+      "is_active": "Publikováno",
+      "yes": "Ano",
+      "no": "Ne",
+      "description": "Popis"
     },
     "placeholder": {
       "leave_comment": "Napište zprávu..."
@@ -223,13 +228,7 @@
       "syscode": "Kód",
       "parent_id": "Nadřazená kategorie",
       "description": "Popis",
-      "is_active": "Aktivní",
-      "placeholder": {
-        "name": "Bílá vína",
-        "syscode": "bila-vina",
-        "parent_id": "ID nadřazené kategorie",
-        "description": "Popis kategorie"
-      }
+      "description": "Popis"
     },
     "user": {
       "id": "ID",
@@ -237,27 +236,14 @@
       "name": "Jméno",
       "surname": "Příjmení",
       "phone": "Telefon",
-      "role": "Role",
-      "is_active": "Aktivní",
-      "placeholder": {
-        "email": "uzivatel{'@'}example.com",
-        "name": "Jan",
-        "surname": "Novák",
-        "phone": "+420 123 456 789"
-      }
+      "role": "Role"
     },
     "text": {
       "id": "ID",
       "syscode": "Kód",
       "title": "Nadpis",
       "content": "Obsah",
-      "language": "Jazyk",
-      "is_active": "Aktivní",
-      "placeholder": {
-        "syscode": "uvodni-text",
-        "title": "Úvodní text",
-        "content": "Text obsahu..."
-      }
+      "language": "Jazyk"
     },
     "admin": {
       "enum": {

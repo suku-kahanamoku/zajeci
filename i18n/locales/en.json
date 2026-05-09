@@ -117,7 +117,12 @@
       "role": "Role",
       "guest": "Guest",
       "user": "User",
-      "admin": "Admin"
+      "admin": "Admin",
+      "active": "Published",
+      "is_active": "Published",
+      "yes": "Yes",
+      "no": "No",
+      "description": "Description"
     },
     "placeholder": {
       "leave_comment": "Leave a message..."
@@ -223,13 +228,7 @@
       "syscode": "Code",
       "parent_id": "Parent Category",
       "description": "Description",
-      "is_active": "Active",
-      "placeholder": {
-        "name": "White Wines",
-        "syscode": "white-wines",
-        "parent_id": "Parent category ID",
-        "description": "Category description"
-      }
+      "description": "Description"
     },
     "user": {
       "id": "ID",
@@ -237,27 +236,14 @@
       "name": "First Name",
       "surname": "Last Name",
       "phone": "Phone",
-      "role": "Role",
-      "is_active": "Active",
-      "placeholder": {
-        "email": "user{'@'}example.com",
-        "name": "John",
-        "surname": "Doe",
-        "phone": "+420 123 456 789"
-      }
+      "role": "Role"
     },
     "text": {
       "id": "ID",
       "syscode": "Code",
       "title": "Title",
       "content": "Content",
-      "language": "Language",
-      "is_active": "Active",
-      "placeholder": {
-        "syscode": "intro-text",
-        "title": "Introduction Text",
-        "content": "Text content..."
-      }
+      "language": "Language"
     },
     "admin": {
       "enum": {

@@ -25,7 +25,9 @@
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",
-        "variant": "Traminer"
+        "variant": "Traminer",
+        "region": "Moravian wine region",
+        "serving_temp": "10–12 °C"
       },
       "kind": {
         "dry": "Dry",

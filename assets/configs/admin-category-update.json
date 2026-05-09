@@ -38,8 +38,18 @@
     },
     {
       "name": "is_active",
-      "type": "boolean",
-      "label": "$.category.is_active"
+      "type": "select",
+      "label": "$.form.is_active",
+      "options": [
+        {
+          "value": 1,
+          "label": "$.form.yes"
+        },
+        {
+          "value": 0,
+          "label": "$.form.no"
+        }
+      ]
     }
   ]
 }
