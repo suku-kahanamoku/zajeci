@@ -1,12 +1,8 @@
 import type { H3Event } from "h3";
-import { phpApiFetch, toLegacySingleResponse } from "@/server/utils/phpApi";
+import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event: H3Event) => {
-  const id = event.context.params?.id;
+  const id = event.context.params?._id ?? event.context.params?.id;
   const body = await readBody(event);
-  const phpResponse = await phpApiFetch(event, `/orders/${id}`, {
-    method: "PATCH",
-    body,
-  });
-  return toLegacySingleResponse(phpResponse);
+  return phpApiFetch(event, `/orders/${id}`, { method: "PATCH", body });
 });

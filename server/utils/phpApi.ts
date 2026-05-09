@@ -17,14 +17,13 @@ export interface PhpApiPaginatedData<T = any> {
 }
 
 /**
- * Normalizes a Nuxt-style query object to PHP API format:
- * - `projection`: JSON array/object → comma-separated string
- * - `skip` + `limit` → `page` + `limit`
- * - Strips nuxt-internal params (`factory`)
+ * Normalizes a Nuxt-style query object to PHP API format.
+ * Called automatically inside phpApiFetch.
+ * - projection: JSON array/object or array → comma-separated string (PHP format)
+ * - skip + limit → page + limit
+ * - Strips nuxt-internal params (factory)
  */
-export function normalizePhpQuery(
-  query: Record<string, any>,
-): Record<string, any> {
+function normalizeQuery(query: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   for (const [key, value] of Object.entries(query)) {
@@ -36,7 +35,6 @@ export function normalizePhpQuery(
         try {
           proj = JSON.parse(proj);
         } catch {
-          // already a plain string — pass through
           result[key] = proj;
           continue;
         }
@@ -49,12 +47,11 @@ export function normalizePhpQuery(
       continue;
     }
 
-    if (key === "skip") continue; // converted to page below
+    if (key === "skip") continue;
 
     result[key] = value;
   }
 
-  // Convert skip → page
   if ("skip" in query && "limit" in query) {
     const skip = Number(query.skip) || 0;
     const limit = Number(query.limit) || 20;
@@ -64,22 +61,19 @@ export function normalizePhpQuery(
   return result;
 }
 
-/**
- * Fetches the Bearer token from the current user session.
- */
 async function getSessionToken(event: H3Event): Promise<string | null> {
   try {
     const session = await getUserSession(event);
-    return (
-      (session as any)?.token || (session as any)?.tokens?.access_token || null
-    );
+    return (session as any)?.token || (session as any)?.tokens?.access_token || null;
   } catch {
     return null;
   }
 }
 
 /**
- * Proxy call to the PHP API. Forwards the session Bearer token automatically.
+ * Thin proxy call to the PHP API.
+ * Injects session Bearer token and normalizes query params to PHP format.
+ * Returns the raw PHP response; useApi() in the frontend normalizes the shape.
  */
 export async function phpApiFetch<T = any>(
   event: H3Event,
@@ -101,43 +95,14 @@ export async function phpApiFetch<T = any>(
     headers["Authorization"] = `Bearer ${token}`;
   }
 
+  const query = options.query ? normalizeQuery(options.query) : undefined;
+
   return await $fetch<PhpApiResponse<T>>(baseUrl + path, {
     method: (options.method as any) || "GET",
     headers,
     ...(options.body !== undefined ? { body: options.body } : {}),
-    ...(options.query ? { query: options.query } : {}),
+    ...(query ? { query } : {}),
   });
 }
 
-/**
- * Converts PHP API paginated response to the legacy Nuxt response format
- * expected by the existing frontend composables.
- */
-export function toLegacyListResponse<T>(
-  phpResponse: PhpApiResponse<PhpApiPaginatedData<T>>,
-  factory?: string,
-) {
-  const d = phpResponse.data;
-  const items = d?.items ?? [];
-  if (factory) {
-    items.forEach((item: any) => RESOLVE_FACTORY(item, factory));
-  }
-  return {
-    data: items,
-    meta: {
-      total: d?.total ?? 0,
-      limit: d?.limit ?? 20,
-      skip: ((d?.page ?? 1) - 1) * (d?.limit ?? 20),
-    },
-  };
-}
-
-/**
- * Converts PHP API single-item response to the legacy Nuxt response format.
- */
-export function toLegacySingleResponse<T>(phpResponse: PhpApiResponse<T>) {
-  return {
-    data: phpResponse.data ?? ({} as T),
-    meta: { total: phpResponse.data ? 1 : 0 },
-  };
-}
+export { RESOLVE_FACTORY };
