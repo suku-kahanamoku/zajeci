@@ -2,6 +2,13 @@
   "syscode": "admin-category-create",
   "postUrl": "/api/admin/category",
   "method": "POST",
+  "projection": [
+    "name",
+    "syscode",
+    "parent_id",
+    "description",
+    "is_active"
+  ],
   "fields": [
     {
       "name": "name",

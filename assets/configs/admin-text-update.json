@@ -3,6 +3,13 @@
   "restUrl": "/api/admin/text/${route.meta.id}",
   "patchUrl": "/api/admin/text/${route.meta.id}",
   "method": "PATCH",
+  "projection": [
+    "syscode",
+    "title",
+    "content",
+    "language",
+    "is_active"
+  ],
   "fields": [
     {
       "name": "syscode",
@@ -28,8 +35,14 @@
       "type": "select",
       "label": "$.text.language",
       "options": [
-        { "label": "Čeština", "value": "cs" },
-        { "label": "English", "value": "en" }
+        {
+          "label": "Čeština",
+          "value": "cs"
+        },
+        {
+          "label": "English",
+          "value": "en"
+        }
       ]
     },
     {

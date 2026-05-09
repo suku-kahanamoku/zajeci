@@ -5,6 +5,14 @@
   "factory": {
     "url": "${email}--$${id}"
   },
+  "projection": [
+    "id",
+    "email",
+    "name",
+    "surname",
+    "role",
+    "is_active"
+  ],
   "fields": [
     {
       "name": "id",

@@ -5,6 +5,12 @@
   "factory": {
     "url": "${syscode}--$${id}"
   },
+  "projection": [
+    "syscode",
+    "name",
+    "description",
+    "items"
+  ],
   "fields": [
     {
       "name": "syscode",

@@ -3,6 +3,13 @@
   "restUrl": "/api/admin/category/${route.meta.id}",
   "patchUrl": "/api/admin/category/${route.meta.id}",
   "method": "PATCH",
+  "projection": [
+    "name",
+    "syscode",
+    "parent_id",
+    "description",
+    "is_active"
+  ],
   "fields": [
     {
       "name": "name",

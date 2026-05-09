@@ -3,6 +3,13 @@
   "postUrl": "/api/admin/enum/${route.meta.id}",
   "method": "POST",
   "modelType": "enumItem",
+  "projection": [
+    "syscode",
+    "name",
+    "description",
+    "disabled",
+    "hidden"
+  ],
   "fields": [
     {
       "name": "syscode",
@@ -28,8 +35,14 @@
       "type": "radio",
       "label": "$.enum.item.disabled",
       "options": [
-        { "label": "$.btn.yes", "value": true },
-        { "label": "$.btn.no", "value": false }
+        {
+          "label": "$.btn.yes",
+          "value": true
+        },
+        {
+          "label": "$.btn.no",
+          "value": false
+        }
       ],
       "value": false
     },
@@ -38,8 +51,14 @@
       "type": "radio",
       "label": "$.enum.item.hidden",
       "options": [
-        { "label": "$.btn.yes", "value": true },
-        { "label": "$.btn.no", "value": false }
+        {
+          "label": "$.btn.yes",
+          "value": true
+        },
+        {
+          "label": "$.btn.no",
+          "value": false
+        }
       ],
       "value": false
     }

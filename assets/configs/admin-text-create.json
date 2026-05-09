@@ -2,6 +2,13 @@
   "syscode": "admin-text-create",
   "postUrl": "/api/admin/text",
   "method": "POST",
+  "projection": [
+    "syscode",
+    "title",
+    "content",
+    "language",
+    "is_active"
+  ],
   "fields": [
     {
       "name": "syscode",
@@ -27,8 +34,14 @@
       "type": "select",
       "label": "$.text.language",
       "options": [
-        { "label": "Čeština", "value": "cs" },
-        { "label": "English", "value": "en" }
+        {
+          "label": "Čeština",
+          "value": "cs"
+        },
+        {
+          "label": "English",
+          "value": "en"
+        }
       ]
     },
     {

@@ -3,6 +3,27 @@
   "postUrl": "/api/admin/wine",
   "method": "POST",
   "modelType": "wine",
+  "projection": [
+    "name",
+    "sku",
+    "kind",
+    "color",
+    "variant",
+    "price",
+    "vat_rate",
+    "stock_quantity",
+    "is_active",
+    "data.year",
+    "data.volume",
+    "data.grape",
+    "data.quality",
+    "data.sugar",
+    "data.alcohol",
+    "data.winery",
+    "data.region",
+    "data.serving_temp",
+    "description"
+  ],
   "fields": [
     {
       "name": "name",

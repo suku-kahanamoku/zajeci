@@ -5,6 +5,15 @@
   "factory": {
     "url": "${name}--$${id}"
   },
+  "projection": [
+    "name",
+    "sku",
+    "kind",
+    "color",
+    "price",
+    "stock_quantity",
+    "is_active"
+  ],
   "fields": [
     {
       "name": "name",

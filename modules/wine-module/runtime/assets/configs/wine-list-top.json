@@ -4,6 +4,23 @@
   "factory": {
     "url": "${name}--$${id}"
   },
+  "projection": [
+    "name",
+    "kind",
+    "data.quality",
+    "color",
+    "variant",
+    "data.volume",
+    "data.year",
+    "price",
+    "stock_quantity",
+    "data.grape",
+    "data.winery",
+    "data.region",
+    "data.alcohol",
+    "data.sugar",
+    "data.serving_temp"
+  ],
   "fields": [
     {
       "name": "name",

@@ -1,6 +1,18 @@
 {
   "syscode": "wine-detail",
   "restUrl": "/api/wine/${route.meta.id}",
+  "projection": [
+    "name",
+    "kind",
+    "data.quality",
+    "color",
+    "variant",
+    "data.volume",
+    "data.year",
+    "price",
+    "stock_quantity",
+    "description"
+  ],
   "fields": [
     {
       "name": "name",
