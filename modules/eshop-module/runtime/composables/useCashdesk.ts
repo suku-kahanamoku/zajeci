@@ -12,8 +12,8 @@ import { useCart } from "./useCart";
 const emptyUser = {
   email: "",
   name: "",
-  surname: "",
-  given_name: "",
+  first_name: "",
+  last_name: "",
   address: {
     main: {} as any,
   },
@@ -50,7 +50,7 @@ function createCashdesk() {
   const totalPrice = computed(
     () =>
       cartTotalPrice.value +
-      (delivery.value.totalPrice! + payment.value.totalPrice!),
+      (delivery.value.total_price! + payment.value.total_price!),
   );
 
   // Wrap cart mutation methods to keep localStorage updates
@@ -79,8 +79,9 @@ function createCashdesk() {
     const item = CLONE(newUser || authUser.value || emptyUser);
     item.address ||= authUser.value?.address || emptyUser.address;
     item.address.main ||= {};
-    // Map givenName (from external IUser/auth) → given_name (snake_case field name)
-    item.given_name ||= item.givenName;
+    // Map givenName/surname (from external IUser/auth) → first_name/last_name (snake_case)
+    item.first_name ||= item.givenName;
+    item.last_name ||= item.surname;
     user.value = item;
   };
 
@@ -111,7 +112,7 @@ function createCashdesk() {
       carts: carts.value,
       delivery: delivery.value,
       payment: payment.value,
-      totalPrice: totalPrice.value,
+      total_price: totalPrice.value,
     };
     nuxtStorage.localStorage.setData("cashdesk", JSON.stringify(order), 7, "d");
   };
@@ -125,7 +126,7 @@ function createCashdesk() {
         carts: carts.value,
         delivery: delivery.value,
         payment: payment.value,
-        totalPrice: totalPrice.value,
+        total_price: totalPrice.value,
       };
       const result = await $fetch("/api/order", {
         method: "POST",

@@ -34,7 +34,7 @@ const { totalPrice } = useCashdesk();
     <template #body>
       <div class="space-y-2">
         <div class="flex">
-          {{ $tt("$.form.price") }}:&nbsp;<UiPrice :price="cart?.unitPrice!" />
+          {{ $tt("$.form.price") }}:&nbsp;<UiPrice :price="cart?.unit_price!" />
         </div>
         <div>
           {{ $tt("$.form.quantity") }}:&nbsp;{{

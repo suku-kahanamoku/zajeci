@@ -27,8 +27,8 @@ export enum PaymentServices {
 export interface IPayment {
   type: PaymentServices | string;
   label: string;
-  unitPrice: number;
-  totalPrice?: number;
+  unit_price: number;
+  total_price?: number;
   avatar?: string;
   disabled?: boolean;
   valid?: boolean;
@@ -61,8 +61,8 @@ export enum DeliveryServices {
 export interface IDelivery {
   type: DeliveryServices | string;
   label: string;
-  unitPrice: number;
-  totalPrice?: number;
+  unit_price: number;
+  total_price?: number;
   disabled?: boolean;
   avatar?: string;
   help?: string;
@@ -80,9 +80,10 @@ export interface IDelivery {
  */
 export interface ICart {
   wine: IWine;
+  product_id: number;
   quantity: number;
-  unitPrice: number;
-  totalPrice: number;
+  unit_price: number;
+  total_price: number;
 }
 
 /**

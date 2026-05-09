@@ -172,14 +172,14 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice :price="row.original?.unitPrice!" />
+        <UiPrice :price="row.original?.unit_price!" />
       </p>
     </template>
 
     <template #total_price-cell="{ row }">
       <div class="flex justify-between items-center space-x-4">
         <p class="font-semibold text-end w-full">
-          <UiPrice :price="row.original?.totalPrice!" />
+          <UiPrice :price="row.original?.total_price!" />
         </p>
         <UButton
           icon="i-heroicons-trash"
@@ -238,7 +238,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
         </div>
         <div class="flex justify-between items-center space-x-4 sm:space-x-12">
           <p class="font-semibold text-end">
-            <UiPrice :price="cart?.totalPrice!" />
+            <UiPrice :price="cart?.total_price!" />
           </p>
           <UButton
             icon="i-heroicons-trash"

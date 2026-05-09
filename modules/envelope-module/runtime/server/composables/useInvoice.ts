@@ -166,8 +166,8 @@ export async function useInvoice(event: H3Event) {
     renderLabel(doc, tt("$.invoice.customer"), rightColX, 100, lineOptions);
 
     doc.moveDown();
-    const fullName = `${(customer as any).given_name || customer.givenName || customer.name || ""} ${
-      customer.surname || ""
+    const fullName = `${(customer as any).first_name || customer.givenName || customer.name || ""} ${
+      (customer as any).last_name || customer.surname || ""
     }`.trim();
     doc.text(fullName, rightColX, undefined, lineOptions);
 
@@ -192,8 +192,8 @@ export async function useInvoice(event: H3Event) {
     renderLabel(doc, tt("$.invoice.supplier"), margin, 100, lineOptions);
 
     doc.moveDown();
-    const fullName = `${(supplier as any).given_name || supplier.givenName || supplier.name || ""} ${
-      supplier.surname || ""
+    const fullName = `${(supplier as any).first_name || supplier.givenName || supplier.name || ""} ${
+      (supplier as any).last_name || supplier.surname || ""
     }`.trim();
     doc.text(fullName, lineOptions);
 
@@ -240,7 +240,7 @@ export async function useInvoice(event: H3Event) {
       const itemName = `${item.wine.name} (${item.quantity}x)`;
       doc.text(itemName, nameColX, itemY, lineOptions);
       doc.text(
-        `${item.totalPrice} ${tt("$.invoice.currency")}`,
+        `${item.total_price} ${tt("$.invoice.currency")}`,
         priceColX,
         itemY,
         {
@@ -289,7 +289,7 @@ export async function useInvoice(event: H3Event) {
       }
 
       // Items table
-      renderItems(invoiceData.carts, invoiceData.totalPrice, lineOptions);
+      renderItems(invoiceData.carts, (invoiceData as any).total_price ?? invoiceData.totalPrice, lineOptions);
 
       doc.end();
     });

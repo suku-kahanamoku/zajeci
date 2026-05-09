@@ -11,7 +11,7 @@ function createCart() {
   );
 
   const totalPrice = computed(() =>
-    carts.value.reduce((total, item) => total + item.totalPrice, 0),
+    carts.value.reduce((total, item) => total + item.total_price, 0),
   );
 
   const addItem = (wine: IWine, quantity: number): ICart => {
@@ -19,14 +19,15 @@ function createCart() {
     const existingItem = carts.value.find((item) => item.wine.id === wine.id);
     if (existingItem) {
       existingItem.quantity += quantity;
-      existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
+      existingItem.total_price = existingItem.unit_price * existingItem.quantity;
       result = existingItem;
     } else {
       const newItem: ICart = {
         wine,
+        product_id: wine.id,
         quantity,
-        unitPrice: Number(wine.price),
-        totalPrice: Number(wine.price) * quantity,
+        unit_price: Number(wine.price),
+        total_price: Number(wine.price) * quantity,
       };
       carts.value.push(newItem);
       result = newItem;
@@ -39,7 +40,7 @@ function createCart() {
     if (itemIndex >= 0) {
       const item = carts.value[itemIndex]!;
       item.quantity -= 1;
-      item.totalPrice = item.unitPrice * item.quantity;
+      item.total_price = item.unit_price * item.quantity;
       if (item.quantity <= 0) {
         carts.value.splice(itemIndex, 1);
       }
@@ -50,7 +51,7 @@ function createCart() {
     const existingItem = carts.value.find((item) => item.wine.id === wineId);
     if (existingItem) {
       existingItem.quantity = quantity;
-      existingItem.totalPrice = existingItem.unitPrice * existingItem.quantity;
+      existingItem.total_price = existingItem.unit_price * existingItem.quantity;
     }
   };
 

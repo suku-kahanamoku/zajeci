@@ -27,7 +27,7 @@
       "value": "guest"
     },
     {
-      "name": "given_name",
+      "name": "first_name",
       "type": "text",
       "label": "$.form.given_name",
       "placeholder": "John",
@@ -37,7 +37,7 @@
       "value": ""
     },
     {
-      "name": "surname",
+      "name": "last_name",
       "type": "text",
       "label": "$.form.surname",
       "placeholder": "Doe",

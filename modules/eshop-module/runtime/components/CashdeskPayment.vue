@@ -65,7 +65,7 @@ watch(
             </span>
           </div>
 
-          <UiPrice v-if="item.totalPrice! > 0" :price="item?.totalPrice!" />
+          <UiPrice v-if="item.total_price! > 0" :price="item?.total_price!" />
           <span v-else>
             {{ t("$.btn.free") }}
           </span>

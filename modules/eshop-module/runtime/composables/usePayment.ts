@@ -8,21 +8,21 @@ export const paymentObjects = {
   cash: {
     type: "cash",
     label: "$.payment.cash",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "mdi:cash-100",
     value: "cash",
   },
   bank: {
     type: "bank",
     label: "$.payment.bank",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "mdi:bank-outline",
     value: "bank",
   },
   card: {
     type: "card",
     label: "$.payment.card",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "mdi:credit-card-outline",
     disabled: true,
     value: "card",
@@ -30,7 +30,7 @@ export const paymentObjects = {
   paypal: {
     type: "paypal",
     label: "$.payment.paypal",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "logos:paypal",
     disabled: true,
     value: "paypal",
@@ -38,7 +38,7 @@ export const paymentObjects = {
   gopay: {
     type: "gopay",
     label: "$.payment.gopay",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "arcticons:gopay",
     disabled: true,
     value: "gopay",
@@ -46,7 +46,7 @@ export const paymentObjects = {
   apple_pay: {
     type: "apple_pay",
     label: "$.payment.apple_pay",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "simple-icons:applepay",
     disabled: true,
     value: "apple_pay",
@@ -54,7 +54,7 @@ export const paymentObjects = {
   google_pay: {
     type: "google_pay",
     label: "$.payment.google_pay",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "simple-icons:googlepay",
     disabled: true,
     value: "google_pay",
@@ -72,7 +72,7 @@ function createPayment() {
   const paymentOptions = computed<IPayment[]>(() =>
     Object.values(paymentObjects).map((item) => ({
       ...item,
-      totalPrice: totalPrice.value > 2500 ? 0 : item.unitPrice,
+      total_price: totalPrice.value > 2500 ? 0 : item.unit_price,
     }))
   );
 
@@ -80,7 +80,7 @@ function createPayment() {
     const item = CLONE(
       newPayment || {
         ...paymentObjects.bank,
-        totalPrice: totalPrice.value > 2500 ? 0 : paymentObjects.bank.unitPrice,
+        total_price: totalPrice.value > 2500 ? 0 : paymentObjects.bank.unit_price,
       }
     );
     payment.value = item;

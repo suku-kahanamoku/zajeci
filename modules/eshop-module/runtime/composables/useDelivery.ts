@@ -9,7 +9,7 @@ export const deliveryObjects = {
   free: {
     type: "free",
     label: "$.delivery.brno",
-    unitPrice: 0,
+    unit_price: 0,
     avatar: "mdi:home-city-outline",
     help: "$.delivery.brno_free",
     value: "free",
@@ -17,7 +17,7 @@ export const deliveryObjects = {
   post: {
     type: "post",
     label: "$.delivery.post",
-    unitPrice: 209,
+    unit_price: 209,
     avatar: "/img/delivery/post.jpg",
     help: "$.delivery.not_quaranteed",
     value: "post",
@@ -25,7 +25,7 @@ export const deliveryObjects = {
   dpd: {
     type: "dpd",
     label: "$.delivery.dpd",
-    unitPrice: 150,
+    unit_price: 150,
     avatar: "mdi:truck-outline",
     help: "$.delivery.not_quaranteed",
     value: "dpd",
@@ -33,7 +33,7 @@ export const deliveryObjects = {
   messenger: {
     type: "messenger",
     label: "$.delivery.messenger",
-    unitPrice: 175,
+    unit_price: 175,
     avatar: "mdi:truck-outline",
     help: "$.delivery.third_day",
     value: "messenger",
@@ -56,7 +56,7 @@ function createDelivery() {
     Object.values(deliveryObjects).map((item) => ({
       ...item,
       // Free delivery threshold (kept same logic as before but based on subtotal, not circular total)
-      totalPrice: totalPrice.value > 2500 ? 0 : item.unitPrice,
+      total_price: totalPrice.value > 2500 ? 0 : item.unit_price,
     }))
   );
 
@@ -64,7 +64,7 @@ function createDelivery() {
     const item = CLONE(newDelivery || deliveryObjects.free);
     item.address = address ? CLONE(address || {}) : item.address;
     item.key = (delivery.value.key || 0) + 1;
-    item.totalPrice = totalPrice.value > 2500 ? 0 : item.unitPrice;
+    item.total_price = totalPrice.value > 2500 ? 0 : item.unit_price;
     delivery.value = item;
   }
 

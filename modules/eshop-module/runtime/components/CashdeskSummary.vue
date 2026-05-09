@@ -103,7 +103,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
     <template #price-cell="{ row }">
       <p class="font-semibold min-w-24 text-end">
-        <UiPrice :price="row.original?.totalPrice!" />
+        <UiPrice :price="row.original?.total_price!" />
       </p>
     </template>
 
@@ -116,7 +116,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </td>
         <td class="p-4">
           <div class="text-end">
-            <UiPrice :price="delivery.totalPrice!" />
+            <UiPrice :price="delivery.total_price!" />
           </div>
         </td>
       </tr>
@@ -172,7 +172,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <div class="w-full text-center font-semibold flex gap-2">
           <p>{{ t("$.form.price") }}:</p>
           <p>
-            <UiPrice :price="cart.totalPrice" />
+            <UiPrice :price="cart.total_price" />
           </p>
         </div>
       </div>
@@ -195,7 +195,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </h4>
 
         <p class="text-gray-600 dark:text-white">
-          {{ (user as any)?.given_name }}&nbsp;{{ user?.surname }}
+          {{ (user as any)?.first_name }}&nbsp;{{ (user as any)?.last_name }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
