@@ -32,11 +32,16 @@
         "grape": "Traminer"
       },
       "kind": {
-        "white": "White wine",
-        "red": "Red wine",
-        "rose": "Rosé wine",
-        "sparkling": "Sparkling wine",
-        "dessert": "Dessert wine"
+        "dry": "Dry",
+        "semiDry": "Semi-dry",
+        "sweet": "Sweet",
+        "semiSweet": "Semi-sweet",
+        "extraDry": "Extra dry",
+        "offDry": "Off-dry",
+        "mediumDry": "Medium dry",
+        "mediumSweet": "Medium sweet",
+        "verySweet": "Very sweet",
+        "dessert": "Dessert"
       },
       "color": {
         "yellow": "Yellow",
@@ -56,6 +61,26 @@
         "table_wine": "Table wine"
       },
       "variant": {
+        "riesling": "Riesling",
+        "gruner_veltliner": "Grüner Veltliner",
+        "welschriesling": "Welschriesling",
+        "sauvignon_blanc": "Sauvignon Blanc",
+        "pinot_gris": "Pinot Gris",
+        "pinot_blanc": "Pinot Blanc",
+        "chardonnay": "Chardonnay",
+        "traminer": "Traminer",
+        "muscat": "Moravian Muscat",
+        "mueller_thurgau": "Müller Thurgau",
+        "st_laurent": "St. Laurent",
+        "pinot_noir": "Pinot Noir",
+        "zweigelt": "Zweigelt",
+        "cabernet_sauvignon": "Cabernet Sauvignon",
+        "merlot": "Merlot",
+        "frankovka": "Frankovka",
+        "modry_portugal": "Modrý Portugal",
+        "other": "Other variety"
+      },
+      "variety": {
         "riesling": "Riesling",
         "gruner_veltliner": "Grüner Veltliner",
         "welschriesling": "Welschriesling",

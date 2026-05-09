@@ -46,20 +46,40 @@
       "required": true,
       "options": [
         {
-          "value": "white",
-          "label": "$.wine.kind.white"
+          "value": "dry",
+          "label": "$.wine.kind.dry"
         },
         {
-          "value": "red",
-          "label": "$.wine.kind.red"
+          "value": "semiDry",
+          "label": "$.wine.kind.semi_dry"
         },
         {
-          "value": "rosé",
-          "label": "$.wine.kind.rose"
+          "value": "sweet",
+          "label": "$.wine.kind.sweet"
         },
         {
-          "value": "sparkling",
-          "label": "$.wine.kind.sparkling"
+          "value": "semiSweet",
+          "label": "$.wine.kind.semi_sweet"
+        },
+        {
+          "value": "extraDry",
+          "label": "$.wine.kind.extra_dry"
+        },
+        {
+          "value": "offDry",
+          "label": "$.wine.kind.off_dry"
+        },
+        {
+          "value": "mediumDry",
+          "label": "$.wine.kind.medium_dry"
+        },
+        {
+          "value": "mediumSweet",
+          "label": "$.wine.kind.medium_sweet"
+        },
+        {
+          "value": "verySweet",
+          "label": "$.wine.kind.very_sweet"
         },
         {
           "value": "dessert",
@@ -74,10 +94,6 @@
       "placeholder": "$.form.select",
       "options": [
         {
-          "value": "yellow",
-          "label": "$.wine.color.yellow"
-        },
-        {
           "value": "white",
           "label": "$.wine.color.white"
         },
@@ -86,16 +102,90 @@
           "label": "$.wine.color.red"
         },
         {
-          "value": "rosé",
+          "value": "rose",
           "label": "$.wine.color.rose"
         }
       ]
     },
     {
       "name": "variant",
-      "type": "text",
+      "type": "select",
       "label": "$.wine.form.variant",
-      "placeholder": "$.wine.placeholder.variant"
+      "placeholder": "$.wine.placeholder.variant",
+      "options": [
+        {
+          "value": "cabernet_sauvignon",
+          "label": "$.wine.variety.cabernet_sauvignon"
+        },
+        {
+          "value": "chardonnay",
+          "label": "$.wine.variety.chardonnay"
+        },
+        {
+          "value": "frankovka",
+          "label": "$.wine.variety.frankovka"
+        },
+        {
+          "value": "gruner_veltliner",
+          "label": "$.wine.variety.gruner_veltliner"
+        },
+        {
+          "value": "merlot",
+          "label": "$.wine.variety.merlot"
+        },
+        {
+          "value": "modry_portugal",
+          "label": "$.wine.variety.modry_portugal"
+        },
+        {
+          "value": "mueller_thurgau",
+          "label": "$.wine.variety.mueller_thurgau"
+        },
+        {
+          "value": "muscat",
+          "label": "$.wine.variety.muscat"
+        },
+        {
+          "value": "other",
+          "label": "$.wine.variety.other"
+        },
+        {
+          "value": "pinot_blanc",
+          "label": "$.wine.variety.pinot_blanc"
+        },
+        {
+          "value": "pinot_gris",
+          "label": "$.wine.variety.pinot_gris"
+        },
+        {
+          "value": "pinot_noir",
+          "label": "$.wine.variety.pinot_noir"
+        },
+        {
+          "value": "riesling",
+          "label": "$.wine.variety.riesling"
+        },
+        {
+          "value": "sauvignon_blanc",
+          "label": "$.wine.variety.sauvignon_blanc"
+        },
+        {
+          "value": "st_laurent",
+          "label": "$.wine.variety.st_laurent"
+        },
+        {
+          "value": "traminer",
+          "label": "$.wine.variety.traminer"
+        },
+        {
+          "value": "welschriesling",
+          "label": "$.wine.variety.welschriesling"
+        },
+        {
+          "value": "zweigelt",
+          "label": "$.wine.variety.zweigelt"
+        }
+      ]
     },
     {
       "name": "price",
@@ -136,9 +226,47 @@
     },
     {
       "name": "data.quality",
-      "type": "text",
+      "type": "select",
       "label": "$.wine.form.quality",
-      "placeholder": "$.wine.placeholder.quality"
+      "placeholder": "$.form.select",
+      "options": [
+        {
+          "value": "kabinett",
+          "label": "$.wine.quality.kabinett"
+        },
+        {
+          "value": "late_harvest",
+          "label": "$.wine.quality.late_harvest"
+        },
+        {
+          "value": "selection_of_grapes",
+          "label": "$.wine.quality.selection_of_grapes"
+        },
+        {
+          "value": "selection_of_berries",
+          "label": "$.wine.quality.selection_of_berries"
+        },
+        {
+          "value": "ice_wine",
+          "label": "$.wine.quality.ice_wine"
+        },
+        {
+          "value": "straw_wine",
+          "label": "$.wine.quality.straw_wine"
+        },
+        {
+          "value": "quality_wine",
+          "label": "$.wine.quality.quality_wine"
+        },
+        {
+          "value": "archive_wine",
+          "label": "$.wine.quality.archive_wine"
+        },
+        {
+          "value": "table_wine",
+          "label": "$.wine.quality.table_wine"
+        }
+      ]
     },
     {
       "name": "data.sugar",

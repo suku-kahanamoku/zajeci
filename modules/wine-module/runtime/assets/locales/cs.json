@@ -32,11 +32,16 @@
         "grape": "Tramín červený"
       },
       "kind": {
-        "white": "Bílé víno",
-        "red": "Červené víno",
-        "rose": "Rosé víno",
-        "sparkling": "Šumivé víno",
-        "dessert": "Dezertní víno"
+        "dry": "Suché",
+        "semiDry": "Polosuché",
+        "sweet": "Sladké",
+        "semiSweet": "Polosladké",
+        "extraDry": "Extra suché",
+        "offDry": "Lehce suché",
+        "mediumDry": "Středně suché",
+        "mediumSweet": "Středně sladké",
+        "verySweet": "Velmi sladké",
+        "dessert": "Dezertní"
       },
       "color": {
         "yellow": "Žluté",
@@ -56,6 +61,26 @@
         "table_wine": "Stolní víno"
       },
       "variant": {
+        "riesling": "Ryzlink rýnský",
+        "gruner_veltliner": "Veltlínské zelené",
+        "welschriesling": "Ryzlink vlašský",
+        "sauvignon_blanc": "Sauvignon blanc",
+        "pinot_gris": "Rulandské šedé",
+        "pinot_blanc": "Rulandské bílé",
+        "chardonnay": "Chardonnay",
+        "traminer": "Tramín červený",
+        "muscat": "Muškát moravský",
+        "mueller_thurgau": "Müller Thurgau",
+        "st_laurent": "Svatovavřinecké",
+        "pinot_noir": "Rulandské modré",
+        "zweigelt": "Zweigeltrebe",
+        "cabernet_sauvignon": "Cabernet Sauvignon",
+        "merlot": "Merlot",
+        "frankovka": "Frankovka",
+        "modry_portugal": "Modrý Portugal",
+        "other": "Jiná odrůda"
+      },
+      "variety": {
         "riesling": "Ryzlink rýnský",
         "gruner_veltliner": "Veltlínské zelené",
         "welschriesling": "Ryzlink vlašský",
