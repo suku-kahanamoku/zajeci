@@ -30,7 +30,7 @@ const { data: config } = await useAsyncData(
       return {} as IFormConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 // Columns
@@ -45,7 +45,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
             innerHTML: t(f.label!),
             class: f.type === "number" ? "text-end" : "",
           }),
-      })) ?? []
+      })) ?? [],
 );
 </script>
 
@@ -71,7 +71,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           <NuxtLink
             :to="
               localePath(
-                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`,
               )
             "
             class="flex items-center"
@@ -85,6 +85,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           <CmpWineIconAttrs
             :wine="row.original?.wine"
             :fields="config.fields"
+            :allowed-names="['color', 'quality', 'volume', 'sugar']"
           />
         </div>
       </div>
@@ -94,7 +95,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <div class="w-full font-semibold text-end">
         {{
           useToNumber(
-            row.original?.quantity?.toFixed(2) || 0
+            row.original?.quantity?.toFixed(2) || 0,
           ).value.toLocaleString(locale)
         }}
       </div>
@@ -138,7 +139,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <NuxtLink
         :to="
           localePath(
-            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`
+            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`,
           )
         "
         class="flex flex-col md:flex-row items-center"
@@ -163,7 +164,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           <p>
             {{
               useToNumber(cart.quantity?.toFixed(2) || 0).value.toLocaleString(
-                locale
+                locale,
               )
             }}
           </p>

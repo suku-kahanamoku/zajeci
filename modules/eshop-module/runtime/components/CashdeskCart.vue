@@ -46,7 +46,7 @@ const { data: config } = await useAsyncData(
       return {} as IFormConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 // Columns
@@ -54,7 +54,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
   () =>
     config?.value?.fields
       ?.filter((f) =>
-        ["name", "quantity", "price", "total_price"].includes(f.name)
+        ["name", "quantity", "price", "total_price"].includes(f.name),
       )
       ?.map((f) => ({
         accessorKey: f.name,
@@ -63,14 +63,14 @@ const columns: Ref<TableColumn<any>[]> = computed(
             innerHTML: t(f.label!),
             class: headerClass[f.name],
           }),
-      })) ?? []
+      })) ?? [],
 );
 
 const increaseQuantity = (cart: ICart) => {
   addItem(cart.wine, 1);
   setDelivery(
     deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address
+    delivery.value.address,
   );
 };
 
@@ -82,7 +82,7 @@ const decreaseQuantity = (cart: ICart) => {
   }
   setDelivery(
     deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address
+    delivery.value.address,
   );
 };
 
@@ -90,7 +90,7 @@ const openRemoveDialog = (cart: ICart) => {
   deleted.value = cart;
   setDelivery(
     deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address
+    delivery.value.address,
   );
   isOpen.value = true;
 };
@@ -103,7 +103,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   }
   setDelivery(
     deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address
+    delivery.value.address,
   );
 };
 </script>
@@ -130,7 +130,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <NuxtLink
             :to="
               localePath(
-                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`,
               )
             "
             class="flex items-center"
@@ -144,6 +144,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <CmpWineIconAttrs
             :wine="row.original?.wine"
             :fields="config.fields"
+            :allowed-names="['color', 'quality', 'volume', 'sugar']"
           />
         </div>
       </div>
@@ -198,7 +199,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
       <NuxtLink
         :to="
           localePath(
-            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`
+            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`,
           )
         "
         class="flex flex-col md:flex-row items-center"
@@ -215,7 +216,11 @@ const handleSetQuantity = (value: number, cart: ICart) => {
       </NuxtLink>
 
       <!-- Parametry vína s ikonami ve dvou řádcích -->
-      <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
+      <CmpWineIconAttrs
+        :wine="cart.wine"
+        :fields="config.fields"
+        :allowed-names="['color', 'quality', 'volume', 'sugar']"
+      />
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">
           <UButton icon="i-heroicons-minus" @click="decreaseQuantity(cart)" />

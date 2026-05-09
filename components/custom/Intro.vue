@@ -35,8 +35,7 @@ const localePath = useLocalePath();
         </UButton>
         <UButton
           to="/#tasting"
-          variant="outline"
-          color="white"
+          color="primary"
           size="xl"
           class="font-semibold tracking-wide"
         >

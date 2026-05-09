@@ -6,6 +6,7 @@ const props = defineProps<{
   fields: IFormField[];
   wine?: IWine;
   limit?: number;
+  allowedNames?: string[];
 }>();
 
 const { t } = useLang();
@@ -90,7 +91,14 @@ const attrs = computed(() => {
       label: fieldLabel("data.serving_temp"),
       value: w.data?.serving_temp,
     },
-  ].filter((a) => a.value != null && a.value !== "").slice(0, props.limit ?? Infinity);
+  ]
+    .filter((a) => {
+      if (a.value == null || a.value === "") return false;
+      if (props.allowedNames && props.allowedNames.length > 0)
+        return props.allowedNames.includes(a.name);
+      return true;
+    })
+    .slice(0, props.limit ?? Infinity);
 });
 </script>
 
@@ -104,12 +112,18 @@ const attrs = computed(() => {
       :key="attr.name"
       class="flex items-start gap-1.5"
     >
-      <UIcon :name="attr.icon" class="mt-0.5 shrink-0 text-base" :class="attr.color" />
+      <UIcon
+        :name="attr.icon"
+        class="mt-0.5 shrink-0 text-base"
+        :class="attr.color"
+      />
       <div class="min-w-0">
-        <span class="text-xs text-gray-400 dark:text-gray-500 block leading-tight">{{ attr.label }}</span>
+        <span
+          class="text-xs text-gray-400 dark:text-gray-500 block leading-tight"
+          >{{ attr.label }}</span
+        >
         <span class="font-medium leading-tight">{{ attr.value }}</span>
       </div>
     </div>
   </dl>
 </template>
-
