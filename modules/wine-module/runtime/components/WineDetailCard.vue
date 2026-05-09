@@ -97,7 +97,7 @@ function addToCashdesk() {
 
         <!-- Attributes via WineIconAttrs -->
         <div class="rounded-2xl bg-gray-50 dark:bg-gray-900/60 border border-gray-100 dark:border-gray-800 p-5">
-          <CmpWineIconAttrs :wine="wine" :fields="fields" />
+          <CmpWineIconAttrs :wine="wine" :fields="fields" :cols="3" />
         </div>
 
         <USeparator />

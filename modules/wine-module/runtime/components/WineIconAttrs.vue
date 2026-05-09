@@ -7,6 +7,7 @@ const props = defineProps<{
   wine?: IWine;
   limit?: number;
   allowedNames?: string[];
+  cols?: number;
 }>();
 
 const { t } = useLang();
@@ -105,7 +106,8 @@ const attrs = computed(() => {
 <template>
   <dl
     v-if="wine"
-    class="grid grid-cols-2 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
+    class="grid gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
+    :class="cols === 3 ? 'grid-cols-3' : 'grid-cols-2'"
   >
     <div
       v-for="attr in attrs"

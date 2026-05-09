@@ -4,14 +4,20 @@
   "projection": [
     "name",
     "kind",
-    "data.quality",
     "color",
     "variant",
-    "data.volume",
-    "data.year",
     "price",
     "stock_quantity",
-    "description"
+    "description",
+    "data.quality",
+    "data.volume",
+    "data.year",
+    "data.grape",
+    "data.sugar",
+    "data.alcohol",
+    "data.winery",
+    "data.region",
+    "data.serving_temp"
   ],
   "fields": [
     {
@@ -92,6 +98,36 @@
       "name": "data.year",
       "type": "number",
       "label": "$.wine.form.year"
+    },
+    {
+      "name": "data.grape",
+      "type": "text",
+      "label": "$.wine.form.grape"
+    },
+    {
+      "name": "data.sugar",
+      "type": "text",
+      "label": "$.wine.form.sugar"
+    },
+    {
+      "name": "data.alcohol",
+      "type": "number",
+      "label": "$.wine.form.alcohol"
+    },
+    {
+      "name": "data.winery",
+      "type": "text",
+      "label": "$.wine.form.winery"
+    },
+    {
+      "name": "data.region",
+      "type": "text",
+      "label": "$.wine.form.region"
+    },
+    {
+      "name": "data.serving_temp",
+      "type": "text",
+      "label": "$.wine.form.serving_temp"
     },
     {
       "name": "price",

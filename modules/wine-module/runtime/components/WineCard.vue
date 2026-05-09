@@ -23,12 +23,20 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div v-if="wine" :id="String(wine.id)" class="zoom-in flex flex-col w-full max-w-72">
+  <div
+    v-if="wine"
+    :id="String(wine.id)"
+    class="zoom-in flex flex-col w-full max-w-72"
+  >
     <!-- Card -->
-    <div class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300">
-
+    <div
+      class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300"
+    >
       <!-- Image area -->
-      <NuxtLink :to="wine.gen_data?.url" class="relative block overflow-hidden bg-gray-50 dark:bg-gray-800">
+      <NuxtLink
+        :to="wine.gen_data?.url"
+        class="relative block overflow-hidden bg-gray-50 dark:bg-gray-800"
+      >
         <NuxtImg
           :src="wine.image?.main?.src || '/img/bottle.jpg'"
           :alt="wine.name || 'wine'"
@@ -39,8 +47,10 @@ function addToCashdesk() {
         />
         <!-- Color badge -->
         <div v-if="wine.color" class="absolute top-3 left-3">
-          <span class="inline-block bg-white/90 dark:bg-gray-900/90 text-primary-600 dark:text-primary-300 text-xs font-semibold tracking-wide px-2 py-1 rounded-full shadow-sm">
-            {{ getSelectLabel(fields, 'color', wine.color) }}
+          <span
+            class="inline-block bg-white/90 dark:bg-gray-900/90 text-primary-600 dark:text-primary-300 text-xs font-semibold tracking-wide px-2 py-1 rounded-full shadow-sm"
+          >
+            {{ getSelectLabel(fields, "color", wine.color) }}
           </span>
         </div>
       </NuxtLink>
@@ -48,21 +58,34 @@ function addToCashdesk() {
       <!-- Content -->
       <div class="flex flex-col flex-1 p-5 gap-3">
         <NuxtLink :to="wine.gen_data?.url">
-          <h3 class="font-serif text-lg font-bold text-primary-700 dark:text-white leading-snug hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors">
+          <h3
+            class="font-serif text-lg font-bold text-primary-700 dark:text-white leading-snug hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors"
+          >
             {{ wine.name }}
           </h3>
         </NuxtLink>
 
         <!-- Icon attrs -->
-        <CmpWineIconAttrs :wine="wine" :fields="fields" :limit="4" class="flex-1" />
+        <CmpWineIconAttrs
+          :wine="wine"
+          :fields="fields"
+          :limit="4"
+          class="flex-1"
+        />
 
         <!-- Footer -->
-        <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+        <div
+          class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto"
+        >
           <div class="flex flex-col">
-            <span class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+            <span
+              class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide"
+            >
               {{ $tt(fields?.find((field) => field.name === "price")?.label!) }}
             </span>
-            <span class="font-bold text-lg text-secondary-600 dark:text-secondary-400">
+            <span
+              class="font-bold text-lg text-secondary-600 dark:text-secondary-400"
+            >
               <UiPrice :price="wine.price" />
             </span>
           </div>
@@ -83,4 +106,3 @@ function addToCashdesk() {
     <CmpCartDialog v-model="modal" :cart="cart" />
   </div>
 </template>
-
