@@ -198,16 +198,17 @@
     },
     "enum": {
       "form": {
+        "type": "Typ",
         "syscode": "Systémový kód",
-        "name": "Název",
-        "description": "Popis",
-        "items": "Položky"
+        "label": "Popisek",
+        "value": "Hodnota",
+        "position": "Pořadí"
       },
       "placeholder": {
+        "type": "Zadejte typ",
         "syscode": "Zadejte systémový kód",
-        "name": "Zadejte název",
-        "description": "Zadejte popis",
-        "items": "Přidejte položky"
+        "label": "Zadejte popisek",
+        "value": "Zadejte hodnotu"
       },
       "item": {
         "syscode": "Kód položky",

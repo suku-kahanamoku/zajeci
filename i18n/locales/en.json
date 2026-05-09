@@ -198,16 +198,17 @@
     },
     "enum": {
       "form": {
+        "type": "Type",
         "syscode": "System code",
-        "name": "Name",
-        "description": "Description",
-        "items": "Items"
+        "label": "Label",
+        "value": "Value",
+        "position": "Position"
       },
       "placeholder": {
+        "type": "Enter type",
         "syscode": "Enter system code",
-        "name": "Enter name",
-        "description": "Enter description",
-        "items": "Add items"
+        "label": "Enter label",
+        "value": "Enter value"
       },
       "item": {
         "syscode": "Item code",

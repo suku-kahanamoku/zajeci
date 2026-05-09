@@ -4,11 +4,21 @@
   "method": "POST",
   "modelType": "enum",
   "projection": [
+    "type",
     "syscode",
-    "name",
-    "description"
+    "label",
+    "value",
+    "position",
+    "is_active"
   ],
   "fields": [
+    {
+      "name": "type",
+      "type": "text",
+      "label": "$.enum.form.type",
+      "placeholder": "$.enum.placeholder.type",
+      "required": true
+    },
     {
       "name": "syscode",
       "type": "text",
@@ -17,16 +27,36 @@
       "required": true
     },
     {
-      "name": "name",
+      "name": "label",
       "type": "text",
-      "label": "$.enum.form.name",
-      "placeholder": "$.enum.placeholder.name"
+      "label": "$.enum.form.label",
+      "placeholder": "$.enum.placeholder.label"
     },
     {
-      "name": "description",
-      "type": "textarea",
-      "label": "$.enum.form.description",
-      "placeholder": "$.enum.placeholder.description"
+      "name": "value",
+      "type": "text",
+      "label": "$.enum.form.value",
+      "placeholder": "$.enum.placeholder.value"
+    },
+    {
+      "name": "position",
+      "type": "number",
+      "label": "$.enum.form.position"
+    },
+    {
+      "name": "is_active",
+      "type": "select",
+      "label": "$.form.is_active",
+      "options": [
+        {
+          "value": 1,
+          "label": "$.form.yes"
+        },
+        {
+          "value": 0,
+          "label": "$.form.no"
+        }
+      ]
     }
   ]
 }
