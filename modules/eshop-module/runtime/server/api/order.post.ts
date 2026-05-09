@@ -13,10 +13,14 @@ export default defineEventHandler(async (event: H3Event) => {
 
   // Send order confirmation email with PHP order data + original cashdesk user info
   if (phpResponse.success && result?.id) {
-    await $fetch("/api/email/order", {
-      method: "POST",
-      body: { ...result, _cashdeskUser: body.user },
-    });
+    try {
+      await $fetch("/api/email/order", {
+        method: "POST",
+        body: { ...result, _cashdeskUser: body.user },
+      });
+    } catch (emailError) {
+      console.error("Order email failed (order was created):", emailError);
+    }
   }
 
   return toLegacySingleResponse(phpResponse);

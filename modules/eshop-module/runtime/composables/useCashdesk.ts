@@ -110,8 +110,8 @@ function createCashdesk() {
     const order = {
       user: user.value,
       carts: carts.value,
-      delivery: delivery.value,
-      payment: payment.value,
+      shipping: delivery.value,
+      billing: payment.value,
       total_price: totalPrice.value,
     };
     nuxtStorage.localStorage.setData("cashdesk", JSON.stringify(order), 7, "d");
@@ -124,8 +124,8 @@ function createCashdesk() {
       const order = {
         user: user.value,
         carts: carts.value,
-        delivery: delivery.value,
-        payment: payment.value,
+        shipping: delivery.value,
+        billing: payment.value,
         total_price: totalPrice.value,
       };
       const result = await $fetch("/api/order", {
