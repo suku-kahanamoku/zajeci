@@ -14,37 +14,35 @@
         "quality": "Přívlastek",
         "color": "Barva",
         "year": "Ročník",
-        "variant": "Odrůda",
+        "variant": "Formát lahve",
         "volume": "Objem",
         "grape": "Odrůda",
         "winery": "Vinařství",
         "region": "Oblast",
         "alcohol": "Alkohol",
         "sugar": "Cukr",
-        "serving_temp": "Teplota podávání"
+        "serving_temp": "Teplota podávání",
+        "sku": "SKU",
+        "vat_rate": "Sazba DPH (%)"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, výběr z hroznů",
         "quality": "Výběr z hroznů",
-        "variant": "Sauvignon Blanc"
+        "variant": "0.75l",
+        "grape": "Tramín červený"
       },
       "kind": {
-        "dry": "Suché",
-        "semi_dry": "Polosuché",
-        "sweet": "Sladké",
-        "semi_sweet": "Polosladké",
-        "extra_dry": "Extra suché",
-        "off_dry": "Polosuché",
-        "medium_dry": "Středně suché",
-        "medium_sweet": "Středně sladké",
-        "very_sweet": "Velmi sladké",
+        "white": "Bílé víno",
+        "red": "Červené víno",
+        "rose": "Rosé víno",
+        "sparkling": "Šumivé víno",
         "dessert": "Dezertní víno"
       },
       "color": {
+        "yellow": "Žluté",
         "white": "Bílé",
         "red": "Červené",
-        "rose": "Růžové",
-        "orange": "Oranžové"
+        "rose": "Rosé"
       },
       "quality": {
         "kabinett": "Kabinetní víno",

@@ -32,14 +32,14 @@ const attrs = computed(() => {
       name: "year",
       icon: "i-heroicons-calendar",
       color: "text-amber-500",
-      label: fieldLabel("year"),
+      label: fieldLabel("data.year"),
       value: w.data?.year,
     },
     {
       name: "volume",
       icon: "i-heroicons-beaker",
       color: "text-blue-500",
-      label: fieldLabel("volume"),
+      label: fieldLabel("data.volume"),
       value: w.data?.volume != null ? `${w.data.volume} l` : null,
     },
     {
@@ -53,7 +53,7 @@ const attrs = computed(() => {
       name: "quality",
       icon: "i-heroicons-star",
       color: "text-yellow-500",
-      label: fieldLabel("quality"),
+      label: fieldLabel("data.quality"),
       value: w.data?.quality,
     },
     {

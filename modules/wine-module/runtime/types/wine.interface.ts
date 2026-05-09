@@ -2,56 +2,18 @@ import type { IImage } from "@/server/types/image.type";
 import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 
 export enum WineKind {
-  dry = "dry",
-  semiDry = "semiDry",
-  sweet = "sweet",
-  semiSweet = "semiSweet",
-  extraDry = "extraDry",
-  offDry = "offDry",
-  mediumDry = "mediumDry",
-  mediumSweet = "mediumSweet",
-  verySweet = "verySweet",
+  white = "white",
+  red = "red",
+  rose = "ros\u00e9",
+  sparkling = "sparkling",
   dessert = "dessert",
 }
 
-export enum WineQuality {
-  kabinett = "kabinett",
-  late_harvest = "late_harvest",
-  selection_of_grapes = "selection_of_grapes",
-  selection_of_berries = "selection_of_berries",
-  ice_wine = "ice_wine",
-  straw_wine = "straw_wine",
-  quality_wine = "quality_wine",
-  archive_wine = "archive_wine",
-  table_wine = "table_wine",
-}
-
 export enum WineColor {
+  yellow = "yellow",
   white = "white",
   red = "red",
-  rose = "rose",
-  orange = "orange",
-}
-
-export enum WineVariant {
-  cabernet_sauvignon = "cabernet_sauvignon",
-  chardonnay = "chardonnay",
-  frankovka = "frankovka",
-  gruner_veltliner = "gruner_veltliner",
-  merlot = "merlot",
-  modry_portugal = "modry_portugal",
-  mueller_thurgau = "mueller_thurgau",
-  muscat = "muscat",
-  pinot_blanc = "pinot_blanc",
-  pinot_gris = "pinot_gris",
-  pinot_noir = "pinot_noir",
-  riesling = "riesling",
-  sauvignon_blanc = "sauvignon_blanc",
-  st_laurent = "st_laurent",
-  traminer = "traminer",
-  welschriesling = "welschriesling",
-  zweigelt = "zweigelt",
-  other = "other",
+  rose = "ros\u00e9",
 }
 
 export interface IWineData {
@@ -77,25 +39,22 @@ export interface IWine extends IItem {
   /** PHP backend integer ID */
   id?: number;
   name: string;
+  sku?: string;
   stock_quantity: number;
   price: number;
   description?: string;
-  kind?: WineKind;
-  quality?: WineQuality;
-  color?: WineColor;
-  variant?: WineVariant;
-  volume?: number;
-  year?: number;
-  /** PHP fields */
-  sku?: string;
-  vat_rate?: string;
-  category_ids?: number[];
+  kind?: string;
+  color?: string;
+  /** Bottle format, e.g. "0.75l", "2\u00d7 0.375l" */
+  variant?: string;
   /** JSON data column with extended attributes */
-  data?: IWineData;          
+  data?: IWineData;
   image?: {
     main?: IImage;
     variants?: IImage[];
   };
+  vat_rate?: string;
+  category_ids?: number[];
   is_active?: boolean;
   created_at?: string;
   updated_at?: string;

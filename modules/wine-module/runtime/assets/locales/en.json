@@ -14,37 +14,35 @@
         "quality": "Adjective",
         "color": "Color",
         "year": "Year",
-        "variant": "Variety",
+        "variant": "Bottle format",
         "volume": "Volume",
         "grape": "Grape variety",
         "winery": "Winery",
         "region": "Region",
         "alcohol": "Alcohol",
         "sugar": "Sugar",
-        "serving_temp": "Serving temperature"
+        "serving_temp": "Serving temperature",
+        "sku": "SKU",
+        "vat_rate": "VAT rate (%)"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",
         "quality": "Selection of grapes",
-        "variant": "Sauvignon Blanc"
+        "variant": "0.75l",
+        "grape": "Traminer"
       },
       "kind": {
-        "dry": "Dry",
-        "semi_dry": "Semi-dry",
-        "sweet": "Sweet",
-        "semi_sweet": "Semi-sweet",
-        "extra_dry": "Extra dry",
-        "off_dry": "Off-dry",
-        "medium_dry": "Medium-dry",
-        "medium_sweet": "Medium-sweet",
-        "very_sweet": "Very sweet",
+        "white": "White wine",
+        "red": "Red wine",
+        "rose": "Rosé wine",
+        "sparkling": "Sparkling wine",
         "dessert": "Dessert wine"
       },
       "color": {
+        "yellow": "Yellow",
         "white": "White",
         "red": "Red",
-        "rose": "Rose",
-        "orange": "Orange"
+        "rose": "Rosé"
       },
       "quality": {
         "kabinett": "Kabinett wine",
