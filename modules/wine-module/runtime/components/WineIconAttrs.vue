@@ -9,26 +9,11 @@ const props = defineProps<{
 
 const { t } = useLang();
 
-// Icon + color lookup by field name (short name without "data." prefix)
-const fieldMeta: Record<string, { icon: string; color: string }> = {
-  color: { icon: "i-heroicons-paint-brush", color: "text-pink-500" },
-  year: { icon: "i-heroicons-calendar", color: "text-amber-500" },
-  volume: { icon: "i-heroicons-beaker", color: "text-blue-500" },
-  variant: { icon: "i-heroicons-sparkles", color: "text-green-500" },
-  quality: { icon: "i-heroicons-star", color: "text-yellow-500" },
-  kind: { icon: "i-heroicons-tag", color: "text-primary-500" },
-  alcohol: { icon: "i-heroicons-fire", color: "text-orange-500" },
-  winery: { icon: "i-heroicons-building-storefront", color: "text-purple-500" },
-  region: { icon: "i-heroicons-map-pin", color: "text-red-400" },
-  serving_temp: { icon: "i-heroicons-sun", color: "text-sky-500" },
-};
-
 // Fields that need i18n enum translation: fieldShortName → namespace
 const enumNamespaces: Record<string, string> = {
   color: "color",
   kind: "kind",
   quality: "quality",
-
 };
 
 function resolveValue(wine: IWine, fieldName: string): string | number | null {
@@ -61,14 +46,11 @@ const attrs = computed(() => {
   return props.fields
     .map((f) => {
       const short = f.name.includes(".") ? f.name.split(".")[1] : f.name;
-      const meta = fieldMeta[short] ?? {
-        icon: "i-heroicons-information-circle",
-        color: "text-gray-400",
-      };
+      const ff = f as any;
       return {
         name: short,
-        icon: meta.icon,
-        color: meta.color,
+        icon: ff.iconName ?? "i-heroicons-information-circle",
+        color: ff.iconColor ?? "text-gray-400",
         label: f.label ? t(f.label) : short,
         value: resolveValue(w, f.name),
       };

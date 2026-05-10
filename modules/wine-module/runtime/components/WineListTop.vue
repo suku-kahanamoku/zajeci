@@ -51,25 +51,39 @@ const { data: wines } = await useAsyncData(
 <template>
   <div v-if="config" :id="config.syscode" class="relative">
     <div class="text-center pt-20 pb-8">
-      <p class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+      <p
+        class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3"
+      >
         {{ $tt("$.wine.eyebrow") || "Naše vína" }}
       </p>
-      <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 mb-6">
+      <h2
+        class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 mb-6"
+      >
         {{ $tt("$.wine.title") }}
       </h2>
-      <div class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2">
+      <div
+        class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2"
+      >
         <UIcon name="ph:wine-duotone" size="18" />
       </div>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-6 items-stretch">
-      <CmpWineCard
-        v-for="wine of wines?.data"
-        :key="(wine as IWine).id"
-        :fields="config.fields"
-        :wine="(wine as IWine)"
-      />
-    </div>
+    <UCarousel
+      v-slot="{ item }"
+      :items="(wines?.data as IWine[]) || []"
+      arrows
+      loop
+      :ui="{
+        item: 'basis-full md:basis-1/2 lg:basis-1/3 ps-6',
+        container: '-ms-6 items-stretch',
+        viewport: 'overflow-visible',
+        prev: 'start-0 sm:-start-10',
+        next: 'end-0 sm:-end-10',
+      }"
+      class="w-full px-10 py-4"
+    >
+      <CmpWineCard class="h-full" :fields="config.fields" :wine="item" />
+    </UCarousel>
 
     <div class="text-center mt-10">
       <UButton
