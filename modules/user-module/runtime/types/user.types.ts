@@ -1,7 +1,6 @@
-import type { IResponse } from "@suku-kahanamoku/common-module/types";
+import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 
-export interface IAdminUser {
-  id?: number;
+export interface IAdminUser extends IItem {
   email: string;
   name?: string;
   surname?: string;

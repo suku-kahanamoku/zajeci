@@ -1,6 +1,7 @@
+import type { IItem } from "@suku-kahanamoku/common-module/types";
+
 /** PHP API – Enumeration item */
-export interface IEnumItem {
-  id: number;
+export interface IEnumItem extends IItem {
   type: string;
   syscode: string;
   label: string;

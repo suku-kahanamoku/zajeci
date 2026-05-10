@@ -1,7 +1,6 @@
-import type { IResponse } from "@suku-kahanamoku/common-module/types";
+import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 
-export interface IText {
-  id?: number;
+export interface IText extends IItem {
   syscode: string;
   title?: string;
   content?: string;

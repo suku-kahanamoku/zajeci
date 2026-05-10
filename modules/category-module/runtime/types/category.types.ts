@@ -1,7 +1,6 @@
-import type { IResponse } from "@suku-kahanamoku/common-module/types";
+import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 
-export interface ICategory {
-  id?: number;
+export interface ICategory extends IItem {
   name: string;
   syscode?: string;
   parent_id?: number | null;

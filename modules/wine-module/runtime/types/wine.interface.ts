@@ -49,8 +49,6 @@ export interface IWineData {
 }
 
 export interface IWine extends IItem {
-  /** PHP backend integer ID */
-  id?: number;
   name: string;
   sku?: string;
   stock_quantity: number;

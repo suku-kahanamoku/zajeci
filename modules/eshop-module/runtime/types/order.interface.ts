@@ -1,5 +1,5 @@
 import type { IAddress, IUser } from "@suku-kahanamoku/auth-module/types";
-import type { IResponse } from "@suku-kahanamoku/common-module/types";
+import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 /**
@@ -110,8 +110,7 @@ export enum OrderStatus {
  * @export
  * @interface IOrder
  */
-export interface IOrderItem {
-  id: number;
+export interface IOrderItem extends IItem {
   product_id: number;
   quantity: number;
   unit_price: string;
@@ -120,9 +119,7 @@ export interface IOrderItem {
 }
 
 /** PHP backend order response */
-export interface IOrder {
-  /** PHP integer ID */
-  id: number;
+export interface IOrder extends IItem {
   order_number: string;
   user_id: number;
   status: OrderStatus | string;
