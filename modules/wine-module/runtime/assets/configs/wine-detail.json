@@ -97,21 +97,6 @@
       "name": "data.serving_temp",
       "type": "text",
       "label": "$.wine.form.serving_temp"
-    },
-    {
-      "name": "price",
-      "type": "number",
-      "label": "$.form.price"
-    },
-    {
-      "name": "stock_quantity",
-      "type": "number",
-      "label": "$.form.quantity_stock"
-    },
-    {
-      "name": "description",
-      "type": "textarea",
-      "label": "$.form.description"
     }
   ]
 }
