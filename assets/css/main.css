@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+
   --color-primary-50: #e6f0f4;
   --color-primary-100: #cce1e9;
   --color-primary-200: #99c3d3;
@@ -17,16 +17,16 @@
   --color-primary-800: #02233d;
   --color-primary-900: #01182f;
 
-  --color-secondary-50: #f4e8df;
-  --color-secondary-100: #e9d2be;
-  --color-secondary-200: #dcb79b;
-  --color-secondary-300: #cf9d79;
-  --color-secondary-400: #c38256;
-  --color-secondary-500: #d0896b;
-  --color-secondary-600: #a15c3e;
-  --color-secondary-700: #7a3120;
-  --color-secondary-800: #511600;
-  --color-secondary-900: #290000;
+  --color-secondary-50: #fdf2f1;
+  --color-secondary-100: #fbe4e3;
+  --color-secondary-200: #f5c9c7;
+  --color-secondary-300: #eda5a2;
+  --color-secondary-400: #e07a75;
+  --color-secondary-500: #c8645d;
+  --color-secondary-600: #a84d47;
+  --color-secondary-700: #8a3b36;
+  --color-secondary-800: #6b2d28;
+  --color-secondary-900: #4d1f1b;
 
   --color-success-50: #e8f5e9;
   --color-success-100: #c8e6c9;
@@ -92,7 +92,10 @@ button {
 }
 
 /* Serif headings */
-h1, h2, h3, .font-serif {
+h1,
+h2,
+h3,
+.font-serif {
   font-family: var(--font-serif);
 }
 
@@ -106,7 +109,7 @@ h1, h2, h3, .font-serif {
 }
 .section-divider::before,
 .section-divider::after {
-  content: '';
+  content: "";
   flex: 1;
   max-width: 80px;
   height: 1px;
@@ -116,22 +119,33 @@ h1, h2, h3, .font-serif {
 
 /* Smooth zoom on cards */
 .zoom-in {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .zoom-in:hover {
   transform: translateY(-4px);
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-primary-300); border-radius: 3px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-300);
+  border-radius: 3px;
+}
 
 /* Override Nuxt UI solid button hover — prevents washed-out opacity effect */
-.bg-primary\/75, [class*="hover\:bg-primary\/75"]:hover {
+.bg-primary\/75,
+[class*="hover\:bg-primary\/75"]:hover {
   background-color: var(--color-primary-700) !important;
 }
-.bg-secondary\/75, [class*="hover\:bg-secondary\/75"]:hover {
+.bg-secondary\/75,
+[class*="hover\:bg-secondary\/75"]:hover {
   background-color: var(--color-secondary-600) !important;
 }
 
@@ -140,5 +154,9 @@ h1, h2, h3, .font-serif {
   background: linear-gradient(135deg, var(--color-primary-50) 0%, white 60%);
 }
 .dark .wine-section-bg {
-  background: linear-gradient(135deg, rgba(3,78,103,0.15) 0%, transparent 60%);
+  background: linear-gradient(
+    135deg,
+    rgba(3, 78, 103, 0.15) 0%,
+    transparent 60%
+  );
 }

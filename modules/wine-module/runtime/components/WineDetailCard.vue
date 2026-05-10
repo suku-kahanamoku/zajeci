@@ -74,7 +74,7 @@ function addToCashdesk() {
       <div class="flex flex-col gap-6">
 
         <!-- Eyebrow -->
-        <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400">
+        <p class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400">
           {{ $tt("$.wine.eyebrow") || "Naše vína" }}
         </p>
 

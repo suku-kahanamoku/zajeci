@@ -29,6 +29,6 @@ useHead({
 
 <template>
   <div class="flex items-center justify-center mt-10">
-    <CmpSignup :ui="{ root: 'w-[400px]' }" />
+    <CmpSignup :ui="{ root: 'w-96' }" />
   </div>
 </template>

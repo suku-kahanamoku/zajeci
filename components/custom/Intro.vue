@@ -9,7 +9,7 @@ const localePath = useLocalePath();
 
     <div class="mx-auto max-w-7xl relative z-20">
       <!-- Decorative label -->
-      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-300 mb-4">
+      <p class="text-xs font-semibold tracking-widest uppercase text-secondary-300 mb-4">
         {{ $tt("$.intro.eyebrow") || "Moravské vinařství" }}
       </p>
       <h1 class="font-serif text-5xl md:text-7xl font-bold leading-tight text-white max-w-3xl">

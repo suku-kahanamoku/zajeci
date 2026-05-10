@@ -1,7 +1,7 @@
 <template>
   <div id="about" class="relative">
     <div class="text-center pt-20 pb-8">
-      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+      <p class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3">
         {{ $tt("$.about.eyebrow") || "Naše příběh" }}
       </p>
       <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 leading-tight mb-6">

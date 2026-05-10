@@ -143,7 +143,7 @@ const menuItems = [
         <!-- Links -->
         <div class="space-y-3">
           <p
-            class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-400"
+            class="text-xs font-semibold tracking-widest uppercase text-primary-400"
           >
             Navigace
           </p>
@@ -174,7 +174,7 @@ const menuItems = [
         <!-- Contact -->
         <div class="space-y-3">
           <p
-            class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-400"
+            class="text-xs font-semibold tracking-widest uppercase text-primary-400"
           >
             Kontakt
           </p>

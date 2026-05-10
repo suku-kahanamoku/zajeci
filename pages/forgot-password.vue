@@ -28,6 +28,6 @@ useHead({
 
 <template>
   <div class="flex items-center justify-center mt-10">
-    <CmpForgotPassword :ui="{ root: 'w-[400px]' }" />
+    <CmpForgotPassword :ui="{ root: 'w-96' }" />
   </div>
 </template>

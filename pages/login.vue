@@ -46,6 +46,6 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center justify-center mt-10">
-    <CmpLogin :ui="{ root: 'w-[400px]' }" />
+    <CmpLogin :ui="{ root: 'w-96' }" />
   </div>
 </template>

@@ -44,7 +44,7 @@ function addToCashdesk() {
           loading="lazy"
           format="webp"
           sizes="200px md:300px"
-          class="mx-auto h-[240px] md:h-[280px] object-contain transition-transform duration-500 group-hover:scale-105"
+          class="mx-auto h-60 md:h-72 object-contain transition-transform duration-500 group-hover:scale-105"
         />
         <!-- Color badge -->
         <div v-if="wine.color" class="absolute top-3 left-3">
