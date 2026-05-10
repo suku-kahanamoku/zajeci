@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
 
+  colorMode: {
+    classSuffix: "",
+    preference: "light",
+    fallback: "light",
+  },
+
   modules: [
     "@suku-kahanamoku/auth-module",
     "@suku-kahanamoku/menu-module",
