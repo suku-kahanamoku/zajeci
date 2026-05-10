@@ -143,7 +143,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <!-- Parametry vína s ikonami ve dvou řádcích -->
           <CmpWineIconAttrs
             :wine="row.original?.wine"
-            :fields="config.fields"
+            :fields="config.fields.filter((f) => f.iconName)"
           />
         </div>
       </div>
@@ -217,7 +217,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
       <!-- Parametry vína s ikonami ve dvou řádcích -->
       <CmpWineIconAttrs
         :wine="cart.wine"
-        :fields="config.fields"
+        :fields="config.fields.filter((f) => f.iconName)"
       />
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">
