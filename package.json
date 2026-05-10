@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@nuxt/image": "^2.0.0",
-    "@suku-kahanamoku/auth-module": "^1.0.37",
-    "@suku-kahanamoku/common-module": "^1.1.0",
-    "@suku-kahanamoku/form-module": "^1.0.21",
+    "@suku-kahanamoku/auth-module": "^1.0.38",
+    "@suku-kahanamoku/common-module": "^1.1.2",
+    "@suku-kahanamoku/form-module": "^1.0.22",
     "@suku-kahanamoku/lang-module": "^1.0.23",
     "@suku-kahanamoku/menu-module": "^1.0.18",
     "@suku-kahanamoku/notify-module": "^1.0.9",

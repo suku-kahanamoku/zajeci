@@ -1,7 +1,7 @@
 import { IResponse } from "@suku-kahanamoku/common-module/types";
 
 export interface IImage {
-  _id: string;
+  id: string;
   src: string;
   width: number;
   height: number;

@@ -1,6 +1,6 @@
 {
   "syscode": "profile",
-  "patchUrl": "/api/admin/user/${item._id}",
+  "patchUrl": "/api/admin/user/${item.id}",
   "method": "PATCH",
   "fields": [
     {
