@@ -26,7 +26,7 @@
       "restOptions": {
         "url": "/api/enumerations?type=wine_kind&is_active=1&limit=100",
         "label": "label",
-        "value": "syscode"
+        "value": "value"
       }
     },
     {
@@ -37,7 +37,7 @@
       "restOptions": {
         "url": "/api/enumerations?type=wine_color&is_active=1&limit=100",
         "label": "label",
-        "value": "syscode"
+        "value": "value"
       }
     },
     {
@@ -48,7 +48,7 @@
       "restOptions": {
         "url": "/api/enumerations?type=wine_variety&is_active=1&limit=100",
         "label": "label",
-        "value": "syscode"
+        "value": "value"
       }
     },
     {
@@ -100,7 +100,7 @@
       "restOptions": {
         "url": "/api/enumerations?type=wine_quality&is_active=1&limit=100",
         "label": "label",
-        "value": "syscode"
+        "value": "value"
       }
     },
     {
