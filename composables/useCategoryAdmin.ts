@@ -11,7 +11,7 @@ export function useCategoryAdmin(cConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit } = useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
   const selected = ref<ICategory[]>([]);
@@ -36,7 +36,7 @@ export function useCategoryAdmin(cConfig: any) {
     pending: loading,
     refresh,
   } = useAsyncData(
-    () => (config.value?.syscode || "") + "data" + route.fullPath,
+    () => (config.value?.syscode || "") + "data",
     async () => {
       if (config?.value?.restUrl) {
         try {
@@ -119,9 +119,24 @@ export function useCategoryAdmin(cConfig: any) {
     loading.value = false;
   }
 
+  function handleSort(sort: Record<string, number>[]) {
+    if (!config.value?.syscode) return;
+    (config.value as any).sort = sort;
+    navigate(config.value as any);
+  }
+
+  function handlePage(page: number) {
+    onPageChange(config.value as any, page);
+  }
+
+  function handleFilter(data: Record<string, string>) {
+    onFilterChange(config.value as any, data);
+  }
+
   return {
     config,
     categories,
+    meta: computed(() => categories.value?.meta),
     loading,
     selected,
     isOpen,
@@ -129,5 +144,8 @@ export function useCategoryAdmin(cConfig: any) {
     onDelete,
     onUpdate,
     onCreate,
+    handleSort,
+    handlePage,
+    handleFilter,
   };
 }

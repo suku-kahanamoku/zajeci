@@ -2,6 +2,9 @@
   "syscode": "admin-category-list",
   "restUrl": "/api/admin/category",
   "deleteUrl": "/api/admin/category/${item.id}",
+  "pagination": {
+    "limit": 20
+  },
   "factory": {
     "url": "${name}--$${id}"
   },
@@ -9,12 +12,20 @@
     {
       "name": "name",
       "type": "text",
-      "label": "$.category.name"
+      "label": "$.category.name",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "syscode",
       "type": "text",
-      "label": "$.category.syscode"
+      "label": "$.category.syscode",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "position",

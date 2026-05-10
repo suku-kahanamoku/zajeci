@@ -12,7 +12,7 @@ const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
-const { config, users, loading, selected, isOpen, onDelete } =
+const { config, users, meta, loading, selected, isOpen, onDelete, handleSort, handlePage, handleFilter } =
   useUserAdmin(uConfig);
 
 useHead({
@@ -54,9 +54,13 @@ async function onDeleteHandler(event: boolean) {
       ref="tableCmp"
       v-model:selected="selected"
       :config="config"
-      :data="(users?.data as IAdminUser[])"
+      :data="users?.data as IAdminUser[]"
+      :meta="meta"
       :loading="loading"
       @delete="isOpen = true"
+      @sort="handleSort"
+      @page="handlePage"
+      @filter="handleFilter"
     />
 
     <CmpConfirmDialog

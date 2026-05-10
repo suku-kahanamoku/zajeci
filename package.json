@@ -18,7 +18,7 @@
     "@suku-kahanamoku/menu-module": "^1.0.18",
     "@suku-kahanamoku/notify-module": "^1.0.9",
     "@suku-kahanamoku/seo-module": "^1.0.9",
-    "@suku-kahanamoku/ui-module": "^1.0.33",
+    "@suku-kahanamoku/ui-module": "^1.1.0",
     "@vueuse/core": "^14.3.0",
     "animate.css": "^4.1.1",
     "date-fns": "^4.1.0",

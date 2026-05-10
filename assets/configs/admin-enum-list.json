@@ -2,6 +2,9 @@
   "syscode": "admin-enum-list",
   "restUrl": "/api/admin/enum",
   "deleteUrl": "/api/admin/enum/${item.id}",
+  "pagination": {
+    "limit": 20
+  },
   "factory": {
     "url": "${syscode}--$${id}"
   },
@@ -10,23 +13,39 @@
       "name": "syscode",
       "type": "text",
       "label": "$.enum.form.syscode",
-      "placeholder": "$.enum.placeholder.syscode"
+      "placeholder": "$.enum.placeholder.syscode",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "type",
       "type": "text",
-      "label": "$.enum.form.type"
+      "label": "$.enum.form.type",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "label",
       "type": "text",
       "label": "$.enum.form.label",
-      "placeholder": "$.enum.placeholder.label"
+      "placeholder": "$.enum.placeholder.label",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "value",
       "type": "text",
-      "label": "$.enum.form.value"
+      "label": "$.enum.form.value",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "position",

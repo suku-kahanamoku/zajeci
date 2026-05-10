@@ -2,6 +2,7 @@
   "syscode": "admin-user-list",
   "restUrl": "/api/admin/user",
   "deleteUrl": "/api/admin/user/${item.id}",
+  "pagination": { "limit": 20 },
   "factory": {
     "url": "${email}--$${id}"
   },
@@ -9,22 +10,26 @@
     {
       "name": "email",
       "type": "text",
-      "label": "$.user.email"
+      "label": "$.user.email",
+      "operator": { "value": "$regex", "enabled": true }
     },
     {
       "name": "first_name",
       "type": "text",
-      "label": "$.user.name"
+      "label": "$.user.name",
+      "operator": { "value": "$regex", "enabled": true }
     },
     {
       "name": "last_name",
       "type": "text",
-      "label": "$.user.surname"
+      "label": "$.user.surname",
+      "operator": { "value": "$regex", "enabled": true }
     },
     {
       "name": "role",
       "type": "text",
-      "label": "$.user.role"
+      "label": "$.user.role",
+      "operator": { "value": "$regex", "enabled": true }
     }
   ]
 }

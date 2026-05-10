@@ -10,7 +10,7 @@ export function useWineAdmin(wConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit } = useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
   const selected = ref<IWine[]>([]);
@@ -36,7 +36,7 @@ export function useWineAdmin(wConfig: any) {
     pending: loading,
     refresh,
   } = useAsyncData(
-    () => (config.value?.syscode || "") + "data" + route.fullPath,
+    () => (config.value?.syscode || "") + "data",
     async () => {
       if (config?.value?.restUrl) {
         try {
@@ -119,9 +119,24 @@ export function useWineAdmin(wConfig: any) {
     loading.value = false;
   }
 
+  function handleSort(sort: Record<string, number>[]) {
+    if (!config.value?.syscode) return;
+    (config.value as any).sort = sort;
+    navigate(config.value as any);
+  }
+
+  function handlePage(page: number) {
+    onPageChange(config.value as any, page);
+  }
+
+  function handleFilter(data: Record<string, string>) {
+    onFilterChange(config.value as any, data);
+  }
+
   return {
     config,
     wines,
+    meta: computed(() => wines.value?.meta),
     loading,
     selected,
     isOpen,
@@ -129,5 +144,8 @@ export function useWineAdmin(wConfig: any) {
     onDelete,
     onUpdate,
     onCreate,
+    handleSort,
+    handlePage,
+    handleFilter,
   };
 }

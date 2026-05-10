@@ -12,7 +12,7 @@ const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
-const { config, texts, loading, selected, isOpen, onDelete } =
+const { config, texts, meta, loading, selected, isOpen, onDelete, handleSort, handlePage, handleFilter } =
   useTextAdmin(tConfig);
 
 useHead({
@@ -63,8 +63,12 @@ async function onDeleteHandler(event: boolean) {
       v-model:selected="selected"
       :config="config"
       :data="(texts?.data as IText[])"
+      :meta="meta"
       :loading="loading"
       @delete="isOpen = true"
+      @sort="handleSort"
+      @page="handlePage"
+      @filter="handleFilter"
     />
 
     <CmpConfirmDialog

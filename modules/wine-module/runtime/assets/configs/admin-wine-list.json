@@ -2,6 +2,7 @@
   "syscode": "admin-wine-list",
   "restUrl": "/api/admin/wine",
   "deleteUrl": "/api/admin/wine/${item.id}",
+  "pagination": { "limit": 20 },
   "factory": {
     "url": "${name}--$${id}"
   },
@@ -9,12 +10,14 @@
     {
       "name": "name",
       "type": "text",
-      "label": "$.wine.form.name"
+      "label": "$.wine.form.name",
+      "operator": { "value": "$regex", "enabled": true }
     },
     {
       "name": "sku",
       "type": "text",
-      "label": "$.wine.form.sku"
+      "label": "$.wine.form.sku",
+      "operator": { "value": "$regex", "enabled": true }
     },
     {
       "name": "kind",

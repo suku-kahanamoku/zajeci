@@ -45,7 +45,7 @@ export function useOrderAdmin(wConfig: any) {
     pending: loading,
     refresh,
   } = useAsyncData(
-    () => (config.value?.syscode || "") + "data" + route.fullPath,
+    () => (config.value?.syscode || "") + "data",
     async () => {
       if (config?.value?.restUrl) {
         try {

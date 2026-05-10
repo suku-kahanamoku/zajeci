@@ -1,4 +1,8 @@
-import type { IEnumItem, IEnumResponse, IEnumsResponse } from "@/types/enum.types";
+import type {
+  IEnumItem,
+  IEnumResponse,
+  IEnumsResponse,
+} from "@/types/enum.types";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import { useUrlResolver, useFormNavigable } from "#imports";
@@ -7,7 +11,7 @@ export function useEnumAdmin(eConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit } = useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
   const selected = ref<IEnumItem[]>([]);
@@ -24,7 +28,7 @@ export function useEnumAdmin(eConfig: any) {
         return {} as IFormConfig;
       }
     },
-    { watch: [() => route.query] }
+    { watch: [() => route.query] },
   );
 
   // Enums
@@ -33,7 +37,7 @@ export function useEnumAdmin(eConfig: any) {
     pending: loading,
     refresh,
   } = useAsyncData(
-    () => (config.value?.syscode || "") + "data" + route.fullPath,
+    () => (config.value?.syscode || "") + "data",
     async () => {
       if (config?.value?.restUrl) {
         try {
@@ -52,7 +56,7 @@ export function useEnumAdmin(eConfig: any) {
     {
       watch: [config],
       immediate: true,
-    }
+    },
   );
 
   // Delete
@@ -70,7 +74,7 @@ export function useEnumAdmin(eConfig: any) {
                 item,
               });
               return useApi(url, { method });
-            })
+            }),
           );
         } else {
           // Mazání jednoho záznamu
@@ -115,9 +119,24 @@ export function useEnumAdmin(eConfig: any) {
     loading.value = false;
   }
 
+  function handleSort(sort: Record<string, number>[]) {
+    if (!config.value?.syscode) return;
+    (config.value as any).sort = sort;
+    navigate(config.value as any);
+  }
+
+  function handlePage(page: number) {
+    onPageChange(config.value as any, page);
+  }
+
+  function handleFilter(data: Record<string, string>) {
+    onFilterChange(config.value as any, data);
+  }
+
   return {
     config,
     enums,
+    meta: computed(() => enums.value?.meta),
     loading,
     selected,
     isOpen,
@@ -125,5 +144,8 @@ export function useEnumAdmin(eConfig: any) {
     onDelete,
     onUpdate,
     onCreate,
+    handleSort,
+    handlePage,
+    handleFilter,
   };
 }

@@ -13,7 +13,7 @@ const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
-const { config, enums, loading, selected, isOpen, onDelete } =
+const { config, enums, meta, loading, selected, isOpen, onDelete, handleSort, handlePage, handleFilter } =
   useEnumAdmin(eConfig);
 
 useHead({
@@ -64,8 +64,12 @@ async function onDeleteHandler(event: boolean) {
       v-model:selected="selected"
       :config="config"
       :data="enums?.data"
+      :meta="meta"
       :loading="loading"
       @delete="isOpen = true"
+      @sort="handleSort"
+      @page="handlePage"
+      @filter="handleFilter"
     />
 
     <CmpConfirmDialog
