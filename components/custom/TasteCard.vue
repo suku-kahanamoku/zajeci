@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
   <div
-    class="zoom-in flex-1 min-w-72 max-w-sm rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-secondary-300 dark:hover:border-secondary-600 transition-all duration-300 overflow-hidden"
+    class="zoom-in w-full sm:flex-1 sm:min-w-72 sm:max-w-sm rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-secondary-300 dark:hover:border-secondary-600 transition-all duration-300 overflow-hidden"
   >
     <!-- Accent bar -->
     <div class="h-1 bg-gradient-to-r from-secondary-400 to-secondary-600"></div>

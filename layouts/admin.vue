@@ -64,6 +64,7 @@ if (user.value?.role === "admin") {
           :to="routes?.cashdesk?.path"
           icon="i-heroicons-shopping-cart"
           variant="ghost"
+          size="xl"
         />
       </UChip>
       <!-- <UColorModeButton /> -->

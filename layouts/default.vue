@@ -67,6 +67,7 @@ const menuItems = [
           :to="routes.cashdesk?.path"
           icon="i-heroicons-shopping-cart"
           variant="ghost"
+          size="xl"
         />
       </UChip>
 
@@ -74,6 +75,7 @@ const menuItems = [
         :icon="isDark ? 'i-heroicons-sun' : 'i-heroicons-moon'"
         color="neutral"
         variant="ghost"
+        size="xl"
         @click="isDark = !isDark"
       />
 

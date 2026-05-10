@@ -51,21 +51,21 @@ function addToCashdesk() {
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
       <!-- LEFT: Image -->
-      <div class="relative">
+      <div class="relative max-w-lg mx-auto lg:mx-0">
         <div class="rounded-3xl overflow-hidden bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 aspect-[3/4] flex items-center justify-center">
           <NuxtImg
             :src="wine.image?.main?.src || '/img/bottle.jpg'"
             :alt="wine.name || 'wine'"
             loading="lazy"
             format="webp"
-            sizes="300px md:550px"
-            class="h-full w-full object-contain p-8 transition-transform duration-700 hover:scale-105"
+            sizes="375px md:600px"
+            class="h-full w-full object-contain p-7 transition-transform duration-700 hover:scale-105"
           />
         </div>
         <!-- Color badge -->
         <div v-if="wine.color" class="absolute top-4 left-4">
           <span class="inline-block bg-white dark:bg-gray-900 text-primary-600 dark:text-primary-300 text-xs font-semibold tracking-wide px-3 py-1.5 rounded-full shadow-md border border-primary-100 dark:border-primary-800">
-            {{ getSelectLabel(fields, 'color', wine.color) }}
+            {{ t(`$.wine.color.${wine.color}`) || wine.color }}
           </span>
         </div>
       </div>
@@ -106,9 +106,6 @@ function addToCashdesk() {
         <div class="flex flex-col gap-4">
           <div class="flex items-end justify-between">
             <div class="flex flex-col gap-0.5">
-              <span class="text-xs text-gray-400 uppercase tracking-widest">
-                {{ $tt(fields?.find((field) => field.name === "price")?.label!) }}
-              </span>
               <span class="font-bold text-3xl text-secondary-600 dark:text-secondary-400">
                 <UiPrice :price="wine.price" />
               </span>

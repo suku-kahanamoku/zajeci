@@ -18,6 +18,13 @@ function fieldLabel(name: string): string {
   return field?.label ? t(field.label) : name;
 }
 
+function translateEnum(namespace: string, value: string | undefined | null): string | null {
+  if (!value) return null;
+  const key = `$.wine.${namespace}.${value}`;
+  const translated = t(key);
+  return translated === key ? value : translated;
+}
+
 const attrs = computed(() => {
   const w = props.wine;
   if (!w) return [];
@@ -27,7 +34,7 @@ const attrs = computed(() => {
       icon: "i-heroicons-paint-brush",
       color: "text-pink-500",
       label: fieldLabel("color"),
-      value: getSelectLabel(props.fields, "color", w.color) || w.color,
+      value: translateEnum("color", w.color),
     },
     {
       name: "year",
@@ -48,21 +55,21 @@ const attrs = computed(() => {
       icon: "i-heroicons-sparkles",
       color: "text-green-500",
       label: fieldLabel("variant"),
-      value: w.variant,
+      value: translateEnum("variety", w.variant),
     },
     {
       name: "quality",
       icon: "i-heroicons-star",
       color: "text-yellow-500",
       label: fieldLabel("data.quality"),
-      value: w.data?.quality,
+      value: translateEnum("quality", w.data?.quality),
     },
     {
       name: "kind",
       icon: "i-heroicons-tag",
       color: "text-primary-500",
       label: fieldLabel("kind"),
-      value: w.kind,
+      value: translateEnum("kind", w.kind),
     },
     {
       name: "alcohol",

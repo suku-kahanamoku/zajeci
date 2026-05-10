@@ -10,6 +10,7 @@ const props = defineProps<{
 }>();
 
 const { getSelectLabel } = useField();
+const { t } = useLang();
 const { addItem } = useCashdesk();
 const modal = ref(false);
 const cart = ref<ICart>();
@@ -26,7 +27,7 @@ function addToCashdesk() {
   <div
     v-if="wine"
     :id="String(wine.id)"
-    class="zoom-in flex flex-col w-full max-w-72"
+    class="zoom-in flex flex-col w-full sm:max-w-72"
   >
     <!-- Card -->
     <div
@@ -50,7 +51,7 @@ function addToCashdesk() {
           <span
             class="inline-block bg-white/90 dark:bg-gray-900/90 text-primary-600 dark:text-primary-300 text-xs font-semibold tracking-wide px-2 py-1 rounded-full shadow-sm"
           >
-            {{ getSelectLabel(fields, "color", wine.color) }}
+            {{ t(`$.wine.color.${wine.color}`) || wine.color }}
           </span>
         </div>
       </NuxtLink>
@@ -78,11 +79,6 @@ function addToCashdesk() {
           class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto"
         >
           <div class="flex flex-col">
-            <span
-              class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide"
-            >
-              {{ $tt(fields?.find((field) => field.name === "price")?.label!) }}
-            </span>
             <span
               class="font-bold text-lg text-secondary-600 dark:text-secondary-400"
             >
