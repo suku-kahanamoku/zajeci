@@ -79,9 +79,7 @@ const { data: wines } = await useAsyncData(
       >
         {{ title }}
       </h1>
-      <div
-        class="section-divider text-primary-300 dark:text-primary-600"
-      >
+      <div class="section-divider text-primary-300 dark:text-primary-600">
         <UIcon name="ph:wine-duotone" size="18" />
       </div>
     </div>

@@ -1,0 +1,40 @@
+{
+  "$": {
+    "enum": {
+      "form": {
+        "type": "Type",
+        "syscode": "System code",
+        "label": "Label",
+        "value": "Value",
+        "position": "Position"
+      },
+      "placeholder": {
+        "type": "Enter type",
+        "syscode": "Enter system code",
+        "label": "Enter label",
+        "value": "Enter value"
+      },
+      "item": {
+        "syscode": "Item code",
+        "name": "Item name",
+        "description": "Item description",
+        "disabled": "Disabled",
+        "hidden": "Hidden",
+        "placeholder": {
+          "syscode": "Enter item code",
+          "name": "Enter item name",
+          "description": "Enter item description"
+        }
+      }
+    },
+    "admin": {
+      "enum": {
+        "title": "Enum Management",
+        "create_enum": "Create New Enum",
+        "enum_detail": {
+          "title": "Enum Detail"
+        }
+      }
+    }
+  }
+}

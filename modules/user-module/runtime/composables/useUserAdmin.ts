@@ -1,39 +1,38 @@
-import type { TableColumn } from "@nuxt/ui";
-import { useUrlResolver, useFormNavigable } from "#imports";
-
+import type {
+  IAdminUser,
+  IUserResponse,
+  IUsersResponse,
+} from "@/modules/user-module/runtime/types/user.types";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
+import { useUrlResolver, useFormNavigable } from "#imports";
 
-import type { IWine, IWineResponse, IWinesResponse } from "../types";
-
-export function useWineAdmin(wConfig: any) {
+export function useUserAdmin(uConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit, navigate, onPageChange, onFilterChange } =
-    useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<IWine[]>([]);
+  const selected = ref<IAdminUser[]>([]);
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(
-    () => (wConfig?.syscode || "") + "config",
+    () => (uConfig?.syscode || "") + "config",
     async () => {
       try {
-        const result = CLONE(wConfig);
+        const result = CLONE(uConfig);
         updateConfig(route, result);
         return result as IFormConfig;
       } catch (error: any) {
         return {} as IFormConfig;
       }
     },
-    { watch: [() => route.query] },
+    { watch: [() => route.query] }
   );
 
-  // Wines
   const {
-    data: wines,
+    data: users,
     pending: loading,
     refresh,
   } = useAsyncData(
@@ -45,10 +44,9 @@ export function useWineAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, routes.admin_wine?.path);
-          return (await useApi(url)) as IWineResponse | IWinesResponse;
+          url = useFactory(url, config.value.factory, routes.admin_user?.path);
+          return (await useApi(url)) as IUserResponse | IUsersResponse;
         } catch (error: any) {
-          console.error(error);
           return {};
         }
       }
@@ -57,16 +55,14 @@ export function useWineAdmin(wConfig: any) {
     {
       watch: [config],
       immediate: true,
-    },
+    }
   );
 
-  // Delete
   async function onDelete(value: boolean) {
     if (value && config.value?.deleteUrl && selected.value?.length) {
       const method = "DELETE";
       try {
         if (selected.value.length > 1) {
-          // Mazání více záznamů přes Promise.all
           await Promise.all(
             selected.value.map((item) => {
               const url = useUrl(config.value!.deleteUrl!, {
@@ -75,11 +71,10 @@ export function useWineAdmin(wConfig: any) {
                 item,
               });
               return useApi(url, { method });
-            }),
+            })
           );
         } else {
-          // Mazání jednoho záznamu
-          let url = useUrl(config.value!.deleteUrl!, {
+          const url = useUrl(config.value!.deleteUrl!, {
             config: config.value!,
             route,
             item: selected.value[0],
@@ -96,26 +91,14 @@ export function useWineAdmin(wConfig: any) {
     }
   }
 
-  async function onUpdate(body: Record<string, any>, wine: IWine) {
+  async function onUpdate(body: Record<string, any>, user: IAdminUser) {
     loading.value = true;
-    const result = await onSubmit(config?.value!, body, wine);
+    const result = await onSubmit(config?.value!, body, user);
     if (result?.data) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
-    }
-    loading.value = false;
-  }
-
-  async function onCreate(body: Record<string, any>) {
-    loading.value = true;
-    const result = await onSubmit(config?.value!, body);
-    if (result?.data) {
-      document
-        .querySelectorAll(".field-warning")
-        .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
+      navigateTo(routes.admin_user?.path);
     }
     loading.value = false;
   }
@@ -136,15 +119,14 @@ export function useWineAdmin(wConfig: any) {
 
   return {
     config,
-    wines,
-    meta: computed(() => wines.value?.meta),
+    users,
+    meta: computed(() => users.value?.meta),
     loading,
     selected,
     isOpen,
     refresh,
     onDelete,
     onUpdate,
-    onCreate,
     handleSort,
     handlePage,
     handleFilter,

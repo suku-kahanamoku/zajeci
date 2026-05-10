@@ -1,0 +1,26 @@
+{
+  "$": {
+    "category": {
+      "id": "ID",
+      "name": "Name",
+      "syscode": "Code",
+      "description": "Description",
+      "position": "Position",
+      "placeholder": {
+        "name": "Enter category name",
+        "syscode": "Enter category code",
+        "description": "Enter category description",
+        "position": "Enter position"
+      }
+    },
+    "admin": {
+      "category": {
+        "title": "Category Management",
+        "create_category": "Create New Category",
+        "update": {
+          "title": "Edit Category"
+        }
+      }
+    }
+  }
+}

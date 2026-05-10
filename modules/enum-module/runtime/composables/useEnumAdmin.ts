@@ -1,27 +1,27 @@
-import type { TableColumn } from "@nuxt/ui";
-import { useUrlResolver, useFormNavigable } from "#imports";
-
+import type {
+  IEnumItem,
+  IEnumResponse,
+  IEnumsResponse,
+} from "@/modules/enum-module/runtime/types/enum.types";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
+import { useUrlResolver, useFormNavigable } from "#imports";
 
-import type { IWine, IWineResponse, IWinesResponse } from "../types";
-
-export function useWineAdmin(wConfig: any) {
+export function useEnumAdmin(eConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit, navigate, onPageChange, onFilterChange } =
-    useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<IWine[]>([]);
+  const selected = ref<IEnumItem[]>([]);
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(
-    () => (wConfig?.syscode || "") + "config",
+    () => (eConfig?.syscode || "") + "config",
     async () => {
       try {
-        const result = CLONE(wConfig);
+        const result = CLONE(eConfig);
         updateConfig(route, result);
         return result as IFormConfig;
       } catch (error: any) {
@@ -31,9 +31,9 @@ export function useWineAdmin(wConfig: any) {
     { watch: [() => route.query] },
   );
 
-  // Wines
+  // Enums
   const {
-    data: wines,
+    data: enums,
     pending: loading,
     refresh,
   } = useAsyncData(
@@ -45,10 +45,9 @@ export function useWineAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, routes.admin_wine?.path);
-          return (await useApi(url)) as IWineResponse | IWinesResponse;
+          url = useFactory(url, config.value.factory, routes.admin_enum?.path);
+          return (await useApi(url)) as IEnumResponse | IEnumsResponse;
         } catch (error: any) {
-          console.error(error);
           return {};
         }
       }
@@ -96,14 +95,14 @@ export function useWineAdmin(wConfig: any) {
     }
   }
 
-  async function onUpdate(body: Record<string, any>, wine: IWine) {
+  async function onUpdate(body: Record<string, any>, enumItem: IEnum) {
     loading.value = true;
-    const result = await onSubmit(config?.value!, body, wine);
+    const result = await onSubmit(config?.value!, body, enumItem);
     if (result?.data) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
+      navigateTo(routes.admin_enum?.path);
     }
     loading.value = false;
   }
@@ -115,7 +114,7 @@ export function useWineAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
+      navigateTo(routes.admin_enum?.path);
     }
     loading.value = false;
   }
@@ -136,8 +135,8 @@ export function useWineAdmin(wConfig: any) {
 
   return {
     config,
-    wines,
-    meta: computed(() => wines.value?.meta),
+    enums,
+    meta: computed(() => enums.value?.meta),
     loading,
     selected,
     isOpen,

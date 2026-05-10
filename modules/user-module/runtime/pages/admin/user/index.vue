@@ -1,29 +1,19 @@
 <script setup lang="ts">
-import wConfig from "../../../assets/configs/admin-wine-list.json";
-import type { IWine } from "../../../types";
+import type { IAdminUser } from "@/modules/user-module/runtime/types/user.types";
+import uConfig from "../../../assets/configs/admin-user-list.json";
 
 definePageMeta({
   layout: "admin",
-  syscode: "admin_wine",
-  title: "$.admin.wine.title",
+  syscode: "admin_user",
+  title: "$.admin.user.title",
 });
 
 const { t } = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
-const {
-  config,
-  wines,
-  meta,
-  loading,
-  selected,
-  isOpen,
-  onDelete,
-  handleSort,
-  handlePage,
-  handleFilter,
-} = useWineAdmin(wConfig);
+const { config, users, meta, loading, selected, isOpen, onDelete, handleSort, handlePage, handleFilter } =
+  useUserAdmin(uConfig);
 
 useHead({
   title,
@@ -53,18 +43,10 @@ async function onDeleteHandler(event: boolean) {
         icon="i-heroicons-trash"
         color="error"
         variant="outline"
-        :aria-label="$tt('$.aria.delete_selected')"
+        :aria-label="t('$.aria.delete_selected')"
         :disabled="!selected.length"
         :loading="loading"
         @click="isOpen = true"
-      />
-      <UButton
-        :to="localePath(routes.admin_wine_create?.path!)"
-        icon="i-heroicons-plus-circle"
-        color="secondary"
-        variant="outline"
-        :aria-label="$tt('$.aria.delete_selected')"
-        :loading="loading"
       />
     </div>
 
@@ -72,7 +54,7 @@ async function onDeleteHandler(event: boolean) {
       ref="tableCmp"
       v-model:selected="selected"
       :config="config"
-      :data="wines?.data as IWine[]"
+      :data="users?.data as IAdminUser[]"
       :meta="meta"
       :loading="loading"
       @delete="isOpen = true"
@@ -83,7 +65,7 @@ async function onDeleteHandler(event: boolean) {
 
     <CmpConfirmDialog
       v-model="isOpen"
-      :title="$tt('$.btn.delete')"
+      :title="t('$.btn.delete')"
       color="error"
       :btns="{
         ok: {
@@ -94,10 +76,10 @@ async function onDeleteHandler(event: boolean) {
     >
       {{
         selected?.length > 1
-          ? $tt("$.message.delete_question_multi", {
+          ? t("$.message.delete_question_multi", {
               length: selected?.length,
             })
-          : $tt("$.message.delete_question", { name: selected?.[0]?.name })
+          : t("$.message.delete_question", { name: selected?.[0]?.email })
       }}
     </CmpConfirmDialog>
   </div>

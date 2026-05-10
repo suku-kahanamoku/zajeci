@@ -1,0 +1,40 @@
+{
+  "$": {
+    "enum": {
+      "form": {
+        "type": "Typ",
+        "syscode": "Systémový kód",
+        "label": "Popisek",
+        "value": "Hodnota",
+        "position": "Pořadí"
+      },
+      "placeholder": {
+        "type": "Zadejte typ",
+        "syscode": "Zadejte systémový kód",
+        "label": "Zadejte popisek",
+        "value": "Zadejte hodnotu"
+      },
+      "item": {
+        "syscode": "Kód položky",
+        "name": "Název položky",
+        "description": "Popis položky",
+        "disabled": "Zakázáno",
+        "hidden": "Skryto",
+        "placeholder": {
+          "syscode": "Zadejte kód položky",
+          "name": "Zadejte název položky",
+          "description": "Zadejte popis položky"
+        }
+      }
+    },
+    "admin": {
+      "enum": {
+        "title": "Správa enumerátorů",
+        "create_enum": "Vytvořit nový enumerátor",
+        "enum_detail": {
+          "title": "Detail enumerátoru"
+        }
+      }
+    }
+  }
+}

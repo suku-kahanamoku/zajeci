@@ -1,0 +1,20 @@
+{
+  "$": {
+    "text": {
+      "id": "ID",
+      "syscode": "Kód",
+      "title": "Nadpis",
+      "content": "Obsah",
+      "language": "Jazyk"
+    },
+    "admin": {
+      "text": {
+        "title": "Správa textů",
+        "create_text": "Vytvořit nový text",
+        "update": {
+          "title": "Editace textu"
+        }
+      }
+    }
+  }
+}

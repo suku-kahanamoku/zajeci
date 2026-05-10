@@ -77,33 +77,6 @@
     "pz": {
       "title": "Dashboard"
     },
-    "profile": {
-      "title": "Edit Profile",
-      "given_name": "Given name",
-      "surname": "Family name",
-      "newsletter": "Sending weekly news updates",
-      "change_password": "Change Password",
-      "success_msg": "User successfully edited",
-      "street": "Street",
-      "city": "City",
-      "zip": "Postal code",
-      "state": "State",
-      "role": {
-        "title": "Permision",
-        "guest": "Guest",
-        "user": "User",
-        "admin": "Admin"
-      },
-      "placeholder": {
-        "name": "John Doe",
-        "given_name": "John",
-        "surname": "Doe",
-        "street": "Blvd Ave. 12",
-        "city": "London",
-        "zip": "654 32",
-        "state": "United Kingdom"
-      }
-    },
     "form": {
       "msg": "Message",
       "price": "Price",
@@ -122,7 +95,6 @@
       "is_active": "Published",
       "yes": "Yes",
       "no": "No",
-      "description": "Description",
       "select": "Select..."
     },
     "placeholder": {
@@ -196,90 +168,6 @@
     "state": {
       "cz": "Czechia",
       "sk": "Slovakia"
-    },
-    "enum": {
-      "form": {
-        "type": "Type",
-        "syscode": "System code",
-        "label": "Label",
-        "value": "Value",
-        "position": "Position"
-      },
-      "placeholder": {
-        "type": "Enter type",
-        "syscode": "Enter system code",
-        "label": "Enter label",
-        "value": "Enter value"
-      },
-      "item": {
-        "syscode": "Item code",
-        "name": "Item name",
-        "description": "Item description",
-        "disabled": "Disabled",
-        "hidden": "Hidden",
-        "placeholder": {
-          "syscode": "Enter item code",
-          "name": "Enter item name",
-          "description": "Enter item description"
-        }
-      }
-    },
-    "category": {
-      "id": "ID",
-      "name": "Name",
-      "syscode": "Code",
-      "description": "Description",
-      "position": "Position",
-      "placeholder": {
-        "name": "Enter category name",
-        "syscode": "Enter category code",
-        "description": "Enter category description",
-        "position": "Enter position"
-      }
-    },
-    "user": {
-      "id": "ID",
-      "email": "Email",
-      "name": "First Name",
-      "surname": "Last Name",
-      "phone": "Phone",
-      "role": "Role"
-    },
-    "text": {
-      "id": "ID",
-      "syscode": "Code",
-      "title": "Title",
-      "content": "Content",
-      "language": "Language"
-    },
-    "admin": {
-      "enum": {
-        "title": "Enum Management",
-        "create_enum": "Create New Enum",
-        "enum_detail": {
-          "title": "Enum Detail"
-        }
-      },
-      "category": {
-        "title": "Category Management",
-        "create_category": "Create New Category",
-        "update": {
-          "title": "Edit Category"
-        }
-      },
-      "user": {
-        "title": "User Management",
-        "update": {
-          "title": "Edit User"
-        }
-      },
-      "text": {
-        "title": "Text Management",
-        "create_text": "Create New Text",
-        "update": {
-          "title": "Edit Text"
-        }
-      }
     },
     "footer": {
       "copyright": "All rights reserved",

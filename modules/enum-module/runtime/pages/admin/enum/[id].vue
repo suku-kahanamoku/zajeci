@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import wConfig from "../../../assets/configs/admin-wine-update.json";
-import type { IWine } from "../../../types";
+import type { IEnumItem } from "@/modules/enum-module/runtime/types/enum.types";
+
+import eConfig from "../../../assets/configs/admin-enum-update.json";
 
 definePageMeta({
   layout: "admin",
-  syscode: "admin_wine_detail",
-  title: "$.admin.wine_detail.title",
+  syscode: "admin_enum_detail",
+  title: "$.admin.enum_detail.title",
 });
 
 const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() =>
-  t((route.meta.label || route.meta.title) as string),
+  t((route.meta.label || route.meta.title) as string)
 );
 
-const { config, wines: wine, loading, onUpdate } = useWineAdmin(wConfig);
+const { config, enums: enumData, loading, onUpdate } = useEnumAdmin(eConfig);
 
 useHead({
   title,
@@ -34,17 +35,17 @@ useHead({
     />
 
     <CmpForm
-      v-if="wine?.data"
+      v-if="enumData?.data"
       :fields="config.fields"
-      :item="wine.data as IWine"
+      :item="(enumData.data as IEnumItem)"
       :loading="loading"
       :actions="{
-        no: { link: routes.admin_wine as any },
+        no: { link: routes.admin_enum as any },
       }"
       :ui="{
-        body: 'grid md:grid-cols-2 gap-4',
+        body: 'grid md:grid-cols-1 gap-4',
       }"
-      @submit="onUpdate($event, wine?.data as IWine)"
+      @submit="onUpdate($event, enumData?.data as IEnumItem)"
     />
   </div>
 </template>

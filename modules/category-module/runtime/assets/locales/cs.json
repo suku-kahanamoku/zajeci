@@ -1,0 +1,26 @@
+{
+  "$": {
+    "category": {
+      "id": "ID",
+      "name": "Název",
+      "syscode": "Kód",
+      "description": "Popis",
+      "position": "Pořadí",
+      "placeholder": {
+        "name": "Zadejte název kategorie",
+        "syscode": "Zadejte kód kategorie",
+        "description": "Zadejte popis kategorie",
+        "position": "Zadejte pořadí"
+      }
+    },
+    "admin": {
+      "category": {
+        "title": "Správa kategorií",
+        "create_category": "Vytvořit novou kategorii",
+        "update": {
+          "title": "Editace kategorie"
+        }
+      }
+    }
+  }
+}

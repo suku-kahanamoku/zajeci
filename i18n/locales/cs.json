@@ -77,33 +77,6 @@
     "pz": {
       "title": "Dashboard"
     },
-    "profile": {
-      "title": "Upravit profil",
-      "given_name": "Křestní jméno",
-      "surname": "Příjmeni",
-      "newsletter": "Odesílání týdenních zpráv s novinkami",
-      "change_password": "Změnit heslo",
-      "success_msg": "Uživatel byl úspěšně upraven",
-      "street": "Ulice",
-      "city": "Město",
-      "zip": "PSČ",
-      "state": "Stát",
-      "role": {
-        "title": "Oprávnění",
-        "guest": "Host",
-        "user": "Uživatel",
-        "admin": "Administrátor"
-      },
-      "placeholder": {
-        "name": "Jan Novák",
-        "given_name": "Jan",
-        "surname": "Novák",
-        "street": "Králová 12",
-        "city": "Brno",
-        "zip": "654 32",
-        "state": "Česká Republika"
-      }
-    },
     "form": {
       "msg": "Zpráva",
       "price": "Cena",
@@ -122,7 +95,6 @@
       "is_active": "Publikováno",
       "yes": "Ano",
       "no": "Ne",
-      "description": "Popis",
       "select": "Vyberte..."
     },
     "placeholder": {
@@ -196,90 +168,6 @@
     "state": {
       "cz": "Česká Republika",
       "sk": "Slovensko"
-    },
-    "enum": {
-      "form": {
-        "type": "Typ",
-        "syscode": "Systémový kód",
-        "label": "Popisek",
-        "value": "Hodnota",
-        "position": "Pořadí"
-      },
-      "placeholder": {
-        "type": "Zadejte typ",
-        "syscode": "Zadejte systémový kód",
-        "label": "Zadejte popisek",
-        "value": "Zadejte hodnotu"
-      },
-      "item": {
-        "syscode": "Kód položky",
-        "name": "Název položky",
-        "description": "Popis položky",
-        "disabled": "Zakázáno",
-        "hidden": "Skryto",
-        "placeholder": {
-          "syscode": "Zadejte kód položky",
-          "name": "Zadejte název položky",
-          "description": "Zadejte popis položky"
-        }
-      }
-    },
-    "category": {
-      "id": "ID",
-      "name": "Název",
-      "syscode": "Kód",
-      "description": "Popis",
-      "position": "Pořadí",
-      "placeholder": {
-        "name": "Zadejte název kategorie",
-        "syscode": "Zadejte kód kategorie",
-        "description": "Zadejte popis kategorie",
-        "position": "Zadejte pořadí"
-      }
-    },
-    "user": {
-      "id": "ID",
-      "email": "E-mail",
-      "name": "Jméno",
-      "surname": "Příjmení",
-      "phone": "Telefon",
-      "role": "Role"
-    },
-    "text": {
-      "id": "ID",
-      "syscode": "Kód",
-      "title": "Nadpis",
-      "content": "Obsah",
-      "language": "Jazyk"
-    },
-    "admin": {
-      "enum": {
-        "title": "Správa enumerátorů",
-        "create_enum": "Vytvořit nový enumerátor",
-        "enum_detail": {
-          "title": "Detail enumerátoru"
-        }
-      },
-      "category": {
-        "title": "Správa kategorií",
-        "create_category": "Vytvořit novou kategorii",
-        "update": {
-          "title": "Editace kategorie"
-        }
-      },
-      "user": {
-        "title": "Správa uživatelů",
-        "update": {
-          "title": "Editace uživatele"
-        }
-      },
-      "text": {
-        "title": "Správa textů",
-        "create_text": "Vytvořit nový text",
-        "update": {
-          "title": "Editace textu"
-        }
-      }
     },
     "footer": {
       "copyright": "Všechna práva vyhrazena",

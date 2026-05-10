@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import wConfig from "../../../assets/configs/admin-wine-update.json";
-import type { IWine } from "../../../types";
+import type { IText } from "@/modules/text-module/runtime/types/text.types";
+import tConfig from "../../../assets/configs/admin-text-update.json";
 
 definePageMeta({
   layout: "admin",
-  syscode: "admin_wine_detail",
-  title: "$.admin.wine_detail.title",
+  syscode: "admin_text_detail",
+  title: "$.admin.text.update.title",
 });
 
 const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() =>
-  t((route.meta.label || route.meta.title) as string),
+  t((route.meta.label || route.meta.title) as string)
 );
 
-const { config, wines: wine, loading, onUpdate } = useWineAdmin(wConfig);
+const { config, texts: textData, loading, onUpdate } = useTextAdmin(tConfig);
 
 useHead({
   title,
@@ -34,17 +34,17 @@ useHead({
     />
 
     <CmpForm
-      v-if="wine?.data"
+      v-if="textData?.data"
       :fields="config.fields"
-      :item="wine.data as IWine"
+      :item="(textData.data as IText)"
       :loading="loading"
       :actions="{
-        no: { link: routes.admin_wine as any },
+        no: { link: routes.admin_text as any },
       }"
       :ui="{
-        body: 'grid md:grid-cols-2 gap-4',
+        body: 'grid md:grid-cols-1 gap-4',
       }"
-      @submit="onUpdate($event, wine?.data as IWine)"
+      @submit="onUpdate($event, textData?.data as IText)"
     />
   </div>
 </template>

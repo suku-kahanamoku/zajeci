@@ -1,0 +1,50 @@
+{
+  "$": {
+    "user": {
+      "id": "ID",
+      "email": "E-mail",
+      "name": "Jméno",
+      "surname": "Příjmení",
+      "phone": "Telefon",
+      "role": "Role"
+    },
+    "admin": {
+      "user": {
+        "title": "Správa uživatelů",
+        "update": {
+          "title": "Editace uživatele"
+        }
+      }
+    },
+    "profile": {
+      "title": "Upravit profil",
+      "given_name": "Křestní jméno",
+      "surname": "Příjmeni",
+      "newsletter": "Odesílání týdenních zpráv s novinkami",
+      "change_password": "Změnit heslo",
+      "success_msg": "Uživatel byl úspěšně upraven",
+      "street": "Ulice",
+      "city": "Město",
+      "zip": "PSČ",
+      "state": "Stát",
+      "role": {
+        "title": "Oprávnění",
+        "guest": "Host",
+        "user": "Uživatel",
+        "admin": "Administrátor"
+      },
+      "placeholder": {
+        "name": "Jan Novák",
+        "given_name": "Jan",
+        "surname": "Novák",
+        "street": "Králová 12",
+        "city": "Brno",
+        "zip": "654 32",
+        "state": "Česká Republika"
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    }
+  }
+}

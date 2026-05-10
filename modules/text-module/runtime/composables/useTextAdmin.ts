@@ -1,39 +1,34 @@
-import type { TableColumn } from "@nuxt/ui";
-import { useUrlResolver, useFormNavigable } from "#imports";
-
+import type { IText, ITextResponse, ITextsResponse } from "@/modules/text-module/runtime/types/text.types";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
+import { useUrlResolver, useFormNavigable } from "#imports";
 
-import type { IWine, IWineResponse, IWinesResponse } from "../types";
-
-export function useWineAdmin(wConfig: any) {
+export function useTextAdmin(tConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit, navigate, onPageChange, onFilterChange } =
-    useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<IWine[]>([]);
+  const selected = ref<IText[]>([]);
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(
-    () => (wConfig?.syscode || "") + "config",
+    () => (tConfig?.syscode || "") + "config",
     async () => {
       try {
-        const result = CLONE(wConfig);
+        const result = CLONE(tConfig);
         updateConfig(route, result);
         return result as IFormConfig;
       } catch (error: any) {
         return {} as IFormConfig;
       }
     },
-    { watch: [() => route.query] },
+    { watch: [() => route.query] }
   );
 
-  // Wines
   const {
-    data: wines,
+    data: texts,
     pending: loading,
     refresh,
   } = useAsyncData(
@@ -45,10 +40,9 @@ export function useWineAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, routes.admin_wine?.path);
-          return (await useApi(url)) as IWineResponse | IWinesResponse;
+          url = useFactory(url, config.value.factory, routes.admin_text?.path);
+          return (await useApi(url)) as ITextResponse | ITextsResponse;
         } catch (error: any) {
-          console.error(error);
           return {};
         }
       }
@@ -57,16 +51,14 @@ export function useWineAdmin(wConfig: any) {
     {
       watch: [config],
       immediate: true,
-    },
+    }
   );
 
-  // Delete
   async function onDelete(value: boolean) {
     if (value && config.value?.deleteUrl && selected.value?.length) {
       const method = "DELETE";
       try {
         if (selected.value.length > 1) {
-          // Mazání více záznamů přes Promise.all
           await Promise.all(
             selected.value.map((item) => {
               const url = useUrl(config.value!.deleteUrl!, {
@@ -75,11 +67,10 @@ export function useWineAdmin(wConfig: any) {
                 item,
               });
               return useApi(url, { method });
-            }),
+            })
           );
         } else {
-          // Mazání jednoho záznamu
-          let url = useUrl(config.value!.deleteUrl!, {
+          const url = useUrl(config.value!.deleteUrl!, {
             config: config.value!,
             route,
             item: selected.value[0],
@@ -96,14 +87,14 @@ export function useWineAdmin(wConfig: any) {
     }
   }
 
-  async function onUpdate(body: Record<string, any>, wine: IWine) {
+  async function onUpdate(body: Record<string, any>, text: IText) {
     loading.value = true;
-    const result = await onSubmit(config?.value!, body, wine);
+    const result = await onSubmit(config?.value!, body, text);
     if (result?.data) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
+      navigateTo(routes.admin_text?.path);
     }
     loading.value = false;
   }
@@ -115,7 +106,7 @@ export function useWineAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
+      navigateTo(routes.admin_text?.path);
     }
     loading.value = false;
   }
@@ -136,8 +127,8 @@ export function useWineAdmin(wConfig: any) {
 
   return {
     config,
-    wines,
-    meta: computed(() => wines.value?.meta),
+    texts,
+    meta: computed(() => texts.value?.meta),
     loading,
     selected,
     isOpen,

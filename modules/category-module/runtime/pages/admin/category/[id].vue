@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import wConfig from "../../../assets/configs/admin-wine-update.json";
-import type { IWine } from "../../../types";
+import type { ICategory } from "@/modules/category-module/runtime/types/category.types";
+import cConfig from "../../../assets/configs/admin-category-update.json";
 
 definePageMeta({
   layout: "admin",
-  syscode: "admin_wine_detail",
-  title: "$.admin.wine_detail.title",
+  syscode: "admin_category_detail",
+  title: "$.admin.category.update.title",
 });
 
 const { t } = useLang();
@@ -14,7 +14,12 @@ const title = computed(() =>
   t((route.meta.label || route.meta.title) as string),
 );
 
-const { config, wines: wine, loading, onUpdate } = useWineAdmin(wConfig);
+const {
+  config,
+  categories: categoryData,
+  loading,
+  onUpdate,
+} = useCategoryAdmin(cConfig);
 
 useHead({
   title,
@@ -34,17 +39,17 @@ useHead({
     />
 
     <CmpForm
-      v-if="wine?.data"
+      v-if="categoryData?.data"
       :fields="config.fields"
-      :item="wine.data as IWine"
+      :item="categoryData.data as ICategory"
       :loading="loading"
       :actions="{
-        no: { link: routes.admin_wine as any },
+        no: { link: routes.admin_category as any },
       }"
       :ui="{
-        body: 'grid md:grid-cols-2 gap-4',
+        body: 'grid md:grid-cols-1 gap-4',
       }"
-      @submit="onUpdate($event, wine?.data as IWine)"
+      @submit="onUpdate($event, categoryData?.data as ICategory)"
     />
   </div>
 </template>

@@ -1,0 +1,20 @@
+{
+  "$": {
+    "text": {
+      "id": "ID",
+      "syscode": "Code",
+      "title": "Title",
+      "content": "Content",
+      "language": "Language"
+    },
+    "admin": {
+      "text": {
+        "title": "Text Management",
+        "create_text": "Create New Text",
+        "update": {
+          "title": "Edit Text"
+        }
+      }
+    }
+  }
+}

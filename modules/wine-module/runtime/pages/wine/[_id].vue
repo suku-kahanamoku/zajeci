@@ -15,7 +15,7 @@ const { t } = useLang();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const title = computed(() =>
-  t((wine.value?.data?.name || route.meta.label || route.meta.title) as string)
+  t((wine.value?.data?.name || route.meta.label || route.meta.title) as string),
 );
 
 /**
@@ -31,7 +31,7 @@ const { data: config } = await useAsyncData(
       return {} as typeof wConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 /**
@@ -51,7 +51,7 @@ const { data: wine } = await useAsyncData(
       }
     }
   },
-  { watch: [route] }
+  { watch: [route] },
 );
 
 useHead({
@@ -81,7 +81,7 @@ useHead({
       :actions="{
         no: { link: routes.admin_wine as any },
       }"
-      :wine="(wine?.data as IWine)"
+      :wine="wine?.data as IWine"
     />
   </section>
 </template>
