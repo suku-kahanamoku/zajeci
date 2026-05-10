@@ -210,7 +210,7 @@ const menuItems = [
         <p class="text-xs text-primary-400">
           © {{ new Date().getFullYear() }} Víno ze Zaječí · IČ 19737491
         </p>
-        <p class="text-xs text-primary-500">
+        <p class="text-xs text-primary-400">
           Pijte zodpovědně. Alkohol je určen pouze osobám starším 18 let.
         </p>
       </div>

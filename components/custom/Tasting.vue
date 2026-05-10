@@ -51,7 +51,10 @@ const tasting = [
         {{ $tt("$.tasting.title") }}
       </h2>
       <div class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2">
-        <UIcon name="ph:wine-duotone" size="16" />
+        <span class="flex">
+          <UIcon name="lucide:wine" size="16" />
+          <UIcon name="ph:cheese-duotone" size="16" />
+        </span>
       </div>
     </div>
 

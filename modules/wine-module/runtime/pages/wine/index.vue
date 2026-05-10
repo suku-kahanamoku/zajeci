@@ -69,18 +69,24 @@ const { data: wines } = await useAsyncData(
     class="w-full max-w-7xl mx-auto px-5 pb-16"
   >
     <div class="text-center pt-12 pb-8">
-      <p class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3">
+      <p
+        class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3"
+      >
         {{ $tt("$.wine.eyebrow") || "Naše vína" }}
       </p>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 mb-6">
+      <h1
+        class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 mb-6"
+      >
         {{ title }}
       </h1>
-      <div class="section-divider text-primary-300 dark:text-primary-600 max-w-xs mx-auto mt-4">
+      <div
+        class="section-divider text-primary-300 dark:text-primary-600"
+      >
         <UIcon name="ph:wine-duotone" size="18" />
       </div>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-6 items-stretch">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <CmpWineCard
         v-for="wine of wines?.data"
         :key="wine.id"

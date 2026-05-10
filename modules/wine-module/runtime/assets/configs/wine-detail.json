@@ -19,12 +19,6 @@
   ],
   "fields": [
     {
-      "name": "name",
-      "type": "text",
-      "label": "$.wine.form.name",
-      "placeholder": "$.wine.placeholder.name"
-    },
-    {
       "name": "kind",
       "type": "select",
       "label": "$.wine.form.kind",

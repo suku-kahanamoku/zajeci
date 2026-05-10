@@ -27,7 +27,7 @@ function addToCashdesk() {
   <div
     v-if="wine"
     :id="String(wine.id)"
-    class="zoom-in flex flex-col w-full md:flex-1 md:min-w-72 md:max-w-sm"
+    class="zoom-in flex flex-col w-full"
   >
     <!-- Card -->
     <div

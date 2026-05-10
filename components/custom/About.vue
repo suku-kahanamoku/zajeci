@@ -8,7 +8,7 @@
         {{ $tt("$.about.title") }}
       </h2>
       <div class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2">
-        <UIcon name="ph:wine-duotone" size="18" />
+        <UIcon name="lucide:grape" size="18" />
       </div>
       <h3 class="text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
         {{ $tt("$.about.subtitle") }}
