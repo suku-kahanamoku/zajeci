@@ -126,6 +126,18 @@
       "name": "description",
       "type": "textarea",
       "label": "$.form.description"
+    },
+    {
+      "name": "category_ids",
+      "type": "select",
+      "label": "$.form.categories",
+      "placeholder": "$.form.select",
+      "multiple": true,
+      "restOptions": {
+        "url": "/api/categories?is_active=1&limit=100",
+        "label": "name",
+        "value": "id"
+      }
     }
   ]
 }
