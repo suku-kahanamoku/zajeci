@@ -67,7 +67,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           class="object-cover rounded-lg"
         />
 
-        <div class="flex flex-col gap-2">
+        <div class="w-full flex flex-col gap-2">
           <NuxtLink
             :to="
               localePath(
@@ -83,20 +83,23 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
           <!-- Parametry vína s ikonami ve dvou řádcích -->
           <CmpWineIconAttrs
+            class="w-full"
             :wine="row.original?.wine"
-            :fields="config.fields"
+            :fields="config.fields.filter((f) => f.iconName)"
           />
         </div>
       </div>
     </template>
 
     <template #quantity-cell="{ row }">
-      <div class="w-full font-semibold text-end">
-        {{
-          useToNumber(
-            row.original?.quantity?.toFixed(2) || 0,
-          ).value.toLocaleString(locale)
-        }}
+      <div class="w-full text-end">
+        <UBadge class="font-semibold">
+          {{
+            useToNumber(
+              row.original?.quantity?.toFixed(2) || 0,
+            ).value.toLocaleString(locale)
+          }}
+        </UBadge>
       </div>
     </template>
 

@@ -126,7 +126,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           class="object-cover rounded-lg"
         />
 
-        <div class="flex flex-col gap-2">
+        <div class="w-full flex flex-col gap-2">
           <NuxtLink
             :to="
               localePath(
@@ -142,6 +142,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
           <!-- Parametry vína s ikonami ve dvou řádcích -->
           <CmpWineIconAttrs
+            class="w-full"
             :wine="row.original?.wine"
             :fields="config.fields.filter((f) => f.iconName)"
           />
@@ -215,10 +216,13 @@ const handleSetQuantity = (value: number, cart: ICart) => {
       </NuxtLink>
 
       <!-- Parametry vína s ikonami ve dvou řádcích -->
-      <CmpWineIconAttrs
-        :wine="cart.wine"
-        :fields="config.fields.filter((f) => f.iconName)"
-      />
+      <div class="w-1/3 shrink-0">
+        <CmpWineIconAttrs
+          class="w-full"
+          :wine="cart.wine"
+          :fields="config.fields.filter((f) => f.iconName)"
+        />
+      </div>
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">
           <UButton icon="i-heroicons-minus" @click="decreaseQuantity(cart)" />
