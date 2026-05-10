@@ -3,13 +3,6 @@
   "postUrl": "/api/admin/enum/${route.meta.id}",
   "method": "POST",
   "modelType": "enumItem",
-  "projection": [
-    "syscode",
-    "name",
-    "description",
-    "disabled",
-    "hidden"
-  ],
   "fields": [
     {
       "name": "syscode",

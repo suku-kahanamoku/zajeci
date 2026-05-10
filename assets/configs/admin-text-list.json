@@ -5,18 +5,7 @@
   "factory": {
     "url": "${syscode}--$${id}"
   },
-  "projection": [
-    "id",
-    "syscode",
-    "title",
-    "language",
-    "is_active"
-  ],
   "fields": [
-    {
-      "name": "id",
-      "label": "$.text.id"
-    },
     {
       "name": "syscode",
       "label": "$.text.syscode"

@@ -4,18 +4,7 @@
   "factory": {
     "url": "${order_number}--$${id}"
   },
-  "projection": [
-    "id",
-    "order_number",
-    "status",
-    "payment_method",
-    "total_amount"
-  ],
   "fields": [
-    {
-      "name": "id",
-      "label": "$.order.order_id"
-    },
     {
       "name": "order_number",
       "label": "$.order.order_number"

@@ -4,14 +4,6 @@
   "patchUrl": "/api/admin/enum/${route.meta.id}",
   "method": "PATCH",
   "modelType": "enum",
-  "projection": [
-    "type",
-    "syscode",
-    "label",
-    "value",
-    "position",
-    "is_active"
-  ],
   "fields": [
     {
       "name": "type",

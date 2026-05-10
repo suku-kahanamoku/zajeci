@@ -3,14 +3,6 @@
   "restUrl": "/api/admin/user/${route.meta.id}",
   "patchUrl": "/api/admin/user/${route.meta.id}",
   "method": "PATCH",
-  "projection": [
-    "email",
-    "name",
-    "surname",
-    "phone",
-    "role",
-    "is_active"
-  ],
   "fields": [
     {
       "name": "email",
@@ -20,13 +12,13 @@
       "required": true
     },
     {
-      "name": "name",
+      "name": "first_name",
       "type": "text",
       "label": "$.user.name",
       "placeholder": "$.user.placeholder.name"
     },
     {
-      "name": "surname",
+      "name": "last_name",
       "type": "text",
       "label": "$.user.surname",
       "placeholder": "$.user.placeholder.surname"
@@ -53,21 +45,6 @@
         {
           "label": "$.form.guest",
           "value": "guest"
-        }
-      ]
-    },
-    {
-      "name": "is_active",
-      "type": "select",
-      "label": "$.form.is_active",
-      "options": [
-        {
-          "value": 1,
-          "label": "$.form.yes"
-        },
-        {
-          "value": 0,
-          "label": "$.form.no"
         }
       ]
     }

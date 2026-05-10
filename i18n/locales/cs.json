@@ -122,7 +122,8 @@
       "is_active": "Publikováno",
       "yes": "Ano",
       "no": "Ne",
-      "description": "Popis"
+      "description": "Popis",
+      "select": "Vyberte..."
     },
     "placeholder": {
       "leave_comment": "Napište zprávu..."
@@ -227,9 +228,14 @@
       "id": "ID",
       "name": "Název",
       "syscode": "Kód",
-      "parent_id": "Nadřazená kategorie",
       "description": "Popis",
-      "description": "Popis"
+      "position": "Pořadí",
+      "placeholder": {
+        "name": "Zadejte název kategorie",
+        "syscode": "Zadejte kód kategorie",
+        "description": "Zadejte popis kategorie",
+        "position": "Zadejte pořadí"
+      }
     },
     "user": {
       "id": "ID",

@@ -5,49 +5,26 @@
   "factory": {
     "url": "${email}--$${id}"
   },
-  "projection": [
-    "id",
-    "email",
-    "name",
-    "surname",
-    "role",
-    "is_active"
-  ],
   "fields": [
     {
-      "name": "id",
-      "label": "$.user.id"
-    },
-    {
       "name": "email",
+      "type": "text",
       "label": "$.user.email"
     },
     {
-      "name": "name",
+      "name": "first_name",
+      "type": "text",
       "label": "$.user.name"
     },
     {
-      "name": "surname",
+      "name": "last_name",
+      "type": "text",
       "label": "$.user.surname"
     },
     {
       "name": "role",
+      "type": "text",
       "label": "$.user.role"
-    },
-    {
-      "name": "is_active",
-      "type": "select",
-      "label": "$.form.is_active",
-      "options": [
-        {
-          "value": 1,
-          "label": "$.form.yes"
-        },
-        {
-          "value": 0,
-          "label": "$.form.no"
-        }
-      ]
     }
   ]
 }

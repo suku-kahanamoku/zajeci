@@ -4,13 +4,6 @@
   "patchUrl": "/api/admin/order/${route.meta.id}",
   "method": "PATCH",
   "modelType": "order",
-  "projection": [
-    "user.email",
-    "user.phone",
-    "delivery.type",
-    "payment.type",
-    "total_price"
-  ],
   "fields": [
     {
       "name": "user.email",

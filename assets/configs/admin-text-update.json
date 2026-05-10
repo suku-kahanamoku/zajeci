@@ -3,13 +3,6 @@
   "restUrl": "/api/admin/text/${route.meta.id}",
   "patchUrl": "/api/admin/text/${route.meta.id}",
   "method": "PATCH",
-  "projection": [
-    "syscode",
-    "title",
-    "content",
-    "language",
-    "is_active"
-  ],
   "fields": [
     {
       "name": "syscode",

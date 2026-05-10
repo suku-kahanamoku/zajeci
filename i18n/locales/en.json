@@ -122,7 +122,8 @@
       "is_active": "Published",
       "yes": "Yes",
       "no": "No",
-      "description": "Description"
+      "description": "Description",
+      "select": "Select..."
     },
     "placeholder": {
       "leave_comment": "Leave a message..."
@@ -227,9 +228,14 @@
       "id": "ID",
       "name": "Name",
       "syscode": "Code",
-      "parent_id": "Parent Category",
       "description": "Description",
-      "description": "Description"
+      "position": "Position",
+      "placeholder": {
+        "name": "Enter category name",
+        "syscode": "Enter category code",
+        "description": "Enter category description",
+        "position": "Enter position"
+      }
     },
     "user": {
       "id": "ID",

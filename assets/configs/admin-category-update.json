@@ -3,13 +3,6 @@
   "restUrl": "/api/admin/category/${route.meta.id}",
   "patchUrl": "/api/admin/category/${route.meta.id}",
   "method": "PATCH",
-  "projection": [
-    "name",
-    "syscode",
-    "parent_id",
-    "description",
-    "is_active"
-  ],
   "fields": [
     {
       "name": "name",
@@ -25,31 +18,16 @@
       "placeholder": "$.category.placeholder.syscode"
     },
     {
-      "name": "parent_id",
-      "type": "number",
-      "label": "$.category.parent_id",
-      "placeholder": "$.category.placeholder.parent_id"
-    },
-    {
       "name": "description",
       "type": "textarea",
       "label": "$.category.description",
       "placeholder": "$.category.placeholder.description"
     },
     {
-      "name": "is_active",
-      "type": "select",
-      "label": "$.form.is_active",
-      "options": [
-        {
-          "value": 1,
-          "label": "$.form.yes"
-        },
-        {
-          "value": 0,
-          "label": "$.form.no"
-        }
-      ]
+      "name": "position",
+      "type": "number",
+      "label": "$.category.position",
+      "placeholder": "$.category.placeholder.position"
     }
   ]
 }

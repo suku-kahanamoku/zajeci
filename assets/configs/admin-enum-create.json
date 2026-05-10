@@ -3,14 +3,6 @@
   "postUrl": "/api/admin/enum",
   "method": "POST",
   "modelType": "enum",
-  "projection": [
-    "type",
-    "syscode",
-    "label",
-    "value",
-    "position",
-    "is_active"
-  ],
   "fields": [
     {
       "name": "type",

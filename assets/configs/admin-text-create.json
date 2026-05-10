@@ -2,13 +2,6 @@
   "syscode": "admin-text-create",
   "postUrl": "/api/admin/text",
   "method": "POST",
-  "projection": [
-    "syscode",
-    "title",
-    "content",
-    "language",
-    "is_active"
-  ],
   "fields": [
     {
       "name": "syscode",
