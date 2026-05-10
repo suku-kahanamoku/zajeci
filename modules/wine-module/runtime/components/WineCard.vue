@@ -33,6 +33,10 @@ function addToCashdesk() {
     <div
       class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300"
     >
+      <!-- Top stripe -->
+      <div
+        class="h-1 bg-gradient-to-r from-secondary-400 to-secondary-600"
+      ></div>
       <!-- Image area -->
       <NuxtLink
         :to="wine.gen_data?.url"
@@ -67,11 +71,7 @@ function addToCashdesk() {
         </NuxtLink>
 
         <!-- Icon attrs -->
-        <CmpWineIconAttrs
-          :wine="wine"
-          :fields="fields"
-          class="flex-1"
-        />
+        <CmpWineIconAttrs :wine="wine" :fields="fields" class="flex-1" />
 
         <!-- Footer -->
         <div
@@ -86,7 +86,7 @@ function addToCashdesk() {
           </div>
           <UButton
             icon="i-heroicons-shopping-cart"
-            color="secondary"
+            color="primary"
             variant="solid"
             size="sm"
             class="rounded-xl font-semibold"
