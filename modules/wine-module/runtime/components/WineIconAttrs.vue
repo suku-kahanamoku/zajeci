@@ -11,101 +11,78 @@ const props = defineProps<{
 }>();
 
 const { t } = useLang();
-const { getSelectLabel } = useField();
 
-function fieldLabel(name: string): string {
-  const field = props.fields?.find((f) => f.name === name);
-  return field?.label ? t(field.label) : name;
-}
+// Icon + color lookup by field name (short name without "data." prefix)
+const fieldMeta: Record<string, { icon: string; color: string }> = {
+  color: { icon: "i-heroicons-paint-brush", color: "text-pink-500" },
+  year: { icon: "i-heroicons-calendar", color: "text-amber-500" },
+  volume: { icon: "i-heroicons-beaker", color: "text-blue-500" },
+  variant: { icon: "i-heroicons-sparkles", color: "text-green-500" },
+  quality: { icon: "i-heroicons-star", color: "text-yellow-500" },
+  kind: { icon: "i-heroicons-tag", color: "text-primary-500" },
+  alcohol: { icon: "i-heroicons-fire", color: "text-orange-500" },
+  winery: { icon: "i-heroicons-building-storefront", color: "text-purple-500" },
+  region: { icon: "i-heroicons-map-pin", color: "text-red-400" },
+  serving_temp: { icon: "i-heroicons-sun", color: "text-sky-500" },
+};
 
-function translateEnum(namespace: string, value: string | undefined | null): string | null {
-  if (!value) return null;
-  const key = `$.wine.${namespace}.${value}`;
-  const translated = t(key);
-  return translated === key ? value : translated;
+// Fields that need i18n enum translation: fieldShortName → namespace
+const enumNamespaces: Record<string, string> = {
+  color: "color",
+  kind: "kind",
+  quality: "quality",
+
+};
+
+function resolveValue(wine: IWine, fieldName: string): string | number | null {
+  // dot-notation: "data.quality" → wine.data?.quality
+  const [top, sub] = fieldName.split(".");
+  const raw = sub ? (wine as any)[top]?.[sub] : (wine as any)[top];
+
+  if (raw == null || raw === "") return null;
+
+  const short = sub ?? top;
+  const ns = enumNamespaces[short];
+  if (ns) {
+    const key = `$.wine.${ns}.${raw}`;
+    const translated = t(key);
+    return translated === key ? raw : translated;
+  }
+
+  // Volume: append unit
+  if (short === "volume") return `${raw} l`;
+  // Alcohol: append unit
+  if (short === "alcohol") return `${raw} %`;
+
+  return raw;
 }
 
 const attrs = computed(() => {
   const w = props.wine;
-  if (!w) return [];
-  return [
-    {
-      name: "color",
-      icon: "i-heroicons-paint-brush",
-      color: "text-pink-500",
-      label: fieldLabel("color"),
-      value: translateEnum("color", w.color),
-    },
-    {
-      name: "year",
-      icon: "i-heroicons-calendar",
-      color: "text-amber-500",
-      label: fieldLabel("data.year"),
-      value: w.data?.year,
-    },
-    {
-      name: "volume",
-      icon: "i-heroicons-beaker",
-      color: "text-blue-500",
-      label: fieldLabel("data.volume"),
-      value: w.data?.volume != null ? `${w.data.volume} l` : null,
-    },
-    {
-      name: "variant",
-      icon: "i-heroicons-sparkles",
-      color: "text-green-500",
-      label: fieldLabel("variant"),
-      value: translateEnum("variety", w.variant),
-    },
-    {
-      name: "quality",
-      icon: "i-heroicons-star",
-      color: "text-yellow-500",
-      label: fieldLabel("data.quality"),
-      value: translateEnum("quality", w.data?.quality),
-    },
-    {
-      name: "kind",
-      icon: "i-heroicons-tag",
-      color: "text-primary-500",
-      label: fieldLabel("kind"),
-      value: translateEnum("kind", w.kind),
-    },
-    {
-      name: "alcohol",
-      icon: "i-heroicons-fire",
-      color: "text-orange-500",
-      label: fieldLabel("data.alcohol"),
-      value: w.data?.alcohol != null ? `${w.data.alcohol} %` : null,
-    },
-    {
-      name: "winery",
-      icon: "i-heroicons-building-storefront",
-      color: "text-purple-500",
-      label: fieldLabel("data.winery"),
-      value: w.data?.winery,
-    },
-    {
-      name: "region",
-      icon: "i-heroicons-map-pin",
-      color: "text-red-400",
-      label: fieldLabel("data.region"),
-      value: w.data?.region,
-    },
-    {
-      name: "serving_temp",
-      icon: "i-heroicons-sun",
-      color: "text-sky-500",
-      label: fieldLabel("data.serving_temp"),
-      value: w.data?.serving_temp,
-    },
-  ]
-    .filter((a) => {
-      if (a.value == null || a.value === "") return false;
-      if (props.allowedNames && props.allowedNames.length > 0)
-        return props.allowedNames.includes(a.name);
-      return true;
+  if (!w || !props.fields) return [];
+
+  const allowed =
+    props.allowedNames && props.allowedNames.length > 0
+      ? props.allowedNames
+      : null;
+
+  return props.fields
+    .filter((f) => !allowed || allowed.includes(f.name.replace(/^data\./, "")))
+    .map((f) => {
+      const short = f.name.includes(".") ? f.name.split(".")[1] : f.name;
+      const meta = fieldMeta[short] ?? {
+        icon: "i-heroicons-information-circle",
+        color: "text-gray-400",
+      };
+      return {
+        name: short,
+        icon: meta.icon,
+        color: meta.color,
+        label: f.label ? t(f.label) : short,
+        value: resolveValue(w, f.name),
+      };
     })
+    .filter((a) => a.value != null && a.value !== "")
     .slice(0, props.limit ?? Infinity);
 });
 </script>

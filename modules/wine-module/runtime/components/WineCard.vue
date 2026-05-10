@@ -27,7 +27,7 @@ function addToCashdesk() {
   <div
     v-if="wine"
     :id="String(wine.id)"
-    class="zoom-in flex flex-col w-full sm:max-w-72"
+    class="zoom-in flex flex-col w-full sm:max-w-sm"
   >
     <!-- Card -->
     <div
@@ -70,7 +70,8 @@ function addToCashdesk() {
         <CmpWineIconAttrs
           :wine="wine"
           :fields="fields"
-          :allowed-names="['color', 'kind', 'quality', 'variant']"
+          :allowed-names="['color', 'kind', 'quality', 'variant', 'year', 'volume']"
+          :cols="3"
           class="flex-1"
         />
 
