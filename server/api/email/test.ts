@@ -10,7 +10,7 @@ export default defineEventHandler(async (event: H3Event) => {
   let body: any = null;
   try {
     const phpRes = await $fetch<any>(`${config.phpApiBaseUrl}/orders?limit=1`);
-    body = phpRes?.data?.items?.[0] ?? null;
+    body = (Array.isArray(phpRes?.data) ? phpRes.data[0] : null) ?? null;
   } catch (error) {
     console.error("Chyba při načítání testovací objednávky:", error);
   }

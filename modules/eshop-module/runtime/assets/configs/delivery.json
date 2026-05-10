@@ -48,10 +48,11 @@
       "required": true,
       "clearable": true,
       "size": "lg",
-      "options": [
-        { "label": "CZ", "value": "cs" },
-        { "label": "SK", "value": "sk" }
-      ],
+      "restOptions": {
+        "url": "/api/enumerations?type=country_code&is_active=1&limit=100",
+        "label": "label",
+        "value": "id"
+      },
       "value": ""
     }
   ]
