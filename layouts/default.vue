@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { loggedIn } = useUserSession();
 const { totalItemsLength } = useCashdesk();
-const { routes } = useMenuItems();
+const { routes, route } = useMenuItems();
 
 const colorMode = useColorMode();
 const isDark = computed({
@@ -102,6 +102,12 @@ const menuItems = [
   </UHeader>
 
   <UMain>
+    <div
+      v-if="route.meta?.syscode !== 'home'"
+      class="max-w-7xl mx-auto px-5 pt-4"
+    >
+      <UiBreadcrumb />
+    </div>
     <slot></slot>
   </UMain>
 

@@ -46,17 +46,8 @@ function addToCashdesk() {
   <div
     v-if="wine"
     :id="String(wine.id)"
-    class="w-full max-w-7xl mx-auto px-4 md:px-8 py-10"
+    class="w-full flex flex-col max-w-7xl mx-auto px-4 md:px-8 py-10 gap-16"
   >
-    <!-- Back link -->
-    <NuxtLink
-      :to="routes.wine?.path"
-      class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors mb-8"
-    >
-      <UIcon name="i-heroicons-arrow-left" size="16" />
-      {{ $tt("$.wine.title") }}
-    </NuxtLink>
-
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
       <!-- LEFT: Image -->
       <div class="relative max-w-lg mx-auto lg:mx-0">
@@ -123,7 +114,7 @@ function addToCashdesk() {
         <USeparator />
 
         <!-- Price + quantity + cart -->
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-8">
           <div class="flex items-end justify-between">
             <div class="flex flex-col gap-0.5">
               <span
@@ -160,7 +151,8 @@ function addToCashdesk() {
             variant="solid"
             size="xl"
             block
-            class="rounded-2xl font-semibold text-base"
+            class="rounded-2xl font-semibold text-lg py-2"
+            :ui="{ leadingIcon: 'size-6' }"
             @click="addToCashdesk"
           >
             {{ $tt("$.wine.to_cart") }}
@@ -168,6 +160,15 @@ function addToCashdesk() {
         </div>
       </div>
     </div>
+
+    <!-- Back link -->
+    <NuxtLink
+      :to="routes.wine?.path"
+      class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors mb-8"
+    >
+      <UIcon name="i-heroicons-arrow-left" size="16" />
+      {{ $tt("$.wine.title") }}
+    </NuxtLink>
 
     <CmpCartDialog v-model="modal" :cart="cart" />
   </div>

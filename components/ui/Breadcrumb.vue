@@ -12,7 +12,7 @@ const items = computed(() => {
     .filter((segment) => segment !== lang.value.code)
     .filter(Boolean);
 
-  return segments.map((segment, index) => {
+  const crumbs = segments.map((segment, index) => {
     let label = segment;
     // Z labelu odstraní ID
     if (route.meta.id) {
@@ -31,24 +31,21 @@ const items = computed(() => {
       label = label.replace(`--$${route.meta.subid3}`, "");
     }
 
-    const result = {
+    return {
       label: capitalize(decodeURIComponent(label)),
       to: localePath(`/${segments.slice(0, index + 1).join("/")}`),
       icon: "",
     };
-
-    // Pokud je to první segment, vrátí místo labelu ikonu s domečkem
-    if (index === 0) {
-      result.label = "";
-      result.icon = "i-heroicons-home";
-    }
-
-    return result;
   });
+
+  return [
+    { label: "", icon: "i-heroicons-home", to: localePath("/") },
+    ...crumbs,
+  ];
 });
 </script>
 
 <template>
   <!-- Breadcrumb navigace -->
-  <UBreadcrumb :links="items" />
+  <UBreadcrumb :items="items" />
 </template>

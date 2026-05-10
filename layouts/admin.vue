@@ -3,7 +3,7 @@ const { loggedIn } = useUserSession();
 const localePath = useLocalePath();
 const { user } = useUserSession();
 const { totalItemsLength } = useCashdesk();
-const { routes, menuItem } = useMenuItems();
+const { routes, route, menuItem } = useMenuItems();
 
 const menuItems: any[] = [];
 
@@ -92,6 +92,12 @@ if (user.value?.role === "admin") {
   </UHeader>
 
   <UMain>
+    <div
+      v-if="route.meta?.syscode !== 'home'"
+      class="max-w-7xl mx-auto px-5 pt-4"
+    >
+      <UiBreadcrumb />
+    </div>
     <slot></slot>
   </UMain>
 </template>
