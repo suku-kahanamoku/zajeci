@@ -5,9 +5,6 @@ import type { IFormField } from "@suku-kahanamoku/form-module/types";
 const props = defineProps<{
   fields: IFormField[];
   wine?: IWine;
-  limit?: number;
-  allowedNames?: string[];
-  cols?: number;
 }>();
 
 const { t } = useLang();
@@ -61,13 +58,7 @@ const attrs = computed(() => {
   const w = props.wine;
   if (!w || !props.fields) return [];
 
-  const allowed =
-    props.allowedNames && props.allowedNames.length > 0
-      ? props.allowedNames
-      : null;
-
   return props.fields
-    .filter((f) => !allowed || allowed.includes(f.name.replace(/^data\./, "")))
     .map((f) => {
       const short = f.name.includes(".") ? f.name.split(".")[1] : f.name;
       const meta = fieldMeta[short] ?? {
@@ -82,16 +73,14 @@ const attrs = computed(() => {
         value: resolveValue(w, f.name),
       };
     })
-    .filter((a) => a.value != null && a.value !== "")
-    .slice(0, props.limit ?? Infinity);
+    .filter((a) => a.value != null && a.value !== "");
 });
 </script>
 
 <template>
   <dl
     v-if="wine"
-    class="grid gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
-    :class="cols === 3 ? 'grid-cols-3' : 'grid-cols-2'"
+    class="grid grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
   >
     <div
       v-for="attr in attrs"

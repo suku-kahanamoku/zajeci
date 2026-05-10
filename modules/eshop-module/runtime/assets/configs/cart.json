@@ -8,28 +8,6 @@
       "placeholder": "$.wine.placeholder.name"
     },
     {
-      "name": "kind",
-      "type": "select",
-      "label": "$.wine.form.kind",
-      "placeholder": "$.form.select",
-      "restOptions": {
-        "url": "/api/enumerations?type=wine_kind&is_active=1&limit=100",
-        "label": "label",
-        "value": "id"
-      }
-    },
-    {
-      "name": "quality",
-      "type": "select",
-      "label": "$.wine.form.quality",
-      "placeholder": "$.form.select",
-      "restOptions": {
-        "url": "/api/enumerations?type=wine_quality&is_active=1&limit=100",
-        "label": "label",
-        "value": "id"
-      }
-    },
-    {
       "name": "color",
       "type": "select",
       "label": "$.wine.form.color",
@@ -41,25 +19,41 @@
       }
     },
     {
-      "name": "variety",
+      "name": "variant",
+      "type": "text",
+      "label": "$.wine.form.variant"
+    },
+    {
+      "name": "data.year",
+      "type": "number",
+      "label": "$.wine.form.year"
+    },
+    {
+      "name": "data.quality",
       "type": "select",
-      "label": "$.wine.form.variety",
+      "label": "$.wine.form.quality",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?type=wine_variety&is_active=1&limit=100",
+        "url": "/api/enumerations?type=wine_quality&is_active=1&limit=100",
         "label": "label",
         "value": "id"
       }
     },
     {
-      "name": "volume",
-      "type": "number",
-      "label": "$.wine.form.volume"
+      "name": "kind",
+      "type": "select",
+      "label": "$.wine.form.kind",
+      "placeholder": "$.form.select",
+      "restOptions": {
+        "url": "/api/enumerations?type=wine_kind&is_active=1&limit=100",
+        "label": "label",
+        "value": "id"
+      }
     },
     {
-      "name": "year",
+      "name": "data.volume",
       "type": "number",
-      "label": "$.wine.form.year"
+      "label": "$.wine.form.volume"
     },
     {
       "name": "quantity",

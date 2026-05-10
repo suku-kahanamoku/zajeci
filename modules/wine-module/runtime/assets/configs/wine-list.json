@@ -21,21 +21,25 @@
   ],
   "fields": [
     {
-      "name": "name",
-      "type": "text",
-      "label": "$.wine.form.name",
-      "placeholder": "$.wine.placeholder.name"
-    },
-    {
-      "name": "kind",
+      "name": "color",
       "type": "select",
-      "label": "$.wine.form.kind",
+      "label": "$.wine.form.color",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?type=wine_kind&is_active=1&limit=100",
+        "url": "/api/enumerations?type=wine_color&is_active=1&limit=100",
         "label": "label",
         "value": "id"
       }
+    },
+    {
+      "name": "variant",
+      "type": "text",
+      "label": "$.wine.form.variant"
+    },
+    {
+      "name": "data.year",
+      "type": "number",
+      "label": "$.wine.form.year"
     },
     {
       "name": "data.quality",
@@ -49,22 +53,12 @@
       }
     },
     {
-      "name": "color",
+      "name": "kind",
       "type": "select",
-      "label": "$.wine.form.color",
+      "label": "$.wine.form.kind",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?type=wine_color&is_active=1&limit=100",
-        "label": "label",
-        "value": "id"
-      }
-    },
-    {
-      "name": "variant",
-      "type": "select",
-      "label": "$.wine.form.variant",
-      "restOptions": {
-        "url": "/api/enumerations?type=wine_variety&is_active=1&limit=100",
+        "url": "/api/enumerations?type=wine_kind&is_active=1&limit=100",
         "label": "label",
         "value": "id"
       }
@@ -73,41 +67,6 @@
       "name": "data.volume",
       "type": "number",
       "label": "$.wine.form.volume"
-    },
-    {
-      "name": "data.year",
-      "type": "number",
-      "label": "$.wine.form.year"
-    },
-    {
-      "name": "price",
-      "type": "number",
-      "label": "$.form.price"
-    },
-    {
-      "name": "stock_quantity",
-      "type": "number",
-      "label": "$.form.quantity_stock"
-    },
-    {
-      "name": "data.winery",
-      "type": "text",
-      "label": "$.wine.form.winery"
-    },
-    {
-      "name": "data.region",
-      "type": "text",
-      "label": "$.wine.form.region"
-    },
-    {
-      "name": "data.alcohol",
-      "type": "number",
-      "label": "$.wine.form.alcohol"
-    },
-    {
-      "name": "data.serving_temp",
-      "type": "text",
-      "label": "$.wine.form.serving_temp"
     }
   ]
 }
