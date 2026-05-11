@@ -81,7 +81,7 @@
       "clearable": true,
       "size": "lg",
       "restOptions": {
-        "url": "/api/enumerations?type=country_code&is_active=1&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"value\":\"country_code\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
       },

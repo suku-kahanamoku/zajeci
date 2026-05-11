@@ -33,7 +33,7 @@
       "label": "$.wine.form.kind",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?type=wine_kind&is_active=1&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_kind\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
       }
@@ -44,7 +44,7 @@
       "label": "$.wine.form.color",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?type=wine_color&is_active=1&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_color\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
       }
