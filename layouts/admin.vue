@@ -20,6 +20,24 @@ if (user.value?.role === "admin") {
   adminOrder.to = localePath(adminOrder.to!);
   menuItems.push(adminOrder);
 
+  const adminInvoice = menuItem("admin_invoice")!;
+  if (adminInvoice) {
+    adminInvoice.to = localePath(adminInvoice.to!);
+    menuItems.push(adminInvoice);
+  }
+
+  const adminAddress = menuItem("admin_address")!;
+  if (adminAddress) {
+    adminAddress.to = localePath(adminAddress.to!);
+    menuItems.push(adminAddress);
+  }
+
+  const adminRole = menuItem("admin_role")!;
+  if (adminRole) {
+    adminRole.to = localePath(adminRole.to!);
+    menuItems.push(adminRole);
+  }
+
   const adminCategory = menuItem("admin_category")!;
   adminCategory.to = localePath(adminCategory.to!);
   menuItems.push(adminCategory);

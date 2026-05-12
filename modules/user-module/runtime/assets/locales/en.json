@@ -43,6 +43,44 @@
         "state": "United Kingdom"
       }
     },
+    "address": {
+      "type": "Type",
+      "name": "Name",
+      "company": "Company",
+      "street": "Street",
+      "city": "City",
+      "zip": "Postal code",
+      "country": "Country",
+      "is_default": "Default",
+      "billing": "Billing",
+      "shipping": "Shipping",
+      "admin": {
+        "title": "Address Management",
+        "update": { "title": "Edit Address" },
+        "create": { "title": "New Address" }
+      },
+      "placeholder": {
+        "name": "John Doe",
+        "company": "Company Ltd.",
+        "street": "Main St 10",
+        "city": "Prague",
+        "zip": "10000",
+        "country": "CZ"
+      }
+    },
+    "role": {
+      "name": "Name",
+      "label": "Label",
+      "admin": {
+        "title": "Role Management",
+        "update": { "title": "Edit Role" },
+        "create": { "title": "New Role" }
+      },
+      "placeholder": {
+        "name": "admin",
+        "label": "Administrator"
+      }
+    },
     "dashboard": {
       "title": "Dashboard"
     }

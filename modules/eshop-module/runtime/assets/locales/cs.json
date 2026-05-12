@@ -75,7 +75,24 @@
       "status": "Stav",
       "delivery_type": "Typ dopravy",
       "payment_type": "Typ platby",
-      "order_id": "ID objednávky"
+      "order_id": "ID objednávky",
+      "order_number": "Číslo objednávky"
+    },
+    "invoice": {
+      "invoice_number": "Číslo faktury",
+      "order_id": "ID objednávky",
+      "status": "Stav",
+      "total_amount": "Celková částka",
+      "due_date": "Datum splatnosti",
+      "status_pending": "Nevyfakturovaná",
+      "status_paid": "Zaplacená",
+      "status_cancelled": "Zrušená",
+      "status_overdue": "Po splatnosti",
+      "admin": {
+        "title": "Správa faktur",
+        "update": { "title": "Editace faktury" },
+        "create": { "title": "Nová faktura" }
+      }
     }
   }
 }

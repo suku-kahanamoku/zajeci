@@ -1,0 +1,31 @@
+{
+  "syscode": "admin-address-list",
+  "restUrl": "/api/admin/address",
+  "deleteUrl": "/api/admin/address/${item.id}",
+  "pagination": { "limit": 20 },
+  "factory": {
+    "url": "${street}--$${id}"
+  },
+  "fields": [
+    {
+      "name": "type",
+      "label": "$.address.type",
+      "operator": { "value": "$eq", "enabled": true }
+    },
+    {
+      "name": "name",
+      "label": "$.address.name",
+      "operator": { "value": "$regex", "enabled": true }
+    },
+    {
+      "name": "street",
+      "label": "$.address.street",
+      "operator": { "value": "$regex", "enabled": true }
+    },
+    {
+      "name": "city",
+      "label": "$.address.city",
+      "operator": { "value": "$regex", "enabled": true }
+    }
+  ]
+}

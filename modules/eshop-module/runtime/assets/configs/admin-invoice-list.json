@@ -1,0 +1,30 @@
+{
+  "syscode": "admin-invoice-list",
+  "restUrl": "/api/admin/invoice",
+  "deleteUrl": "/api/admin/invoice/${item.id}",
+  "pagination": { "limit": 20 },
+  "factory": {
+    "url": "${invoice_number}--$${id}"
+  },
+  "fields": [
+    {
+      "name": "invoice_number",
+      "label": "$.invoice.invoice_number"
+    },
+    {
+      "name": "status",
+      "label": "$.invoice.status",
+      "operator": { "value": "$eq", "enabled": true }
+    },
+    {
+      "name": "total_amount",
+      "type": "number",
+      "label": "$.invoice.total_amount"
+    },
+    {
+      "name": "due_date",
+      "type": "text",
+      "label": "$.invoice.due_date"
+    }
+  ]
+}

@@ -43,6 +43,44 @@
         "state": "Česká Republika"
       }
     },
+    "address": {
+      "type": "Typ",
+      "name": "Jméno",
+      "company": "Firma",
+      "street": "Ulice",
+      "city": "Město",
+      "zip": "PSČ",
+      "country": "Stát",
+      "is_default": "Výchozí",
+      "billing": "Fakturační",
+      "shipping": "Doručovací",
+      "admin": {
+        "title": "Správa adres",
+        "update": { "title": "Editace adresy" },
+        "create": { "title": "Nová adresa" }
+      },
+      "placeholder": {
+        "name": "Jan Novák",
+        "company": "Firma s.r.o.",
+        "street": "Masarykova 10",
+        "city": "Brno",
+        "zip": "60200",
+        "country": "CZ"
+      }
+    },
+    "role": {
+      "name": "Název",
+      "label": "Popis",
+      "admin": {
+        "title": "Správa rolí",
+        "update": { "title": "Editace role" },
+        "create": { "title": "Nová role" }
+      },
+      "placeholder": {
+        "name": "admin",
+        "label": "Administrátor"
+      }
+    },
     "dashboard": {
       "title": "Dashboard"
     }

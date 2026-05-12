@@ -75,7 +75,24 @@
       "status": "Status",
       "delivery_type": "Delivery Type",
       "payment_type": "Payment Type",
-      "order_id": "Order ID"
+      "order_id": "Order ID",
+      "order_number": "Order Number"
+    },
+    "invoice": {
+      "invoice_number": "Invoice Number",
+      "order_id": "Order ID",
+      "status": "Status",
+      "total_amount": "Total Amount",
+      "due_date": "Due Date",
+      "status_pending": "Pending",
+      "status_paid": "Paid",
+      "status_cancelled": "Cancelled",
+      "status_overdue": "Overdue",
+      "admin": {
+        "title": "Invoice Management",
+        "update": { "title": "Edit Invoice" },
+        "create": { "title": "New Invoice" }
+      }
     }
   }
 }

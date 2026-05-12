@@ -1,0 +1,20 @@
+{
+  "syscode": "admin-invoice-update",
+  "restUrl": "/api/admin/invoice/${route.meta.id}",
+  "patchUrl": "/api/admin/invoice/${route.meta.id}/status",
+  "method": "PATCH",
+  "fields": [
+    {
+      "name": "status",
+      "type": "select",
+      "label": "$.invoice.status",
+      "required": true,
+      "options": [
+        { "label": "$.invoice.status_pending", "value": "pending" },
+        { "label": "$.invoice.status_paid", "value": "paid" },
+        { "label": "$.invoice.status_cancelled", "value": "cancelled" },
+        { "label": "$.invoice.status_overdue", "value": "overdue" }
+      ]
+    }
+  ]
+}
