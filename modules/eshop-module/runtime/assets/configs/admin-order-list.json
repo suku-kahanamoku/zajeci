@@ -1,6 +1,10 @@
 {
   "syscode": "admin-order-list",
   "restUrl": "/api/admin/order",
+  "deleteUrl": "/api/admin/order/${item.id}",
+  "pagination": {
+    "limit": 20
+  },
   "factory": {
     "url": "${order_number}--$${id}"
   },

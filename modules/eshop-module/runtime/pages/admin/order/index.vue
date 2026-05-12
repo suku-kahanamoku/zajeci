@@ -13,8 +13,18 @@ const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
 
-const { config, orders, loading, columns, selected, isOpen, onDelete } =
-  useOrderAdmin(oConfig);
+const {
+  config,
+  orders,
+  meta,
+  loading,
+  selected,
+  isOpen,
+  onDelete,
+  handleSort,
+  handlePage,
+  handleFilter,
+} = useOrderAdmin(oConfig);
 
 useHead({
   title,
@@ -53,27 +63,17 @@ useHead({
       />
     </div>
 
-    <UTable
-      v-if="orders?.data"
-      :data="orders.data as IOrder[]"
-      :columns="columns"
-      class="flex-1"
-    >
-      <template #id-cell="{ row }">
-        <NuxtLink
-          :to="
-            localePath(
-              routes.admin_order_detail?.path?.replace(
-                ':id',
-                String(row.original?.id),
-              ),
-            )
-          "
-        >
-          {{ row.original?.order_number || row.original?.id }}
-        </NuxtLink>
-      </template>
-    </UTable>
+    <CmpTable
+      v-model:selected="selected"
+      :config="config"
+      :data="orders?.data as IOrder[]"
+      :meta="meta"
+      :loading="loading"
+      @delete="isOpen = true"
+      @sort="handleSort"
+      @page="handlePage"
+      @filter="handleFilter"
+    />
 
     <CmpConfirmDialog
       v-model="isOpen"

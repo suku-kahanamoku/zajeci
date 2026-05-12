@@ -129,7 +129,7 @@ export interface IOrder extends IItem {
   shipping_address_id?: number | null;
   billing_address_id?: number | null;
   note?: string;
-  items?: IOrderItem[];
+  order_items?: IOrderItem[];
   created_at?: string;
   updated_at?: string;
 }

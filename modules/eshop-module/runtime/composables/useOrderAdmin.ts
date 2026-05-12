@@ -10,7 +10,8 @@ export function useOrderAdmin(wConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit } = useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } =
+    useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
   const selected = ref<IOrder[]>([]);
@@ -22,7 +23,7 @@ export function useOrderAdmin(wConfig: any) {
       config?.value?.fields?.map((f) => ({
         accessorKey: f.name,
         header: t(f.label!),
-      })) ?? []
+      })) ?? [],
   );
 
   const { data: config } = useAsyncData(
@@ -36,7 +37,7 @@ export function useOrderAdmin(wConfig: any) {
         return {} as IFormConfig;
       }
     },
-    { watch: [() => route.query] }
+    { watch: [() => route.query, () => route.params.id] },
   );
 
   // Orders
@@ -53,7 +54,13 @@ export function useOrderAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, routes.admin_order.path);
+          if (config.value.factory) {
+            url = useFactory(
+              url,
+              config.value.factory,
+              routes.admin_order?.path,
+            );
+          }
           return (await useApi(url)) as IOrderResponse | IOrdersResponse;
         } catch (error: any) {
           console.error(error);
@@ -65,7 +72,7 @@ export function useOrderAdmin(wConfig: any) {
     {
       watch: [config],
       immediate: true,
-    }
+    },
   );
 
   // Delete
@@ -96,20 +103,37 @@ export function useOrderAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_order.path);
+      navigateTo(routes.admin_order?.path);
     }
     loading.value = false;
   }
 
+  function handleSort(sort: Record<string, number>[]) {
+    if (!config.value?.syscode) return;
+    (config.value as any).sort = sort;
+    navigate(config.value as any);
+  }
+
+  function handlePage(page: number) {
+    onPageChange(config.value as any, page);
+  }
+
+  function handleFilter(data: Record<string, string>) {
+    onFilterChange(config.value as any, data);
+  }
+
   return {
     config,
-    columns,
     orders,
+    meta: computed(() => orders.value?.meta),
     loading,
     selected,
     isOpen,
     refresh,
     onDelete,
     onUpdate,
+    handleSort,
+    handlePage,
+    handleFilter,
   };
 }
