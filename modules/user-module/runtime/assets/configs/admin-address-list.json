@@ -4,7 +4,7 @@
   "deleteUrl": "/api/admin/address/${item.id}",
   "pagination": { "limit": 20 },
   "factory": {
-    "url": "${street}--$${id}"
+    "url": "${name}--$${id}"
   },
   "fields": [
     {

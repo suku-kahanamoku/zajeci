@@ -55,6 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
     GENERATE_PAGES("/", resolve);
     GENERATE_PAGES("/admin", resolve);
     GENERATE_PAGES("/admin/order", resolve);
+    GENERATE_PAGES("/admin/invoice", resolve);
 
     // Login api order endpoints
     const apiDir = resolve("./runtime/server/api");
@@ -66,6 +67,11 @@ export default defineNuxtModule<ModuleOptions>({
     const apiAdminOrderDir = resolve("./runtime/server/api/admin/order");
     fs.readdirSync(apiAdminOrderDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/order", resolve);
+    });
+
+    const apiAdminInvoiceDir = resolve("./runtime/server/api/admin/invoice");
+    fs.readdirSync(apiAdminInvoiceDir)?.forEach((file) => {
+      GENERATE_API_ENDPOINT(file, "/api/admin/invoice", resolve);
     });
 
     // Install common module

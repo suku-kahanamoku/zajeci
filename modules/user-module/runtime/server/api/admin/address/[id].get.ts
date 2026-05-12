@@ -3,5 +3,5 @@ import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event: H3Event) => {
   const id = event.context.params?.id;
-  return phpApiFetch(event, `/addresses/${id}`, { query: getQuery(event) });
+  return phpApiFetch(event, `/address/${id}`, { query: getQuery(event) });
 });

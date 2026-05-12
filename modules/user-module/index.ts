@@ -28,11 +28,23 @@ export default defineNuxtModule<ModuleOptions>({
 
     GENERATE_PAGES("/admin", resolve);
     GENERATE_PAGES("/admin/user", resolve);
+    GENERATE_PAGES("/admin/address", resolve);
+    GENERATE_PAGES("/admin/role", resolve);
 
     // Admin only — no public user endpoints
     const apiAdminUserDir = resolve("./runtime/server/api/admin/user");
     fs.readdirSync(apiAdminUserDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/user", resolve);
+    });
+
+    const apiAdminAddressDir = resolve("./runtime/server/api/admin/address");
+    fs.readdirSync(apiAdminAddressDir)?.forEach((file) => {
+      GENERATE_API_ENDPOINT(file, "/api/admin/address", resolve);
+    });
+
+    const apiAdminRoleDir = resolve("./runtime/server/api/admin/role");
+    fs.readdirSync(apiAdminRoleDir)?.forEach((file) => {
+      GENERATE_API_ENDPOINT(file, "/api/admin/role", resolve);
     });
 
     if (!hasNuxtModule("@suku-kahanamoku/common-module")) {

@@ -3,5 +3,5 @@ import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
-  return phpApiFetch(event, "/addresses", { method: "POST", body });
+  return phpApiFetch(event, "/address", { method: "POST", body });
 });
