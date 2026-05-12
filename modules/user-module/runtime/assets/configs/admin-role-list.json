@@ -15,7 +15,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "label",
@@ -23,12 +24,14 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "position",
       "type": "number",
-      "label": "$.role.position"
+      "label": "$.role.position",
+      "size": "md"
     }
   ]
 }

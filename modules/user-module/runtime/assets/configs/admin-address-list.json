@@ -2,30 +2,59 @@
   "syscode": "admin-address-list",
   "restUrl": "/api/admin/address",
   "deleteUrl": "/api/admin/address/${item.id}",
-  "pagination": { "limit": 20 },
+  "pagination": {
+    "limit": 20
+  },
   "factory": {
     "url": "${name}--$${id}"
   },
   "fields": [
     {
+      "name": "user_id",
+      "type": "select",
+      "label": "$.user.email",
+      "restOptions": {
+        "url": "/api/admin/user?limit=100",
+        "label": "email",
+        "value": "id"
+      },
+      "size": "md"
+    },
+    {
       "name": "type",
       "label": "$.address.type",
-      "operator": { "value": "$eq", "enabled": true }
+      "operator": {
+        "value": "$eq",
+        "enabled": true
+      },
+      "size": "md"
     },
     {
       "name": "name",
       "label": "$.address.name",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      },
+      "size": "md"
     },
     {
       "name": "street",
       "label": "$.address.street",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      },
+      "size": "md"
     },
     {
       "name": "city",
       "label": "$.address.city",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      },
+      "size": "md"
     }
   ]
 }

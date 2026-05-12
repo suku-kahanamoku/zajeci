@@ -16,7 +16,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "sku",
@@ -25,7 +26,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "kind",
@@ -36,7 +38,8 @@
         "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_kind\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
-      }
+      },
+      "size": "md"
     },
     {
       "name": "color",
@@ -47,17 +50,20 @@
         "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_color\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
-      }
+      },
+      "size": "md"
     },
     {
       "name": "price",
       "type": "number",
-      "label": "$.form.price"
+      "label": "$.form.price",
+      "size": "md"
     },
     {
       "name": "stock_quantity",
       "type": "number",
-      "label": "$.form.quantity_stock"
+      "label": "$.form.quantity_stock",
+      "size": "md"
     },
     {
       "name": "is_active",
@@ -72,7 +78,8 @@
           "value": 0,
           "label": "$.form.no"
         }
-      ]
+      ],
+      "size": "md"
     }
   ]
 }

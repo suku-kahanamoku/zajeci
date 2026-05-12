@@ -5,12 +5,27 @@
   "method": "PATCH",
   "fields": [
     {
-      "name": "type",
+      "name": "user_id",
       "type": "select",
+      "label": "$.user.email",
+      "restOptions": {
+        "url": "/api/admin/user?limit=100",
+        "label": "email",
+        "value": "id"
+      }
+    },
+    {
+      "name": "type",
       "label": "$.address.type",
       "options": [
-        { "label": "$.address.billing", "value": "billing" },
-        { "label": "$.address.shipping", "value": "shipping" }
+        {
+          "label": "$.address.billing",
+          "value": "billing"
+        },
+        {
+          "label": "$.address.shipping",
+          "value": "shipping"
+        }
       ]
     },
     {

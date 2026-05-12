@@ -15,7 +15,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "title",
@@ -23,7 +24,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "language",
@@ -31,7 +33,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "is_active",
@@ -46,7 +49,8 @@
           "value": 0,
           "label": "$.form.no"
         }
-      ]
+      ],
+      "size": "md"
     }
   ]
 }

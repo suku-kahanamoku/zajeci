@@ -17,7 +17,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "type",
@@ -26,7 +27,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "label",
@@ -36,7 +38,8 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "value",
@@ -45,12 +48,14 @@
       "operator": {
         "value": "$regex",
         "enabled": true
-      }
+      },
+      "size": "md"
     },
     {
       "name": "position",
       "type": "number",
-      "label": "$.enum.form.position"
+      "label": "$.enum.form.position",
+      "size": "md"
     },
     {
       "name": "is_active",
@@ -65,7 +70,8 @@
           "value": 0,
           "label": "$.form.no"
         }
-      ]
+      ],
+      "size": "md"
     }
   ]
 }

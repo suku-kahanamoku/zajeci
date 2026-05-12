@@ -11,20 +11,24 @@
   "fields": [
     {
       "name": "order_number",
-      "label": "$.order.order_number"
+      "label": "$.order.order_number",
+      "size": "md"
     },
     {
       "name": "status",
-      "label": "$.order.status"
+      "label": "$.order.status",
+      "size": "md"
     },
     {
       "name": "payment_method",
-      "label": "$.order.payment_type"
+      "label": "$.order.payment_type",
+      "size": "md"
     },
     {
       "name": "total_amount",
       "type": "number",
-      "label": "$.order.total_price"
+      "label": "$.order.total_price",
+      "size": "md"
     }
   ]
 }

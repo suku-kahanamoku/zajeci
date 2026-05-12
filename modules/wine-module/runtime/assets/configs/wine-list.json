@@ -31,21 +31,24 @@
         "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_color\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
-      }
+      },
+      "size": "md"
     },
     {
       "name": "variant",
       "type": "text",
       "label": "$.wine.form.variant",
       "iconName": "i-heroicons-sparkles",
-      "iconColor": "text-green-500"
+      "iconColor": "text-green-500",
+      "size": "md"
     },
     {
       "name": "data.year",
       "type": "number",
       "label": "$.wine.form.year",
       "iconName": "i-heroicons-calendar",
-      "iconColor": "text-amber-500"
+      "iconColor": "text-amber-500",
+      "size": "md"
     },
     {
       "name": "data.quality",
@@ -58,7 +61,8 @@
         "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_quality\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
-      }
+      },
+      "size": "md"
     },
     {
       "name": "kind",
@@ -71,14 +75,16 @@
         "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_kind\"},\"is_active\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
-      }
+      },
+      "size": "md"
     },
     {
       "name": "data.volume",
       "type": "number",
       "label": "$.wine.form.volume",
       "iconName": "i-heroicons-beaker",
-      "iconColor": "text-blue-500"
+      "iconColor": "text-blue-500",
+      "size": "md"
     }
   ]
 }
