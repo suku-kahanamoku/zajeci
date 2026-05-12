@@ -6,6 +6,7 @@
       "syscode": "Code",
       "description": "Description",
       "position": "Position",
+      "parent": "Parent Category",
       "placeholder": {
         "name": "Enter category name",
         "syscode": "Enter category code",

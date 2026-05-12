@@ -6,6 +6,7 @@
       "syscode": "Kód",
       "description": "Popis",
       "position": "Pořadí",
+      "parent": "Nadřazená kategorie",
       "placeholder": {
         "name": "Zadejte název kategorie",
         "syscode": "Zadejte kód kategorie",

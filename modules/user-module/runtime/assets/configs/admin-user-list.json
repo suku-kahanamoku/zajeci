@@ -2,7 +2,9 @@
   "syscode": "admin-user-list",
   "restUrl": "/api/admin/user",
   "deleteUrl": "/api/admin/user/${item.id}",
-  "pagination": { "limit": 20 },
+  "pagination": {
+    "limit": 20
+  },
   "factory": {
     "url": "${email}--$${id}"
   },
@@ -11,25 +13,65 @@
       "name": "email",
       "type": "text",
       "label": "$.user.email",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "first_name",
       "type": "text",
       "label": "$.user.name",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "last_name",
       "type": "text",
       "label": "$.user.surname",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
     },
     {
       "name": "role",
       "type": "text",
       "label": "$.user.role",
-      "operator": { "value": "$regex", "enabled": true }
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
+    },
+    {
+      "name": "phone",
+      "type": "text",
+      "label": "$.user.phone",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      }
+    },
+    {
+      "name": "status",
+      "type": "select",
+      "label": "$.user.status",
+      "options": [
+        {
+          "value": "active",
+          "label": "$.form.active"
+        },
+        {
+          "value": "inactive",
+          "label": "$.user.status_inactive"
+        },
+        {
+          "value": "banned",
+          "label": "$.user.status_banned"
+        }
+      ]
     }
   ]
 }

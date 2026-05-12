@@ -6,7 +6,10 @@
       "name": "First Name",
       "surname": "Last Name",
       "phone": "Phone",
-      "role": "Role"
+      "role": "Role",
+      "status": "Status",
+      "status_inactive": "Inactive",
+      "status_banned": "Banned"
     },
     "admin": {
       "user": {
@@ -71,6 +74,7 @@
     "role": {
       "name": "Name",
       "label": "Label",
+      "position": "Position",
       "admin": {
         "title": "Role Management",
         "update": { "title": "Edit Role" },
@@ -78,7 +82,8 @@
       },
       "placeholder": {
         "name": "admin",
-        "label": "Administrator"
+        "label": "Administrator",
+        "position": "0"
       }
     },
     "dashboard": {

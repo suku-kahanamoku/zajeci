@@ -38,6 +38,25 @@
         "label": "label",
         "value": "id"
       }
+    },
+    {
+      "name": "status",
+      "type": "select",
+      "label": "$.user.status",
+      "options": [
+        {
+          "value": "active",
+          "label": "$.form.active"
+        },
+        {
+          "value": "inactive",
+          "label": "$.user.status_inactive"
+        },
+        {
+          "value": "banned",
+          "label": "$.user.status_banned"
+        }
+      ]
     }
   ]
 }

@@ -15,6 +15,12 @@
       "type": "text",
       "label": "$.role.label",
       "placeholder": "$.role.placeholder.label"
+    },
+    {
+      "name": "position",
+      "type": "number",
+      "label": "$.role.position",
+      "placeholder": "$.role.placeholder.position"
     }
   ]
 }

@@ -6,7 +6,10 @@
       "name": "Jméno",
       "surname": "Příjmení",
       "phone": "Telefon",
-      "role": "Role"
+      "role": "Role",
+      "status": "Stav",
+      "status_inactive": "Neaktivní",
+      "status_banned": "Zakázán"
     },
     "admin": {
       "user": {
@@ -71,6 +74,7 @@
     "role": {
       "name": "Název",
       "label": "Popis",
+      "position": "Pořadí",
       "admin": {
         "title": "Správa rolí",
         "update": { "title": "Editace role" },
@@ -78,7 +82,8 @@
       },
       "placeholder": {
         "name": "admin",
-        "label": "Administrátor"
+        "label": "Administrátor",
+        "position": "0"
       }
     },
     "dashboard": {

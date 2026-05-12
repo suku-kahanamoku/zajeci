@@ -4,6 +4,17 @@
   "method": "POST",
   "fields": [
     {
+      "name": "parent_id",
+      "type": "select",
+      "label": "$.category.parent",
+      "placeholder": "$.form.select",
+      "restOptions": {
+        "url": "/api/category?limit=100",
+        "label": "name",
+        "value": "id"
+      }
+    },
+    {
       "name": "name",
       "type": "text",
       "label": "$.category.name",
