@@ -13,7 +13,10 @@ useSeoMeta({
   robots: "noindex, nofollow",
 });
 
-if (user.value?.role === "admin" || (user.value?.role as any)?.name === "admin") {
+if (
+  user.value?.role === "admin" ||
+  (user.value?.role as any)?.name === "admin"
+) {
   const adminWine = menuItem("admin_wine");
   if (adminWine) {
     adminWine.to = localePath(adminWine.to!);
@@ -84,7 +87,9 @@ if (user.value?.role === "admin" || (user.value?.role as any)?.name === "admin")
     <UHeader :ui="{ container: 'px-4!' }">
       <template #toggle>
         <UButton
-          icon="i-lucide-panel-left"
+          v-if="menuItems.length"
+          class="lg:hidden"
+          icon="i-heroicons-bars-3"
           color="neutral"
           variant="ghost"
           aria-label="Toggle sidebar"
