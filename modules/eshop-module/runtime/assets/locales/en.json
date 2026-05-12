@@ -76,7 +76,14 @@
       "delivery_type": "Delivery Type",
       "payment_type": "Payment Type",
       "order_id": "Order ID",
-      "order_number": "Order Number"
+      "order_number": "Order Number",
+      "status_pending": "Pending",
+      "status_confirmed": "Confirmed",
+      "status_processing": "Processing",
+      "status_shipped": "Shipped",
+      "status_delivered": "Delivered",
+      "status_cancelled": "Cancelled",
+      "status_refunded": "Refunded"
     },
     "invoice": {
       "invoice_number": "Invoice Number",
@@ -84,10 +91,12 @@
       "status": "Status",
       "total_amount": "Total Amount",
       "due_date": "Due Date",
-      "status_pending": "Pending",
+      "status_draft": "Draft",
+      "status_issued": "Issued",
       "status_paid": "Paid",
-      "status_cancelled": "Cancelled",
       "status_overdue": "Overdue",
+      "status_cancelled": "Cancelled",
+      "status_refunded": "Refunded",
       "admin": {
         "title": "Invoice Management",
         "update": { "title": "Edit Invoice" },

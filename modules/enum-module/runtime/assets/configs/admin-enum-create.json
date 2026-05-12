@@ -36,9 +36,9 @@
       "label": "$.enum.form.position"
     },
     {
-      "name": "is_active",
+      "name": "published",
       "type": "select",
-      "label": "$.form.is_active",
+      "label": "$.form.published",
       "options": [
         {
           "value": 1,

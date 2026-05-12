@@ -5,7 +5,7 @@ export interface ICategory extends IItem {
   syscode?: string;
   parent_id?: number | null;
   description?: string;
-  is_active?: boolean;
+  published?: boolean;
   created_at?: string;
   updated_at?: string;
 }

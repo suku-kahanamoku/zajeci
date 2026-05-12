@@ -7,7 +7,7 @@ export interface IEnumItem extends IItem {
   label: string;
   value: string;
   position: number;
-  is_active: 0 | 1;
+  published: 0 | 1;
   created_at: string;
   updated_at: string | null;
 }

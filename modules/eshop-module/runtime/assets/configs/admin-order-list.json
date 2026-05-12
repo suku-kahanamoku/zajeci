@@ -17,7 +17,21 @@
     },
     {
       "name": "status",
+      "type": "select",
       "label": "$.order.status",
+      "options": [
+        { "label": "$.order.status_pending", "value": "pending" },
+        { "label": "$.order.status_confirmed", "value": "confirmed" },
+        { "label": "$.order.status_processing", "value": "processing" },
+        { "label": "$.order.status_shipped", "value": "shipped" },
+        { "label": "$.order.status_delivered", "value": "delivered" },
+        { "label": "$.order.status_cancelled", "value": "cancelled" },
+        { "label": "$.order.status_refunded", "value": "refunded" }
+      ],
+      "operator": {
+        "value": "$eq",
+        "enabled": true
+      },
       "size": "md",
       "clearable": true
     },

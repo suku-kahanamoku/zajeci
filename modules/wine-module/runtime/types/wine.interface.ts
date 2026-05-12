@@ -66,7 +66,7 @@ export interface IWine extends IItem {
   };
   vat_rate?: string;
   category_ids?: number[];
-  is_active?: boolean;
+  published?: boolean;
   created_at?: string;
   updated_at?: string;
 }

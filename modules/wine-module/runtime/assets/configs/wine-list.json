@@ -28,7 +28,7 @@
       "iconColor": "text-pink-500",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_color\"},\"is_active\":{\"value\":1}}&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_color\"},\"published\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
       },
@@ -61,7 +61,7 @@
       "iconColor": "text-yellow-500",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_quality\"},\"is_active\":{\"value\":1}}&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_quality\"},\"published\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
       },
@@ -76,7 +76,7 @@
       "iconColor": "text-primary-500",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_kind\"},\"is_active\":{\"value\":1}}&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_kind\"},\"published\":{\"value\":1}}&limit=100",
         "label": "label",
         "value": "value"
       },

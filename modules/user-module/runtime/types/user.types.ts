@@ -6,7 +6,7 @@ export interface IAdminUser extends IItem {
   surname?: string;
   phone?: string;
   role?: string;
-  is_active?: boolean;
+  published?: boolean;
   created_at?: string;
   updated_at?: string;
 }

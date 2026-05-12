@@ -92,7 +92,7 @@
       "user": "User",
       "admin": "Admin",
       "active": "Published",
-      "is_active": "Published",
+      "published": "Published",
       "yes": "Yes",
       "no": "No",
       "select": "Select..."

@@ -5,7 +5,7 @@ export interface IText extends IItem {
   title?: string;
   content?: string;
   language?: string;
-  is_active?: boolean;
+  published?: boolean;
   created_at?: string;
   updated_at?: string;
 }
