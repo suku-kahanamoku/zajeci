@@ -70,7 +70,7 @@
     {
       "name": "published",
       "type": "select",
-      "label": "$.form.active",
+      "label": "$.form.published",
       "options": [
         {
           "value": 1,
