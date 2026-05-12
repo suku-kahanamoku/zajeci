@@ -16,9 +16,9 @@ const profileMenuItems = [
     },
     children: [
       {
-        label: t(routes.pz?.meta?.title as string),
+        label: t(routes.admin?.meta?.title as string),
         icon: "i-heroicons-chart-bar-square",
-        to: localePath(routes.pz?.path!),
+        to: localePath(routes.admin?.path!),
       },
       {
         label: t(routes.admin_profile?.meta?.title as string),

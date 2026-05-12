@@ -24,6 +24,10 @@ export default defineNuxtConfig({
     "nuxt-rating",
   ],
 
+  authModule: {
+    protectedPages: ["/admin"],
+  },
+
   css: ["@/assets/css/main.css"],
 
   ui: {

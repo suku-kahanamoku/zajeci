@@ -1,8 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
   layout: "admin",
-  syscode: "pz",
-  title: "$.pz.title",
+  syscode: "admin",
+  title: "$.admin.title",
 });
 
 const { t } = useLang();
@@ -20,7 +20,7 @@ useHead({
 
 <template>
   <div class="w-full max-w-7xl mx-auto px-5">
-    <div :id="(routes.pz?.meta?.syscode as string)">
+    <div :id="routes.admin?.meta?.syscode as string">
       <UPageHeader
         :title="title"
         :ui="{ title: 'mx-auto text-primary-600 dark:text-white' }"
