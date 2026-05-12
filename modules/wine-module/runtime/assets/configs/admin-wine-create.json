@@ -134,7 +134,7 @@
       "placeholder": "$.form.select",
       "multiple": true,
       "restOptions": {
-        "url": "/api/category?q={\"is_active\":{\"value\":1}}&limit=100",
+        "url": "/api/category?limit=100",
         "label": "name",
         "value": "id"
       }
