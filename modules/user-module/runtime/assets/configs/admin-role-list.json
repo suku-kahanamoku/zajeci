@@ -16,7 +16,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "label",
@@ -25,13 +26,15 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "position",
       "type": "number",
       "label": "$.role.position",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     }
   ]
 }

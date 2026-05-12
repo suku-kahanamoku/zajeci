@@ -12,23 +12,27 @@
     {
       "name": "order_number",
       "label": "$.order.order_number",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "status",
       "label": "$.order.status",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "payment_method",
       "label": "$.order.payment_type",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "total_amount",
       "type": "number",
       "label": "$.order.total_price",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     }
   ]
 }

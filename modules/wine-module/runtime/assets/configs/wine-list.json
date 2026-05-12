@@ -32,7 +32,8 @@
         "label": "label",
         "value": "value"
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "variant",
@@ -40,7 +41,8 @@
       "label": "$.wine.form.variant",
       "iconName": "i-heroicons-sparkles",
       "iconColor": "text-green-500",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "data.year",
@@ -48,7 +50,8 @@
       "label": "$.wine.form.year",
       "iconName": "i-heroicons-calendar",
       "iconColor": "text-amber-500",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "data.quality",
@@ -62,7 +65,8 @@
         "label": "label",
         "value": "value"
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "kind",
@@ -76,7 +80,8 @@
         "label": "label",
         "value": "value"
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "data.volume",
@@ -84,7 +89,8 @@
       "label": "$.wine.form.volume",
       "iconName": "i-heroicons-beaker",
       "iconColor": "text-blue-500",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     }
   ]
 }

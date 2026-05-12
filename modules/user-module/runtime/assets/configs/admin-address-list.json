@@ -11,6 +11,7 @@
   "fields": [
     {
       "name": "user_id",
+      "colName": "user.email",
       "type": "select",
       "label": "$.user.email",
       "restOptions": {
@@ -18,7 +19,8 @@
         "label": "email",
         "value": "id"
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "type",
@@ -39,7 +41,7 @@
         "value": "$eq",
         "enabled": true
       },
-      "size": "md"
+      "clearable": true
     },
     {
       "name": "name",
@@ -48,7 +50,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "street",
@@ -57,7 +60,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "city",
@@ -66,7 +70,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     }
   ]
 }

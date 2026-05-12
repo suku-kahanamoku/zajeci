@@ -12,7 +12,8 @@
     {
       "name": "invoice_number",
       "label": "$.invoice.invoice_number",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "status",
@@ -21,19 +22,22 @@
         "value": "$eq",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "total_amount",
       "type": "number",
       "label": "$.invoice.total_amount",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "due_date",
       "type": "text",
       "label": "$.invoice.due_date",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     }
   ]
 }

@@ -18,7 +18,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "type",
@@ -28,7 +29,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "label",
@@ -39,7 +41,8 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "value",
@@ -49,13 +52,15 @@
         "value": "$regex",
         "enabled": true
       },
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "position",
       "type": "number",
       "label": "$.enum.form.position",
-      "size": "md"
+      "size": "md",
+      "clearable": true
     },
     {
       "name": "is_active",
@@ -71,7 +76,8 @@
           "label": "$.form.no"
         }
       ],
-      "size": "md"
+      "size": "md",
+      "clearable": true
     }
   ]
 }

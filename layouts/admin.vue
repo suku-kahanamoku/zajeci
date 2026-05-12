@@ -7,79 +7,83 @@ const { routes, route, menuItem } = useMenuItems();
 
 const open = ref(true);
 
-const menuItems: any[] = [];
-
 useSeoMeta({
   robots: "noindex, nofollow",
 });
 
-if (
-  user.value?.role === "admin" ||
-  (user.value?.role as any)?.name === "admin"
-) {
-  const adminWine = menuItem("admin_wine");
-  if (adminWine) {
-    adminWine.to = localePath(adminWine.to!);
-    adminWine.icon = "i-heroicons-beaker";
-    menuItems.push(adminWine);
+const menuItems = computed(() => {
+  const items: any[] = [];
+
+  if (
+    user.value?.role === "admin" ||
+    (user.value?.role as any)?.name === "admin"
+  ) {
+    const adminWine = menuItem("admin_wine");
+    if (adminWine) {
+      adminWine.to = localePath(adminWine.to!);
+      adminWine.icon = "i-heroicons-beaker";
+      items.push(adminWine);
+    }
+
+    const adminOrder = menuItem("admin_order");
+    if (adminOrder) {
+      adminOrder.to = localePath(adminOrder.to!);
+      adminOrder.icon = "i-heroicons-shopping-bag";
+      items.push(adminOrder);
+    }
+
+    const adminInvoice = menuItem("admin_invoice");
+    if (adminInvoice) {
+      adminInvoice.to = localePath(adminInvoice.to!);
+      adminInvoice.icon = "i-heroicons-document-text";
+      items.push(adminInvoice);
+    }
+
+    const adminAddress = menuItem("admin_address");
+    if (adminAddress) {
+      adminAddress.to = localePath(adminAddress.to!);
+      adminAddress.icon = "i-heroicons-map-pin";
+      items.push(adminAddress);
+    }
+
+    const adminRole = menuItem("admin_role");
+    if (adminRole) {
+      adminRole.to = localePath(adminRole.to!);
+      adminRole.icon = "i-heroicons-shield-check";
+      items.push(adminRole);
+    }
+
+    const adminCategory = menuItem("admin_category");
+    if (adminCategory) {
+      adminCategory.to = localePath(adminCategory.to!);
+      adminCategory.icon = "i-heroicons-tag";
+      items.push(adminCategory);
+    }
+
+    const adminUser = menuItem("admin_user");
+    if (adminUser) {
+      adminUser.to = localePath(adminUser.to!);
+      adminUser.icon = "i-heroicons-users";
+      items.push(adminUser);
+    }
+
+    const adminText = menuItem("admin_text");
+    if (adminText) {
+      adminText.to = localePath(adminText.to!);
+      adminText.icon = "i-heroicons-document";
+      items.push(adminText);
+    }
+
+    const adminEnum = menuItem("admin_enum");
+    if (adminEnum) {
+      adminEnum.to = localePath(adminEnum.to!);
+      adminEnum.icon = "i-heroicons-list-bullet";
+      items.push(adminEnum);
+    }
   }
 
-  const adminOrder = menuItem("admin_order");
-  if (adminOrder) {
-    adminOrder.to = localePath(adminOrder.to!);
-    adminOrder.icon = "i-heroicons-shopping-bag";
-    menuItems.push(adminOrder);
-  }
-
-  const adminInvoice = menuItem("admin_invoice");
-  if (adminInvoice) {
-    adminInvoice.to = localePath(adminInvoice.to!);
-    adminInvoice.icon = "i-heroicons-document-text";
-    menuItems.push(adminInvoice);
-  }
-
-  const adminAddress = menuItem("admin_address");
-  if (adminAddress) {
-    adminAddress.to = localePath(adminAddress.to!);
-    adminAddress.icon = "i-heroicons-map-pin";
-    menuItems.push(adminAddress);
-  }
-
-  const adminRole = menuItem("admin_role");
-  if (adminRole) {
-    adminRole.to = localePath(adminRole.to!);
-    adminRole.icon = "i-heroicons-shield-check";
-    menuItems.push(adminRole);
-  }
-
-  const adminCategory = menuItem("admin_category");
-  if (adminCategory) {
-    adminCategory.to = localePath(adminCategory.to!);
-    adminCategory.icon = "i-heroicons-tag";
-    menuItems.push(adminCategory);
-  }
-
-  const adminUser = menuItem("admin_user");
-  if (adminUser) {
-    adminUser.to = localePath(adminUser.to!);
-    adminUser.icon = "i-heroicons-users";
-    menuItems.push(adminUser);
-  }
-
-  const adminText = menuItem("admin_text");
-  if (adminText) {
-    adminText.to = localePath(adminText.to!);
-    adminText.icon = "i-heroicons-document";
-    menuItems.push(adminText);
-  }
-
-  const adminEnum = menuItem("admin_enum");
-  if (adminEnum) {
-    adminEnum.to = localePath(adminEnum.to!);
-    adminEnum.icon = "i-heroicons-list-bullet";
-    menuItems.push(adminEnum);
-  }
-}
+  return items;
+});
 </script>
 
 <template>
