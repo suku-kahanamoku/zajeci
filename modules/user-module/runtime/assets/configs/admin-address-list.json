@@ -22,7 +22,19 @@
     },
     {
       "name": "type",
+      "type": "select",
       "label": "$.address.type",
+      "options": [
+        {
+          "label": "$.address.billing",
+          "value": "billing"
+        },
+        {
+          "label": "$.address.shipping",
+          "value": "shipping"
+        }
+      ],
+      "size": "md",
       "operator": {
         "value": "$eq",
         "enabled": true

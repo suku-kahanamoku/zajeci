@@ -16,6 +16,7 @@
     },
     {
       "name": "type",
+      "type": "select",
       "label": "$.address.type",
       "options": [
         {
