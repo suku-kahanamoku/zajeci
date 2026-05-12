@@ -1,6 +1,6 @@
 {
   "syscode": "wine-list-top",
-  "restUrl": "/api/wine?q={\"category_syscode\":{\"value\":\"top\"}}",
+  "restUrl": "/api/wine?q={\"category.syscode\":{\"value\":\"top\"}}",
   "factory": {
     "url": "${name}--$${id}"
   },
