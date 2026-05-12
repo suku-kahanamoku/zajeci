@@ -1,3 +1,5 @@
+import { setUserSessionFromPhp } from "@/server/utils/session";
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const baseUrl = config.phpApiBaseUrl as string;
@@ -17,20 +19,8 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { token, id, email, first_name, last_name, role } = response.data;
-
-  // Ulozime token a uzivatele do session (stejna struktura jako OAuth login)
-  await setUserSession(event, {
-    token,
-    user: {
-      id,
-      email,
-      name: `${first_name} ${last_name}`.trim(),
-      first_name,
-      last_name,
-      role,
-    },
-  });
+  const { token, id } = response.data;
+  await setUserSessionFromPhp(event, baseUrl, token, id);
 
   return { success: true };
 });

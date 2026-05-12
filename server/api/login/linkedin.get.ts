@@ -1,10 +1,10 @@
 import { type H3Event } from "h3";
 import {
   defineOAuthLinkedInEventHandler,
-  setUserSession,
   sendRedirect,
   useRuntimeConfig,
 } from "#imports";
+import { setUserSessionFromPhp } from "@/server/utils/session";
 
 export default defineOAuthLinkedInEventHandler({
   async onSuccess(
@@ -37,26 +37,8 @@ export default defineOAuthLinkedInEventHandler({
       return await sendRedirect(event, "/login");
     }
 
-    const {
-      token,
-      id,
-      email: userEmail,
-      first_name,
-      last_name,
-      role,
-    } = response.data;
-
-    await setUserSession(event, {
-      token,
-      user: {
-        id,
-        email: userEmail,
-        name: `${first_name} ${last_name}`.trim(),
-        first_name,
-        last_name,
-        role,
-      },
-    });
+    const { token, id } = response.data;
+    await setUserSessionFromPhp(event, baseUrl, token, id);
 
     return await sendRedirect(event, "/admin");
   },

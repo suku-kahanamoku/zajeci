@@ -14,17 +14,17 @@
       "value": ""
     },
     {
-      "name": "role",
+      "name": "role_id",
       "type": "select",
       "label": "$.form.role",
       "required": true,
       "size": "lg",
-      "options": [
-        { "value": "guest", "label": "$.form.guest" },
-        { "value": "user", "label": "$.form.user" },
-        { "value": "admin", "label": "$.form.admin" }
-      ],
-      "value": "guest"
+      "restOptions": {
+        "url": "/api/admin/role",
+        "label": "label",
+        "value": "id"
+      },
+      "value": null
     },
     {
       "name": "first_name",

@@ -1,4 +1,5 @@
 import SignupForm from "@/emails/SignupForm.vue";
+import { setUserSessionFromPhp } from "@/server/utils/session";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -27,13 +28,8 @@ export default defineEventHandler(async (event) => {
   }).catch((err: any) => err?.data ?? null);
 
   if (loginResponse?.success && loginResponse?.data?.token) {
-    const { token, id, email, first_name, last_name, role } =
-      loginResponse.data;
-    const name = [first_name, last_name].filter(Boolean).join(" ") || email;
-    await setUserSession(event, {
-      token,
-      user: { id, email, name, first_name, last_name, role },
-    });
+    const { token, id } = loginResponse.data;
+    await setUserSessionFromPhp(event, baseUrl, token, id);
   }
 
   // Odesleme potvrzovaci email
