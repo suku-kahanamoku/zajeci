@@ -13,7 +13,7 @@ useSeoMeta({
   robots: "noindex, nofollow",
 });
 
-if (user.value?.role === "admin") {
+if (user.value?.role === "admin" || (user.value?.role as any)?.name === "admin") {
   const adminWine = menuItem("admin_wine");
   if (adminWine) {
     adminWine.to = localePath(adminWine.to!);
