@@ -36,21 +36,6 @@
       "placeholder": "$.admin.taste.placeholder.time"
     },
     {
-      "name": "data.popular",
-      "type": "select",
-      "label": "$.admin.taste.form.popular",
-      "options": [
-        {
-          "value": true,
-          "label": "$.form.yes"
-        },
-        {
-          "value": false,
-          "label": "$.form.no"
-        }
-      ]
-    },
-    {
       "name": "description",
       "type": "textarea",
       "label": "$.form.description"

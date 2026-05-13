@@ -82,8 +82,7 @@
         "form": {
           "drink": "Nápoje",
           "food": "Občerstvení",
-          "time": "Délka",
-          "popular": "Doporučené"
+          "time": "Délka"
         },
         "placeholder": {
           "name": "Zadejte název balíčku",

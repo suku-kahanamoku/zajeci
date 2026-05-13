@@ -1,6 +1,6 @@
 {
   "syscode": "admin-wine-list",
-  "restUrl": "/api/wine",
+  "restUrl": "/api/wine?q={\"kind\":{\"value\":\"tasting\",\"operator\":{\"value\":\"$ne\"}}}",
   "deleteUrl": "/api/admin/wine/${item.id}",
   "pagination": {
     "limit": 20

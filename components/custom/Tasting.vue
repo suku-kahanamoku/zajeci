@@ -1,44 +1,9 @@
 <script setup lang="ts">
 import TasteCard from "./TasteCard.vue";
 
-const tasting = [
-  {
-    name: "$.tasting.basic.title",
-    price: {
-      value: "250 Kč / osoba",
-    },
-    popular: false,
-    features: [
-      { label: "$.tasting.basic.drink", icon: "ph:wine-duotone" },
-      { label: "$.tasting.basic.food", icon: "icon-park-outline:bread" },
-      { label: "$.tasting.basic.time", icon: "ion:hourglass-outline" },
-    ],
-  },
-  {
-    name: "$.tasting.standard.title",
-    price: {
-      value: "500 Kč / osoba",
-    },
-    popular: true,
-    features: [
-      { label: "$.tasting.standard.drink", icon: "ph:wine-duotone" },
-      { label: "$.tasting.standard.food", icon: "icon-park-outline:bread" },
-      { label: "$.tasting.standard.time", icon: "ion:hourglass-outline" },
-    ],
-  },
-  {
-    name: "$.tasting.premium.title",
-    price: {
-      value: "900 Kč / osoba",
-    },
-    popular: false,
-    features: [
-      { label: "$.tasting.premium.drink", icon: "ph:wine-duotone" },
-      { label: "$.tasting.premium.food", icon: "icon-park-outline:bread" },
-      { label: "$.tasting.premium.time", icon: "ion:hourglass-outline" },
-    ],
-  },
-];
+const { data: tasting } = await useAsyncData("tasting", () =>
+  $fetch<{ data: any[] }>("/api/taste?limit=100").then((r) => r.data ?? []).catch(() => [])
+);
 </script>
 
 <template>

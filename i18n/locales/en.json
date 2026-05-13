@@ -82,8 +82,7 @@
         "form": {
           "drink": "Drinks",
           "food": "Food",
-          "time": "Duration",
-          "popular": "Recommended"
+          "time": "Duration"
         },
         "placeholder": {
           "name": "Enter package name",
