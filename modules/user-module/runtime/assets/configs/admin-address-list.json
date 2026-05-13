@@ -72,6 +72,23 @@
       },
       "size": "md",
       "clearable": true
+    },
+    {
+      "name": "deleted",
+      "type": "select",
+      "label": "$.form.deleted",
+      "options": [
+        {
+          "value": 1,
+          "label": "$.form.yes"
+        },
+        {
+          "value": 0,
+          "label": "$.form.no"
+        }
+      ],
+      "size": "md",
+      "clearable": true
     }
   ]
 }

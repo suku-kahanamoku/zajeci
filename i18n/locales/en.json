@@ -93,6 +93,7 @@
       "admin": "Admin",
       "active": "Active",
       "published": "Published",
+      "deleted": "Deleted",
       "yes": "Yes",
       "no": "No",
       "select": "Select..."
