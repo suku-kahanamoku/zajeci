@@ -1,0 +1,74 @@
+{
+  "syscode": "admin-taste-update",
+  "restUrl": "/api/taste/${route.meta.id}",
+  "patchUrl": "/api/admin/taste/${route.meta.id}",
+  "method": "PATCH",
+  "fields": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "$.form.name",
+      "placeholder": "$.admin.taste.placeholder.name",
+      "required": true
+    },
+    {
+      "name": "price",
+      "type": "number",
+      "label": "$.form.price",
+      "required": true
+    },
+    {
+      "name": "data.drink",
+      "type": "text",
+      "label": "$.admin.taste.form.drink",
+      "placeholder": "$.admin.taste.placeholder.drink"
+    },
+    {
+      "name": "data.food",
+      "type": "text",
+      "label": "$.admin.taste.form.food",
+      "placeholder": "$.admin.taste.placeholder.food"
+    },
+    {
+      "name": "data.time",
+      "type": "text",
+      "label": "$.admin.taste.form.time",
+      "placeholder": "$.admin.taste.placeholder.time"
+    },
+    {
+      "name": "data.popular",
+      "type": "select",
+      "label": "$.admin.taste.form.popular",
+      "options": [
+        {
+          "value": true,
+          "label": "$.form.yes"
+        },
+        {
+          "value": false,
+          "label": "$.form.no"
+        }
+      ]
+    },
+    {
+      "name": "description",
+      "type": "textarea",
+      "label": "$.form.description"
+    },
+    {
+      "name": "published",
+      "type": "select",
+      "label": "$.form.published",
+      "options": [
+        {
+          "value": 1,
+          "label": "$.form.yes"
+        },
+        {
+          "value": 0,
+          "label": "$.form.no"
+        }
+      ]
+    }
+  ]
+}

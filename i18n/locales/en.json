@@ -75,7 +75,26 @@
       }
     },
     "admin": {
-      "title": "Dashboard"
+      "title": "Dashboard",
+      "taste": {
+        "title": "Tasting",
+        "create_taste": "Add tasting",
+        "form": {
+          "drink": "Drinks",
+          "food": "Food",
+          "time": "Duration",
+          "popular": "Recommended"
+        },
+        "placeholder": {
+          "name": "Enter package name",
+          "drink": "E.g. 6 wine samples",
+          "food": "E.g. cheese and charcuterie",
+          "time": "E.g. 2 hours"
+        }
+      },
+      "taste_detail": {
+        "title": "Tasting detail"
+      }
     },
     "form": {
       "msg": "Message",

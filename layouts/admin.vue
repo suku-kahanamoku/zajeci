@@ -80,6 +80,13 @@ const menuItems = computed(() => {
       adminEnum.icon = "i-heroicons-list-bullet";
       items.push(adminEnum);
     }
+
+    const adminTaste = menuItem("admin_taste");
+    if (adminTaste) {
+      adminTaste.to = localePath(adminTaste.to!);
+      adminTaste.icon = "i-heroicons-beaker";
+      items.push(adminTaste);
+    }
   }
 
   return items;

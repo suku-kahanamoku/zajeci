@@ -75,7 +75,26 @@
       }
     },
     "admin": {
-      "title": "Dashboard"
+      "title": "Dashboard",
+      "taste": {
+        "title": "Degustace",
+        "create_taste": "Přidat degustaci",
+        "form": {
+          "drink": "Nápoje",
+          "food": "Občerstvení",
+          "time": "Délka",
+          "popular": "Doporučené"
+        },
+        "placeholder": {
+          "name": "Zadejte název balíčku",
+          "drink": "Např. 6 vzorků vína",
+          "food": "Např. sýry a uzeniny",
+          "time": "Např. 2 hodiny"
+        }
+      },
+      "taste_detail": {
+        "title": "Detail degustace"
+      }
     },
     "form": {
       "msg": "Zpráva",
