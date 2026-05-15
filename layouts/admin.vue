@@ -87,6 +87,20 @@ const menuItems = computed(() => {
       adminTaste.icon = "i-heroicons-beaker";
       items.push(adminTaste);
     }
+
+    const adminPayment = menuItem("admin_payment");
+    if (adminPayment) {
+      adminPayment.to = localePath(adminPayment.to!);
+      adminPayment.icon = "i-heroicons-credit-card";
+      items.push(adminPayment);
+    }
+
+    const adminShipping = menuItem("admin_shipping");
+    if (adminShipping) {
+      adminShipping.to = localePath(adminShipping.to!);
+      adminShipping.icon = "i-heroicons-truck";
+      items.push(adminShipping);
+    }
   }
 
   return items;

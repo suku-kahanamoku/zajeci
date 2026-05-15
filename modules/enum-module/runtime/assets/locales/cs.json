@@ -34,6 +34,16 @@
         "enum_detail": {
           "title": "Detail enumerátoru"
         }
+      },
+      "payment": {
+        "title": "Správa platebních metod",
+        "create_payment": "Nová platební metoda",
+        "update_payment": "Editace platební metody"
+      },
+      "shipping": {
+        "title": "Správa dopravních metod",
+        "create_shipping": "Nová dopravní metoda",
+        "update_shipping": "Editace dopravní metody"
       }
     }
   }

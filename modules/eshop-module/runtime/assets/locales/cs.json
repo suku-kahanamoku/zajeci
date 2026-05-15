@@ -64,7 +64,12 @@
       "state": "Stát",
       "phone": "Telefon",
       "total": "Celková cena",
-      "currency": "Měna"
+      "currency": "Měna",
+      "value": "Hodnota",
+      "icon": "Ikona",
+      "help": "Nápověda",
+      "disabled": "Zakázáno",
+      "position": "Pořadí"
     },
     "order": {
       "title": "Administrace objednávek",
