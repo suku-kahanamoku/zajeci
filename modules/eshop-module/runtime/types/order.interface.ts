@@ -113,7 +113,7 @@ export enum OrderStatus {
 export interface IOrderItem extends IItem {
   product_id: number;
   quantity: number;
-  unit_price: string;
+  price: string;
   total_price: string;
   description?: string;
 }
@@ -123,9 +123,9 @@ export interface IOrder extends IItem {
   order_number: string;
   user_id: number;
   status: OrderStatus | string;
-  total_amount: string;
+  total_price: string;
   currency: string;
-  payment_method: string;
+  payment_type: string;
   shipping_address_id?: number | null;
   billing_address_id?: number | null;
   note?: string;
