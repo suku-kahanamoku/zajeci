@@ -1,90 +1,54 @@
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import {
-  PaymentServices,
-  type IPayment,
-} from "@/modules/eshop-module/runtime/types/order.interface";
-
-export const paymentObjects = {
-  cash: {
-    type: "cash",
-    label: "$.payment.cash",
-    unit_price: 0,
-    avatar: "mdi:cash-100",
-    value: "cash",
-  },
-  bank: {
-    type: "bank",
-    label: "$.payment.bank",
-    unit_price: 0,
-    avatar: "mdi:bank-outline",
-    value: "bank",
-  },
-  card: {
-    type: "card",
-    label: "$.payment.card",
-    unit_price: 0,
-    avatar: "mdi:credit-card-outline",
-    disabled: true,
-    value: "card",
-  },
-  paypal: {
-    type: "paypal",
-    label: "$.payment.paypal",
-    unit_price: 0,
-    avatar: "logos:paypal",
-    disabled: true,
-    value: "paypal",
-  },
-  gopay: {
-    type: "gopay",
-    label: "$.payment.gopay",
-    unit_price: 0,
-    avatar: "arcticons:gopay",
-    disabled: true,
-    value: "gopay",
-  },
-  apple_pay: {
-    type: "apple_pay",
-    label: "$.payment.apple_pay",
-    unit_price: 0,
-    avatar: "simple-icons:applepay",
-    disabled: true,
-    value: "apple_pay",
-  },
-  google_pay: {
-    type: "google_pay",
-    label: "$.payment.google_pay",
-    unit_price: 0,
-    avatar: "simple-icons:googlepay",
-    disabled: true,
-    value: "google_pay",
-  },
-};
+import { type IPayment } from "@/modules/eshop-module/runtime/types/order.interface";
 
 let _paymentSingleton: ReturnType<typeof createPayment> | null = null;
 
 function createPayment() {
-  // Cart composable singleton
   const { totalPrice } = useCart();
 
-  const payment = ref<IPayment>(paymentObjects.bank);
+  const payment = ref<IPayment>({} as IPayment);
+
+  const { data: enumPayments } = useAsyncData("payment-enums", async () => {
+    try {
+      const r = await $fetch<{ data: any[] }>(
+        '/api/enumerations?q={"type":{"value":"payment"}}&limit=50&sort=[{"position":1}]',
+      );
+      return r.data ?? [];
+    } catch {
+      return [];
+    }
+  });
 
   const paymentOptions = computed<IPayment[]>(() =>
-    Object.values(paymentObjects).map((item) => ({
-      ...item,
-      total_price: totalPrice.value > 2500 ? 0 : item.unit_price,
-    }))
+    (enumPayments.value ?? [])
+      .filter((e) => e.published)
+      .map((e) => ({
+        label:    e.label,
+        price:    totalPrice.value > 2500 ? 0 : (e.data?.price ?? 0),
+        icon:     e.data?.icon,
+        disabled: e.data?.disabled ?? false,
+        value:    e.value ?? e.syscode,
+      })),
   );
 
   function setPayment(newPayment?: IPayment | null) {
-    const item = CLONE(
-      newPayment || {
-        ...paymentObjects.bank,
-        total_price: totalPrice.value > 2500 ? 0 : paymentObjects.bank.unit_price,
-      }
+    const fallback =
+      paymentOptions.value.find((p) => !p.disabled) ?? paymentOptions.value[0];
+    payment.value = CLONE(
+      newPayment || fallback || ({} as IPayment),
     );
-    payment.value = item;
   }
+
+  // Nastav výchozí platbu jakmile jsou načteny options
+  watch(
+    paymentOptions,
+    (opts) => {
+      if (opts.length && !payment.value.type) {
+        setPayment();
+      }
+    },
+    { immediate: true },
+  );
 
   return {
     payment,

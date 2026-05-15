@@ -263,9 +263,9 @@ const columns: Ref<TableColumn<any>[]> = computed(
       </template>
 
       <div class="flex flex-col gap-y-1">
-        <h4 class="font-semibold">{{ t(`$.payment.${payment.type}`) }}</h4>
+        <h4 class="font-semibold">{{ payment.label }}</h4>
 
-        <div v-if="payment.type === 'bank'">
+        <div v-if="payment.value === 'bank'">
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">
               {{ t("$.payment.account_num") }}:

@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import TasteCard from "./TasteCard.vue";
 
-const { data: tasting } = await useAsyncData("tasting", () =>
-  $fetch<{ data: any[] }>('/api/enumerations?q={"type":{"value":"taste"}}&limit=100').then((r) => r.data ?? []).catch(() => [])
-);
+const { data: tasting } = await useAsyncData("tasting", async () => {
+  try {
+    const r = await $fetch<{ data: any[] }>(
+      '/api/enumerations?q={"type":{"value":"taste"}}&limit=100',
+    );
+    return r.data ?? [];
+  } catch {
+    return [];
+  }
+});
 </script>
 
 <template>

@@ -3,36 +3,18 @@ import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 /**
- * Enum pro typy plateb
- *
- * @export
- * @enum {number}
- */
-export enum PaymentServices {
-  bank = "bank",
-  card = "card",
-  paypal = "paypal",
-  gopay = "gopay",
-  applePay = "applePay",
-  googlePay = "googlePay",
-  cash = "cash",
-}
-
-/**
  * Rozhrani pro payment v cashdesku
  *
  * @export
  * @interface IPayment
  */
 export interface IPayment {
-  type: PaymentServices | string;
   label: string;
-  unit_price: number;
-  total_price?: number;
-  avatar?: string;
+  price: number;
+  icon?: string;
   disabled?: boolean;
   valid?: boolean;
-  value?: PaymentServices | string;
+  value: string;
 }
 
 /**
