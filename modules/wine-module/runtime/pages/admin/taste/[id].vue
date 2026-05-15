@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import tConfig from "../../../assets/configs/admin-taste-update.json";
-import type { IWine } from "../../../types";
+import type { IEnumItem } from "@/modules/enum-module/runtime/types/enum.types";
 
 definePageMeta({
   layout: "admin",
@@ -36,7 +36,7 @@ useHead({
     <CmpForm
       v-if="taste?.data"
       :fields="config.fields"
-      :item="taste.data as IWine"
+      :item="taste.data as IEnumItem"
       :loading="loading"
       :actions="{
         no: { link: routes.admin_taste as any },
@@ -44,7 +44,7 @@ useHead({
       :ui="{
         body: 'grid md:grid-cols-2 gap-4',
       }"
-      @submit="onUpdate($event, taste?.data as IWine)"
+      @submit="onUpdate($event, taste?.data as IEnumItem)"
     />
   </div>
 </template>

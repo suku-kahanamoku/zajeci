@@ -3,8 +3,8 @@ import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
-  return phpApiFetch(event, "/products", {
+  return phpApiFetch(event, "/enumerations", {
     method: "POST",
-    body: { ...body, kind: "tasting" },
+    body: { ...body, type: "taste" },
   });
 });

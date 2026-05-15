@@ -3,7 +3,7 @@ import { useUrlResolver, useFormNavigable } from "#imports";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 
-import type { IWine, IWineResponse, IWinesResponse } from "../types";
+import type { IEnumItem, IEnumResponse, IEnumsResponse } from "@/modules/enum-module/runtime/types/enum.types";
 
 export function useTasteAdmin(wConfig: any) {
   const { t } = useLang();
@@ -13,7 +13,7 @@ export function useTasteAdmin(wConfig: any) {
     useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<IWine[]>([]);
+  const selected = ref<IEnumItem[]>([]);;
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(
@@ -44,7 +44,7 @@ export function useTasteAdmin(wConfig: any) {
             route,
           });
           url = useFactory(url, config.value.factory, routes.admin_taste?.path);
-          return (await useApi(url)) as IWineResponse | IWinesResponse;
+          return (await useApi(url)) as IEnumResponse | IEnumsResponse;
         } catch (error: any) {
           console.error(error);
           return {};
@@ -91,7 +91,7 @@ export function useTasteAdmin(wConfig: any) {
     }
   }
 
-  async function onUpdate(body: Record<string, any>, taste: IWine) {
+  async function onUpdate(body: Record<string, any>, taste: IEnumItem) {
     loading.value = true;
     const result = await onSubmit(config?.value!, body, taste);
     if (result?.data) {

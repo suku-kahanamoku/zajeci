@@ -4,5 +4,5 @@ import { phpApiFetch } from "@/server/utils/phpApi";
 export default defineEventHandler(async (event: H3Event) => {
   const id = event.context.params?.id;
   const body = await readBody(event);
-  return phpApiFetch(event, `/products/${id}`, { method: "PATCH", body });
+  return phpApiFetch(event, `/enumerations/${id}`, { method: "PATCH", body });
 });

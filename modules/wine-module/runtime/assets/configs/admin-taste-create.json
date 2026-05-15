@@ -4,14 +4,20 @@
   "method": "POST",
   "fields": [
     {
-      "name": "name",
+      "name": "label",
       "type": "text",
       "label": "$.form.name",
       "placeholder": "$.admin.taste.placeholder.name",
       "required": true
     },
     {
-      "name": "price",
+      "name": "syscode",
+      "type": "text",
+      "label": "$.form.syscode",
+      "required": true
+    },
+    {
+      "name": "data.price",
       "type": "number",
       "label": "$.form.price",
       "required": true
@@ -35,7 +41,7 @@
       "placeholder": "$.admin.taste.placeholder.time"
     },
     {
-      "name": "description",
+      "name": "data.description",
       "type": "textarea",
       "label": "$.form.description"
     },

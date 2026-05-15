@@ -1,15 +1,19 @@
 <script setup lang="ts">
 const props = defineProps<{
   item: {
-    name: string;
-    price: number;
+    label?: string;
+    name?: string;
     data?: {
+      price?: number;
       drink?: string;
       food?: string;
       time?: string;
     };
   };
 }>();
+
+const displayName = computed(() => props.item.label ?? props.item.name ?? "");
+const displayPrice = computed(() => props.item.data?.price ?? 0);
 
 const features = computed(() => [
   { label: props.item.data?.drink, icon: "ph:wine-duotone" },
@@ -27,10 +31,10 @@ const features = computed(() => [
 
     <div class="p-8 text-center space-y-2 border-b border-gray-100 dark:border-gray-800">
       <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white">
-        {{ item.name }}
+        {{ displayName }}
       </h3>
       <p class="text-secondary-600 dark:text-secondary-400 font-semibold text-lg">
-        {{ item.price }} Kč / osoba
+        {{ displayPrice }} Kč / osoba
       </p>
     </div>
 

@@ -6,11 +6,11 @@
     "limit": 20
   },
   "factory": {
-    "url": "${name}--$${id}"
+    "url": "${label}--$${id}"
   },
   "fields": [
     {
-      "name": "name",
+      "name": "label",
       "type": "text",
       "label": "$.form.name",
       "operator": {
@@ -21,7 +21,7 @@
       "clearable": true
     },
     {
-      "name": "price",
+      "name": "data.price",
       "type": "number",
       "label": "$.form.price",
       "size": "md",

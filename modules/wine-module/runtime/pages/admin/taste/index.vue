@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import tConfig from "../../../assets/configs/admin-taste-list.json";
-import type { IWine } from "../../../types";
+import type { IEnumItem } from "@/modules/enum-module/runtime/types/enum.types";
 
 definePageMeta({
   layout: "admin",
@@ -72,7 +72,7 @@ async function onDeleteHandler(event: boolean) {
       ref="tableCmp"
       v-model:selected="selected"
       :config="config"
-      :data="tastes?.data as IWine[]"
+      :data="tastes?.data as IEnumItem[]"
       :meta="meta"
       :loading="loading"
       @delete="isOpen = true"
