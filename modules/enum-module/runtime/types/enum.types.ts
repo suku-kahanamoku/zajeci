@@ -8,8 +8,6 @@ export interface IEnumItem extends IItem {
   value: string;
   position: number;
   published: 0 | 1;
-  created_at: string;
-  updated_at: string | null;
 }
 
 /** PHP API – single enumeration response */
