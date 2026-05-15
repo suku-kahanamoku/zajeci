@@ -87,9 +87,9 @@ const openRemoveDialog = (cart: ICart) => {
 };
 
 const handleSetQuantity = (value: number, cart: ICart) => {
-  if (value > 0) {
+  if (!isNaN(value) && value > 0) {
     setCartQuantity(cart.wine?.id, value);
-  } else {
+  } else if (!isNaN(value) && value <= 0) {
     openRemoveDialog(cart);
   }
   setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
@@ -148,7 +148,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           :model-value="row.original?.quantity"
           type="number"
           :min="1"
-          @change="handleSetQuantity(parseInt($event as any), row.original)"
+          @change="handleSetQuantity(parseInt(($event as InputEvent).target ? (($event as InputEvent).target as HTMLInputElement).value : String($event)), row.original)"
         />
         <UButton
           icon="i-heroicons-plus"
@@ -218,7 +218,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             :model-value="cart.quantity"
             type="number"
             :min="1"
-            @change="handleSetQuantity(parseInt($event as any), cart)"
+            @change="handleSetQuantity(parseInt(($event as InputEvent).target ? (($event as InputEvent).target as HTMLInputElement).value : String($event)), cart)"
           />
           <UButton
             icon="i-heroicons-plus"

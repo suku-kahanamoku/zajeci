@@ -60,17 +60,17 @@ function createCashdesk() {
     return item;
   };
 
-  const _removeItem = (wineId: string) => {
+  const _removeItem = (wineId: number) => {
     removeItem(wineId);
     updateLocalStorage();
   };
 
-  const _setQuantity = (wineId: string, quantity: number) => {
+  const _setQuantity = (wineId: number, quantity: number) => {
     setQuantity(wineId, quantity);
     updateLocalStorage();
   };
 
-  const _deleteItem = (wineId: string) => {
+  const _deleteItem = (wineId: number) => {
     deleteItem(wineId);
     updateLocalStorage();
   };
