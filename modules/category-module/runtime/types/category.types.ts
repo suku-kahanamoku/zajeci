@@ -6,8 +6,6 @@ export interface ICategory extends IItem {
   parent_id?: number | null;
   description?: string;
   published?: boolean;
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface ICategoryResponse extends IResponse {

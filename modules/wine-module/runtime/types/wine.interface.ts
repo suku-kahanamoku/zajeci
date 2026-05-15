@@ -18,15 +18,11 @@ export interface IWine extends IItem {
   description?: string;
   kind?: string;
   color?: string;
-  /** Bottle format, e.g. "0.75l", "2\u00d7 0.375l" */
   variant?: string;
-  /** JSON data column with extended attributes */
   data?: IWineData;
   vat_rate?: string;
   category_ids?: number[];
   published?: boolean;
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface IWineResponse extends IResponse {

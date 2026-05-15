@@ -6,8 +6,6 @@ export interface IText extends IItem {
   content?: string;
   language?: string;
   published?: boolean;
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface ITextResponse extends IResponse {

@@ -7,8 +7,6 @@ export interface IAdminUser extends IItem {
   phone?: string;
   role?: string;
   published?: boolean;
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface IUserResponse extends IResponse {

@@ -130,8 +130,6 @@ export interface IOrder extends IItem {
   billing_address_id?: number | null;
   note?: string;
   order_items?: IOrderItem[];
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface IOrderResponse extends IResponse {
