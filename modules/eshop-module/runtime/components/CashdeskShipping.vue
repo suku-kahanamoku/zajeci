@@ -5,7 +5,7 @@ import { useDebounceFn } from "@vueuse/core";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
-import dConfig from "../assets/configs/delivery.json";
+import dConfig from "../assets/configs/shipping.json";
 
 const {
   i18n: { locale },
@@ -14,7 +14,7 @@ const {
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { loggedIn } = useUserSession();
-const { carts, delivery, deliveryOptions, setDelivery } = useCashdesk();
+const { carts, shipping, shippingOptions, setShipping } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -34,23 +34,23 @@ const { data: config } = await useAsyncData(
 );
 
 const onFormChange = useDebounceFn(
-  (body) => setDelivery(delivery.value, body),
+  (body) => setShipping(shipping.value, body),
   300
 );
 
 async function validate(form: any) {
   await form?.validate({ silent: true });
-  delivery.value.valid = form?.getErrors().length ? false : true;
+  shipping.value.valid = form?.getErrors().length ? false : true;
 }
 
 watch(() => formCmp.value?.form, validate);
 
 watch(
-  () => delivery.value.type,
+  () => shipping.value.type,
   (val) => {
-    setDelivery(
-      deliveryOptions.value.find((d) => d.type === val),
-      delivery.value.address
+    setShipping(
+      shippingOptions.value.find((d) => d.type === val),
+      shipping.value.address
     );
   }
 );
@@ -66,8 +66,8 @@ watch(
     </template>
 
     <URadioGroup
-      v-model="delivery.type"
-      :items="deliveryOptions"
+      v-model="shipping.type"
+      :items="shippingOptions"
       :ui="{ item: 'items-center' }"
     >
       <template #label="{ item }">
@@ -118,13 +118,13 @@ watch(
           <CmpForm
             ref="formCmp"
             :fields="config.fields || []"
-            :item="delivery.address"
+            :item="shipping.address"
             variant="outline"
             :actions="{ disabled: true }"
             :ui="{
               body: 'grid md:grid-cols-2 gap-4',
             }"
-            :key="delivery.key"
+            :key="shipping.key"
             class="w-full"
             @change="onFormChange"
           >

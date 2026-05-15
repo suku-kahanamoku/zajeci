@@ -1,11 +1,11 @@
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import {
-  DeliveryServices,
-  type IDelivery,
+  ShippingServices,
+  type IShipping,
 } from "@/modules/eshop-module/runtime/types/order.interface";
 
-// Delivery option object literals (moved out of useCashdesk)
-export const deliveryObjects = {
+// Shipping option object literals (moved out of useCashdesk)
+export const shippingObjects = {
   free: {
     type: "free",
     label: "$.delivery.brno",
@@ -40,45 +40,45 @@ export const deliveryObjects = {
   },
 };
 
-let _deliverySingleton: ReturnType<typeof createDelivery> | null = null;
+let _shippingSingleton: ReturnType<typeof createShipping> | null = null;
 
-function createDelivery() {
+function createShipping() {
   // Cart composable singleton
   const { totalPrice } = useCart();
 
-  const delivery = ref<IDelivery>({
-    ...deliveryObjects.free,
-    // Will be replaced by cashdesk with user's main address via setDelivery(undefined, address)
+  const shipping = ref<IShipping>({
+    ...shippingObjects.free,
+    // Will be replaced by cashdesk with user's main address via setShipping(undefined, address)
     address: {} as any,
   });
 
-  const deliveryOptions = computed<IDelivery[]>(() =>
-    Object.values(deliveryObjects).map((item) => ({
+  const shippingOptions = computed<IShipping[]>(() =>
+    Object.values(shippingObjects).map((item) => ({
       ...item,
-      // Free delivery threshold (kept same logic as before but based on subtotal, not circular total)
+      // Free shipping threshold (kept same logic as before but based on subtotal, not circular total)
       total_price: totalPrice.value > 2500 ? 0 : item.unit_price,
     }))
   );
 
-  function setDelivery(newDelivery?: IDelivery | null, address?: any) {
-    const item = CLONE(newDelivery || deliveryObjects.free);
+  function setShipping(newShipping?: IShipping | null, address?: any) {
+    const item = CLONE(newShipping || shippingObjects.free);
     item.address = address ? CLONE(address || {}) : item.address;
-    item.key = (delivery.value.key || 0) + 1;
+    item.key = (shipping.value.key || 0) + 1;
     item.total_price = totalPrice.value > 2500 ? 0 : item.unit_price;
-    delivery.value = item;
+    shipping.value = item;
   }
 
   return {
-    delivery,
-    deliveryOptions,
-    setDelivery,
+    shipping,
+    shippingOptions,
+    setShipping,
   };
 }
 
-export function useDelivery() {
-  if (_deliverySingleton) return _deliverySingleton;
-  _deliverySingleton = createDelivery();
-  return _deliverySingleton;
+export function useShipping() {
+  if (_shippingSingleton) return _shippingSingleton;
+  _shippingSingleton = createShipping();
+  return _shippingSingleton;
 }
 
-export type UseDeliveryReturn = ReturnType<typeof useDelivery>;
+export type UseShippingReturn = ReturnType<typeof useShipping>;

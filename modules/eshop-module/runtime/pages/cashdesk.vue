@@ -18,7 +18,7 @@ useHead({
   ],
 });
 
-const { carts, user, delivery, loading, onSubmit } = useCashdesk();
+const { carts, user, shipping, loading, onSubmit } = useCashdesk();
 
 const stepper = useTemplateRef("stepper");
 
@@ -48,8 +48,8 @@ const stepModel = ref(
 
 const validations = computed(() => [
   !!carts.value?.length,
-  !!carts.value?.length && user.value?.valid && delivery.value.valid,
-  !!carts.value?.length && user.value?.valid && delivery.value.valid,
+  !!carts.value?.length && user.value?.valid && shipping.value.valid,
+  !!carts.value?.length && user.value?.valid && shipping.value.valid,
 ]);
 
 const backBtn = computed(() => {

@@ -21,9 +21,9 @@ const {
   removeItem: removeCartItem,
   setQuantity: setCartQuantity,
   deleteItem: deleteCartItem,
-  delivery,
-  deliveryOptions,
-  setDelivery,
+  shipping,
+  shippingOptions,
+  setShipping,
 } = useCashdesk();
 const isOpen = ref(false);
 const deleted = ref();
@@ -68,9 +68,9 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
 const increaseQuantity = (cart: ICart) => {
   addItem(cart.wine, 1);
-  setDelivery(
-    deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address,
+  setShipping(
+    shippingOptions.value.find((d) => d.type === shipping.value.type),
+    shipping.value.address,
   );
 };
 
@@ -80,17 +80,17 @@ const decreaseQuantity = (cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
-  setDelivery(
-    deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address,
+  setShipping(
+    shippingOptions.value.find((d) => d.type === shipping.value.type),
+    shipping.value.address,
   );
 };
 
 const openRemoveDialog = (cart: ICart) => {
   deleted.value = cart;
-  setDelivery(
-    deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address,
+  setShipping(
+    shippingOptions.value.find((d) => d.type === shipping.value.type),
+    shipping.value.address,
   );
   isOpen.value = true;
 };
@@ -101,9 +101,9 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
-  setDelivery(
-    deliveryOptions.value.find((d) => d.type === delivery.value.type),
-    delivery.value.address,
+  setShipping(
+    shippingOptions.value.find((d) => d.type === shipping.value.type),
+    shipping.value.address,
   );
 };
 </script>

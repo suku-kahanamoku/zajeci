@@ -41,7 +41,7 @@ export interface IPayment {
  * @export
  * @enum {number}
  */
-export enum DeliveryServices {
+export enum ShippingServices {
   free = "free",
   ppl = "ppl",
   gls = "gls",
@@ -53,13 +53,13 @@ export enum DeliveryServices {
 }
 
 /**
- * Rozhrani pro delivery v cashdesku
+ * Rozhrani pro shipping v cashdesku
  *
  * @export
- * @interface IDelivery
+ * @interface IShipping
  */
-export interface IDelivery {
-  type: DeliveryServices | string;
+export interface IShipping {
+  type: ShippingServices | string;
   label: string;
   unit_price: number;
   total_price?: number;
@@ -69,7 +69,7 @@ export interface IDelivery {
   address?: IAddress;
   valid?: boolean;
   key?: number;
-  value: DeliveryServices | string;
+  value: ShippingServices | string;
 }
 
 /**

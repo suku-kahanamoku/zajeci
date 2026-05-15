@@ -72,11 +72,9 @@ const { data: wines } = await useAsyncData(
       v-slot="{ item }"
       :items="(wines?.data as IWine[]) || []"
       arrows
-      loop
       :ui="{
         item: 'basis-full md:basis-1/2 lg:basis-1/3 ps-6',
         container: '-ms-6 items-stretch',
-        viewport: 'overflow-visible',
         prev: 'start-0 sm:-start-10',
         next: 'end-0 sm:-end-10',
       }"

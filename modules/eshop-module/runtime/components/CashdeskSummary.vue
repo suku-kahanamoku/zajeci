@@ -15,7 +15,7 @@ const {
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const { carts, user, delivery, payment, totalPrice } = useCashdesk();
+const { carts, user, shipping, payment, totalPrice } = useCashdesk();
 
 /**
  * Load config
@@ -118,7 +118,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </td>
         <td class="p-4">
           <div class="text-end">
-            <UiPrice :price="delivery.total_price!" />
+            <UiPrice :price="shipping.total_price!" />
           </div>
         </td>
       </tr>
@@ -225,27 +225,27 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
       <div class="flex flex-col gap-y-1">
         <h4 class="font-semibold">
-          {{ t(`$.delivery.${delivery.type}`) }}
+          {{ t(`$.delivery.${shipping.type}`) }}
         </h4>
 
         <p class="text-gray-600 dark:text-white">
-          {{ delivery.address?.name }}
+          {{ shipping.address?.name }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ delivery.address?.street }}
+          {{ shipping.address?.street }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ delivery.address?.city }}
+          {{ shipping.address?.city }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ delivery.address?.zip }}
+          {{ shipping.address?.zip }}
         </p>
 
         <UAlert
-          v-if="delivery?.type === 'free'"
+          v-if="shipping?.type === 'free'"
           :description="t('$.delivery.brno_free')"
           color="info"
           variant="outline"

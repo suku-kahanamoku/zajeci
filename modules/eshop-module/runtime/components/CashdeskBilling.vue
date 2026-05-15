@@ -16,7 +16,7 @@ const { t } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { loggedIn } = useUserSession();
-const { user, setUser, delivery, setDelivery } = useCashdesk();
+const { user, setUser, shipping, setShipping } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -40,11 +40,11 @@ function _onChange(body: Record<string, any>) {
   CONVERT_DOT_TO_OBJECT(data);
   data.valid = formCmp.value.form.getErrors().length ? false : true;
   setUser(data);
-  const address = defu(delivery.value.address, {
+  const address = defu(shipping.value.address, {
     ...data.address?.main,
     name: `${data.first_name} ${data.last_name}`,
   });
-  setDelivery(delivery.value, address);
+  setShipping(shipping.value, address);
 }
 
 // Debounced change handler (300ms default)

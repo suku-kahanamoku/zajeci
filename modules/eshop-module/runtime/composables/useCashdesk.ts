@@ -5,7 +5,7 @@ import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IUser } from "@suku-kahanamoku/auth-module/types";
 
-import { useDelivery } from "./useDelivery";
+import { useShipping } from "./useShipping";
 import { usePayment } from "./usePayment";
 import { useCart } from "./useCart";
 
@@ -43,14 +43,14 @@ function createCashdesk() {
     totalPrice: cartTotalPrice,
   } = useCart();
 
-  // Delivery & Payment composables (singletons)
-  const { delivery, deliveryOptions, setDelivery } = useDelivery();
+  // Shipping & Payment composables (singletons)
+  const { shipping, shippingOptions, setShipping } = useShipping();
   const { payment, paymentOptions, setPayment } = usePayment();
 
   const totalPrice = computed(
     () =>
       cartTotalPrice.value +
-      (delivery.value.total_price! + payment.value.total_price!),
+      (shipping.value.total_price! + payment.value.total_price!),
   );
 
   // Wrap cart mutation methods to keep localStorage updates
@@ -88,7 +88,7 @@ function createCashdesk() {
   const reset = () => {
     setUser();
     carts.value = [];
-    setDelivery();
+    setShipping();
     setPayment();
   };
 
@@ -101,7 +101,7 @@ function createCashdesk() {
     }
     setUser(item.user);
     carts.value = item.carts || [];
-    setDelivery(item.delivery, item.address?.main);
+    setShipping(item.shipping, item.address?.main);
     setPayment(item.payment);
     loading.value = false;
   };
@@ -110,7 +110,7 @@ function createCashdesk() {
     const order = {
       user: user.value,
       carts: carts.value,
-      shipping: delivery.value,
+      shipping: shipping.value,
       billing: payment.value,
       total_price: totalPrice.value,
     };
@@ -124,7 +124,7 @@ function createCashdesk() {
       const order = {
         user: user.value,
         carts: carts.value,
-        shipping: delivery.value,
+        shipping: shipping.value,
         billing: payment.value,
         total_price: totalPrice.value,
       };
@@ -156,15 +156,15 @@ function createCashdesk() {
       if (!user.value.valid) {
         setUser();
       }
-      if (!delivery.value.valid) {
-        setDelivery(delivery.value, authUser.value?.address?.main);
+      if (!shipping.value.valid) {
+        setShipping(shipping.value, authUser.value?.address?.main);
       }
     }
   });
 
   watch(user, updateLocalStorage);
   watch(carts, updateLocalStorage);
-  watch(delivery, updateLocalStorage);
+  watch(shipping, updateLocalStorage);
   watch(payment, updateLocalStorage);
 
   return {
@@ -178,9 +178,9 @@ function createCashdesk() {
     removeItem: _removeItem,
     setQuantity: _setQuantity,
     deleteItem: _deleteItem,
-    delivery,
-    deliveryOptions,
-    setDelivery,
+    shipping,
+    shippingOptions,
+    setShipping,
     payment,
     paymentOptions,
     setPayment,
