@@ -88,6 +88,8 @@ export interface IOrder extends IItem {
   total_price: string;
   currency: string;
   payment_type: string;
+  shipping_type?: string;
+  shipping_price?: number;
   shipping_address_id?: number | null;
   billing_address_id?: number | null;
   note?: string;

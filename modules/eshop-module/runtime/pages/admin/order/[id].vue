@@ -8,6 +8,9 @@ definePageMeta({
 });
 
 const { t } = useLang();
+const {
+  i18n: { locale },
+} = useLang();
 const localePath = useLocalePath();
 const { routes, route } = useMenuItems();
 const title = computed(() =>
@@ -16,10 +19,7 @@ const title = computed(() =>
 
 const { config, orders: order, loading } = useOrderAdmin(oConfig);
 
-/** Parse shipping/address info from the note field (e.g. "Doprava: DPD | Adresa: ...") */
-const noteLines = computed(() =>
-  ((order.value?.data as IOrder)?.note || "").split(" | ").filter(Boolean),
-);
+const data = computed(() => order.value?.data as IOrder | undefined);
 
 useHead({
   title,
@@ -38,91 +38,95 @@ useHead({
       class="border-none"
     />
 
-    <UCard v-if="order?.data">
+    <UCard v-if="data">
       <template #header>
         <div class="flex items-center justify-between">
           <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
-            Objednávka {{ order.data.order_number }}
+            {{ t("$.order.title") }} {{ data.order_number }}
           </h2>
-          <UBadge :label="order.data.status" color="primary" variant="soft" />
+          <UBadge :label="data.status" color="primary" variant="soft" />
         </div>
       </template>
 
       <template #default>
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Zákazník -->
           <div>
-            <div class="font-semibold mb-1">Zákazník</div>
+            <div class="font-semibold mb-2">{{ t("$.cashdesk.anonymous") }}</div>
             <div class="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
-              <div
-                v-if="
-                  (order.data as any).user?.first_name ||
-                  (order.data as any).user?.last_name
-                "
-              >
-                {{ (order.data as any).user?.first_name }}
-                {{ (order.data as any).user?.last_name }}
+              <div v-if="(data as any).user?.first_name || (data as any).user?.last_name">
+                {{ (data as any).user?.first_name }} {{ (data as any).user?.last_name }}
               </div>
-              <div v-if="(order.data as any).user?.email">
-                {{ (order.data as any).user?.email }}
-              </div>
-              <div v-else class="text-gray-400">
-                ID: {{ order.data.user_id }}
-              </div>
+              <div v-if="(data as any).user?.email">{{ (data as any).user?.email }}</div>
+              <div v-else class="text-gray-400">ID: {{ data.user_id }}</div>
+              <div v-if="data.note" class="mt-2 text-xs text-gray-400">{{ data.note }}</div>
             </div>
-            <ul
-              class="text-sm text-gray-600 dark:text-gray-400 space-y-0.5 mt-1"
-            >
-              <li v-for="line in noteLines" :key="line">{{ line }}</li>
-            </ul>
           </div>
+
+          <!-- Platba -->
           <div>
-            <div class="font-semibold mb-1">Platba / Doprava</div>
-            <div class="text-sm text-gray-700 dark:text-gray-300">
-              Platba:
-              <strong>{{ order.data.payment_method }}</strong>
+            <div class="font-semibold mb-2">{{ t("$.payment.title") }}</div>
+            <div class="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+              <div>{{ t("$.order.payment_type") }}: <strong>{{ data.payment_type }}</strong></div>
+              <div>{{ t("$.form.currency") || "Měna" }}: <strong>{{ data.currency }}</strong></div>
             </div>
-            <div class="text-sm text-gray-700 dark:text-gray-300">
-              Měna: <strong>{{ order.data.currency }}</strong>
+          </div>
+
+          <!-- Doprava -->
+          <div>
+            <div class="font-semibold mb-2">{{ t("$.shipping.title") }}</div>
+            <div class="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+              <div v-if="data.shipping_type">{{ t("$.order.shipping_type") }}: <strong>{{ data.shipping_type }}</strong></div>
+              <div v-if="data.shipping_price !== undefined">
+                {{ t("$.form.price") }}:
+                <strong>
+                  {{ data.shipping_price! > 0
+                    ? `${Number(data.shipping_price).toLocaleString(locale)} ${t('$.czk')}`
+                    : t('$.shipping.free') }}
+                </strong>
+              </div>
             </div>
           </div>
         </div>
       </template>
 
       <template #footer>
-        <div class="mb-4">
-          <div class="font-semibold mb-2">Položky objednávky</div>
-          <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li
-              v-for="item in order.data.order_items"
-              :key="item.id"
-              class="py-2 flex justify-between items-center text-sm"
-            >
-              <span class="font-medium">
-                {{ (item as any).product_name || item.product_id }}
-                <span
-                  v-if="(item as any).sku"
-                  class="text-gray-400 text-xs ml-1"
-                  >({{ (item as any).sku }})</span
-                >
-              </span>
-              <span>{{ item.quantity }} × {{ item.unit_price }} Kč</span>
-              <span class="font-semibold">= {{ item.total_price }} Kč</span>
-            </li>
-          </ul>
+        <!-- Položky -->
+        <div class="mb-6">
+          <div class="font-semibold mb-2">{{ t("$.cart.title") }}</div>
+          <UTable
+            :data="data.order_items || []"
+            :columns="[
+              { accessorKey: 'product_name', header: t('$.form.name') },
+              { accessorKey: 'sku', header: 'SKU' },
+              { accessorKey: 'quantity', header: t('$.form.quantity') },
+              { accessorKey: 'price', header: t('$.form.price') },
+              { accessorKey: 'total_price', header: t('$.order.total_price') },
+            ]"
+          >
+            <template #price-cell="{ row }">
+              {{ Number(row.original.price).toLocaleString(locale) }} {{ t('$.czk') }}
+            </template>
+            <template #total_price-cell="{ row }">
+              {{ Number(row.original.total_price).toLocaleString(locale) }} {{ t('$.czk') }}
+            </template>
+          </UTable>
         </div>
-        <div
-          class="mt-4 text-right text-lg font-bold text-primary-600 dark:text-primary-400"
-        >
-          Celkem: {{ order.data.total_amount }} Kč
+
+        <!-- Celkem -->
+        <div class="flex justify-end text-lg font-bold text-primary-600 dark:text-primary-400 mb-4">
+          {{ t("$.order.total_price") }}:
+          {{ Number(data.total_price).toLocaleString(locale) }} {{ t('$.czk') }}
         </div>
-        <div class="mt-4 flex justify-start">
+
+        <div class="flex justify-start">
           <UButton
             :to="localePath(routes.admin_order?.path)"
             color="secondary"
             variant="outline"
             icon="i-heroicons-arrow-left"
           >
-            Zpět na seznam
+            {{ t("$.btn.back") }}
           </UButton>
         </div>
       </template>

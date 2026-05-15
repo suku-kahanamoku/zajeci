@@ -117,8 +117,8 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </h3>
         </td>
         <td class="p-4">
-          <div class="text-end">
-            <UiPrice :price="shipping.price!" />
+          <div class="text-end font-bold text-secondary-600 dark:text-secondary-400">
+            {{ shipping.price! > 0 ? `${Number(shipping.price).toLocaleString(locale)} ${t('$.czk')}` : t('$.shipping.free') }}
           </div>
         </td>
       </tr>

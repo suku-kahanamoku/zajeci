@@ -108,9 +108,8 @@ watch(
             </UTooltip>
           </div>
 
-          <UiPrice v-if="item.price! > 0" :price="item?.price!" />
-          <span v-else>
-            {{ t("$.shipping.free") }}
+          <span class="font-bold text-secondary-600 dark:text-secondary-400">
+            {{ item.price! > 0 ? `${Number(item.price).toLocaleString(locale)} ${t('$.czk')}` : t('$.shipping.free') }}
           </span>
         </div>
       </template>
