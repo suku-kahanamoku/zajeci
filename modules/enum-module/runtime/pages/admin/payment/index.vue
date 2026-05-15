@@ -23,7 +23,7 @@ const {
   handleSort,
   handlePage,
   handleFilter,
-} = useTasteAdmin(pConfig);
+} = useTasteAdmin(pConfig, "admin_payment");
 
 useHead({
   title,

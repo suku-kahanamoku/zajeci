@@ -9,7 +9,7 @@ import type {
   IEnumsResponse,
 } from "../types/enum.types";
 
-export function useTasteAdmin(wConfig: any) {
+export function useTasteAdmin(wConfig: any, listRouteSyscode: string = "admin_taste") {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
@@ -47,7 +47,7 @@ export function useTasteAdmin(wConfig: any) {
             config: config.value,
             route,
           });
-          url = useFactory(url, config.value.factory, routes.admin_taste?.path);
+          url = useFactory(url, config.value.factory, (routes as any)[listRouteSyscode]?.path);
           return (await useApi(url)) as IEnumsResponse;
         } catch (error: any) {
           console.error(error);
@@ -102,7 +102,7 @@ export function useTasteAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_taste?.path);
+      navigateTo((routes as any)[listRouteSyscode]?.path);
     }
     loading.value = false;
   }
@@ -114,7 +114,7 @@ export function useTasteAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_taste?.path);
+      navigateTo((routes as any)[listRouteSyscode]?.path);
     }
     loading.value = false;
   }

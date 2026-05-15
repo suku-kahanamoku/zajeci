@@ -12,7 +12,7 @@ const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() => t((route.meta.label || route.meta.title) as string));
 
-const { config, tastes: shipping, loading, onUpdate } = useTasteAdmin(sConfig);
+const { config, tastes: shipping, loading, onUpdate } = useTasteAdmin(sConfig, "admin_shipping");
 
 useHead({
   title,

@@ -23,7 +23,7 @@ const {
   handleSort,
   handlePage,
   handleFilter,
-} = useTasteAdmin(sConfig);
+} = useTasteAdmin(sConfig, "admin_shipping");
 
 useHead({
   title,

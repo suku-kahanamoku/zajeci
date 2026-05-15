@@ -12,7 +12,7 @@ const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() => t((route.meta.label || route.meta.title) as string));
 
-const { config, tastes: payment, loading, onUpdate } = useTasteAdmin(pConfig);
+const { config, tastes: payment, loading, onUpdate } = useTasteAdmin(pConfig, "admin_payment");
 
 useHead({
   title,

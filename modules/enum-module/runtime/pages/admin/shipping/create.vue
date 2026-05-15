@@ -11,7 +11,7 @@ const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() => t((route.meta.label || route.meta.title) as string));
 
-const { config, loading, onCreate } = useTasteAdmin(sConfig);
+const { config, loading, onCreate } = useTasteAdmin(sConfig, "admin_shipping");
 
 useHead({
   title,

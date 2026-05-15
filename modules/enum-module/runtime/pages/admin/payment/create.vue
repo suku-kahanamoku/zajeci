@@ -11,7 +11,7 @@ const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() => t((route.meta.label || route.meta.title) as string));
 
-const { config, loading, onCreate } = useTasteAdmin(pConfig);
+const { config, loading, onCreate } = useTasteAdmin(pConfig, "admin_payment");
 
 useHead({
   title,
