@@ -1,72 +1,62 @@
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import {
-  ShippingServices,
-  type IShipping,
-} from "@/modules/eshop-module/runtime/types/order.interface";
-
-// Shipping option object literals (moved out of useCashdesk)
-export const shippingObjects = {
-  free: {
-    type: "free",
-    label: "$.shipping.brno",
-    unit_price: 0,
-    avatar: "mdi:home-city-outline",
-    help: "$.shipping.brno_free",
-    value: "free",
-  },
-  post: {
-    type: "post",
-    label: "$.shipping.post",
-    unit_price: 209,
-    avatar: "/img/shipping/post.jpg",
-    help: "$.shipping.not_quaranteed",
-    value: "post",
-  },
-  dpd: {
-    type: "dpd",
-    label: "$.shipping.dpd",
-    unit_price: 150,
-    avatar: "mdi:truck-outline",
-    help: "$.shipping.not_quaranteed",
-    value: "dpd",
-  },
-  messenger: {
-    type: "messenger",
-    label: "$.shipping.messenger",
-    unit_price: 175,
-    avatar: "mdi:truck-outline",
-    help: "$.shipping.third_day",
-    value: "messenger",
-  },
-};
+import { type IShipping } from "@/modules/eshop-module/runtime/types/order.interface";
 
 let _shippingSingleton: ReturnType<typeof createShipping> | null = null;
 
 function createShipping() {
-  // Cart composable singleton
   const { totalPrice } = useCart();
 
-  const shipping = ref<IShipping>({
-    ...shippingObjects.free,
-    // Will be replaced by cashdesk with user's main address via setShipping(undefined, address)
-    address: {} as any,
+  const shipping = ref<IShipping>({} as IShipping);
+
+  const { data: enumShipping } = useAsyncData("shipping-enums", async () => {
+    try {
+      const r = await $fetch<{ data: any[] }>(
+        '/api/enumerations?q={"type":{"value":"shipping"}}&limit=50&sort=[{"position":1}]',
+      );
+      return r.data ?? [];
+    } catch {
+      return [];
+    }
   });
 
   const shippingOptions = computed<IShipping[]>(() =>
-    Object.values(shippingObjects).map((item) => ({
-      ...item,
-      // Free shipping threshold (kept same logic as before but based on subtotal, not circular total)
-      total_price: totalPrice.value > 2500 ? 0 : item.unit_price,
-    }))
+    (enumShipping.value ?? [])
+      .filter((e) => e.published)
+      .map((e) => ({
+        label: e.label,
+        price: totalPrice.value > 2500 ? 0 : (e.data?.price ?? 0),
+        icon: e.data?.icon,
+        help: e.data?.help,
+        disabled: e.data?.disabled ?? false,
+        value: e.value ?? e.syscode,
+      })),
   );
 
-  function setShipping(newShipping?: IShipping | null, address?: any) {
-    const item = CLONE(newShipping || shippingObjects.free);
-    item.address = address ? CLONE(address || {}) : item.address;
-    item.key = (shipping.value.key || 0) + 1;
-    item.total_price = totalPrice.value > 2500 ? 0 : item.unit_price;
-    shipping.value = item;
+  function setShipping(newShipping?: IShipping | null) {
+    const fallback =
+      shippingOptions.value.find((p) => !p.disabled) ??
+      shippingOptions.value[0];
+    const base = CLONE(newShipping || fallback || ({} as IShipping));
+    base.price =
+      totalPrice.value > 2500
+        ? 0
+        : (shippingOptions.value.find((s) => s.value === base.value)?.price ??
+          base.price ??
+          0);
+    base.key = (shipping.value.key || 0) + 1;
+    if (base.value === "free") base.valid = true;
+    shipping.value = base;
   }
+
+  watch(
+    shippingOptions,
+    (opts) => {
+      if (opts.length && !shipping.value.value) {
+        setShipping();
+      }
+    },
+    { immediate: true },
+  );
 
   return {
     shipping,

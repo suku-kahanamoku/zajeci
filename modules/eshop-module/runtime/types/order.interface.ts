@@ -18,40 +18,20 @@ export interface IPayment {
 }
 
 /**
- * Enum pro typy doprav
- *
- * @export
- * @enum {number}
- */
-export enum ShippingServices {
-  free = "free",
-  ppl = "ppl",
-  gls = "gls",
-  dpd = "dpd",
-  post = "post",
-  zas = "zas",
-  dhl = "dhl",
-  geis = "geis",
-}
-
-/**
  * Rozhrani pro shipping v cashdesku
  *
  * @export
  * @interface IShipping
  */
 export interface IShipping {
-  type: ShippingServices | string;
   label: string;
-  unit_price: number;
-  total_price?: number;
+  price: number;
   disabled?: boolean;
-  avatar?: string;
+  icon?: string;
   help?: string;
-  address?: IAddress;
   valid?: boolean;
   key?: number;
-  value: ShippingServices | string;
+  value: string;
 }
 
 /**

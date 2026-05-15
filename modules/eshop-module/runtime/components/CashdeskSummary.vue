@@ -118,7 +118,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </td>
         <td class="p-4">
           <div class="text-end">
-            <UiPrice :price="shipping.total_price!" />
+            <UiPrice :price="shipping.price!" />
           </div>
         </td>
       </tr>
@@ -225,27 +225,27 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
       <div class="flex flex-col gap-y-1">
         <h4 class="font-semibold">
-          {{ t(`$.shipping.${shipping.type}`) }}
+          {{ shipping.label }}
         </h4>
 
         <p class="text-gray-600 dark:text-white">
-          {{ shipping.address?.name }}
+          {{ user.address?.shipping?.name }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ shipping.address?.street }}
+          {{ user.address?.shipping?.street }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ shipping.address?.city }}
+          {{ user.address?.shipping?.city }}
         </p>
 
         <p class="text-gray-600 dark:text-white">
-          {{ shipping.address?.zip }}
+          {{ user.address?.shipping?.zip }}
         </p>
 
         <UAlert
-          v-if="shipping?.type === 'free'"
+          v-if="shipping?.value === 'free'"
           :description="t('$.shipping.brno_free')"
           color="info"
           variant="outline"

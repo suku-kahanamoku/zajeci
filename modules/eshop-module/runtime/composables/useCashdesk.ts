@@ -101,7 +101,7 @@ function createCashdesk() {
     }
     setUser(item.user);
     carts.value = item.carts || [];
-    setShipping(item.shipping, item.address?.main);
+    setShipping(item.shipping);
     setPayment(item.payment);
     loading.value = false;
   };
@@ -157,7 +157,7 @@ function createCashdesk() {
         setUser();
       }
       if (!shipping.value.valid) {
-        setShipping(shipping.value, authUser.value?.address?.main);
+        setShipping(shipping.value);
       }
     }
   });

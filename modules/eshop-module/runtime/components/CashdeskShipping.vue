@@ -14,7 +14,8 @@ const {
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { loggedIn } = useUserSession();
-const { carts, shipping, shippingOptions, setShipping } = useCashdesk();
+const { carts, user, setUser, shipping, shippingOptions, setShipping } =
+  useCashdesk();
 const formCmp = ref();
 
 /**
@@ -30,15 +31,23 @@ const { data: config } = await useAsyncData(
       return {} as IFormConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 const onFormChange = useDebounceFn(
-  (body) => setShipping(shipping.value, body),
-  300
+  (body) =>
+    setUser({
+      ...user.value,
+      address: { ...user.value.address, shipping: body },
+    } as any),
+  300,
 );
 
 async function validate(form: any) {
+  if (shipping.value.value === "free") {
+    shipping.value.valid = true;
+    return;
+  }
   await form?.validate({ silent: true });
   shipping.value.valid = form?.getErrors().length ? false : true;
 }
@@ -46,13 +55,11 @@ async function validate(form: any) {
 watch(() => formCmp.value?.form, validate);
 
 watch(
-  () => shipping.value.type,
+  () => shipping.value.value,
   (val) => {
-    setShipping(
-      shippingOptions.value.find((d) => d.type === val),
-      shipping.value.address
-    );
-  }
+    setShipping(shippingOptions.value.find((d) => d.value === val));
+    nextTick(() => validate(formCmp.value?.form));
+  },
 );
 </script>
 <template>
@@ -66,7 +73,7 @@ watch(
     </template>
 
     <URadioGroup
-      v-model="shipping.type"
+      v-model="shipping.value"
       :items="shippingOptions"
       :ui="{ item: 'items-center' }"
     >
@@ -79,29 +86,29 @@ watch(
         >
           <div class="flex items-center gap-2">
             <UIcon
-              v-if="item?.avatar?.startsWith('mdi:')"
-              :name="item.avatar"
+              v-if="item?.icon?.startsWith('mdi:')"
+              :name="item.icon"
               size="30"
               class="w-20"
             />
             <NuxtImg
               v-else
-              :src="item?.avatar"
-              :alt="t(item?.label)"
+              :src="item?.icon"
+              :alt="item?.label"
               loading="lazy"
               format="webp"
               width="80"
               class="w-20"
             />
             <span>
-              {{ t(item?.label) }}
+              {{ item?.label }}
             </span>
             <UTooltip v-if="item?.help" :text="t(item.help)">
               <UIcon name="mdi:question-mark-circle" size="20" />
             </UTooltip>
           </div>
 
-          <UiPrice v-if="item.total_price! > 0" :price="item?.total_price!" />
+          <UiPrice v-if="item.price! > 0" :price="item?.price!" />
           <span v-else>
             {{ t("$.shipping.free") }}
           </span>
@@ -118,7 +125,7 @@ watch(
           <CmpForm
             ref="formCmp"
             :fields="config.fields || []"
-            :item="shipping.address"
+            :item="user.address?.shipping || {}"
             variant="outline"
             :actions="{ disabled: true }"
             :ui="{

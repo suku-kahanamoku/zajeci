@@ -68,10 +68,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
 const increaseQuantity = (cart: ICart) => {
   addItem(cart.wine, 1);
-  setShipping(
-    shippingOptions.value.find((d) => d.type === shipping.value.type),
-    shipping.value.address,
-  );
+  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
 };
 
 const decreaseQuantity = (cart: ICart) => {
@@ -80,18 +77,12 @@ const decreaseQuantity = (cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
-  setShipping(
-    shippingOptions.value.find((d) => d.type === shipping.value.type),
-    shipping.value.address,
-  );
+  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
 };
 
 const openRemoveDialog = (cart: ICart) => {
   deleted.value = cart;
-  setShipping(
-    shippingOptions.value.find((d) => d.type === shipping.value.type),
-    shipping.value.address,
-  );
+  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
   isOpen.value = true;
 };
 
@@ -101,10 +92,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
-  setShipping(
-    shippingOptions.value.find((d) => d.type === shipping.value.type),
-    shipping.value.address,
-  );
+  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
 };
 </script>
 
