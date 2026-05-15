@@ -29,8 +29,8 @@ const steps = ref([
     icon: "i-heroicons-shopping-cart",
   },
   {
-    slot: "delivery_payment",
-    title: t("$.cashdesk.delivery_payment"),
+    slot: "user",
+    title: t("$.cashdesk.shipping_payment"),
     icon: "i-heroicons-truck",
   },
   {
@@ -98,8 +98,8 @@ watch(stepModel, (value, oldValue) => {
           <CmpCashdeskCart />
         </template>
 
-        <template #delivery_payment>
-          <CmpCashdeskDeliveryPayment />
+        <template #user>
+          <CmpCashdeskUser />
         </template>
 
         <template #summary>

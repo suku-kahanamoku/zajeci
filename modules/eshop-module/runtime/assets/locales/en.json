@@ -2,11 +2,11 @@
   "$": {
     "cashdesk": {
       "title": "Cashdesk",
-      "delivery_payment": "Delivery and payment",
+      "shipping_payment": "Shipping and payment",
       "summary": "Summary",
       "anonymous": "Anonymous",
       "billing_address": "Billing address",
-      "delivery_address": "Delivery address"
+      "shipping_address": "Shipping address"
     },
     "cashdesk_completed": {
       "title": "Děkujeme za objednávku!",
@@ -23,8 +23,8 @@
       "remove": "Do you really want to remove: \"{name}\" from the cart?",
       "remove_from_cart": "Remove from cart"
     },
-    "delivery": {
-      "title": "Delivery",
+    "shipping": {
+      "title": "Shipping",
       "brno": "Brno center",
       "free": "Free Shipping",
       "ppl": "PPL",
@@ -36,10 +36,10 @@
       "geis": "GEIS",
       "messenger": "Messenger",
       "address": "Doručovací adresa",
-      "brno_free": "Delivery within the Brno-City district and Modřice is free every Thursday.",
+      "brno_free": "Shipping within the Brno-City district and Modřice is free every Thursday.",
       "limit_free": "For orders over 2500 CZK, shipping is free.",
-      "third_day": "Delivery on the third day after dispatch at the latest.",
-      "not_quaranteed": "Delivery is not guaranteed."
+      "third_day": "Shipping on the third day after dispatch at the latest.",
+      "not_quaranteed": "Shipping is not guaranteed."
     },
     "payment": {
       "title": "Payment",
@@ -73,7 +73,7 @@
       "user_phone": "User Phone",
       "total_price": "Total Price",
       "status": "Status",
-      "delivery_type": "Delivery Type",
+      "shipping_type": "Shipping Type",
       "payment_type": "Payment Type",
       "order_id": "Order ID",
       "order_number": "Order Number",

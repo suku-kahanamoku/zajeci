@@ -14,8 +14,8 @@
       "label": "$.form.user_phone"
     },
     {
-      "name": "delivery.type",
-      "label": "$.form.delivery_type"
+      "name": "shipping.type",
+      "label": "$.form.shipping_type"
     },
     {
       "name": "payment.type",

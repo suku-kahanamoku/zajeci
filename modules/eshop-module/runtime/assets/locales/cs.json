@@ -2,11 +2,11 @@
   "$": {
     "cashdesk": {
       "title": "Pokladna",
-      "delivery_payment": "Doprava a platba",
+      "shipping_payment": "Doprava a platba",
       "summary": "Shrnutí",
       "anonymous": "Anonym",
       "billing_address": "Fakturační adresa",
-      "delivery_address": "Dodací adresa"
+      "shipping_address": "Dodací adresa"
     },
     "cashdesk_completed": {
       "title": "Děkujeme za objednávku!",
@@ -23,7 +23,7 @@
       "remove": "Opravdu chcete odstranit: \"{name}\" z košíku?",
       "remove_from_cart": "Odebrat z košíku"
     },
-    "delivery": {
+    "shipping": {
       "title": "Doprava",
       "brno": "Brno město",
       "free": "Doprava zdarma",
@@ -73,7 +73,7 @@
       "user_phone": "Telefon uživatele",
       "total_price": "Celková cena",
       "status": "Stav",
-      "delivery_type": "Typ dopravy",
+      "shipping_type": "Typ dopravy",
       "payment_type": "Typ platby",
       "order_id": "ID objednávky",
       "order_number": "Číslo objednávky",

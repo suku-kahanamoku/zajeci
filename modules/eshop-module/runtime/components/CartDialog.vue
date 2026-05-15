@@ -47,7 +47,7 @@ const { totalPrice } = useCashdesk();
       </div>
       <UAlert
         icon="i-heroicons-truck"
-        :title="$tt('$.delivery.limit_free')"
+        :title="$tt('$.shipping.limit_free')"
         color="info"
         variant="outline"
         class="mt-5"

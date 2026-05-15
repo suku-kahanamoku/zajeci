@@ -14,8 +14,8 @@ defineExpose(stepper);
       <CmpCashdeskCart />
     </template>
 
-    <template #delivery_payment>
-      <CmpCashdeskDeliveryPayment />
+    <template #user>
+      <CmpCashdeskUser />
     </template>
 
     <template #summary>

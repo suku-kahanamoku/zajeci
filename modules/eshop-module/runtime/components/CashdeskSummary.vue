@@ -113,7 +113,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <tr>
         <td colspan="2" class="p-4">
           <h3 class="font-semibold text-pretty">
-            {{ t("$.delivery.title") }}
+            {{ t("$.shipping.title") }}
           </h3>
         </td>
         <td class="p-4">
@@ -219,13 +219,13 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <h3
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
-          {{ t("$.delivery.title") }}
+          {{ t("$.shipping.title") }}
         </h3>
       </template>
 
       <div class="flex flex-col gap-y-1">
         <h4 class="font-semibold">
-          {{ t(`$.delivery.${shipping.type}`) }}
+          {{ t(`$.shipping.${shipping.type}`) }}
         </h4>
 
         <p class="text-gray-600 dark:text-white">
@@ -246,7 +246,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
         <UAlert
           v-if="shipping?.type === 'free'"
-          :description="t('$.delivery.brno_free')"
+          :description="t('$.shipping.brno_free')"
           color="info"
           variant="outline"
         />

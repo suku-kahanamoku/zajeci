@@ -103,7 +103,7 @@ watch(
 
           <UiPrice v-if="item.total_price! > 0" :price="item?.total_price!" />
           <span v-else>
-            {{ t("$.delivery.free") }}
+            {{ t("$.shipping.free") }}
           </span>
         </div>
       </template>
@@ -111,7 +111,7 @@ watch(
 
     <template #footer>
       <UAccordion
-        :items="[{ label: t('$.delivery.address') }]"
+        :items="[{ label: t('$.shipping.address') }]"
         :unmount-on-hide="false"
       >
         <template #body>

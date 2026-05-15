@@ -1,6 +1,6 @@
 {
   "syscode": "shipping",
-  "title": "$.delivery.title",
+  "title": "$.shipping.title",
   "fields": [
     {
       "name": "name",

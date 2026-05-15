@@ -16,7 +16,7 @@ const title = computed(() =>
 
 const { config, orders: order, loading } = useOrderAdmin(oConfig);
 
-/** Parse delivery/address info from the note field (e.g. "Doprava: DPD | Adresa: ...") */
+/** Parse shipping/address info from the note field (e.g. "Doprava: DPD | Adresa: ...") */
 const noteLines = computed(() =>
   ((order.value?.data as IOrder)?.note || "").split(" | ").filter(Boolean),
 );
