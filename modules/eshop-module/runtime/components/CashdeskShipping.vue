@@ -48,11 +48,18 @@ async function validate(form: any) {
     shipping.value.valid = true;
     return;
   }
-  await form?.validate({ silent: true });
-  shipping.value.valid = form?.getErrors().length ? false : true;
+  if (!form) {
+    // Form not yet mounted (accordion collapsed) — check if address is already filled
+    const addr = user.value.address?.shipping;
+    const filled = addr?.name && addr?.street && addr?.city && addr?.zip && addr?.state;
+    if (filled) shipping.value.valid = true;
+    return;
+  }
+  await form.validate({ silent: true });
+  shipping.value.valid = (form.getErrors()?.length ?? 0) === 0;
 }
 
-watch(() => formCmp.value?.form, validate);
+watch(() => formCmp.value?.form, validate, { immediate: true });
 
 watch(
   () => shipping.value.value,
@@ -131,7 +138,6 @@ watch(
             :ui="{
               body: 'grid md:grid-cols-2 gap-4',
             }"
-            :key="shipping.key"
             class="w-full"
             @change="onFormChange"
           >
