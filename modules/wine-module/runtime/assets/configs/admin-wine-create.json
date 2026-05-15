@@ -57,11 +57,6 @@
       "required": true
     },
     {
-      "name": "vat_rate",
-      "type": "number",
-      "label": "$.wine.form.vat_rate"
-    },
-    {
       "name": "stock_quantity",
       "type": "number",
       "label": "$.form.quantity_stock"

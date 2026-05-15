@@ -20,7 +20,6 @@ export interface IWine extends IItem {
   color?: string;
   variant?: string;
   data?: IWineData;
-  vat_rate?: string;
   category_ids?: number[];
   published?: boolean;
 }
