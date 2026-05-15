@@ -1,7 +1,7 @@
 {
   "syscode": "admin-taste-update",
-  "restUrl": "/api/taste/${route.meta.id}",
-  "patchUrl": "/api/admin/taste/${route.meta.id}",
+  "restUrl": "/api/enumerations/${route.meta.id}",
+  "patchUrl": "/api/admin/enum/${route.meta.id}",
   "method": "PATCH",
   "fields": [
     {

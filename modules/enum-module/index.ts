@@ -28,6 +28,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     GENERATE_PAGES("/admin", resolve);
     GENERATE_PAGES("/admin/enum", resolve);
+    GENERATE_PAGES("/admin/taste", resolve);
 
     // Public GET /api/enumerations (used by wine, eshop form dropdowns)
     const apiEnumDir = resolve("./runtime/server/api/enumerations");

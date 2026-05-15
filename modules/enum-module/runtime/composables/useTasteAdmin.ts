@@ -3,7 +3,11 @@ import { useUrlResolver, useFormNavigable } from "#imports";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 
-import type { IEnumItem, IEnumResponse, IEnumsResponse } from "@/modules/enum-module/runtime/types/enum.types";
+import type {
+  IEnumItem,
+  IEnumResponse,
+  IEnumsResponse,
+} from "../types/enum.types";
 
 export function useTasteAdmin(wConfig: any) {
   const { t } = useLang();
@@ -13,7 +17,7 @@ export function useTasteAdmin(wConfig: any) {
     useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<IEnumItem[]>([]);;
+  const selected = ref<IEnumItem[]>([]);
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(
@@ -44,13 +48,13 @@ export function useTasteAdmin(wConfig: any) {
             route,
           });
           url = useFactory(url, config.value.factory, routes.admin_taste?.path);
-          return (await useApi(url)) as IEnumResponse | IEnumsResponse;
+          return (await useApi(url)) as IEnumsResponse;
         } catch (error: any) {
           console.error(error);
-          return {};
+          return {} as IEnumsResponse;
         }
       }
-      return {};
+      return {} as IEnumsResponse;
     },
     {
       watch: [config],

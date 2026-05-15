@@ -56,7 +56,6 @@ export default defineNuxtModule<ModuleOptions>({
     GENERATE_PAGES("/wine", resolve);
     GENERATE_PAGES("/admin", resolve);
     GENERATE_PAGES("/admin/wine", resolve);
-    GENERATE_PAGES("/admin/taste", resolve);
 
     // Login api wine endpoints
     const apiWineDir = resolve("./runtime/server/api/wine");
@@ -68,18 +67,6 @@ export default defineNuxtModule<ModuleOptions>({
     const apiAdminWineDir = resolve("./runtime/server/api/admin/wine");
     fs.readdirSync(apiAdminWineDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/wine", resolve);
-    });
-
-    // Taste api endpoints
-    const apiTasteDir = resolve("./runtime/server/api/taste");
-    fs.readdirSync(apiTasteDir)?.forEach((file) => {
-      GENERATE_API_ENDPOINT(file, "/api/taste", resolve);
-    });
-
-    // Admin taste api endpoints
-    const apiAdminTasteDir = resolve("./runtime/server/api/admin/taste");
-    fs.readdirSync(apiAdminTasteDir)?.forEach((file) => {
-      GENERATE_API_ENDPOINT(file, "/api/admin/taste", resolve);
     });
 
     // Install common module

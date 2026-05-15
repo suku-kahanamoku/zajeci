@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import tConfig from "../../../assets/configs/admin-taste-list.json";
-import type { IEnumItem } from "@/modules/enum-module/runtime/types/enum.types";
+import type { IEnumItem } from "../../../types/enum.types";
 
 definePageMeta({
   layout: "admin",

@@ -1,8 +1,13 @@
 {
   "syscode": "admin-taste-create",
-  "postUrl": "/api/admin/taste",
+  "postUrl": "/api/admin/enum",
   "method": "POST",
   "fields": [
+    {
+      "name": "type",
+      "type": "hidden",
+      "value": "taste"
+    },
     {
       "name": "label",
       "type": "text",
