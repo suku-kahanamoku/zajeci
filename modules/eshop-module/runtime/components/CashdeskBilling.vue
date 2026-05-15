@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
 import { useDebounceFn } from "@vueuse/core";
-import defu from "defu";
-
 import {
   CLONE,
   CONVERT_DOT_TO_OBJECT,
@@ -16,7 +14,7 @@ const { t } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { loggedIn } = useUserSession();
-const { user, setUser, shipping, setShipping } = useCashdesk();
+const { user, setUser } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -32,19 +30,19 @@ const { data: config } = await useAsyncData(
       return {} as IFormConfig;
     }
   },
-  { watch: [() => route.query] }
+  { watch: [() => route.query] },
 );
 
 function _onChange(body: Record<string, any>) {
   const data = CLONE(body);
   CONVERT_DOT_TO_OBJECT(data);
   data.valid = formCmp.value.form.getErrors().length ? false : true;
+  // Zachovat shipping adresu z aktualniho user state
+  data.address = {
+    ...data.address,
+    shipping: user.value.address?.shipping,
+  };
   setUser(data);
-  const address = defu(shipping.value.address, {
-    ...data.address?.main,
-    name: `${data.first_name} ${data.last_name}`,
-  });
-  setShipping(shipping.value, address);
 }
 
 // Debounced change handler (300ms default)
@@ -62,7 +60,7 @@ watch(
       await validate(form);
     }
   },
-  { once: true }
+  { once: true },
 );
 </script>
 <template>
@@ -70,7 +68,7 @@ watch(
     v-if="config"
     ref="formCmp"
     :fields="config.fields"
-    :item="(user as IItem)"
+    :item="user as IItem"
     variant="subtle"
     :actions="{ disabled: true }"
     :ui="{

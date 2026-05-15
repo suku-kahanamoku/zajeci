@@ -48,9 +48,7 @@ function createCashdesk() {
   const { payment, paymentOptions, setPayment } = usePayment();
 
   const totalPrice = computed(
-    () =>
-      cartTotalPrice.value +
-      (shipping.value.price! + payment.value.price!),
+    () => cartTotalPrice.value + (shipping.value.price! + payment.value.price!),
   );
 
   // Wrap cart mutation methods to keep localStorage updates
@@ -151,9 +149,9 @@ function createCashdesk() {
 
   onMounted(() => {
     loadFromLocalStorage();
-    // Pokud je prihlaseny uzivatel, ale nejsou validni adresy, aktualizuje je dle prihlaseneho uzivatele
+    // Pokud je prihlaseny uzivatel, ale v localStorage neni zadny uzivatel, nacte ho z auth
     if (loggedIn.value) {
-      if (!user.value.valid) {
+      if (!user.value.email) {
         setUser();
       }
       if (!shipping.value.valid) {

@@ -44,6 +44,7 @@
     "payment": {
       "title": "Platba",
       "bank": "Bankovním převodem",
+      "bank_transfer": "Bankovním převodem",
       "card": "Platební kartou",
       "paypal": "PAY PAL",
       "gopay": "GO PAY",
@@ -62,10 +63,12 @@
       "zip": "PSČ",
       "state": "Stát",
       "phone": "Telefon",
-      "total": "Celková cena"
+      "total": "Celková cena",
+      "currency": "Měna"
     },
     "order": {
       "title": "Administrace objednávek",
+      "customer": "Zákazník",
       "create_order": "Vytvořit objednávku",
       "user_email": "Email uživatele",
       "user_name": "Jméno uživatele",
@@ -99,8 +102,12 @@
       "status_refunded": "Refundovaná",
       "admin": {
         "title": "Správa faktur",
-        "update": { "title": "Editace faktury" },
-        "create": { "title": "Nová faktura" }
+        "update": {
+          "title": "Editace faktury"
+        },
+        "create": {
+          "title": "Nová faktura"
+        }
       }
     }
   }
