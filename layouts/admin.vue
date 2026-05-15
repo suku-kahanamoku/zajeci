@@ -101,6 +101,13 @@ const menuItems = computed(() => {
       adminShipping.icon = "i-heroicons-truck";
       items.push(adminShipping);
     }
+
+    const adminVatRate = menuItem("admin_vat_rate");
+    if (adminVatRate) {
+      adminVatRate.to = localePath(adminVatRate.to!);
+      adminVatRate.icon = "i-heroicons-receipt-percent";
+      items.push(adminVatRate);
+    }
   }
 
   return items;

@@ -31,6 +31,7 @@ export default defineNuxtModule<ModuleOptions>({
     GENERATE_PAGES("/admin/taste", resolve);
     GENERATE_PAGES("/admin/payment", resolve);
     GENERATE_PAGES("/admin/shipping", resolve);
+    GENERATE_PAGES("/admin/vat-rate", resolve);
 
     // Public GET /api/enumerations (used by wine, eshop form dropdowns)
     const apiEnumDir = resolve("./runtime/server/api/enumerations");

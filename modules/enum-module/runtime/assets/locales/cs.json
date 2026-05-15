@@ -1,5 +1,10 @@
 {
   "$": {
+    "vat_rate": {
+      "form": {
+        "rate": "Sazba DPH (%)"
+      }
+    },
     "enum": {
       "form": {
         "type": "Typ",
@@ -44,6 +49,11 @@
         "title": "Správa dopravních metod",
         "create_shipping": "Nová dopravní metoda",
         "update_shipping": "Editace dopravní metody"
+      },
+      "vat_rate": {
+        "title": "Správa sazby DPH",
+        "create_vat_rate": "Nová sazba DPH",
+        "info": "Vždy se používá nejnovější záznam. Chcete-li změnit sazbu DPH, vytvořte nový záznam."
       }
     }
   }

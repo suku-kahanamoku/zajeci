@@ -21,6 +21,8 @@ export interface IWine extends IItem {
   variant?: string;
   data?: IWineData;
   category_ids?: number[];
+  vat_rate?: number;
+  price_with_vat?: number;
   published?: boolean;
 }
 
