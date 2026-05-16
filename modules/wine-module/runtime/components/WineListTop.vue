@@ -74,7 +74,7 @@ const { data: wines } = await useAsyncData(
       arrows
       :ui="{
         item: 'basis-full md:basis-1/2 lg:basis-1/3 ps-6',
-        container: '-ms-6 items-stretch',
+        container: 'items-stretch pt-2 pb-6 px-2',
         prev: 'start-0 sm:-start-10',
         next: 'end-0 sm:-end-10',
       }"
