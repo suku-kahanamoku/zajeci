@@ -50,25 +50,30 @@ const { data: config } = await useAsyncData(
 );
 
 // Columns
-const columns: Ref<TableColumn<any>[]> = computed(
-  () =>
-    config?.value?.fields
-      ?.filter((f) =>
-        ["name", "quantity", "price", "total_price"].includes(f.name),
-      )
-      ?.map((f) => ({
-        accessorKey: f.name,
-        header: ({ table }) =>
-          h("div", {
-            innerHTML: t(f.label!),
-            class: headerClass[f.name],
-          }),
-      })) ?? [],
-);
+const columns: Ref<TableColumn<any>[]> = computed(() => [
+  ...(config?.value?.fields
+    ?.filter((f) =>
+      ["name", "quantity", "price", "total_price"].includes(f.name),
+    )
+    ?.map((f) => ({
+      accessorKey: f.name,
+      header: ({ table }: any) =>
+        h("div", {
+          innerHTML: t(f.label!),
+          class: headerClass[f.name],
+        }),
+    })) ?? []),
+  {
+    accessorKey: "actions",
+    header: () => h("div", ""),
+  },
+]);
 
 const increaseQuantity = (cart: ICart) => {
   addItem(cart.wine, 1);
-  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
+  setShipping(
+    shippingOptions.value.find((d) => d.value === shipping.value.value),
+  );
 };
 
 const decreaseQuantity = (cart: ICart) => {
@@ -77,12 +82,16 @@ const decreaseQuantity = (cart: ICart) => {
   } else {
     openRemoveDialog(cart);
   }
-  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
+  setShipping(
+    shippingOptions.value.find((d) => d.value === shipping.value.value),
+  );
 };
 
 const openRemoveDialog = (cart: ICart) => {
   deleted.value = cart;
-  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
+  setShipping(
+    shippingOptions.value.find((d) => d.value === shipping.value.value),
+  );
   isOpen.value = true;
 };
 
@@ -92,7 +101,9 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   } else if (!isNaN(value) && value <= 0) {
     openRemoveDialog(cart);
   }
-  setShipping(shippingOptions.value.find((d) => d.value === shipping.value.value));
+  setShipping(
+    shippingOptions.value.find((d) => d.value === shipping.value.value),
+  );
 };
 </script>
 
@@ -148,7 +159,16 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           :model-value="row.original?.quantity"
           type="number"
           :min="1"
-          @change="handleSetQuantity(parseInt(($event as InputEvent).target ? (($event as InputEvent).target as HTMLInputElement).value : String($event)), row.original)"
+          @change="
+            handleSetQuantity(
+              parseInt(
+                ($event as InputEvent).target
+                  ? (($event as InputEvent).target as HTMLInputElement).value
+                  : String($event),
+              ),
+              row.original,
+            )
+          "
         />
         <UButton
           icon="i-heroicons-plus"
@@ -160,15 +180,18 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice :price="row.original?.unit_price!" />
+        <UiPrice :price="row.original?.unit_price!" :showOldPrice="false" />
       </p>
     </template>
 
     <template #total_price-cell="{ row }">
-      <div class="flex justify-between items-center space-x-4">
-        <p class="font-semibold text-end w-full">
-          <UiPrice :price="row.original?.total_price!" />
-        </p>
+      <p class="font-semibold text-end w-full">
+        <UiPrice :price="row.original?.total_price!" :showOldPrice="false" />
+      </p>
+    </template>
+
+    <template #actions-cell="{ row }">
+      <div class="flex justify-end">
         <UButton
           icon="i-heroicons-trash"
           color="error"
@@ -218,7 +241,16 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             :model-value="cart.quantity"
             type="number"
             :min="1"
-            @change="handleSetQuantity(parseInt(($event as InputEvent).target ? (($event as InputEvent).target as HTMLInputElement).value : String($event)), cart)"
+            @change="
+              handleSetQuantity(
+                parseInt(
+                  ($event as InputEvent).target
+                    ? (($event as InputEvent).target as HTMLInputElement).value
+                    : String($event),
+                ),
+                cart,
+              )
+            "
           />
           <UButton
             icon="i-heroicons-plus"
@@ -228,7 +260,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
         </div>
         <div class="flex justify-between items-center space-x-4 sm:space-x-12">
           <p class="font-semibold text-end">
-            <UiPrice :price="cart?.total_price!" />
+            <UiPrice :price="cart?.total_price!" :showOldPrice="false" />
           </p>
           <UButton
             icon="i-heroicons-trash"

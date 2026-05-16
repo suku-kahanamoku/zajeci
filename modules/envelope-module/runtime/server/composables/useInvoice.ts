@@ -2,7 +2,7 @@ import PDFDocument from "pdfkit";
 import type { H3Event } from "h3";
 import { useTranslation } from "@intlify/h3";
 
-import type { IUser } from "@suku-kahanamoku/auth-module/types";
+import type { IUser } from "@/modules/user-module/runtime/types/user.interface";
 import type { ICart, IOrder } from "@/modules/eshop-module/runtime/types";
 
 import {
@@ -166,8 +166,8 @@ export async function useInvoice(event: H3Event) {
     renderLabel(doc, tt("$.invoice.customer"), rightColX, 100, lineOptions);
 
     doc.moveDown();
-    const fullName = `${(customer as any).first_name || customer.givenName || customer.name || ""} ${
-      (customer as any).last_name || customer.surname || ""
+    const fullName = `${(customer as any).first_name || ""} ${
+      (customer as any).last_name || ""
     }`.trim();
     doc.text(fullName, rightColX, undefined, lineOptions);
 
@@ -192,8 +192,8 @@ export async function useInvoice(event: H3Event) {
     renderLabel(doc, tt("$.invoice.supplier"), margin, 100, lineOptions);
 
     doc.moveDown();
-    const fullName = `${(supplier as any).first_name || supplier.givenName || supplier.name || ""} ${
-      (supplier as any).last_name || supplier.surname || ""
+    const fullName = `${(supplier as any).first_name || ""} ${
+      (supplier as any).last_name || ""
     }`.trim();
     doc.text(fullName, lineOptions);
 

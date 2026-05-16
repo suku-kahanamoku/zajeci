@@ -3,7 +3,7 @@ import type { User } from "#auth-utils";
 
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import type { IUser } from "@suku-kahanamoku/auth-module/types";
+import type { IUser } from "@/modules/user-module/runtime/types/user.interface";
 
 import { useShipping } from "./useShipping";
 import { usePayment } from "./usePayment";
@@ -77,9 +77,6 @@ function createCashdesk() {
     const item = CLONE(newUser || authUser.value || emptyUser);
     item.address ||= authUser.value?.address || emptyUser.address;
     item.address.main ||= {};
-    // Map givenName/surname (from external IUser/auth) → first_name/last_name (snake_case)
-    item.first_name ||= item.givenName;
-    item.last_name ||= item.surname;
     user.value = item;
   };
 

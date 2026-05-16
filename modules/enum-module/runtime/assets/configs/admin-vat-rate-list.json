@@ -1,7 +1,8 @@
 {
   "syscode": "admin-vat-rate-list",
-  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"vat_rate\"}}&s=[{\"created_at\":-1}]",
+  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"vat_rate\"}}",
   "deleteUrl": "/api/admin/enum/${item.id}",
+  "sort": [{"created_at": -1}],
   "pagination": {
     "limit": 20
   },

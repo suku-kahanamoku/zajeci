@@ -1,4 +1,5 @@
-import type { ITokens, IUser } from "@suku-kahanamoku/auth-module/types";
+import type { ITokens } from "@suku-kahanamoku/auth-module/types";
+import type { IUser } from "@/modules/user-module/runtime/types/user.interface";
 
 declare module "#app" {
   interface NuxtApp {

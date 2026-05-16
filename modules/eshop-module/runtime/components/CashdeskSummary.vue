@@ -105,7 +105,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
     <template #price-cell="{ row }">
       <p class="font-semibold min-w-24 text-end">
-        <UiPrice :price="row.original?.total_price!" />
+        <UiPrice :price="row.original?.total_price!" :showOldPrice="false" />
       </p>
     </template>
 
@@ -117,15 +117,21 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </h3>
         </td>
         <td class="p-4">
-          <div class="text-end font-bold text-secondary-600 dark:text-secondary-400">
-            {{ shipping.price! > 0 ? `${Number(shipping.price).toLocaleString(locale)} ${t('$.czk')}` : t('$.shipping.free') }}
+          <div
+            class="text-end font-bold text-secondary-600 dark:text-secondary-400"
+          >
+            {{
+              shipping.price! > 0
+                ? `${Number(shipping.price).toLocaleString(locale)} ${t("$.czk")}`
+                : t("$.shipping.free")
+            }}
           </div>
         </td>
       </tr>
       <tr>
         <td colspan="99" class="p-4">
           <p class="font-semibold min-w-24 text-end">
-            <UiPrice :price="totalPrice" />
+            <UiPrice :price="totalPrice" :showOldPrice="false" />
           </p>
         </td>
       </tr>
@@ -174,7 +180,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <div class="w-full text-center font-semibold flex gap-2">
           <p>{{ t("$.form.price") }}:</p>
           <p>
-            <UiPrice :price="cart.total_price" />
+            <UiPrice :price="cart.total_price" :showOldPrice="false" />
           </p>
         </div>
       </div>
