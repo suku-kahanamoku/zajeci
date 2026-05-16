@@ -115,21 +115,9 @@ const menuItems = computed(() => {
 </script>
 
 <template>
-  <UHeader mode="slideover">
-    <template #toggle>
-      <UButton
-        v-if="menuItems.length"
-        class="lg:hidden"
-        icon="i-heroicons-bars-3"
-        color="neutral"
-        variant="ghost"
-        aria-label="Toggle sidebar"
-        @click="open = !open"
-      />
-    </template>
-
+  <UHeader mode="slideover" :ui="{ container: 'max-w-full' }">
     <template #title>
-      <div class="w-24">
+      <div class="w-24 -ms-4 sm:-ms-6 lg:-ms-8">
         <UiLogo />
       </div>
     </template>
@@ -152,6 +140,23 @@ const menuItems = computed(() => {
 
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />
+    </template>
+
+    <template #body>
+      <UNavigationMenu
+        :items="menuItems"
+        variant="link"
+        color="primary"
+        orientation="vertical"
+        :ui="{
+          list: 'space-y-1',
+          link: 'text-lg',
+        }"
+      >
+        <template #item-label="{ item }">
+          {{ $tt(item.label) }}
+        </template>
+      </UNavigationMenu>
     </template>
   </UHeader>
 

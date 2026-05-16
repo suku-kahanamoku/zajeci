@@ -44,7 +44,7 @@ const menuItems = [
 <template>
   <UHeader mode="slideover">
     <template #title>
-      <div class="w-24">
+      <div class="w-24 -ms-4 sm:-ms-6 lg:-ms-8">
         <UiLogo />
       </div>
     </template>
