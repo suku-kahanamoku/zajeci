@@ -115,7 +115,11 @@ const menuItems = computed(() => {
 </script>
 
 <template>
-  <UHeader mode="slideover" :ui="{ container: 'max-w-full' }">
+  <UHeader
+    mode="slideover"
+    :toggle="{ size: 'xl' }"
+    :ui="{ container: 'max-w-full' }"
+  >
     <template #title>
       <div class="w-24 -ms-4 sm:-ms-6 lg:-ms-8">
         <UiLogo />
@@ -123,20 +127,22 @@ const menuItems = computed(() => {
     </template>
 
     <template #right>
-      <UChip
-        :show="!!totalItemsLength"
-        :text="totalItemsLength"
-        size="3xl"
-        :inset="true"
-        color="secondary"
-      >
-        <UButton
-          :to="routes?.cashdesk?.path"
-          icon="i-heroicons-shopping-cart"
-          variant="ghost"
-          size="xl"
-        />
-      </UChip>
+      <div class="space-x-4">
+        <UChip
+          :show="!!totalItemsLength"
+          :text="totalItemsLength"
+          size="3xl"
+          :inset="true"
+          color="secondary"
+        >
+          <UButton
+            :to="routes?.cashdesk?.path"
+            icon="i-heroicons-shopping-cart"
+            variant="ghost"
+            size="xl"
+          />
+        </UChip>
+      </div>
 
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />

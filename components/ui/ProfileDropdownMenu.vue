@@ -45,7 +45,8 @@ const profileMenuItems = [
     content-orientation="vertical"
     variant="link"
     :ui="{
-      viewportWrapper: 'w-40',
+      viewportWrapper: 'left-auto right-0 w-44',
+      viewport: 'left-0',
     }"
   />
 </template>

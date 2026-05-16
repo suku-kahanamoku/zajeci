@@ -42,7 +42,7 @@ const menuItems = [
 </script>
 
 <template>
-  <UHeader mode="slideover">
+  <UHeader mode="slideover" :toggle="{ size: 'xl' }">
     <template #title>
       <div class="w-24 -ms-4 sm:-ms-6 lg:-ms-8">
         <UiLogo />
@@ -56,28 +56,31 @@ const menuItems = [
     </UNavigationMenu>
 
     <template #right>
-      <UChip
-        :show="!!totalItemsLength"
-        :text="totalItemsLength"
-        size="3xl"
-        :inset="true"
-        color="secondary"
-      >
+      <div class="space-x-4">
+        <UChip
+          :show="!!totalItemsLength"
+          :text="totalItemsLength"
+          size="3xl"
+          :inset="true"
+          color="secondary"
+        >
+          <UButton
+            :to="routes.cashdesk?.path"
+            icon="i-heroicons-shopping-cart"
+            variant="ghost"
+            size="xl"
+            chip
+          />
+        </UChip>
+
         <UButton
-          :to="routes.cashdesk?.path"
-          icon="i-heroicons-shopping-cart"
+          :icon="isDark ? 'i-heroicons-sun' : 'i-heroicons-moon'"
+          color="neutral"
           variant="ghost"
           size="xl"
+          @click="isDark = !isDark"
         />
-      </UChip>
-
-      <UButton
-        :icon="isDark ? 'i-heroicons-sun' : 'i-heroicons-moon'"
-        color="neutral"
-        variant="ghost"
-        size="xl"
-        @click="isDark = !isDark"
-      />
+      </div>
 
       <UiProfileDropdownMenu v-if="loggedIn" />
       <UiSignBtns v-else />
