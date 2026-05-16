@@ -192,10 +192,7 @@ const menuItems = computed(() => {
     </USidebar>
 
     <div class="flex-1 flex flex-col min-w-0 overflow-auto">
-      <div
-        v-if="route.meta?.syscode !== 'home'"
-        class="max-w-7xl mx-auto w-full px-5 pt-4"
-      >
+      <div v-if="route.meta?.syscode !== 'home'" class="w-full px-5 pt-4">
         <UiBreadcrumb />
       </div>
       <slot />
