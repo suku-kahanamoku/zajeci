@@ -5,7 +5,8 @@ export interface IText extends IItem {
   title?: string;
   content?: string;
   language?: string;
-  published?: boolean;
+  published?: 0 | 1;
+  created_by?: number | null;
 }
 
 export interface ITextResponse extends IResponse {

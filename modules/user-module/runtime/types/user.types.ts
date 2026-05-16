@@ -2,11 +2,10 @@ import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 
 export interface IAdminUser extends IItem {
   email: string;
-  name?: string;
-  surname?: string;
+  first_name?: string;
+  last_name?: string;
   phone?: string;
-  role?: string;
-  published?: boolean;
+  role?: { id: number; name: string };
 }
 
 export interface IUserResponse extends IResponse {
@@ -15,4 +14,18 @@ export interface IUserResponse extends IResponse {
 
 export interface IUsersResponse extends IResponse {
   data?: IAdminUser[];
+}
+
+export interface IRole extends IItem {
+  name: string;
+  label: string;
+  position?: number;
+}
+
+export interface IRoleResponse extends IResponse {
+  data?: IRole;
+}
+
+export interface IRolesResponse extends IResponse {
+  data?: IRole[];
 }

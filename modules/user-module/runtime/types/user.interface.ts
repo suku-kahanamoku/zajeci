@@ -33,21 +33,3 @@ export interface IUserResponse extends IResponse {
 export interface IUsersResponse extends IResponse {
   data?: IUser[];
 }
-
-
-export interface IUserResponse extends IResponse {
-  data?: IUser;
-}
-
-export interface IUsersResponse extends IResponse {
-  data?: IUser[];
-}
-
-
-export interface IUserResponse extends IResponse {
-  data?: IUser;
-}
-
-export interface IUsersResponse extends IResponse {
-  data?: IUser[];
-}

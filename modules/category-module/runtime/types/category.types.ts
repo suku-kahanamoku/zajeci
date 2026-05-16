@@ -5,7 +5,7 @@ export interface ICategory extends IItem {
   syscode?: string;
   parent_id?: number | null;
   description?: string;
-  published?: boolean;
+  position?: number;
 }
 
 export interface ICategoryResponse extends IResponse {

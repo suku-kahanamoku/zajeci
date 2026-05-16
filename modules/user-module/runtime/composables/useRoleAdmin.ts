@@ -1,16 +1,21 @@
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import { useUrlResolver, useFormNavigable } from "#imports";
-import type { IResponse } from "@suku-kahanamoku/common-module/types";
+import type {
+  IRole,
+  IRoleResponse,
+  IRolesResponse,
+} from "@/modules/user-module/runtime/types/user.types";
 
 export function useRoleAdmin(rConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } =
+    useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
-  const selected = ref<any[]>([]);
+  const selected = ref<IRole[]>([]);
   const isOpen = ref(false);
 
   const { data: config } = useAsyncData(
@@ -36,11 +41,18 @@ export function useRoleAdmin(rConfig: any) {
     async () => {
       if (config?.value?.restUrl) {
         try {
-          let url = useCompleteUrl(config.value.restUrl, { config: config.value, route });
+          let url = useCompleteUrl(config.value.restUrl, {
+            config: config.value,
+            route,
+          });
           if (config.value.factory) {
-            url = useFactory(url, config.value.factory, routes.admin_role?.path);
+            url = useFactory(
+              url,
+              config.value.factory,
+              routes.admin_role?.path,
+            );
           }
-          return (await useApi(url)) as IResponse;
+          return (await useApi(url)) as IRoleResponse | IRolesResponse;
         } catch {
           return {};
         }
@@ -55,7 +67,11 @@ export function useRoleAdmin(rConfig: any) {
       try {
         await Promise.all(
           selected.value.map((item) => {
-            const url = useUrl(config.value!.deleteUrl!, { config: config.value!, route, item });
+            const url = useUrl(config.value!.deleteUrl!, {
+              config: config.value!,
+              route,
+              item,
+            });
             return useApi(url, { method: "DELETE" });
           }),
         );
@@ -69,11 +85,13 @@ export function useRoleAdmin(rConfig: any) {
     }
   }
 
-  async function onUpdate(body: Record<string, any>, role: any) {
+  async function onUpdate(body: Record<string, any>, role: IRole) {
     loading.value = true;
     const result = await onSubmit(config.value!, body, role);
     if (result?.data) {
-      document.querySelectorAll(".field-warning").forEach((el) => el.classList.remove("field-warning"));
+      document
+        .querySelectorAll(".field-warning")
+        .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_role?.path);
     }
     loading.value = false;
@@ -83,7 +101,9 @@ export function useRoleAdmin(rConfig: any) {
     loading.value = true;
     const result = await onSubmit(config.value!, body);
     if (result?.data) {
-      document.querySelectorAll(".field-warning").forEach((el) => el.classList.remove("field-warning"));
+      document
+        .querySelectorAll(".field-warning")
+        .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_role?.path);
     }
     loading.value = false;

@@ -1,23 +1,20 @@
-import type { IItem } from "@suku-kahanamoku/common-module/types";
+import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 
 /** PHP API – Enumeration item */
 export interface IEnumItem extends IItem {
   type: string;
   syscode: string;
   label: string;
-  value: string;
+  value: string | null;
   position: number;
   published: 0 | 1;
+  data?: Record<string, any> | null;
 }
 
-/** PHP API – single enumeration response */
-export interface IEnumResponse {
-  data: IEnumItem;
-  meta: { total: number };
+export interface IEnumResponse extends IResponse {
+  data?: IEnumItem;
 }
 
-/** PHP API – list enumeration response */
-export interface IEnumsResponse {
-  data: IEnumItem[];
-  meta: { total: number; limit: number; skip: number };
+export interface IEnumsResponse extends IResponse {
+  data?: IEnumItem[];
 }

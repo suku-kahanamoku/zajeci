@@ -23,7 +23,7 @@ export interface IWine extends IItem {
   category_ids?: number[];
   vat_rate?: number;
   price_with_vat?: number;
-  published?: boolean;
+  published?: 0 | 1;
 }
 
 export interface IWineResponse extends IResponse {

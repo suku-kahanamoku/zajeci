@@ -16,6 +16,6 @@ export interface IImageResponse extends IResponse {
   data?: IImage;
 }
 
-export interface IImageesResponse extends IResponse {
+export interface IImagesResponse extends IResponse {
   data?: IImage[];
 }

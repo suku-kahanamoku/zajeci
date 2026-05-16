@@ -1,13 +1,18 @@
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import { useUrlResolver, useFormNavigable } from "#imports";
-import type { IResponse } from "@suku-kahanamoku/common-module/types";
+import type {
+  IInvoice,
+  IInvoiceResponse,
+  IInvoicesResponse,
+} from "@/modules/eshop-module/runtime/types/order.interface";
 
 export function useInvoiceAdmin(iConfig: any) {
   const { t } = useLang();
   const { routes, route } = useMenuItems();
   const { success, error: toastError } = useToastify();
-  const { onSubmit, navigate, onPageChange, onFilterChange } = useFormNavigable();
+  const { onSubmit, navigate, onPageChange, onFilterChange } =
+    useFormNavigable();
   const { updateConfig } = useUrlResolver();
 
   const selected = ref<any[]>([]);
@@ -36,11 +41,18 @@ export function useInvoiceAdmin(iConfig: any) {
     async () => {
       if (config?.value?.restUrl) {
         try {
-          let url = useCompleteUrl(config.value.restUrl, { config: config.value, route });
+          let url = useCompleteUrl(config.value.restUrl, {
+            config: config.value,
+            route,
+          });
           if (config.value.factory) {
-            url = useFactory(url, config.value.factory, routes.admin_invoice?.path);
+            url = useFactory(
+              url,
+              config.value.factory,
+              routes.admin_invoice?.path,
+            );
           }
-          return (await useApi(url)) as IResponse;
+          return (await useApi(url)) as IInvoiceResponse | IInvoicesResponse;
         } catch {
           return {};
         }
@@ -55,7 +67,11 @@ export function useInvoiceAdmin(iConfig: any) {
       try {
         await Promise.all(
           selected.value.map((item) => {
-            const url = useUrl(config.value!.deleteUrl!, { config: config.value!, route, item });
+            const url = useUrl(config.value!.deleteUrl!, {
+              config: config.value!,
+              route,
+              item,
+            });
             return useApi(url, { method: "DELETE" });
           }),
         );
@@ -69,11 +85,13 @@ export function useInvoiceAdmin(iConfig: any) {
     }
   }
 
-  async function onUpdate(body: Record<string, any>, invoice: any) {
+  async function onUpdate(body: Record<string, any>, invoice: IInvoice) {
     loading.value = true;
     const result = await onSubmit(config.value!, body, invoice);
     if (result?.data) {
-      document.querySelectorAll(".field-warning").forEach((el) => el.classList.remove("field-warning"));
+      document
+        .querySelectorAll(".field-warning")
+        .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_invoice?.path);
     }
     loading.value = false;
@@ -83,7 +101,9 @@ export function useInvoiceAdmin(iConfig: any) {
     loading.value = true;
     const result = await onSubmit(config.value!, body);
     if (result?.data) {
-      document.querySelectorAll(".field-warning").forEach((el) => el.classList.remove("field-warning"));
+      document
+        .querySelectorAll(".field-warning")
+        .forEach((el) => el.classList.remove("field-warning"));
       navigateTo(routes.admin_invoice?.path);
     }
     loading.value = false;

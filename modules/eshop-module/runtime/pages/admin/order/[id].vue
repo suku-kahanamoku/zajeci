@@ -124,7 +124,7 @@ useHead({
         <div class="mb-6">
           <div class="font-semibold mb-2">{{ t("$.cart.title") }}</div>
           <UTable
-            :data="data.order_items || []"
+            :data="data.items || []"
             :columns="[
               { accessorKey: 'product_name', header: t('$.form.name') },
               { accessorKey: 'sku', header: 'SKU' },

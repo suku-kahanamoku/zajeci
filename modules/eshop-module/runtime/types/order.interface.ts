@@ -74,27 +74,30 @@ export enum OrderStatus {
  * @interface IOrder
  */
 export interface IOrderItem extends IItem {
+  order_id: number;
   product_id: number;
   quantity: number;
-  price: string;
-  total_price: string;
-  description?: string;
+  price: number;
+  vat_rate?: number;
+  product_name?: string | null;
+  sku?: string | null;
 }
 
 /** PHP backend order response */
 export interface IOrder extends IItem {
   order_number: string;
-  user_id: number;
+  user_id: number | null;
   status: OrderStatus | string;
-  total_price: string;
+  total_price: number;
   currency: string;
-  payment_type: string;
-  shipping_type?: string;
-  shipping_price?: number;
+  payment_type: string | null;
+  shipping_type?: string | null;
+  shipping_price?: number | null;
   shipping_address_id?: number | null;
   billing_address_id?: number | null;
-  note?: string;
-  order_items?: IOrderItem[];
+  note?: string | null;
+  items?: IOrderItem[];
+  user?: { first_name: string; last_name: string; email: string };
 }
 
 export interface IOrderResponse extends IResponse {
@@ -103,4 +106,26 @@ export interface IOrderResponse extends IResponse {
 
 export interface IOrdersResponse extends IResponse {
   data?: IOrder[];
+}
+
+export interface IInvoice extends IItem {
+  invoice_number: string;
+  status: string;
+  total_amount: number;
+  currency: string;
+  issued_at: string;
+  due_at?: string | null;
+  paid_at?: string | null;
+  order_id?: number | null;
+  user_id?: number | null;
+  billing_address_id?: number | null;
+  user?: { first_name: string; last_name: string; email: string };
+}
+
+export interface IInvoiceResponse extends IResponse {
+  data?: IInvoice;
+}
+
+export interface IInvoicesResponse extends IResponse {
+  data?: IInvoice[];
 }
