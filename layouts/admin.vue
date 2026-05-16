@@ -115,81 +115,79 @@ const menuItems = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col flex-1 min-h-svh">
-    <UHeader :ui="{ container: 'px-4!' }">
-      <template #toggle>
-        <UButton
-          v-if="menuItems.length"
-          class="lg:hidden"
-          icon="i-heroicons-bars-3"
-          color="neutral"
-          variant="ghost"
-          aria-label="Toggle sidebar"
-          @click="open = !open"
-        />
-      </template>
+  <UHeader mode="slideover">
+    <template #toggle>
+      <UButton
+        v-if="menuItems.length"
+        class="lg:hidden"
+        icon="i-heroicons-bars-3"
+        color="neutral"
+        variant="ghost"
+        aria-label="Toggle sidebar"
+        @click="open = !open"
+      />
+    </template>
 
-      <template #title>
-        <div class="w-24">
-          <UiLogo />
-        </div>
-      </template>
-
-      <template #right>
-        <UChip
-          :show="!!totalItemsLength"
-          :text="totalItemsLength"
-          size="3xl"
-          :inset="true"
-          color="secondary"
-        >
-          <UButton
-            :to="routes?.cashdesk?.path"
-            icon="i-heroicons-shopping-cart"
-            variant="ghost"
-            size="xl"
-          />
-        </UChip>
-
-        <UiProfileDropdownMenu v-if="loggedIn" />
-        <UiSignBtns v-else />
-      </template>
-    </UHeader>
-
-    <div class="flex flex-1 min-h-0">
-      <USidebar
-        v-model:open="open"
-        collapsible="icon"
-        rail
-        :ui="{
-          gap: 'h-[calc(100%-var(--ui-header-height))]',
-          container:
-            'absolute top-(--ui-header-height) bottom-0 h-[calc(100%-var(--ui-header-height))]',
-        }"
-      >
-        <template #default="{ state }">
-          <UNavigationMenu
-            :key="state"
-            :items="menuItems"
-            orientation="vertical"
-            :ui="{ link: 'p-1.5 overflow-hidden' }"
-          >
-            <template #item-label="{ item }">
-              {{ $tt(item.label) }}
-            </template>
-          </UNavigationMenu>
-        </template>
-      </USidebar>
-
-      <div class="flex-1 flex flex-col min-w-0 overflow-auto">
-        <div
-          v-if="route.meta?.syscode !== 'home'"
-          class="max-w-7xl mx-auto w-full px-5 pt-4"
-        >
-          <UiBreadcrumb />
-        </div>
-        <slot />
+    <template #title>
+      <div class="w-24">
+        <UiLogo />
       </div>
+    </template>
+
+    <template #right>
+      <UChip
+        :show="!!totalItemsLength"
+        :text="totalItemsLength"
+        size="3xl"
+        :inset="true"
+        color="secondary"
+      >
+        <UButton
+          :to="routes?.cashdesk?.path"
+          icon="i-heroicons-shopping-cart"
+          variant="ghost"
+          size="xl"
+        />
+      </UChip>
+
+      <UiProfileDropdownMenu v-if="loggedIn" />
+      <UiSignBtns v-else />
+    </template>
+  </UHeader>
+
+  <div class="flex flex-1 min-h-0">
+    <USidebar
+      v-model:open="open"
+      collapsible="icon"
+      rail
+      :ui="{
+        gap: 'h-[calc(100%-var(--ui-header-height))]',
+        container:
+          'absolute top-(--ui-header-height) bottom-0 h-[calc(100%-var(--ui-header-height))]',
+      }"
+    >
+      <template #default="{ state }">
+        <UNavigationMenu
+          :key="state"
+          :items="menuItems"
+          orientation="vertical"
+          :ui="{ link: 'p-1.5 overflow-hidden' }"
+        >
+          <template #item-label="{ item }">
+            {{ $tt(item.label) }}
+          </template>
+        </UNavigationMenu>
+      </template>
+    </USidebar>
+
+    <div class="flex-1 flex flex-col min-w-0 overflow-auto">
+      <div
+        v-if="route.meta?.syscode !== 'home'"
+        class="max-w-7xl mx-auto w-full px-5 pt-4"
+      >
+        <UiBreadcrumb />
+      </div>
+      <slot />
     </div>
   </div>
 </template>
