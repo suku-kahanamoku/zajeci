@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useFileUpload } from "@/modules/file-module/runtime/composables/useFileUpload";
-
 import wConfig from "../../../assets/configs/admin-wine-create.json";
 
 definePageMeta({
@@ -16,7 +14,6 @@ const title = computed(() =>
 );
 
 const { config, loading, onCreate } = useWineAdmin(wConfig);
-const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
 const uploadField = computed(() => config.value?.uploadField as any);
 
 useHead({
@@ -67,14 +64,6 @@ async function onFormSubmit(formData: Record<string, any>) {
             "Select files to upload. They will be attached after the product is created."
           }}
         </p>
-
-        <UiFileUpload
-          v-if="uploadField"
-          :field="uploadField"
-          :files="files"
-          :uploaded-files="uploadedFiles"
-          @delete="removeUploadedFile"
-        />
       </UCard>
     </div>
   </div>

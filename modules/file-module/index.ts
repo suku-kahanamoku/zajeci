@@ -50,6 +50,14 @@ export default defineNuxtModule<ModuleOptions>({
       lazy: true,
     });
 
+    // Preview endpoint pro committed soubory
+    addServerHandler({
+      route: "/api/files/:id/preview",
+      handler: resolve("./runtime/server/api/files/[id].preview.get.ts"),
+      method: "get",
+      lazy: true,
+    });
+
     if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
       await installModule("@suku-kahanamoku/common-module");
     }

@@ -21,12 +21,57 @@ const {
   wines: wineResponse,
   loading,
   onUpdate,
+  refresh,
 } = useWineAdmin(wConfig);
-const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
+const {
+  files,
+  uploadedFiles,
+  tempPaths,
+  removeUploadedFile,
+  clearUploadedFiles,
+} = useFileUpload();
 const uploadField = computed(() => config.value?.uploadField as any);
 const wineItem = computed<IWine | undefined>(() => {
   return wineResponse.value?.data as IWine | undefined;
 });
+
+const commitLoading = ref(false);
+
+async function onCommitFiles() {
+  if (!tempPaths.value.length || !wineItem.value?.id) return;
+  commitLoading.value = true;
+  try {
+    const newFileIds: number[] = [];
+    for (const path of tempPaths.value) {
+      const res = await $fetch<{ data?: { id?: number } }>(
+        "/api/files/commit",
+        {
+          method: "POST",
+          body: {
+            path,
+            name: path.split("/").pop() || "upload.bin",
+            visibility: wineItem.value.published === 1 ? "public" : "private",
+            entity_type: "product",
+            entity_id: wineItem.value.id,
+          },
+        },
+      );
+      const fileId = Number((res as any)?.data?.id || 0);
+      if (fileId) newFileIds.push(fileId);
+    }
+    if (newFileIds.length) {
+      const existingIds = wineItem.value.file_ids ?? [];
+      await $fetch(`/api/admin/wine/${wineItem.value.id}`, {
+        method: "PATCH",
+        body: { file_ids: [...existingIds, ...newFileIds] },
+      });
+    }
+    clearUploadedFiles();
+    await refresh();
+  } finally {
+    commitLoading.value = false;
+  }
+}
 
 useHead({
   title,
@@ -82,6 +127,17 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
             @delete="removeUploadedFile"
           />
 
+          <div class="flex justify-end">
+            <UButton
+              :disabled="!tempPaths.length"
+              :loading="commitLoading"
+              data-testid="form-submit"
+              @click="onCommitFiles"
+            >
+              {{ t("$.btn.submit") }}
+            </UButton>
+          </div>
+
           <div v-if="wineItem.files?.length" class="space-y-2">
             <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">
               {{ t("$.message.existing_files") || "Nahrané soubory" }}
@@ -92,12 +148,18 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
                 :key="file.id"
                 class="relative group rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
               >
-                <img
+                <a
                   v-if="file.mime_type?.startsWith('image/')"
-                  :src="`/api/files/${file.path}/preview`"
-                  :alt="file.name"
-                  class="w-full h-32 object-cover"
-                />
+                  :href="`/api/files/${file.id}/preview`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    :src="`/api/files/${file.id}/preview`"
+                    :alt="file.name"
+                    class="w-full h-32 object-cover"
+                  />
+                </a>
                 <div
                   v-else
                   class="w-full h-32 flex items-center justify-center bg-gray-100 dark:bg-gray-900"
