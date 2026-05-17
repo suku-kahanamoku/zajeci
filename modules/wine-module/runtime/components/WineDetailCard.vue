@@ -9,6 +9,33 @@ const props = defineProps<{
   wine?: IWine;
 }>();
 
+const carousel = useTemplateRef("carousel");
+const activeIndex = ref(0);
+
+const carouselItems = computed(() => {
+  if (props.wine?.files?.length) {
+    return props.wine.files.map((f) => `/api/files/${f.id}/preview`);
+  }
+  return [props.wine?.image?.main?.src || "/img/bottle.jpg"];
+});
+
+function onClickPrev() {
+  activeIndex.value = Math.max(0, activeIndex.value - 1);
+}
+function onClickNext() {
+  activeIndex.value = Math.min(
+    carouselItems.value.length - 1,
+    activeIndex.value + 1,
+  );
+}
+function onSelect(index: number) {
+  activeIndex.value = index;
+}
+function selectThumb(index: number) {
+  activeIndex.value = index;
+  carousel.value?.emblaApi?.scrollTo(index);
+}
+
 const {
   i18n: { locale },
   t,
@@ -50,27 +77,52 @@ function addToCashdesk() {
   >
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
       <!-- LEFT: Image -->
-      <div class="relative max-w-lg mx-auto lg:mx-0">
+      <div>
         <div
-          class="rounded-3xl overflow-hidden bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 aspect-[3/4] flex items-center justify-center"
+          class="rounded-3xl overflow-hidden bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800"
         >
-          <img
-            v-if="wine.files?.[0]"
-            :src="`/api/files/${wine.files[0].id}/preview`"
-            :alt="wine.name || 'wine'"
-            loading="lazy"
-            class="h-full w-full object-contain p-7 transition-transform duration-700 hover:scale-105"
-          />
-          <NuxtImg
-            v-else
-            :src="wine.image?.main?.src || '/img/bottle.jpg'"
-            :alt="wine.name || 'wine'"
-            loading="lazy"
-            format="webp"
-            sizes="375px md:600px"
-            class="h-full w-full object-contain p-7 transition-transform duration-700 hover:scale-105"
-          />
+          <UCarousel
+            ref="carousel"
+            v-slot="{ item }"
+            arrows
+            :items="carouselItems"
+            :prev="{ onClick: onClickPrev }"
+            :next="{ onClick: onClickNext }"
+            class="w-full"
+            @select="onSelect"
+          >
+            <img
+              :src="item"
+              :alt="wine.name || 'wine'"
+              loading="lazy"
+              class="w-full h-120 object-contain p-7 transition-transform duration-700 hover:scale-105"
+            />
+          </UCarousel>
         </div>
+
+        <!-- Thumbnails -->
+        <div
+          v-if="carouselItems.length > 1"
+          class="flex gap-2 justify-center pt-3 flex-wrap"
+        >
+          <div
+            v-for="(src, index) in carouselItems"
+            :key="index"
+            class="size-24 opacity-30 hover:opacity-100 transition-opacity cursor-pointer rounded-lg overflow-hidden border-2 border-transparent"
+            :class="{ 'opacity-100 border-primary-500': activeIndex === index }"
+            @click="selectThumb(index)"
+          >
+            <img
+              :src="src"
+              :alt="`thumb-${index}`"
+              width="90"
+              height="90"
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
         <!-- Color badge -->
         <div v-if="wine.color" class="absolute top-4 left-4">
           <span
