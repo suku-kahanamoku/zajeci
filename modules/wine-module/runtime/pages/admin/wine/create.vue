@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import wConfig from "../../../assets/configs/admin-wine-create.json";
-import type { IWine } from "../../../types";
 
 definePageMeta({
   layout: "admin",
@@ -15,6 +14,7 @@ const title = computed(() =>
 );
 
 const { config, loading, onCreate } = useWineAdmin(wConfig);
+const fileUploadRef = useTemplateRef<any>("fileUpload");
 
 useHead({
   title,
@@ -23,6 +23,14 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
+
+async function onFormSubmit(formData: Record<string, any>) {
+  const paths: string[] = fileUploadRef.value?.tempFilePaths ?? [];
+  await onCreate({
+    ...formData,
+    paths: paths.length > 0 ? paths : undefined,
+  });
+}
 </script>
 
 <template>
@@ -33,16 +41,34 @@ useHead({
       class="border-none"
     />
 
-    <CmpForm
-      :fields="config.fields"
-      :loading="loading"
-      :actions="{
-        no: { link: routes.admin_wine as any },
-      }"
-      :ui="{
-        body: 'grid md:grid-cols-2 gap-4',
-      }"
-      @submit="onCreate"
-    />
+    <div class="space-y-6">
+      <CmpForm
+        :fields="config.fields"
+        :loading="loading"
+        :actions="{
+          no: { link: routes.admin_wine as any },
+        }"
+        :ui="{
+          body: 'grid md:grid-cols-2 gap-4',
+        }"
+        @submit="onFormSubmit"
+      />
+
+      <!-- File Upload Section -->
+      <UCard class="w-full">
+        <template #header>
+          <h3 class="text-lg font-semibold">{{ $t("$.form.files") || "Files" }}</h3>
+        </template>
+        
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          {{ $t("$.form.files_will_upload_after_create") || "Select files to upload. They will be attached after the product is created." }}
+        </p>
+        
+        <UiFileUpload
+          ref="fileUpload"
+          entity-type="product"
+        />
+      </UCard>
+    </div>
   </div>
 </template>

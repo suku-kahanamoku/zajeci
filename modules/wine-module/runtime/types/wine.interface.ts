@@ -24,6 +24,7 @@ export interface IWine extends IItem {
   vat_rate?: number;
   price_with_vat?: number;
   published?: 0 | 1;
+  file_ids?: number[];
 }
 
 export interface IWineResponse extends IResponse {

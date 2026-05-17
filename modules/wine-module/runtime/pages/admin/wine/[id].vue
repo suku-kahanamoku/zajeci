@@ -14,7 +14,13 @@ const title = computed(() =>
   t((route.meta.label || route.meta.title) as string),
 );
 
-const { config, wines: wine, loading, onUpdate } = useWineAdmin(wConfig);
+const { config, wines: wineResponse, loading, onUpdate } = useWineAdmin(wConfig);
+const fileUploadRef = useTemplateRef<any>("fileUpload");
+const wineItem = computed<IWine | null>(() => {
+  const raw: any = (wineResponse as any)?.value ?? (wineResponse as any);
+  const data: any = raw?.data;
+  return data && !Array.isArray(data) ? (data as IWine) : null;
+});
 
 useHead({
   title,
@@ -23,6 +29,14 @@ useHead({
     { name: "keywords", content: t("$.base.description") },
   ],
 });
+
+async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
+  const paths: string[] = fileUploadRef.value?.tempFilePaths ?? [];
+  await onUpdate(
+    { ...formData, paths: paths.length > 0 ? paths : undefined },
+    wineItem,
+  );
+}
 </script>
 
 <template>
@@ -33,18 +47,26 @@ useHead({
       class="border-none"
     />
 
-    <CmpForm
-      v-if="wine?.data"
-      :fields="config.fields"
-      :item="wine.data as IWine"
-      :loading="loading"
-      :actions="{
-        no: { link: routes.admin_wine as any },
-      }"
-      :ui="{
-        body: 'grid md:grid-cols-2 gap-4',
-      }"
-      @submit="onUpdate($event, wine?.data as IWine)"
-    />
+    <div v-if="wineItem" class="space-y-6">
+      <UiFileUpload
+        ref="fileUpload"
+        entity-type="product"
+        :entity-id="Number((wineItem as IWine).id)"
+        :visibility="(wineItem as IWine).published ? 'public' : 'private'"
+      />
+
+      <CmpForm
+        :fields="config.fields"
+        :item="wineItem as IWine"
+        :loading="loading"
+        :actions="{
+          no: { link: routes.admin_wine as any },
+        }"
+        :ui="{
+          body: 'grid md:grid-cols-2 gap-4',
+        }"
+        @submit="onFormSubmit($event, wineItem as IWine)"
+      />
+    </div>
   </div>
 </template>

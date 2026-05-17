@@ -115,9 +115,16 @@ export function useWineAdmin(wConfig: any) {
       document
         .querySelectorAll(".field-warning")
         .forEach((el) => el.classList.remove("field-warning"));
-      navigateTo(routes.admin_wine?.path);
+      loading.value = false;
+      // Return product ID so caller can use it (e.g., for file commit)
+      const productId = (result.data as any)?.id;
+      if (productId) {
+        navigateTo(routes.admin_wine?.path);
+        return productId;
+      }
     }
     loading.value = false;
+    return null;
   }
 
   function handleSort(sort: Record<string, number>[]) {
