@@ -15,16 +15,20 @@ async function commitPaths(
   const committedIds: number[] = [];
 
   for (const path of paths) {
-    const commitRes = await phpApiFetch<{ id?: number }>(event, "/files/commit", {
-      method: "POST",
-      body: {
-        path,
-        name: fileNameFromTempPath(path),
-        visibility,
-        entity_type: "product",
-        entity_id: productId,
+    const commitRes = await phpApiFetch<{ id?: number }>(
+      event,
+      "/files/commit",
+      {
+        method: "POST",
+        body: {
+          path,
+          name: fileNameFromTempPath(path),
+          visibility,
+          entity_type: "product",
+          entity_id: productId,
+        },
       },
-    });
+    );
 
     const fileId = Number((commitRes.data as any)?.id || 0);
     if (fileId) committedIds.push(fileId);
@@ -37,7 +41,9 @@ export default defineEventHandler(async (event: H3Event) => {
   const id = Number(event.context.params?.id || 0);
   const body = (await readBody(event)) as Record<string, any>;
   const rawPaths = Array.isArray(body?.paths) ? body.paths : [];
-  const paths = rawPaths.filter((p: unknown) => typeof p === "string" && p.trim().length > 0);
+  const paths = rawPaths.filter(
+    (p: unknown) => typeof p === "string" && p.trim().length > 0,
+  );
 
   const { paths: _paths, ...productBody } = body || {};
   const patchRes = await phpApiFetch(event, `/products/${id}`, {
@@ -49,11 +55,15 @@ export default defineEventHandler(async (event: H3Event) => {
     return patchRes;
   }
 
-  const visibility: "public" | "private" = Number(productBody?.published) === 1 ? "public" : "private";
+  const visibility: "public" | "private" =
+    Number(productBody?.published) === 1 ? "public" : "private";
   const committedIds = await commitPaths(event, id, paths, visibility);
 
   if (committedIds.length > 0) {
-    const current = await phpApiFetch<{ file_ids?: number[] }>(event, `/products/${id}`);
+    const current = await phpApiFetch<{ file_ids?: number[] }>(
+      event,
+      `/products/${id}`,
+    );
     const existingIds = Array.isArray((current.data as any)?.file_ids)
       ? ((current.data as any).file_ids as number[])
       : [];

@@ -15,7 +15,12 @@ const title = computed(() =>
   t((route.meta.label || route.meta.title) as string),
 );
 
-const { config, wines: wineResponse, loading, onUpdate } = useWineAdmin(wConfig);
+const {
+  config,
+  wines: wineResponse,
+  loading,
+  onUpdate,
+} = useWineAdmin(wConfig);
 const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
 const uploadField = {
   name: "paths",
@@ -25,14 +30,8 @@ const uploadField = {
   fileSize: 20,
   fileTypes: [
     {
-      label: "JPG, PNG, GIF, WEBP, PDF",
-      value: [
-        "image/jpeg",
-        "image/png",
-        "image/gif",
-        "image/webp",
-        "application/pdf",
-      ],
+      label: "JPG, PNG, GIF, WEBP",
+      value: ["image/jpeg", "image/png", "image/gif", "image/webp"],
     },
   ],
 } as any;
@@ -52,7 +51,10 @@ useHead({
 
 async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
   await onUpdate(
-    { ...formData, paths: tempPaths.value.length > 0 ? tempPaths.value : undefined },
+    {
+      ...formData,
+      paths: tempPaths.value.length > 0 ? tempPaths.value : undefined,
+    },
     wineItem,
   );
 }
