@@ -16,14 +16,14 @@ import { GENERATE_API_ENDPOINT } from "@suku-kahanamoku/common-module/server-uti
 /**
  * @typedef {Object} ModuleOptions
  * @description
- * Konfigurace modulu `envelope-module`.
+ * Konfigurace modulu `invoice-module`.
  */
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "envelope-module",
-    configKey: "envelopeModule",
+    name: "invoice-module",
+    configKey: "invoiceModule",
   },
   // Výchozí možnosti konfigurace Nuxt modulu
   defaults: {},
