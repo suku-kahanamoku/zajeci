@@ -13,7 +13,12 @@
     "fileTypes": [
       {
         "label": "JPG, PNG, GIF, WEBP",
-        "value": ["image/jpeg", "image/png", "image/gif", "image/webp"]
+        "value": [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "image/webp"
+        ]
       }
     ]
   },

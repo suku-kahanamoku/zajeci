@@ -15,7 +15,8 @@
     "data.alcohol",
     "data.winery",
     "data.region",
-    "data.serving_temp"
+    "data.serving_temp",
+    "files"
   ],
   "fields": [
     {
