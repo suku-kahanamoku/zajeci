@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { useFileUpload } from "@/modules/file-module/runtime/composables/useFileUpload";
+
 import wConfig from "../../../assets/configs/admin-wine-update.json";
 import type { IWine } from "../../../types";
-import { useFileUpload } from "@/modules/file-module/runtime/composables/useFileUpload";
 
 definePageMeta({
   layout: "admin",
@@ -22,23 +23,9 @@ const {
   onUpdate,
 } = useWineAdmin(wConfig);
 const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
-const uploadField = {
-  name: "paths",
-  type: "file",
-  multiple: true,
-  required: false,
-  fileSize: 20,
-  fileTypes: [
-    {
-      label: "JPG, PNG, GIF, WEBP",
-      value: ["image/jpeg", "image/png", "image/gif", "image/webp"],
-    },
-  ],
-} as any;
-const wineItem = computed<IWine | null>(() => {
-  const raw: any = (wineResponse as any)?.value ?? (wineResponse as any);
-  const data: any = raw?.data;
-  return data && !Array.isArray(data) ? (data as IWine) : null;
+const uploadField = computed(() => config.value?.uploadField as any);
+const wineItem = computed<IWine | undefined>(() => {
+  return wineResponse.value?.data as IWine | undefined;
 });
 
 useHead({
@@ -69,13 +56,6 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
     />
 
     <div v-if="wineItem" class="space-y-6">
-      <UiFileUpload
-        :field="uploadField"
-        :files="files"
-        :uploaded-files="uploadedFiles"
-        @delete="removeUploadedFile"
-      />
-
       <CmpForm
         :fields="config.fields"
         :item="wineItem as IWine"
@@ -87,6 +67,13 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
           body: 'grid md:grid-cols-2 gap-4',
         }"
         @submit="onFormSubmit($event, wineItem as IWine)"
+      />
+      <UiFileUpload
+        v-if="uploadField"
+        :field="uploadField"
+        :files="files"
+        :uploaded-files="uploadedFiles"
+        @delete="removeUploadedFile"
       />
     </div>
   </div>

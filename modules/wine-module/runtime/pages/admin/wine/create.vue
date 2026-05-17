@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import wConfig from "../../../assets/configs/admin-wine-create.json";
 import { useFileUpload } from "@/modules/file-module/runtime/composables/useFileUpload";
+
+import wConfig from "../../../assets/configs/admin-wine-create.json";
 
 definePageMeta({
   layout: "admin",
@@ -11,30 +12,12 @@ definePageMeta({
 const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() =>
-  t((route.meta.label || route.meta.title) as string)
+  t((route.meta.label || route.meta.title) as string),
 );
 
 const { config, loading, onCreate } = useWineAdmin(wConfig);
 const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
-const uploadField = {
-  name: "paths",
-  type: "file",
-  multiple: true,
-  required: false,
-  fileSize: 20,
-  fileTypes: [
-    {
-      label: "JPG, PNG, GIF, WEBP, PDF",
-      value: [
-        "image/jpeg",
-        "image/png",
-        "image/gif",
-        "image/webp",
-        "application/pdf",
-      ],
-    },
-  ],
-} as any;
+const uploadField = computed(() => config.value?.uploadField as any);
 
 useHead({
   title,
@@ -76,14 +59,20 @@ async function onFormSubmit(formData: Record<string, any>) {
       <!-- File Upload Section -->
       <UCard class="w-full">
         <template #header>
-          <h3 class="text-lg font-semibold">{{ $t("$.form.files") || "Files" }}</h3>
+          <h3 class="text-lg font-semibold">
+            {{ $tt("$.form.files") || "Files" }}
+          </h3>
         </template>
-        
+
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-          {{ $t("$.form.files_will_upload_after_create") || "Select files to upload. They will be attached after the product is created." }}
+          {{
+            $tt("$.form.files_will_upload_after_create") ||
+            "Select files to upload. They will be attached after the product is created."
+          }}
         </p>
-        
+
         <UiFileUpload
+          v-if="uploadField"
           :field="uploadField"
           :files="files"
           :uploaded-files="uploadedFiles"

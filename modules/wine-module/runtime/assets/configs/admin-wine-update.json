@@ -4,6 +4,19 @@
   "patchUrl": "/api/admin/wine/${route.meta.id}",
   "method": "PATCH",
   "modelType": "wine",
+  "uploadField": {
+    "name": "paths",
+    "type": "file",
+    "multiple": true,
+    "required": false,
+    "fileSize": 20,
+    "fileTypes": [
+      {
+        "label": "JPG, PNG, GIF, WEBP",
+        "value": ["image/jpeg", "image/png", "image/gif", "image/webp"]
+      }
+    ]
+  },
   "fields": [
     {
       "name": "name",
