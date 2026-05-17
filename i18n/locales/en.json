@@ -116,6 +116,15 @@
       "no": "No",
       "select": "Select..."
     },
+    "dropzone": {
+      "drag_files": "Drag files here",
+      "or": "or",
+      "browse_files": "browse files",
+      "max_file_size": "Max file size: {size} MB",
+      "supported_formats": "Supported formats: {types}",
+      "wrong_type": "File {name} has an unsupported format. Allowed types: {types}",
+      "wrong_size": "File {name} exceeded the limit of {size} MB."
+    },
     "placeholder": {
       "leave_comment": "Leave a message..."
     },
@@ -128,7 +137,13 @@
       "delete_question": "Do you realy want delete: \"{name}\"?",
       "delete_question_multi": "Do you realy want delete {length} records?",
       "patch_success_msg": "Record successfully edited",
-      "post_success_msg": "Record successfully created"
+      "post_success_msg": "Record successfully created",
+      "no_ready_files": "No files are ready to upload.",
+      "upload_status_pending": "Pending",
+      "upload_status_uploading": "Uploading",
+      "upload_status_uploaded": "Uploaded",
+      "upload_status_error": "Error",
+      "ready_files": "Ready files ({count})"
     },
     "btn": {
       "submit": "Submit",

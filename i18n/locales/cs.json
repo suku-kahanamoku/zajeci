@@ -116,6 +116,15 @@
       "no": "Ne",
       "select": "Vyberte..."
     },
+    "dropzone": {
+      "drag_files": "Přetáhněte soubory sem",
+      "or": "nebo",
+      "browse_files": "vyberte soubory",
+      "max_file_size": "Maximální velikost souboru: {size} MB",
+      "supported_formats": "Podporované formáty: {types}",
+      "wrong_type": "Soubor {name} má nepodporovaný formát. Povolené typy: {types}",
+      "wrong_size": "Soubor {name} překročil limit {size} MB."
+    },
     "placeholder": {
       "leave_comment": "Napište zprávu..."
     },
@@ -128,7 +137,13 @@
       "delete_question": "Opravdu chcete smazat záznam: \"{name}\"?",
       "delete_question_multi": "Opravdu chcete smazat {length} záznamů?",
       "patch_success_msg": "Záznam byl úspěšně upraven",
-      "post_success_msg": "Záznam byl úspěšně vytvořen"
+      "post_success_msg": "Záznam byl úspěšně vytvořen",
+      "no_ready_files": "Nejsou žádné připravené soubory.",
+      "upload_status_pending": "Připraveno",
+      "upload_status_uploading": "Nahrává se",
+      "upload_status_uploaded": "Nahráno",
+      "upload_status_error": "Chyba",
+      "ready_files": "Připravené soubory ({count})"
     },
     "btn": {
       "submit": "Odeslat",

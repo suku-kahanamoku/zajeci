@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import wConfig from "../../../assets/configs/admin-wine-update.json";
 import type { IWine } from "../../../types";
+import { useFileUpload } from "@/modules/file-module/runtime/composables/useFileUpload";
 
 definePageMeta({
   layout: "admin",
@@ -15,7 +16,26 @@ const title = computed(() =>
 );
 
 const { config, wines: wineResponse, loading, onUpdate } = useWineAdmin(wConfig);
-const fileUploadRef = useTemplateRef<any>("fileUpload");
+const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
+const uploadField = {
+  name: "paths",
+  type: "file",
+  multiple: true,
+  required: false,
+  fileSize: 20,
+  fileTypes: [
+    {
+      label: "JPG, PNG, GIF, WEBP, PDF",
+      value: [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+        "application/pdf",
+      ],
+    },
+  ],
+} as any;
 const wineItem = computed<IWine | null>(() => {
   const raw: any = (wineResponse as any)?.value ?? (wineResponse as any);
   const data: any = raw?.data;
@@ -31,9 +51,8 @@ useHead({
 });
 
 async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
-  const paths: string[] = fileUploadRef.value?.tempFilePaths ?? [];
   await onUpdate(
-    { ...formData, paths: paths.length > 0 ? paths : undefined },
+    { ...formData, paths: tempPaths.value.length > 0 ? tempPaths.value : undefined },
     wineItem,
   );
 }
@@ -49,10 +68,10 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
 
     <div v-if="wineItem" class="space-y-6">
       <UiFileUpload
-        ref="fileUpload"
-        entity-type="product"
-        :entity-id="Number((wineItem as IWine).id)"
-        :visibility="(wineItem as IWine).published ? 'public' : 'private'"
+        :field="uploadField"
+        :files="files"
+        :uploaded-files="uploadedFiles"
+        @delete="removeUploadedFile"
       />
 
       <CmpForm

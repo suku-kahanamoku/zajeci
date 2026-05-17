@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import wConfig from "../../../assets/configs/admin-wine-create.json";
+import { useFileUpload } from "@/modules/file-module/runtime/composables/useFileUpload";
 
 definePageMeta({
   layout: "admin",
@@ -14,7 +15,26 @@ const title = computed(() =>
 );
 
 const { config, loading, onCreate } = useWineAdmin(wConfig);
-const fileUploadRef = useTemplateRef<any>("fileUpload");
+const { files, uploadedFiles, tempPaths, removeUploadedFile } = useFileUpload();
+const uploadField = {
+  name: "paths",
+  type: "file",
+  multiple: true,
+  required: false,
+  fileSize: 20,
+  fileTypes: [
+    {
+      label: "JPG, PNG, GIF, WEBP, PDF",
+      value: [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+        "application/pdf",
+      ],
+    },
+  ],
+} as any;
 
 useHead({
   title,
@@ -25,10 +45,9 @@ useHead({
 });
 
 async function onFormSubmit(formData: Record<string, any>) {
-  const paths: string[] = fileUploadRef.value?.tempFilePaths ?? [];
   await onCreate({
     ...formData,
-    paths: paths.length > 0 ? paths : undefined,
+    paths: tempPaths.value.length > 0 ? tempPaths.value : undefined,
   });
 }
 </script>
@@ -65,8 +84,10 @@ async function onFormSubmit(formData: Record<string, any>) {
         </p>
         
         <UiFileUpload
-          ref="fileUpload"
-          entity-type="product"
+          :field="uploadField"
+          :files="files"
+          :uploaded-files="uploadedFiles"
+          @delete="removeUploadedFile"
         />
       </UCard>
     </div>

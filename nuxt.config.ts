@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "~/modules/file-module",
     "@suku-kahanamoku/auth-module",
     "@suku-kahanamoku/menu-module",
     "@suku-kahanamoku/form-module",
