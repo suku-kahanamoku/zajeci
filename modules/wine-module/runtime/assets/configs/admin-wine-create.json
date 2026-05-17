@@ -136,10 +136,6 @@
       "label": "$.form.description"
     },
     {
-      "name": "paths",
-      "type": "hidden"
-    },
-    {
       "name": "category_ids",
       "type": "select",
       "label": "$.form.categories",

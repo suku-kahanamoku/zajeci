@@ -28,10 +28,7 @@ useHead({
 });
 
 async function onFormSubmit(formData: Record<string, any>) {
-  await onCreate({
-    ...formData,
-    paths: tempPaths.value.length > 0 ? tempPaths.value : undefined,
-  });
+  await onCreate(formData);
 }
 </script>
 

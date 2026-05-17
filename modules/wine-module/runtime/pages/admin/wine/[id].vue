@@ -37,13 +37,7 @@ useHead({
 });
 
 async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
-  await onUpdate(
-    {
-      ...formData,
-      paths: tempPaths.value.length > 0 ? tempPaths.value : undefined,
-    },
-    wineItem,
-  );
+  await onUpdate(formData, wineItem);
 }
 </script>
 
@@ -55,26 +49,74 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
       class="border-none"
     />
 
-    <div v-if="wineItem" class="space-y-6">
-      <CmpForm
-        :fields="config.fields"
-        :item="wineItem as IWine"
-        :loading="loading"
-        :actions="{
-          no: { link: routes.admin_wine as any },
-        }"
-        :ui="{
-          body: 'grid md:grid-cols-2 gap-4',
-        }"
-        @submit="onFormSubmit($event, wineItem as IWine)"
-      />
-      <UiFileUpload
-        v-if="uploadField"
-        :field="uploadField"
-        :files="files"
-        :uploaded-files="uploadedFiles"
-        @delete="removeUploadedFile"
-      />
-    </div>
+    <UTabs
+      v-if="wineItem"
+      :items="[
+        { label: t('$.form.detail') || 'Detail', slot: 'detail' },
+        { label: t('$.form.files') || 'Soubory', slot: 'files' },
+      ]"
+      class="mt-4"
+    >
+      <template #detail>
+        <CmpForm
+          :fields="config.fields"
+          :item="wineItem as IWine"
+          :loading="loading"
+          :actions="{
+            no: { link: routes.admin_wine as any },
+          }"
+          :ui="{
+            body: 'grid md:grid-cols-2 gap-4',
+          }"
+          @submit="onFormSubmit($event, wineItem as IWine)"
+        />
+      </template>
+
+      <template #files>
+        <div class="space-y-6 pt-2">
+          <UiFileUpload
+            v-if="uploadField"
+            :field="uploadField"
+            :files="files"
+            :uploaded-files="uploadedFiles"
+            @delete="removeUploadedFile"
+          />
+
+          <div v-if="wineItem.files?.length" class="space-y-2">
+            <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {{ t("$.message.existing_files") || "Nahrané soubory" }}
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <div
+                v-for="file in wineItem.files"
+                :key="file.id"
+                class="relative group rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+              >
+                <img
+                  v-if="file.mime_type?.startsWith('image/')"
+                  :src="`/api/files/${file.path}/preview`"
+                  :alt="file.name"
+                  class="w-full h-32 object-cover"
+                />
+                <div
+                  v-else
+                  class="w-full h-32 flex items-center justify-center bg-gray-100 dark:bg-gray-900"
+                >
+                  <UIcon
+                    name="i-heroicons-document"
+                    class="text-4xl text-gray-400"
+                  />
+                </div>
+                <div
+                  class="p-2 text-xs text-gray-600 dark:text-gray-400 truncate"
+                >
+                  {{ file.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </UTabs>
   </div>
 </template>

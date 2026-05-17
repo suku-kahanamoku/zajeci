@@ -10,6 +10,13 @@ export interface IWineData {
   serving_temp?: string;
 }
 
+export interface IWineFile {
+  id: number;
+  path: string;
+  name: string;
+  mime_type?: string;
+}
+
 export interface IWine extends IItem {
   name: string;
   sku?: string;
@@ -25,6 +32,7 @@ export interface IWine extends IItem {
   price_with_vat?: number;
   published?: 0 | 1;
   file_ids?: number[];
+  files?: IWineFile[];
 }
 
 export interface IWineResponse extends IResponse {
