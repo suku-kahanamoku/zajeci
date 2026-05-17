@@ -122,7 +122,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           alt="wine"
           loading="lazy"
           height="100"
-          class="object-cover rounded-lg"
+          class="object-cover rounded-lg w-16"
         />
         <NuxtImg
           v-else
@@ -131,7 +131,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           loading="lazy"
           format="webp"
           height="100"
-          class="object-cover rounded-lg"
+          class="object-cover rounded-lg w-16"
         />
 
         <div class="w-full flex flex-col gap-2">
@@ -230,7 +230,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           alt="wine"
           loading="lazy"
           height="100"
-          class="object-cover rounded-lg"
+          class="object-cover rounded-lg w-16"
         />
         <NuxtImg
           v-else
@@ -239,7 +239,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           loading="lazy"
           format="webp"
           height="100"
-          class="object-cover rounded-lg"
+          class="object-cover rounded-lg w-16"
         />
         <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
       </NuxtLink>
