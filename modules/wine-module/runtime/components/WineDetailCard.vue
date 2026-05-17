@@ -54,7 +54,15 @@ function addToCashdesk() {
         <div
           class="rounded-3xl overflow-hidden bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 aspect-[3/4] flex items-center justify-center"
         >
+          <img
+            v-if="wine.files?.[0]"
+            :src="`/api/files/${wine.files[0].id}/preview`"
+            :alt="wine.name || 'wine'"
+            loading="lazy"
+            class="h-full w-full object-contain p-7 transition-transform duration-700 hover:scale-105"
+          />
           <NuxtImg
+            v-else
             :src="wine.image?.main?.src || '/img/bottle.jpg'"
             :alt="wine.name || 'wine'"
             loading="lazy"
