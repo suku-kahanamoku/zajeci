@@ -38,6 +38,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     phpApiBaseUrl:
       process.env.PHP_API_BASE_URL || "http://localhost/php/php-core/api",
+    phpFileRoot:
+      process.env.PHP_FILE_ROOT || "/home/suku/Workspace/php/php-core",
   },
 
   router: {

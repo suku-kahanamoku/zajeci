@@ -3,6 +3,7 @@ import {
   createResolver,
   addImportsDir,
   addComponentsDir,
+  addServerHandler,
   hasNuxtModule,
   installModule,
 } from "@nuxt/kit";
@@ -32,7 +33,21 @@ export default defineNuxtModule<ModuleOptions>({
 
     const apiFilesDir = resolve("./runtime/server/api/files");
     fs.readdirSync(apiFilesDir)?.forEach((file) => {
-      GENERATE_API_ENDPOINT(file, "/api/files", resolve);
+      if (
+        !fs
+          .statSync(resolve(`./runtime/server/api/files/${file}`))
+          .isDirectory()
+      ) {
+        GENERATE_API_ENDPOINT(file, "/api/files", resolve);
+      }
+    });
+
+    // Catch-all pro temp soubory – GENERATE_API_ENDPOINT nepodporuje [...path] syntax
+    addServerHandler({
+      route: "/api/files/temp/**",
+      handler: resolve("./runtime/server/api/files/temp/[...path].get.ts"),
+      method: "get",
+      lazy: true,
     });
 
     if (!hasNuxtModule("@suku-kahanamoku/common-module")) {
