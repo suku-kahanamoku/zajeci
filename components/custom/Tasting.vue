@@ -39,5 +39,18 @@ const { data: tasting } = await useAsyncData("tasting", async () => {
     <div class="flex flex-wrap justify-center gap-4 items-stretch">
       <TasteCard v-for="(item, index) of tasting" :item="item" />
     </div>
+
+    <div class="text-center mt-10">
+      <UButton
+        to="/tasting"
+        variant="outline"
+        color="primary"
+        size="lg"
+        class="font-semibold tracking-wide"
+        trailing-icon="i-heroicons-arrow-right"
+      >
+        {{ $tt("$.tasting.show_all") }}
+      </UButton>
+    </div>
   </div>
 </template>

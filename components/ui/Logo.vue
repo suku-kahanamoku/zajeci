@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full">
+  <div class="h-full w-full text-primary-500 dark:text-white">
     <svg
       version="1.1"
       id="Vrstva_1"
@@ -11,7 +11,7 @@
       height="200px"
       viewBox="0 0 283.465 200"
       xml:space="preserve"
-      class="h-full w-full"
+      class="h-full w-full fill-current"
     >
       <polygon
         points="107.622,51.472 107.622,38.91 110.747,38.91 110.747,36.914 107.622,36.914 107.622,33.5 105.627,33.5 
@@ -34,12 +34,3 @@
     </svg>
   </div>
 </template>
-
-<style scoped>
-.dark polygon {
-  fill: white;
-}
-.dark path {
-  fill: white;
-}
-</style>

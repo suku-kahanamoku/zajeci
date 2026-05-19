@@ -31,16 +31,16 @@ function addToCashdesk() {
   >
     <!-- Card -->
     <div
-      class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300"
+      class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-secondary-400 dark:hover:border-secondary-600 transition-all duration-300"
     >
-      <!-- Top stripe -->
+      <!-- Top stripe – visible on hover only -->
       <div
-        class="h-1 bg-gradient-to-r from-secondary-400 to-secondary-600"
+        class="h-1 bg-linear-to-r from-secondary-400 to-secondary-600 group-hover:opacity-100 transition-opacity duration-300"
       ></div>
       <!-- Image area -->
       <NuxtLink
         :to="wine.gen_data?.url"
-        class="relative block overflow-hidden bg-gray-50 dark:bg-gray-800"
+        class="relative block overflow-hidden bg-gray-100 dark:bg-gray-800"
       >
         <img
           v-if="wine.files?.[0]"

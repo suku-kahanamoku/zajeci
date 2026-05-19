@@ -49,7 +49,12 @@ const menuItems = [
       </div>
     </template>
 
-    <UNavigationMenu :items="menuItems" variant="link" color="primary">
+    <UNavigationMenu
+      :items="menuItems"
+      variant="link"
+      color="primary"
+      :ui="{ link: 'text-sm font-semibold' }"
+    >
       <template #item-label="{ item }">
         {{ $tt(item.label) }}
       </template>
@@ -146,35 +151,35 @@ const menuItems = [
           <p class="font-serif text-lg font-semibold text-white">
             Víno ze Zaječí
           </p>
-          <p class="text-sm text-primary-300">Školní 156, 691 05 Zaječí</p>
+          <p class="text-sm text-concrete/70">Školní 156, 691 05 Zaječí</p>
         </div>
 
         <!-- Links -->
         <div class="space-y-3">
           <p
-            class="text-xs font-semibold tracking-widest uppercase text-primary-400"
+            class="text-xs font-semibold tracking-widest uppercase text-fountain-blue"
           >
             Navigace
           </p>
           <nav class="flex flex-col gap-2">
             <NuxtLink
               to="/#about"
-              class="text-sm text-primary-200 hover:text-white transition-colors"
+              class="text-sm text-concrete/80 hover:text-white transition-colors"
               >{{ $tt("$.navbar.about") }}</NuxtLink
             >
             <NuxtLink
               to="/wine"
-              class="text-sm text-primary-200 hover:text-white transition-colors"
+              class="text-sm text-concrete/80 hover:text-white transition-colors"
               >{{ $tt("$.navbar.wine") }}</NuxtLink
             >
             <NuxtLink
               to="/#tasting"
-              class="text-sm text-primary-200 hover:text-white transition-colors"
+              class="text-sm text-concrete/80 hover:text-white transition-colors"
               >{{ $tt("$.navbar.taste") }}</NuxtLink
             >
             <NuxtLink
               to="/#contact"
-              class="text-sm text-primary-200 hover:text-white transition-colors"
+              class="text-sm text-concrete/80 hover:text-white transition-colors"
               >{{ $tt("$.navbar.contact") }}</NuxtLink
             >
           </nav>
@@ -183,28 +188,28 @@ const menuItems = [
         <!-- Contact -->
         <div class="space-y-3">
           <p
-            class="text-xs font-semibold tracking-widest uppercase text-primary-400"
+            class="text-xs font-semibold tracking-widest uppercase text-fountain-blue"
           >
             Kontakt
           </p>
           <div class="space-y-2">
             <a
               href="mailto:vyborne@vinozezajeci.cz"
-              class="flex items-center gap-2 text-sm text-primary-200 hover:text-white transition-colors"
+              class="flex items-center gap-2 text-sm text-concrete/80 hover:text-white transition-colors"
             >
               <UIcon name="uil:envelope" size="16" />
               vyborne@vinozezajeci.cz
             </a>
             <a
               href="tel:+420770199999"
-              class="flex items-center gap-2 text-sm text-primary-200 hover:text-white transition-colors"
+              class="flex items-center gap-2 text-sm text-concrete/80 hover:text-white transition-colors"
             >
               <UIcon name="uil:phone" size="16" />
               +420 770 199 999
             </a>
             <a
               href="tel:+420778711111"
-              class="flex items-center gap-2 text-sm text-primary-200 hover:text-white transition-colors"
+              class="flex items-center gap-2 text-sm text-concrete/80 hover:text-white transition-colors"
             >
               <UIcon name="mdi:phone-classic" size="16" />
               +420 778 711 111
@@ -216,10 +221,10 @@ const menuItems = [
       <div
         class="mt-10 pt-6 border-t border-primary-800 flex flex-col md:flex-row items-center justify-between gap-2"
       >
-        <p class="text-xs text-primary-400">
+        <p class="text-xs text-concrete/50">
           © {{ new Date().getFullYear() }} Víno ze Zaječí · IČ 19737491
         </p>
-        <p class="text-xs text-primary-400">
+        <p class="text-xs text-concrete/50">
           Pijte zodpovědně. Alkohol je určen pouze osobám starším 18 let.
         </p>
       </div>
