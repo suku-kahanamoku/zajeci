@@ -1,5 +1,9 @@
 {
   "$": {
+    "theme": {
+      "light": "Switch to light mode",
+      "dark": "Switch to dark mode"
+    },
     "cs": "cz",
     "czk": "CZK",
     "pcs": "Pcs",

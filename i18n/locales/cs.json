@@ -1,5 +1,9 @@
 {
   "$": {
+    "theme": {
+      "light": "Přepnout na světlý režim",
+      "dark": "Přepnout na tmavý režim"
+    },
     "cs": "cz",
     "czk": "Kč",
     "pcs": "Ks",

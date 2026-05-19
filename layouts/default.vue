@@ -75,6 +75,7 @@ const menuItems = [
             variant="ghost"
             size="xl"
             chip
+            :aria-label="$tt('$.cashdesk.title')"
           />
         </UChip>
 
@@ -83,6 +84,7 @@ const menuItems = [
           color="neutral"
           variant="ghost"
           size="xl"
+          :aria-label="isDark ? $tt('$.theme.light') : $tt('$.theme.dark')"
           @click="isDark = !isDark"
         />
       </div>
