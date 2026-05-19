@@ -27,7 +27,7 @@ const { data: tasting } = await useAsyncData("tasting", async () => {
         {{ $tt("$.tasting.title") }}
       </h2>
       <div
-        class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2"
+        class="section-divider text-bittersweet w-full mt-6 mb-2"
       >
         <span class="flex">
           <UIcon name="ph:cheese-duotone" size="16" />
@@ -38,19 +38,6 @@ const { data: tasting } = await useAsyncData("tasting", async () => {
 
     <div class="flex flex-wrap justify-center gap-4 items-stretch">
       <TasteCard v-for="(item, index) of tasting" :item="item" />
-    </div>
-
-    <div class="text-center mt-10">
-      <UButton
-        to="/tasting"
-        variant="outline"
-        color="primary"
-        size="lg"
-        class="font-semibold tracking-wide"
-        trailing-icon="i-heroicons-arrow-right"
-      >
-        {{ $tt("$.tasting.show_all") }}
-      </UButton>
     </div>
   </div>
 </template>

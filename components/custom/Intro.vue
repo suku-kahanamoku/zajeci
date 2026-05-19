@@ -42,10 +42,10 @@ const localePath = useLocalePath();
         </UButton>
         <UButton
           to="/#tasting"
-          color="primary"
-          variant="outline"
+          color="gold"
+          variant="solid"
           size="xl"
-          class="font-semibold tracking-wide border-white text-white hover:bg-white/10"
+          class="font-semibold tracking-wide"
         >
           {{ $tt("$.intro.btn_tasting") || "Degustace" }}
         </UButton>

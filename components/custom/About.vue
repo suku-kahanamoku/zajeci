@@ -15,14 +15,14 @@
         <UIcon name="lucide:grape" size="18" />
       </div>
       <h3
-        class="text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+        class="text-xl font-medium text-river-bed dark:text-gray-300 max-w-2xl mx-auto"
       >
         {{ $tt("$.about.subtitle") }}
       </h3>
     </div>
 
     <div
-      class="from-bottom text-center lg:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+      class="from-bottom text-center lg:text-lg text-river-bed dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
     >
       {{ $tt("$.about.description") }}
     </div>

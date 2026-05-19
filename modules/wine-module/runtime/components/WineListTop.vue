@@ -62,7 +62,7 @@ const { data: wines } = await useAsyncData(
         {{ $tt("$.wine.title") }}
       </h2>
       <div
-        class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2"
+        class="section-divider text-bittersweet w-full mt-6 mb-2"
       >
         <UIcon name="ph:wine-duotone" size="18" />
       </div>
@@ -87,7 +87,7 @@ const { data: wines } = await useAsyncData(
       <UButton
         :to="routes.wine?.path"
         variant="outline"
-        color="primary"
+        color="secondary"
         size="lg"
         class="font-semibold tracking-wide"
         trailing-icon="i-heroicons-arrow-right"

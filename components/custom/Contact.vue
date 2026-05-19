@@ -50,7 +50,7 @@ async function onSubmit(body: Record<string, any>) {
       <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary-600 dark:text-primary-300 mb-6">
         {{ $tt("$.contact.title") }}
       </h2>
-      <div class="section-divider text-primary-300 dark:text-primary-600 w-full mt-6 mb-2">
+      <div class="section-divider text-bittersweet w-full mt-6 mb-2">
         <UIcon name="uil:envelope" size="16" />
       </div>
     </div>
@@ -58,7 +58,7 @@ async function onSubmit(body: Record<string, any>) {
     <div class="grid md:grid-cols-2 gap-10 mx-auto py-4">
       <div class="from-left">
         <h3
-          class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-400"
+          class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-500"
         >
           {{ $tt("$.contact.subtitle") }}
         </h3>
@@ -67,20 +67,20 @@ async function onSubmit(body: Record<string, any>) {
         </p>
         <div class="mt-5">
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
-            <UIcon class="text-secondary-400" name="uil:envelope" size="26" />
+            <UIcon class="text-primary-500" name="uil:envelope" size="26" />
             <a class="dark:text-white" href="mailto:vyborne@vinozezajeci.cz">
               vyborne@vinozezajeci.cz
             </a>
           </div>
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
-            <UIcon class="text-secondary-400" name="uil:phone" size="26" />
+            <UIcon class="text-primary-500" name="uil:phone" size="26" />
             <a class="dark:text-white" href="tel:+420770199999">
               +420 770 199 999
             </a>
           </div>
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
             <UIcon
-              class="text-secondary-400"
+              class="text-primary-500"
               name="mdi:phone-classic"
               size="26"
             />
@@ -89,7 +89,7 @@ async function onSubmit(body: Record<string, any>) {
             </a>
           </div>
           <div class="flex items-start mt-3 space-x-3 text-gray-600">
-            <UIcon class="text-secondary-400" name="uil:map-marker" size="26" />
+            <UIcon class="text-primary-500" name="uil:map-marker" size="26" />
             <span class="dark:text-white text-blue">
               Školní 156, 69105 Zaječí<br />
               IČ 19737491, DIČ CZ7951084053

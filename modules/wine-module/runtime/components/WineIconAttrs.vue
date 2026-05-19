@@ -71,8 +71,7 @@ const attrs = computed(() => {
     >
       <UIcon
         :name="attr.icon"
-        class="mt-0.5 shrink-0 text-base"
-        :class="attr.color"
+        class="mt-0.5 shrink-0 text-base text-gray-400 dark:text-gray-500"
       />
       <div class="min-w-0">
         <span

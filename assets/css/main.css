@@ -30,13 +30,7 @@
   --color-secondary-800: #591f18;
   --color-secondary-900: #3c140f;
 
-  /* Named palette */
-  --color-bittersweet: #fe6f5e;
-  --color-river-bed: #4c5568;
-  --color-concrete: #f2f2f2;
-  --color-fountain-blue: #5bafba;
-  --color-athens-gray: #eef0f3;
-  --color-gold: #e69813;
+  /* Named palette – přesunuto do samostatného @theme bloku níže */
 
   --color-success-50: #e8f5e9;
   --color-success-100: #c8e6c9;
@@ -85,6 +79,16 @@
   --color-error-800: #a02617;
   --color-error-900: #8b1f12;
   --color-error-950: #6e120b;
+}
+
+/* Named palette – separate theme block so CSS vars are emitted and opacity modifiers (/80 etc.) work */
+@theme {
+  --color-bittersweet: #fe6f5e;
+  --color-river-bed: #4c5568;
+  --color-concrete: #f2f2f2;
+  --color-fountain-blue: #5bafba;
+  --color-athens-gray: #eef0f3;
+  --color-gold: #e69813;
 }
 
 .appearance-none::-webkit-inner-spin-button,

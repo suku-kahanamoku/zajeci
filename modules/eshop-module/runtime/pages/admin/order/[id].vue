@@ -42,7 +42,7 @@ useHead({
     <UCard v-if="data">
       <template #header>
         <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+          <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-500">
             {{ t("$.order.title") }} {{ data.order_number }}
           </h2>
           <UBadge :label="data.status" color="primary" variant="soft" />
@@ -146,7 +146,7 @@ useHead({
 
         <!-- Celkem -->
         <div
-          class="flex justify-end text-lg font-bold text-primary-600 dark:text-primary-400 mb-4"
+          class="flex justify-end text-lg font-bold text-primary-600 dark:text-primary-500 mb-4"
         >
           {{ t("$.order.total_price") }}:
           {{ Number(data.total_price).toLocaleString(locale) }} {{ t("$.czk") }}

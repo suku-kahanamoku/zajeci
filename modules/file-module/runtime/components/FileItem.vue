@@ -39,7 +39,7 @@ const getStatusText = (status: string): string => {
           :href="file.path ? `/api/files/${file.path}` : undefined"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline truncate"
+          class="text-sm font-medium text-primary-600 dark:text-primary-500 hover:underline truncate"
         >
           {{ file.file.name }}
         </a>
