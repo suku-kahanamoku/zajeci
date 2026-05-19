@@ -24,11 +24,7 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div
-    v-if="wine"
-    :id="String(wine.id)"
-    class="zoom-in flex flex-col w-full h-full"
-  >
+  <div v-if="wine" class="zoom-in flex flex-col w-full h-full">
     <!-- Card -->
     <div
       class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-secondary-400 dark:hover:border-secondary-600 transition-all duration-300"
@@ -42,20 +38,13 @@ function addToCashdesk() {
         :to="wine.gen_data?.url"
         class="relative block overflow-hidden bg-gray-100 dark:bg-gray-800"
       >
-        <img
-          v-if="wine.files?.[0]"
-          :src="`/api/files/${wine.files[0].id}/preview`"
-          :alt="wine.name || 'wine'"
-          loading="lazy"
-          class="mx-auto h-60 md:h-72 object-contain transition-transform duration-500 group-hover:scale-105"
-        />
-        <NuxtImg
-          v-else
-          :src="wine.image?.main?.src || '/img/bottle.jpg'"
-          :alt="wine.name || 'wine'"
-          loading="lazy"
-          format="webp"
-          sizes="200px md:300px"
+        <UiImage
+          :src="
+            wine.files?.[0]
+              ? `/api/files/${wine.files[0].id}/preview`
+              : undefined
+          "
+          :alt="wine.name"
           class="mx-auto h-60 md:h-72 object-contain transition-transform duration-500 group-hover:scale-105"
         />
         <!-- Color badge -->

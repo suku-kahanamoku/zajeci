@@ -60,7 +60,6 @@ function addToCashdesk() {
 <template>
   <div
     v-if="wine"
-    :id="String(wine.id)"
     class="w-full flex flex-col max-w-7xl mx-auto px-4 md:px-8 py-10 gap-16"
   >
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -76,10 +75,9 @@ function addToCashdesk() {
             class="w-full"
             @select="onSelect"
           >
-            <img
+            <UiImage
               :src="item"
               :alt="wine.name || 'wine'"
-              loading="lazy"
               class="w-full h-60 sm:h-90 md:h-120 object-contain p-7 transition-transform duration-700 hover:scale-105"
             />
           </UCarousel>
@@ -97,12 +95,9 @@ function addToCashdesk() {
             :class="{ 'opacity-100 border-primary-500': activeIndex === index }"
             @click="selectThumb(index)"
           >
-            <img
+            <UiImage
               :src="src"
               :alt="`thumb-${index}`"
-              width="90"
-              height="90"
-              loading="lazy"
               class="w-full h-full object-cover"
             />
           </div>

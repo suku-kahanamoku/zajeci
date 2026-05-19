@@ -58,21 +58,13 @@ const columns: Ref<TableColumn<any>[]> = computed(
   >
     <template #name-cell="{ row }">
       <div class="flex gap-4 items-center">
-        <img
-          v-if="row.original?.wine?.files?.[0]"
-          :src="`/api/files/${row.original.wine.files[0].id}/preview`"
-          alt="wine"
-          loading="lazy"
-          height="100"
-          class="object-cover rounded-lg w-16"
-        />
-        <NuxtImg
-          v-else
-          :src="row.original?.wine?.image?.main?.src || '/img/bottle.jpg'"
-          alt="wine"
-          loading="lazy"
-          format="webp"
-          height="100"
+        <UiImage
+          :src="
+            row.original?.wine?.files?.[0]
+              ? `/api/files/${row.original.wine.files[0].id}/preview`
+              : undefined
+          "
+          :alt="row.original?.wine?.name || 'wine'"
           class="object-cover rounded-lg w-16"
         />
 
@@ -161,21 +153,14 @@ const columns: Ref<TableColumn<any>[]> = computed(
         "
         class="flex flex-col md:flex-row items-center"
       >
-        <img
-          v-if="cart.wine?.files?.[0]"
-          :src="`/api/files/${cart.wine.files[0].id}/preview`"
-          alt="wine"
-          loading="lazy"
-          height="100"
-          class="object-cover rounded-lg w-16"
-        />
-        <NuxtImg
-          v-else
-          :src="cart.wine?.image?.main?.src || '/img/bottle.jpg'"
-          alt="wine"
-          loading="lazy"
-          format="webp"
-          height="100"
+        <UiImage
+          :src="
+            cart.wine?.files?.[0]
+              ? `/api/files/${cart.wine.files[0].id}/preview`
+              : undefined
+          "
+          
+          :alt="cart.wine?.name || 'wine'"
           class="object-cover rounded-lg w-16"
         />
         <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
