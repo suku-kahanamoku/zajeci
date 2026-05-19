@@ -44,9 +44,13 @@ const menuItems = [
 <template>
   <UHeader mode="slideover" :toggle="{ size: 'xl' }">
     <template #title>
-      <div class="w-24 -ms-4 sm:-ms-6 lg:-ms-8">
+      <NuxtLink
+        to="/"
+        :aria-label="$tt('$.base.title')"
+        class="w-24 -ms-4 sm:-ms-6 lg:-ms-8 block"
+      >
         <UiLogo />
-      </div>
+      </NuxtLink>
     </template>
 
     <UNavigationMenu

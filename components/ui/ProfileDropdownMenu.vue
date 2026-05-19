@@ -14,6 +14,7 @@ const profileMenuItems = [
       alt: user.value?.name ? CAPITALIZE(user.value.name) : undefined,
       icon: user.value?.name ? undefined : "i-heroicons-user",
     },
+    ariaLabel: t("$.navbar.profile"),
     children: [
       {
         label: t(routes.admin?.meta?.title as string),

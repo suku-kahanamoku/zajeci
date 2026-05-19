@@ -20,7 +20,8 @@
       "contact": "Contact",
       "login": "Sign In",
       "signup": "Sign Up",
-      "logout": "Logout"
+      "logout": "Logout",
+      "profile": "User profile"
     },
     "intro": {
       "eyebrow": "Moravian Winery",

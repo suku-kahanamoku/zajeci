@@ -34,6 +34,7 @@ useHead({
       height="600"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa - Zaječské vinařství Nová Hora"
     ></iframe>
   </div>
 </template>
