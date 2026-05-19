@@ -95,9 +95,17 @@ export async function phpApiFetch<T = any>(
   const config = useRuntimeConfig();
   const baseUrl = config.phpApiBaseUrl as string;
   const token = await getSessionToken(event);
+  const frontendHost =
+    ((config.public as any)?.frontendHost as string | undefined) ||
+    process.env.FRONTEND_HOST ||
+    "";
+  const hostHeader = frontendHost
+    ? new URL(frontendHost).hostname
+    : event.headers.get("host") || "";
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
+    ...(hostHeader ? { Host: hostHeader } : {}),
   };
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
