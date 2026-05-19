@@ -62,7 +62,7 @@ const attrs = computed(() => {
 <template>
   <dl
     v-if="wine"
-    class="grid grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
+    class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
   >
     <div
       v-for="attr in attrs"

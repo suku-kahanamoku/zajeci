@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { useUrlResolver } from "#imports";
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 
 import wConfig from "../assets/configs/wine-list-top.json";
 import type { IWine, IWinesResponse } from "../types";
 
-const { t } = useLang();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const mdAndLarger = breakpoints.greaterOrEqual("md");
 
 /**
  * Load config
@@ -61,14 +64,13 @@ const { data: wines } = await useAsyncData(
       >
         {{ $tt("$.wine.title") }}
       </h2>
-      <div
-        class="section-divider text-bittersweet w-full mt-6 mb-2"
-      >
+      <div class="section-divider text-bittersweet w-full mt-6 mb-2">
         <UIcon name="ph:wine-duotone" size="18" />
       </div>
     </div>
 
     <UCarousel
+      v-if="mdAndLarger"
       v-slot="{ item }"
       :items="(wines?.data as IWine[]) || []"
       arrows
@@ -82,6 +84,16 @@ const { data: wines } = await useAsyncData(
     >
       <CmpWineCard class="h-full" :fields="config.fields" :wine="item" />
     </UCarousel>
+
+    <div v-else class="flex flex-col gap-6">
+      <CmpWineCard
+        v-for="wine in (wines?.data as IWine[]) || []"
+        :key="wine.id"
+        class="h-full"
+        :fields="config.fields"
+        :wine="wine"
+      />
+    </div>
 
     <div class="text-center mt-10">
       <UButton

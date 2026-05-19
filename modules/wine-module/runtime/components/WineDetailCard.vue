@@ -9,8 +9,15 @@ const props = defineProps<{
   wine?: IWine;
 }>();
 
+const { t } = useLang();
+const { addItem } = useCashdesk();
+const { routes } = useMenuItems();
 const carousel = useTemplateRef("carousel");
+
 const activeIndex = ref(0);
+const modal = ref(false);
+const cart = ref<ICart>();
+const qty = ref(1);
 
 const carouselItems = computed(() => {
   if (props.wine?.files?.length) {
@@ -18,34 +25,6 @@ const carouselItems = computed(() => {
   }
   return [props.wine?.image?.main?.src || "/img/bottle.jpg"];
 });
-
-function onClickPrev() {
-  activeIndex.value = Math.max(0, activeIndex.value - 1);
-}
-function onClickNext() {
-  activeIndex.value = Math.min(
-    carouselItems.value.length - 1,
-    activeIndex.value + 1,
-  );
-}
-function onSelect(index: number) {
-  activeIndex.value = index;
-}
-function selectThumb(index: number) {
-  activeIndex.value = index;
-  carousel.value?.emblaApi?.scrollTo(index);
-}
-
-const {
-  i18n: { locale },
-  t,
-} = useLang();
-const { getSelectLabel } = useField();
-const { addItem } = useCashdesk();
-const { routes } = useMenuItems();
-const modal = ref(false);
-const cart = ref<ICart>();
-const qty = ref(1);
 
 useHead({
   title: props.wine?.name,
@@ -60,6 +39,15 @@ useHead({
     },
   ],
 });
+
+function onSelect(index: number) {
+  activeIndex.value = index;
+}
+
+function selectThumb(index: number) {
+  activeIndex.value = index;
+  carousel.value?.emblaApi?.scrollTo(index);
+}
 
 function addToCashdesk() {
   if (props.wine) {
@@ -84,10 +72,7 @@ function addToCashdesk() {
           <UCarousel
             ref="carousel"
             v-slot="{ item }"
-            arrows
             :items="carouselItems"
-            :prev="{ onClick: onClickPrev }"
-            :next="{ onClick: onClickNext }"
             class="w-full"
             @select="onSelect"
           >
@@ -95,7 +80,7 @@ function addToCashdesk() {
               :src="item"
               :alt="wine.name || 'wine'"
               loading="lazy"
-              class="w-full h-120 object-contain p-7 transition-transform duration-700 hover:scale-105"
+              class="w-full h-60 sm:h-90 md:h-120 object-contain p-7 transition-transform duration-700 hover:scale-105"
             />
           </UCarousel>
         </div>
@@ -108,7 +93,7 @@ function addToCashdesk() {
           <div
             v-for="(src, index) in carouselItems"
             :key="index"
-            class="size-24 opacity-30 hover:opacity-100 transition-opacity cursor-pointer rounded-lg overflow-hidden border-2 border-transparent"
+            class="size-16 sm:size-20 md:size-24 opacity-30 hover:opacity-100 transition-opacity cursor-pointer rounded-lg overflow-hidden border-2 border-transparent"
             :class="{ 'opacity-100 border-primary-500': activeIndex === index }"
             @click="selectThumb(index)"
           >
@@ -135,13 +120,6 @@ function addToCashdesk() {
 
       <!-- RIGHT: Info -->
       <div class="flex flex-col gap-6">
-        <!-- Eyebrow -->
-        <p
-          class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400"
-        >
-          {{ $tt("$.wine.eyebrow") || "Naše vína" }}
-        </p>
-
         <!-- Title -->
         <h1
           class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 dark:text-white leading-tight"

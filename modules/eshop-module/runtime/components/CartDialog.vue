@@ -20,7 +20,7 @@ const { totalPrice } = useCashdesk();
   <UModal
     v-model:open="open"
     :title="$tt('$.cart.added', { name: cart?.wine?.name })"
-    close-icon="i-heroicons-x-mark"
+    :close="false"
     :ui="{
       footer: 'flex justify-between items-center gap-2',
     }"
