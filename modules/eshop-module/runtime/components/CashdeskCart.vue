@@ -113,7 +113,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     v-if="config && carts?.length"
     :columns="columns"
     :data="carts"
-    class="hidden md:block"
+    class="hidden md:block text-gray-900 dark:text-gray-100"
   >
     <template #name-cell="{ row }">
       <div class="flex gap-3 items-center">
@@ -136,7 +136,9 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             "
             class="flex items-center"
           >
-            <h3 class="font-semibold text-pretty">
+            <h3
+              class="font-semibold text-pretty text-gray-900 dark:text-gray-100"
+            >
               {{ row.original?.wine?.name }}
             </h3>
           </NuxtLink>
@@ -187,7 +189,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     </template>
 
     <template #vat-cell="{ row }">
-      <p class="font-semibold text-end w-full">
+      <p class="font-semibold text-end w-full text-gray-900 dark:text-gray-100">
         {{
           row.original?.wine?.vat_rate != null
             ? `${row.original.wine.vat_rate} %`
@@ -216,11 +218,11 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     </template>
   </UTable>
 
-  <div v-if="config" class="md:hidden">
+  <div v-if="config" class="md:hidden flex flex-col gap-4">
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
-      class="flex flex-col items-center justify-between text-gray-500 px-4 pt-4 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+      class="flex flex-col items-center justify-between text-gray-900 dark:text-gray-100 px-4 pt-4 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
       <div class="w-full flex flex-row items-center gap-4">
         <NuxtLink
@@ -250,7 +252,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
         </div>
       </div>
 
-      <div class="flex items-center justify-between space-x-4 sm:space-x-12">
+      <div class="w-full flex items-center justify-between space-x-4">
         <div class="flex items-center justify-between space-x-2">
           <UButton icon="i-heroicons-minus" @click="decreaseQuantity(cart)" />
           <UInput
@@ -274,8 +276,8 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             @click="increaseQuantity(cart)"
           />
         </div>
-        <div class="flex justify-between items-center space-x-4 sm:space-x-12">
-          <div class="flex flex-col gap-1 text-sm">
+        <div class="grid grid-cols-[3fr_1fr]">
+          <div class="w-full flex flex-col gap-1 text-sm">
             <p class="font-semibold">
               {{ t("$.form.price_without_vat") }}:
               <UiPrice :price="cart?.total_price" :showOldPrice="false" />
@@ -294,11 +296,13 @@ const handleSetQuantity = (value: number, cart: ICart) => {
               />
             </p>
           </div>
-          <UButton
-            icon="i-heroicons-trash"
-            color="error"
-            @click="openRemoveDialog(cart)"
-          />
+          <div class="flex justify-end items-center">
+            <UButton
+              icon="i-heroicons-trash"
+              color="error"
+              @click="openRemoveDialog(cart)"
+            />
+          </div>
         </div>
       </div>
     </div>

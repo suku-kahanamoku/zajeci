@@ -62,7 +62,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     v-if="config && carts?.length"
     :columns="columns"
     :data="carts"
-    class="hidden sm:block"
+    class="hidden md:block text-gray-900 dark:text-gray-100"
   >
     <template #name-cell="{ row }">
       <div class="flex gap-3 items-center">
@@ -85,7 +85,9 @@ const columns: Ref<TableColumn<any>[]> = computed(
             "
             class="flex items-center"
           >
-            <h3 class="font-semibold text-pretty">
+            <h3
+              class="font-semibold text-pretty text-gray-900 dark:text-gray-100"
+            >
               {{ row.original?.wine?.name }}
             </h3>
           </NuxtLink>
@@ -118,7 +120,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     </template>
 
     <template #vat-cell="{ row }">
-      <p class="font-semibold text-end w-full">
+      <p class="font-semibold text-end w-full text-gray-900 dark:text-gray-100">
         {{
           row.original?.wine?.vat_rate != null
             ? `${row.original.wine.vat_rate} %`
@@ -167,7 +169,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     </template>
   </UTable>
 
-  <div v-if="config" class="sm:hidden flex flex-col gap-4">
+  <div v-if="config" class="md:hidden flex flex-col gap-4">
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
@@ -194,11 +196,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
         <div class="flex flex-col flex-1 min-w-0">
           <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
-          <CmpWineIconAttrs
-            :wine="cart.wine"
-            :fields="config.fields"
-            item-class="sm:grid-cols-1 md:grid-cols-3"
-          />
+          <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
         </div>
       </div>
 
