@@ -36,24 +36,25 @@ export default defineNuxtModule<ModuleOptions>({
       if (
         !fs
           .statSync(resolve(`./runtime/server/api/files/${file}`))
-          .isDirectory()
+          .isDirectory() &&
+        !file.startsWith("[...") // catch-all soubory registrujeme rucne
       ) {
         GENERATE_API_ENDPOINT(file, "/api/files", resolve);
       }
     });
 
-    // Catch-all pro temp soubory – GENERATE_API_ENDPOINT nepodporuje [...path] syntax
+    // Catch-all pro staticke soubory z PHP backendu (napr. /api/files/zajeci/product/1/uuid.png)
     addServerHandler({
-      route: "/api/files/temp/**",
-      handler: resolve("./runtime/server/api/files/temp/[...path].get.ts"),
+      route: "/api/files/**",
+      handler: resolve("./runtime/server/api/files/[...path].get.ts"),
       method: "get",
       lazy: true,
     });
 
-    // Preview endpoint pro committed soubory
+    // Catch-all pro temp soubory (napr. /api/temp/zajeci/uuid.png)
     addServerHandler({
-      route: "/api/files/:id/preview",
-      handler: resolve("./runtime/server/api/files/[id].preview.get.ts"),
+      route: "/api/temp/**",
+      handler: resolve("./runtime/server/api/files/[...path].get.ts"),
       method: "get",
       lazy: true,
     });
