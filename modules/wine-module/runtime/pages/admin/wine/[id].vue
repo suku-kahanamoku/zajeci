@@ -166,7 +166,7 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
                 >
                   <UIcon
                     name="i-heroicons-document"
-                    class="text-4xl text-gray-400"
+                    class="text-4xl text-gray-400 dark:text-gray-500"
                   />
                 </div>
                 <div

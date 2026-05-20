@@ -67,8 +67,13 @@ useHead({
               <div v-if="(data as any).user?.email">
                 {{ (data as any).user?.email }}
               </div>
-              <div v-else class="text-gray-400">ID: {{ data.user_id }}</div>
-              <div v-if="data.note" class="mt-2 text-xs text-gray-400">
+              <div v-else class="text-gray-400 dark:text-gray-300">
+                ID: {{ data.user_id }}
+              </div>
+              <div
+                v-if="data.note"
+                class="mt-2 text-xs text-gray-400 dark:text-gray-300"
+              >
                 {{ data.note }}
               </div>
             </div>

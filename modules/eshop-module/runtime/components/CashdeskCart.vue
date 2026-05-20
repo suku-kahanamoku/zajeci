@@ -207,36 +207,37 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
-      class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+      class="flex flex-col items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
-      <NuxtLink
-        :to="
-          localePath(
-            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`,
-          )
-        "
-        class="flex flex-col md:flex-row items-center"
-      >
-        <UiImage
-          :src="
-            cart.wine?.files?.[0]
-              ? `/api/${cart.wine.files[0].path}`
-              : undefined
+      <div class="flex flex-row items-center gap-3">
+        <NuxtLink
+          :to="
+            localePath(
+              `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`,
+            )
           "
-          :alt="cart.wine?.name || 'wine'"
-          class="object-cover rounded-lg w-16"
-        />
-        <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
-      </NuxtLink>
+        >
+          <UiImage
+            :src="
+              cart.wine?.files?.[0]
+                ? `/api/${cart.wine.files[0].path}`
+                : undefined
+            "
+            :alt="cart.wine?.name || 'wine'"
+            class="object-cover rounded-lg w-16"
+          />
+        </NuxtLink>
 
-      <!-- Parametry vína s ikonami ve dvou řádcích -->
-      <div class="w-1/3 shrink-0">
-        <CmpWineIconAttrs
-          class="w-full"
-          :wine="cart.wine"
-          :fields="config.fields.filter((f) => f.iconName)"
-        />
+        <div class="flex flex-col flex-1 min-w-0">
+          <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
+          <CmpWineIconAttrs
+            class="w-full"
+            :wine="cart.wine"
+            :fields="config.fields.filter((f) => f.iconName)"
+          />
+        </div>
       </div>
+
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="flex items-center justify-between space-x-2">
           <UButton icon="i-heroicons-minus" @click="decreaseQuantity(cart)" />

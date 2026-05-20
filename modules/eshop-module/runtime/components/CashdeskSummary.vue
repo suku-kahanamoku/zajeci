@@ -57,32 +57,19 @@ const columns: Ref<TableColumn<any>[]> = computed(
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
-      <div class="flex gap-4 items-center">
-        <UiImage
-          :src="
-            row.original?.wine?.files?.[0]
-              ? `/api/${row.original.wine.files[0].path}`
-              : undefined
-          "
-          :alt="row.original?.wine?.name || 'wine'"
-          class="object-cover rounded-lg w-16"
-        />
+      <div class="flex gap-3 items-center">
+        <NuxtLink
+          :to="localePath(`${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`)"
+        >
+          <UiImage
+            :src="row.original?.wine?.files?.[0] ? `/api/${row.original.wine.files[0].path}` : undefined"
+            :alt="row.original?.wine?.name || 'wine'"
+            class="object-cover rounded-lg w-16"
+          />
+        </NuxtLink>
 
-        <div class="w-full flex flex-col gap-2">
-          <NuxtLink
-            :to="
-              localePath(
-                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`,
-              )
-            "
-            class="flex items-center"
-          >
-            <h3 class="font-semibold text-pretty">
-              {{ row.original?.wine?.name }}
-            </h3>
-          </NuxtLink>
-
-          <!-- Parametry vína s ikonami ve dvou řádcích -->
+        <div class="flex flex-col flex-1 min-w-0 gap-2">
+          <h3 class="font-semibold text-pretty">{{ row.original?.wine?.name }}</h3>
           <CmpWineIconAttrs
             class="w-full"
             :wine="row.original?.wine"
@@ -143,31 +130,24 @@ const columns: Ref<TableColumn<any>[]> = computed(
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
-      class="flex flex-col md:flex-row items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+      class="flex flex-col items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
-      <NuxtLink
-        :to="
-          localePath(
-            `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`,
-          )
-        "
-        class="flex flex-col md:flex-row items-center"
-      >
-        <UiImage
-          :src="
-            cart.wine?.files?.[0]
-              ? `/api/${cart.wine.files[0].path}`
-              : undefined
-          "
-          
-          :alt="cart.wine?.name || 'wine'"
-          class="object-cover rounded-lg w-16"
-        />
-        <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
-      </NuxtLink>
+      <div class="flex gap-3 items-center w-full">
+        <NuxtLink
+          :to="localePath(`${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`)"
+        >
+          <UiImage
+            :src="cart.wine?.files?.[0] ? `/api/${cart.wine.files[0].path}` : undefined"
+            :alt="cart.wine?.name || 'wine'"
+            class="object-cover rounded-lg w-16"
+          />
+        </NuxtLink>
 
-      <!-- Parametry vína s ikonami ve dvou řádcích -->
-      <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
+        <div class="flex flex-col flex-1 min-w-0">
+          <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
+          <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
+        </div>
+      </div>
 
       <div class="flex items-center justify-between space-x-4 sm:space-x-12">
         <div class="w-full text-center font-semibold flex gap-2">

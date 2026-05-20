@@ -20,7 +20,7 @@ useHead({
 
 <template>
   <div
-    :id="(routes.cashdesk_completed?.meta?.syscode as string)"
+    :id="routes.cashdesk_completed?.meta?.syscode as string"
     class="w-full max-w-7xl mx-auto px-5"
   >
     <UPageHeader
@@ -31,7 +31,7 @@ useHead({
 
     <UCard class="max-w-lg mx-auto" variant="subtle">
       <p
-        class="text-gray-700 mb-4"
+        class="text-gray-700 dark:text-gray-200 mb-4"
         v-html="
           $tt('$.cashdesk_completed.order', {
             orderId: `<strong>${route.query.orderId}</strong>`,
@@ -39,14 +39,16 @@ useHead({
         "
       />
       <p
-        class="text-gray-700 mb-4"
+        class="text-gray-700 dark:text-gray-200 mb-4"
         v-html="
           $tt('$.cashdesk_completed.send_to_email', {
             email: `<strong>${route.query.email}</strong>`,
           })
         "
       />
-      <p class="text-gray-700">{{ $tt("$.cashdesk_completed.thank_you") }}</p>
+      <p class="text-gray-700 dark:text-gray-200">
+        {{ $tt("$.cashdesk_completed.thank_you") }}
+      </p>
       <UButton
         class="mt-6"
         :to="localePath(routes.wine?.path!)"

@@ -36,12 +36,10 @@ function addToCashdesk() {
       <!-- Image area -->
       <NuxtLink
         :to="wine.gen_data?.url"
-        class="relative block overflow-hidden bg-gray-100 dark:bg-gray-800"
+        class="relative block overflow-hidden bg-gray-100 dark:bg-transparent"
       >
         <UiImage
-          :src="
-            wine.files?.[0] ? `/api/${wine.files[0].path}` : undefined
-          "
+          :src="wine.files?.[0] ? `/api/${wine.files[0].path}` : undefined"
           :alt="wine.name"
           class="mx-auto h-60 md:h-72 object-contain transition-transform duration-500 group-hover:scale-105"
         />
