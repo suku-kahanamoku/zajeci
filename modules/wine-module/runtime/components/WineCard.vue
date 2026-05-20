@@ -40,7 +40,7 @@ function addToCashdesk() {
       >
         <UiImage
           :src="
-            wine.files?.[0] ? `/api/files/${wine.files[0].path}` : undefined
+            wine.files?.[0] ? `/api/${wine.files[0].path}` : undefined
           "
           :alt="wine.name"
           class="mx-auto h-60 md:h-72 object-contain transition-transform duration-500 group-hover:scale-105"

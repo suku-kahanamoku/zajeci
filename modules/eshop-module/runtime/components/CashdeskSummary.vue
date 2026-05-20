@@ -61,7 +61,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <UiImage
           :src="
             row.original?.wine?.files?.[0]
-              ? `/api/files/${row.original.wine.files[0].path}`
+              ? `/api/${row.original.wine.files[0].path}`
               : undefined
           "
           :alt="row.original?.wine?.name || 'wine'"
@@ -156,7 +156,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <UiImage
           :src="
             cart.wine?.files?.[0]
-              ? `/api/files/${cart.wine.files[0].path}`
+              ? `/api/${cart.wine.files[0].path}`
               : undefined
           "
           

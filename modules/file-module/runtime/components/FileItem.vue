@@ -36,7 +36,7 @@ const getStatusText = (status: string): string => {
       <div class="flex items-center gap-2 mb-2">
         <a
           v-if="file.path"
-          :href="file.path ? `/api/files/${file.path}` : undefined"
+          :href="file.path ? `/api/${file.path}` : undefined"
           target="_blank"
           rel="noopener noreferrer"
           class="text-sm font-medium text-primary-600 dark:text-primary-500 hover:underline truncate"
