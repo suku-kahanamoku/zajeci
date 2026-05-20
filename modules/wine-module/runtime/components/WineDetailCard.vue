@@ -21,7 +21,7 @@ const qty = ref(1);
 
 const carouselItems = computed(() => {
   if (props.wine?.files?.length) {
-    return props.wine.files.map((f) => `/api/files/${f.id}/preview`);
+    return props.wine.files.map((f) => `/api/files/${f.path}`);
   }
   return [props.wine?.image?.main?.src || "/img/bottle.jpg"];
 });

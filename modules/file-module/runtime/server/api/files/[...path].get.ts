@@ -6,8 +6,7 @@ import mime from "mime";
 
 export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig();
-  const backendRoot =
-    (config.phpFileRoot as string) || "https://www.charter-agency.com";
+  const backendRoot = config.phpFileRoot as string;
   const filePath = (event.context.params?._ ?? event.context.params?.path ?? "")
     .replace(/\.\./g, "")
     .replace(/^\/+/, "");
@@ -23,9 +22,16 @@ export default defineEventHandler(async (event: H3Event) => {
   if (backendRoot.startsWith("http://") || backendRoot.startsWith("https://")) {
     const response = await fetch(`${backendRoot}/${subdir}/${filePath}`);
     if (!response.ok) {
-      throw createError({ statusCode: response.status, statusMessage: "File not found" });
+      throw createError({
+        statusCode: response.status,
+        statusMessage: "File not found",
+      });
     }
-    setResponseHeader(event, "Content-Type", response.headers.get("content-type") || "application/octet-stream");
+    setResponseHeader(
+      event,
+      "Content-Type",
+      response.headers.get("content-type") || "application/octet-stream",
+    );
     return new Uint8Array(await response.arrayBuffer());
   }
 

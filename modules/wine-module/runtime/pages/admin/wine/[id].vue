@@ -150,12 +150,12 @@ async function onFormSubmit(formData: Record<string, any>, wineItem: IWine) {
               >
                 <a
                   v-if="file.mime_type?.startsWith('image/')"
-                  :href="`/api/files/${file.id}/preview`"
+                  :href="`/api/files/${file.path}`"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img
-                    :src="`/api/files/${file.id}/preview`"
+                    :src="`/api/files/${file.path}`"
                     :alt="file.name"
                     class="w-full h-32 object-cover"
                   />
