@@ -47,6 +47,7 @@ export interface ICart {
   quantity: number;
   unit_price: number;
   total_price: number;
+  total_price_with_vat?: number;
 }
 
 /**

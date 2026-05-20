@@ -34,16 +34,24 @@ const { data: config } = await useAsyncData(
 );
 
 // Columns
+const headerClass: any = {
+  quantity: "text-center",
+  price: "text-right",
+  vat: "text-right",
+  total_price: "text-right",
+};
 const columns: Ref<TableColumn<any>[]> = computed(
   () =>
     config?.value?.fields
-      ?.filter((f) => ["name", "quantity", "price"].includes(f.name))
+      ?.filter((f) =>
+        ["name", "quantity", "price", "vat", "total_price"].includes(f.name),
+      )
       ?.map((f) => ({
         accessorKey: f.name,
-        header: ({ table }) =>
+        header: ({ table }: any) =>
           h("div", {
             innerHTML: t(f.label!),
-            class: f.type === "number" ? "text-end" : "",
+            class: headerClass[f.name],
           }),
       })) ?? [],
 );
@@ -58,32 +66,34 @@ const columns: Ref<TableColumn<any>[]> = computed(
   >
     <template #name-cell="{ row }">
       <div class="flex gap-3 items-center">
-        <NuxtLink
-          :to="
-            localePath(
-              `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`,
-            )
+        <UiImage
+          :src="
+            row.original?.wine?.files?.[0]
+              ? `/api/${row.original.wine.files[0].path}`
+              : undefined
           "
-        >
-          <UiImage
-            :src="
-              row.original?.wine?.files?.[0]
-                ? `/api/${row.original.wine.files[0].path}`
-                : undefined
-            "
-            :alt="row.original?.wine?.name || 'wine'"
-            class="object-cover rounded-lg w-16"
-          />
-        </NuxtLink>
+          :alt="row.original?.wine?.name || 'wine'"
+          class="object-cover rounded-lg w-16"
+        />
 
-        <div class="flex flex-col flex-1 min-w-0 gap-2">
-          <h3 class="font-semibold text-pretty">
-            {{ row.original?.wine?.name }}
-          </h3>
+        <div class="w-full flex flex-col gap-2">
+          <NuxtLink
+            :to="
+              localePath(
+                `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`,
+              )
+            "
+            class="flex items-center"
+          >
+            <h3 class="font-semibold text-pretty">
+              {{ row.original?.wine?.name }}
+            </h3>
+          </NuxtLink>
+
           <CmpWineIconAttrs
             :wine="row.original?.wine"
             :fields="config.fields.filter((f) => f.iconName)"
-            item-class="sm:grid-cols-1 md:grid-cols-3"
+            item-class="md:grid-cols-2 lg:grid-cols-3"
           />
         </div>
       </div>
@@ -102,14 +112,35 @@ const columns: Ref<TableColumn<any>[]> = computed(
     </template>
 
     <template #price-cell="{ row }">
-      <p class="font-semibold min-w-24 text-end">
-        <UiPrice :price="row.original?.total_price!" :showOldPrice="false" />
+      <p class="font-semibold text-end w-full">
+        <UiPrice :price="row.original?.total_price" :showOldPrice="false" />
+      </p>
+    </template>
+
+    <template #vat-cell="{ row }">
+      <p class="font-semibold text-end w-full">
+        {{
+          row.original?.wine?.vat_rate != null
+            ? `${row.original.wine.vat_rate} %`
+            : "–"
+        }}
+      </p>
+    </template>
+
+    <template #total_price-cell="{ row }">
+      <p class="font-semibold text-end w-full">
+        <UiPrice
+          :price="
+            row.original?.total_price_with_vat ?? row.original?.total_price!
+          "
+          :showOldPrice="false"
+        />
       </p>
     </template>
 
     <template #body-bottom>
       <tr>
-        <td colspan="2" class="p-4">
+        <td colspan="4" class="p-4">
           <h3 class="font-semibold text-pretty">
             {{ t("$.shipping.title") }}
           </h3>
@@ -182,10 +213,24 @@ const columns: Ref<TableColumn<any>[]> = computed(
             }}
           </p>
         </div>
-        <div class="font-semibold flex gap-2">
-          <p>{{ t("$.form.price") }}:</p>
-          <p>
-            <UiPrice :price="cart.total_price" :showOldPrice="false" />
+        <div class="flex flex-col gap-1 text-sm">
+          <p class="font-semibold flex gap-2">
+            <span>{{ t("$.form.price_without_vat") }}:</span>
+            <UiPrice :price="cart?.total_price" :showOldPrice="false" />
+          </p>
+          <p
+            v-if="cart?.wine?.vat_rate != null"
+            class="text-gray-500 dark:text-gray-400 flex gap-2"
+          >
+            <span>{{ t("$.form.vat") }}:</span>
+            <span>{{ cart.wine.vat_rate }} %</span>
+          </p>
+          <p class="font-bold flex gap-2">
+            <span>{{ t("$.form.price_with_vat") }}:</span>
+            <UiPrice
+              :price="cart.total_price_with_vat ?? cart.total_price"
+              :showOldPrice="false"
+            />
           </p>
         </div>
       </div>

@@ -75,12 +75,17 @@
     {
       "name": "price",
       "type": "number",
-      "label": "$.form.price"
+      "label": "$.form.price_without_vat"
+    },
+    {
+      "name": "vat",
+      "type": "number",
+      "label": "$.form.vat"
     },
     {
       "name": "total_price",
       "type": "number",
-      "label": "$.form.total"
+      "label": "$.form.price_with_vat"
     },
     {
       "name": "description",

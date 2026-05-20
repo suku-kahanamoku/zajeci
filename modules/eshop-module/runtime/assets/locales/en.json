@@ -62,7 +62,10 @@
       "zip": "Postal code",
       "state": "State",
       "phone": "Phone",
-      "total": "Total price"
+      "total": "Total price",
+      "price_without_vat": "Price excl. VAT",
+      "vat": "VAT",
+      "price_with_vat": "Price incl. VAT"
     },
     "order": {
       "title": "Order administration",

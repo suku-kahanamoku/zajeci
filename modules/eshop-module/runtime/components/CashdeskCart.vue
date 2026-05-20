@@ -30,6 +30,7 @@ const deleted = ref();
 const headerClass: any = {
   quantity: "text-center",
   price: "text-right",
+  vat: "text-right",
   total_price: "text-right",
 };
 
@@ -53,7 +54,7 @@ const { data: config } = await useAsyncData(
 const columns: Ref<TableColumn<any>[]> = computed(() => [
   ...(config?.value?.fields
     ?.filter((f) =>
-      ["name", "quantity", "price", "total_price"].includes(f.name),
+      ["name", "quantity", "price", "vat", "total_price"].includes(f.name),
     )
     ?.map((f) => ({
       accessorKey: f.name,
@@ -112,7 +113,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     v-if="config && carts?.length"
     :columns="columns"
     :data="carts"
-    class="hidden sm:block"
+    class="hidden md:block"
   >
     <template #name-cell="{ row }">
       <div class="flex gap-3 items-center">
@@ -144,7 +145,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <CmpWineIconAttrs
             :wine="row.original?.wine"
             :fields="config.fields.filter((f) => f.iconName)"
-            item-class="sm:grid-cols-1 md:grid-cols-3"
+            item-class="md:grid-cols-2 lg:grid-cols-3"
           />
         </div>
       </div>
@@ -181,13 +182,26 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice :price="row.original?.unit_price!" :showOldPrice="false" />
+        <UiPrice :price="row.original?.total_price" :showOldPrice="false" />
+      </p>
+    </template>
+
+    <template #vat-cell="{ row }">
+      <p class="font-semibold text-end w-full">
+        {{
+          row.original?.wine?.vat_rate != null
+            ? `${row.original.wine.vat_rate} %`
+            : "–"
+        }}
       </p>
     </template>
 
     <template #total_price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice :price="row.original?.total_price!" :showOldPrice="false" />
+        <UiPrice
+          :price="row.original?.total_price_with_vat"
+          :showOldPrice="false"
+        />
       </p>
     </template>
 
@@ -202,7 +216,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     </template>
   </UTable>
 
-  <div v-if="config" class="sm:hidden">
+  <div v-if="config" class="md:hidden">
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
@@ -261,9 +275,25 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           />
         </div>
         <div class="flex justify-between items-center space-x-4 sm:space-x-12">
-          <p class="font-semibold text-end">
-            <UiPrice :price="cart?.total_price!" :showOldPrice="false" />
-          </p>
+          <div class="flex flex-col gap-1 text-sm">
+            <p class="font-semibold">
+              {{ t("$.form.price_without_vat") }}:
+              <UiPrice :price="cart?.total_price" :showOldPrice="false" />
+            </p>
+            <p
+              v-if="cart?.wine?.vat_rate != null"
+              class="text-gray-500 dark:text-gray-400"
+            >
+              {{ t("$.form.vat") }}: {{ cart.wine.vat_rate }} %
+            </p>
+            <p class="font-bold">
+              {{ t("$.form.price_with_vat") }}:
+              <UiPrice
+                :price="cart?.total_price_with_vat ?? cart?.total_price!"
+                :showOldPrice="false"
+              />
+            </p>
+          </div>
           <UButton
             icon="i-heroicons-trash"
             color="error"
