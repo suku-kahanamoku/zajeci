@@ -63,7 +63,7 @@ function addToCashdesk() {
           </h3>
 
           <!-- Icon attrs -->
-          <CmpWineIconAttrs :wine="wine" :fields="fields" class="flex-1" />
+          <CmpWineIconAttrs :wine="wine" :fields="fields" />
         </NuxtLink>
 
         <!-- Footer -->

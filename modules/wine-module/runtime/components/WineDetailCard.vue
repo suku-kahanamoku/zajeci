@@ -197,7 +197,7 @@ function addToCashdesk() {
     <!-- Back link -->
     <NuxtLink
       :to="routes.wine?.path"
-      class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary-600 dark:hover:text-primary-500 transition-colors mb-8"
+      class="inline-flex items-center gap-1.5 text-sm text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors mb-8"
     >
       <UIcon name="i-heroicons-arrow-left" size="16" />
       {{ $tt("$.wine.title") }}

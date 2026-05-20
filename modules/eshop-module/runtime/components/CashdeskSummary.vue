@@ -59,21 +59,31 @@ const columns: Ref<TableColumn<any>[]> = computed(
     <template #name-cell="{ row }">
       <div class="flex gap-3 items-center">
         <NuxtLink
-          :to="localePath(`${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`)"
+          :to="
+            localePath(
+              `${routes.wine?.path}/${row.original?.wine?.name}--$${row.original?.wine?.id}`,
+            )
+          "
         >
           <UiImage
-            :src="row.original?.wine?.files?.[0] ? `/api/${row.original.wine.files[0].path}` : undefined"
+            :src="
+              row.original?.wine?.files?.[0]
+                ? `/api/${row.original.wine.files[0].path}`
+                : undefined
+            "
             :alt="row.original?.wine?.name || 'wine'"
             class="object-cover rounded-lg w-16"
           />
         </NuxtLink>
 
         <div class="flex flex-col flex-1 min-w-0 gap-2">
-          <h3 class="font-semibold text-pretty">{{ row.original?.wine?.name }}</h3>
+          <h3 class="font-semibold text-pretty">
+            {{ row.original?.wine?.name }}
+          </h3>
           <CmpWineIconAttrs
-            class="w-full"
             :wine="row.original?.wine"
             :fields="config.fields.filter((f) => f.iconName)"
+            item-class="sm:grid-cols-1 md:grid-cols-3"
           />
         </div>
       </div>
@@ -126,18 +136,26 @@ const columns: Ref<TableColumn<any>[]> = computed(
     </template>
   </UTable>
 
-  <div v-if="config" class="sm:hidden">
+  <div v-if="config" class="sm:hidden flex flex-col gap-4">
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
-      class="flex flex-col items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+      class="flex flex-col items-center justify-between text-gray-900 dark:text-gray-100 px-4 pt-4 pb-4 rounded-lg shadow space-y-4 dark:border dark:border-gray-700"
     >
       <div class="flex gap-3 items-center w-full">
         <NuxtLink
-          :to="localePath(`${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`)"
+          :to="
+            localePath(
+              `${routes.wine?.path}/${cart.wine?.name}--$${cart.wine?.id}`,
+            )
+          "
         >
           <UiImage
-            :src="cart.wine?.files?.[0] ? `/api/${cart.wine.files[0].path}` : undefined"
+            :src="
+              cart.wine?.files?.[0]
+                ? `/api/${cart.wine.files[0].path}`
+                : undefined
+            "
             :alt="cart.wine?.name || 'wine'"
             class="object-cover rounded-lg w-16"
           />
@@ -145,12 +163,16 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
         <div class="flex flex-col flex-1 min-w-0">
           <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
-          <CmpWineIconAttrs :wine="cart.wine" :fields="config.fields" />
+          <CmpWineIconAttrs
+            :wine="cart.wine"
+            :fields="config.fields"
+            item-class="sm:grid-cols-1 md:grid-cols-3"
+          />
         </div>
       </div>
 
-      <div class="flex items-center justify-between space-x-4 sm:space-x-12">
-        <div class="w-full text-center font-semibold flex gap-2">
+      <div class="flex items-center justify-between gap-4 w-full">
+        <div class="font-semibold flex gap-2">
           <p>{{ t("$.form.quantity") }}:</p>
           <p>
             {{
@@ -160,7 +182,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
             }}
           </p>
         </div>
-        <div class="w-full text-center font-semibold flex gap-2">
+        <div class="font-semibold flex gap-2">
           <p>{{ t("$.form.price") }}:</p>
           <p>
             <UiPrice :price="cart.total_price" :showOldPrice="false" />
@@ -168,9 +190,29 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </div>
       </div>
     </div>
+
+    <!-- Doprava a celková cena -->
+    <div class="flex items-center justify-between gap-4 px-4 font-semibold">
+      <p>{{ t("$.shipping.title") }}:</p>
+      <p class="text-secondary-600 dark:text-secondary-400 font-bold">
+        {{
+          shipping.price! > 0
+            ? `${Number(shipping.price).toLocaleString(locale)} ${t("$.czk")}`
+            : t("$.shipping.free")
+        }}
+      </p>
+    </div>
+    <div
+      class="flex items-center justify-between gap-4 px-4 pb-4 font-semibold"
+    >
+      <p>{{ t("$.order.total_price") }}:</p>
+      <p>
+        <UiPrice :price="totalPrice" :showOldPrice="false" />
+      </p>
+    </div>
   </div>
 
-  <div class="grid gap-2 sm:gap-4 my-8 md:grid-cols-2 lg:grid-cols-3">
+  <div class="grid gap-4 my-8 md:grid-cols-2 lg:grid-cols-3">
     <UCard variant="subtle">
       <template #header>
         <h3

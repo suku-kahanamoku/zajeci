@@ -115,8 +115,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     class="hidden sm:block"
   >
     <template #name-cell="{ row }">
-      <div class="flex gap-4 items-center">
-        {{ row.original?.wine?.files?.[0] }}
+      <div class="flex gap-3 items-center">
         <UiImage
           :src="
             row.original?.wine?.files?.[0]
@@ -143,9 +142,9 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
           <!-- Parametry vína s ikonami ve dvou řádcích -->
           <CmpWineIconAttrs
-            class="w-full"
             :wine="row.original?.wine"
             :fields="config.fields.filter((f) => f.iconName)"
+            item-class="sm:grid-cols-1 md:grid-cols-3"
           />
         </div>
       </div>
@@ -207,9 +206,9 @@ const handleSetQuantity = (value: number, cart: ICart) => {
     <div
       v-for="cart in carts"
       :key="cart.wine?.id"
-      class="flex flex-col items-center justify-between text-gray-500 px-4 pt-2 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
+      class="flex flex-col items-center justify-between text-gray-500 px-4 pt-4 pb-4 rounded-lg shadow space-x-0 md:space-x-4 space-y-4 md:space-y-0 dark:border dark:border-gray-700"
     >
-      <div class="flex flex-row items-center gap-3">
+      <div class="w-full flex flex-row items-center gap-4">
         <NuxtLink
           :to="
             localePath(
@@ -231,7 +230,6 @@ const handleSetQuantity = (value: number, cart: ICart) => {
         <div class="flex flex-col flex-1 min-w-0">
           <h3 class="font-semibold">{{ cart.wine?.name }}</h3>
           <CmpWineIconAttrs
-            class="w-full"
             :wine="cart.wine"
             :fields="config.fields.filter((f) => f.iconName)"
           />

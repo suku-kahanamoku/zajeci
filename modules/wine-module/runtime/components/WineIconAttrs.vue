@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 import type { IFormField } from "@suku-kahanamoku/form-module/types";
+import { twMerge } from "tailwind-merge";
 
 const props = defineProps<{
   fields: IFormField[];
   wine?: IWine;
+  itemClass?: string;
 }>();
 
 const { t } = useLang();
@@ -39,6 +41,9 @@ function resolveValue(wine: IWine, fieldName: string): string | number | null {
   return raw;
 }
 
+const defaultItemClass = "grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200";
+const rootClass = computed(() => twMerge(defaultItemClass, props.itemClass));
+
 const attrs = computed(() => {
   const w = props.wine;
   if (!w || !props.fields) return [];
@@ -60,9 +65,9 @@ const attrs = computed(() => {
 </script>
 
 <template>
-  <dl
+  <div
     v-if="wine"
-    class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200"
+    :class="rootClass"
   >
     <div
       v-for="attr in attrs"
@@ -81,5 +86,5 @@ const attrs = computed(() => {
         <span class="font-medium leading-tight">{{ attr.value }}</span>
       </div>
     </div>
-  </dl>
+  </div>
 </template>
