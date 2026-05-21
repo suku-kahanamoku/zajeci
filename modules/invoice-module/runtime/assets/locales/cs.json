@@ -7,6 +7,8 @@
       "vat_exempt": "Neplátce DPH",
       "customer": "Odběratel",
       "order_number": "Číslo objednávky",
+      "invoice_number": "Číslo faktury",
+      "order_id": "ID objednávky",
       "issue_date": "Datum vystavení",
       "due_date": "Datum splatnosti",
       "supplier": "Dodavatel",
@@ -16,7 +18,29 @@
       "item": "Položka",
       "price": "Cena",
       "currency": "Kč",
-      "total": "Celková cena"
+      "total": "Celková cena",
+      "status": "Stav",
+      "total_amount": "Celková částka"
+    },
+    "admin": {
+      "invoice": {
+        "title": "Správa faktur",
+        "update": {
+          "title": "Editace faktury"
+        },
+        "create": {
+          "title": "Nová faktura"
+        }
+      }
+    },
+    "status": {
+      "draft": "Rozepsaná",
+      "issued": "Vystavená",
+      "paid": "Zaplacená",
+      "overdue": "Po splatnosti",
+      "cancelled": "Zrušená",
+      "refunded": "Refundovaná",
+      "pending": "Čeká na zpracování"
     }
   }
 }

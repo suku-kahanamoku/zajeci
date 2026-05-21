@@ -95,28 +95,6 @@
       "status_delivered": "Doručená",
       "status_cancelled": "Zrušená",
       "status_refunded": "Vrácená"
-    },
-    "invoice": {
-      "invoice_number": "Číslo faktury",
-      "order_id": "ID objednávky",
-      "status": "Stav",
-      "total_amount": "Celková částka",
-      "due_date": "Datum splatnosti",
-      "status_draft": "Rozepsaná",
-      "status_issued": "Vystavená",
-      "status_paid": "Zaplacená",
-      "status_overdue": "Po splatnosti",
-      "status_cancelled": "Zrušená",
-      "status_refunded": "Refundovaná",
-      "admin": {
-        "title": "Správa faktur",
-        "update": {
-          "title": "Editace faktury"
-        },
-        "create": {
-          "title": "Nová faktura"
-        }
-      }
     }
   }
 }

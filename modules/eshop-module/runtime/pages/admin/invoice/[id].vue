@@ -4,7 +4,7 @@ import iConfig from "../../../assets/configs/admin-invoice-update.json";
 definePageMeta({
   layout: "admin",
   syscode: "admin_invoice_detail",
-  title: "$.invoice.admin.update.title",
+  title: "$.admin.invoice.update.title",
 });
 
 const { t } = useLang();

@@ -4,6 +4,7 @@ import {
   addImportsDir,
   hasNuxtModule,
   installModule,
+  addComponentsDir,
 } from "@nuxt/kit";
 import * as fs from "node:fs";
 
@@ -23,6 +24,13 @@ export default defineNuxtModule<ModuleOptions>({
 
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
+
+    // Přidání runtime komponent
+    addComponentsDir({
+      path: resolve("./runtime/components"),
+      prefix: "Cmp",
+      pathPrefix: false,
+    });
 
     addImportsDir(resolve("./runtime/composables"));
 

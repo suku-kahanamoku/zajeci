@@ -7,6 +7,8 @@
       "vat_exempt": "VAT Exempt",
       "customer": "Customer",
       "order_number": "Order Number",
+      "invoice_number": "Invoice Number",
+      "order_id": "Order ID",
       "issue_date": "Issue Date",
       "due_date": "Due Date",
       "supplier": "Supplier",
@@ -16,7 +18,29 @@
       "item": "Item",
       "price": "Price",
       "currency": "CZK",
-      "total": "Total"
+      "total": "Total",
+      "status": "Status",
+      "total_amount": "Total Amount"
+    },
+    "admin": {
+      "invoice": {
+        "title": "Invoice Management",
+        "update": {
+          "title": "Edit Invoice"
+        },
+        "create": {
+          "title": "New Invoice"
+        }
+      }
+    },
+    "status": {
+      "draft": "Draft",
+      "issued": "Issued",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled",
+      "refunded": "Refunded",
+      "pending": "Pending"
     }
   }
 }

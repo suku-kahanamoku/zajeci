@@ -20,12 +20,12 @@
       "type": "select",
       "label": "$.invoice.status",
       "options": [
-        { "label": "$.invoice.status_draft", "value": "draft" },
-        { "label": "$.invoice.status_issued", "value": "issued" },
-        { "label": "$.invoice.status_paid", "value": "paid" },
-        { "label": "$.invoice.status_overdue", "value": "overdue" },
-        { "label": "$.invoice.status_cancelled", "value": "cancelled" },
-        { "label": "$.invoice.status_refunded", "value": "refunded" }
+        { "label": "$.status.draft", "value": "draft" },
+        { "label": "$.status.issued", "value": "issued" },
+        { "label": "$.status.paid", "value": "paid" },
+        { "label": "$.status.overdue", "value": "overdue" },
+        { "label": "$.status.cancelled", "value": "cancelled" },
+        { "label": "$.status.refunded", "value": "refunded" }
       ],
       "operator": {
         "value": "$eq",

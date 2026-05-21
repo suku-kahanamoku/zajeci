@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import TasteCard from "./TasteCard.vue";
-
 const { data: tasting } = await useAsyncData("tasting", async () => {
   try {
     const r = await $fetch<{ data: any[] }>(
@@ -37,7 +35,7 @@ const { data: tasting } = await useAsyncData("tasting", async () => {
     </div>
 
     <div class="flex flex-wrap justify-center gap-4 items-stretch">
-      <TasteCard v-for="(item, index) of tasting" :item="item" />
+      <CmpTasteCard v-for="(item, index) of tasting" :item="item" />
     </div>
   </div>
 </template>

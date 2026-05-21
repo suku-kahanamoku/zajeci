@@ -10,10 +10,10 @@
       "label": "$.invoice.status",
       "required": true,
       "options": [
-        { "label": "$.invoice.status_pending", "value": "pending" },
-        { "label": "$.invoice.status_paid", "value": "paid" },
-        { "label": "$.invoice.status_cancelled", "value": "cancelled" },
-        { "label": "$.invoice.status_overdue", "value": "overdue" }
+        { "label": "$.status.pending", "value": "pending" },
+        { "label": "$.status.paid", "value": "paid" },
+        { "label": "$.status.cancelled", "value": "cancelled" },
+        { "label": "$.status.overdue", "value": "overdue" }
       ]
     }
   ]
