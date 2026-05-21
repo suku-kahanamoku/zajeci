@@ -115,7 +115,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
     <template #price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice :price="row.original?.total_price" :showOldPrice="false" />
+        <CmpPrice :price="row.original?.total_price" :showOldPrice="false" />
       </p>
     </template>
 
@@ -131,7 +131,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
 
     <template #total_price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice
+        <CmpPrice
           :price="
             row.original?.total_price_with_vat ?? row.original?.total_price!
           "
@@ -162,7 +162,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <tr>
         <td colspan="99" class="p-4">
           <p class="font-semibold min-w-24 text-end">
-            <UiPrice :price="totalPrice" :showOldPrice="false" />
+            <CmpPrice :price="totalPrice" :showOldPrice="false" />
           </p>
         </td>
       </tr>
@@ -214,7 +214,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <div class="flex flex-col gap-1 text-sm">
           <p class="font-semibold flex gap-2">
             <span>{{ t("$.form.price_without_vat") }}:</span>
-            <UiPrice :price="cart?.total_price" :showOldPrice="false" />
+            <CmpPrice :price="cart?.total_price" :showOldPrice="false" />
           </p>
           <p
             v-if="cart?.wine?.vat_rate != null"
@@ -225,7 +225,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </p>
           <p class="font-bold flex gap-2">
             <span>{{ t("$.form.price_with_vat") }}:</span>
-            <UiPrice
+            <CmpPrice
               :price="cart.total_price_with_vat ?? cart.total_price"
               :showOldPrice="false"
             />

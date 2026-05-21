@@ -74,7 +74,7 @@ function addToCashdesk() {
             <span
               class="font-bold text-lg text-secondary-600 dark:text-secondary-400"
             >
-              <UiPrice :price="wine.price" />
+              <CmpPrice :price="wine.price" />
             </span>
           </div>
           <UButton

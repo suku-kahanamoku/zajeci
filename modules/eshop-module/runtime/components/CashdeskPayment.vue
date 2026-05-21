@@ -38,7 +38,7 @@ watch(
             </span>
           </div>
 
-          <UiPrice v-if="item.price! > 0" :price="item?.price!" />
+          <CmpPrice v-if="item.price! > 0" :price="item?.price!" />
           <span v-else>
             {{ t("$.btn.free") }}
           </span>

@@ -153,7 +153,7 @@ function addToCashdesk() {
               <span
                 class="font-bold text-3xl text-secondary-600 dark:text-secondary-400"
               >
-                <UiPrice :price="wine.price" />
+                <CmpPrice :price="wine.price" />
               </span>
             </div>
             <!-- Qty selector -->

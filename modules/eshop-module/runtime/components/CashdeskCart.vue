@@ -184,7 +184,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice :price="row.original?.total_price" :showOldPrice="false" />
+        <CmpPrice :price="row.original?.total_price" :showOldPrice="false" />
       </p>
     </template>
 
@@ -280,7 +280,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           <div class="w-full flex flex-col gap-1 text-sm">
             <p class="font-semibold">
               {{ t("$.form.price_without_vat") }}:
-              <UiPrice :price="cart?.total_price" :showOldPrice="false" />
+              <CmpPrice :price="cart?.total_price" :showOldPrice="false" />
             </p>
             <p
               v-if="cart?.wine?.vat_rate != null"
