@@ -66,7 +66,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
   >
     <template #name-cell="{ row }">
       <div class="flex gap-3 items-center">
-        <UiImage
+        <CmpImage
           :src="
             row.original?.wine?.files?.[0]
               ? `/api/${row.original.wine.files[0].path}`
@@ -183,7 +183,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
             )
           "
         >
-          <UiImage
+          <CmpImage
             :src="
               cart.wine?.files?.[0]
                 ? `/api/${cart.wine.files[0].path}`

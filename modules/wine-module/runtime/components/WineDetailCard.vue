@@ -75,7 +75,7 @@ function addToCashdesk() {
             class="w-full"
             @select="onSelect"
           >
-            <UiImage
+            <CmpImage
               :src="item"
               :alt="wine.name || 'wine'"
               class="w-full h-60 sm:h-90 md:h-120 object-contain p-7 transition-transform duration-700 hover:scale-105"
@@ -95,7 +95,7 @@ function addToCashdesk() {
             :class="{ 'opacity-100 border-primary-500': activeIndex === index }"
             @click="selectThumb(index)"
           >
-            <UiImage
+            <CmpImage
               :src="src"
               :alt="`thumb-${index}`"
               class="w-full h-full object-cover"
