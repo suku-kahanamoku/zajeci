@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     "@suku-kahanamoku/lang-module",
     "@suku-kahanamoku/common-module",
     "@suku-kahanamoku/seo-module",
-    "@nuxt/image",
     "nuxt-gtag",
     "nuxt-rating",
   ],
@@ -35,10 +34,8 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    phpApiBaseUrl:
-      process.env.PHP_API_BASE_URL || "http://localhost/php/php-core/api",
-    phpFileRoot:
-      process.env.PHP_FILE_ROOT || "/home/suku/Workspace/php/php-core",
+    phpApiBaseUrl: process.env.PHP_API_BASE_URL,
+    phpFileRoot: process.env.PHP_FILE_ROOT,
   },
 
   router: {
