@@ -18,6 +18,7 @@ export default defineEventHandler(async (event: H3Event) => {
       fromEmail: config.mailingFrom,
       fromName: config.mailingFromName,
       fromPhone: config.mailingFromPhone,
+      logoPath: "https://vinozezajeci.cz/img/logo_white.svg",
     },
   });
 });
