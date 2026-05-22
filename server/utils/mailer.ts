@@ -36,12 +36,14 @@ async function sendPhpMail(
   return phpApiFetch(event, "/mailer/", { query });
 }
 
-export function sendSignupMail(event: H3Event, to: string) {
+export function sendSignupMail(event: H3Event, to: string, password: string) {
   const config = useRuntimeConfig();
   return sendPhpMail(event, {
     template: "signup",
     to,
     subject: "Potvrzení registrace",
+    email: to,
+    password,
     bcc: config.mailingFrom as string,
   });
 }

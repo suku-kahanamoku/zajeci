@@ -26,13 +26,15 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Odesleme email s novym heslem
-  await sendResetPasswordMail(
-    event,
-    body.email,
-    response.data.email,
-    response.data.password,
-  );
+  // Odesleme email s novym heslem (prazdne heslo = email neexistuje, tichy uspech)
+  if (response.data?.password) {
+    await sendResetPasswordMail(
+      event,
+      body.email,
+      response.data.email,
+      response.data.password,
+    );
+  }
 
   return { success: true };
 });

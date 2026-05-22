@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Odesleme potvrzovaci email
-  await sendSignupMail(event, body.email);
+  await sendSignupMail(event, body.email, body.password);
 
   return { success: true };
 });
