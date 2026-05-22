@@ -36,6 +36,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     phpApiBaseUrl: process.env.PHP_API_BASE_URL,
     phpFileRoot: process.env.PHP_FILE_ROOT,
+    mailingFrom: process.env.NUXT_MAILING_FROM,
+    mailingFromName: process.env.NUXT_MAILING_FROM_NAME,
+    mailingFromPhone: process.env.NUXT_MAILING_FROM_PHONE,
   },
 
   router: {

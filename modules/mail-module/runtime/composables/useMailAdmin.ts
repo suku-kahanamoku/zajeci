@@ -24,16 +24,17 @@ export function useMailAdmin() {
     () => (mailsData.value?.data as IMailTemplate[] | undefined) ?? [],
   );
 
-  async function sendMail(template: string): Promise<void> {
+  async function sendMail(
+    template: string,
+    to: string,
+    subject: string,
+  ): Promise<void> {
     sending.value = template;
     try {
       const params = new URLSearchParams({
         template,
-        to: "sukusovi@gmail.com",
-        subject: "Test email",
-        fromEmail: "test@test.cz",
-        fromName: "Test",
-        fromPhone: "123456789",
+        to,
+        subject,
       });
 
       await useApi(`/api/admin/mail/send?${params.toString()}`);
