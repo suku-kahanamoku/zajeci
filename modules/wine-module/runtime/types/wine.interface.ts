@@ -7,6 +7,7 @@ export interface IWineData {
   winery?: string;
   region?: string;
   alcohol?: number;
+  batch?: string;
 }
 
 export interface IWineFile {
@@ -19,7 +20,6 @@ export interface IWineFile {
 export interface IWine extends IItem {
   name: string;
   sku?: string;
-  batch?: string;
   stock_quantity: number;
   price: number;
   description?: string;

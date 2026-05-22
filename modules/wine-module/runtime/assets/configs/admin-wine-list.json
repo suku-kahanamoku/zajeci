@@ -32,7 +32,7 @@
       "clearable": true
     },
     {
-      "name": "batch",
+      "name": "data.batch",
       "type": "text",
       "label": "$.wine.form.batch",
       "operator": {
