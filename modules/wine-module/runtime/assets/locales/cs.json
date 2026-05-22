@@ -19,15 +19,13 @@
         "winery": "Vinařství",
         "region": "Oblast",
         "alcohol": "Alkohol",
-        "serving_temp": "Teplota podávání",
         "sku": "SKU",
         "batch": "Šarže"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, výběr z hroznů",
         "variant": "Tramín červený",
-        "region": "Moravská vinařská oblast",
-        "serving_temp": "10–12 °C"
+        "region": "Moravská vinařská oblast"
       },
       "kind": {
         "dry": "Suché",

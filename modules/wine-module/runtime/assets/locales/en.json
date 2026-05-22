@@ -19,15 +19,13 @@
         "winery": "Winery",
         "region": "Region",
         "alcohol": "Alcohol",
-        "serving_temp": "Serving temperature",
         "sku": "SKU",
         "batch": "Batch"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",
         "variant": "Traminer",
-        "region": "Moravian wine region",
-        "serving_temp": "10–12 °C"
+        "region": "Moravian wine region"
       },
       "kind": {
         "dry": "Dry",

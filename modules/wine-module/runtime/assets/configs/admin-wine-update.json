@@ -137,11 +137,6 @@
       "label": "$.wine.form.region"
     },
     {
-      "name": "data.serving_temp",
-      "type": "text",
-      "label": "$.wine.form.serving_temp"
-    },
-    {
       "name": "description",
       "type": "textarea",
       "label": "$.form.description"

@@ -12,7 +12,13 @@
     "fileTypes": [
       {
         "label": "JPG, PNG, GIF, WEBP, PDF",
-        "value": ["image/jpeg", "image/png", "image/gif", "image/webp", "application/pdf"]
+        "value": [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "image/webp",
+          "application/pdf"
+        ]
       }
     ]
   },
@@ -129,11 +135,6 @@
       "name": "data.region",
       "type": "text",
       "label": "$.wine.form.region"
-    },
-    {
-      "name": "data.serving_temp",
-      "type": "text",
-      "label": "$.wine.form.serving_temp"
     },
     {
       "name": "description",

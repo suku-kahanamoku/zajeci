@@ -7,7 +7,6 @@ export interface IWineData {
   winery?: string;
   region?: string;
   alcohol?: number;
-  serving_temp?: string;
 }
 
 export interface IWineFile {

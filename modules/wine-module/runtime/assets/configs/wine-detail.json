@@ -15,7 +15,6 @@
     "data.alcohol",
     "data.winery",
     "data.region",
-    "data.serving_temp",
     "files"
   ],
   "fields": [
@@ -105,13 +104,6 @@
       "label": "$.wine.form.region",
       "iconName": "i-heroicons-map-pin",
       "iconColor": "text-red-400"
-    },
-    {
-      "name": "data.serving_temp",
-      "type": "text",
-      "label": "$.wine.form.serving_temp",
-      "iconName": "i-heroicons-sun",
-      "iconColor": "text-sky-500"
     }
   ]
 }
