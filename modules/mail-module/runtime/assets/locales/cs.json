@@ -1,11 +1,18 @@
 {
   "$": {
     "mail": {
-      "template": "Šablona"
+      "template": "Šablona",
+      "to": "Příjemce",
+      "subject": "Předmět",
+      "placeholder": {
+        "to": "email{'@'}priklad.cz",
+        "subject": "Předmět e-mailu"
+      }
     },
     "admin": {
       "mail": {
         "title": "Správa e-mailů",
+        "send": "Odeslat e-mail",
         "send_success": "E-mail byl úspěšně odeslán.",
         "send_error": "Nepodařilo se odeslat e-mail."
       }

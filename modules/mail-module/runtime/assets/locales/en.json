@@ -1,11 +1,18 @@
 {
   "$": {
     "mail": {
-      "template": "Template"
+      "template": "Template",
+      "to": "Recipient",
+      "subject": "Subject",
+      "placeholder": {
+        "to": "email{'@'}example.com",
+        "subject": "Email subject"
+      }
     },
     "admin": {
       "mail": {
         "title": "Mail management",
+        "send": "Send email",
         "send_success": "Email sent successfully.",
         "send_error": "Failed to send email."
       }
