@@ -48,7 +48,9 @@ async function onDeleteHandler(event: boolean) {
       class="border-none"
     />
 
-    <div class="mb-4 p-4 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800">
+    <div
+      class="mb-4 p-4 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800"
+    >
       <p class="text-sm text-primary-700 dark:text-primary-300">
         {{ $tt("$.admin.vat_rate.info") }}
       </p>
@@ -76,24 +78,29 @@ async function onDeleteHandler(event: boolean) {
 
     <CmpTable
       ref="tableCmp"
+      v-model:selected="selected"
       :config="config"
-      :items="(vatRates as IEnumItem[])"
+      :data="vatRates?.data as IEnumItem[]"
       :meta="meta"
       :loading="loading"
+      @delete="isOpen = true"
       @sort="handleSort"
       @page="handlePage"
       @filter="handleFilter"
-      @delete="onDeleteHandler"
     />
 
-    <UModal v-model:open="isOpen">
-      <template #content>
-        <CmpConfirm
-          :loading="loading"
-          @confirm="onDelete(true)"
-          @cancel="isOpen = false"
-        />
-      </template>
-    </UModal>
+    <CmpConfirmDialog
+      v-model="isOpen"
+      :title="$tt('$.btn.delete')"
+      color="error"
+      :btns="{ ok: { icon: 'i-heroicons-trash' } }"
+      @confirm="onDeleteHandler"
+    >
+      {{
+        selected?.length > 1
+          ? $tt("$.message.delete_question_multi", { length: selected?.length })
+          : $tt("$.message.delete_question", { name: selected?.[0]?.label })
+      }}
+    </CmpConfirmDialog>
   </div>
 </template>

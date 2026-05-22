@@ -3,6 +3,9 @@
   "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"vat_rate\"}}",
   "deleteUrl": "/api/admin/enum/${item.id}",
   "sort": [{"created_at": -1}],
+  "factory": {
+    "url": "${label}--$${id}"
+  },
   "pagination": {
     "limit": 20
   },

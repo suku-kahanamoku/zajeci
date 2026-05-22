@@ -109,6 +109,7 @@
       "quantity_stock": "Množství na skladě",
       "description": "Popis",
       "name": "Název",
+      "syscode": "Systémový kód",
       "old_password": "Staré heslo",
       "new_password": "Nové heslo",
       "role": "Oprávnění",

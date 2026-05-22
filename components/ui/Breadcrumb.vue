@@ -32,7 +32,15 @@ const items = computed(() => {
     }
 
     return {
-      label: capitalize(decodeURIComponent(label)),
+      label: capitalize(
+        (() => {
+          try {
+            return decodeURIComponent(label);
+          } catch {
+            return label;
+          }
+        })(),
+      ),
       to: localePath(`/${segments.slice(0, index + 1).join("/")}`),
       icon: "",
     };
