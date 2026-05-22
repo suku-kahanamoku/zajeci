@@ -65,14 +65,9 @@
     },
     {
       "name": "variant",
-      "type": "select",
+      "type": "text",
       "label": "$.wine.form.variant",
-      "placeholder": "$.wine.placeholder.variant",
-      "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_variety\"},\"published\":{\"value\":1}}&limit=100",
-        "label": "label",
-        "value": "value"
-      }
+      "placeholder": "$.wine.placeholder.variant"
     },
     {
       "name": "price",
@@ -112,14 +107,8 @@
     },
     {
       "name": "data.quality",
-      "type": "select",
-      "label": "$.wine.form.quality",
-      "placeholder": "$.form.select",
-      "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_quality\"},\"published\":{\"value\":1}}&limit=100",
-        "label": "label",
-        "value": "value"
-      }
+      "type": "text",
+      "label": "$.wine.form.quality"
     },
     {
       "name": "data.alcohol",

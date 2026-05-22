@@ -33,16 +33,10 @@
     },
     {
       "name": "data.quality",
-      "type": "select",
+      "type": "text",
       "label": "$.wine.form.quality",
       "iconName": "i-heroicons-star",
-      "iconColor": "text-yellow-500",
-      "placeholder": "$.form.select",
-      "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_quality\"},\"published\":{\"value\":1}}&limit=100",
-        "label": "label",
-        "value": "value"
-      }
+      "iconColor": "text-yellow-500"
     },
     {
       "name": "color",
@@ -59,16 +53,10 @@
     },
     {
       "name": "variant",
-      "type": "select",
+      "type": "text",
       "label": "$.wine.form.variant",
       "iconName": "i-heroicons-sparkles",
-      "iconColor": "text-green-500",
-      "placeholder": "$.form.select",
-      "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_variety\"},\"published\":{\"value\":1}}&limit=100",
-        "label": "label",
-        "value": "value"
-      }
+      "iconColor": "text-green-500"
     },
     {
       "name": "data.volume",

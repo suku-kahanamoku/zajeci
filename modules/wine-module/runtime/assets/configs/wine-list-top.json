@@ -36,16 +36,10 @@
     },
     {
       "name": "data.quality",
-      "type": "select",
+      "type": "text",
       "label": "$.wine.form.quality",
       "iconName": "i-heroicons-star",
-      "iconColor": "text-yellow-500",
-      "placeholder": "$.form.select",
-      "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_quality\"},\"published\":{\"value\":1}}&limit=100",
-        "label": "label",
-        "value": "value"
-      }
+      "iconColor": "text-yellow-500"
     },
     {
       "name": "kind",
