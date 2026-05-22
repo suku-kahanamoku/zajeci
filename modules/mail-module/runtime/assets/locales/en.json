@@ -1,0 +1,14 @@
+{
+  "$": {
+    "mail": {
+      "template": "Template"
+    },
+    "admin": {
+      "mail": {
+        "title": "Mail management",
+        "send_success": "Email sent successfully.",
+        "send_error": "Failed to send email."
+      }
+    }
+  }
+}

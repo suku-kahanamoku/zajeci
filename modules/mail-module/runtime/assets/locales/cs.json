@@ -1,0 +1,14 @@
+{
+  "$": {
+    "mail": {
+      "template": "Šablona"
+    },
+    "admin": {
+      "mail": {
+        "title": "Správa e-mailů",
+        "send_success": "E-mail byl úspěšně odeslán.",
+        "send_error": "Nepodařilo se odeslat e-mail."
+      }
+    }
+  }
+}

@@ -74,6 +74,13 @@ const menuItems = computed(() => {
       items.push(adminText);
     }
 
+    const adminMail = menuItem("admin_mail");
+    if (adminMail) {
+      adminMail.to = localePath(adminMail.to!);
+      adminMail.icon = "i-heroicons-envelope";
+      items.push(adminMail);
+    }
+
     const adminEnum = menuItem("admin_enum");
     if (adminEnum) {
       adminEnum.to = localePath(adminEnum.to!);
