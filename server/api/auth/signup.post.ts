@@ -7,17 +7,23 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   // Registrace uzivatele na PHP backendu
-  const registerResponse = await $fetch<any>(`${baseUrl}/auth/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body,
-  }).catch((err: any) => err?.data ?? null);
+  let registerResponse: any = null;
+  let registerStatusCode = 400;
+  try {
+    registerResponse = await $fetch<any>(`${baseUrl}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+  } catch (err: any) {
+    registerStatusCode = err.statusCode ?? err.response?.status ?? 400;
+    registerResponse = err.data ?? null;
+  }
 
   if (!registerResponse?.success) {
     throw createError({
-      statusCode: registerResponse?.statusCode || 400,
+      statusCode: registerStatusCode,
       message: registerResponse?.message || "Registration failed",
-      data: registerResponse?.debug ?? undefined,
     });
   }
 

@@ -35,7 +35,10 @@ async function onSubmit(body: Record<string, any>) {
     formKey.value++;
     display({ type: "success", message: "$.contact.success_msg" });
   } catch (error: any) {
-    display({ type: "error", message: error.data.message });
+    display({
+      type: "error",
+      message: error?.data?.message || error?.message,
+    });
   }
   loading.value = false;
 }

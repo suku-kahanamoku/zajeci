@@ -8,21 +8,28 @@ export default defineEventHandler(async (event) => {
   if (!body?.email) {
     throw createError({
       statusCode: 400,
-      data: { message: "Email is required" },
+      message: "Email is required",
     });
   }
 
   // PHP vygeneruje nove nahodne heslo a ulozi ho
-  const response = await $fetch<any>(`${baseUrl}/auth/reset-password`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: { email: body.email },
-  });
+  let response: any = null;
+  let responseStatusCode = 400;
+  try {
+    response = await $fetch<any>(`${baseUrl}/auth/reset-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: { email: body.email },
+    });
+  } catch (err: any) {
+    responseStatusCode = err.statusCode ?? err.response?.status ?? 400;
+    response = err.data ?? null;
+  }
 
   if (!response?.success) {
     throw createError({
-      statusCode: 400,
-      data: { message: response?.message || "Password reset failed" },
+      statusCode: responseStatusCode,
+      message: response?.message || "Password reset failed",
     });
   }
 
