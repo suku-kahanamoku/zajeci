@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     "@suku-kahanamoku/auth-module",
     "@suku-kahanamoku/menu-module",
     "@suku-kahanamoku/form-module",
-    "@suku-kahanamoku/notify-module",
     "@suku-kahanamoku/ui-module",
     "@suku-kahanamoku/lang-module",
     "@suku-kahanamoku/common-module",

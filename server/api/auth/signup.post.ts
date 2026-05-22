@@ -16,7 +16,8 @@ export default defineEventHandler(async (event) => {
   if (!registerResponse?.success) {
     throw createError({
       statusCode: registerResponse?.statusCode || 400,
-      data: { message: registerResponse?.message || "Registration failed" },
+      message: registerResponse?.message || "Registration failed",
+      data: registerResponse?.debug ?? undefined,
     });
   }
 
