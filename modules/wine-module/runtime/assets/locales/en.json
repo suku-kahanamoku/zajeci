@@ -20,7 +20,8 @@
         "region": "Region",
         "alcohol": "Alcohol",
         "serving_temp": "Serving temperature",
-        "sku": "SKU"
+        "sku": "SKU",
+        "batch": "Batch"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, selection of grapes",

@@ -20,6 +20,7 @@ export interface IWineFile {
 export interface IWine extends IItem {
   name: string;
   sku?: string;
+  batch?: string;
   stock_quantity: number;
   price: number;
   description?: string;

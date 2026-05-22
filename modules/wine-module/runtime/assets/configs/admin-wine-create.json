@@ -30,6 +30,11 @@
       "label": "$.wine.form.sku"
     },
     {
+      "name": "batch",
+      "type": "text",
+      "label": "$.wine.form.batch"
+    },
+    {
       "name": "kind",
       "type": "select",
       "label": "$.wine.form.kind",

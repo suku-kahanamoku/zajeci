@@ -20,7 +20,8 @@
         "region": "Oblast",
         "alcohol": "Alkohol",
         "serving_temp": "Teplota podávání",
-        "sku": "SKU"
+        "sku": "SKU",
+        "batch": "Šarže"
       },
       "placeholder": {
         "name": "Sauvignon Blanc, výběr z hroznů",

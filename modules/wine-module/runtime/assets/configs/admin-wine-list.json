@@ -32,6 +32,17 @@
       "clearable": true
     },
     {
+      "name": "batch",
+      "type": "text",
+      "label": "$.wine.form.batch",
+      "operator": {
+        "value": "$regex",
+        "enabled": true
+      },
+      "size": "md",
+      "clearable": true
+    },
+    {
       "name": "kind",
       "type": "select",
       "label": "$.wine.form.kind",
