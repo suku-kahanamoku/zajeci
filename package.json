@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/image": "^1.10.0",
     "@suku-kahanamoku/auth-module": "^1.1.4",
     "@suku-kahanamoku/common-module": "^1.2.2",
     "@suku-kahanamoku/form-module": "^1.0.30",
