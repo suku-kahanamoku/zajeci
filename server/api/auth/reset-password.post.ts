@@ -1,4 +1,4 @@
-import ResetPasswordForm from "@/emails/ResetPasswordForm.vue";
+import { sendResetPasswordMail } from "@/server/utils/mailer";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -27,16 +27,12 @@ export default defineEventHandler(async (event) => {
   }
 
   // Odesleme email s novym heslem
-  const { template, send } = await useMailing(event);
-  await send({
-    subject: "$.mailing.forgot_password.subject",
-    template: await template(ResetPasswordForm, {
-      email: response.data.email,
-      password: response.data.password,
-      url: process.env.FRONTEND_HOST,
-    }),
-    to: [{ Email: body.email }],
-  });
+  await sendResetPasswordMail(
+    event,
+    body.email,
+    response.data.email,
+    response.data.password,
+  );
 
   return { success: true };
 });

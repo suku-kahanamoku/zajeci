@@ -1,5 +1,5 @@
-import SignupForm from "@/emails/SignupForm.vue";
 import { setUserSessionFromPhp } from "@/server/utils/session";
+import { sendSignupMail } from "@/server/utils/mailer";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -33,13 +33,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Odesleme potvrzovaci email
-  const { template, send } = await useMailing(event);
-  await send({
-    subject: "$.mailing.signup.subject",
-    template: await template(SignupForm, body),
-    to: [{ Email: body.email }],
-    bcc: [{ Email: process.env.NUXT_MAILING_FROM! }],
-  });
+  await sendSignupMail(event, body.email);
 
   return { success: true };
 });

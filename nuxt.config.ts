@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: "2026-05-04",
   ssr: true,
+
+  routeRules: {
+    "/": { prerender: true },
+  },
+
   devtools: { enabled: true },
 
   colorMode: {
