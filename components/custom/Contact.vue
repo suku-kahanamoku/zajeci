@@ -121,7 +121,7 @@ async function onSubmit(body: Record<string, any>) {
             <span class="dark:text-white text-blue">
               {{ contactInfo?.street }}, {{ contactInfo?.zip }}
               {{ contactInfo?.city }}<br />
-              {{ contactInfo?.ic }}, {{ contactInfo?.dic }}
+              IČ {{ contactInfo?.ic }}, DIČ {{ contactInfo?.dic }}
             </span>
           </div>
         </div>
