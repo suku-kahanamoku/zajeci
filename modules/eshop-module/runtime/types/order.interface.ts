@@ -74,9 +74,8 @@ export interface IOrder extends IItem {
   status: OrderStatus | string;
   total_price: number;
   currency: string;
-  payment_type: string | null;
-  shipping_type?: string | null;
-  shipping_price?: number | null;
+  payment?: Record<string, any> | null;
+  shipping?: Record<string, any> | null;
   shipping_address_id?: number | null;
   billing_address_id?: number | null;
   note?: string | null;
@@ -98,9 +97,8 @@ export interface IInvoice extends IItem {
   order_id?: number | null;
   status: string;
   currency: string;
-  payment_type?: string | null;
-  shipping_type?: string | null;
-  shipping_price?: number | null;
+  payment?: Record<string, any> | null;
+  shipping?: Record<string, any> | null;
   total_price: number;
   total_price_with_vat?: number | null;
   total_price_all?: number | null;

@@ -85,11 +85,7 @@ useHead({
             <div class="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
               <div>
                 {{ t("$.order.payment_type") }}:
-                <strong>{{
-                  te("$.payment." + data.payment_type)
-                    ? t("$.payment." + data.payment_type)
-                    : data.payment_type
-                }}</strong>
+                <strong>{{ data.payment?.label ?? data.payment?.type }}</strong>
               </div>
               <div>
                 {{ t("$.form.currency") }}: <strong>{{ data.currency }}</strong>
@@ -101,20 +97,18 @@ useHead({
           <div>
             <div class="font-semibold mb-2">{{ t("$.shipping.title") }}</div>
             <div class="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
-              <div v-if="data.shipping_type">
+              <div v-if="data.shipping?.type">
                 {{ t("$.order.shipping_type") }}:
                 <strong>{{
-                  te("$.shipping." + data.shipping_type)
-                    ? t("$.shipping." + data.shipping_type)
-                    : data.shipping_type
+                  data.shipping?.label ?? data.shipping?.type
                 }}</strong>
               </div>
-              <div v-if="data.shipping_price !== undefined">
+              <div v-if="data.shipping?.price !== undefined">
                 {{ t("$.form.price") }}:
                 <strong>
                   {{
-                    data.shipping_price! > 0
-                      ? `${Number(data.shipping_price).toLocaleString(locale)} ${t("$.czk")}`
+                    data.shipping?.price! > 0
+                      ? `${Number(data.shipping?.price).toLocaleString(locale)} ${t("$.czk")}`
                       : t("$.shipping.free")
                   }}
                 </strong>
