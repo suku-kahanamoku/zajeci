@@ -6,13 +6,5 @@ export default defineEventHandler(async (event: H3Event) => {
     query: getQuery(event),
   });
 
-  // CmpTable uses row.original.name for the first column link label
-  if (result.success && Array.isArray(result.data)) {
-    result.data = (result.data as any[]).map((item: any) => ({
-      ...item,
-      name: item.syscode,
-    }));
-  }
-
   return result;
 });

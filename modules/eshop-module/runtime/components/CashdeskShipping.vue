@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
+import { useUrlResolver, useMenuItems } from "#imports";
 import { useDebounceFn } from "@vueuse/core";
 
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
@@ -26,20 +26,13 @@ const {
 const formCmp = ref();
 
 /**
- * Load config
+ * Load config — synchronous (local JSON), no async needed
  */
-const { data: config } = await useAsyncData(
-  async () => {
-    try {
-      const result = CLONE(dConfig);
-      updateConfig(route, result);
-      return result as IFormConfig;
-    } catch (error: any) {
-      return {} as IFormConfig;
-    }
-  },
-  { watch: [() => route.query] },
-);
+const config = computed<IFormConfig>(() => {
+  const result = CLONE(dConfig);
+  updateConfig(route, result);
+  return result as IFormConfig;
+});
 
 const onFormChange = useDebounceFn((body) => {
   setUser({

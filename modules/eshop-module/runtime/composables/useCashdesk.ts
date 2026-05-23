@@ -89,8 +89,14 @@ function createCashdesk() {
   const _updateUserStepValid = () => {
     userStepValid.value = _billingValid.value && _shippingValid.value;
   };
-  const setBillingValid = (v: boolean) => { _billingValid.value = v; _updateUserStepValid(); };
-  const setShippingValid = (v: boolean) => { _shippingValid.value = v; _updateUserStepValid(); };
+  const setBillingValid = (v: boolean) => {
+    _billingValid.value = v;
+    _updateUserStepValid();
+  };
+  const setShippingValid = (v: boolean) => {
+    _shippingValid.value = v;
+    _updateUserStepValid();
+  };
 
   const reset = () => {
     setUser();
@@ -159,11 +165,8 @@ function createCashdesk() {
   onMounted(() => {
     loadFromLocalStorage();
     // Pokud je prihlaseny uzivatel, ale v localStorage neni zadny uzivatel, nacte ho z auth
-    if (loggedIn.value) {
-      if (!user.value.email) {
-        setUser();
-      }
-      setShipping(shipping.value);
+    if (loggedIn.value && !user.value.email) {
+      setUser();
     }
   });
 

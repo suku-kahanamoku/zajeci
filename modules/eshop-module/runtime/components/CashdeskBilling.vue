@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUrlResolver, useAsyncData, useMenuItems } from "#imports";
+import { useUrlResolver, useMenuItems } from "#imports";
 import { useDebounceFn } from "@vueuse/core";
 import {
   CLONE,
@@ -17,20 +17,13 @@ const { user, setUser, setBillingValid } = useCashdesk();
 const formCmp = ref();
 
 /**
- * Load config
+ * Load config — synchronous (local JSON), no async needed
  */
-const { data: config } = await useAsyncData(
-  async () => {
-    try {
-      const result = CLONE(lConfig);
-      updateConfig(route, result);
-      return result as IFormConfig;
-    } catch (error: any) {
-      return {} as IFormConfig;
-    }
-  },
-  { watch: [() => route.query] },
-);
+const config = computed<IFormConfig>(() => {
+  const result = CLONE(lConfig);
+  updateConfig(route, result);
+  return result as IFormConfig;
+});
 
 function _onChange(body: Record<string, any>) {
   const data = CLONE(body);
