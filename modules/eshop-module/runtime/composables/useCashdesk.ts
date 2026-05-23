@@ -125,7 +125,7 @@ function createCashdesk() {
         billing: payment.value,
         total_price: totalPrice.value,
       };
-      const result = await $fetch("/api/order", {
+      const result = await useApi("/api/order", {
         method: "POST",
         body: order,
       });

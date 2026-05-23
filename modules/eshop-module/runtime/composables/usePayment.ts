@@ -11,10 +11,10 @@ export function usePayment() {
 
   const { data: enumPayments } = useAsyncData("payment-enums", async () => {
     try {
-      const r = await $fetch<{ data: any[] }>(
+      const r = await useApi(
         '/api/enumerations?q={"type":{"value":"payment"}}&limit=50&sort=[{"position":1}]',
       );
-      return r.data ?? [];
+      return r?.data ?? [];
     } catch {
       return [];
     }

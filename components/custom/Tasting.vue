@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { data: tasting } = await useAsyncData("tasting", async () => {
   try {
-    const r = await $fetch<{ data: any[] }>(
+    const r = await useApi(
       '/api/enumerations?q={"type":{"value":"taste"}}&limit=100',
     );
-    return r.data ?? [];
+    return r?.data ?? [];
   } catch {
     return [];
   }
@@ -24,9 +24,7 @@ const { data: tasting } = await useAsyncData("tasting", async () => {
       >
         {{ $tt("$.tasting.title") }}
       </h2>
-      <div
-        class="section-divider text-bittersweet w-full mt-6 mb-2"
-      >
+      <div class="section-divider text-bittersweet w-full mt-6 mb-2">
         <span class="flex">
           <UIcon name="ph:cheese-duotone" size="16" />
           <UIcon name="lucide:wine" size="16" />

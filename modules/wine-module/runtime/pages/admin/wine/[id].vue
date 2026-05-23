@@ -43,25 +43,22 @@ async function onCommitFiles() {
   try {
     const newFileIds: number[] = [];
     for (const path of tempPaths.value) {
-      const res = await $fetch<{ data?: { id?: number } }>(
-        "/api/files/commit",
-        {
-          method: "POST",
-          body: {
-            path,
-            name: path.split("/").pop() || "upload.bin",
-            visibility: wineItem.value.published === 1 ? "public" : "private",
-            entity_type: "product",
-            entity_id: wineItem.value.id,
-          },
+      const res = await useApi("/api/files/commit", {
+        method: "POST",
+        body: {
+          path,
+          name: path.split("/").pop() || "upload.bin",
+          visibility: wineItem.value.published === 1 ? "public" : "private",
+          entity_type: "product",
+          entity_id: wineItem.value.id,
         },
-      );
+      });
       const fileId = Number((res as any)?.data?.id || 0);
       if (fileId) newFileIds.push(fileId);
     }
     if (newFileIds.length) {
       const existingIds = wineItem.value.file_ids ?? [];
-      await $fetch(`/api/admin/wine/${wineItem.value.id}`, {
+      await useApi(`/api/admin/wine/${wineItem.value.id}`, {
         method: "PATCH",
         body: { file_ids: [...existingIds, ...newFileIds] },
       });
