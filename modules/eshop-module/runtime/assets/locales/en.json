@@ -87,6 +87,50 @@
       "status_delivered": "Delivered",
       "status_cancelled": "Cancelled",
       "status_refunded": "Refunded"
+    },
+    "invoice": {
+      "title": "Invoice",
+      "ico": "ICO",
+      "dic": "VAT ID",
+      "vat_exempt": "VAT Exempt",
+      "customer": "Customer",
+      "order_number": "Order Number",
+      "invoice_number": "Invoice Number",
+      "order_id": "Order ID",
+      "issued_at": "Issue Date",
+      "due_at": "Due Date",
+      "supplier": "Supplier",
+      "bank_account": "Bank Account",
+      "variable_symbol": "Variable Symbol",
+      "payment_method": "Payment Method",
+      "item": "Item",
+      "price": "Price excl. VAT",
+      "price_with_vat": "Price incl. VAT",
+      "total_price": "Total excl. VAT",
+      "total_price_with_vat": "Total incl. VAT",
+      "total_price_all_with_vat": "Grand Total incl. VAT",
+      "currency": "CZK",
+      "status": "Status"
+    },
+    "admin": {
+      "invoice": {
+        "title": "Invoice Management",
+        "update": {
+          "title": "Edit Invoice"
+        },
+        "create": {
+          "title": "New Invoice"
+        }
+      }
+    },
+    "status": {
+      "draft": "Draft",
+      "issued": "Issued",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled",
+      "refunded": "Refunded",
+      "pending": "Pending"
     }
   }
 }
