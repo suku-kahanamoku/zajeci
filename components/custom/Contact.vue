@@ -28,6 +28,21 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] },
 );
 
+/**
+ * Load contact info
+ */
+const { data: contactInfo } = await useAsyncData("contact-info", async () => {
+  try {
+    if (config.value?.restUrl) {
+      const r = await $fetch<{ data: any[] }>(config.value.restUrl);
+      return r.data?.[0]?.data ?? null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+});
+
 async function onSubmit(body: Record<string, any>) {
   loading.value = true;
   try {
@@ -75,14 +90,17 @@ async function onSubmit(body: Record<string, any>) {
         <div class="mt-5">
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
             <UIcon class="text-primary-500" name="uil:envelope" size="26" />
-            <a class="dark:text-white" href="mailto:vyborne@vinozezajeci.cz">
-              vyborne@vinozezajeci.cz
+            <a class="dark:text-white" :href="`mailto:${contactInfo?.email}`">
+              {{ contactInfo?.email }}
             </a>
           </div>
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
             <UIcon class="text-primary-500" name="uil:phone" size="26" />
-            <a class="dark:text-white" href="tel:+420770199999">
-              +420 770 199 999
+            <a
+              class="dark:text-white"
+              :href="`tel:${contactInfo?.phone1?.replace(/\s/g, '')}`"
+            >
+              {{ contactInfo?.phone1 }}
             </a>
           </div>
           <div class="flex items-center mt-3 space-x-3 text-gray-600">
@@ -91,15 +109,19 @@ async function onSubmit(body: Record<string, any>) {
               name="mdi:phone-classic"
               size="26"
             />
-            <a class="dark:text-white" href="tel:+420 778 711 111">
-              +420 778 711 111
+            <a
+              class="dark:text-white"
+              :href="`tel:${contactInfo?.phone2?.replace(/\s/g, '')}`"
+            >
+              {{ contactInfo?.phone2 }}
             </a>
           </div>
           <div class="flex items-start mt-3 space-x-3 text-gray-600">
             <UIcon class="text-primary-500" name="uil:map-marker" size="26" />
             <span class="dark:text-white text-blue">
-              Školní 156, 69105 Zaječí<br />
-              IČ 19737491, DIČ CZ7951084053
+              {{ contactInfo?.street }}, {{ contactInfo?.zip }}
+              {{ contactInfo?.city }}<br />
+              {{ contactInfo?.ic }}, {{ contactInfo?.dic }}
             </span>
           </div>
         </div>

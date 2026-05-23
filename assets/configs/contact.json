@@ -1,5 +1,6 @@
 {
   "syscode": "contact-form",
+  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"contact\"},\"syscode\":{\"value\":\"contact\"}}&limit=1",
   "fields": [
     {
       "name": "email",
