@@ -1,12 +1,13 @@
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import { type IShipping } from "@/modules/eshop-module/runtime/types/order.interface";
 
-let _shippingSingleton: ReturnType<typeof createShipping> | null = null;
-
-function createShipping() {
+export function useShipping() {
   const { totalPrice } = useCart();
 
-  const shipping = ref<IShipping>({} as IShipping);
+  const shipping = useState<IShipping>(
+    "selected-shipping",
+    () => ({}) as IShipping,
+  );
 
   const { data: enumShipping } = useAsyncData("shipping-enums", async () => {
     try {
@@ -63,12 +64,6 @@ function createShipping() {
     shippingOptions,
     setShipping,
   };
-}
-
-export function useShipping() {
-  if (_shippingSingleton) return _shippingSingleton;
-  _shippingSingleton = createShipping();
-  return _shippingSingleton;
 }
 
 export type UseShippingReturn = ReturnType<typeof useShipping>;

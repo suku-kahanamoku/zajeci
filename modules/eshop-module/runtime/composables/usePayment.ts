@@ -1,12 +1,13 @@
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IEnumItem } from "@/modules/enum-module/runtime/types/enum.types";
 
-let _paymentSingleton: ReturnType<typeof createPayment> | null = null;
-
-function createPayment() {
+export function usePayment() {
   const { totalPrice } = useCart();
 
-  const payment = ref<IEnumItem>({} as IEnumItem);
+  const payment = useState<IEnumItem>(
+    "selected-payment",
+    () => ({}) as IEnumItem,
+  );
 
   const { data: enumPayments } = useAsyncData("payment-enums", async () => {
     try {
@@ -56,12 +57,6 @@ function createPayment() {
     paymentOptions,
     setPayment,
   };
-}
-
-export function usePayment() {
-  if (_paymentSingleton) return _paymentSingleton;
-  _paymentSingleton = createPayment();
-  return _paymentSingleton;
 }
 
 export type UsePaymentReturn = ReturnType<typeof usePayment>;
