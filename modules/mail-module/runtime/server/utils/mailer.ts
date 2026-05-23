@@ -91,14 +91,23 @@ export function SEND_RESET_PASSWORD_MAIL(
   });
 }
 
-export function SEND_ORDER_MAIL(event: H3Event, to: string, orderId: string) {
+export function SEND_ORDER_MAIL(
+  event: H3Event,
+  to: string,
+  orderId: string,
+  attachments?: string[],
+) {
   const config = useRuntimeConfig();
-  return sendPhpMail(event, {
+  const params: Record<string, string> = {
     template: "order",
     to,
     subject: `Potvrzení objednávky ${orderId}`,
     orderId,
     email: config.mailingFrom as string,
     bcc: config.mailingFrom as string,
-  });
+  };
+  if (attachments && attachments.length > 0) {
+    params.attachments = attachments.join(",");
+  }
+  return sendPhpMail(event, params);
 }

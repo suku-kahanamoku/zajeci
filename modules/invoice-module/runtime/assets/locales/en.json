@@ -9,18 +9,20 @@
       "order_number": "Order Number",
       "invoice_number": "Invoice Number",
       "order_id": "Order ID",
-      "issue_date": "Issue Date",
-      "due_date": "Due Date",
+      "issued_at": "Issue Date",
+      "due_at": "Due Date",
       "supplier": "Supplier",
       "bank_account": "Bank Account",
       "variable_symbol": "Variable Symbol",
       "payment_method": "Payment Method",
       "item": "Item",
-      "price": "Price",
+      "price": "Price excl. VAT",
+      "price_with_vat": "Price incl. VAT",
+      "total_price": "Total excl. VAT",
+      "total_price_with_vat": "Total incl. VAT",
+      "total_price_all_with_vat": "Grand Total incl. VAT",
       "currency": "CZK",
-      "total": "Total",
-      "status": "Status",
-      "total_amount": "Total Amount"
+      "status": "Status"
     },
     "admin": {
       "invoice": {

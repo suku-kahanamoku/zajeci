@@ -9,18 +9,20 @@
       "order_number": "Číslo objednávky",
       "invoice_number": "Číslo faktury",
       "order_id": "ID objednávky",
-      "issue_date": "Datum vystavení",
-      "due_date": "Datum splatnosti",
+      "issued_at": "Datum vystavení",
+      "due_at": "Datum splatnosti",
       "supplier": "Dodavatel",
       "bank_account": "Bankovní účet",
       "variable_symbol": "Variabilní symbol",
       "payment_method": "Způsob platby",
       "item": "Položka",
-      "price": "Cena",
+      "price": "Cena bez DPH",
+      "price_with_vat": "Cena s DPH",
+      "total_price": "Celková cena bez DPH",
+      "total_price_with_vat": "Celková cena s DPH",
+      "total_price_all_with_vat": "Celkem s DPH (vč. dopravy)",
       "currency": "Kč",
-      "total": "Celková cena",
-      "status": "Stav",
-      "total_amount": "Celková částka"
+      "status": "Stav"
     },
     "admin": {
       "invoice": {

@@ -94,16 +94,32 @@ export interface IOrdersResponse extends IResponse {
 
 export interface IInvoice extends IItem {
   invoice_number: string;
+  order_number?: string | null;
+  order_id?: number | null;
   status: string;
-  total_amount: number;
   currency: string;
+  payment_type?: string | null;
+  shipping_type?: string | null;
+  shipping_price?: number | null;
+  total_price: number;
+  total_price_with_vat?: number | null;
+  total_price_all?: number | null;
+  total_price_all_with_vat?: number | null;
   issued_at: string;
   due_at?: string | null;
   paid_at?: string | null;
-  order_id?: number | null;
+  note?: string | null;
   user_id?: number | null;
-  billing_address_id?: number | null;
-  user?: { first_name: string; last_name: string; email: string };
+  user?: {
+    id?: number;
+    first_name?: string;
+    last_name?: string;
+    email: string;
+    phone?: string;
+  } | null;
+  billing_address?: Record<string, any> | null;
+  shipping_address?: Record<string, any> | null;
+  files?: { id: number; path: string }[];
 }
 
 export interface IInvoiceResponse extends IResponse {

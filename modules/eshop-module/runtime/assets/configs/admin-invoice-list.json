@@ -16,6 +16,18 @@
       "clearable": true
     },
     {
+      "name": "order_number",
+      "label": "$.invoice.order_number",
+      "size": "md",
+      "clearable": true
+    },
+    {
+      "name": "user.email",
+      "label": "$.form.user_email",
+      "size": "md",
+      "clearable": true
+    },
+    {
       "name": "status",
       "type": "select",
       "label": "$.invoice.status",
@@ -35,16 +47,23 @@
       "clearable": true
     },
     {
-      "name": "total_amount",
+      "name": "total_price_all_with_vat",
       "type": "number",
-      "label": "$.invoice.total_amount",
+      "label": "$.invoice.total_price_all_with_vat",
       "size": "md",
       "clearable": true
     },
     {
-      "name": "due_date",
+      "name": "issued_at",
       "type": "text",
-      "label": "$.invoice.due_date",
+      "label": "$.invoice.issued_at",
+      "size": "md",
+      "clearable": true
+    },
+    {
+      "name": "due_at",
+      "type": "text",
+      "label": "$.invoice.due_at",
       "size": "md",
       "clearable": true
     },

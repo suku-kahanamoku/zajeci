@@ -6,25 +6,49 @@ import { SEND_ORDER_MAIL } from "@/modules/mail-module/runtime/server/utils/mail
 export default defineEventHandler(async (event: H3Event) => {
   const body = await readBody(event);
 
-  const phpResponse = await phpApiFetch(event, "/orders", {
+  const orderRes = await phpApiFetch(event, "/orders", {
     method: "POST",
     body: body,
   });
 
   // Send order confirmation email with PHP order data + original cashdesk user info
-  if (phpResponse.success && phpResponse.data?.id) {
+  if (orderRes.success && orderRes.data?.id) {
+    const orderId = orderRes.data.id;
     const recipientEmail = body.user?.email;
-    const orderId = String(
-      phpResponse.data.order_number ?? phpResponse.data.id,
-    );
+    const orderNumber = String(orderRes.data.order_number ?? orderId);
+
+    // Send confirmation email
     if (recipientEmail) {
+      // Generate invoice and collect PDF attachment paths
+      let invoiceAttachments: string[] | undefined;
       try {
-        await SEND_ORDER_MAIL(event, recipientEmail, orderId);
+        const invoiceRes = await phpApiFetch(event, "/invoices", {
+          method: "POST",
+          body: { order_id: orderId },
+        });
+        const files = invoiceRes?.data?.files;
+        if (files?.length > 0) {
+          invoiceAttachments = (files as { path: string }[]).map((f) => f.path);
+        }
+      } catch (invoiceError) {
+        console.error(
+          "Invoice creation failed (order was created):",
+          invoiceError,
+        );
+      }
+
+      try {
+        await SEND_ORDER_MAIL(
+          event,
+          recipientEmail,
+          orderNumber,
+          invoiceAttachments,
+        );
       } catch (emailError) {
         console.error("Order email failed (order was created):", emailError);
       }
     }
   }
 
-  return phpResponse;
+  return orderRes;
 });
