@@ -60,6 +60,13 @@
       "label": "$.wine.form.volume",
       "iconName": "i-heroicons-beaker",
       "iconColor": "text-blue-500"
+    },
+    {
+      "name": "data.alcohol",
+      "type": "number",
+      "label": "$.wine.form.alcohol",
+      "iconName": "i-heroicons-fire",
+      "iconColor": "text-orange-500"
     }
   ]
 }

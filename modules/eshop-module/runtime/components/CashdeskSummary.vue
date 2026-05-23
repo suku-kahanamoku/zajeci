@@ -344,28 +344,23 @@ const columns: Ref<TableColumn<any>[]> = computed(
             <h3 class="font-semibold text-gray-700 dark:text-white">
               {{ t("$.payment.account_num") }}:
             </h3>
-            <p class="text-gray-600 dark:text-white">1234567890/1234</p>
+            <p class="text-gray-600 dark:text-white">
+              {{ payment.data?.account }}
+            </p>
           </div>
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">IBAN:</h3>
             <p class="text-gray-600 dark:text-white">
-              CZ6508000000001234567890
+              {{ payment.data?.iban }}
             </p>
           </div>
           <div>
             <h3 class="font-semibold text-gray-700 dark:text-white">
               SWIFT/BIC:
             </h3>
-            <p class="text-gray-600 dark:text-white">ABCDEFGH</p>
-          </div>
-          <div>
-            <h3 class="font-semibold text-gray-700 dark:text-white">
-              {{ t("$.payment.variable_sym") }}:
-            </h3>
-            <p class="text-gray-600 dark:text-white">12345</p>
-          </div>
-          <div>
-            <p class="text-gray-600 dark:text-white">Číslo objednávky 12345</p>
+            <p class="text-gray-600 dark:text-white">
+              {{ payment.data?.swift }}
+            </p>
           </div>
         </div>
       </div>

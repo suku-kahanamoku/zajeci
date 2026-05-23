@@ -1,12 +1,12 @@
 import { CLONE } from "@suku-kahanamoku/common-module/utils";
-import { type IPayment } from "@/modules/eshop-module/runtime/types/order.interface";
+import type { IEnumItem } from "@/modules/enum-module/runtime/types/enum.types";
 
 let _paymentSingleton: ReturnType<typeof createPayment> | null = null;
 
 function createPayment() {
   const { totalPrice } = useCart();
 
-  const payment = ref<IPayment>({} as IPayment);
+  const payment = ref<IEnumItem>({} as IEnumItem);
 
   const { data: enumPayments } = useAsyncData("payment-enums", async () => {
     try {
@@ -19,22 +19,25 @@ function createPayment() {
     }
   });
 
-  const paymentOptions = computed<IPayment[]>(() =>
+  const paymentOptions = computed<IEnumItem[]>(() =>
     (enumPayments.value ?? [])
       .filter((e) => e.published)
-      .map((e) => ({
-        label: e.label,
-        price: totalPrice.value > 2500 ? 0 : (e.data?.price ?? 0),
-        icon: e.data?.icon,
-        disabled: e.data?.disabled ?? false,
-        value: e.value ?? e.syscode,
-      })),
+      .map(
+        (e): IEnumItem => ({
+          ...e,
+          data: {
+            ...e.data,
+            price: totalPrice.value > 2500 ? 0 : (e.data?.price ?? 0),
+          },
+        }),
+      ),
   );
 
-  function setPayment(newPayment?: IPayment | null) {
+  function setPayment(newPayment?: IEnumItem | null) {
     const fallback =
-      paymentOptions.value.find((p) => !p.disabled) ?? paymentOptions.value[0];
-    payment.value = CLONE(newPayment || fallback || ({} as IPayment));
+      paymentOptions.value.find((p) => !p.data?.disabled) ??
+      paymentOptions.value[0];
+    payment.value = CLONE(newPayment || fallback || ({} as IEnumItem));
   }
 
   // Nastav výchozí platbu jakmile jsou načteny options

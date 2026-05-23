@@ -48,7 +48,9 @@ function createCashdesk() {
   const { payment, paymentOptions, setPayment } = usePayment();
 
   const totalPrice = computed(
-    () => cartTotalPrice.value + (shipping.value.price! + payment.value.price!),
+    () =>
+      cartTotalPrice.value +
+      (shipping.value.price! + (payment.value.data?.price ?? 0)),
   );
 
   // Wrap cart mutation methods to keep localStorage updates

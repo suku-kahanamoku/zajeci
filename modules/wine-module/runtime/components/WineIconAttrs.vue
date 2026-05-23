@@ -15,11 +15,9 @@ const { t } = useLang();
 const enumNamespaces: Record<string, string> = {
   color: "color",
   kind: "kind",
-  quality: "quality",
 };
 
 function resolveValue(wine: IWine, fieldName: string): string | number | null {
-  // dot-notation: "data.quality" → wine.data?.quality
   const [top, sub] = fieldName.split(".");
   const raw = sub ? (wine as any)[top]?.[sub] : (wine as any)[top];
 
@@ -41,7 +39,8 @@ function resolveValue(wine: IWine, fieldName: string): string | number | null {
   return raw;
 }
 
-const defaultItemClass = "grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200";
+const defaultItemClass =
+  "grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 py-2 text-sm text-gray-700 dark:text-gray-200";
 const rootClass = computed(() => twMerge(defaultItemClass, props.itemClass));
 
 const attrs = computed(() => {
@@ -65,10 +64,7 @@ const attrs = computed(() => {
 </script>
 
 <template>
-  <div
-    v-if="wine"
-    :class="rootClass"
-  >
+  <div v-if="wine" :class="rootClass">
     <div
       v-for="attr in attrs"
       :key="attr.name"

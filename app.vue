@@ -1,9 +1,10 @@
-
 <template>
   <UApp>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <UiCookieBanner />
+    <client-only>
+      <UiCookieBanner />
+    </client-only>
   </UApp>
 </template>

@@ -70,6 +70,15 @@
       "iconColor": "text-blue-500",
       "size": "md",
       "clearable": true
+    },
+    {
+      "name": "data.alcohol",
+      "type": "number",
+      "label": "$.wine.form.alcohol",
+      "iconName": "i-heroicons-fire",
+      "iconColor": "text-orange-500",
+      "size": "md",
+      "clearable": true
     }
   ]
 }

@@ -2,21 +2,6 @@ import type { IItem, IResponse } from "@suku-kahanamoku/common-module/types";
 import type { IWine } from "@/modules/wine-module/runtime/types/wine.interface";
 
 /**
- * Rozhrani pro payment v cashdesku
- *
- * @export
- * @interface IPayment
- */
-export interface IPayment {
-  label: string;
-  price: number;
-  icon?: string;
-  disabled?: boolean;
-  valid?: boolean;
-  value: string;
-}
-
-/**
  * Rozhrani pro shipping v cashdesku
  *
  * @export

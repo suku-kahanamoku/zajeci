@@ -6,7 +6,7 @@ watch(
   () => payment.value.value,
   (val) => {
     setPayment(paymentOptions.value.find((d) => d.value === val));
-  }
+  },
 );
 </script>
 <template>
@@ -28,17 +28,22 @@ watch(
         <div
           class="flex items-center justify-between w-full"
           :class="
-            item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+            item.data?.disabled
+              ? 'cursor-not-allowed opacity-50'
+              : 'cursor-pointer'
           "
         >
           <div class="flex items-center gap-2">
-            <UIcon :name="item.icon as string" size="30" class="w-20" />
+            <UIcon :name="item.data?.icon as string" size="30" class="w-20" />
             <span>
               {{ item?.label }}
             </span>
           </div>
 
-          <CmpPrice v-if="item.price! > 0" :price="item?.price!" />
+          <CmpPrice
+            v-if="(item.data?.price ?? 0) > 0"
+            :price="item.data?.price ?? 0"
+          />
           <span v-else>
             {{ t("$.btn.free") }}
           </span>
