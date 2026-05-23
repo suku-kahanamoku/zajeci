@@ -1,7 +1,4 @@
-import { defineEventHandler, H3Event, readBody } from "h3";
-import { sendOrderMail } from "@/server/utils/mailer";
-
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   const cashdeskUser = body._cashdeskUser ?? {};

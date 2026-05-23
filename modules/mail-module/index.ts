@@ -2,6 +2,7 @@ import {
   defineNuxtModule,
   createResolver,
   addImportsDir,
+  addServerImportsDir,
   hasNuxtModule,
   installModule,
 } from "@nuxt/kit";
@@ -42,6 +43,7 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url);
 
     addImportsDir(resolve("./runtime/composables"));
+    addServerImportsDir(resolve("./runtime/server/utils"));
 
     GENERATE_PAGES("/admin", resolve);
     GENERATE_PAGES("/admin/mail", resolve);
@@ -49,6 +51,11 @@ export default defineNuxtModule<ModuleOptions>({
     const apiAdminMailDir = resolve("./runtime/server/api/admin/mail");
     fs.readdirSync(apiAdminMailDir)?.forEach((file) => {
       GENERATE_API_ENDPOINT(file, "/api/admin/mail", resolve);
+    });
+
+    const apiEmailDir = resolve("./runtime/server/api/email");
+    fs.readdirSync(apiEmailDir)?.forEach((file) => {
+      GENERATE_API_ENDPOINT(file, "/api/email", resolve);
     });
 
     // Expose send params to the frontend via public runtimeConfig
@@ -73,9 +80,6 @@ export default defineNuxtModule<ModuleOptions>({
     }
     if (!hasNuxtModule("@suku-kahanamoku/ui-module")) {
       await installModule("@suku-kahanamoku/ui-module");
-    }
-    if (!hasNuxtModule("@suku-kahanamoku/notify-module")) {
-      await installModule("@suku-kahanamoku/notify-module");
     }
     if (!hasNuxtModule("@suku-kahanamoku/menu-module")) {
       await installModule("@suku-kahanamoku/menu-module");

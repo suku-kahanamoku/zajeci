@@ -1,4 +1,4 @@
-import { sendResetPasswordMail } from "@/server/utils/mailer";
+import { sendResetPasswordMail } from "@/modules/mail-module/runtime/server/utils/mailer";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();

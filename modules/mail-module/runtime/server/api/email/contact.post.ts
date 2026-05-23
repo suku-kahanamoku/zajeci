@@ -1,10 +1,4 @@
-import { defineEventHandler, H3Event, readBody } from "h3";
-import {
-  sendContactFormMail,
-  sendContactFormAdminMail,
-} from "@/server/utils/mailer";
-
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const config = useRuntimeConfig();
   const msg = body.message ?? body.msg ?? "";

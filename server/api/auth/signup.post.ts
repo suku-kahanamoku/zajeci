@@ -1,5 +1,5 @@
 import { setUserSessionFromPhp } from "@/server/utils/session";
-import { sendSignupMail } from "@/server/utils/mailer";
+import { sendSignupMail } from "@/modules/mail-module/runtime/server/utils/mailer";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
