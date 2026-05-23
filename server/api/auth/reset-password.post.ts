@@ -1,4 +1,4 @@
-import { sendResetPasswordMail } from "@/modules/mail-module/runtime/server/utils/mailer";
+import { SEND_RESET_PASSWORD_MAIL } from "@/modules/mail-module/runtime/server/utils/mailer";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
 
   // Odesleme email s novym heslem (prazdne heslo = email neexistuje, tichy uspech)
   if (response.data?.password) {
-    await sendResetPasswordMail(
+    await SEND_RESET_PASSWORD_MAIL(
       event,
       body.email,
       response.data.email,

@@ -36,7 +36,7 @@ async function sendPhpMail(
   return phpApiFetch(event, "/mailer/", { query });
 }
 
-export function sendSignupMail(event: H3Event, to: string, password: string) {
+export function SEND_SIGNUP_MAIL(event: H3Event, to: string, password: string) {
   const config = useRuntimeConfig();
   return sendPhpMail(event, {
     template: "signup",
@@ -48,7 +48,11 @@ export function sendSignupMail(event: H3Event, to: string, password: string) {
   });
 }
 
-export function sendContactFormMail(event: H3Event, to: string, msg: string) {
+export function SEND_CONTACT_FORM_MAIL(
+  event: H3Event,
+  to: string,
+  msg: string,
+) {
   return sendPhpMail(event, {
     template: "contact-form",
     to,
@@ -57,7 +61,7 @@ export function sendContactFormMail(event: H3Event, to: string, msg: string) {
   });
 }
 
-export function sendContactFormAdminMail(
+export function SEND_CONTACT_FORM_ADMIN_MAIL(
   event: H3Event,
   to: string,
   email: string,
@@ -72,7 +76,7 @@ export function sendContactFormAdminMail(
   });
 }
 
-export function sendResetPasswordMail(
+export function SEND_RESET_PASSWORD_MAIL(
   event: H3Event,
   to: string,
   email: string,
@@ -87,7 +91,7 @@ export function sendResetPasswordMail(
   });
 }
 
-export function sendOrderMail(event: H3Event, to: string, orderId: string) {
+export function SEND_ORDER_MAIL(event: H3Event, to: string, orderId: string) {
   const config = useRuntimeConfig();
   return sendPhpMail(event, {
     template: "order",

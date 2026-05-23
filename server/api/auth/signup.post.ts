@@ -1,5 +1,5 @@
 import { setUserSessionFromPhp } from "@/server/utils/session";
-import { sendSignupMail } from "@/modules/mail-module/runtime/server/utils/mailer";
+import { SEND_SIGNUP_MAIL } from "@/modules/mail-module/runtime/server/utils/mailer";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Odesleme potvrzovaci email
-  await sendSignupMail(event, body.email, body.password);
+  await SEND_SIGNUP_MAIL(event, body.email, body.password);
 
   return { success: true };
 });
