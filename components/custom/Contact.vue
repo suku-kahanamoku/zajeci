@@ -34,7 +34,7 @@ const { data: config } = await useAsyncData(
 const { data: contactInfo } = await useAsyncData("contact-info", async () => {
   try {
     if (config.value?.restUrl) {
-      const r = await $fetch<{ data: any[] }>(config.value.restUrl);
+      const r = await useApi(config.value.restUrl);
       return r.data?.[0]?.data ?? null;
     }
     return null;
