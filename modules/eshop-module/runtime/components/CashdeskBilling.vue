@@ -13,8 +13,7 @@ import lConfig from "../assets/configs/billing.json";
 const { t } = useLang();
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
-const { loggedIn } = useUserSession();
-const { user, setUser } = useCashdesk();
+const { user, setUser, setBillingValid } = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -36,31 +35,46 @@ const { data: config } = await useAsyncData(
 function _onChange(body: Record<string, any>) {
   const data = CLONE(body);
   CONVERT_DOT_TO_OBJECT(data);
-  data.valid = formCmp.value.form.getErrors().length ? false : true;
   // Zachovat shipping adresu z aktualniho user state
   data.address = {
     ...data.address,
     shipping: user.value.address?.shipping,
   };
   setUser(data);
+  setBillingValid(!formCmp.value?.form?.getErrors().length);
 }
 
 // Debounced change handler (300ms default)
 const onFormChange = useDebounceFn(_onChange, 300);
 
-async function validate(form: any) {
-  await form?.validate({ silent: true });
-  user.value.valid = form?.getErrors().length ? false : true;
+const isValid = ref(false);
+
+async function _initialValidate(form: any) {
+  if (form) {
+    await form.validate({ silent: true });
+    isValid.value = !form.getErrors().length;
+    setBillingValid(isValid.value);
+  }
 }
 
+// Spustit validaci hned jak je dostupný formulář
 watch(
   () => formCmp.value?.form,
   async (form: any) => {
-    if (loggedIn.value) {
-      await validate(form);
-    }
+    await _initialValidate(form);
   },
   { once: true },
+);
+
+// Re-validovat po načtení dat z localStorage (user.email se změní z "" na skutečnou hodnotu)
+watch(
+  () => user.value.email,
+  async () => {
+    await nextTick();
+    if (formCmp.value?.form) {
+      await _initialValidate(formCmp.value.form);
+    }
+  },
 );
 </script>
 <template>

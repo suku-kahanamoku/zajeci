@@ -1,4 +1,5 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 <template>
   <div class="flex items-center justify-center mx-auto w-full">
     <div class="w-full flex flex-col gap-8">

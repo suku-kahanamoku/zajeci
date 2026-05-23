@@ -82,6 +82,16 @@ function createCashdesk() {
     user.value = item;
   };
 
+  // Validation state for step 2 (billing + shipping forms) — set by child components
+  const userStepValid = ref(false);
+  const _billingValid = ref(false);
+  const _shippingValid = ref(false);
+  const _updateUserStepValid = () => {
+    userStepValid.value = _billingValid.value && _shippingValid.value;
+  };
+  const setBillingValid = (v: boolean) => { _billingValid.value = v; _updateUserStepValid(); };
+  const setShippingValid = (v: boolean) => { _shippingValid.value = v; _updateUserStepValid(); };
+
   const reset = () => {
     setUser();
     carts.value = [];
@@ -153,9 +163,7 @@ function createCashdesk() {
       if (!user.value.email) {
         setUser();
       }
-      if (!shipping.value.valid) {
-        setShipping(shipping.value);
-      }
+      setShipping(shipping.value);
     }
   });
 
@@ -183,6 +191,9 @@ function createCashdesk() {
     setPayment,
     onSubmit,
     reset,
+    userStepValid,
+    setBillingValid,
+    setShippingValid,
   };
 }
 

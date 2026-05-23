@@ -18,7 +18,7 @@ useHead({
   ],
 });
 
-const { carts, user, shipping, loading, onSubmit } = useCashdesk();
+const { carts, loading, onSubmit, userStepValid } = useCashdesk();
 
 const stepper = useTemplateRef("stepper");
 
@@ -43,13 +43,13 @@ const steps = ref([
 const stepModel = ref(
   steps.value.findIndex((item) => item.title === route.query.step) > 0
     ? steps.value.findIndex((item) => item.title === route.query.step)
-    : 0
+    : 0,
 );
 
 const validations = computed(() => [
   !!carts.value?.length,
-  !!carts.value?.length && user.value?.valid && shipping.value.valid,
-  !!carts.value?.length && user.value?.valid && shipping.value.valid,
+  !!carts.value?.length && userStepValid.value,
+  !!carts.value?.length && userStepValid.value,
 ]);
 
 const backBtn = computed(() => {
@@ -83,7 +83,7 @@ watch(stepModel, (value, oldValue) => {
 
 <template>
   <div
-    :id="(routes.cashdesk?.meta?.syscode as string)"
+    :id="routes.cashdesk?.meta?.syscode as string"
     class="max-w-7xl mx-auto px-5 pb-10"
   >
     <UPageHeader
@@ -125,7 +125,7 @@ watch(stepModel, (value, oldValue) => {
           trailing-icon="i-heroicons-arrow-right-20-solid"
           :color="stepper?.hasNext ? 'primary' : 'secondary'"
           size="lg"
-          :loading="(loading as boolean)"
+          :loading="loading as boolean"
           :disabled="!validations[stepModel]"
           @click="stepper?.hasNext ? stepper?.next() : onSubmit()"
         >

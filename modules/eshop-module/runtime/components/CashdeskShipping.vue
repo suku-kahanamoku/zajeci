@@ -14,8 +14,15 @@ const {
 const { route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
 const { loggedIn } = useUserSession();
-const { carts, user, setUser, shipping, shippingOptions, setShipping } =
-  useCashdesk();
+const {
+  carts,
+  user,
+  setUser,
+  shipping,
+  shippingOptions,
+  setShipping,
+  setShippingValid,
+} = useCashdesk();
 const formCmp = ref();
 
 /**
@@ -34,32 +41,53 @@ const { data: config } = await useAsyncData(
   { watch: [() => route.query] },
 );
 
-const onFormChange = useDebounceFn(
-  (body) =>
-    setUser({
-      ...user.value,
-      address: { ...user.value.address, shipping: body },
-    } as any),
-  300,
-);
+const onFormChange = useDebounceFn((body) => {
+  setUser({
+    ...user.value,
+    address: { ...user.value.address, shipping: body },
+  } as any);
+  nextTick(() => _validate(formCmp.value?.form));
+}, 300);
 
-async function validate(form: any) {
+const isValid = ref(false);
+
+async function _validate(form: any) {
   if (shipping.value.value === "free") {
-    shipping.value.valid = true;
+    isValid.value = true;
+    setShippingValid(true);
     return;
   }
   await form?.validate({ silent: true });
-  shipping.value.valid = form?.getErrors().length ? false : true;
+  isValid.value = !form?.getErrors().length;
+  setShippingValid(isValid.value);
 }
 
-watch(() => formCmp.value?.form, validate);
+watch(() => formCmp.value?.form, _validate);
 
 watch(
   () => shipping.value.value,
   (val) => {
-    setShipping(shippingOptions.value.find((d) => d.value === val));
-    nextTick(() => validate(formCmp.value?.form));
+    // Nevolat setShipping pokud options ještě nejsou načteny — způsobilo by reset na první položku
+    if (val && shippingOptions.value.length) {
+      setShipping(shippingOptions.value.find((d) => d.value === val));
+    }
+    nextTick(() => _validate(formCmp.value?.form));
   },
+  { immediate: true },
+);
+
+// Když se options načtou, aktualizovat plný objekt (cena, label) pro již uloženou hodnotu
+watch(shippingOptions, (opts) => {
+  if (opts.length && shipping.value.value) {
+    setShipping(opts.find((d) => d.value === shipping.value.value));
+    nextTick(() => _validate(formCmp.value?.form));
+  }
+});
+
+defineExpose({});
+
+const showAddress = computed(
+  () => !!(shipping.value.value && shipping.value.value !== "free"),
 );
 </script>
 <template>
@@ -109,34 +137,34 @@ watch(
           </div>
 
           <span class="font-bold text-secondary-600 dark:text-secondary-400">
-            {{ item.price! > 0 ? `${Number(item.price).toLocaleString(locale)} ${t('$.czk')}` : t('$.shipping.free') }}
+            {{
+              item.price! > 0
+                ? `${Number(item.price).toLocaleString(locale)} ${t("$.czk")}`
+                : t("$.shipping.free")
+            }}
           </span>
         </div>
       </template>
     </URadioGroup>
 
     <template #footer>
-      <UAccordion
-        :items="[{ label: t('$.shipping.address') }]"
-        :unmount-on-hide="false"
-      >
-        <template #body>
-          <CmpForm
-            ref="formCmp"
-            :fields="config.fields || []"
-            :item="user.address?.shipping || {}"
-            variant="outline"
-            :actions="{ disabled: true }"
-            :ui="{
-              body: 'grid md:grid-cols-2 gap-4',
-            }"
-            :key="shipping.key"
-            class="w-full"
-            @change="onFormChange"
-          >
-          </CmpForm>
-        </template>
-      </UAccordion>
+      <div v-show="showAddress">
+        <p class="text-sm font-semibold mb-3">{{ t("$.shipping.address") }}</p>
+        <CmpForm
+          ref="formCmp"
+          :fields="config.fields || []"
+          :item="(user.address?.shipping || {}) as any"
+          variant="outline"
+          :actions="{ disabled: true }"
+          :ui="{
+            body: 'grid md:grid-cols-2 gap-4',
+          }"
+          :key="shipping.key"
+          class="w-full"
+          @change="onFormChange"
+        >
+        </CmpForm>
+      </div>
     </template>
   </UCard>
 </template>

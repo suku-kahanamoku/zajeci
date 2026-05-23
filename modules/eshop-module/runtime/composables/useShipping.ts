@@ -45,7 +45,6 @@ export function useShipping() {
           base.price ??
           0);
     base.key = (shipping.value.key || 0) + 1;
-    if (base.value === "free") base.valid = true;
     shipping.value = base;
   }
 
@@ -54,6 +53,9 @@ export function useShipping() {
     (opts) => {
       if (opts.length && !shipping.value.value) {
         setShipping();
+      } else if (opts.length && shipping.value.value) {
+        // Aktualizovat plný objekt (cena, label) pro již uloženou hodnotu
+        setShipping(opts.find((s) => s.value === shipping.value.value));
       }
     },
     { immediate: true },

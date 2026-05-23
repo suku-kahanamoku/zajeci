@@ -23,7 +23,6 @@ export interface IUser {
     main?: IAddress;
     shipping?: IAddress;
   };
-  valid?: boolean;
 }
 
 export interface IUserResponse extends IResponse {

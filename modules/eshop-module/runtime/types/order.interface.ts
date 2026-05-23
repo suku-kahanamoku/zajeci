@@ -13,7 +13,6 @@ export interface IShipping {
   disabled?: boolean;
   icon?: string;
   help?: string;
-  valid?: boolean;
   key?: number;
   value: string;
 }

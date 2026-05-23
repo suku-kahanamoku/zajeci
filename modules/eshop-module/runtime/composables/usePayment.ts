@@ -41,12 +41,15 @@ export function usePayment() {
     payment.value = CLONE(newPayment || fallback || ({} as IEnumItem));
   }
 
-  // Nastav výchozí platbu jakmile jsou načteny options
+  // Nastav výchozí platbu jakmile jsou načteny options, ale nemazat uloženou hodnotu
   watch(
     paymentOptions,
     (opts) => {
       if (opts.length && !payment.value.value) {
         setPayment();
+      } else if (opts.length && payment.value.value) {
+        // Aktualizovat plný objekt (cena, label) pro již uloženou hodnotu
+        setPayment(opts.find((p) => p.value === payment.value.value));
       }
     },
     { immediate: true },
