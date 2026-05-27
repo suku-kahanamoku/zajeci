@@ -105,10 +105,18 @@ button {
   cursor: pointer;
 }
 
+/* Sans-serif as default for all body text */
+body {
+  font-family: var(--font-sans);
+}
+
 /* Serif headings */
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 .font-serif {
   font-family: var(--font-serif);
 }
