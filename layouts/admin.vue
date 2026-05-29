@@ -134,7 +134,7 @@ const menuItems = computed(() => {
     </template>
 
     <template #right>
-      <div class="space-x-4">
+      <div class="flex items-center gap-3">
         <UChip
           :show="!!totalItemsLength"
           :text="totalItemsLength"

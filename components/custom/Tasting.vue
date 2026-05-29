@@ -15,7 +15,7 @@ const { data: tasting } = await useAsyncData("tasting", async () => {
   <div id="tasting">
     <div class="text-center pt-20 pb-8">
       <p
-        class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3"
+        class="text-xs font-semibold tracking-widest uppercase text-bittersweet mb-3"
       >
         {{ $tt("$.tasting.eyebrow") || "Zažijte nás naživo" }}
       </p>

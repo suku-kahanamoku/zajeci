@@ -2,7 +2,7 @@
   <div id="about" class="relative">
     <div class="text-center pt-20 pb-8">
       <p
-        class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3"
+        class="text-xs font-semibold tracking-widest uppercase text-bittersweet mb-3"
       >
         {{ $tt("$.about.eyebrow") || "Naše příběh" }}
       </p>
@@ -14,11 +14,7 @@
       <div class="section-divider text-bittersweet w-full mt-6 mb-2">
         <UIcon name="lucide:grape" size="18" />
       </div>
-      <h3
-        class="text-xl font-medium text-river-bed dark:text-gray-300 max-w-2xl mx-auto"
-      >
-        {{ $tt("$.about.subtitle") }}
-      </h3>
+      <!-- subtitle removed for cleaner design -->
     </div>
 
     <div

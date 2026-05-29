@@ -311,7 +311,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   <UAlert
     icon="i-heroicons-truck"
     :title="t('$.shipping.limit_free')"
-    color="info"
+    color="gold"
     variant="outline"
     class="my-4"
   />

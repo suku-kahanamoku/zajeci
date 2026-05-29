@@ -63,7 +63,7 @@ async function onSubmit(body: Record<string, any>) {
   <div id="contact">
     <div class="text-center pt-20 pb-8">
       <p
-        class="text-xs font-semibold tracking-widest uppercase text-secondary-500 dark:text-secondary-400 mb-3"
+        class="text-xs font-semibold tracking-widest uppercase text-bittersweet mb-3"
       >
         {{ $tt("$.contact.eyebrow") || "Napište nám" }}
       </p>
@@ -79,11 +79,7 @@ async function onSubmit(body: Record<string, any>) {
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto py-4">
       <div class="from-left">
-        <h3
-          class="font-medium text-xl lg:text-2xl text-gray-700 dark:text-primary-500"
-        >
-          {{ $tt("$.contact.subtitle") }}
-        </h3>
+        <!-- subtitle removed for cleaner design -->
         <p class="lg:text-lg text-gray-600 dark:text-gray-400 mt-3">
           {{ $tt("$.contact.appointment") }}
         </p>

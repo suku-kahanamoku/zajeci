@@ -9,7 +9,7 @@ const { routes } = useMenuItems();
       v-if="routes.login?.path"
       data-testid="menu-login"
       :to="localePath(routes.login?.path!)"
-      class="text-secondary-500 dark:text-secondary-400"
+      class="text-bittersweet dark:text-bittersweet/80"
       variant="outline"
       active-class="hidden"
     >

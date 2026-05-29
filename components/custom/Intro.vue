@@ -9,11 +9,7 @@ const localePath = useLocalePath();
 
     <div class="mx-auto max-w-7xl relative z-20">
       <!-- Decorative label -->
-      <p
-        class="text-xs font-semibold tracking-widest uppercase text-secondary-300 mb-4"
-      >
-        {{ $tt("$.intro.eyebrow") || "Moravské vinařství" }}
-      </p>
+      <!-- eyebrow removed for cleaner design -->
       <h1
         class="font-serif text-5xl md:text-7xl font-bold leading-tight text-white max-w-3xl"
       >
@@ -25,18 +21,14 @@ const localePath = useLocalePath();
         <UIcon name="ph:wine-duotone" class="text-secondary-400" size="22" />
         <div class="w-12 h-px bg-secondary-400"></div>
       </div>
-      <p
-        class="text-lg md:text-xl font-light mt-2 max-w-xl text-white/85 leading-relaxed"
-      >
-        {{ $tt("$.intro.subtitle") }}
-      </p>
+      <!-- subtitle removed for cleaner design -->
       <div class="mt-10 flex flex-wrap gap-4">
         <UButton
           :to="localePath(routes.wine?.path!)"
           color="secondary"
           variant="solid"
           size="xl"
-          class="font-semibold tracking-wide"
+          class="font-semibold tracking-wide uppercase"
         >
           {{ $tt("$.intro.btn") }}
         </UButton>
@@ -45,9 +37,9 @@ const localePath = useLocalePath();
           color="gold"
           variant="solid"
           size="xl"
-          class="font-semibold tracking-wide"
+          class="font-semibold tracking-wide uppercase"
         >
-          {{ $tt("$.intro.btn_tasting") || "Degustace" }}
+          {{ $tt("$.intro.btn_tasting") || "CHCI DEGUSTACI" }}
         </UButton>
       </div>
     </div>
