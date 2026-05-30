@@ -200,10 +200,10 @@ const columns: Ref<TableColumn<any>[]> = computed(
         </div>
       </div>
 
-      <div class="flex items-center justify-between gap-4 w-full">
-        <div class="font-semibold flex gap-2">
+      <div class="w-full space-y-6">
+        <div class="grid grid-cols-2 font-semibold">
           <p>{{ t("$.form.quantity") }}:</p>
-          <p>
+          <p class="text-end">
             {{
               useToNumber(cart.quantity?.toFixed(2) || 0).value.toLocaleString(
                 locale,
@@ -212,23 +212,27 @@ const columns: Ref<TableColumn<any>[]> = computed(
           </p>
         </div>
         <div class="flex flex-col gap-1 text-sm">
-          <p class="font-semibold flex gap-2">
-            <span>{{ t("$.form.price_without_vat") }}:</span>
-            <CmpPrice :price="cart?.total_price" :showOldPrice="false" />
-          </p>
-          <p
-            v-if="cart?.wine?.vat_rate != null"
-            class="text-gray-500 dark:text-gray-400 flex gap-2"
-          >
+          <p class="grid grid-cols-2 text-gray-500 dark:text-gray-400">
             <span>{{ t("$.form.vat") }}:</span>
-            <span>{{ cart.wine.vat_rate }} %</span>
+            <span v-if="cart.wine.vat_rate" class="text-right">
+              {{ useToNumber(cart.wine.vat_rate).value.toLocaleString(locale) }}
+              %
+            </span>
           </p>
-          <p class="font-bold flex gap-2">
+          <p class="grid grid-cols-2 font-semibold">
+            <span>{{ t("$.form.price_without_vat") }}:</span>
+            <span class="text-right">
+              <CmpPrice :price="cart?.total_price" :showOldPrice="false" />
+            </span>
+          </p>
+          <p class="grid grid-cols-2 font-bold">
             <span>{{ t("$.form.price_with_vat") }}:</span>
-            <CmpPrice
-              :price="cart.total_price_with_vat ?? cart.total_price"
-              :showOldPrice="false"
-            />
+            <span class="text-right">
+              <CmpPrice
+                :price="cart.total_price_with_vat ?? cart.total_price"
+                :showOldPrice="false"
+              />
+            </span>
           </p>
         </div>
       </div>
@@ -250,7 +254,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     >
       <p>{{ t("$.order.total_price") }}:</p>
       <p>
-        <UiPrice :price="totalPrice" :showOldPrice="false" />
+        <CmpPrice :price="totalPrice" :showOldPrice="false" />
       </p>
     </div>
   </div>

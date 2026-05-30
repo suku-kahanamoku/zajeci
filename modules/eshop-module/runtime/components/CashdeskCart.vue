@@ -7,6 +7,7 @@ import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../assets/configs/cart.json";
+import { useToNumber } from "@vueuse/core";
 
 const { t } = useLang();
 const {
@@ -252,13 +253,14 @@ const handleSetQuantity = (value: number, cart: ICart) => {
         </div>
       </div>
 
-      <div class="w-full flex items-center justify-between space-x-4">
+      <div class="w-full space-y-8">
         <div class="flex items-center justify-between space-x-2">
           <UButton icon="i-heroicons-minus" @click="decreaseQuantity(cart)" />
           <UInput
             :model-value="cart.quantity"
             type="number"
             :min="1"
+            class="w-32"
             @change="
               handleSetQuantity(
                 parseInt(
@@ -277,23 +279,30 @@ const handleSetQuantity = (value: number, cart: ICart) => {
           />
         </div>
         <div class="grid grid-cols-[3fr_1fr]">
-          <div class="w-full flex flex-col gap-1 text-sm">
-            <p class="font-semibold">
-              {{ t("$.form.price_without_vat") }}:
-              <CmpPrice :price="cart?.total_price" :showOldPrice="false" />
+          <div class="flex flex-col gap-1 text-sm">
+            <p class="grid grid-cols-2 text-gray-500 dark:text-gray-400">
+              <span>{{ t("$.form.vat") }}:</span>
+              <span v-if="cart.wine.vat_rate" class="text-right">
+                {{
+                  useToNumber(cart.wine.vat_rate).value.toLocaleString(locale)
+                }}
+                %
+              </span>
             </p>
-            <p
-              v-if="cart?.wine?.vat_rate != null"
-              class="text-gray-500 dark:text-gray-400"
-            >
-              {{ t("$.form.vat") }}: {{ cart.wine.vat_rate }} %
+            <p class="grid grid-cols-2 font-semibold">
+              <span>{{ t("$.form.price_without_vat") }}:</span>
+              <span class="text-right">
+                <CmpPrice :price="cart?.total_price" :showOldPrice="false" />
+              </span>
             </p>
-            <p class="font-bold">
-              {{ t("$.form.price_with_vat") }}:
-              <UiPrice
-                :price="cart?.total_price_with_vat ?? cart?.total_price!"
-                :showOldPrice="false"
-              />
+            <p class="grid grid-cols-2 font-bold">
+              <span>{{ t("$.form.price_with_vat") }}:</span>
+              <span class="text-right">
+                <CmpPrice
+                  :price="cart.total_price_with_vat ?? cart.total_price"
+                  :showOldPrice="false"
+                />
+              </span>
             </p>
           </div>
           <div class="flex justify-end items-center">
@@ -311,7 +320,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
   <UAlert
     icon="i-heroicons-truck"
     :title="t('$.shipping.limit_free')"
-    color="gold"
+    color="secondary"
     variant="outline"
     class="my-4"
   />

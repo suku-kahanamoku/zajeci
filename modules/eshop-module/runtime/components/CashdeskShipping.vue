@@ -129,7 +129,9 @@ const showAddress = computed(
             </UTooltip>
           </div>
 
-          <span class="font-bold text-secondary-600 dark:text-secondary-400">
+          <span
+            class="font-bold text-secondary-600 dark:text-secondary-400 text-right"
+          >
             {{
               item.price! > 0
                 ? `${Number(item.price).toLocaleString(locale)} ${t("$.czk")}`
