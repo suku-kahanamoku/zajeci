@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useUrlResolver } from "#imports";
 
-import { CLONE, ITERATE } from "@suku-kahanamoku/common-module/utils";
+import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormField } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../../assets/configs/contact.json";
@@ -35,7 +35,7 @@ const { data: contactInfo } = await useAsyncData("contact-info", async () => {
   try {
     if (config.value?.restUrl) {
       const r = await useApi(config.value.restUrl);
-      return r.data?.[0]?.data ?? null;
+      return r?.data?.[0]?.data ?? null;
     }
     return null;
   } catch {

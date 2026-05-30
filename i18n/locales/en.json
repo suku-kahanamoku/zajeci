@@ -11,6 +11,26 @@
       "title": "NOVÁ HORA | Zaječí Winery",
       "description": "Discover delicious Moravian wines! Interesting varieties, precise processing, and unforgettable taste experience. Don't hesitate to contact us and let us introduce you to a piece of Moravian winemaking passion."
     },
+    "terms": {
+      "title": "Terms and Conditions",
+      "intro": "1. Introduction",
+      "supplier_label": "Supplier",
+      "ordering": "2. Order and Purchase Agreement",
+      "supplier_obligations": "Subject of the order and supplier obligations",
+      "buyer_obligations": "Buyer obligations",
+      "delivery": "3. Delivery Terms",
+      "delivery_time": "Delivery time",
+      "shipping": "Shipping",
+      "payment": "4. Payment methods",
+      "receipt_of_delivery": "Receipt of delivery",
+      "payment_methods_label": "Payment is made by:",
+      "cancellation": "5. Withdrawal from the purchase agreement",
+      "other": "6. Other provisions",
+      "complaints": "7. Complaints",
+      "privacy": "8. Personal data protection",
+      "satisfaction": "9. Customer satisfaction",
+      "final": "10. Final provisions"
+    },
     "navbar": {
       "home": "Home",
       "about": "About",

@@ -11,6 +11,26 @@
       "title": "NOVÁ HORA | Zaječské vinařství",
       "description": "Objevte lahodná moravská vína! Zajímavé odrůdy, precizní zpracování a nezapomenutelný chuťový zážitek. Neváhejte nás kontaktovat a dovolte nám přiblížit vám kousek moravské vinárenské vášně"
     },
+    "terms": {
+      "title": "Obchodní podmínky",
+      "intro": "1. Úvod",
+      "supplier_label": "Dodavatel",
+      "ordering": "2. Objednávka a kupní smlouva",
+      "supplier_obligations": "Předmět objednávky a závazky dodavatele",
+      "buyer_obligations": "Závazky odběratele",
+      "delivery": "3. Dodací podmínky",
+      "delivery_time": "Termín dodání zboží",
+      "shipping": "Doprava",
+      "payment": "4. Způsob úhrady",
+      "receipt_of_delivery": "Převzetí dodávky objednaného zboží",
+      "payment_methods_label": "Úhrada probíhá:",
+      "cancellation": "5. Odstoupení od kupní smlouvy",
+      "other": "6. Další ustanovení",
+      "complaints": "7. Reklamace",
+      "privacy": "8. Ochrana osobních údajů",
+      "satisfaction": "9. Spokojenost zákazníka",
+      "final": "10. Závěrečná ustanovení"
+    },
     "navbar": {
       "home": "Úvod",
       "about": "O nás",
