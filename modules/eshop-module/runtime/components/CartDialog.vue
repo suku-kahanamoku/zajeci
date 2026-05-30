@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useToNumber } from "@vueuse/core";
+// replaced useToNumber with Number() for performance
 
 import type { ICart } from "@/modules/eshop-module/runtime/types/order.interface";
 
@@ -37,9 +37,7 @@ const { totalPrice } = useCashdesk();
           {{ $tt("$.form.price") }}:&nbsp;<CmpPrice :price="cart?.unit_price!" />
         </div>
         <div>
-          {{ $tt("$.form.quantity") }}:&nbsp;{{
-            useToNumber(cart?.quantity || 1).value.toLocaleString(locale)
-          }}&nbsp;{{ $tt("$.pcs") }}
+          {{ $tt("$.form.quantity") }}:&nbsp;{{ Number(cart?.quantity || 1).toLocaleString(locale) }}&nbsp;{{ $tt("$.pcs") }}
         </div>
         <div class="flex">
           {{ $tt("$.cart.total") }}:&nbsp;<CmpPrice :price="totalPrice!" />

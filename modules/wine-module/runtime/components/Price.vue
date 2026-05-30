@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useToNumber } from "@vueuse/core";
+// replaced useToNumber with Number() for performance
 
 const props = defineProps<{
   price: number | string;
@@ -22,17 +22,13 @@ const {
       class="line-through text-gray-400 dark:text-gray-500 text-sm font-normal"
       aria-label="Old price"
     >
-      {{
-        useToNumber(oldPrice.toFixed(2)).value.toLocaleString(locale)
-      }}&nbsp;{{ t("$.czk") }}
+      {{ Number(oldPrice.toFixed(2)).toLocaleString(locale) }}&nbsp;{{ t("$.czk") }}
     </span>
     <span
       class="font-bold text-secondary-600 dark:text-secondary-400"
       aria-label="Current price"
     >
-      {{
-        useToNumber(numericPrice.toFixed(2)).value.toLocaleString(locale)
-      }}&nbsp;{{ t("$.czk") }}
+      {{ Number(numericPrice.toFixed(2)).toLocaleString(locale) }}&nbsp;{{ t("$.czk") }}
     </span>
   </span>
 </template>

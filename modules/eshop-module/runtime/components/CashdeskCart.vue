@@ -7,7 +7,7 @@ import { CLONE } from "@suku-kahanamoku/common-module/utils";
 import type { IFormConfig } from "@suku-kahanamoku/form-module/types";
 
 import cConfig from "../assets/configs/cart.json";
-import { useToNumber } from "@vueuse/core";
+// replaced useToNumber with Number() for performance
 
 const { t } = useLang();
 const {
@@ -201,7 +201,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
 
     <template #total_price-cell="{ row }">
       <p class="font-semibold text-end w-full">
-        <UiPrice
+        <CmpPrice
           :price="row.original?.total_price_with_vat"
           :showOldPrice="false"
         />
@@ -283,9 +283,7 @@ const handleSetQuantity = (value: number, cart: ICart) => {
             <p class="grid grid-cols-2 text-gray-500 dark:text-gray-400">
               <span>{{ t("$.form.vat") }}:</span>
               <span v-if="cart.wine.vat_rate" class="text-right">
-                {{
-                  useToNumber(cart.wine.vat_rate).value.toLocaleString(locale)
-                }}
+                {{ Number(cart.wine.vat_rate).toLocaleString(locale) }}
                 %
               </span>
             </p>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useToNumber } from "@vueuse/core";
+// replaced useToNumber with native Number() for performance
 import type { TableColumn } from "@nuxt/ui";
 import { useUrlResolver } from "#imports";
 
@@ -105,9 +105,9 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <div class="w-full text-end">
         <UBadge class="font-semibold">
           {{
-            useToNumber(
-              row.original?.quantity?.toFixed(2) || 0,
-            ).value.toLocaleString(locale)
+            Number(row.original?.quantity?.toFixed(2) || 0).toLocaleString(
+              locale,
+            )
           }}
         </UBadge>
       </div>
@@ -123,7 +123,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
       <p class="font-semibold text-end w-full text-gray-900 dark:text-gray-100">
         {{
           row.original?.wine?.vat_rate != null
-            ? `${row.original.wine.vat_rate} %`
+            ? `${Number(row.original.wine.vat_rate).toLocaleString(locale)} %`
             : "–"
         }}
       </p>
@@ -132,9 +132,7 @@ const columns: Ref<TableColumn<any>[]> = computed(
     <template #total_price-cell="{ row }">
       <p class="font-semibold text-end w-full">
         <CmpPrice
-          :price="
-            row.original?.total_price_with_vat ?? row.original?.total_price!
-          "
+          :price="row.original?.total_price_with_vat"
           :showOldPrice="false"
         />
       </p>
@@ -204,19 +202,14 @@ const columns: Ref<TableColumn<any>[]> = computed(
         <div class="grid grid-cols-2 font-semibold">
           <p>{{ t("$.form.quantity") }}:</p>
           <p class="text-end">
-            {{
-              useToNumber(cart.quantity?.toFixed(2) || 0).value.toLocaleString(
-                locale,
-              )
-            }}
+            {{ Number(cart.quantity?.toFixed(2) || 0).toLocaleString(locale) }}
           </p>
         </div>
         <div class="flex flex-col gap-1 text-sm">
           <p class="grid grid-cols-2 text-gray-500 dark:text-gray-400">
             <span>{{ t("$.form.vat") }}:</span>
             <span v-if="cart.wine.vat_rate" class="text-right">
-              {{ useToNumber(cart.wine.vat_rate).value.toLocaleString(locale) }}
-              %
+              {{ Number(cart.wine.vat_rate).toLocaleString(locale) }}%
             </span>
           </p>
           <p class="grid grid-cols-2 font-semibold">
