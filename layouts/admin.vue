@@ -7,25 +7,6 @@ const { routes, route, menuItem } = useMenuItems();
 
 const open = ref(true);
 
-// i18n helpers for language switcher
-const { locale } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
-const availableLocales = ["cs", "en"];
-
-function switchToLocale(l: string) {
-  try {
-    const p = switchLocalePath(l as any);
-    if (p) {
-      navigateTo(p as any);
-      locale.value = l;
-    } else {
-      locale.value = l;
-    }
-  } catch (e) {
-    locale.value = l;
-  }
-}
-
 useSeoMeta({
   robots: "noindex, nofollow",
 });
@@ -33,51 +14,103 @@ useSeoMeta({
 const menuItems = computed(() => {
   const items: any[] = [];
 
-  if (
-    user.value?.role === "admin" ||
-    (user.value?.role as any)?.name === "admin"
-  ) {
-    // Order menu items by importance for admin users
-    const order = [
-      "admin_order",
-      "admin_invoice",
-      "admin_user",
-      "admin_wine",
-      "admin_category",
-      "admin_mail",
-      "admin_enum",
-      "admin_payment",
-      "admin_shipping",
-      "admin_address",
-      "admin_role",
-      "admin_text",
-      "admin_taste",
-      "admin_vat_rate",
-    ];
+  if (user.value?.role?.name === "admin") {
+    const adminWine = menuItem("admin_wine");
+    if (adminWine) {
+      adminWine.to = localePath(adminWine.to!);
+      adminWine.icon = "i-heroicons-beaker";
+      items.push(adminWine);
+    }
 
-    const icons: Record<string, string> = {
-      admin_order: "i-heroicons-shopping-bag",
-      admin_invoice: "i-heroicons-document-text",
-      admin_user: "i-heroicons-users",
-      admin_wine: "i-heroicons-beaker",
-      admin_category: "i-heroicons-tag",
-      admin_mail: "i-heroicons-envelope",
-      admin_enum: "i-heroicons-list-bullet",
-      admin_payment: "i-heroicons-credit-card",
-      admin_shipping: "i-heroicons-truck",
-      admin_address: "i-heroicons-map-pin",
-      admin_role: "i-heroicons-shield-check",
-      admin_text: "i-heroicons-document",
-      admin_taste: "i-heroicons-beaker",
-      admin_vat_rate: "i-heroicons-receipt-percent",
-    };
+    const adminOrder = menuItem("admin_order");
+    if (adminOrder) {
+      adminOrder.to = localePath(adminOrder.to!);
+      adminOrder.icon = "i-heroicons-shopping-bag";
+      items.push(adminOrder);
+    }
 
-    for (const key of order) {
-      const it = menuItem(key);
-      if (!it) continue;
-      it.to = localePath(it.to!);
-      it.icon = icons[key] || "i-heroicons-rectangle-group";
-      items.push(it);
+    const adminInvoice = menuItem("admin_invoice");
+    if (adminInvoice) {
+      adminInvoice.to = localePath(adminInvoice.to!);
+      adminInvoice.icon = "i-heroicons-document-text";
+      items.push(adminInvoice);
+    }
+
+    const adminAddress = menuItem("admin_address");
+    if (adminAddress) {
+      adminAddress.to = localePath(adminAddress.to!);
+      adminAddress.icon = "i-heroicons-map-pin";
+      items.push(adminAddress);
+    }
+
+    const adminRole = menuItem("admin_role");
+    if (adminRole) {
+      adminRole.to = localePath(adminRole.to!);
+      adminRole.icon = "i-heroicons-shield-check";
+      items.push(adminRole);
+    }
+
+    const adminCategory = menuItem("admin_category");
+    if (adminCategory) {
+      adminCategory.to = localePath(adminCategory.to!);
+      adminCategory.icon = "i-heroicons-tag";
+      items.push(adminCategory);
+    }
+
+    const adminUser = menuItem("admin_user");
+    if (adminUser) {
+      adminUser.to = localePath(adminUser.to!);
+      adminUser.icon = "i-heroicons-users";
+      items.push(adminUser);
+    }
+
+    const adminText = menuItem("admin_text");
+    if (adminText) {
+      adminText.to = localePath(adminText.to!);
+      adminText.icon = "i-heroicons-document";
+      items.push(adminText);
+    }
+
+    const adminMail = menuItem("admin_mail");
+    if (adminMail) {
+      adminMail.to = localePath(adminMail.to!);
+      adminMail.icon = "i-heroicons-envelope";
+      items.push(adminMail);
+    }
+
+    const adminEnum = menuItem("admin_enum");
+    if (adminEnum) {
+      adminEnum.to = localePath(adminEnum.to!);
+      adminEnum.icon = "i-heroicons-list-bullet";
+      items.push(adminEnum);
+    }
+
+    const adminTaste = menuItem("admin_taste");
+    if (adminTaste) {
+      adminTaste.to = localePath(adminTaste.to!);
+      adminTaste.icon = "i-heroicons-beaker";
+      items.push(adminTaste);
+    }
+
+    const adminPayment = menuItem("admin_payment");
+    if (adminPayment) {
+      adminPayment.to = localePath(adminPayment.to!);
+      adminPayment.icon = "i-heroicons-credit-card";
+      items.push(adminPayment);
+    }
+
+    const adminShipping = menuItem("admin_shipping");
+    if (adminShipping) {
+      adminShipping.to = localePath(adminShipping.to!);
+      adminShipping.icon = "i-heroicons-truck";
+      items.push(adminShipping);
+    }
+
+    const adminVatRate = menuItem("admin_vat_rate");
+    if (adminVatRate) {
+      adminVatRate.to = localePath(adminVatRate.to!);
+      adminVatRate.icon = "i-heroicons-receipt-percent";
+      items.push(adminVatRate);
     }
   }
 
@@ -99,21 +132,6 @@ const menuItems = computed(() => {
 
     <template #right>
       <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2">
-          <div class="text-sm text-muted hidden sm:block">{{$tt('$.admin.lang') }}</div>
-          <div class="flex items-center gap-1">
-            <UButton
-              v-for="l in availableLocales"
-              :key="l"
-              :variant="locale.value === l ? 'solid' : 'ghost'"
-              size="sm"
-              class="px-2"
-              @click="switchToLocale(l)"
-            >
-              {{ l.toUpperCase() }}
-            </UButton>
-          </div>
-        </div>
         <UChip
           :show="!!totalItemsLength"
           :text="totalItemsLength"
