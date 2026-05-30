@@ -9,7 +9,7 @@
     },
     "admin": {
       "text": {
-        "title": "Správa textů",
+        "title": "Texty",
         "create_text": "Vytvořit nový text",
         "update": {
           "title": "Editace textu"

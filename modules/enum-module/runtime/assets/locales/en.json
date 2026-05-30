@@ -29,7 +29,7 @@
     },
     "admin": {
       "enum": {
-        "title": "Enum Management",
+        "title": "Enums",
         "create_enum": "Create New Enum",
         "enum_detail": {
           "title": "Enum Detail"

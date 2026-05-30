@@ -78,7 +78,7 @@
     },
     "admin": {
       "wine": {
-        "title": "Administrace vín",
+        "title": "Vína",
         "create": {
           "title": "Vytvořit nové víno"
         },

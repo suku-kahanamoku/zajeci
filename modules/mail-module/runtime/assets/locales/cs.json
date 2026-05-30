@@ -11,7 +11,7 @@
     },
     "admin": {
       "mail": {
-        "title": "Správa e-mailů",
+        "title": "E-maily",
         "send": "Odeslat e-mail",
         "send_success": "E-mail byl úspěšně odeslán.",
         "send_error": "Nepodařilo se odeslat e-mail."

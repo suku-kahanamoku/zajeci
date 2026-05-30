@@ -22,6 +22,20 @@ const menuItems = computed(() => {
       items.push(adminWine);
     }
 
+    const adminTaste = menuItem("admin_taste");
+    if (adminTaste) {
+      adminTaste.to = localePath(adminTaste.to!);
+      adminTaste.icon = "i-heroicons-beaker";
+      items.push(adminTaste);
+    }
+
+    const adminCategory = menuItem("admin_category");
+    if (adminCategory) {
+      adminCategory.to = localePath(adminCategory.to!);
+      adminCategory.icon = "i-heroicons-tag";
+      items.push(adminCategory);
+    }
+
     const adminOrder = menuItem("admin_order");
     if (adminOrder) {
       adminOrder.to = localePath(adminOrder.to!);
@@ -36,6 +50,13 @@ const menuItems = computed(() => {
       items.push(adminInvoice);
     }
 
+    const adminUser = menuItem("admin_user");
+    if (adminUser) {
+      adminUser.to = localePath(adminUser.to!);
+      adminUser.icon = "i-heroicons-users";
+      items.push(adminUser);
+    }
+
     const adminAddress = menuItem("admin_address");
     if (adminAddress) {
       adminAddress.to = localePath(adminAddress.to!);
@@ -48,20 +69,6 @@ const menuItems = computed(() => {
       adminRole.to = localePath(adminRole.to!);
       adminRole.icon = "i-heroicons-shield-check";
       items.push(adminRole);
-    }
-
-    const adminCategory = menuItem("admin_category");
-    if (adminCategory) {
-      adminCategory.to = localePath(adminCategory.to!);
-      adminCategory.icon = "i-heroicons-tag";
-      items.push(adminCategory);
-    }
-
-    const adminUser = menuItem("admin_user");
-    if (adminUser) {
-      adminUser.to = localePath(adminUser.to!);
-      adminUser.icon = "i-heroicons-users";
-      items.push(adminUser);
     }
 
     const adminText = menuItem("admin_text");
@@ -83,13 +90,6 @@ const menuItems = computed(() => {
       adminEnum.to = localePath(adminEnum.to!);
       adminEnum.icon = "i-heroicons-list-bullet";
       items.push(adminEnum);
-    }
-
-    const adminTaste = menuItem("admin_taste");
-    if (adminTaste) {
-      adminTaste.to = localePath(adminTaste.to!);
-      adminTaste.icon = "i-heroicons-beaker";
-      items.push(adminTaste);
     }
 
     const adminPayment = menuItem("admin_payment");
@@ -186,7 +186,10 @@ const menuItems = computed(() => {
           :key="state"
           :items="menuItems"
           orientation="vertical"
-          :ui="{ link: 'p-1.5 overflow-hidden' }"
+          :ui="{
+            list: 'space-y-2',
+            link: 'w-full px-4 py-1 text-base sm:text-lg font-medium flex items-center gap-3 pl-6 overflow-hidden transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-slate-800',
+          }"
         >
           <template #item-label="{ item }">
             {{ $tt(item.label) }}

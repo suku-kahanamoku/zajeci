@@ -13,7 +13,7 @@
     },
     "admin": {
       "user": {
-        "title": "User Management",
+        "title": "Users",
         "update": {
           "title": "Edit User"
         }
@@ -58,7 +58,7 @@
       "billing": "Billing",
       "shipping": "Shipping",
       "admin": {
-        "title": "Address Management",
+        "title": "Addresses",
         "update": { "title": "Edit Address" },
         "create": { "title": "New Address" }
       },
@@ -76,7 +76,7 @@
       "label": "Label",
       "position": "Position",
       "admin": {
-        "title": "Role Management",
+        "title": "Roles",
         "update": { "title": "Edit Role" },
         "create": { "title": "New Role" }
       },

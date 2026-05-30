@@ -13,7 +13,7 @@
     },
     "admin": {
       "user": {
-        "title": "Správa uživatelů",
+        "title": "Uživatelé",
         "update": {
           "title": "Editace uživatele"
         }
@@ -58,7 +58,7 @@
       "billing": "Fakturační",
       "shipping": "Doručovací",
       "admin": {
-        "title": "Správa adres",
+        "title": "Adresy",
         "update": { "title": "Editace adresy" },
         "create": { "title": "Nová adresa" }
       },
@@ -76,7 +76,7 @@
       "label": "Popis",
       "position": "Pořadí",
       "admin": {
-        "title": "Správa rolí",
+        "title": "Role",
         "update": { "title": "Editace role" },
         "create": { "title": "Nová role" }
       },

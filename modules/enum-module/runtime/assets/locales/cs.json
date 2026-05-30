@@ -34,24 +34,24 @@
     },
     "admin": {
       "enum": {
-        "title": "Správa enumerátorů",
+        "title": "Enumerátory",
         "create_enum": "Vytvořit nový enumerátor",
         "enum_detail": {
           "title": "Detail enumerátoru"
         }
       },
       "payment": {
-        "title": "Správa platebních metod",
+        "title": "Platební metody",
         "create_payment": "Nová platební metoda",
         "update_payment": "Editace platební metody"
       },
       "shipping": {
-        "title": "Správa dopravních metod",
+        "title": "Dopravní metody",
         "create_shipping": "Nová dopravní metoda",
         "update_shipping": "Editace dopravní metody"
       },
       "vat_rate": {
-        "title": "Správa sazby DPH",
+        "title": "Sazby DPH",
         "create_vat_rate": "Nová sazba DPH",
         "info": "Vždy se používá nejnovější záznam. Chcete-li změnit sazbu DPH, vytvořte nový záznam."
       }

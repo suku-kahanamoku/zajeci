@@ -9,7 +9,7 @@
     },
     "admin": {
       "text": {
-        "title": "Text Management",
+        "title": "Texts",
         "create_text": "Create New Text",
         "update": {
           "title": "Edit Text"

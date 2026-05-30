@@ -79,7 +79,7 @@
   },
   "admin": {
     "wine": {
-      "title": "Admin wines",
+      "title": "Wines",
       "create": {
         "title": "Create new wine"
       },

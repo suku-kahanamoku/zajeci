@@ -8,6 +8,10 @@ import {
   useMenuItems,
 } from "#imports";
 
+useSeoMeta({
+  robots: "noindex, nofollow",
+});
+
 definePageMeta({
   syscode: "login",
   title: "$.login.title",

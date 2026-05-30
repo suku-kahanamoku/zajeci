@@ -16,7 +16,7 @@
     },
     "admin": {
       "category": {
-        "title": "Správa kategorií",
+        "title": "Kategorie",
         "create_category": "Vytvořit novou kategorii",
         "update": {
           "title": "Editace kategorie"

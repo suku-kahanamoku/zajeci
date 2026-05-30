@@ -4,6 +4,10 @@ import "photoswipe/style.css";
 
 import { ITERATE } from "@suku-kahanamoku/common-module/utils";
 
+useSeoMeta({
+  robots: "noindex, nofollow",
+});
+
 definePageMeta({
   syscode: "gallery",
   title: "$.navbar.gallery",
@@ -58,7 +62,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    :id="(routes.gallery?.meta?.syscode as string)"
+    :id="routes.gallery?.meta?.syscode as string"
     class="w-full max-w-7xl mx-auto px-5 pb-10"
   >
     <UPageHeader

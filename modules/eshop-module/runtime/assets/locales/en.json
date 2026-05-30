@@ -68,7 +68,7 @@
       "price_with_vat": "Price incl. VAT"
     },
     "order": {
-      "title": "Order administration",
+      "title": "Orders",
       "create_order": "Create order",
       "user_email": "User Email",
       "user_name": "User Name",
@@ -114,7 +114,7 @@
     },
     "admin": {
       "invoice": {
-        "title": "Invoice Management",
+        "title": "Invoices",
         "update": {
           "title": "Edit Invoice"
         },

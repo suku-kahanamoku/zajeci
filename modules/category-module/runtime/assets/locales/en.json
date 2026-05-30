@@ -16,7 +16,7 @@
     },
     "admin": {
       "category": {
-        "title": "Category Management",
+        "title": "Categories",
         "create_category": "Create New Category",
         "update": {
           "title": "Edit Category"

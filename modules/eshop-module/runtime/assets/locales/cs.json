@@ -75,7 +75,7 @@
       "position": "Pořadí"
     },
     "order": {
-      "title": "Administrace objednávek",
+      "title": "Objednávky",
       "customer": "Zákazník",
       "create_order": "Vytvořit objednávku",
       "user_email": "Email uživatele",
@@ -122,7 +122,7 @@
     },
     "admin": {
       "invoice": {
-        "title": "Správa faktur",
+        "title": "Faktury",
         "update": {
           "title": "Editace faktury"
         },
