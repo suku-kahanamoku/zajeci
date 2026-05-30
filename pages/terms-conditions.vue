@@ -69,7 +69,7 @@ defineExpose({ contact, bank, envMail: envMailRef, envPhone: envPhoneRef });
       </h1>
     </div>
 
-    <div class="max-w-4xl mx-auto px-6 pb-16 prose prose-lg dark:prose-invert">
+    <div class="max-w-7xl mx-auto px-6 pb-16">
       <h3>{{ t("$.terms.intro") }}</h3>
 
       <p>
@@ -124,14 +124,13 @@ defineExpose({ contact, bank, envMail: envMailRef, envPhone: envPhoneRef });
       <h3>{{ t("$.terms.ordering") }}</h3>
 
       <p>
-        Zboží je objednáváno prostřednictvím formulářů uvedených na e-shopu
-        ALIKA a.s.. Pouze řádně vyplněná objednávka obsahující veškeré
-        předepsané náležitosti je považována za platná. Objednávky podané
-        prostřednictvím internetového obchodu jsou považovány za závazné.
-        Prodávající neručí za omyly v objednávce ze strany odběratele. Závazný
-        je vždy obsah nákupního košíku a potvrzená objednávka. Odesláním
-        objednávky odběratel potvrzuje, že se seznámil s těmito obchodní
-        podmínkami a že s nimi souhlasí.
+        Zboží je objednáváno prostřednictvím formulářů uvedených na e-shopu.
+        Pouze řádně vyplněná objednávka obsahující veškeré předepsané
+        náležitosti je považována za platná. Objednávky podané prostřednictvím
+        internetového obchodu jsou považovány za závazné. Prodávající neručí za
+        omyly v objednávce ze strany odběratele. Závazný je vždy obsah nákupního
+        košíku a potvrzená objednávka. Odesláním objednávky odběratel potvrzuje,
+        že se seznámil s těmito obchodní podmínkami a že s nimi souhlasí.
       </p>
 
       <p>
@@ -395,7 +394,7 @@ defineExpose({ contact, bank, envMail: envMailRef, envPhone: envPhoneRef });
       <p>
         Obchodní podmínky platí ve znění platném v den odeslání elektronické
         objednávky. Tyto obchodní podmínky nabývají účinnosti dnem zprovoznění
-        internetového obchodu Zdravé ořechy. Provozovatelé si vyhrazují právo na
+        internetového obchodu. Provozovatelé si vyhrazují právo na
         změnu obchodních podmínek bez předchozího upozornění.
       </p>
     </div>
