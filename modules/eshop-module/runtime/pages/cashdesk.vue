@@ -78,12 +78,18 @@ watch(stepModel, (value, oldValue) => {
   router.replace({
     query: { step: steps.value[stepModel.value]?.title },
   });
+  // ensure the cashdesk container is visible at the top when switching steps
+  nextTick(() => {
+    const elId = routes.cashdesk?.meta?.syscode as string;
+    SCROLL_TO_ELEMENT_BY_CLASS(elId);
+  });
 });
 </script>
 
 <template>
   <div
     :id="routes.cashdesk?.meta?.syscode as string"
+    :class="routes.cashdesk?.meta?.syscode as string"
     class="max-w-7xl mx-auto px-5 pb-10"
   >
     <UPageHeader
