@@ -82,6 +82,21 @@
     },
     "admin": {
       "title": "Dashboard",
+      "quick": {
+        "orders": "Objednávky",
+        "invoices": "Faktury",
+        "users": "Uživatelé",
+        "wines": "Vína",
+        "title": "Rychlý přehled",
+        "description": "Přehled posledních událostí a rychlé zkratky.",
+        "recent": {
+          "title": "Poslední objednávky"
+        }
+      },
+      "recent": {
+        "title": "Poslední aktivita"
+      },
+      "lang": "Jazyk",
       "taste": {
         "title": "Degustace",
         "create_taste": "Přidat degustaci",

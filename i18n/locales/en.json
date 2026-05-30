@@ -82,6 +82,21 @@
     },
     "admin": {
       "title": "Dashboard",
+      "quick": {
+        "orders": "Orders",
+        "invoices": "Invoices",
+        "users": "Users",
+        "wines": "Wines",
+        "title": "Quick overview",
+        "description": "Overview of recent activity and quick shortcuts.",
+        "recent": {
+          "title": "Recent orders"
+        }
+      },
+      "recent": {
+        "title": "Recent activity"
+      },
+      "lang": "Language",
       "taste": {
         "title": "Tasting",
         "create_taste": "Add tasting",
