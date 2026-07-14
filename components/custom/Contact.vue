@@ -31,7 +31,7 @@ const { data: config } = await useAsyncData(
 /**
  * Load contact info
  */
-const { data: contactInfo } = await useAsyncData("contact-info", async () => {
+const { data: contactInfo } = await useAsyncData(async () => {
   try {
     if (config.value?.restUrl) {
       const r = await useApi(config.value.restUrl);
@@ -124,8 +124,9 @@ async function onSubmit(body: Record<string, any>) {
       </div>
       <div class="from-right">
         <CmpForm
+          v-if="config?.fields?.length"
           :key="formKey"
-          :fields="config?.fields as IFormField[]"
+          :fields="config.fields as IFormField[]"
           variant="subtle"
           :actions="{
             no: {

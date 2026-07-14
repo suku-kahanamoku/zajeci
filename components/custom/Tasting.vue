@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: tasting } = await useAsyncData("tasting", async () => {
+const { data: tasting } = await useAsyncData(async () => {
   try {
     const r = await useApi(
       '/api/enumerations?q={"type":{"value":"taste"}}&limit=100',
