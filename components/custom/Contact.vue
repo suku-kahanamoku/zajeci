@@ -16,6 +16,7 @@ const formKey = ref(0);
  * Load config
  */
 const { data: config } = await useAsyncData(
+  "contact-config",
   async () => {
     try {
       const result = CLONE(cConfig);
@@ -31,17 +32,21 @@ const { data: config } = await useAsyncData(
 /**
  * Load contact info
  */
-const { data: contactInfo } = await useAsyncData(async () => {
-  try {
-    if (config.value?.restUrl) {
-      const r = await useApi(config.value.restUrl);
-      return r?.data?.[0]?.data ?? null;
+const { data: contactInfo } = await useAsyncData(
+  "contact-info",
+  async () => {
+    try {
+      if (config.value?.restUrl) {
+        const r = await useApi(config.value.restUrl);
+        return r?.data?.[0]?.data ?? null;
+      }
+      return null;
+    } catch {
+      return null;
     }
-    return null;
-  } catch {
-    return null;
-  }
-});
+  },
+  { watch: [config] },
+);
 
 async function onSubmit(body: Record<string, any>) {
   loading.value = true;

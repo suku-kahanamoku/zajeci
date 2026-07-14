@@ -22,6 +22,7 @@ const title = computed(() =>
  * Load config
  */
 const { data: config } = await useAsyncData(
+  'wine-detail-config',
   async () => {
     try {
       const result = CLONE(wConfig);
@@ -38,6 +39,7 @@ const { data: config } = await useAsyncData(
  * Load data
  */
 const { data: wine } = await useAsyncData(
+  'wine-detail-data',
   async (): Promise<IWineResponse | undefined> => {
     if (config.value?.restUrl) {
       try {
@@ -51,7 +53,7 @@ const { data: wine } = await useAsyncData(
       }
     }
   },
-  { watch: [route] },
+  { watch: [config] },
 );
 
 useHead({
