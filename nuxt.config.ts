@@ -1,10 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   compatibilityDate: "2026-05-04",
   ssr: true,
 
-  routeRules: {
-    "/": { prerender: true },
+  site: {
+    url: process.env.FRONTEND_HOST,
+    name: "ZAJECI - VÍNO ZE ZAJECÍ",
   },
 
   devtools: { enabled: true },
@@ -16,6 +18,8 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "@nuxt/image",
+    "@nuxtjs/seo",
     "@suku-kahanamoku/auth-module",
     "@suku-kahanamoku/menu-module",
     "@suku-kahanamoku/form-module",
@@ -43,6 +47,12 @@ export default defineNuxtConfig({
     mailingFrom: process.env.NUXT_MAILING_FROM,
     mailingFromName: process.env.NUXT_MAILING_FROM_NAME,
     mailingFromPhone: process.env.NUXT_MAILING_FROM_PHONE,
+  },
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+    },
   },
 
   router: {
@@ -85,10 +95,6 @@ export default defineNuxtConfig({
       background_color: "#ffffff",
       display: "standalone",
     },
-  },
-
-  nitro: {
-    preset: "netlify",
   },
 
   vite: {
