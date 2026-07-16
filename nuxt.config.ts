@@ -27,7 +27,6 @@ export default defineNuxtConfig({
     "@suku-kahanamoku/lang-module",
     "@suku-kahanamoku/common-module",
     "@suku-kahanamoku/seo-module",
-    "nuxt-gtag",
     "nuxt-rating",
   ],
 
