@@ -7,6 +7,28 @@ definePageMeta({
 const { t } = useLang();
 const { routes, route } = useMenuItems();
 const title = computed(() => t(route.meta.title as string));
+const promotionDialogOpen = ref(false);
+
+const promotionSessionKey = "homepage-promotion-2026-08-26-closed";
+
+onMounted(() => {
+  try {
+    promotionDialogOpen.value =
+      sessionStorage.getItem(promotionSessionKey) !== "true";
+  } catch {
+    promotionDialogOpen.value = true;
+  }
+});
+
+watch(promotionDialogOpen, (isOpen, wasOpen) => {
+  if (isOpen || !wasOpen) return;
+
+  try {
+    sessionStorage.setItem(promotionSessionKey, "true");
+  } catch {
+    // The dialog can still be closed when session storage is unavailable.
+  }
+});
 
 useHead({
   title,
@@ -19,6 +41,25 @@ useHead({
 
 <template>
   <div class="w-full overflow-hidden">
+    <UModal
+      v-model:open="promotionDialogOpen"
+      title="Zaječská letošní vína 2026"
+      :ui="{
+        content: 'w-auto max-w-[min(90vw,40rem)]',
+        body: 'p-0 sm:p-0',
+      }"
+    >
+      <template #body>
+        <NuxtImg
+          src="/img/2026-08-26.jpeg"
+          alt="Pozvánka na Zaječská letošní vína 2026"
+          width="1276"
+          height="1595"
+          class="block max-h-[80vh] w-auto max-w-full object-contain"
+        />
+      </template>
+    </UModal>
+
     <CustomIntro />
 
     <div class="w-full max-w-7xl mx-auto px-5 space-y-10 py-10">
