@@ -27,19 +27,11 @@ useHead({
 /**
  * Load config
  */
-const { data: config } = await useAsyncData(
-  'wine-list-config',
-  async () => {
-    try {
-      const result = CLONE(wConfig);
-      updateConfig(route, result);
-      return result as typeof wConfig;
-    } catch (error: any) {
-      return {} as typeof wConfig;
-    }
-  },
-  { watch: [() => route.query] },
-);
+const config = computed(() => {
+  const result = CLONE(wConfig);
+  updateConfig(route, result);
+  return result as typeof wConfig;
+});
 
 /**
  * Load data
@@ -60,7 +52,7 @@ const { data: wines } = await useAsyncData(
       }
     }
   },
-  { watch: [config] },
+  { watch: [() => route.query] },
 );
 </script>
 
