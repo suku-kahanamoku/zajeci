@@ -14,9 +14,11 @@ definePageMeta({
 const { t } = useLang();
 const { routes, route } = useMenuItems();
 const { updateConfig } = useUrlResolver();
+const runtimeConfig = useRuntimeConfig();
 const title = computed(() =>
   t((wine.value?.data?.name || route.meta.label || route.meta.title) as string),
 );
+const wineId = computed(() => String(route.meta.id || route.params.id || ""));
 
 /**
  * Load config
@@ -31,7 +33,7 @@ const config = computed(() => {
  * Load data
  */
 const { data: wine } = await useAsyncData(
-  'wine-detail-data',
+  computed(() => `wine-detail-data-${wineId.value}`),
   async (): Promise<IWineResponse | undefined> => {
     if (config.value?.restUrl) {
       try {
@@ -47,6 +49,22 @@ const { data: wine } = await useAsyncData(
   },
   { watch: [() => route.params, () => route.query] },
 );
+
+const socialImage = computed(() => {
+  const siteUrl = String(runtimeConfig.public.FRONTEND_HOST).replace(/\/$/, "");
+  const imagePath = wine.value?.data?.files?.[0]?.path;
+
+  return imagePath
+    ? `${siteUrl}/api/${imagePath.replace(/^\/+/, "")}`
+    : `${siteUrl}/img/intro.jpg`;
+});
+
+useSeoMeta({
+  ogImage: socialImage,
+  ogImageAlt: title,
+  twitterImage: socialImage,
+  twitterImageAlt: title,
+});
 
 useHead({
   title,

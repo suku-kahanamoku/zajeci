@@ -7,6 +7,20 @@ export default defineNuxtConfig({
   site: {
     url: process.env.FRONTEND_HOST,
     name: "ZAJECI - VÍNO ZE ZAJECÍ",
+    trailingSlash: true,
+  },
+
+  sitemap: {
+    exclude: [
+      "/admin/**",
+      "/login",
+      "/signup",
+      "/forgot-password",
+      "/gallery",
+      "/cashdesk",
+      "/cashdesk-completed",
+      "/pz/**",
+    ],
   },
 
   devtools: { enabled: true },

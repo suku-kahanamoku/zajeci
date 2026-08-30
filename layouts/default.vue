@@ -2,6 +2,13 @@
 const { loggedIn } = useUserSession();
 const { totalItemsLength } = useCashdesk();
 const { routes, route } = useMenuItems();
+const runtimeConfig = useRuntimeConfig();
+
+const defaultSocialImage = computed(() => {
+  const siteUrl = String(runtimeConfig.public.FRONTEND_HOST).replace(/\/$/, "");
+
+  return `${siteUrl}/img/intro.jpg`;
+});
 
 const colorMode = useColorMode();
 const isDark = computed({
@@ -13,6 +20,12 @@ const isDark = computed({
 
 useSeoMeta({
   robots: "index, follow",
+  ogImage: defaultSocialImage,
+  ogImageAlt: "Vinice Vinařství Nová Hora v Zaječí",
+  ogImageWidth: 1024,
+  ogImageHeight: 600,
+  twitterImage: defaultSocialImage,
+  twitterImageAlt: "Vinice Vinařství Nová Hora v Zaječí",
 });
 
 const menuItems = [

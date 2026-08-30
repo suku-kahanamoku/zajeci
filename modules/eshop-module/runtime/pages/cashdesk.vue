@@ -4,6 +4,10 @@ definePageMeta({
   title: "$.cashdesk.title",
 });
 
+useSeoMeta({
+  robots: "noindex, nofollow",
+});
+
 const { t } = useLang();
 const route = useRoute();
 const router = useRouter();
