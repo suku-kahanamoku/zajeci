@@ -1,4 +1,5 @@
 import type { ITokens } from "@suku-kahanamoku/auth-module/types";
+import type {} from "@suku-kahanamoku/lang-module/types";
 import type { IUser } from "@/modules/user-module/runtime/types/user.interface";
 
 declare module "#app" {
