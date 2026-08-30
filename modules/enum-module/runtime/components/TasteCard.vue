@@ -26,7 +26,7 @@ const features = computed(() =>
 
 <template>
   <div
-    class="zoom-in w-full md:flex-1 md:min-w-72 md:max-w-sm rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 overflow-hidden"
+    class="w-full md:flex-1 md:min-w-72 md:max-w-sm rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 overflow-hidden"
   >
     <!-- Accent bar – primary blue -->
     <div class="h-1 bg-linear-to-r from-primary-400 to-primary-600"></div>

@@ -24,7 +24,7 @@ function addToCashdesk() {
 </script>
 
 <template>
-  <div v-if="wine" class="zoom-in flex flex-col w-full h-full">
+  <div v-if="wine" class="flex flex-col w-full h-full">
     <!-- Card -->
     <div
       class="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-secondary-400 dark:hover:border-secondary-600 transition-all duration-300"
