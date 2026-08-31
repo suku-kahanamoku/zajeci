@@ -64,6 +64,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
+      routes: ["/"],
       crawlLinks: true,
       autoSubfolderIndex: false,
     },
@@ -102,6 +103,10 @@ export default defineNuxtConfig({
   },
 
   pwa: {
+    registerType: "autoUpdate",
+    workbox: {
+      navigateFallback: undefined,
+    },
     manifest: {
       name: "Víno ze Zaječí",
       short_name: "Zaječí",
