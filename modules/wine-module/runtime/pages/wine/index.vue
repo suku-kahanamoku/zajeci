@@ -52,7 +52,6 @@ const { data: wines } = await useAsyncData(
       }
     }
   },
-  { watch: [() => route.query] },
 );
 </script>
 
