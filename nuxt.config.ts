@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   site: {
     url: process.env.FRONTEND_HOST,
     name: "ZAJECI - VÍNO ZE ZAJECÍ",
-    trailingSlash: true,
+    trailingSlash: false,
   },
 
   sitemap: {
@@ -65,6 +65,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
+      autoSubfolderIndex: false,
     },
   },
 
