@@ -1,137 +1,82 @@
 <script setup lang="ts">
-const { loggedIn } = useUserSession();
+const { loggedIn, user } = useUserSession();
 const localePath = useLocalePath();
-const { user } = useUserSession();
+const { t } = useLang();
 const { totalItemsLength } = useCashdesk();
 const { routes, route, menuItem } = useMenuItems();
+const colorMode = useColorMode();
 
 const open = ref(true);
 
-useSeoMeta({
-  robots: "noindex, nofollow",
-});
+useSeoMeta({ robots: "noindex, nofollow" });
+
+const adminMenu = [
+  ["admin_wine", "i-heroicons-beaker"],
+  ["admin_taste", "i-heroicons-sparkles"],
+  ["admin_category", "i-heroicons-tag"],
+  ["admin_order", "i-heroicons-shopping-bag"],
+  ["admin_invoice", "i-heroicons-document-text"],
+  ["admin_user", "i-heroicons-users"],
+  ["admin_address", "i-heroicons-map-pin"],
+  ["admin_role", "i-heroicons-shield-check"],
+  ["admin_text", "i-heroicons-document"],
+  ["admin_mail", "i-heroicons-envelope"],
+  ["admin_enum", "i-heroicons-list-bullet"],
+  ["admin_payment", "i-heroicons-credit-card"],
+  ["admin_shipping", "i-heroicons-truck"],
+  ["admin_vat_rate", "i-heroicons-receipt-percent"],
+] as const;
 
 const menuItems = computed(() => {
-  const items: any[] = [];
+  if (user.value?.role?.name !== "admin") return [];
 
-  if (user.value?.role?.name === "admin") {
-    const adminWine = menuItem("admin_wine");
-    if (adminWine) {
-      adminWine.to = localePath(adminWine.to!);
-      adminWine.icon = "i-heroicons-beaker";
-      items.push(adminWine);
-    }
+  const items: any[] = [
+    {
+      label: "$.admin.title",
+      to: localePath("/admin"),
+      icon: "i-heroicons-squares-2x2",
+    },
+  ];
 
-    const adminTaste = menuItem("admin_taste");
-    if (adminTaste) {
-      adminTaste.to = localePath(adminTaste.to!);
-      adminTaste.icon = "i-heroicons-beaker";
-      items.push(adminTaste);
-    }
+  for (const [syscode, icon] of adminMenu) {
+    const item = menuItem(syscode);
+    if (!item?.to) continue;
 
-    const adminCategory = menuItem("admin_category");
-    if (adminCategory) {
-      adminCategory.to = localePath(adminCategory.to!);
-      adminCategory.icon = "i-heroicons-tag";
-      items.push(adminCategory);
-    }
-
-    const adminOrder = menuItem("admin_order");
-    if (adminOrder) {
-      adminOrder.to = localePath(adminOrder.to!);
-      adminOrder.icon = "i-heroicons-shopping-bag";
-      items.push(adminOrder);
-    }
-
-    const adminInvoice = menuItem("admin_invoice");
-    if (adminInvoice) {
-      adminInvoice.to = localePath(adminInvoice.to!);
-      adminInvoice.icon = "i-heroicons-document-text";
-      items.push(adminInvoice);
-    }
-
-    const adminUser = menuItem("admin_user");
-    if (adminUser) {
-      adminUser.to = localePath(adminUser.to!);
-      adminUser.icon = "i-heroicons-users";
-      items.push(adminUser);
-    }
-
-    const adminAddress = menuItem("admin_address");
-    if (adminAddress) {
-      adminAddress.to = localePath(adminAddress.to!);
-      adminAddress.icon = "i-heroicons-map-pin";
-      items.push(adminAddress);
-    }
-
-    const adminRole = menuItem("admin_role");
-    if (adminRole) {
-      adminRole.to = localePath(adminRole.to!);
-      adminRole.icon = "i-heroicons-shield-check";
-      items.push(adminRole);
-    }
-
-    const adminText = menuItem("admin_text");
-    if (adminText) {
-      adminText.to = localePath(adminText.to!);
-      adminText.icon = "i-heroicons-document";
-      items.push(adminText);
-    }
-
-    const adminMail = menuItem("admin_mail");
-    if (adminMail) {
-      adminMail.to = localePath(adminMail.to!);
-      adminMail.icon = "i-heroicons-envelope";
-      items.push(adminMail);
-    }
-
-    const adminEnum = menuItem("admin_enum");
-    if (adminEnum) {
-      adminEnum.to = localePath(adminEnum.to!);
-      adminEnum.icon = "i-heroicons-list-bullet";
-      items.push(adminEnum);
-    }
-
-    const adminPayment = menuItem("admin_payment");
-    if (adminPayment) {
-      adminPayment.to = localePath(adminPayment.to!);
-      adminPayment.icon = "i-heroicons-credit-card";
-      items.push(adminPayment);
-    }
-
-    const adminShipping = menuItem("admin_shipping");
-    if (adminShipping) {
-      adminShipping.to = localePath(adminShipping.to!);
-      adminShipping.icon = "i-heroicons-truck";
-      items.push(adminShipping);
-    }
-
-    const adminVatRate = menuItem("admin_vat_rate");
-    if (adminVatRate) {
-      adminVatRate.to = localePath(adminVatRate.to!);
-      adminVatRate.icon = "i-heroicons-receipt-percent";
-      items.push(adminVatRate);
-    }
+    items.push({ ...item, to: localePath(item.to), icon });
   }
 
   return items;
 });
+
+function toggleColorMode(): void {
+  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
+}
 </script>
 
 <template>
-  <UHeader
-    mode="slideover"
-    :toggle="{ size: 'xl' }"
-    :ui="{ container: 'max-w-full' }"
-  >
-    <template #title>
-      <div class="w-24 -ms-4 sm:-ms-6 lg:-ms-8">
-        <UiLogo />
-      </div>
-    </template>
+  <div class="crm-admin-shell min-h-screen">
+    <UHeader
+      mode="slideover"
+      :toggle="{ size: 'xl' }"
+      :ui="{
+        root: 'sticky top-0 z-40 border-b border-default/70 bg-default/75 backdrop-blur-xl',
+        container: 'max-w-full px-4 sm:px-6',
+      }"
+    >
+      <template #title>
+        <div class="w-24 -ms-2"><UiLogo /></div>
+      </template>
 
-    <template #right>
-      <div class="flex items-center gap-3">
+      <template #right>
+        <div
+          class="hidden items-center gap-2 rounded-full border border-default bg-elevated/70 px-3 py-1.5 text-xs font-bold text-muted lg:flex"
+        >
+          <span
+            class="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129_/_12%)]"
+          />
+          {{ t("$.layout.admin_online") }}
+        </div>
+
         <UChip
           :show="!!totalItemsLength"
           :text="totalItemsLength"
@@ -142,67 +87,86 @@ const menuItems = computed(() => {
           <UButton
             :to="routes?.cashdesk?.path"
             icon="i-heroicons-shopping-cart"
+            color="neutral"
             variant="ghost"
-            size="xl"
+            :aria-label="t('$.layout.cart')"
           />
         </UChip>
-      </div>
 
-      <UiProfileDropdownMenu v-if="loggedIn" />
-      <UiSignBtns v-else />
-    </template>
+        <UButton
+          :icon="
+            colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'
+          "
+          color="neutral"
+          variant="ghost"
+          :aria-label="t('$.layout.toggle_color_mode')"
+          @click="toggleColorMode"
+        />
 
-    <template #body>
-      <UNavigationMenu
-        :items="menuItems"
-        variant="link"
-        color="primary"
-        orientation="vertical"
-        :ui="{
-          list: 'space-y-1',
-          link: 'text-lg',
-        }"
-      >
-        <template #item-label="{ item }">
-          {{ $tt(item.label) }}
-        </template>
-      </UNavigationMenu>
-    </template>
-  </UHeader>
+        <UiProfileDropdownMenu v-if="loggedIn" />
+        <UiSignBtns v-else />
+      </template>
 
-  <div class="flex flex-1 min-h-0">
-    <USidebar
-      v-model:open="open"
-      collapsible="icon"
-      rail
-      :ui="{
-        gap: 'h-[calc(100%-var(--ui-header-height))]',
-        container:
-          'absolute top-(--ui-header-height) bottom-0 h-[calc(100%-var(--ui-header-height))]',
-      }"
-    >
-      <template #default="{ state }">
+      <template #body>
         <UNavigationMenu
-          :key="state"
           :items="menuItems"
           orientation="vertical"
-          :ui="{
-            list: 'space-y-2',
-            link: 'w-full px-4 py-1 text-base sm:text-lg font-medium flex items-center gap-3 pl-6 overflow-hidden transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-slate-800',
-          }"
+          :ui="{ link: 'text-base font-bold' }"
         >
-          <template #item-label="{ item }">
-            {{ $tt(item.label) }}
-          </template>
+          <template #item-label="{ item }">{{ $tt(item.label) }}</template>
         </UNavigationMenu>
       </template>
-    </USidebar>
+    </UHeader>
 
-    <div class="flex-1 flex flex-col min-w-0 overflow-auto">
-      <div v-if="route.meta?.syscode !== 'home'" class="w-full px-5 pt-4">
-        <UiBreadcrumb />
-      </div>
-      <slot />
+    <div
+      class="flex min-h-[calc(100vh-var(--ui-header-height))] gap-4 p-3 sm:p-4"
+    >
+      <USidebar
+        v-model:open="open"
+        collapsible="icon"
+        rail
+        class="overflow-hidden rounded-2xl border border-default/70 bg-default/80 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:shadow-black/20"
+      >
+        <template #default>
+          <UNavigationMenu
+            :items="menuItems"
+            orientation="vertical"
+            :ui="{
+              list: 'space-y-1.5 p-2',
+              link: 'w-full rounded-xl px-3.5 py-3 text-sm font-bold transition-all data-[active]:bg-primary data-[active]:text-white data-[active]:shadow-lg data-[active]:shadow-primary/20',
+              linkLeadingIcon: 'size-5',
+            }"
+          >
+            <template #item-label="{ item }">{{ $tt(item.label) }}</template>
+          </UNavigationMenu>
+        </template>
+
+        <template #footer>
+          <div class="m-2 rounded-xl bg-primary/8 p-3 text-xs text-muted">
+            <div
+              class="mb-2 flex items-center gap-2 font-extrabold text-highlighted"
+            >
+              <UIcon name="i-heroicons-chart-bar" class="size-4 text-primary" />
+              {{ t("$.layout.vineyard_overview") }}
+            </div>
+            <p class="group-data-[collapsed=true]:hidden">
+              {{ t("$.layout.vineyard_overview_description") }}
+            </p>
+          </div>
+        </template>
+      </USidebar>
+
+      <main
+        class="min-w-0 flex-1 overflow-auto rounded-2xl border border-white/50 bg-white/35 shadow-sm backdrop-blur-[2px] dark:border-white/5 dark:bg-slate-950/25"
+      >
+        <div
+          v-if="route.meta?.syscode !== 'admin'"
+          class="mx-auto w-full max-w-7xl px-5 pt-5 sm:px-7"
+        >
+          <UiBreadcrumb />
+        </div>
+        <slot />
+      </main>
     </div>
   </div>
 </template>

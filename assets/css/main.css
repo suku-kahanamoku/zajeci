@@ -183,3 +183,81 @@ h6,
     transparent 60%
   );
 }
+
+/* Admin shell inspired by the Zoo dashboard, using the Zajeci palette. */
+.crm-admin-shell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 20% 0%, rgb(1 61 107 / 10%), transparent 34rem),
+    radial-gradient(
+      circle at 100% 40%,
+      rgb(254 111 94 / 8%),
+      transparent 30rem
+    ),
+    #f5f7fb;
+}
+
+.dark .crm-admin-shell {
+  background:
+    radial-gradient(circle at 20% 0%, rgb(32 95 160 / 16%), transparent 34rem),
+    radial-gradient(
+      circle at 100% 40%,
+      rgb(254 111 94 / 8%),
+      transparent 30rem
+    ),
+    #080d17;
+}
+
+.crm-admin-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.45;
+  background-image: radial-gradient(
+    rgb(100 116 139 / 15%) 0.7px,
+    transparent 0.7px
+  );
+  background-size: 22px 22px;
+}
+
+.crm-hero-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 1.75rem;
+  color: white;
+  background:
+    radial-gradient(
+      circle at 90% 15%,
+      rgb(254 111 94 / 45%),
+      transparent 16rem
+    ),
+    linear-gradient(125deg, #011849 0%, #013060 52%, #205fa0 100%);
+  box-shadow: 0 28px 80px rgb(1 48 96 / 22%);
+}
+
+.crm-hero-panel::after {
+  position: absolute;
+  right: -3rem;
+  bottom: -5rem;
+  width: 18rem;
+  height: 18rem;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 999px;
+  content: "";
+  box-shadow:
+    0 0 0 2rem rgb(255 255 255 / 4%),
+    0 0 0 5rem rgb(255 255 255 / 3%);
+}
+
+.crm-eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--color-primary-600);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}

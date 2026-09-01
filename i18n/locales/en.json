@@ -136,6 +136,30 @@
         "title": "Tasting detail"
       }
     },
+    "layout": {
+      "admin_online": "Admin online",
+      "toggle_color_mode": "Toggle color mode",
+      "cart": "Shopping cart",
+      "vineyard_overview": "Vineyard under control",
+      "vineyard_overview_description": "Manage wines, orders and customers from one place."
+    },
+    "dashboard": {
+      "administrator": "administrator",
+      "eyebrow": "Winery control centre",
+      "greeting": "Hello, {name}.",
+      "description": "Keep wines, orders and customers clearly organised in one place.",
+      "new_wine": "Add wine",
+      "browse_orders": "View orders",
+      "recent_activity": "Recent activity",
+      "recent_orders": "Recent orders",
+      "all_orders": "All orders",
+      "no_orders": "There are no orders yet.",
+      "customer": "Customer",
+      "cellar": "Wine cellar",
+      "latest_wines": "Latest wines",
+      "no_wines": "There are no wines yet.",
+      "stock": "In stock: {count}"
+    },
     "form": {
       "msg": "Message",
       "price": "Price",

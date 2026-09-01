@@ -136,6 +136,30 @@
         "title": "Detail degustace"
       }
     },
+    "layout": {
+      "admin_online": "Administrace online",
+      "toggle_color_mode": "Přepnout barevný režim",
+      "cart": "Nákupní košík",
+      "vineyard_overview": "Vinařství pod kontrolou",
+      "vineyard_overview_description": "Spravujte vína, objednávky a zákazníky z jednoho místa."
+    },
+    "dashboard": {
+      "administrator": "administrátore",
+      "eyebrow": "Řídicí centrum vinařství",
+      "greeting": "Dobrý den, {name}.",
+      "description": "Mějte vína, objednávky a zákazníky přehledně na jednom místě.",
+      "new_wine": "Přidat víno",
+      "browse_orders": "Zobrazit objednávky",
+      "recent_activity": "Poslední aktivita",
+      "recent_orders": "Poslední objednávky",
+      "all_orders": "Všechny objednávky",
+      "no_orders": "Zatím zde nejsou žádné objednávky.",
+      "customer": "Zákazník",
+      "cellar": "Vinný sklep",
+      "latest_wines": "Nejnovější vína",
+      "no_wines": "Zatím zde nejsou žádná vína.",
+      "stock": "Skladem: {count} ks"
+    },
     "form": {
       "msg": "Zpráva",
       "price": "Cena",
