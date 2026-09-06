@@ -1,4 +1,5 @@
 import { setUserSessionFromPhp } from "@/server/utils/session";
+import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -9,9 +10,8 @@ export default defineEventHandler(async (event) => {
   let response: any = null;
   let responseStatusCode = 401;
   try {
-    response = await $fetch<any>(`${baseUrl}/auth/login`, {
+    response = await phpApiFetch<any>(event, "/auth/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: { email: body.email, password: body.password },
     });
   } catch (err: any) {

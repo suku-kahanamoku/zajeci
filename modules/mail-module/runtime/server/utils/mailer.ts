@@ -33,17 +33,27 @@ async function sendPhpMail(
     }
   }
 
-  return phpApiFetch(event, "/mailer/", { query });
+  try {
+    return await phpApiFetch(event, "/mailer/send", {
+      method: "POST",
+      body: query,
+      internal: true,
+    });
+  } catch (error: any) {
+    const status = error?.statusCode ?? error?.response?.status;
+    if (status !== 404) throw error;
+    // Deployment bridge: old php-core only had the legacy GET route.
+    return phpApiFetch(event, "/mailer/", { query, internal: true });
+  }
 }
 
-export function SEND_SIGNUP_MAIL(event: H3Event, to: string, password: string) {
+export function SEND_SIGNUP_MAIL(event: H3Event, to: string) {
   const config = useRuntimeConfig();
   return sendPhpMail(event, {
     template: "signup",
     to,
     subject: "Potvrzení registrace",
     email: to,
-    password,
     bcc: config.mailingFrom as string,
   });
 }
@@ -73,21 +83,6 @@ export function SEND_CONTACT_FORM_ADMIN_MAIL(
     subject: "Nová zpráva z kontaktního formuláře",
     email,
     msg,
-  });
-}
-
-export function SEND_RESET_PASSWORD_MAIL(
-  event: H3Event,
-  to: string,
-  email: string,
-  password: string,
-) {
-  return sendPhpMail(event, {
-    template: "reset-password",
-    to,
-    subject: "Reset hesla",
-    email,
-    password,
   });
 }
 

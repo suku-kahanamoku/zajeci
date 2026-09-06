@@ -35,7 +35,8 @@ Lokální hodnoty patří do `.env`.
 | --- | --- |
 | `PHP_API_BASE_URL` | Základní URL PHP API |
 | `PHP_FILE_ROOT` | Lokální kořen nebo HTTP(S) URL úložiště souborů |
-| `FRONTEND_HOST` | Veřejná URL webu a host hlavička pro PHP API |
+| `FRONTEND_HOST` | Veřejná URL webu; hostname se předává PHP API jako `X-Forwarded-Host` |
+| `INTERNAL_API_KEY` | Serverový klíč shodný s PHP backendem pro OAuth, e-mail a faktury; nikdy `NUXT_PUBLIC_*` |
 | `NUXT_PUBLIC_GTAG_ID` | Google Analytics ID |
 | `NUXT_MAILING_FROM` | E-mail odesílatele a administrativní příjemce |
 | `NUXT_MAILING_FROM_NAME` | Jméno odesílatele |
@@ -47,7 +48,7 @@ Lokální hodnoty patří do `.env`.
 
 Prohlížeč nevolá PHP backend přímo. Komponenty a composables volají `/api/...`, Nitro handler request předá na `PHP_API_BASE_URL` a vrátí backendovou obálku `{ success, message, data, errors? }`.
 
-`server/utils/phpApi.ts` předá session token jako Bearer, nastaví `Host` podle `FRONTEND_HOST`, převede `skip/limit` na `page/limit` a normalizuje `projection` a `factory`. Administrační stránky používají layout `admin`; prefix `/admin` chrání `auth-module`. Formuláře a tabulky jsou popsané JSON konfiguracemi v jednotlivých `runtime/assets/configs`.
+`server/utils/phpApi.ts` předá session token jako Bearer, nastaví `X-Forwarded-Host` podle `FRONTEND_HOST`, převede `skip/limit` na `page/limit` a normalizuje `projection` a `factory`. Globální server middleware navíc vyžaduje přihlášeného administrátora pro celý prefix `/api/admin`. Formuláře a tabulky jsou popsané JSON konfiguracemi v jednotlivých `runtime/assets/configs`.
 
 ## Lokální moduly
 

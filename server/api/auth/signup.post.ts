@@ -1,5 +1,6 @@
 import { setUserSessionFromPhp } from "@/server/utils/session";
 import { SEND_SIGNUP_MAIL } from "@/modules/mail-module/runtime/server/utils/mailer";
+import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -10,9 +11,8 @@ export default defineEventHandler(async (event) => {
   let registerResponse: any = null;
   let registerStatusCode = 400;
   try {
-    registerResponse = await $fetch<any>(`${baseUrl}/auth/register`, {
+    registerResponse = await phpApiFetch<any>(event, "/auth/register", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body,
     });
   } catch (err: any) {
@@ -28,9 +28,8 @@ export default defineEventHandler(async (event) => {
   }
 
   // Prihlaseni noveho uzivatele – ziskame token
-  const loginResponse = await $fetch<any>(`${baseUrl}/auth/login`, {
+  const loginResponse = await phpApiFetch<any>(event, "/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: { email: body.email, password: body.password },
   }).catch((err: any) => err?.data ?? null);
 
@@ -40,7 +39,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Odesleme potvrzovaci email
-  await SEND_SIGNUP_MAIL(event, body.email, body.password);
+  await SEND_SIGNUP_MAIL(event, body.email);
 
   return { success: true };
 });

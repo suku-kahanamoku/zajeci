@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       "/login",
       "/signup",
       "/forgot-password",
+      "/reset-password",
       "/gallery",
       "/cashdesk",
       "/cashdesk-completed",
@@ -57,6 +58,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     phpApiBaseUrl: process.env.PHP_API_BASE_URL,
     phpFileRoot: process.env.PHP_FILE_ROOT,
+    internalApiKey: process.env.INTERNAL_API_KEY,
+    frontendHost: process.env.FRONTEND_HOST || "https://vinozezajeci.cz",
     mailingFrom: process.env.NUXT_MAILING_FROM,
     mailingFromName: process.env.NUXT_MAILING_FROM_NAME,
     mailingFromPhone: process.env.NUXT_MAILING_FROM_PHONE,

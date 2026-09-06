@@ -90,6 +90,7 @@ export async function phpApiFetch<T = any>(
     method?: string;
     body?: any;
     query?: Record<string, any>;
+    internal?: boolean;
   } = {},
 ): Promise<PhpApiResponse<T>> {
   const config = useRuntimeConfig();
@@ -109,6 +110,16 @@ export async function phpApiFetch<T = any>(
   };
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
+  }
+  if (options.internal) {
+    const internalKey = String(config.internalApiKey || "");
+    if (!internalKey) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: "INTERNAL_API_KEY is not configured",
+      });
+    }
+    headers["X-Internal-Key"] = internalKey;
   }
 
   const query = options.query ? normalizeQuery(options.query) : undefined;

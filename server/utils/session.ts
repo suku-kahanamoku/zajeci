@@ -10,10 +10,13 @@ export async function setUserSessionFromPhp(
   token: string,
   userId: number,
 ): Promise<void> {
+  const frontendHost = String(useRuntimeConfig().frontendHost || "");
+  const host = frontendHost ? new URL(frontendHost).hostname : "";
   const userResponse = await $fetch<any>(`${baseUrl}/users/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
+      ...(host ? { "X-Forwarded-Host": host } : {}),
     },
   }).catch(() => null);
 

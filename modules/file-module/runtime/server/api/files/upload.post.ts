@@ -21,9 +21,12 @@ export default defineEventHandler(async (event: H3Event) => {
   form.append("file", blob, filePart.filename || "upload.bin");
 
   const headers: Record<string, string> = {};
+  const frontendHost = String(config.frontendHost || "");
+  const host = frontendHost ? new URL(frontendHost).hostname : "";
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
+  if (host) headers["X-Forwarded-Host"] = host;
 
   return await $fetch(`${baseUrl}/files/upload`, {
     method: "POST",

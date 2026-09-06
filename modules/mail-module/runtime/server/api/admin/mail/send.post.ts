@@ -10,8 +10,9 @@ export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig();
   const body = await readBody(event);
 
-  return phpApiFetch(event, "/mailer/", {
-    query: {
+  return phpApiFetch(event, "/mailer/send", {
+    method: "POST",
+    body: {
       template: body.template,
       to: body.to,
       subject: body.subject,

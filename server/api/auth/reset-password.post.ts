@@ -1,4 +1,4 @@
-import { SEND_RESET_PASSWORD_MAIL } from "@/modules/mail-module/runtime/server/utils/mailer";
+import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -16,9 +16,8 @@ export default defineEventHandler(async (event) => {
   let response: any = null;
   let responseStatusCode = 400;
   try {
-    response = await $fetch<any>(`${baseUrl}/auth/reset-password`, {
+    response = await phpApiFetch<any>(event, "/auth/reset-password", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: { email: body.email },
     });
   } catch (err: any) {
@@ -31,16 +30,6 @@ export default defineEventHandler(async (event) => {
       statusCode: responseStatusCode,
       message: response?.message || "Password reset failed",
     });
-  }
-
-  // Odesleme email s novym heslem (prazdne heslo = email neexistuje, tichy uspech)
-  if (response.data?.password) {
-    await SEND_RESET_PASSWORD_MAIL(
-      event,
-      body.email,
-      response.data.email,
-      response.data.password,
-    );
   }
 
   return { success: true };

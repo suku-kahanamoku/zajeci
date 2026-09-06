@@ -5,6 +5,7 @@ import {
   useRuntimeConfig,
 } from "#imports";
 import { setUserSessionFromPhp } from "@/server/utils/session";
+import { phpApiFetch } from "@/server/utils/phpApi";
 
 export default defineOAuthLinkedInEventHandler({
   async onSuccess(
@@ -12,8 +13,9 @@ export default defineOAuthLinkedInEventHandler({
     { tokens, user }: { tokens: any; user: any },
   ) {
     const email = user?.email as string | undefined;
+    const subject = (user?.sub || user?.id) as string | undefined;
 
-    if (!email) {
+    if (!email || !subject) {
       return await sendRedirect(event, "/login");
     }
 
@@ -24,10 +26,10 @@ export default defineOAuthLinkedInEventHandler({
 
     let response: any;
     try {
-      response = await $fetch<any>(`${baseUrl}/auth/oauth`, {
+      response = await phpApiFetch<any>(event, "/auth/oauth", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: { email, first_name: firstName, last_name: lastName },
+        internal: true,
+        body: { provider: "linkedin", subject, email, first_name: firstName, last_name: lastName },
       });
     } catch {
       return await sendRedirect(event, "/login");
