@@ -105,7 +105,7 @@ export async function phpApiFetch<T = any>(
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    ...(hostHeader ? { Host: hostHeader } : {}),
+    ...(hostHeader ? { "X-Forwarded-Host": hostHeader } : {}),
   };
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
