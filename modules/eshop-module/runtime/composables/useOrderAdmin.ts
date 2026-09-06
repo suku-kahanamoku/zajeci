@@ -80,12 +80,16 @@ export function useOrderAdmin(wConfig: any) {
     if (value && config?.value?.deleteUrl && selected.value?.length) {
       const method = "DELETE";
       try {
-        let url = useUrl(config.value.deleteUrl, {
-          config: config.value,
-          route,
-          item: selected.value,
-        });
-        await useApi(url, { method });
+        await Promise.all(
+          selected.value.map((item) => {
+            const url = useUrl(config.value!.deleteUrl!, {
+              config: config.value,
+              route,
+              item,
+            });
+            return useApi(url, { method });
+          }),
+        );
         success(t("$.form.delete_success_msg"));
       } catch (error: any) {
         toastError(error);
