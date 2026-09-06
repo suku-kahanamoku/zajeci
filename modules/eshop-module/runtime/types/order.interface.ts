@@ -79,7 +79,21 @@ export interface IOrder extends IItem {
   billing_address_id?: number | null;
   note?: string | null;
   items?: IOrderItem[];
-  user?: { first_name: string; last_name: string; email: string };
+  order_items?: IOrderItem[];
+  customer?: {
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone?: string;
+    billing_address?: Record<string, any> | null;
+    shipping_address?: Record<string, any> | null;
+  } | null;
+  user?: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone?: string;
+  };
 }
 
 export interface IOrderResponse extends IResponse {

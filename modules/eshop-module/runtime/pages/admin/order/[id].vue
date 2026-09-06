@@ -21,6 +21,28 @@ const title = computed(() =>
 const { config, orders: order, loading } = useOrderAdmin(oConfig);
 
 const data = computed(() => order.value?.data as IOrder | undefined);
+const customer = computed(() => data.value?.customer || data.value?.user || null);
+const orderItems = computed(
+  () => data.value?.order_items || data.value?.items || [],
+);
+
+function customerAddress(kind: "billing_address" | "shipping_address") {
+  return data.value?.customer?.[kind] || null;
+}
+
+function addressLine(address: Record<string, any> | null) {
+  if (!address) return "";
+
+  return [
+    address.name,
+    address.company,
+    address.street,
+    [address.zip, address.city].filter(Boolean).join(" "),
+    address.country,
+  ]
+    .filter(Boolean)
+    .join(", ");
+}
 
 useHead({
   title,
@@ -55,20 +77,31 @@ useHead({
           <div>
             <div class="font-semibold mb-2">{{ t("$.order.customer") }}</div>
             <div class="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+              <div v-if="customer?.first_name || customer?.last_name">
+                {{ customer?.first_name }} {{ customer?.last_name }}
+              </div>
+              <div v-if="customer?.email">
+                {{ customer.email }}
+              </div>
+              <div v-if="customer?.phone">
+                {{ customer.phone }}
+              </div>
               <div
-                v-if="
-                  (data as any).user?.first_name ||
-                  (data as any).user?.last_name
-                "
+                v-if="!customer?.email && data.user_id"
+                class="text-gray-400 dark:text-gray-300"
               >
-                {{ (data as any).user?.first_name }}
-                {{ (data as any).user?.last_name }}
-              </div>
-              <div v-if="(data as any).user?.email">
-                {{ (data as any).user?.email }}
-              </div>
-              <div v-else class="text-gray-400 dark:text-gray-300">
                 ID: {{ data.user_id }}
+              </div>
+              <div v-if="customerAddress('billing_address')" class="mt-2">
+                <strong>{{ t("$.cashdesk.billing_address") }}:</strong><br />
+                {{ addressLine(customerAddress("billing_address")) }}
+              </div>
+              <div
+                v-if="customerAddress('shipping_address')"
+                class="mt-2"
+              >
+                <strong>{{ t("$.cashdesk.shipping_address") }}:</strong><br />
+                {{ addressLine(customerAddress("shipping_address")) }}
               </div>
               <div
                 v-if="data.note"
@@ -123,7 +156,7 @@ useHead({
         <div class="mb-6">
           <div class="font-semibold mb-2">{{ t("$.cart.title") }}</div>
           <UTable
-            :data="data.items || []"
+            :data="orderItems"
             :columns="[
               { accessorKey: 'product_name', header: t('$.form.name') },
               { accessorKey: 'sku', header: 'SKU' },
