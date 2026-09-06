@@ -62,14 +62,6 @@ export default defineNuxtConfig({
     mailingFromPhone: process.env.NUXT_MAILING_FROM_PHONE,
   },
 
-  nitro: {
-    prerender: {
-      routes: ["/"],
-      crawlLinks: true,
-      autoSubfolderIndex: false,
-    },
-  },
-
   router: {
     options: {
       scrollBehaviorType: "smooth",
