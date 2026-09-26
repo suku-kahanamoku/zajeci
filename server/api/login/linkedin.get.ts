@@ -28,7 +28,6 @@ export default defineOAuthLinkedInEventHandler({
     try {
       response = await phpApiFetch<any>(event, "/auth/oauth", {
         method: "POST",
-        internal: true,
         body: { provider: "linkedin", subject, email, first_name: firstName, last_name: lastName },
       });
     } catch {

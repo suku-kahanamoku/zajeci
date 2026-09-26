@@ -36,7 +36,7 @@ Lokální hodnoty patří do `.env`.
 | `PHP_API_BASE_URL` | Základní URL PHP API |
 | `PHP_FILE_ROOT` | Lokální kořen nebo HTTP(S) URL úložiště souborů |
 | `FRONTEND_HOST` | Veřejná URL webu; hostname se předává PHP API jako `X-Forwarded-Host` |
-| `INTERNAL_API_KEY` | Serverový klíč shodný s PHP backendem pro OAuth, e-mail a faktury; nikdy `NUXT_PUBLIC_*` |
+| `INTERNAL_API_KEY` | Serverový klíč shodný s PHP backendem pro všechny požadavky na PHP; nikdy `NUXT_PUBLIC_*` |
 | `NUXT_PUBLIC_GTAG_ID` | Google Analytics ID |
 | `NUXT_MAILING_FROM` | E-mail odesílatele a administrativní příjemce |
 | `NUXT_MAILING_FROM_NAME` | Jméno odesílatele |
@@ -78,3 +78,15 @@ Komponenty používají `useLang()` a globální helper `$tt`. Pokud editor nevi
 ## Produkce
 
 Pro SSR spusťte `npm run build` a startujte výstup podle Nitro presetu. `npm run generate` používejte jen tam, kde je PHP API dostupné i během prerenderu; `crawlLinks` je zapnuté.
+
+## Interní autentizace PHP API
+
+Všechny serverové požadavky na php-core přidávají `X-Internal-Key` pomocí
+`server/utils/phpApiHeaders.ts`: JSON API, login, načtení session, upload i
+stahování souborů. Chybějící `INTERNAL_API_KEY` ukončí volání před odesláním.
+Klíč je pouze v soukromém runtimeConfig; prohlížeč ho nedostává. Bearer token
+přihlášeného uživatele se posílá samostatně a oprávnění PHP zůstávají aktivní.
+
+Offline kontrola: `node --test tests/php-api-auth.test.cjs`.
+Při nasazení aktualizujte serverové proxy a nastavte klíč před zapnutím povinné
+kontroly na PHP. Samotný build nedokazuje funkčnost produkční konfigurace.

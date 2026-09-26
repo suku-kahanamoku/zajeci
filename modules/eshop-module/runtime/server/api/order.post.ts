@@ -24,7 +24,6 @@ export default defineEventHandler(async (event: H3Event) => {
       try {
         const invoiceRes = await phpApiFetch(event, "/invoices", {
           method: "POST",
-          internal: true,
           body: { order_id: orderId, projection: ["files"] },
         });
         const files = invoiceRes?.data?.files;

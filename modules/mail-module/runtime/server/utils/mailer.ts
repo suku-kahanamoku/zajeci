@@ -37,13 +37,12 @@ async function sendPhpMail(
     return await phpApiFetch(event, "/mailer/send", {
       method: "POST",
       body: query,
-      internal: true,
     });
   } catch (error: any) {
     const status = error?.statusCode ?? error?.response?.status;
     if (status !== 404) throw error;
     // Deployment bridge: old php-core only had the legacy GET route.
-    return phpApiFetch(event, "/mailer/", { query, internal: true });
+    return phpApiFetch(event, "/mailer/", { query });
   }
 }
 

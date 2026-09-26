@@ -1,3 +1,4 @@
+import { phpApiHeaders } from "@/server/utils/phpApiHeaders";
 import type { H3Event } from "h3";
 
 /**
@@ -10,13 +11,10 @@ export async function setUserSessionFromPhp(
   token: string,
   userId: number,
 ): Promise<void> {
-  const frontendHost = String(useRuntimeConfig().frontendHost || "");
-  const host = frontendHost ? new URL(frontendHost).hostname : "";
   const userResponse = await $fetch<any>(`${baseUrl}/users/${userId}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
-      ...(host ? { "X-Forwarded-Host": host } : {}),
+      ...phpApiHeaders(event, token),
     },
   }).catch(() => null);
 

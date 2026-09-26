@@ -28,7 +28,6 @@ export default defineOAuthGoogleEventHandler({
     try {
       response = await phpApiFetch<any>(event, "/auth/oauth", {
         method: "POST",
-        internal: true,
         body: { provider: "google", subject, email, first_name: firstName, last_name: lastName },
       });
     } catch {

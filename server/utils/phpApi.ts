@@ -1,3 +1,4 @@
+import { phpApiHeaders } from "@/server/utils/phpApiHeaders";
 import type { H3Event } from "h3";
 
 export interface PhpApiResponse<T = any> {
@@ -90,38 +91,15 @@ export async function phpApiFetch<T = any>(
     method?: string;
     body?: any;
     query?: Record<string, any>;
-    internal?: boolean;
   } = {},
 ): Promise<PhpApiResponse<T>> {
   const config = useRuntimeConfig();
   const baseUrl = config.phpApiBaseUrl as string;
   const token = await getSessionToken(event);
-  const frontendHost =
-    ((config.public as any)?.frontendHost as string | undefined) ||
-    process.env.FRONTEND_HOST ||
-    "";
-  const hostHeader = frontendHost
-    ? new URL(frontendHost).hostname
-    : event.headers.get("host") || "";
-
-  const headers: Record<string, string> = {
+  const headers = {
     "Content-Type": "application/json",
-    ...(hostHeader ? { "X-Forwarded-Host": hostHeader } : {}),
+    ...phpApiHeaders(event, token),
   };
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
-  }
-  if (options.internal) {
-    const internalKey = String(config.internalApiKey || "");
-    if (!internalKey) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: "INTERNAL_API_KEY is not configured",
-      });
-    }
-    headers["X-Internal-Key"] = internalKey;
-  }
-
   const query = options.query ? normalizeQuery(options.query) : undefined;
 
   return await $fetch<PhpApiResponse<T>>(baseUrl + path, {

@@ -1,3 +1,4 @@
+import { phpApiHeaders } from "@/server/utils/phpApiHeaders";
 import type { H3Event } from "h3";
 export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig();
@@ -8,16 +9,11 @@ export default defineEventHandler(async (event: H3Event) => {
   const isTemp = event.path?.startsWith("/api/temp/");
   const session = await getUserSession(event).catch(() => null);
   const token = (session as any)?.token || (session as any)?.tokens?.access_token;
-  const frontendHost = String(config.frontendHost || "");
-  const host = frontendHost ? new URL(frontendHost).hostname : "";
   const backendPath = `${isTemp ? "temp" : "files"}/${filePath}`;
   const response = await fetch(
     `${String(config.phpApiBaseUrl)}/files/${isTemp ? "temp" : "content"}?path=${encodeURIComponent(backendPath)}`,
     {
-      headers: {
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...(host ? { "X-Forwarded-Host": host } : {}),
-      },
+      headers: phpApiHeaders(event, token),
     },
   );
   if (!response.ok) {
