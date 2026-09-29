@@ -12,7 +12,7 @@ export function usePayment() {
   const { data: enumPayments } = useAsyncData("payment-enums", async () => {
     try {
       const r = await useApi(
-        '/api/enumerations?q={"type":{"value":"payment"}}&limit=50&sort=[{"position":1}]',
+        '/api/enumerations?q={"type":{"$eq":"payment"}}&limit=50&sort=[{"position":1}]',
       );
       return r?.data ?? [];
     } catch {

@@ -2,7 +2,7 @@
 const { data: tasting } = await useAsyncData(async () => {
   try {
     const r = await useApi(
-      '/api/enumerations?q={"type":{"value":"taste"}}&limit=100',
+      '/api/enumerations?q={"type":{"$eq":"taste"}}&limit=100',
     );
     return r?.data ?? [];
   } catch {

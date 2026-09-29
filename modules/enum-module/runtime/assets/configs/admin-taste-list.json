@@ -1,6 +1,6 @@
 {
   "syscode": "admin-taste-list",
-  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"taste\"}}",
+  "restUrl": "/api/enumerations?q={\"type\":{\"$eq\":\"taste\"}}",
   "deleteUrl": "/api/admin/enum/${item.id}",
   "pagination": {
     "limit": 20

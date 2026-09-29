@@ -16,46 +16,81 @@ export interface PhpApiPaginatedData<T = any> {
   totalPages: number;
 }
 
-/**
- * Normalizes a Nuxt-style query object to PHP API format.
- * Called automatically inside phpApiFetch.
- * - projection: JSON array/object or array → comma-separated string (PHP format)
- * - skip + limit → page + limit
- * - factory: keeps string as-is, object/array serializes to JSON string
- */
+/** Wire contract shared by the Nuxt clients of php-core: q is a JSON object
+ * with Mongo-style operators; sort is a JSON array. The form module may still
+ * produce its older value/operator structure inside the browser. */
 function normalizeQuery(query: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   for (const [key, value] of Object.entries(query)) {
+    if (key === "skip" || value === undefined || value === null || value === "") continue;
     if (key === "factory") {
-      if (typeof value === "string") {
-        result[key] = value;
-      } else if (value !== undefined && value !== null) {
-        result[key] = JSON.stringify(value);
-      }
+      result[key] = typeof value === "string" ? value : JSON.stringify(value);
       continue;
     }
-
     if (key === "projection") {
-      let proj: any = value;
-      if (typeof proj === "string") {
-        try {
-          proj = JSON.parse(proj);
-        } catch {
-          result[key] = proj;
-          continue;
+      let projection = value;
+      if (typeof projection === "string") {
+        try { projection = JSON.parse(projection); } catch { /* already CSV */ }
+      }
+      result[key] = Array.isArray(projection)
+        ? projection.join(",")
+        : projection && typeof projection === "object"
+          ? Object.keys(projection).join(",")
+          : projection;
+      continue;
+    }
+    if (key === "q") {
+      let filter: unknown = value;
+      if (typeof filter === "string") {
+        try { filter = JSON.parse(filter); }
+        catch { throw createError({ statusCode: 422, statusMessage: "Invalid q filter" }); }
+      }
+      if (!filter || typeof filter !== "object" || Array.isArray(filter))
+        throw createError({ statusCode: 422, statusMessage: "Invalid q filter" });
+      const normalized: Record<string, unknown> = {};
+      for (const [column, condition] of Object.entries(filter)) {
+        if (condition && typeof condition === "object" && !Array.isArray(condition)
+            && "value" in condition) {
+          const spec = condition as Record<string, any>;
+          const raw = typeof spec.operator === "object" ? spec.operator?.value : spec.operator;
+          const operator = String(raw || "eq").replace(/^\$/, "");
+          const mongoOperators: Record<string, string> = {
+            neq: "$ne", ne: "$ne", eq: "$eq", regex: "$regex",
+            in: "$in", gt: "$gt", gte: "$gte", lt: "$lt", lte: "$lte",
+          };
+          const mongoOperator = mongoOperators[operator];
+          if (!["$eq", "$ne", "$regex", "$in", "$gt", "$gte", "$lt", "$lte"].includes(mongoOperator))
+            throw createError({ statusCode: 422, statusMessage: "Invalid q operator" });
+          let fieldValue = spec.value;
+          if (typeof fieldValue === "string") {
+            try { fieldValue = decodeURIComponent(fieldValue); }
+            catch { throw createError({ statusCode: 422, statusMessage: "Invalid q value" }); }
+          }
+          normalized[column] = { [mongoOperator]: fieldValue };
+        } else {
+          normalized[column] = condition;
         }
       }
-      if (Array.isArray(proj)) {
-        result[key] = proj.join(",");
-      } else if (proj !== null && typeof proj === "object") {
-        result[key] = Object.keys(proj).join(",");
-      }
+      result.q = JSON.stringify(normalized);
       continue;
     }
-
-    if (key === "skip") continue;
-
+    if (key === "sort") {
+      let sort: unknown = value;
+      if (typeof sort === "string") {
+        const legacy = /^([a-zA-Z_][a-zA-Z0-9_]*)\s+(ASC|DESC)$/i.exec(sort.trim());
+        if (legacy) sort = [{ [legacy[1]]: legacy[2].toUpperCase() === "ASC" ? 1 : -1 }];
+        else {
+          try { sort = JSON.parse(sort); }
+          catch { throw createError({ statusCode: 422, statusMessage: "Invalid sort" }); }
+        }
+      }
+      if (!Array.isArray(sort) || sort.some((item) => !item || typeof item !== "object" || Array.isArray(item)
+          || Object.keys(item).length !== 1 || !Object.values(item).every((direction) => direction === 1 || direction === -1)))
+        throw createError({ statusCode: 422, statusMessage: "Invalid sort" });
+      result.sort = JSON.stringify(sort);
+      continue;
+    }
     result[key] = value;
   }
 

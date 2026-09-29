@@ -1,6 +1,6 @@
 {
   "syscode": "admin-shipping-list",
-  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"shipping\"}}",
+  "restUrl": "/api/enumerations?q={\"type\":{\"$eq\":\"shipping\"}}",
   "deleteUrl": "/api/admin/enum/${item.id}",
   "pagination": {
     "limit": 20

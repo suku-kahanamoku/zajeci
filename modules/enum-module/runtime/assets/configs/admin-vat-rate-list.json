@@ -1,6 +1,6 @@
 {
   "syscode": "admin-vat-rate-list",
-  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"vat_rate\"}}",
+  "restUrl": "/api/enumerations?q={\"type\":{\"$eq\":\"vat_rate\"}}",
   "deleteUrl": "/api/admin/enum/${item.id}",
   "sort": [{"created_at": -1}],
   "factory": {

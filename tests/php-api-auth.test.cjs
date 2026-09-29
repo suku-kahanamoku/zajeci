@@ -62,6 +62,24 @@ test('JSON proxy always includes the key with or without a user session', async 
     assert.equal(call.url, 'https://backend.invalid/api/products');
   }
 });
+test('php-core receives one JSON filter and sort contract from form and config queries', async () => {
+  const calls = [];
+  const g = context({ $fetch: async (_url, options) => { calls.push(options.query); return { success: true }; } });
+  const { phpApiFetch } = load('server/utils/phpApi.ts', g, helpers(g));
+  await phpApiFetch(event(), '/products', { query: {
+    q: JSON.stringify({ name: { value: 'Nov%C3%A1k', operator: { value: '$regex' } }, published: { value: 1 } }),
+    sort: 'created_at DESC', limit: 10, skip: 20, projection: ['id', 'name'],
+  } });
+  assert.equal(JSON.stringify(JSON.parse(calls[0].q)), JSON.stringify({ name: { $regex: 'Novák' }, published: { $eq: 1 } }));
+  assert.equal(calls[0].sort, '[{"created_at":-1}]');
+  assert.equal(calls[0].page, 3);
+  assert.equal(calls[0].projection, 'id,name');
+  assert.equal('skip' in calls[0], false);
+  await phpApiFetch(event(), '/products', { query: { q: '{"name":{"$regex":"Anna"}}', sort: '[{"name":1}]' } });
+  assert.equal(calls[1].q, '{"name":{"$regex":"Anna"}}');
+  assert.equal(calls[1].sort, '[{"name":1}]');
+  await assert.rejects(phpApiFetch(event(), '/products', { query: { q: 'Anna' } }), error => error.statusCode === 422);
+});
 test('session hydration includes internal and user keys', async () => {
   let call;
   const g = context({ $fetch: async (url, options) => { call = options; return { data: { id: 1 } }; }, setUserSession: async () => {} });

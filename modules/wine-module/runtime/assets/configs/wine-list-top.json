@@ -1,6 +1,6 @@
 {
   "syscode": "wine-list-top",
-  "restUrl": "/api/wine?q={\"category.syscode\":{\"value\":\"top\"}}",
+  "restUrl": "/api/wine?q={\"category.syscode\":{\"$eq\":\"top\"}}",
   "factory": {
     "url": "${name}--$${id}"
   },
@@ -49,7 +49,7 @@
       "iconColor": "text-primary-500",
       "placeholder": "$.form.select",
       "restOptions": {
-        "url": "/api/enumerations?q={\"type\":{\"value\":\"wine_kind\"},\"published\":{\"value\":1}}&limit=100",
+        "url": "/api/enumerations?q={\"type\":{\"$eq\":\"wine_kind\"},\"published\":{\"$eq\":1}}&limit=100",
         "label": "label",
         "value": "value"
       }

@@ -1,6 +1,6 @@
 {
   "syscode": "admin-payment-list",
-  "restUrl": "/api/enumerations?q={\"type\":{\"value\":\"payment\"}}",
+  "restUrl": "/api/enumerations?q={\"type\":{\"$eq\":\"payment\"}}",
   "deleteUrl": "/api/admin/enum/${item.id}",
   "pagination": {
     "limit": 20
